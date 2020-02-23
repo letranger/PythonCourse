@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-02-23 Sun 11:08 -->
+<!-- 2020-02-23 Sun 23:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Python programming</title>
+<title>Basic Materials of Python</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="yen yung chin" />
 <style type="text/css">
@@ -270,279 +270,279 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
-<h1 class="title">Python programming</h1>
+<h1 class="title">Basic Materials of Python</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgba0bef2">1. 變數、資料型態、輸出輸入</a>
+<li><a href="#org177d34a">1. 變數、資料型態、輸出輸入</a>
 <ul>
-<li><a href="#orgac98fed">1.1. 變數</a>
+<li><a href="#orgad4a23c">1.1. 變數</a>
 <ul>
-<li><a href="#orge8efe24">1.1.1. 命名規則</a></li>
-<li><a href="#orgcd6709e">1.1.2. 範例</a></li>
-<li><a href="#orgafa2c46">1.1.3. 變數的指派(assign)</a></li>
-<li><a href="#org117a062">1.1.4. 指派語法： </a></li>
-<li><a href="#orgc411984">1.1.5. 範例：</a></li>
+<li><a href="#org7f098bd">1.1.1. 命名規則</a></li>
+<li><a href="#org1e1481e">1.1.2. 範例</a></li>
+<li><a href="#org1348d4c">1.1.3. 變數的指派(assign)</a></li>
+<li><a href="#org367a3be">1.1.4. 指派語法： </a></li>
+<li><a href="#org5580bd0">1.1.5. 範例：</a></li>
 </ul>
 </li>
-<li><a href="#org9b1c2ba">1.2. 資料型態</a>
+<li><a href="#orgb8ee796">1.2. 資料型態</a>
 <ul>
-<li><a href="#orgf49db38">1.2.1. 常用類型</a></li>
-<li><a href="#org0717983">1.2.2. 型態間的轉換</a></li>
+<li><a href="#org86fe105">1.2.1. 常用類型</a></li>
+<li><a href="#org5f47ec5">1.2.2. 型態間的轉換</a></li>
 </ul>
 </li>
-<li><a href="#orgdb065c6">1.3. 輸出: print</a>
+<li><a href="#orgceb3c31">1.3. 輸出: print</a>
 <ul>
-<li><a href="#org0d60b07">1.3.1. 語法</a></li>
-<li><a href="#org0638cbd">1.3.2. 範例</a></li>
-<li><a href="#org9c63d07">1.3.3. escape char</a></li>
-<li><a href="#org3616c14">1.3.4. 格式化輸出</a></li>
-<li><a href="#orgb68c3f9">1.3.5. format格式化輸出</a></li>
+<li><a href="#orgd77daee">1.3.1. 語法</a></li>
+<li><a href="#orge331473">1.3.2. 範例</a></li>
+<li><a href="#org184f73d">1.3.3. escape char</a></li>
+<li><a href="#orgf7e1958">1.3.4. 格式化輸出</a></li>
+<li><a href="#org31649b9">1.3.5. format格式化輸出</a></li>
 </ul>
 </li>
-<li><a href="#orgb51af04">1.4. 輸入</a>
+<li><a href="#orge211a7c">1.4. 輸入</a>
 <ul>
-<li><a href="#org8d6081f">1.4.1. 語法</a></li>
-<li><a href="#org5723b27">1.4.2. 範例</a></li>
-<li><a href="#org6e52c56">1.4.3. 輸入搭配型別轉換</a></li>
-<li><a href="#org1eac618">1.4.4. input注意事項</a></li>
+<li><a href="#org6e13697">1.4.1. 語法</a></li>
+<li><a href="#org5a59cd8">1.4.2. 範例</a></li>
+<li><a href="#org30e2dda">1.4.3. 輸入搭配型別轉換</a></li>
+<li><a href="#orgc116f42">1.4.4. input注意事項</a></li>
 </ul>
 </li>
-<li><a href="#orgd2b92d5">1.5. 註解</a>
+<li><a href="#org90cef22">1.5. 註解</a>
 <ul>
-<li><a href="#org3848ecc">1.5.1. 語法</a></li>
-<li><a href="#org23c88c0">1.5.2. 範例</a></li>
+<li><a href="#org14740e9">1.5.1. 語法</a></li>
+<li><a href="#orgcdf8cef">1.5.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#org979c3b6">1.6. 實作練習</a></li>
+<li><a href="#org699c707">1.6. 實作練習</a></li>
 </ul>
 </li>
-<li><a href="#org3e69301">2. 運算元與運算式</a>
+<li><a href="#orge4be745">2. 運算元與運算式</a>
 <ul>
-<li><a href="#org8e44767">2.1. 算術運算</a>
+<li><a href="#org8ee1ab9">2.1. 算術運算</a>
 <ul>
-<li><a href="#orgbecf99c">2.1.1. 範例#1</a></li>
-<li><a href="#orgc879707">2.1.2. 範例#2</a></li>
+<li><a href="#org080e0ce">2.1.1. 範例#1</a></li>
+<li><a href="#org0d52513">2.1.2. 範例#2</a></li>
 </ul>
 </li>
-<li><a href="#orge4b54ad">2.2. 關係運算子</a></li>
-<li><a href="#org4e77d14">2.3. 邏輯運算子</a></li>
-<li><a href="#orgfd2a7a3">2.4. 複合指定運算子</a></li>
+<li><a href="#orgb6fc710">2.2. 關係運算子</a></li>
+<li><a href="#org9cb5120">2.3. 邏輯運算子</a></li>
+<li><a href="#org6488ed4">2.4. 複合指定運算子</a></li>
 </ul>
 </li>
-<li><a href="#org3c566c2">3. 判斷結構</a>
+<li><a href="#orgd35af3a">3. 判斷結構</a>
 <ul>
-<li><a href="#org0e30e13">3.1. if</a>
+<li><a href="#org9f72c2e">3.1. if</a>
 <ul>
-<li><a href="#org99dae7d">3.1.1. 語法</a></li>
-<li><a href="#orgbabbd69">3.1.2. 範例</a></li>
+<li><a href="#orgaea8814">3.1.1. 語法</a></li>
+<li><a href="#orgb7a1af6">3.1.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgb1596df">3.2. if &#x2026; else &#x2026;</a>
+<li><a href="#orgf6ea9b4">3.2. if &#x2026; else &#x2026;</a>
 <ul>
-<li><a href="#orgbc43fa3">3.2.1. 語法</a></li>
-<li><a href="#org9ee933e">3.2.2. 範例</a></li>
+<li><a href="#org3ee98f2">3.2.1. 語法</a></li>
+<li><a href="#org871e9c7">3.2.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#org799eb6c">3.3. if &#x2026; elif &#x2026; else &#x2026;</a>
+<li><a href="#org27c9a05">3.3. if &#x2026; elif &#x2026; else &#x2026;</a>
 <ul>
-<li><a href="#org6431c65">3.3.1. 語法</a></li>
-<li><a href="#org35955d9">3.3.2. 範例</a></li>
+<li><a href="#orgb921d69">3.3.1. 語法</a></li>
+<li><a href="#orga3f1b9d">3.3.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#org7b1bb60">3.4. 巢狀if</a>
+<li><a href="#org1404024">3.4. 巢狀if</a>
 <ul>
-<li><a href="#orgc8e4631">3.4.1. 語法</a></li>
-<li><a href="#orgfc5ab66">3.4.2. 範例: 某年份是否為閏年</a></li>
-<li><a href="#orgd90fcbf">3.4.3. code #1</a></li>
-<li><a href="#org1a28a4f">3.4.4. code #2</a></li>
-<li><a href="#org574d5ce">3.4.5. 練習題</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org955ba6a">4. 迴圈結構</a>
-<ul>
-<li><a href="#org95a80f4">4.1. for</a>
-<ul>
-<li><a href="#orgdeb33db">4.1.1. 語法</a></li>
-<li><a href="#org3c267aa">4.1.2. List為range() function語法</a></li>
-<li><a href="#org3de8efd">4.1.3. List為range() function語法</a></li>
-<li><a href="#orgd5aa65e">4.1.4. List為String</a></li>
-</ul>
-</li>
-<li><a href="#org4df19b4">4.2. while</a>
-<ul>
-<li><a href="#org91513a2">4.2.1. 語法</a></li>
-<li><a href="#orgac245f1">4.2.2. 範例</a></li>
-</ul>
-</li>
-<li><a href="#orgd62ffa4">4.3. while + else</a>
-<ul>
-<li><a href="#orgc7c07f2">4.3.1. 語法</a></li>
-<li><a href="#org271db28">4.3.2. 範例</a></li>
-</ul>
-</li>
-<li><a href="#orge1e12e3">4.4. break</a>
-<ul>
-<li><a href="#orge66192f">4.4.1. 範例</a></li>
-</ul>
-</li>
-<li><a href="#orgc3fe87d">4.5. continue</a>
-<ul>
-<li><a href="#orga5ce57c">4.5.1. 範例</a></li>
-</ul>
-</li>
-<li><a href="#orgdfeb27c">4.6. 巢狀迴圈</a>
-<ul>
-<li><a href="#org0c7c531">4.6.1. 範例</a></li>
+<li><a href="#org63050fc">3.4.1. 語法</a></li>
+<li><a href="#orgdd8dddd">3.4.2. 範例: 某年份是否為閏年</a></li>
+<li><a href="#org84b300a">3.4.3. code #1</a></li>
+<li><a href="#org570c235">3.4.4. code #2</a></li>
+<li><a href="#org5aedcf8">3.4.5. 練習題</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org2fb312b">5. 資料型別</a>
+<li><a href="#org9978201">4. 迴圈結構</a>
 <ul>
-<li><a href="#orgc268942">5.1. 字串string</a>
+<li><a href="#org6fe9abf">4.1. for</a>
 <ul>
-<li><a href="#org91beee2">5.1.1. 資料格式</a></li>
-<li><a href="#orge2042a7">5.1.2. 範例</a></li>
-<li><a href="#org8a8bb5a">5.1.3. 字串運算子</a></li>
-<li><a href="#orgde82e0f">5.1.4. 字串function與method</a></li>
+<li><a href="#orgb3a4655">4.1.1. 語法</a></li>
+<li><a href="#orgc2ab639">4.1.2. List為range() function語法</a></li>
+<li><a href="#orgd5a2117">4.1.3. List為range() function語法</a></li>
+<li><a href="#orgbba305f">4.1.4. List為String</a></li>
 </ul>
 </li>
-<li><a href="#org00a6545">5.2. 列表list</a>
+<li><a href="#org4667a8a">4.2. while</a>
 <ul>
-<li><a href="#orgc0ac38b">5.2.1. 資料格式</a></li>
-<li><a href="#orgf63bac4">5.2.2. 表列函式與方法</a></li>
-<li><a href="#org004330c">5.2.3. 練習</a></li>
+<li><a href="#orgabe01a3">4.2.1. 語法</a></li>
+<li><a href="#org84c3aa9">4.2.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#org41b2f1a">5.3. 元組tuple</a>
+<li><a href="#org52a90c5">4.3. while + else</a>
 <ul>
-<li><a href="#orge18c0e5">5.3.1. 資料格式</a></li>
-<li><a href="#orgf9d7085">5.3.2. 範例</a></li>
-<li><a href="#org2bc53c3">5.3.3. 練習: 史上最強掌法</a></li>
-<li><a href="#org41577a1">5.3.4. 解1</a></li>
-<li><a href="#orge90d804">5.3.5. 解2</a></li>
+<li><a href="#orgb2ca27d">4.3.1. 語法</a></li>
+<li><a href="#org811bf22">4.3.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgfbd5ffa">5.4. 字典dict</a>
+<li><a href="#org88e6401">4.4. break</a>
 <ul>
-<li><a href="#org26e263f">5.4.1. 資料格式</a></li>
-<li><a href="#orgaac1dda">5.4.2. 範例</a></li>
-<li><a href="#orgb1cf63b">5.4.3. dic操作</a></li>
-<li><a href="#orgc4dd97b">5.4.4. dic method</a></li>
+<li><a href="#org73f9cbb">4.4.1. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgab876a1">5.5. List v.s. Tuple</a>
+<li><a href="#org81707b5">4.5. continue</a>
 <ul>
-<li><a href="#org7ed431c">5.5.1. 能否改變內容</a></li>
-<li><a href="#orgd885f42">5.5.2. 可讀性</a></li>
-<li><a href="#org312d5da">5.5.3. 與dictionary的相似性</a></li>
+<li><a href="#orgea29160">4.5.1. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgcccfa15">5.6. 集合set</a>
+<li><a href="#org12c87d4">4.6. 巢狀迴圈</a>
 <ul>
-<li><a href="#org89e0258">5.6.1. 資料格式</a></li>
-<li><a href="#org8da991b">5.6.2. 範例</a></li>
-<li><a href="#orgaa0c295">5.6.3. 元素新增刪除</a></li>
-<li><a href="#org16c2423">5.6.4. 集合運算</a></li>
-<li><a href="#orgd9cbc5a">5.6.5. 詳細語法</a></li>
-<li><a href="#org67537ed">5.6.6. 練習：skyoj ⇒ Contest ⇒ Python練習題(資料型別)</a></li>
-</ul>
-</li>
-<li><a href="#org9e63464">5.7. 資料型別整理</a></li>
-</ul>
-</li>
-<li><a href="#orgdff73ed">6. FUNCTION</a>
-<ul>
-<li><a href="#org03efd1d">6.1. 函式(function)基本操作</a>
-<ul>
-<li><a href="#orgf4c739d">6.1.1. 函式(function)的重要性</a></li>
-<li><a href="#orgf74310d">6.1.2. 自定義函式</a></li>
-<li><a href="#orgd2980a7">6.1.3. 自定義函式的呼叫</a></li>
-<li><a href="#orgf8d7583">6.1.4. 多參數函式</a></li>
-<li><a href="#org740b7d6">6.1.5. 多回傳值函式</a></li>
-</ul>
-</li>
-<li><a href="#org008c390">6.2. 引數(argument)的傳遞</a>
-<ul>
-<li><a href="#org4a24816">6.2.1. 傳值與傳址</a></li>
-</ul>
-</li>
-<li><a href="#orgbed75c9">6.3. 模組(module)</a>
-<ul>
-<li><a href="#org69a8942">6.3.1. 匯入模組語法：</a></li>
-<li><a href="#org4317ce4">6.3.2. 範例</a></li>
-</ul>
-</li>
-<li><a href="#orgf09158d">6.4. 遞迴(recursive)</a>
-<ul>
-<li><a href="#org543bb3d">6.4.1. 語法</a></li>
-<li><a href="#orgf533557">6.4.2. 基本條件</a></li>
-<li><a href="#orga69efc9">6.4.3. 範例</a></li>
-<li><a href="#orgf9df1f1">6.4.4. 練習</a></li>
+<li><a href="#orgde20236">4.6.1. 範例</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org1dd7e64">7. Numpy模組</a>
+<li><a href="#org7e63447">5. 資料型別</a>
 <ul>
-<li><a href="#org0b23436">7.1. 匯入模組</a></li>
-<li><a href="#orgcb9cbb6">7.2. Create ndarray</a>
+<li><a href="#org8a4d2cb">5.1. 字串string</a>
 <ul>
-<li><a href="#org60c598e">7.2.1. 一維陣列</a></li>
-<li><a href="#org5dd9c60">7.2.2. 多維陣列</a></li>
+<li><a href="#org7dc5cb5">5.1.1. 資料格式</a></li>
+<li><a href="#orgde7f0a7">5.1.2. 範例</a></li>
+<li><a href="#org50181f7">5.1.3. 字串運算子</a></li>
+<li><a href="#orgaddad24">5.1.4. 字串function與method</a></li>
 </ul>
 </li>
-<li><a href="#orgb257b80">7.3. 矩陣運算</a></li>
-<li><a href="#orgd3211e2">7.4. 特殊矩陣</a></li>
-<li><a href="#org1d5685f">7.5. ndarray屬性</a>
+<li><a href="#org84053df">5.2. 列表list</a>
 <ul>
-<li><a href="#org50fc2da">7.5.1. 練習</a></li>
+<li><a href="#org202a611">5.2.1. 資料格式</a></li>
+<li><a href="#orgd1bbaa7">5.2.2. 表列函式與方法</a></li>
+<li><a href="#org191c267">5.2.3. 練習</a></li>
 </ul>
 </li>
-<li><a href="#org37b2608">7.6. 矩陣形狀轉換</a></li>
-</ul>
-</li>
-<li><a href="#orgba4b6a2">8. Matplotlib</a></li>
-<li><a href="#org0cea65f">9. 網路爬蟲</a></li>
-<li><a href="#org69d99db">10. Python學習資源</a></li>
-<li><a href="#org6435d1b">11. 0802 CNN</a></li>
-<li><a href="#orgeb997cb">12. 以python下載網路資料</a></li>
-<li><a href="#orge339530">13. 網路爬蟲</a>
+<li><a href="#org17a0bfc">5.3. 元組tuple</a>
 <ul>
-<li><a href="#orgf95db19">13.1. parse HTML</a>
+<li><a href="#orgf8e17c4">5.3.1. 資料格式</a></li>
+<li><a href="#org37ae337">5.3.2. 範例</a></li>
+<li><a href="#org8eb36a0">5.3.3. 練習: 史上最強掌法</a></li>
+<li><a href="#orgd8abf66">5.3.4. 解1</a></li>
+<li><a href="#org4a419bb">5.3.5. 解2</a></li>
+</ul>
+</li>
+<li><a href="#org57340f2">5.4. 字典dict</a>
 <ul>
-<li><a href="#org13ef0b2">13.1.1. 所需套件</a></li>
+<li><a href="#orgb9b2b6c">5.4.1. 資料格式</a></li>
+<li><a href="#orgfa2a183">5.4.2. 範例</a></li>
+<li><a href="#org71692fe">5.4.3. dic操作</a></li>
+<li><a href="#org9fbc5b4">5.4.4. dic method</a></li>
 </ul>
 </li>
-<li><a href="#orgbe7c682">13.2. 範例: 以程式抓取PTT電影板header</a>
+<li><a href="#orgbbfa68a">5.5. List v.s. Tuple</a>
 <ul>
-<li><a href="#org00a9e22">13.2.1. 原則</a></li>
-<li><a href="#orgdb6b973">13.2.2. 實作: 取得HTML資料</a></li>
-<li><a href="#org99b27a9">13.2.3. 實作：解析HTML資料內容</a></li>
+<li><a href="#org6e76f66">5.5.1. 能否改變內容</a></li>
+<li><a href="#org76f2dbb">5.5.2. 可讀性</a></li>
+<li><a href="#orga0d8346">5.5.3. 與dictionary的相似性</a></li>
 </ul>
 </li>
-<li><a href="#org40cf501">13.3. 參考資料</a></li>
+<li><a href="#org1ef18e9">5.6. 集合set</a>
+<ul>
+<li><a href="#orge54bb29">5.6.1. 資料格式</a></li>
+<li><a href="#org11d910d">5.6.2. 範例</a></li>
+<li><a href="#org4b48ee5">5.6.3. 元素新增刪除</a></li>
+<li><a href="#orga7ac5ab">5.6.4. 集合運算</a></li>
+<li><a href="#org7811372">5.6.5. 詳細語法</a></li>
+<li><a href="#org90d2369">5.6.6. 練習：skyoj ⇒ Contest ⇒ Python練習題(資料型別)</a></li>
 </ul>
 </li>
-<li><a href="#orgfc7b404">14. 如何把python程式publish成網站應用程式</a></li>
+<li><a href="#org43293c6">5.7. 資料型別整理</a></li>
+</ul>
+</li>
+<li><a href="#org3734506">6. FUNCTION</a>
+<ul>
+<li><a href="#orge2a3c24">6.1. 函式(function)基本操作</a>
+<ul>
+<li><a href="#orge4c7c12">6.1.1. 函式(function)的重要性</a></li>
+<li><a href="#orgeb8df3a">6.1.2. 自定義函式</a></li>
+<li><a href="#orgf4c17b5">6.1.3. 自定義函式的呼叫</a></li>
+<li><a href="#org71e6eca">6.1.4. 多參數函式</a></li>
+<li><a href="#orga065f69">6.1.5. 多回傳值函式</a></li>
+</ul>
+</li>
+<li><a href="#org15335bb">6.2. 引數(argument)的傳遞</a>
+<ul>
+<li><a href="#org172d19a">6.2.1. 傳值與傳址</a></li>
+</ul>
+</li>
+<li><a href="#org59780b1">6.3. 模組(module)</a>
+<ul>
+<li><a href="#org899032c">6.3.1. 匯入模組語法：</a></li>
+<li><a href="#orgb02c415">6.3.2. 範例</a></li>
+</ul>
+</li>
+<li><a href="#org6ea37ec">6.4. 遞迴(recursive)</a>
+<ul>
+<li><a href="#org055829f">6.4.1. 語法</a></li>
+<li><a href="#orgd7ae365">6.4.2. 基本條件</a></li>
+<li><a href="#org4056814">6.4.3. 範例</a></li>
+<li><a href="#orga19f147">6.4.4. 練習</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0a977a9">7. Numpy模組</a>
+<ul>
+<li><a href="#org0f5693a">7.1. 匯入模組</a></li>
+<li><a href="#org5b7f489">7.2. Create ndarray</a>
+<ul>
+<li><a href="#org18c49eb">7.2.1. 一維陣列</a></li>
+<li><a href="#orgaf9fb0f">7.2.2. 多維陣列</a></li>
+</ul>
+</li>
+<li><a href="#orga3ff1a5">7.3. 矩陣運算</a></li>
+<li><a href="#org7a94627">7.4. 特殊矩陣</a></li>
+<li><a href="#org7bc5435">7.5. ndarray屬性</a>
+<ul>
+<li><a href="#org42b8de3">7.5.1. 練習</a></li>
+</ul>
+</li>
+<li><a href="#org1879c73">7.6. 矩陣形狀轉換</a></li>
+</ul>
+</li>
+<li><a href="#org35e763c">8. Matplotlib</a></li>
+<li><a href="#org0b980d5">9. 網路爬蟲</a></li>
+<li><a href="#orge5d4d66">10. Python學習資源</a></li>
+<li><a href="#org06af202">11. 0802 CNN</a></li>
+<li><a href="#org22cf546">12. 以python下載網路資料</a></li>
+<li><a href="#org2e55731">13. 網路爬蟲</a>
+<ul>
+<li><a href="#org9cb18d7">13.1. parse HTML</a>
+<ul>
+<li><a href="#org88bfb3d">13.1.1. 所需套件</a></li>
+</ul>
+</li>
+<li><a href="#orged201bf">13.2. 範例: 以程式抓取PTT電影板header</a>
+<ul>
+<li><a href="#org657673a">13.2.1. 原則</a></li>
+<li><a href="#org36b1847">13.2.2. 實作: 取得HTML資料</a></li>
+<li><a href="#orgce6c306">13.2.3. 實作：解析HTML資料內容</a></li>
+</ul>
+</li>
+<li><a href="#org9e00c08">13.3. 參考資料</a></li>
+</ul>
+</li>
+<li><a href="#org36776b3">14. 如何把python程式publish成網站應用程式</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgba0bef2" class="outline-2">
-<h2 id="orgba0bef2"><span class="section-number-2">1</span> 變數、資料型態、輸出輸入</h2>
+<div id="outline-container-org177d34a" class="outline-2">
+<h2 id="org177d34a"><span class="section-number-2">1</span> 變數、資料型態、輸出輸入</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgac98fed" class="outline-3">
-<h3 id="orgac98fed"><span class="section-number-3">1.1</span> 變數</h3>
+<div id="outline-container-orgad4a23c" class="outline-3">
+<h3 id="orgad4a23c"><span class="section-number-3">1.1</span> 變數</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orge8efe24" class="outline-4">
-<h4 id="orge8efe24"><span class="section-number-4">1.1.1</span> 命名規則</h4>
+<div id="outline-container-org7f098bd" class="outline-4">
+<h4 id="org7f098bd"><span class="section-number-4">1.1.1</span> 命名規則</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>由英文、數字、底線、中文(不建議)組成<br /></li>
@@ -552,8 +552,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgcd6709e" class="outline-4">
-<h4 id="orgcd6709e"><span class="section-number-4">1.1.2</span> 範例</h4>
+<div id="outline-container-org1e1481e" class="outline-4">
+<h4 id="org1e1481e"><span class="section-number-4">1.1.2</span> 範例</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>abc_123:<br /></li>
@@ -565,8 +565,8 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-orgafa2c46" class="outline-4">
-<h4 id="orgafa2c46"><span class="section-number-4">1.1.3</span> 變數的指派(assign)</h4>
+<div id="outline-container-org1348d4c" class="outline-4">
+<h4 id="org1348d4c"><span class="section-number-4">1.1.3</span> 變數的指派(assign)</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <p>
 Python變數不需宣告，依指派值自動設定資料型態。<br />
@@ -574,8 +574,8 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </div>
 
-<div id="outline-container-org117a062" class="outline-4">
-<h4 id="org117a062"><span class="section-number-4">1.1.4</span> 指派語法： </h4>
+<div id="outline-container-org367a3be" class="outline-4">
+<h4 id="org367a3be"><span class="section-number-4">1.1.4</span> 指派語法： </h4>
 <div class="outline-text-4" id="text-1-1-4">
 <ul class="org-ul">
 <li>變數名稱 = 指派值<br /></li>
@@ -584,8 +584,8 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </div>
 
-<div id="outline-container-orgc411984" class="outline-4">
-<h4 id="orgc411984"><span class="section-number-4">1.1.5</span> 範例：</h4>
+<div id="outline-container-org5580bd0" class="outline-4">
+<h4 id="org5580bd0"><span class="section-number-4">1.1.5</span> 範例：</h4>
 <div class="outline-text-4" id="text-1-1-5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">a</span> = <span style="color: #B5CEA8; font-weight: bold;">5</span>
@@ -599,12 +599,12 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </div>
 
-<div id="outline-container-org9b1c2ba" class="outline-3">
-<h3 id="org9b1c2ba"><span class="section-number-3">1.2</span> 資料型態</h3>
+<div id="outline-container-orgb8ee796" class="outline-3">
+<h3 id="orgb8ee796"><span class="section-number-3">1.2</span> 資料型態</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-orgf49db38" class="outline-4">
-<h4 id="orgf49db38"><span class="section-number-4">1.2.1</span> 常用類型</h4>
+<div id="outline-container-org86fe105" class="outline-4">
+<h4 id="org86fe105"><span class="section-number-4">1.2.1</span> 常用類型</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>整數: int<br /></li>
@@ -624,8 +624,8 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </div>
 
-<div id="outline-container-org0717983" class="outline-4">
-<h4 id="org0717983"><span class="section-number-4">1.2.2</span> 型態間的轉換</h4>
+<div id="outline-container-org5f47ec5" class="outline-4">
+<h4 id="org5f47ec5"><span class="section-number-4">1.2.2</span> 型態間的轉換</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>自動轉換<br /></li>
@@ -648,12 +648,12 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </div>
 
-<div id="outline-container-orgdb065c6" class="outline-3">
-<h3 id="orgdb065c6"><span class="section-number-3">1.3</span> 輸出: print</h3>
+<div id="outline-container-orgceb3c31" class="outline-3">
+<h3 id="orgceb3c31"><span class="section-number-3">1.3</span> 輸出: print</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org0d60b07" class="outline-4">
-<h4 id="org0d60b07"><span class="section-number-4">1.3.1</span> 語法</h4>
+<div id="outline-container-orgd77daee" class="outline-4">
+<h4 id="orgd77daee"><span class="section-number-4">1.3.1</span> 語法</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
 <li>print( 項目1, [ 項目2, … , sep = 分隔字元 , end = 結束字元 ] )<br /></li>
@@ -662,8 +662,8 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org0638cbd" class="outline-4">
-<h4 id="org0638cbd"><span class="section-number-4">1.3.2</span> 範例</h4>
+<div id="outline-container-orge331473" class="outline-4">
+<h4 id="orge331473"><span class="section-number-4">1.3.2</span> 範例</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">a</span>, <span style="color: #0AAEB3;">b</span> = <span style="color: #B5CEA8; font-weight: bold;">5</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span>
@@ -684,8 +684,8 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </pre>
 </div>
 </div>
-<div id="outline-container-org9c63d07" class="outline-4">
-<h4 id="org9c63d07"><span class="section-number-4">1.3.3</span> escape char</h4>
+<div id="outline-container-org184f73d" class="outline-4">
+<h4 id="org184f73d"><span class="section-number-4">1.3.3</span> escape char</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -731,12 +731,12 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </div>
 
-<div id="outline-container-org3616c14" class="outline-4">
-<h4 id="org3616c14"><span class="section-number-4">1.3.4</span> 格式化輸出</h4>
+<div id="outline-container-orgf7e1958" class="outline-4">
+<h4 id="orgf7e1958"><span class="section-number-4">1.3.4</span> 格式化輸出</h4>
 <div class="outline-text-4" id="text-1-3-4">
 </div>
 <ol class="org-ol">
-<li><a id="org18aeaf6"></a>語法<br />
+<li><a id="org481bcb6"></a>語法<br />
 <div class="outline-text-5" id="text-1-3-4-1">
 <ul class="org-ul">
 <li>格式化輸出語法：print( 字串  %(參數) ) <br /></li>
@@ -745,7 +745,7 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </li>
 
-<li><a id="orgb4a3de5"></a>範例<br />
+<li><a id="org63516b3"></a>範例<br />
 <div class="outline-text-5" id="text-1-3-4-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">name</span> = <span style="color: #98BC37;">'&#21488;&#21271;101'</span>
@@ -764,12 +764,12 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </ol>
 </div>
 
-<div id="outline-container-orgb68c3f9" class="outline-4">
-<h4 id="orgb68c3f9"><span class="section-number-4">1.3.5</span> format格式化輸出</h4>
+<div id="outline-container-org31649b9" class="outline-4">
+<h4 id="org31649b9"><span class="section-number-4">1.3.5</span> format格式化輸出</h4>
 <div class="outline-text-4" id="text-1-3-5">
 </div>
 <ol class="org-ol">
-<li><a id="orgbced400"></a>語法<br />
+<li><a id="org0dfa923"></a>語法<br />
 <div class="outline-text-5" id="text-1-3-5-1">
 <ul class="org-ul">
 <li>format格式化輸出語法：print(字串.format (參數) ) <br /></li>
@@ -778,7 +778,7 @@ Python變數不需宣告，依指派值自動設定資料型態。<br />
 </div>
 </li>
 
-<li><a id="org201f7a4"></a>範例<br />
+<li><a id="orgcc08640"></a>範例<br />
 <div class="outline-text-5" id="text-1-3-5-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">name</span> = <span style="color: #98BC37;">'Taipei101'</span>
@@ -798,12 +798,12 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgb51af04" class="outline-3">
-<h3 id="orgb51af04"><span class="section-number-3">1.4</span> 輸入</h3>
+<div id="outline-container-orge211a7c" class="outline-3">
+<h3 id="orge211a7c"><span class="section-number-3">1.4</span> 輸入</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-org8d6081f" class="outline-4">
-<h4 id="org8d6081f"><span class="section-number-4">1.4.1</span> 語法</h4>
+<div id="outline-container-org6e13697" class="outline-4">
+<h4 id="org6e13697"><span class="section-number-4">1.4.1</span> 語法</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">variable</span> = intpu<span style="color: #FCE8C3;">(</span><span style="color: #68A8E4;">[</span>&#25552;&#31034;&#23383;&#20803;<span style="color: #68A8E4;">]</span><span style="color: #FCE8C3;">)</span>
@@ -815,8 +815,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org5723b27" class="outline-4">
-<h4 id="org5723b27"><span class="section-number-4">1.4.2</span> 範例</h4>
+<div id="outline-container-org5a59cd8" class="outline-4">
+<h4 id="org5a59cd8"><span class="section-number-4">1.4.2</span> 範例</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">a</span> = <span style="color: #2C78BF;">input</span><span style="color: #FCE8C3;">(</span><span style="color: #98BC37;">'&#36664;&#20837;&#22283;&#25991;&#25104;&#32318;:'</span><span style="color: #FCE8C3;">)</span>
@@ -835,12 +835,12 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org6e52c56" class="outline-4">
-<h4 id="org6e52c56"><span class="section-number-4">1.4.3</span> 輸入搭配型別轉換</h4>
+<div id="outline-container-org30e2dda" class="outline-4">
+<h4 id="org30e2dda"><span class="section-number-4">1.4.3</span> 輸入搭配型別轉換</h4>
 <div class="outline-text-4" id="text-1-4-3">
 </div>
 <ol class="org-ol">
-<li><a id="org3ad231c"></a>範例<br />
+<li><a id="orgb7c1d5d"></a>範例<br />
 <div class="outline-text-5" id="text-1-4-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">a</span> = <span style="color: #2C78BF;">int</span><span style="color: #FCE8C3;">(</span><span style="color: #2C78BF;">input</span><span style="color: #68A8E4;">(</span><span style="color: #98BC37;">'&#36664;&#20837;&#22283;&#25991;&#25104;&#32318;:'</span><span style="color: #68A8E4;">)</span><span style="color: #FCE8C3;">)</span>
@@ -854,8 +854,8 @@ Taipei101      的高度為     508.4公尺
 </ol>
 </div>
 
-<div id="outline-container-org1eac618" class="outline-4">
-<h4 id="org1eac618"><span class="section-number-4">1.4.4</span> input注意事項</h4>
+<div id="outline-container-orgc116f42" class="outline-4">
+<h4 id="orgc116f42"><span class="section-number-4">1.4.4</span> input注意事項</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <ul class="org-ul">
 <li>input 每筆輸入讀至換行符號為止<br /></li>
@@ -877,12 +877,12 @@ Taipei101      的高度為     508.4公尺
 </div>
 
 
-<div id="outline-container-orgd2b92d5" class="outline-3">
-<h3 id="orgd2b92d5"><span class="section-number-3">1.5</span> 註解</h3>
+<div id="outline-container-org90cef22" class="outline-3">
+<h3 id="org90cef22"><span class="section-number-3">1.5</span> 註解</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-org3848ecc" class="outline-4">
-<h4 id="org3848ecc"><span class="section-number-4">1.5.1</span> 語法</h4>
+<div id="outline-container-org14740e9" class="outline-4">
+<h4 id="org14740e9"><span class="section-number-4">1.5.1</span> 語法</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <ul class="org-ul">
 <li>單行註解：以 # 開頭<br /></li>
@@ -891,8 +891,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org23c88c0" class="outline-4">
-<h4 id="org23c88c0"><span class="section-number-4">1.5.2</span> 範例</h4>
+<div id="outline-container-orgcdf8cef" class="outline-4">
+<h4 id="orgcdf8cef"><span class="section-number-4">1.5.2</span> 範例</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #918175; font-style: italic;">## </span><span style="color: #918175; font-style: italic;">&#36889;&#26159;&#21934;&#34892;&#35387;&#35299;</span>
@@ -911,8 +911,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org979c3b6" class="outline-3">
-<h3 id="org979c3b6"><span class="section-number-3">1.6</span> 實作練習</h3>
+<div id="outline-container-org699c707" class="outline-3">
+<h3 id="org699c707"><span class="section-number-3">1.6</span> 實作練習</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li><a href="http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/">skyoj #161華氏溫度轉攝氏溫度</a><br /></li>
@@ -921,12 +921,12 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org3e69301" class="outline-2">
-<h2 id="org3e69301"><span class="section-number-2">2</span> 運算元與運算式</h2>
+<div id="outline-container-orge4be745" class="outline-2">
+<h2 id="orge4be745"><span class="section-number-2">2</span> 運算元與運算式</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org8e44767" class="outline-3">
-<h3 id="org8e44767"><span class="section-number-3">2.1</span> 算術運算</h3>
+<div id="outline-container-org8ee1ab9" class="outline-3">
+<h3 id="org8ee1ab9"><span class="section-number-3">2.1</span> 算術運算</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>+: 加<br /></li>
@@ -939,8 +939,8 @@ Taipei101      的高度為     508.4公尺
 </ul>
 </div>
 
-<div id="outline-container-orgbecf99c" class="outline-4">
-<h4 id="orgbecf99c"><span class="section-number-4">2.1.1</span> 範例#1</h4>
+<div id="outline-container-org080e0ce" class="outline-4">
+<h4 id="org080e0ce"><span class="section-number-4">2.1.1</span> 範例#1</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #918175; font-style: italic;"># </span><span style="color: #918175; font-style: italic;">python code for arithematic opearation</span>
@@ -966,11 +966,11 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgc879707" class="outline-4">
-<h4 id="orgc879707"><span class="section-number-4">2.1.2</span> 範例#2</h4>
+<div id="outline-container-org0d52513" class="outline-4">
+<h4 id="org0d52513"><span class="section-number-4">2.1.2</span> 範例#2</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <div class="org-src-container">
-<pre class="src src-python" id="org585b6cf"><span class="linenr"> 1: </span><span style="color: #0AAEB3;">a</span> = <span style="color: #2C78BF;">int</span><span style="color: #FCE8C3;">(</span><span style="color: #2C78BF;">input</span><span style="color: #68A8E4;">(</span><span style="color: #98BC37;">"input a: "</span><span style="color: #68A8E4;">)</span><span style="color: #FCE8C3;">)</span>
+<pre class="src src-python" id="orgfd4572d"><span class="linenr"> 1: </span><span style="color: #0AAEB3;">a</span> = <span style="color: #2C78BF;">int</span><span style="color: #FCE8C3;">(</span><span style="color: #2C78BF;">input</span><span style="color: #68A8E4;">(</span><span style="color: #98BC37;">"input a: "</span><span style="color: #68A8E4;">)</span><span style="color: #FCE8C3;">)</span>
 <span class="linenr"> 2: </span><span style="color: #0AAEB3;">op</span> = <span style="color: #2C78BF;">input</span><span style="color: #FCE8C3;">(</span><span style="color: #98BC37;">"input op: "</span><span style="color: #FCE8C3;">)</span>
 <span class="linenr"> 3: </span><span style="color: #0AAEB3;">b</span> = <span style="color: #2C78BF;">int</span><span style="color: #FCE8C3;">(</span><span style="color: #2C78BF;">input</span><span style="color: #68A8E4;">(</span><span style="color: #98BC37;">"input b: "</span><span style="color: #68A8E4;">)</span><span style="color: #FCE8C3;">)</span>
 <span class="linenr"> 4: </span>
@@ -992,8 +992,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orge4b54ad" class="outline-3">
-<h3 id="orge4b54ad"><span class="section-number-3">2.2</span> 關係運算子</h3>
+<div id="outline-container-orgb6fc710" class="outline-3">
+<h3 id="orgb6fc710"><span class="section-number-3">2.2</span> 關係運算子</h3>
 <div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1035,8 +1035,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org4e77d14" class="outline-3">
-<h3 id="org4e77d14"><span class="section-number-3">2.3</span> 邏輯運算子</h3>
+<div id="outline-container-org9cb5120" class="outline-3">
+<h3 id="org9cb5120"><span class="section-number-3">2.3</span> 邏輯運算子</h3>
 <div class="outline-text-3" id="text-2-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1066,8 +1066,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgfd2a7a3" class="outline-3">
-<h3 id="orgfd2a7a3"><span class="section-number-3">2.4</span> 複合指定運算子</h3>
+<div id="outline-container-org6488ed4" class="outline-3">
+<h3 id="org6488ed4"><span class="section-number-3">2.4</span> 複合指定運算子</h3>
 <div class="outline-text-3" id="text-2-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1103,16 +1103,16 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org3c566c2" class="outline-2">
-<h2 id="org3c566c2"><span class="section-number-2">3</span> 判斷結構</h2>
+<div id="outline-container-orgd35af3a" class="outline-2">
+<h2 id="orgd35af3a"><span class="section-number-2">3</span> 判斷結構</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org0e30e13" class="outline-3">
-<h3 id="org0e30e13"><span class="section-number-3">3.1</span> if</h3>
+<div id="outline-container-org9f72c2e" class="outline-3">
+<h3 id="org9f72c2e"><span class="section-number-3">3.1</span> if</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org99dae7d" class="outline-4">
-<h4 id="org99dae7d"><span class="section-number-4">3.1.1</span> 語法</h4>
+<div id="outline-container-orgaea8814" class="outline-4">
+<h4 id="orgaea8814"><span class="section-number-4">3.1.1</span> 語法</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>條件式可不用括號( )含括，條件式後需搭配冒號：<br /></li>
@@ -1128,8 +1128,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgbabbd69" class="outline-4">
-<h4 id="orgbabbd69"><span class="section-number-4">3.1.2</span> 範例</h4>
+<div id="outline-container-orgb7a1af6" class="outline-4">
+<h4 id="orgb7a1af6"><span class="section-number-4">3.1.2</span> 範例</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">num</span> = <span style="color: #B5CEA8; font-weight: bold;">31</span>
@@ -1147,12 +1147,12 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgb1596df" class="outline-3">
-<h3 id="orgb1596df"><span class="section-number-3">3.2</span> if &#x2026; else &#x2026;</h3>
+<div id="outline-container-orgf6ea9b4" class="outline-3">
+<h3 id="orgf6ea9b4"><span class="section-number-3">3.2</span> if &#x2026; else &#x2026;</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-orgbc43fa3" class="outline-4">
-<h4 id="orgbc43fa3"><span class="section-number-4">3.2.1</span> 語法</h4>
+<div id="outline-container-org3ee98f2" class="outline-4">
+<h4 id="org3ee98f2"><span class="section-number-4">3.2.1</span> 語法</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #EF2F27; font-style: italic;">if</span> condition:
@@ -1166,8 +1166,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org9ee933e" class="outline-4">
-<h4 id="org9ee933e"><span class="section-number-4">3.2.2</span> 範例</h4>
+<div id="outline-container-org871e9c7" class="outline-4">
+<h4 id="org871e9c7"><span class="section-number-4">3.2.2</span> 範例</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">num</span> = <span style="color: #B5CEA8; font-weight: bold;">32</span>
@@ -1181,12 +1181,12 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org799eb6c" class="outline-3">
-<h3 id="org799eb6c"><span class="section-number-3">3.3</span> if &#x2026; elif &#x2026; else &#x2026;</h3>
+<div id="outline-container-org27c9a05" class="outline-3">
+<h3 id="org27c9a05"><span class="section-number-3">3.3</span> if &#x2026; elif &#x2026; else &#x2026;</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-org6431c65" class="outline-4">
-<h4 id="org6431c65"><span class="section-number-4">3.3.1</span> 語法</h4>
+<div id="outline-container-orgb921d69" class="outline-4">
+<h4 id="orgb921d69"><span class="section-number-4">3.3.1</span> 語法</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #EF2F27; font-style: italic;">if</span> condition <span style="color: #B5CEA8; font-weight: bold;">1</span>:
@@ -1205,8 +1205,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org35955d9" class="outline-4">
-<h4 id="org35955d9"><span class="section-number-4">3.3.2</span> 範例</h4>
+<div id="outline-container-orga3f1b9d" class="outline-4">
+<h4 id="orga3f1b9d"><span class="section-number-4">3.3.2</span> 範例</h4>
 <div class="outline-text-4" id="text-3-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #0AAEB3;">score</span> = <span style="color: #B5CEA8; font-weight: bold;">87</span>
@@ -1226,12 +1226,12 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org7b1bb60" class="outline-3">
-<h3 id="org7b1bb60"><span class="section-number-3">3.4</span> 巢狀if</h3>
+<div id="outline-container-org1404024" class="outline-3">
+<h3 id="org1404024"><span class="section-number-3">3.4</span> 巢狀if</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-orgc8e4631" class="outline-4">
-<h4 id="orgc8e4631"><span class="section-number-4">3.4.1</span> 語法</h4>
+<div id="outline-container-org63050fc" class="outline-4">
+<h4 id="org63050fc"><span class="section-number-4">3.4.1</span> 語法</h4>
 <div class="outline-text-4" id="text-3-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #EF2F27; font-style: italic;">if</span> condition <span style="color: #B5CEA8; font-weight: bold;">1</span>:
@@ -1255,11 +1255,11 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgfc5ab66" class="outline-4">
-<h4 id="orgfc5ab66"><span class="section-number-4">3.4.2</span> 範例: 某年份是否為閏年</h4>
+<div id="outline-container-orgdd8dddd" class="outline-4">
+<h4 id="orgdd8dddd"><span class="section-number-4">3.4.2</span> 範例: 某年份是否為閏年</h4>
 <div class="outline-text-4" id="text-3-4-2">
 
-<div id="org37e23be" class="figure">
+<div id="org6f9597d" class="figure">
 <p><img src="./YearJudge.png" alt="YearJudge.png" width="560" /> <br />
 </p>
 <p><span class="figure-number">Figure 1: </span>閏年判斷流程</p>
@@ -1267,8 +1267,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgd90fcbf" class="outline-4">
-<h4 id="orgd90fcbf"><span class="section-number-4">3.4.3</span> code #1</h4>
+<div id="outline-container-org84b300a" class="outline-4">
+<h4 id="org84b300a"><span class="section-number-4">3.4.3</span> code #1</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #0AAEB3;">year</span> = <span style="color: #2C78BF;">int</span><span style="color: #FCE8C3;">(</span><span style="color: #2C78BF;">input</span><span style="color: #68A8E4;">(</span><span style="color: #98BC37;">"&#35531;&#36664;&#20837;&#19968;&#20491;&#24180;&#20221;:"</span><span style="color: #68A8E4;">)</span><span style="color: #FCE8C3;">)</span>
@@ -1287,8 +1287,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org1a28a4f" class="outline-4">
-<h4 id="org1a28a4f"><span class="section-number-4">3.4.4</span> code #2</h4>
+<div id="outline-container-org570c235" class="outline-4">
+<h4 id="org570c235"><span class="section-number-4">3.4.4</span> code #2</h4>
 <div class="outline-text-4" id="text-3-4-4">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #0AAEB3;">year</span> = <span style="color: #2C78BF;">int</span><span style="color: #FCE8C3;">(</span><span style="color: #2C78BF;">input</span><span style="color: #68A8E4;">(</span><span style="color: #98BC37;">"&#35531;&#36664;&#20837;&#19968;&#20491;&#24180;&#20221;:"</span><span style="color: #68A8E4;">)</span><span style="color: #FCE8C3;">)</span>
@@ -1301,8 +1301,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org574d5ce" class="outline-4">
-<h4 id="org574d5ce"><span class="section-number-4">3.4.5</span> 練習題</h4>
+<div id="outline-container-org5aedcf8" class="outline-4">
+<h4 id="org5aedcf8"><span class="section-number-4">3.4.5</span> 練習題</h4>
 <div class="outline-text-4" id="text-3-4-5">
 <ul class="org-ul">
 <li><a href="http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/162/">skyoj #162 成績等第判別</a><br /></li>
@@ -1312,16 +1312,16 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org955ba6a" class="outline-2">
-<h2 id="org955ba6a"><span class="section-number-2">4</span> 迴圈結構</h2>
+<div id="outline-container-org9978201" class="outline-2">
+<h2 id="org9978201"><span class="section-number-2">4</span> 迴圈結構</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org95a80f4" class="outline-3">
-<h3 id="org95a80f4"><span class="section-number-3">4.1</span> for</h3>
+<div id="outline-container-org6fe9abf" class="outline-3">
+<h3 id="org6fe9abf"><span class="section-number-3">4.1</span> for</h3>
 <div class="outline-text-3" id="text-4-1">
 </div>
-<div id="outline-container-orgdeb33db" class="outline-4">
-<h4 id="orgdeb33db"><span class="section-number-4">4.1.1</span> 語法</h4>
+<div id="outline-container-orgb3a4655" class="outline-4">
+<h4 id="orgb3a4655"><span class="section-number-4">4.1.1</span> 語法</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #EF2F27; font-style: italic;">for</span> variable <span style="color: #EF2F27; font-style: italic;">in</span> List:
@@ -1336,8 +1336,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org3c267aa" class="outline-4">
-<h4 id="org3c267aa"><span class="section-number-4">4.1.2</span> List為range() function語法</h4>
+<div id="outline-container-orgc2ab639" class="outline-4">
+<h4 id="orgc2ab639"><span class="section-number-4">4.1.2</span> List為range() function語法</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #EF2F27; font-style: italic;">for</span> variable <span style="color: #EF2F27; font-style: italic;">in</span> <span style="color: #2C78BF;">range</span><span style="color: #FCE8C3;">(</span><span style="color: #68A8E4;">[</span>&#36215;&#22987;&#20540;,<span style="color: #68A8E4;">]</span> &#32066;&#27490;&#20540; <span style="color: #68A8E4;">[</span>,&#36958;&#22686;&#20540;<span style="color: #68A8E4;">]</span><span style="color: #FCE8C3;">)</span>:
@@ -1352,8 +1352,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-org3de8efd" class="outline-4">
-<h4 id="org3de8efd"><span class="section-number-4">4.1.3</span> List為range() function語法</h4>
+<div id="outline-container-orgd5a2117" class="outline-4">
+<h4 id="orgd5a2117"><span class="section-number-4">4.1.3</span> List為range() function語法</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #EF2F27; font-style: italic;">for</span> x <span style="color: #EF2F27; font-style: italic;">in</span> <span style="color: #2C78BF;">range</span><span style="color: #FCE8C3;">(</span><span style="color: #B5CEA8; font-weight: bold;">6</span><span style="color: #FCE8C3;">)</span>:
@@ -1381,8 +1381,8 @@ Taipei101      的高度為     508.4公尺
 </div>
 </div>
 
-<div id="outline-container-orgd5aa65e" class="outline-4">
-<h4 id="orgd5aa65e"><span class="section-number-4">4.1.4</span> List為String</h4>
+<div id="outline-container-orgbba305f" class="outline-4">
+<h4 id="orgbba305f"><span class="section-number-4">4.1.4</span> List為String</h4>
 <div class="outline-text-4" id="text-4-1-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">school</span> = <span style="color: #98BC37;">'TNFSH'</span>
@@ -1409,12 +1409,12 @@ U O G T I
 </div>
 </div>
 
-<div id="outline-container-org4df19b4" class="outline-3">
-<h3 id="org4df19b4"><span class="section-number-3">4.2</span> while</h3>
+<div id="outline-container-org4667a8a" class="outline-3">
+<h3 id="org4667a8a"><span class="section-number-3">4.2</span> while</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org91513a2" class="outline-4">
-<h4 id="org91513a2"><span class="section-number-4">4.2.1</span> 語法</h4>
+<div id="outline-container-orgabe01a3" class="outline-4">
+<h4 id="orgabe01a3"><span class="section-number-4">4.2.1</span> 語法</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #EF2F27; font-style: italic;">while</span> <span style="color: #FCE8C3;">(</span>condition<span style="color: #FCE8C3;">)</span>:
@@ -1425,8 +1425,8 @@ U O G T I
 </div>
 </div>
 
-<div id="outline-container-orgac245f1" class="outline-4">
-<h4 id="orgac245f1"><span class="section-number-4">4.2.2</span> 範例</h4>
+<div id="outline-container-org84c3aa9" class="outline-4">
+<h4 id="org84c3aa9"><span class="section-number-4">4.2.2</span> 範例</h4>
 <div class="outline-text-4" id="text-4-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">n</span> = <span style="color: #B5CEA8; font-weight: bold;">12345</span>
@@ -1446,7 +1446,7 @@ U O G T I
 
 
 <div class="org-src-container">
-<pre class="src src-python" id="orgda4582d"><span class="linenr">1: </span><span style="color: #0AAEB3;">m</span>, <span style="color: #0AAEB3;">n</span> = <span style="color: #B5CEA8; font-weight: bold;">42</span>, <span style="color: #B5CEA8; font-weight: bold;">75</span>
+<pre class="src src-python" id="org97f49ae"><span class="linenr">1: </span><span style="color: #0AAEB3;">m</span>, <span style="color: #0AAEB3;">n</span> = <span style="color: #B5CEA8; font-weight: bold;">42</span>, <span style="color: #B5CEA8; font-weight: bold;">75</span>
 <span class="linenr">2: </span><span style="color: #EF2F27; font-style: italic;">while</span> <span style="color: #FCE8C3;">(</span>n &gt; <span style="color: #B5CEA8; font-weight: bold;">0</span><span style="color: #FCE8C3;">)</span>:
 <span class="linenr">3: </span>    <span style="color: #0AAEB3;">m</span>, <span style="color: #0AAEB3;">n</span> = n, m % n
 <span class="linenr">4: </span><span style="color: #EF2F27; font-style: italic;">print</span><span style="color: #FCE8C3;">(</span>m<span style="color: #FCE8C3;">)</span>
@@ -1460,12 +1460,12 @@ U O G T I
 </div>
 </div>
 
-<div id="outline-container-orgd62ffa4" class="outline-3">
-<h3 id="orgd62ffa4"><span class="section-number-3">4.3</span> while + else</h3>
+<div id="outline-container-org52a90c5" class="outline-3">
+<h3 id="org52a90c5"><span class="section-number-3">4.3</span> while + else</h3>
 <div class="outline-text-3" id="text-4-3">
 </div>
-<div id="outline-container-orgc7c07f2" class="outline-4">
-<h4 id="orgc7c07f2"><span class="section-number-4">4.3.1</span> 語法</h4>
+<div id="outline-container-orgb2ca27d" class="outline-4">
+<h4 id="orgb2ca27d"><span class="section-number-4">4.3.1</span> 語法</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #EF2F27; font-style: italic;">while</span> <span style="color: #FCE8C3;">(</span>condition<span style="color: #FCE8C3;">)</span>:
@@ -1479,8 +1479,8 @@ U O G T I
 </div>
 </div>
 
-<div id="outline-container-org271db28" class="outline-4">
-<h4 id="org271db28"><span class="section-number-4">4.3.2</span> 範例</h4>
+<div id="outline-container-org811bf22" class="outline-4">
+<h4 id="org811bf22"><span class="section-number-4">4.3.2</span> 範例</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">n</span> = <span style="color: #B5CEA8; font-weight: bold;">56</span>
@@ -1499,15 +1499,15 @@ U O G T I
 </div>
 </div>
 
-<div id="outline-container-orge1e12e3" class="outline-3">
-<h3 id="orge1e12e3"><span class="section-number-3">4.4</span> break</h3>
+<div id="outline-container-org88e6401" class="outline-3">
+<h3 id="org88e6401"><span class="section-number-3">4.4</span> break</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 跳出整個loop<br />
 </p>
 </div>
-<div id="outline-container-orge66192f" class="outline-4">
-<h4 id="orge66192f"><span class="section-number-4">4.4.1</span> 範例</h4>
+<div id="outline-container-org73f9cbb" class="outline-4">
+<h4 id="org73f9cbb"><span class="section-number-4">4.4.1</span> 範例</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #EF2F27; font-style: italic;">for</span> letter <span style="color: #EF2F27; font-style: italic;">in</span> <span style="color: #98BC37;">'Python'</span>:
@@ -1528,15 +1528,15 @@ Now stop...
 </div>
 </div>
 
-<div id="outline-container-orgc3fe87d" class="outline-3">
-<h3 id="orgc3fe87d"><span class="section-number-3">4.5</span> continue</h3>
+<div id="outline-container-org81707b5" class="outline-3">
+<h3 id="org81707b5"><span class="section-number-3">4.5</span> continue</h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 跳出單次loop<br />
 </p>
 </div>
-<div id="outline-container-orga5ce57c" class="outline-4">
-<h4 id="orga5ce57c"><span class="section-number-4">4.5.1</span> 範例</h4>
+<div id="outline-container-orgea29160" class="outline-4">
+<h4 id="orgea29160"><span class="section-number-4">4.5.1</span> 範例</h4>
 <div class="outline-text-4" id="text-4-5-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #EF2F27; font-style: italic;">for</span> letter <span style="color: #EF2F27; font-style: italic;">in</span> <span style="color: #98BC37;">'Python'</span>:
@@ -1559,12 +1559,12 @@ Processing Letrer: n
 </div>
 </div>
 
-<div id="outline-container-orgdfeb27c" class="outline-3">
-<h3 id="orgdfeb27c"><span class="section-number-3">4.6</span> 巢狀迴圈</h3>
+<div id="outline-container-org12c87d4" class="outline-3">
+<h3 id="org12c87d4"><span class="section-number-3">4.6</span> 巢狀迴圈</h3>
 <div class="outline-text-3" id="text-4-6">
 </div>
-<div id="outline-container-org0c7c531" class="outline-4">
-<h4 id="org0c7c531"><span class="section-number-4">4.6.1</span> 範例</h4>
+<div id="outline-container-orgde20236" class="outline-4">
+<h4 id="orgde20236"><span class="section-number-4">4.6.1</span> 範例</h4>
 <div class="outline-text-4" id="text-4-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #EF2F27; font-style: italic;">for</span> i <span style="color: #EF2F27; font-style: italic;">in</span> <span style="color: #2C78BF;">range</span><span style="color: #FCE8C3;">(</span><span style="color: #B5CEA8; font-weight: bold;">1</span>, <span style="color: #B5CEA8; font-weight: bold;">10</span><span style="color: #FCE8C3;">)</span>:
@@ -1590,16 +1590,16 @@ Processing Letrer: n
 </div>
 </div>
 
-<div id="outline-container-org2fb312b" class="outline-2">
-<h2 id="org2fb312b"><span class="section-number-2">5</span> 資料型別</h2>
+<div id="outline-container-org7e63447" class="outline-2">
+<h2 id="org7e63447"><span class="section-number-2">5</span> 資料型別</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgc268942" class="outline-3">
-<h3 id="orgc268942"><span class="section-number-3">5.1</span> 字串string</h3>
+<div id="outline-container-org8a4d2cb" class="outline-3">
+<h3 id="org8a4d2cb"><span class="section-number-3">5.1</span> 字串string</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org91beee2" class="outline-4">
-<h4 id="org91beee2"><span class="section-number-4">5.1.1</span> 資料格式</h4>
+<div id="outline-container-org7dc5cb5" class="outline-4">
+<h4 id="org7dc5cb5"><span class="section-number-4">5.1.1</span> 資料格式</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 以單引號(')或雙引號(")將資料含括起來<br />
@@ -1609,8 +1609,8 @@ Processing Letrer: n
 </pre>
 </div>
 </div>
-<div id="outline-container-orge2042a7" class="outline-4">
-<h4 id="orge2042a7"><span class="section-number-4">5.1.2</span> 範例</h4>
+<div id="outline-container-orgde7f0a7" class="outline-4">
+<h4 id="orgde7f0a7"><span class="section-number-4">5.1.2</span> 範例</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1684,8 +1684,8 @@ Processing Letrer: n
 </table>
 </div>
 </div>
-<div id="outline-container-org8a8bb5a" class="outline-4">
-<h4 id="org8a8bb5a"><span class="section-number-4">5.1.3</span> 字串運算子</h4>
+<div id="outline-container-org50181f7" class="outline-4">
+<h4 id="org50181f7"><span class="section-number-4">5.1.3</span> 字串運算子</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li>+: 連接字串<br /></li>
@@ -1725,8 +1725,8 @@ tel[::-1]: 6021732-60
 </pre>
 </div>
 </div>
-<div id="outline-container-orgde82e0f" class="outline-4">
-<h4 id="orgde82e0f"><span class="section-number-4">5.1.4</span> 字串function與method</h4>
+<div id="outline-container-orgaddad24" class="outline-4">
+<h4 id="orgaddad24"><span class="section-number-4">5.1.4</span> 字串function與method</h4>
 <div class="outline-text-4" id="text-5-1-4">
 <ul class="org-ul">
 <li>len(&lt;str&gt;):	計算字串長度<br /></li>
@@ -1764,12 +1764,12 @@ school.split('f'): ['T', 'ssh']
 </div>
 </div>
 
-<div id="outline-container-org00a6545" class="outline-3">
-<h3 id="org00a6545"><span class="section-number-3">5.2</span> 列表list</h3>
+<div id="outline-container-org84053df" class="outline-3">
+<h3 id="org84053df"><span class="section-number-3">5.2</span> 列表list</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-orgc0ac38b" class="outline-4">
-<h4 id="orgc0ac38b"><span class="section-number-4">5.2.1</span> 資料格式</h4>
+<div id="outline-container-org202a611" class="outline-4">
+<h4 id="org202a611"><span class="section-number-4">5.2.1</span> 資料格式</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <ul class="org-ul">
 <li>以[ ]將不同型態的資料含括起來，以 , 分隔<br /></li>
@@ -1788,8 +1788,8 @@ school.split('f'): ['T', 'ssh']
 </div>
 </div>
 
-<div id="outline-container-orgf63bac4" class="outline-4">
-<h4 id="orgf63bac4"><span class="section-number-4">5.2.2</span> 表列函式與方法</h4>
+<div id="outline-container-orgd1bbaa7" class="outline-4">
+<h4 id="orgd1bbaa7"><span class="section-number-4">5.2.2</span> 表列函式與方法</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <ul class="org-ul">
 <li>len(&lt;list&gt;): 計算表列元素個數<br /></li>
@@ -1851,8 +1851,8 @@ a-b-c
 </div>
 </div>
 
-<div id="outline-container-org004330c" class="outline-4">
-<h4 id="org004330c"><span class="section-number-4">5.2.3</span> 練習</h4>
+<div id="outline-container-org191c267" class="outline-4">
+<h4 id="org191c267"><span class="section-number-4">5.2.3</span> 練習</h4>
 <div class="outline-text-4" id="text-5-2-3">
 <ul class="org-ul">
 <li>連續輸入成績(輸入-1結束)，將成績由高至低排序輸出，並輸出總分、平均<br /></li>
@@ -1874,7 +1874,7 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 <li>計算機<br /></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python" id="org8cdb845"><span class="linenr">1: </span><span style="color: #2C78BF;">sum</span> = <span style="color: #B5CEA8; font-weight: bold;">0</span>
+<pre class="src src-python" id="orgab3ddfb"><span class="linenr">1: </span><span style="color: #2C78BF;">sum</span> = <span style="color: #B5CEA8; font-weight: bold;">0</span>
 <span class="linenr">2: </span><span style="color: #0AAEB3;">grades</span> = <span style="color: #FCE8C3;">[]</span>
 <span class="linenr">3: </span><span style="color: #EF2F27; font-style: italic;">for</span> i <span style="color: #EF2F27; font-style: italic;">in</span> <span style="color: #2C78BF;">range</span><span style="color: #FCE8C3;">(</span><span style="color: #B5CEA8; font-weight: bold;">0</span>, <span style="color: #B5CEA8; font-weight: bold;">5</span><span style="color: #FCE8C3;">)</span>:
 <span class="linenr">4: </span>    <span style="color: #0AAEB3;">x</span> = <span style="color: #2C78BF;">int</span><span style="color: #FCE8C3;">(</span><span style="color: #2C78BF;">input</span><span style="color: #68A8E4;">(</span><span style="color: #98BC37;">"&#35531;&#36664;&#20837;&#31532;"</span> + <span style="color: #2C78BF;">str</span><span style="color: #FCE8C3;">(</span>i + <span style="color: #B5CEA8; font-weight: bold;">1</span><span style="color: #FCE8C3;">)</span> + <span style="color: #98BC37;">"&#20491;&#25104;&#32318;: "</span><span style="color: #68A8E4;">)</span><span style="color: #FCE8C3;">)</span>
@@ -1888,12 +1888,12 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </div>
 </div>
 
-<div id="outline-container-org41b2f1a" class="outline-3">
-<h3 id="org41b2f1a"><span class="section-number-3">5.3</span> 元組tuple</h3>
+<div id="outline-container-org17a0bfc" class="outline-3">
+<h3 id="org17a0bfc"><span class="section-number-3">5.3</span> 元組tuple</h3>
 <div class="outline-text-3" id="text-5-3">
 </div>
-<div id="outline-container-orge18c0e5" class="outline-4">
-<h4 id="orge18c0e5"><span class="section-number-4">5.3.1</span> 資料格式</h4>
+<div id="outline-container-orgf8e17c4" class="outline-4">
+<h4 id="orgf8e17c4"><span class="section-number-4">5.3.1</span> 資料格式</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <ul class="org-ul">
 <li>資料格式：以( )將不同型態的資料含括起來，以 , 分隔<br /></li>
@@ -1903,8 +1903,8 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf9d7085" class="outline-4">
-<h4 id="orgf9d7085"><span class="section-number-4">5.3.2</span> 範例</h4>
+<div id="outline-container-org37ae337" class="outline-4">
+<h4 id="org37ae337"><span class="section-number-4">5.3.2</span> 範例</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">data</span> = <span style="color: #FCE8C3;">(</span> <span style="color: #98BC37;">'John'</span>, <span style="color: #68A8E4;">[</span><span style="color: #B5CEA8; font-weight: bold;">95</span>, <span style="color: #B5CEA8; font-weight: bold;">118</span><span style="color: #68A8E4;">]</span>, <span style="color: #98BC37;">'May'</span>, <span style="color: #B5CEA8; font-weight: bold;">100</span> <span style="color: #FCE8C3;">)</span>
@@ -1920,8 +1920,8 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </pre>
 </div>
 </div>
-<div id="outline-container-org2bc53c3" class="outline-4">
-<h4 id="org2bc53c3"><span class="section-number-4">5.3.3</span> 練習: 史上最強掌法</h4>
+<div id="outline-container-org8eb36a0" class="outline-4">
+<h4 id="org8eb36a0"><span class="section-number-4">5.3.3</span> 練習: 史上最強掌法</h4>
 <div class="outline-text-4" id="text-5-3-3">
 <p>
 自從鐵掌無敵馬掌門出任武林盟主後，綠林豪傑一片哀鴻，民不聊生，痛苦指數破表，眾家名門弟子甚至遠避異鄉以求溫飽。近來馬掌門更獨創「油電雙掌」，以圖鞏固武林領導地位，此套掌法高深莫測，武林中人聞風喪膽，少林、武當各派高手不得不拋開門戶之見，齊聚「竹園崗」合作商議對策。目前僅由歴來幾次掌下逃生者的對戰經驗分析出以下數據<br />
@@ -1974,8 +1974,8 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </p>
 </div>
 </div>
-<div id="outline-container-org41577a1" class="outline-4">
-<h4 id="org41577a1"><span class="section-number-4">5.3.4</span> 解1</h4>
+<div id="outline-container-orgd8abf66" class="outline-4">
+<h4 id="orgd8abf66"><span class="section-number-4">5.3.4</span> 解1</h4>
 <div class="outline-text-4" id="text-5-3-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #918175; font-style: italic;">#</span><span style="color: #918175; font-style: italic;">sec = input()</span>
@@ -1999,8 +1999,8 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </div>
 </div>
 
-<div id="outline-container-orge90d804" class="outline-4">
-<h4 id="orge90d804"><span class="section-number-4">5.3.5</span> 解2</h4>
+<div id="outline-container-org4a419bb" class="outline-4">
+<h4 id="org4a419bb"><span class="section-number-4">5.3.5</span> 解2</h4>
 <div class="outline-text-4" id="text-5-3-5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #918175; font-style: italic;">#</span><span style="color: #918175; font-style: italic;">sec = input()</span>
@@ -2023,12 +2023,12 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </div>
 </div>
 
-<div id="outline-container-orgfbd5ffa" class="outline-3">
-<h3 id="orgfbd5ffa"><span class="section-number-3">5.4</span> 字典dict</h3>
+<div id="outline-container-org57340f2" class="outline-3">
+<h3 id="org57340f2"><span class="section-number-3">5.4</span> 字典dict</h3>
 <div class="outline-text-3" id="text-5-4">
 </div>
-<div id="outline-container-org26e263f" class="outline-4">
-<h4 id="org26e263f"><span class="section-number-4">5.4.1</span> 資料格式</h4>
+<div id="outline-container-orgb9b2b6c" class="outline-4">
+<h4 id="orgb9b2b6c"><span class="section-number-4">5.4.1</span> 資料格式</h4>
 <div class="outline-text-4" id="text-5-4-1">
 <ul class="org-ul">
 <li>以{ }將各組鍵:值對應資料含括起來，以 , 分隔<br /></li>
@@ -2039,8 +2039,8 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaac1dda" class="outline-4">
-<h4 id="orgaac1dda"><span class="section-number-4">5.4.2</span> 範例</h4>
+<div id="outline-container-orgfa2a183" class="outline-4">
+<h4 id="orgfa2a183"><span class="section-number-4">5.4.2</span> 範例</h4>
 <div class="outline-text-4" id="text-5-4-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">data</span> = <span style="color: #FCE8C3;">{</span> <span style="color: #98BC37;">'John'</span>: <span style="color: #B5CEA8; font-weight: bold;">95</span>,  <span style="color: #98BC37;">'May'</span>: <span style="color: #B5CEA8; font-weight: bold;">100</span> <span style="color: #FCE8C3;">}</span>
@@ -2053,8 +2053,8 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb1cf63b" class="outline-4">
-<h4 id="orgb1cf63b"><span class="section-number-4">5.4.3</span> dic操作</h4>
+<div id="outline-container-org71692fe" class="outline-4">
+<h4 id="org71692fe"><span class="section-number-4">5.4.3</span> dic操作</h4>
 <div class="outline-text-4" id="text-5-4-3">
 <ul class="org-ul">
 <li>新增、修改、刪除<br /></li>
@@ -2079,8 +2079,8 @@ score.sort<span style="color: #FCE8C3;">(</span>reverse=<span style="color: #FF5
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc4dd97b" class="outline-4">
-<h4 id="orgc4dd97b"><span class="section-number-4">5.4.4</span> dic method</h4>
+<div id="outline-container-org9fbc5b4" class="outline-4">
+<h4 id="org9fbc5b4"><span class="section-number-4">5.4.4</span> dic method</h4>
 <div class="outline-text-4" id="text-5-4-4">
 <ul class="org-ul">
 <li>&lt;dict&gt;.clear()<br /></li>
@@ -2172,23 +2172,23 @@ data.values() dict_values([105, 100])
 </div>
 </div>
 
-<div id="outline-container-orgab876a1" class="outline-3">
-<h3 id="orgab876a1"><span class="section-number-3">5.5</span> List v.s. Tuple</h3>
+<div id="outline-container-orgbbfa68a" class="outline-3">
+<h3 id="orgbbfa68a"><span class="section-number-3">5.5</span> List v.s. Tuple</h3>
 <div class="outline-text-3" id="text-5-5">
 <p>
 二者的差異與適用時機<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>：<br />
 </p>
 </div>
-<div id="outline-container-org7ed431c" class="outline-4">
-<h4 id="org7ed431c"><span class="section-number-4">5.5.1</span> 能否改變內容</h4>
+<div id="outline-container-org6e76f66" class="outline-4">
+<h4 id="org6e76f66"><span class="section-number-4">5.5.1</span> 能否改變內容</h4>
 <div class="outline-text-4" id="text-5-5-1">
 <p>
 Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed.<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgd885f42" class="outline-4">
-<h4 id="orgd885f42"><span class="section-number-4">5.5.2</span> 可讀性</h4>
+<div id="outline-container-org76f2dbb" class="outline-4">
+<h4 id="org76f2dbb"><span class="section-number-4">5.5.2</span> 可讀性</h4>
 <div class="outline-text-4" id="text-5-5-2">
 <p>
 Reading data is simpler when tuples are stored inside a list. For example,<br />
@@ -2206,8 +2206,8 @@ is easier to read than<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org312d5da" class="outline-4">
-<h4 id="org312d5da"><span class="section-number-4">5.5.3</span> 與dictionary的相似性</h4>
+<div id="outline-container-orga0d8346" class="outline-4">
+<h4 id="orga0d8346"><span class="section-number-4">5.5.3</span> 與dictionary的相似性</h4>
 <div class="outline-text-4" id="text-5-5-3">
 <p>
 Tuples are commonly used as the equivalent of a dictionary without keys to store data. For Example,<br />
@@ -2229,12 +2229,12 @@ Tuple can also be used as key in dictionary due to their hashable and immutable 
 </div>
 </div>
 
-<div id="outline-container-orgcccfa15" class="outline-3">
-<h3 id="orgcccfa15"><span class="section-number-3">5.6</span> 集合set</h3>
+<div id="outline-container-org1ef18e9" class="outline-3">
+<h3 id="org1ef18e9"><span class="section-number-3">5.6</span> 集合set</h3>
 <div class="outline-text-3" id="text-5-6">
 </div>
-<div id="outline-container-org89e0258" class="outline-4">
-<h4 id="org89e0258"><span class="section-number-4">5.6.1</span> 資料格式</h4>
+<div id="outline-container-orge54bb29" class="outline-4">
+<h4 id="orge54bb29"><span class="section-number-4">5.6.1</span> 資料格式</h4>
 <div class="outline-text-4" id="text-5-6-1">
 <ul class="org-ul">
 <li>資料格式：以{}將各組資料含括起來，以','分隔,或以set()建立<br /></li>
@@ -2244,8 +2244,8 @@ Tuple can also be used as key in dictionary due to their hashable and immutable 
 </ul>
 </div>
 </div>
-<div id="outline-container-org8da991b" class="outline-4">
-<h4 id="org8da991b"><span class="section-number-4">5.6.2</span> 範例</h4>
+<div id="outline-container-org11d910d" class="outline-4">
+<h4 id="org11d910d"><span class="section-number-4">5.6.2</span> 範例</h4>
 <div class="outline-text-4" id="text-5-6-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #0AAEB3;">S1</span> = <span style="color: #FCE8C3;">{</span> <span style="color: #98BC37;">'John'</span>, <span style="color: #B5CEA8; font-weight: bold;">95</span>, <span style="color: #98BC37;">'May'</span>, <span style="color: #B5CEA8; font-weight: bold;">100</span>, <span style="color: #98BC37;">'John'</span> <span style="color: #FCE8C3;">}</span>&#8232;        
@@ -2254,8 +2254,8 @@ Tuple can also be used as key in dictionary due to their hashable and immutable 
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa0c295" class="outline-4">
-<h4 id="orgaa0c295"><span class="section-number-4">5.6.3</span> 元素新增刪除</h4>
+<div id="outline-container-org4b48ee5" class="outline-4">
+<h4 id="org4b48ee5"><span class="section-number-4">5.6.3</span> 元素新增刪除</h4>
 <div class="outline-text-4" id="text-5-6-3">
 <ul class="org-ul">
 <li><code class="src src-python">&lt;<span style="color: #2C78BF;">set</span>&gt;.add<span style="color: #FCE8C3;">(</span>&lt;item&gt;<span style="color: #FCE8C3;">)</span></code><br /></li>
@@ -2277,8 +2277,8 @@ Tuple can also be used as key in dictionary due to their hashable and immutable 
 </pre>
 </div>
 </div>
-<div id="outline-container-org16c2423" class="outline-4">
-<h4 id="org16c2423"><span class="section-number-4">5.6.4</span> 集合運算</h4>
+<div id="outline-container-orga7ac5ab" class="outline-4">
+<h4 id="orga7ac5ab"><span class="section-number-4">5.6.4</span> 集合運算</h4>
 <div class="outline-text-4" id="text-5-6-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2348,21 +2348,21 @@ a ^ b: {'4', '2', '7', '5', '1'}
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd9cbc5a" class="outline-4">
-<h4 id="orgd9cbc5a"><span class="section-number-4">5.6.5</span> 詳細語法</h4>
+<div id="outline-container-org7811372" class="outline-4">
+<h4 id="org7811372"><span class="section-number-4">5.6.5</span> 詳細語法</h4>
 <div class="outline-text-4" id="text-5-6-5">
 <ul class="org-ul">
 <li><a href="https://www.runoob.com/python3/python3-set.html">Python3 集合 </a><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org67537ed" class="outline-4">
-<h4 id="org67537ed"><span class="section-number-4">5.6.6</span> 練習：<a href="http://skyoj.tnfsh.tn.edu.tw/sky/index.php">skyoj ⇒ Contest ⇒ Python練習題(資料型別)</a></h4>
+<div id="outline-container-org90d2369" class="outline-4">
+<h4 id="org90d2369"><span class="section-number-4">5.6.6</span> 練習：<a href="http://skyoj.tnfsh.tn.edu.tw/sky/index.php">skyoj ⇒ Contest ⇒ Python練習題(資料型別)</a></h4>
 </div>
 </div>
 
-<div id="outline-container-org9e63464" class="outline-3">
-<h3 id="org9e63464"><span class="section-number-3">5.7</span> 資料型別整理</h3>
+<div id="outline-container-org43293c6" class="outline-3">
+<h3 id="org43293c6"><span class="section-number-3">5.7</span> 資料型別整理</h3>
 <div class="outline-text-3" id="text-5-7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -2433,16 +2433,16 @@ a ^ b: {'4', '2', '7', '5', '1'}
 </div>
 </div>
 
-<div id="outline-container-orgdff73ed" class="outline-2">
-<h2 id="orgdff73ed"><span class="section-number-2">6</span> FUNCTION</h2>
+<div id="outline-container-org3734506" class="outline-2">
+<h2 id="org3734506"><span class="section-number-2">6</span> FUNCTION</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org03efd1d" class="outline-3">
-<h3 id="org03efd1d"><span class="section-number-3">6.1</span> 函式(function)基本操作</h3>
+<div id="outline-container-orge2a3c24" class="outline-3">
+<h3 id="orge2a3c24"><span class="section-number-3">6.1</span> 函式(function)基本操作</h3>
 <div class="outline-text-3" id="text-6-1">
 </div>
-<div id="outline-container-orgf4c739d" class="outline-4">
-<h4 id="orgf4c739d"><span class="section-number-4">6.1.1</span> 函式(function)的重要性</h4>
+<div id="outline-container-orge4c7c12" class="outline-4">
+<h4 id="orge4c7c12"><span class="section-number-4">6.1.1</span> 函式(function)的重要性</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <ul class="org-ul">
 <li>function為一段程式的集合，可視為一個獨立的區段。<br /></li>
@@ -2456,8 +2456,8 @@ a ^ b: {'4', '2', '7', '5', '1'}
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf74310d" class="outline-4">
-<h4 id="orgf74310d"><span class="section-number-4">6.1.2</span> 自定義函式</h4>
+<div id="outline-container-orgeb8df3a" class="outline-4">
+<h4 id="orgeb8df3a"><span class="section-number-4">6.1.2</span> 自定義函式</h4>
 <div class="outline-text-4" id="text-6-1-2">
 <ul class="org-ul">
 <li>宣告語法<br /></li>
@@ -2478,8 +2478,8 @@ a ^ b: {'4', '2', '7', '5', '1'}
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd2980a7" class="outline-4">
-<h4 id="orgd2980a7"><span class="section-number-4">6.1.3</span> 自定義函式的呼叫</h4>
+<div id="outline-container-orgf4c17b5" class="outline-4">
+<h4 id="orgf4c17b5"><span class="section-number-4">6.1.3</span> 自定義函式的呼叫</h4>
 <div class="outline-text-4" id="text-6-1-3">
 <ul class="org-ul">
 <li>呼叫函式語法：<br /></li>
@@ -2500,8 +2500,8 @@ a ^ b: {'4', '2', '7', '5', '1'}
 </div>
 </div>
 
-<div id="outline-container-orgf8d7583" class="outline-4">
-<h4 id="orgf8d7583"><span class="section-number-4">6.1.4</span> 多參數函式</h4>
+<div id="outline-container-org71e6eca" class="outline-4">
+<h4 id="org71e6eca"><span class="section-number-4">6.1.4</span> 多參數函式</h4>
 <div class="outline-text-4" id="text-6-1-4">
 <ul class="org-ul">
 <li>呼叫函式時引數(arugment)個數<br /></li>
@@ -2527,8 +2527,8 @@ a ^ b: {'4', '2', '7', '5', '1'}
 </div>
 </div>
 
-<div id="outline-container-org740b7d6" class="outline-4">
-<h4 id="org740b7d6"><span class="section-number-4">6.1.5</span> 多回傳值函式</h4>
+<div id="outline-container-orga065f69" class="outline-4">
+<h4 id="orga065f69"><span class="section-number-4">6.1.5</span> 多回傳值函式</h4>
 <div class="outline-text-4" id="text-6-1-5">
 <ul class="org-ul">
 <li>呼叫函式多個回傳值語法：<br />
@@ -2555,8 +2555,8 @@ sum= 372 ,average= 62.0
 </div>
 </div>
 </div>
-<div id="outline-container-org008c390" class="outline-3">
-<h3 id="org008c390"><span class="section-number-3">6.2</span> 引數(argument)的傳遞</h3>
+<div id="outline-container-org15335bb" class="outline-3">
+<h3 id="org15335bb"><span class="section-number-3">6.2</span> 引數(argument)的傳遞</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>每一個函式都是獨立的，所以函式只知道自己程式區域內的變數，不認識函式外的變數。<br /></li>
@@ -2585,8 +2585,8 @@ sum= 372 ,average= 62.0
 20
 </pre>
 </div>
-<div id="outline-container-org4a24816" class="outline-4">
-<h4 id="org4a24816"><span class="section-number-4">6.2.1</span> 傳值與傳址</h4>
+<div id="outline-container-org172d19a" class="outline-4">
+<h4 id="org172d19a"><span class="section-number-4">6.2.1</span> 傳值與傳址</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <ul class="org-ul">
 <li>引數(argument)的傳遞分為兩種方式，由Python自動判別：<br />
@@ -2663,12 +2663,12 @@ name: Josh 	score: [77, 88, 99]
 </div>
 </div>
 </div>
-<div id="outline-container-orgbed75c9" class="outline-3">
-<h3 id="orgbed75c9"><span class="section-number-3">6.3</span> 模組(module)</h3>
+<div id="outline-container-org59780b1" class="outline-3">
+<h3 id="org59780b1"><span class="section-number-3">6.3</span> 模組(module)</h3>
 <div class="outline-text-3" id="text-6-3">
 </div>
-<div id="outline-container-org69a8942" class="outline-4">
-<h4 id="org69a8942"><span class="section-number-4">6.3.1</span> 匯入模組語法：</h4>
+<div id="outline-container-org899032c" class="outline-4">
+<h4 id="org899032c"><span class="section-number-4">6.3.1</span> 匯入模組語法：</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <ul class="org-ul">
 <li></li>
@@ -2677,8 +2677,8 @@ name: Josh 	score: [77, 88, 99]
 </ul>
 </div>
 </div>
-<div id="outline-container-org4317ce4" class="outline-4">
-<h4 id="org4317ce4"><span class="section-number-4">6.3.2</span> 範例</h4>
+<div id="outline-container-orgb02c415" class="outline-4">
+<h4 id="orgb02c415"><span class="section-number-4">6.3.2</span> 範例</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #EF2F27; font-style: italic;">import</span> random <span style="color: #EF2F27; font-style: italic;">as</span> ran
@@ -2698,12 +2698,12 @@ name: Josh 	score: [77, 88, 99]
 </div>
 </div>
 
-<div id="outline-container-orgf09158d" class="outline-3">
-<h3 id="orgf09158d"><span class="section-number-3">6.4</span> 遞迴(recursive)</h3>
+<div id="outline-container-org6ea37ec" class="outline-3">
+<h3 id="org6ea37ec"><span class="section-number-3">6.4</span> 遞迴(recursive)</h3>
 <div class="outline-text-3" id="text-6-4">
 </div>
-<div id="outline-container-org543bb3d" class="outline-4">
-<h4 id="org543bb3d"><span class="section-number-4">6.4.1</span> 語法</h4>
+<div id="outline-container-org055829f" class="outline-4">
+<h4 id="org055829f"><span class="section-number-4">6.4.1</span> 語法</h4>
 <div class="outline-text-4" id="text-6-4-1">
 <ul class="org-ul">
 <li>遞迴(recursive)：一個函式直接呼叫函式本身<br /></li>
@@ -2725,8 +2725,8 @@ The 10-th Fibonacci number = 55
 </div>
 </div>
 
-<div id="outline-container-orgf533557" class="outline-4">
-<h4 id="orgf533557"><span class="section-number-4">6.4.2</span> 基本條件</h4>
+<div id="outline-container-orgd7ae365" class="outline-4">
+<h4 id="orgd7ae365"><span class="section-number-4">6.4.2</span> 基本條件</h4>
 <div class="outline-text-4" id="text-6-4-2">
 <ul class="org-ul">
 <li>遞迴程式設計要滿足兩條件:<br />
@@ -2764,8 +2764,8 @@ The 10-th Fibonacci number = 55
 </div>
 </div>
 
-<div id="outline-container-orga69efc9" class="outline-4">
-<h4 id="orga69efc9"><span class="section-number-4">6.4.3</span> 範例</h4>
+<div id="outline-container-org4056814" class="outline-4">
+<h4 id="org4056814"><span class="section-number-4">6.4.3</span> 範例</h4>
 <div class="outline-text-4" id="text-6-4-3">
 <ul class="org-ul">
 <li>範例:GCD-recursive<br /></li>
@@ -2787,8 +2787,8 @@ The 10-th Fibonacci number = 55
 </div>
 </div>
 
-<div id="outline-container-orgf9df1f1" class="outline-4">
-<h4 id="orgf9df1f1"><span class="section-number-4">6.4.4</span> 練習</h4>
+<div id="outline-container-orga19f147" class="outline-4">
+<h4 id="orga19f147"><span class="section-number-4">6.4.4</span> 練習</h4>
 <div class="outline-text-4" id="text-6-4-4">
 <ul class="org-ul">
 <li>計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入5，輸出5! = 120。<br /></li>
@@ -2823,12 +2823,12 @@ The 10-th Fibonacci number = 55
 </div>
 </div>
 
-<div id="outline-container-org1dd7e64" class="outline-2">
-<h2 id="org1dd7e64"><span class="section-number-2">7</span> Numpy模組</h2>
+<div id="outline-container-org0a977a9" class="outline-2">
+<h2 id="org0a977a9"><span class="section-number-2">7</span> Numpy模組</h2>
 <div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-org0b23436" class="outline-3">
-<h3 id="org0b23436"><span class="section-number-3">7.1</span> 匯入模組</h3>
+<div id="outline-container-org0f5693a" class="outline-3">
+<h3 id="org0f5693a"><span class="section-number-3">7.1</span> 匯入模組</h3>
 <div class="outline-text-3" id="text-7-1">
 <ul class="org-ul">
 <li>使用模組裡的函式要加模組名稱，如 numpy.arrry( )。例：<code class="src src-python"> <span style="color: #EF2F27; font-style: italic;">import</span> numpy&#8232;</code><br /></li>
@@ -2837,12 +2837,12 @@ The 10-th Fibonacci number = 55
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcb9cbb6" class="outline-3">
-<h3 id="orgcb9cbb6"><span class="section-number-3">7.2</span> Create ndarray</h3>
+<div id="outline-container-org5b7f489" class="outline-3">
+<h3 id="org5b7f489"><span class="section-number-3">7.2</span> Create ndarray</h3>
 <div class="outline-text-3" id="text-7-2">
 </div>
-<div id="outline-container-org60c598e" class="outline-4">
-<h4 id="org60c598e"><span class="section-number-4">7.2.1</span> 一維陣列</h4>
+<div id="outline-container-org18c49eb" class="outline-4">
+<h4 id="org18c49eb"><span class="section-number-4">7.2.1</span> 一維陣列</h4>
 <div class="outline-text-4" id="text-7-2-1">
 <ul class="org-ul">
 <li>list 或 tuple 轉入<br /></li>
@@ -2874,8 +2874,8 @@ The 10-th Fibonacci number = 55
 </pre>
 </div>
 </div>
-<div id="outline-container-org5dd9c60" class="outline-4">
-<h4 id="org5dd9c60"><span class="section-number-4">7.2.2</span> 多維陣列</h4>
+<div id="outline-container-orgaf9fb0f" class="outline-4">
+<h4 id="orgaf9fb0f"><span class="section-number-4">7.2.2</span> 多維陣列</h4>
 <div class="outline-text-4" id="text-7-2-2">
 <ul class="org-ul">
 <li>二維陣列<br /></li>
@@ -2949,8 +2949,8 @@ np9: [[53 73 52]
 </div>
 </div>
 </div>
-<div id="outline-container-orgb257b80" class="outline-3">
-<h3 id="orgb257b80"><span class="section-number-3">7.3</span> 矩陣運算</h3>
+<div id="outline-container-orga3ff1a5" class="outline-3">
+<h3 id="orga3ff1a5"><span class="section-number-3">7.3</span> 矩陣運算</h3>
 <div class="outline-text-3" id="text-7-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #EF2F27; font-style: italic;">import</span> numpy <span style="color: #EF2F27; font-style: italic;">as</span> np
@@ -2997,8 +2997,8 @@ np9: [[53 73 52]
 </div>
 </div>
 
-<div id="outline-container-orgd3211e2" class="outline-3">
-<h3 id="orgd3211e2"><span class="section-number-3">7.4</span> 特殊矩陣</h3>
+<div id="outline-container-org7a94627" class="outline-3">
+<h3 id="org7a94627"><span class="section-number-3">7.4</span> 特殊矩陣</h3>
 <div class="outline-text-3" id="text-7-4">
 <ul class="org-ul">
 <li>元素全為0矩陣：<code class="src src-python"> np.zeros<span style="color: #FCE8C3;">(</span>&lt;&#22823;&#23567;&gt;, &lt;&#36039;&#26009;&#22411;&#21029;&gt;<span style="color: #FCE8C3;">)</span> </code><br /></li>
@@ -3056,8 +3056,8 @@ np.linalg.inv(mat):
 </pre>
 </div>
 </div>
-<div id="outline-container-org1d5685f" class="outline-3">
-<h3 id="org1d5685f"><span class="section-number-3">7.5</span> ndarray屬性</h3>
+<div id="outline-container-org7bc5435" class="outline-3">
+<h3 id="org7bc5435"><span class="section-number-3">7.5</span> ndarray屬性</h3>
 <div class="outline-text-3" id="text-7-5">
 <ul class="org-ul">
 <li>dtype：ndarray每個元素的資料型別 (可於創建矩陣時同時指定)<br />
@@ -3108,8 +3108,8 @@ nbytes= 16.0
 <li>T：矩陣轉置<br /></li>
 </ul>
 </div>
-<div id="outline-container-org50fc2da" class="outline-4">
-<h4 id="org50fc2da"><span class="section-number-4">7.5.1</span> 練習</h4>
+<div id="outline-container-org42b8de3" class="outline-4">
+<h4 id="org42b8de3"><span class="section-number-4">7.5.1</span> 練習</h4>
 <div class="outline-text-4" id="text-7-5-1">
 <ul class="org-ul">
 <li>使用 random 函式產生 3*5 的矩陣 A<br /></li>
@@ -3124,8 +3124,8 @@ nbytes= 16.0
 </div>
 </div>
 </div>
-<div id="outline-container-org37b2608" class="outline-3">
-<h3 id="org37b2608"><span class="section-number-3">7.6</span> 矩陣形狀轉換</h3>
+<div id="outline-container-org1879c73" class="outline-3">
+<h3 id="org1879c73"><span class="section-number-3">7.6</span> 矩陣形狀轉換</h3>
 <div class="outline-text-3" id="text-7-6">
 <ul class="org-ul">
 <li>reshape(m, n, …)：不改變原矩陣形狀<br /></li>
@@ -3137,12 +3137,12 @@ nbytes= 16.0
 </div>
 </div>
 
-<div id="outline-container-orgba4b6a2" class="outline-2">
-<h2 id="orgba4b6a2"><span class="section-number-2">8</span> Matplotlib</h2>
+<div id="outline-container-org35e763c" class="outline-2">
+<h2 id="org35e763c"><span class="section-number-2">8</span> Matplotlib</h2>
 </div>
 
-<div id="outline-container-org0cea65f" class="outline-2">
-<h2 id="org0cea65f"><span class="section-number-2">9</span> 網路爬蟲</h2>
+<div id="outline-container-org0b980d5" class="outline-2">
+<h2 id="org0b980d5"><span class="section-number-2">9</span> 網路爬蟲</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span>
@@ -3168,8 +3168,8 @@ nbytes= 16.0
 </div>
 </div>
 
-<div id="outline-container-org69d99db" class="outline-2">
-<h2 id="org69d99db"><span class="section-number-2">10</span> Python學習資源</h2>
+<div id="outline-container-orge5d4d66" class="outline-2">
+<h2 id="orge5d4d66"><span class="section-number-2">10</span> Python學習資源</h2>
 <div class="outline-text-2" id="text-10">
 <ul class="org-ul">
 <li><a href="https://www.runoob.com/python3/python3-tutorial.html">Python 3教程</a><br /></li>
@@ -3179,8 +3179,8 @@ nbytes= 16.0
 </div>
 
 
-<div id="outline-container-org6435d1b" class="outline-2">
-<h2 id="org6435d1b"><span class="section-number-2">11</span> 0802 CNN</h2>
+<div id="outline-container-org06af202" class="outline-2">
+<h2 id="org06af202"><span class="section-number-2">11</span> 0802 CNN</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 <a href="https://reurl.cc/Y2gKo">https://reurl.cc/Y2gKo</a>: 各種常用的library, function<br />
@@ -3188,8 +3188,8 @@ nbytes= 16.0
 </div>
 </div>
 
-<div id="outline-container-orgeb997cb" class="outline-2">
-<h2 id="orgeb997cb"><span class="section-number-2">12</span> 以python下載網路資料</h2>
+<div id="outline-container-org22cf546" class="outline-2">
+<h2 id="org22cf546"><span class="section-number-2">12</span> 以python下載網路資料</h2>
 <div class="outline-text-2" id="text-12">
 <ul class="org-ul">
 <li>import urllib.request as req<br /></li>
@@ -3197,20 +3197,20 @@ nbytes= 16.0
 </div>
 </div>
 
-<div id="outline-container-orge339530" class="outline-2">
-<h2 id="orge339530"><span class="section-number-2">13</span> 網路爬蟲</h2>
+<div id="outline-container-org2e55731" class="outline-2">
+<h2 id="org2e55731"><span class="section-number-2">13</span> 網路爬蟲</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-orgf95db19" class="outline-3">
-<h3 id="orgf95db19"><span class="section-number-3">13.1</span> parse HTML</h3>
+<div id="outline-container-org9cb18d7" class="outline-3">
+<h3 id="org9cb18d7"><span class="section-number-3">13.1</span> parse HTML</h3>
 <div class="outline-text-3" id="text-13-1">
 <ul class="org-ul">
 <li>what is HTML<br /></li>
 <li>精神：將程式模仿成一般user<br /></li>
 </ul>
 </div>
-<div id="outline-container-org13ef0b2" class="outline-4">
-<h4 id="org13ef0b2"><span class="section-number-4">13.1.1</span> 所需套件</h4>
+<div id="outline-container-org88bfb3d" class="outline-4">
+<h4 id="org88bfb3d"><span class="section-number-4">13.1.1</span> 所需套件</h4>
 <div class="outline-text-4" id="text-13-1-1">
 <ul class="org-ul">
 <li>BeautifulSoup<br /></li>
@@ -3221,12 +3221,12 @@ pip install beautifulsoup4<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgbe7c682" class="outline-3">
-<h3 id="orgbe7c682"><span class="section-number-3">13.2</span> 範例: 以程式抓取PTT電影板header</h3>
+<div id="outline-container-orged201bf" class="outline-3">
+<h3 id="orged201bf"><span class="section-number-3">13.2</span> 範例: 以程式抓取PTT電影板header</h3>
 <div class="outline-text-3" id="text-13-2">
 </div>
-<div id="outline-container-org00a9e22" class="outline-4">
-<h4 id="org00a9e22"><span class="section-number-4">13.2.1</span> 原則</h4>
+<div id="outline-container-org657673a" class="outline-4">
+<h4 id="org657673a"><span class="section-number-4">13.2.1</span> 原則</h4>
 <div class="outline-text-4" id="text-13-2-1">
 <ol class="org-ol">
 <li>要抓網路資料，就要先仔細觀察網頁內容<br /></li>
@@ -3234,12 +3234,12 @@ pip install beautifulsoup4<br />
 </ol>
 </div>
 </div>
-<div id="outline-container-orgdb6b973" class="outline-4">
-<h4 id="orgdb6b973"><span class="section-number-4">13.2.2</span> 實作: 取得HTML資料</h4>
+<div id="outline-container-org36b1847" class="outline-4">
+<h4 id="org36b1847"><span class="section-number-4">13.2.2</span> 實作: 取得HTML資料</h4>
 <div class="outline-text-4" id="text-13-2-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgdf28970"></a>第一版<br />
+<li><a id="org1a96154"></a>第一版<br />
 <div class="outline-text-5" id="text-13-2-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #918175; font-style: italic;"># </span><span style="color: #918175; font-style: italic;">&#25235;&#21462;PTT&#38651;&#24433;&#29256;header</span>
@@ -3262,7 +3262,7 @@ urllib.error.HTTPError: HTTP Error 403: Forbidden
 </div>
 </li>
 
-<li><a id="orgb6417a6"></a>第二版:加入header<br />
+<li><a id="orga106f5e"></a>第二版:加入header<br />
 <div class="outline-text-5" id="text-13-2-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #EF2F27; font-style: italic;">import</span> urllib.request <span style="color: #EF2F27; font-style: italic;">as</span> req
@@ -3294,12 +3294,12 @@ er"&gt;
 </ol>
 </div>
 
-<div id="outline-container-org99b27a9" class="outline-4">
-<h4 id="org99b27a9"><span class="section-number-4">13.2.3</span> 實作：解析HTML資料內容</h4>
+<div id="outline-container-orgce6c306" class="outline-4">
+<h4 id="orgce6c306"><span class="section-number-4">13.2.3</span> 實作：解析HTML資料內容</h4>
 <div class="outline-text-4" id="text-13-2-3">
 </div>
 <ol class="org-ol">
-<li><a id="orga501be0"></a>安裝解析HTML所需套件<br />
+<li><a id="org78d1af0"></a>安裝解析HTML所需套件<br />
 <div class="outline-text-5" id="text-13-2-3-1">
 <div class="org-src-container">
 <pre class="src src-shell">pip install beautifulsoup4
@@ -3308,7 +3308,7 @@ er"&gt;
 </div>
 </li>
 
-<li><a id="org532e22f"></a>第三版: 解析HTML<br />
+<li><a id="org8b6ae5a"></a>第三版: 解析HTML<br />
 <div class="outline-text-5" id="text-13-2-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #EF2F27; font-style: italic;">import</span> urllib.request <span style="color: #EF2F27; font-style: italic;">as</span> req
@@ -3403,8 +3403,8 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div>
 </div>
 
-<div id="outline-container-org40cf501" class="outline-3">
-<h3 id="org40cf501"><span class="section-number-3">13.3</span> 參考資料</h3>
+<div id="outline-container-org9e00c08" class="outline-3">
+<h3 id="org9e00c08"><span class="section-number-3">13.3</span> 參考資料</h3>
 <div class="outline-text-3" id="text-13-3">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=9Z9xKWfNo7k">https://www.youtube.com/watch?v=9Z9xKWfNo7k</a><br /></li>
@@ -3414,8 +3414,8 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div>
 
 
-<div id="outline-container-orgfc7b404" class="outline-2">
-<h2 id="orgfc7b404"><span class="section-number-2">14</span> 如何把python程式publish成網站應用程式</h2>
+<div id="outline-container-org36776b3" class="outline-2">
+<h2 id="org36776b3"><span class="section-number-2">14</span> 如何把python程式publish成網站應用程式</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -3438,7 +3438,7 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: yen yung chin</p>
-<p class="date">Created: 2020-02-23 Sun 11:08</p>
+<p class="date">Created: 2020-02-23 Sun 23:24</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
