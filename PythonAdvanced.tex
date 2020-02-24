@@ -1,0 +1,758 @@
+% Created 2020-02-24 Mon 15:18
+% Intended LaTeX compiler: pdflatex
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{amssymb}
+\tolerance=1000
+\usepackage{listings}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\usepackage{color}
+\usepackage{listings}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small}
+\lstset{basicstyle=\scriptsize\ttfamily}
+\lstset{basicstyle=\tiny\ttfamily}
+\usepackage{placeins}
+\vspace{-0.2cm}
+\usepackage{xcolor}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{dred}{rgb}{0.545,0,0}
+\definecolor{dblue}{rgb}{0,0,0.545}
+\definecolor{lgrey}{rgb}{0.9,0.9,0.9}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{bubbles}{rgb}{0.91, 1.0, 1.0}
+\lstdefinelanguage{python}{
+backgroundcolor=\color{bubbles},
+basicstyle=\footnotesize \ttfamily \color{black} \bfseries,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+commentstyle=\color{dred},
+deletekeywords={...},
+escapeinside={\%*}{*)},
+frame=single,
+language=C++,
+keywordstyle=\color{purple},
+morekeywords={BRIEFDescriptorConfig,string,TiXmlNode,DetectorDescriptorConfigContainer,istringstream,cerr,exit},
+identifierstyle=\color{black},
+stringstyle=\color{blue},
+rulecolor=\color{black},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+stepnumber=1,
+tabsize=5,
+title=\lstname,
+}
+\usepackage{enumitem}
+\setenumerate{noitemsep}
+\setenumerate{nolistsep}
+\setitemize{nolistsep}
+\usepackage[compact]{titlesec}
+\usepackage[utf8]{inputenc}
+\vspace{-\topsep}
+\author{yen yung chin}
+\date{\today}
+\title{Advanced Materials of Python}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Numpy模組}
+\label{sec:org6aefe9a}
+\subsection{匯入模組}
+\label{sec:org4cfda5d}
+\begin{itemize}
+\item 使用模組裡的函式要加模組名稱，如 numpy.arrry( )。例：\lstinline[breaklines=true,language=Python]~ import numpy ~\\
+\item 匯入numpy模組並使用np作為簡寫，這是Numpy官方倡導的寫法\lstinline[breaklines=true,language=Python]~ import numpy as np ~\\
+\item Numpy中的多維資料型別稱為ndarray\\
+\end{itemize}
+\subsection{Create ndarray}
+\label{sec:org87fd32b}
+\subsubsection{一維陣列}
+\label{sec:org2ab7499}
+\begin{itemize}
+\item list 或 tuple 轉入\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+np1 = np.array( [1, 2, 3, 4] )
+print(np1)
+\end{lstlisting}
+
+\begin{verbatim}
+[1 2 3 4]
+\end{verbatim}
+
+
+\begin{itemize}
+\item 使用 np.arange( ) 方法\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+np2 = np.arange(5)
+print(np2)
+\end{lstlisting}
+
+\begin{verbatim}
+[0 1 2 3 4]
+\end{verbatim}
+\subsubsection{多維陣列}
+\label{sec:org50300de}
+\begin{itemize}
+\item 二維陣列\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+np4 = np.array( [[1, 2, 4], [3,4,5]])
+print('np4:', np4)
+
+np5 = np.array([np.arange(3), np.arange(3)])
+print('np5:', np5)
+
+np6 = np.arange(8).reshape(2, 4)
+print('np6:', np6)
+\end{lstlisting}
+
+\begin{verbatim}
+np4: [[1 2 4]
+ [3 4 5]]
+np5: [[0 1 2]
+ [0 1 2]]
+np6: [[0 1 2 3]
+ [4 5 6 7]]
+\end{verbatim}
+
+\begin{itemize}
+\item 多維陣列\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+
+np7 = np.arange(24).reshape(2, 3, 4)
+print('np7:',np7)
+\end{lstlisting}
+
+\begin{verbatim}
+np7: [[[ 0  1  2  3]
+  [ 4  5  6  7]
+  [ 8  9 10 11]]
+
+ [[12 13 14 15]
+  [16 17 18 19]
+  [20 21 22 23]]]
+\end{verbatim}
+
+\begin{itemize}
+\item 隨機矩陣\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+
+np8 = np.random.random( (3, 2)) #矩陣大小以tuple表示
+print('np8:', np8)
+
+np9 = np.random.randint( 0, 100, size=[4, 3]) #矩陣大小以list表示
+print('np9:', np9)
+\end{lstlisting}
+
+\begin{verbatim}
+np8: [[0.04349769 0.48755705]
+ [0.50627204 0.56730179]
+ [0.56445113 0.31159334]]
+np9: [[53 73 52]
+ [60 58 33]
+ [69 89 98]
+ [17 92 90]]
+\end{verbatim}
+\subsection{矩陣運算}
+\label{sec:orgf687dff}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+
+A = np.array([
+    [5, 3, 7],
+    [0, 1, -6]
+])
+
+B = np.array([
+    [1, 2, 3],
+    [-1, -2, -3]
+])
+
+C = np.array([
+    [1, 2],
+    [-1, -2],
+    [0, 5]
+])
+
+k = -3
+
+print('---A+B---\n', A+B)
+print('---A-B---\n', A-B)
+print('---k*B---\n', k*B)
+print('---A.dot(C)---\n', A.dot(C))
+\end{lstlisting}
+
+\begin{verbatim}
+---A+B---
+ [[ 6  5 10]
+ [-1 -1 -9]]
+---A-B---
+ [[ 4  1  4]
+ [ 1  3 -3]]
+---k*B---
+ [[-3 -6 -9]
+ [ 3  6  9]]
+---A.dot(C)---
+ [[  2  39]
+ [ -1 -32]]
+\end{verbatim}
+\subsection{特殊矩陣}
+\label{sec:orgc16e647}
+\begin{itemize}
+\item 元素全為0矩陣：\lstinline[breaklines=true,language=Python]~ np.zeros(<大小>, <資料型別>) ~\\
+\item 元素全為1矩陣：\lstinline[breaklines=true,language=Python]~ np.ones(<大小>, <資料型別>) # 矩陣大小以 tuple 指定 ~\\
+\item 單位矩陣(Identity)：\lstinline[breaklines=true,language=Python]~ np.eye(<m>, <資料型別>)   # eye 與 I 同音 ~\\
+\item 反矩陣(Inverse)：\lstinline[breaklines=true,language=Python]~ np.linalg.inv(<矩陣>)  # 行列式不可為0 ~\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+
+print('np.zeros:\n', np.zeros((3,5), dtype='int'))
+print('np.ones:\n', np.ones((3,5), dtype='int'))
+print('np.eyes:\n', np.eye(4, dtype='int'))
+x = np.random.randint( 0, 10, size=[3, 3])
+print('x:\n', x)
+xt = x.T # 轉置
+print('xt:\n', xt)
+mat = xt.dot(x)
+print('mat:\n', mat)
+print('np.linalg.inv(mat):\n', np.linalg.inv(mat))
+
+\end{lstlisting}
+
+\begin{verbatim}
+np.zeros:
+ [[0 0 0 0 0]
+ [0 0 0 0 0]
+ [0 0 0 0 0]]
+np.ones:
+ [[1 1 1 1 1]
+ [1 1 1 1 1]
+ [1 1 1 1 1]]
+np.eyes:
+ [[1 0 0 0]
+ [0 1 0 0]
+ [0 0 1 0]
+ [0 0 0 1]]
+x:
+ [[5 7 1]
+ [2 8 6]
+ [1 6 3]]
+xt:
+ [[5 2 1]
+ [7 8 6]
+ [1 6 3]]
+mat:
+ [[ 30  57  20]
+ [ 57 149  73]
+ [ 20  73  46]]
+np.linalg.inv(mat):
+ [[ 0.48628827 -0.37053571  0.37659439]
+ [-0.37053571  0.3125     -0.33482143]
+ [ 0.37659439 -0.33482143  0.38934949]]
+\end{verbatim}
+\subsection{ndarray屬性}
+\label{sec:orgecf7c8c}
+\begin{itemize}
+\item dtype：ndarray每個元素的資料型別 (可於創建矩陣時同時指定)\\
+\begin{itemize}
+\item int, float, bool, D(複數)\\
+\end{itemize}
+\item ndim：ndarray的維度\\
+\item shape：ndarray的大小，即矩陣 m*n ( m 列 n 行 )\\
+\item size：ndarray的元素個數\\
+\item itemsize：ndarray中每個元素記憶體大小(單位byte)\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+
+np1 = np.arange(12, dtype='D').reshape(3, 2, 2)
+print(np1)
+print('dtype=', np1.dtype)
+print('shape=', np1.shape)
+print('size=', np1.size)
+print('itemsize=', np1.itemsize)
+print('nbytes=', np1.nbytes)
+\end{lstlisting}
+
+\begin{verbatim}
+[[[ 0.+0.j  1.+0.j]
+  [ 2.+0.j  3.+0.j]]
+
+ [[ 4.+0.j  5.+0.j]
+  [ 6.+0.j  7.+0.j]]
+
+ [[ 8.+0.j  9.+0.j]
+  [10.+0.j 11.+0.j]]]
+dtype= complex128
+shape= (3, 2, 2)
+size= 12
+itemsize= 16
+nbytes= 16.0
+\end{verbatim}
+
+\begin{itemize}
+\item nbytes：ndarray的記憶體大小(單位byte)\\
+\begin{itemize}
+\item real 和 imag：複數的實部和虛部\\
+\item real 回傳複數的實部\\
+\end{itemize}
+\item imag 回傳複數的虛部\\
+\item T：矩陣轉置\\
+\end{itemize}
+\subsubsection{練習}
+\label{sec:org5c78a63}
+\begin{itemize}
+\item 使用 random 函式產生 3*5 的矩陣 A\\
+\item 使用 randint 函式產生 5*3 的矩陣 B\\
+\item 使用 arange 和 reshape 函式產生 3*5 的矩陣 C\\
+\item 使用 list 自建 5*3 的矩陣 D\\
+\item 計算 10*A + C 和 B - D\\
+\item 計算 B•C 和 C•D\\
+\item 比較 (B•C)T 和 CT•BT 是否相同?\\
+\item 求矩陣 E 的反矩陣\\
+\end{itemize}
+\subsection{矩陣形狀轉換}
+\label{sec:orgf7d1c8a}
+\begin{itemize}
+\item reshape(m, n, …)：不改變原矩陣形狀\\
+\item resize(m, n, …)：和 reshape 類似，但會改變原矩陣形狀\\
+\item ravel( ) / flatten( )：將多維矩陣轉換成一維矩陣，原矩陣不變\\
+\item shape = (m, n, …)：用 tuple 來指定矩陣大小，會改變原矩陣\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+a = np.arange(12)
+print(a)
+print(a.reshape(3,4))
+print(a)
+print(a.resize(3,4))
+print(a)
+print(a.flatten())
+print(a)
+a.shape = (2, 6)
+print(a)
+\end{lstlisting}
+
+\begin{verbatim}
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+None
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]]
+\end{verbatim}
+\subsection{矩陣疊加}
+\label{sec:org970751c}
+\begin{itemize}
+\item 水平疊加：np.hstack( <tuple, list> )\\
+\end{itemize}
+\begin{itemize}
+\item 垂直疊加：np.vstack( <tuple, list> )\\
+\end{itemize}
+\begin{itemize}
+\item 深度疊加：np.dstack( <tuple, list> ) 以此例，a, b原為2*6矩陣， 深度疊加後變成2*6*2矩陣。\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+a = np.arange(12).reshape(2, 6)
+b = a * 2
+
+print(a)
+print(b)
+
+print(np.hstack([a, b]))
+print(np.vstack([a, b]))
+print(np.dstack([a, b]))
+\end{lstlisting}
+
+\begin{verbatim}
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]]
+[[ 0  2  4  6  8 10]
+ [12 14 16 18 20 22]]
+[[ 0  1  2  3  4  5  0  2  4  6  8 10]
+ [ 6  7  8  9 10 11 12 14 16 18 20 22]]
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]
+ [ 0  2  4  6  8 10]
+ [12 14 16 18 20 22]]
+[[[ 0  0]
+  [ 1  2]
+  [ 2  4]
+  [ 3  6]
+  [ 4  8]
+  [ 5 10]]
+
+ [[ 6 12]
+  [ 7 14]
+  [ 8 16]
+  [ 9 18]
+  [10 20]
+  [11 22]]]
+\end{verbatim}
+\subsection{ndarray 轉 list}
+\label{sec:org4b9973f}
+\begin{itemize}
+\item ndarray 轉 list\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+a = np.arange(12).reshape(4, 3)
+print(a)
+b = a.tolist()
+print(b)
+\end{lstlisting}
+
+\begin{verbatim}
+[[ 0  1  2]
+ [ 3  4  5]
+ [ 6  7  8]
+ [ 9 10 11]]
+[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
+\end{verbatim}
+\subsection{Numpy常用統計函數}
+\label{sec:orge859940}
+\begin{itemize}
+\item np.sum(<np>)：回傳和\\
+\item np.mean(<np>)：回傳平均值\\
+\item np.max(<np>)：回傳最大值\\
+\item np.min(<np>)：回傳最小值\\
+\item np.ptp(<np>)：回傳最大值減最小值\\
+\item np.std(<np>)：回傳標準差\\
+\item np.var(<np>)：回傳變異數\\
+\item np.cumsum(<np>)：回傳累加值\\
+\item np.cumprod(<np>)：回傳累積值 註：使用時需要指定axis軸的方向，若不指定，預設統計整個numpy\\
+\end{itemize}
+
+\section{Matplotlib}
+\label{sec:orgee15a0f}
+\subsection{Matplotlib簡介}
+\label{sec:org2975bd8}
+\begin{itemize}
+\item NumPy的可視化操作界面\\
+\item 為Python最多人使用的2D繪圖工具\\
+\item 優點：圖形美觀、類型多、相容於Matlab\\
+\item 官方社群網站 \url{https://matplotlib.org/}\\
+\item 維基百科 \url{https://zh.wikipedia.org/wiki/Matplotlib}\\
+\end{itemize}
+\subsection{語法}
+\label{sec:org25f8d05}
+\begin{itemize}
+\item import matplotlib.pyplot as plt\\
+\item plt.plot( )函式為matplotlib.pyplot模組畫線條方法，其語法如下 \\
+\lstinline[breaklines=true,language=Python]~ plt.plot( [x座標資料,] y座標資料 [, 參數1, 參數2, ...] ) ~\\
+\item np.sin( )函式為Numpy模組求正弦值\\
+\item plt.show( )函式用來顯示圖形\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.arange(-3, 3, 0.01)
+plt.clf()
+plt.plot(x, np.sin(x))
+# for web-based
+#plt.show() 
+
+plt.savefig('SimpleSin.png', dpi=300)
+\end{lstlisting}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=300]{simpleSin.png}
+\caption{\label{fig:SimpleSin}
+簡單的sin圖形}
+\end{figure}
+
+\subsection{練習一：繪製折線圖}
+\label{sec:orgcee28f8}
+
+\begin{verse}
+利用 list 繪製 \\
+\hspace*{2em}x1 = [1, 2, 3, 4, 5, 6] \\
+\hspace*{2em}y1 = [1, 2, 3, 4, 5, 6] \\
+執行 plt.plot(y1) 和 plt.plot(x1, y1) 有何差別??\\
+利用 numpy 繪製 \\
+\hspace*{2em}x2 = np.arange(0, 3, 0.01) \\
+執行plt.plot(x2, x2**2)看看畫出什麼圖形??\\
+\end{verse}
+\section{網路爬蟲}
+\label{sec:orgd8ce6be}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+
+import urllib.request as req
+url = "https://huodalife.pixnet.net/blog/"
+# 幫request加上一個header
+request = req.Request(url, headers = {
+    "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+})
+
+with req.urlopen(request) as response:
+    data = response.read().decode("utf-8")
+
+import bs4
+root = bs4.BeautifulSoup(data,"html.parser")
+
+titles = root.find_all("li", class_="title")
+pubs = root.find_all("li", class_="publish")
+for pub, title in zip(pubs, titles):
+    print(pub.span.string,title.a.string)
+\end{lstlisting}
+
+\section{Python學習資源}
+\label{sec:org42a882d}
+\begin{itemize}
+\item \href{https://www.runoob.com/python3/python3-tutorial.html}{Python 3教程}\\
+\item \href{http://liyangbit.com/tutorials/}{Python教程}\\
+\end{itemize}
+
+
+\section{0802 CNN}
+\label{sec:org2fe23f2}
+\url{https://reurl.cc/Y2gKo}: 各種常用的library, function\\
+
+\section{以python下載網路資料}
+\label{sec:org08b86a5}
+\begin{itemize}
+\item import urllib.request as req\\
+\end{itemize}
+
+\section{網路爬蟲}
+\label{sec:orge5d5958}
+\subsection{parse HTML}
+\label{sec:orgc424a9a}
+\begin{itemize}
+\item what is HTML\\
+\item 精神：將程式模仿成一般user\\
+\end{itemize}
+\subsubsection{所需套件}
+\label{sec:org54f776a}
+\begin{itemize}
+\item BeautifulSoup\\
+\end{itemize}
+pip install beautifulsoup4\\
+\subsection{範例: 以程式抓取PTT電影板header}
+\label{sec:org7c9bb75}
+\subsubsection{原則}
+\label{sec:org9dcf819}
+\begin{enumerate}
+\item 要抓網路資料，就要先仔細觀察網頁內容\\
+\item 要儘量欺騙網站自己是browser\\
+\end{enumerate}
+\subsubsection{實作: 取得HTML資料}
+\label{sec:org0e53307}
+\begin{enumerate}
+\item 第一版
+\label{sec:org53d6274}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+# 抓取PTT電影版header
+import urllib.request as req
+url = "https://www.ptt.cc/bbs/Stock/index.html"
+
+with req.urlopen(url) as response:
+    data = response.read().decode("utf-8")
+print(data)
+\end{lstlisting}
+
+\begin{verbatim}
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+\end{verbatim}
+
+被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是HTTP協議中的一個HTTP狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務\footnote{\href{https://zh.wikipedia.org/wiki/HTTP\_403}{維基百科: HTTP 403}\\}。\\
+
+\item 第二版:加入header
+\label{sec:org27f7f4d}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import urllib.request as req
+url = "https://www.ptt.cc/bbs/Stock/index.html"
+# 幫request加上一個header
+request = req.Request(url, headers = {
+    "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+})
+
+with req.urlopen(request) as response:
+    data = response.read().decode("utf-8")
+print('所取得的資料型態：',type(data))
+print(data[700:1000])
+\end{lstlisting}
+
+\begin{verbatim}
+所取得的資料型態： <class 'str'>
+er">
+	<div id="topbar" class="bbs-content">
+		<a id="logo" href="/bbs/">批踢踢實業坊</a>
+		<span>&rsaquo;</span>
+		<a class="board" href="/bbs/Stock/index.html"><span class="board-label">看板 </span>Stock</a>
+		<a class="right small" href="/about.html">關於我們</a>
+		<a class="right small" href="/contact.html">
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{實作：解析HTML資料內容}
+\label{sec:orgd801532}
+\begin{enumerate}
+\item 安裝解析HTML所需套件
+\label{sec:orged34deb}
+\lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+pip install beautifulsoup4
+\end{lstlisting}
+
+\item 第三版: 解析HTML
+\label{sec:org04a7c6b}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import urllib.request as req
+url = "https://www.ptt.cc/bbs/Stock/index.html"
+# 幫request加上一個header
+request = req.Request(url, headers = {
+    "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+})
+
+with req.urlopen(request) as response:
+    data = response.read().decode("utf-8")
+
+import bs4
+root = bs4.BeautifulSoup(data,"html.parser")
+print(root.title)
+titles = root.find("div", class_="title")
+print(titles)
+print(titles.a.string)
+titles = root.find_all("div", class_="title")
+print(titles)
+for title in titles:
+    if title.a != None:
+        print(title.a.string)
+\end{lstlisting}
+
+\begin{verbatim}
+<title>看板 Stock 文章列表 - 批踢踢實業坊</title>
+<div class="title">
+<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[<div class="title">
+<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581986080.A.0B9.html">[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987000.A.EE7.html">[新聞] 超預期 國巨MLCC漲價五成</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987018.A.192.html">[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987846.A.95F.html">[新聞] 中芯國際14nm第二代FinFET批量須等到2020</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581989947.A.392.html">Re: [請益] 有人買股票而完全捨棄定存嗎?</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581990753.A.EB3.html">[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581994926.A.A50.html">[標的] 6531愛普</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581996309.A.C55.html">[請益] 是不是該立法更限制外資匯出資金？</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581999672.A.14E.html">Re: [請益] 存股標的選擇</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582000361.A.6A2.html">[標的] 1201 味全 多</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582000701.A.2AB.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582001420.A.3B8.html">[新聞] 用電大戶買綠電 電證分離更活絡</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1422199105.A.84E.html">[公告] 精華區導覽Q&amp;A</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1541252211.A.8BE.html">[公告] Stock 板規V2.6             (2019/06/20)</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1579935755.A.395.html">[公告] 關於武漢肺炎新聞規範</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581919202.A.CF2.html">[閒聊] 2020/02/17 盤後閒聊</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581985803.A.F3E.html">[閒聊] 2020/02/18 盤中閒聊</a>
+</div>]
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標
+[新聞] 超預期 國巨MLCC漲價五成
+[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠
+[新聞] 中芯國際14nm第二代FinFET批量須等到2020
+Re: [請益] 有人買股票而完全捨棄定存嗎?
+[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得
+[標的] 6531愛普
+[請益] 是不是該立法更限制外資匯出資金？
+Re: [請益] 存股標的選擇
+[標的] 1201 味全 多
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 用電大戶買綠電 電證分離更活絡
+[公告] 精華區導覽Q&A
+[公告] Stock 板規V2.6             (2019/06/20)
+[公告] 關於武漢肺炎新聞規範
+[閒聊] 2020/02/17 盤後閒聊
+[閒聊] 2020/02/18 盤中閒聊
+\end{verbatim}
+\end{enumerate}
+
+\subsection{參考資料}
+\label{sec:org09ac4e6}
+\begin{itemize}
+\item \url{https://www.youtube.com/watch?v=9Z9xKWfNo7k}\\
+\end{itemize}
+
+
+\section{如何把python程式publish成網站應用程式}
+\label{sec:orge95fa0d}
+\end{document}
