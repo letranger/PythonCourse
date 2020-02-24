@@ -57,6 +57,10 @@
 #+LATEX_HEADER: \usepackage[utf8]{inputenc}
 #+LATEX_HEADER: \vspace{-\topsep}
 
+* Python簡介與環境建置
+** Python簡介
+** Python環境建置
+
 * 變數、資料型態、輸出輸入
 ** 變數
 *** 命名規則
@@ -453,7 +457,7 @@ Python變數不需宣告，依指派值自動設定資料型態。
 #+END_SRC
 #+CAPTION: 閏年判斷流程
 #+name: fig:YearJudge
-#+ATTR_LATEX: :width 560
+#+ATTR_LATEX: :width 300
 #+ATTR_HTML: :width 560
 #+ATTR_ORG: :width 560
 #+RESULTS:
@@ -497,7 +501,7 @@ Python變數不需宣告，依指派值自動設定資料型態。
       ...
 #+END_SRC
 - for迴圈的變數會依序走訪序列中的元素
-- 序列[fn:2]可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
+- 序列[fn:1]可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
 
 *** List為range() function語法
 #+BEGIN_SRC python :exports both :eval no 
@@ -1000,7 +1004,7 @@ a-b-c
 : {'Vanissa': 100, 'May': 100, 'John': 100}
 
 ** List v.s. Tuple
-二者的差異與適用時機[fn:3]：
+二者的差異與適用時機[fn:2]：
 *** 能否改變內容
 Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed. 
 *** 可讀性
@@ -1314,440 +1318,10 @@ src_python[exports: code]{[ 變數 ] = 函式名稱( [引數1, 引數2, ... ] )}
 #+RESULTS:
 : 4x + -29y = 3
 
-* Numpy模組
-** 匯入模組
-- 使用模組裡的函式要加模組名稱，如 numpy.arrry( )。例：src_python[:exports code]{ import numpy }
-- 匯入numpy模組並使用np作為簡寫，這是Numpy官方倡導的寫法src_python[:exports code]{ import numpy as np }
-- Numpy中的多維資料型別稱為ndarray
-** Create ndarray
-*** 一維陣列
-- list 或 tuple 轉入
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-  np1 = np.array( [1, 2, 3, 4] )
-  print(np1)
-#+END_SRC
-
-#+RESULTS:
-: [1 2 3 4]
-  
-- 使用 np.arange( ) 方法
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-  np2 = np.arange(5)
-  print(np2)
-#+END_SRC
-
-#+RESULTS:
-: [0 1 2 3 4]
-*** 多維陣列
-- 二維陣列
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-  np4 = np.array( [[1, 2, 4], [3,4,5]])
-  print('np4:', np4)
-
-  np5 = np.array([np.arange(3), np.arange(3)])
-  print('np5:', np5)
-
-  np6 = np.arange(8).reshape(2, 4)
-  print('np6:', np6)
-#+END_SRC
-
-#+RESULTS:
-: np4: [[1 2 4]
-:  [3 4 5]]
-: np5: [[0 1 2]
-:  [0 1 2]]
-: np6: [[0 1 2 3]
-:  [4 5 6 7]]
-- 多維陣列
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-
-  np7 = np.arange(24).reshape(2, 3, 4)
-  print('np7:',np7)
-#+END_SRC
-
-#+RESULTS:
-: np7: [[[ 0  1  2  3]
-:   [ 4  5  6  7]
-:   [ 8  9 10 11]]
-: 
-:  [[12 13 14 15]
-:   [16 17 18 19]
-:   [20 21 22 23]]]
-- 隨機矩陣
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-
-  np8 = np.random.random( (3, 2)) #矩陣大小以tuple表示
-  print('np8:', np8)
-
-  np9 = np.random.randint( 0, 100, size=[4, 3]) #矩陣大小以list表示
-  print('np9:', np9)
-#+END_SRC
-
-#+RESULTS:
-: np8: [[0.04349769 0.48755705]
-:  [0.50627204 0.56730179]
-:  [0.56445113 0.31159334]]
-: np9: [[53 73 52]
-:  [60 58 33]
-:  [69 89 98]
-:  [17 92 90]]
-** 矩陣運算
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-
-  A = np.array([
-      [5, 3, 7],
-      [0, 1, -6]
-  ])
-
-  B = np.array([
-      [1, 2, 3],
-      [-1, -2, -3]
-  ])
-
-  C = np.array([
-      [1, 2],
-      [-1, -2],
-      [0, 5]
-  ])
-
-  k = -3
-
-  print('---A+B---\n', A+B)
-  print('---A-B---\n', A-B)
-  print('---k*B---\n', k*B)
-  print('---A.dot(C)---\n', A.dot(C))
-#+END_SRC
-
-#+RESULTS:
-#+begin_example
----A+B---
- [[ 6  5 10]
- [-1 -1 -9]]
----A-B---
- [[ 4  1  4]
- [ 1  3 -3]]
----k*B---
- [[-3 -6 -9]
- [ 3  6  9]]
----A.dot(C)---
- [[  2  39]
- [ -1 -32]]
-#+end_example
-
-** 特殊矩陣
-- 元素全為0矩陣：src_python[:exports code]{ np.zeros(<大小>, <資料型別>) }
-- 元素全為1矩陣：src_python[:exports code]{ np.ones(<大小>, <資料型別>) # 矩陣大小以 tuple 指定 }
-- 單位矩陣(Identity)：src_python[:exports code]{ np.eye(<m>, <資料型別>)   # eye 與 I 同音 }
-- 反矩陣(Inverse)：src_python[:exports code]{ np.linalg.inv(<矩陣>)  # 行列式不可為0 }
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-  
-  print('np.zeros:\n', np.zeros((3,5), dtype='int'))
-  print('np.ones:\n', np.ones((3,5), dtype='int'))
-  print('np.eyes:\n', np.eye(4, dtype='int'))
-  x = np.random.randint( 0, 10, size=[3, 3])
-  print('x:\n', x)
-  xt = x.T # 轉置
-  print('xt:\n', xt)
-  mat = xt.dot(x)
-  print('mat:\n', mat)
-  print('np.linalg.inv(mat):\n', np.linalg.inv(mat))
-
-#+END_SRC
-
-#+RESULTS:
-#+begin_example
-np.zeros:
- [[0 0 0 0 0]
- [0 0 0 0 0]
- [0 0 0 0 0]]
-np.ones:
- [[1 1 1 1 1]
- [1 1 1 1 1]
- [1 1 1 1 1]]
-np.eyes:
- [[1 0 0 0]
- [0 1 0 0]
- [0 0 1 0]
- [0 0 0 1]]
-x:
- [[5 7 1]
- [2 8 6]
- [1 6 3]]
-xt:
- [[5 2 1]
- [7 8 6]
- [1 6 3]]
-mat:
- [[ 30  57  20]
- [ 57 149  73]
- [ 20  73  46]]
-np.linalg.inv(mat):
- [[ 0.48628827 -0.37053571  0.37659439]
- [-0.37053571  0.3125     -0.33482143]
- [ 0.37659439 -0.33482143  0.38934949]]
-#+end_example
-** ndarray屬性
-- dtype：ndarray每個元素的資料型別 (可於創建矩陣時同時指定)
-  + int, float, bool, D(複數)
-- ndim：ndarray的維度
-- shape：ndarray的大小，即矩陣 m*n ( m 列 n 行 )
-- size：ndarray的元素個數
-- itemsize：ndarray中每個元素記憶體大小(單位byte)
-#+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-
-  np1 = np.arange(12, dtype='D').reshape(3, 2, 2)
-  print(np1)
-  print('dtype=', np1.dtype)
-  print('shape=', np1.shape)
-  print('size=', np1.size)
-  print('itemsize=', np1.itemsize)
-  print('nbytes=', np1.nbytes)
-#+END_SRC
-
-#+RESULTS:
-#+begin_example
-[[[ 0.+0.j  1.+0.j]
-  [ 2.+0.j  3.+0.j]]
-
- [[ 4.+0.j  5.+0.j]
-  [ 6.+0.j  7.+0.j]]
-
- [[ 8.+0.j  9.+0.j]
-  [10.+0.j 11.+0.j]]]
-dtype= complex128
-shape= (3, 2, 2)
-size= 12
-itemsize= 16
-nbytes= 16.0
-#+end_example
-
-- nbytes：ndarray的記憶體大小(單位byte)
-  + real 和 imag：複數的實部和虛部
-  + real 回傳複數的實部
-- imag 回傳複數的虛部
-- T：矩陣轉置
-*** 練習
-- 使用 random 函式產生 3*5 的矩陣 A
-- 使用 randint 函式產生 5*3 的矩陣 B
-- 使用 arange 和 reshape 函式產生 3*5 的矩陣 C
-- 使用 list 自建 5*3 的矩陣 D
-- 計算 10*A + C 和 B - D
-- 計算 B•C 和 C•D
-- 比較 (B•C)T 和 CT•BT 是否相同?
-- 求矩陣 E 的反矩陣
-** 矩陣形狀轉換
-- reshape(m, n, …)：不改變原矩陣形狀
-- resize(m, n, …)：和 reshape 類似，但會改變原矩陣形狀
-- ravel( ) / flatten( )：將多維矩陣轉換成一維矩陣，原矩陣不變
-- shape = (m, n, …)：用 tuple 來指定矩陣大小，會改變原矩陣
-
-* Matplotlib
-
-* 網路爬蟲
-#+begin_src python -r -n :results output :exports both
-
-  import urllib.request as req
-  url = "https://huodalife.pixnet.net/blog/"
-  # 幫request加上一個header
-  request = req.Request(url, headers = {
-      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
-  })
-  
-  with req.urlopen(request) as response:
-      data = response.read().decode("utf-8")
-
-  import bs4
-  root = bs4.BeautifulSoup(data,"html.parser")
-
-  titles = root.find_all("li", class_="title")
-  pubs = root.find_all("li", class_="publish")
-  for pub, title in zip(pubs, titles):
-      print(pub.span.string,title.a.string)
-#+end_src
-
-* Python學習資源
-- [[https://www.runoob.com/python3/python3-tutorial.html][Python 3教程]]
-- [[http://liyangbit.com/tutorials/][Python教程]]
-
-
-* 0802 CNN
-https://reurl.cc/Y2gKo: 各種常用的library, function
-
-* 以python下載網路資料
-- import urllib.request as req 
-
-* 網路爬蟲
-** parse HTML
-- what is HTML
-- 精神：將程式模仿成一般user
-*** 所需套件
-- BeautifulSoup
-pip install beautifulsoup4
-** 範例: 以程式抓取PTT電影板header
-*** 原則
-1. 要抓網路資料，就要先仔細觀察網頁內容
-1. 要儘量欺騙網站自己是browser
-*** 實作: 取得HTML資料
-**** 第一版
-#+begin_src python -r -n :results output :exports both
-  # 抓取PTT電影版header
-  import urllib.request as req
-  url = "https://www.ptt.cc/bbs/Stock/index.html"
-
-  with req.urlopen(url) as response:
-      data = response.read().decode("utf-8")
-  print(data)
-#+end_src
-
-#+RESULTS:
-#+begin_src 
-urllib.error.HTTPError: HTTP Error 403: Forbidden
-#+end_src
-
-被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是HTTP協議中的一個HTTP狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務[fn:1]。
-
-**** 第二版:加入header
-#+begin_src python -r -n :results output :exports both
-  import urllib.request as req
-  url = "https://www.ptt.cc/bbs/Stock/index.html"
-  # 幫request加上一個header
-  request = req.Request(url, headers = {
-      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
-  })
-
-  with req.urlopen(request) as response:
-      data = response.read().decode("utf-8")
-  print('所取得的資料型態：',type(data))
-  print(data[700:1000])
-#+end_src
-
-#+RESULTS:
-: 所取得的資料型態： <class 'str'>
-: er">
-: 	<div id="topbar" class="bbs-content">
-: 		<a id="logo" href="/bbs/">批踢踢實業坊</a>
-: 		<span>&rsaquo;</span>
-: 		<a class="board" href="/bbs/Stock/index.html"><span class="board-label">看板 </span>Stock</a>
-: 		<a class="right small" href="/about.html">關於我們</a>
-: 		<a class="right small" href="/contact.html">
-
-*** 實作：解析HTML資料內容
-**** 安裝解析HTML所需套件
-#+begin_src shell
-pip install beautifulsoup4
-#+end_src
-
-#+RESULTS:
-| Requirement | already | satisfied: | beautifulsoup4 | in | /Users/letranger/anaconda3/lib/python3.7/site-packages | (4.8.0) |                 |         |
-| Requirement | already | satisfied: | soupsieve>=1.2 | in | /Users/letranger/anaconda3/lib/python3.7/site-packages | (from   | beautifulsoup4) | (1.9.4) |
-
-**** 第三版: 解析HTML
-#+begin_src python -r -n :results output :exports both
-  import urllib.request as req
-  url = "https://www.ptt.cc/bbs/Stock/index.html"
-  # 幫request加上一個header
-  request = req.Request(url, headers = {
-      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
-  })
-
-  with req.urlopen(request) as response:
-      data = response.read().decode("utf-8")
-
-  import bs4
-  root = bs4.BeautifulSoup(data,"html.parser")
-  print(root.title)
-  titles = root.find("div", class_="title")
-  print(titles)
-  print(titles.a.string)
-  titles = root.find_all("div", class_="title")
-  print(titles)
-  for title in titles:
-      if title.a != None:
-          print(title.a.string)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-<title>看板 Stock 文章列表 - 批踢踢實業坊</title>
-<div class="title">
-<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
-</div>
-Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
-[<div class="title">
-<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581986080.A.0B9.html">[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581987000.A.EE7.html">[新聞] 超預期 國巨MLCC漲價五成</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581987018.A.192.html">[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581987846.A.95F.html">[新聞] 中芯國際14nm第二代FinFET批量須等到2020</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581989947.A.392.html">Re: [請益] 有人買股票而完全捨棄定存嗎?</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581990753.A.EB3.html">[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581994926.A.A50.html">[標的] 6531愛普</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581996309.A.C55.html">[請益] 是不是該立法更限制外資匯出資金？</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581999672.A.14E.html">Re: [請益] 存股標的選擇</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1582000361.A.6A2.html">[標的] 1201 味全 多</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1582000701.A.2AB.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1582001420.A.3B8.html">[新聞] 用電大戶買綠電 電證分離更活絡</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1422199105.A.84E.html">[公告] 精華區導覽Q&amp;A</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1541252211.A.8BE.html">[公告] Stock 板規V2.6             (2019/06/20)</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1579935755.A.395.html">[公告] 關於武漢肺炎新聞規範</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581919202.A.CF2.html">[閒聊] 2020/02/17 盤後閒聊</a>
-</div>, <div class="title">
-<a href="/bbs/Stock/M.1581985803.A.F3E.html">[閒聊] 2020/02/18 盤中閒聊</a>
-</div>]
-Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
-[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標
-[新聞] 超預期 國巨MLCC漲價五成
-[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠
-[新聞] 中芯國際14nm第二代FinFET批量須等到2020
-Re: [請益] 有人買股票而完全捨棄定存嗎?
-[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得
-[標的] 6531愛普
-[請益] 是不是該立法更限制外資匯出資金？
-Re: [請益] 存股標的選擇
-[標的] 1201 味全 多
-Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
-[新聞] 用電大戶買綠電 電證分離更活絡
-[公告] 精華區導覽Q&A
-[公告] Stock 板規V2.6             (2019/06/20)
-[公告] 關於武漢肺炎新聞規範
-[閒聊] 2020/02/17 盤後閒聊
-[閒聊] 2020/02/18 盤中閒聊
-#+end_example
-
-** 參考資料
-- https://www.youtube.com/watch?v=9Z9xKWfNo7k
-
-
-* 如何把python程式publish成網站應用程式
-
 * Footnotes
 
-[fn:3][[https://www.programiz.com/python-programming/list-vs-tuples][Python List vs. Tuples]] 
+[fn:1][[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
 
-[fn:2][[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]] 
+[fn:2][[https://www.programiz.com/python-programming/list-vs-tuples][Python List vs. Tuples]]
 
-[fn:1] [[https://zh.wikipedia.org/wiki/HTTP_403][維基百科: HTTP 403]] 
+
