@@ -1,0 +1,1048 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2020-02-24 Mon 13:57 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Advanced Materials of Python</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="yen yung chin" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">Advanced Materials of Python</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgcee8502">1. Numpy模組</a>
+<ul>
+<li><a href="#orgbed9546">1.1. 匯入模組</a></li>
+<li><a href="#org939c7a2">1.2. Create ndarray</a>
+<ul>
+<li><a href="#orgc964c07">1.2.1. 一維陣列</a></li>
+<li><a href="#org817a373">1.2.2. 多維陣列</a></li>
+</ul>
+</li>
+<li><a href="#orgeb8fae4">1.3. 矩陣運算</a></li>
+<li><a href="#org0e81351">1.4. 特殊矩陣</a></li>
+<li><a href="#orgd94b084">1.5. ndarray屬性</a>
+<ul>
+<li><a href="#org4cc097d">1.5.1. 練習</a></li>
+</ul>
+</li>
+<li><a href="#orga1af959">1.6. 矩陣形狀轉換</a></li>
+<li><a href="#org8fa4c7b">1.7. 矩陣疊加</a></li>
+<li><a href="#org329a34b">1.8. ndarray 轉 list</a></li>
+<li><a href="#orge5fb753">1.9. Numpy常用統計函數</a></li>
+</ul>
+</li>
+<li><a href="#orgc12f401">2. Matplotlib</a></li>
+<li><a href="#org990f81e">3. 網路爬蟲</a></li>
+<li><a href="#org7a60a2e">4. Python學習資源</a></li>
+<li><a href="#orgaa0ca69">5. 0802 CNN</a></li>
+<li><a href="#orge12ac83">6. 以python下載網路資料</a></li>
+<li><a href="#orgcf02088">7. 網路爬蟲</a>
+<ul>
+<li><a href="#org6aa7f03">7.1. parse HTML</a>
+<ul>
+<li><a href="#orge4285fa">7.1.1. 所需套件</a></li>
+</ul>
+</li>
+<li><a href="#org9e7ca6b">7.2. 範例: 以程式抓取PTT電影板header</a>
+<ul>
+<li><a href="#org79f77b5">7.2.1. 原則</a></li>
+<li><a href="#org14e27c8">7.2.2. 實作: 取得HTML資料</a></li>
+<li><a href="#org03de36a">7.2.3. 實作：解析HTML資料內容</a></li>
+</ul>
+</li>
+<li><a href="#org4424c11">7.3. 參考資料</a></li>
+</ul>
+</li>
+<li><a href="#org06fa847">8. 如何把python程式publish成網站應用程式</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcee8502" class="outline-2">
+<h2 id="orgcee8502"><span class="section-number-2">1</span> Numpy模組</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgbed9546" class="outline-3">
+<h3 id="orgbed9546"><span class="section-number-3">1.1</span> 匯入模組</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>使用模組裡的函式要加模組名稱，如 numpy.arrry( )。例：<code class="src src-python"> <span style="color: #4f97d7; font-weight: bold;">import</span> numpy&#8232;</code><br /></li>
+<li>匯入numpy模組並使用np作為簡寫，這是Numpy官方倡導的寫法<code class="src src-python"> <span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np&#8232;</code><br /></li>
+<li>Numpy中的多維資料型別稱為ndarray<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org939c7a2" class="outline-3">
+<h3 id="org939c7a2"><span class="section-number-3">1.2</span> Create ndarray</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-orgc964c07" class="outline-4">
+<h4 id="orgc964c07"><span class="section-number-4">1.2.1</span> 一維陣列</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>list 或 tuple 轉入<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr">2: </span><span style="color: #7590db;">np1</span> = np.array<span style="color: #4f97d7;">(</span> <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">]</span> <span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>np1<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[1 2 3 4]
+</pre>
+
+
+<ul class="org-ul">
+<li>使用 np.arange( ) 方法<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr">2: </span><span style="color: #7590db;">np2</span> = np.arange<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>np2<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[0 1 2 3 4]
+</pre>
+</div>
+</div>
+<div id="outline-container-org817a373" class="outline-4">
+<h4 id="org817a373"><span class="section-number-4">1.2.2</span> 多維陣列</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>二維陣列<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr">2: </span><span style="color: #7590db;">np4</span> = np.array<span style="color: #4f97d7;">(</span> <span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">4</span><span style="color: #2d9574;">]</span>, <span style="color: #2d9574;">[</span><span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">4</span>,<span style="color: #a45bad;">5</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np4:'</span>, np4<span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>
+<span class="linenr">5: </span><span style="color: #7590db;">np5</span> = np.array<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>np.arange<span style="color: #2d9574;">(</span><span style="color: #a45bad;">3</span><span style="color: #2d9574;">)</span>, np.arange<span style="color: #2d9574;">(</span><span style="color: #a45bad;">3</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np5:'</span>, np5<span style="color: #4f97d7;">)</span>
+<span class="linenr">7: </span>
+<span class="linenr">8: </span><span style="color: #7590db;">np6</span> = np.arange<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">8</span><span style="color: #4f97d7;">)</span>.reshape<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np6:'</span>, np6<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+np4: [[1 2 4]
+ [3 4 5]]
+np5: [[0 1 2]
+ [0 1 2]]
+np6: [[0 1 2 3]
+ [4 5 6 7]]
+</pre>
+
+<ul class="org-ul">
+<li>多維陣列<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #7590db;">np7</span> = np.arange<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">24</span><span style="color: #4f97d7;">)</span>.reshape<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np7:'</span>,np7<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+np7: [[[ 0  1  2  3]
+  [ 4  5  6  7]
+  [ 8  9 10 11]]
+
+ [[12 13 14 15]
+  [16 17 18 19]
+  [20 21 22 23]]]
+</pre>
+
+<ul class="org-ul">
+<li>隨機矩陣<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #7590db;">np8</span> = np.random.random<span style="color: #4f97d7;">(</span> <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#30697;&#38499;&#22823;&#23567;&#20197;tuple&#34920;&#31034;</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np8:'</span>, np8<span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span>
+<span class="linenr">6: </span><span style="color: #7590db;">np9</span> = np.random.randint<span style="color: #4f97d7;">(</span> <span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">100</span>, size=<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">3</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#30697;&#38499;&#22823;&#23567;&#20197;list&#34920;&#31034;</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np9:'</span>, np9<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+np8: [[0.04349769 0.48755705]
+ [0.50627204 0.56730179]
+ [0.56445113 0.31159334]]
+np9: [[53 73 52]
+ [60 58 33]
+ [69 89 98]
+ [17 92 90]]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgeb8fae4" class="outline-3">
+<h3 id="orgeb8fae4"><span class="section-number-3">1.3</span> 矩陣運算</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #7590db;">A</span> = np.array<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>
+<span class="linenr"> 4: </span>    <span style="color: #2d9574;">[</span><span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">7</span><span style="color: #2d9574;">]</span>,
+<span class="linenr"> 5: </span>    <span style="color: #2d9574;">[</span><span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">1</span>, -<span style="color: #a45bad;">6</span><span style="color: #2d9574;">]</span>
+<span class="linenr"> 6: </span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #7590db;">B</span> = np.array<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>
+<span class="linenr"> 9: </span>    <span style="color: #2d9574;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #2d9574;">]</span>,
+<span class="linenr">10: </span>    <span style="color: #2d9574;">[</span>-<span style="color: #a45bad;">1</span>, -<span style="color: #a45bad;">2</span>, -<span style="color: #a45bad;">3</span><span style="color: #2d9574;">]</span>
+<span class="linenr">11: </span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span style="color: #7590db;">C</span> = np.array<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>
+<span class="linenr">14: </span>    <span style="color: #2d9574;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span><span style="color: #2d9574;">]</span>,
+<span class="linenr">15: </span>    <span style="color: #2d9574;">[</span>-<span style="color: #a45bad;">1</span>, -<span style="color: #a45bad;">2</span><span style="color: #2d9574;">]</span>,
+<span class="linenr">16: </span>    <span style="color: #2d9574;">[</span><span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">5</span><span style="color: #2d9574;">]</span>
+<span class="linenr">17: </span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">18: </span>
+<span class="linenr">19: </span><span style="color: #7590db;">k</span> = -<span style="color: #a45bad;">3</span>
+<span class="linenr">20: </span>
+<span class="linenr">21: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'---A+B---\n'</span>, A+B<span style="color: #4f97d7;">)</span>
+<span class="linenr">22: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'---A-B---\n'</span>, A-B<span style="color: #4f97d7;">)</span>
+<span class="linenr">23: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'---k*B---\n'</span>, k*B<span style="color: #4f97d7;">)</span>
+<span class="linenr">24: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'---A.dot(C)---\n'</span>, A.dot<span style="color: #bc6ec5;">(</span>C<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+---A+B---
+ [[ 6  5 10]
+ [-1 -1 -9]]
+---A-B---
+ [[ 4  1  4]
+ [ 1  3 -3]]
+---k*B---
+ [[-3 -6 -9]
+ [ 3  6  9]]
+---A.dot(C)---
+ [[  2  39]
+ [ -1 -32]]
+</pre>
+</div>
+</div>
+<div id="outline-container-org0e81351" class="outline-3">
+<h3 id="org0e81351"><span class="section-number-3">1.4</span> 特殊矩陣</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>元素全為0矩陣：<code class="src src-python"> np.zeros<span style="color: #4f97d7;">(</span>&lt;&#22823;&#23567;&gt;, &lt;&#36039;&#26009;&#22411;&#21029;&gt;<span style="color: #4f97d7;">)</span> </code><br /></li>
+<li>元素全為1矩陣：<code class="src src-python"> np.ones<span style="color: #4f97d7;">(</span>&lt;&#22823;&#23567;&gt;, &lt;&#36039;&#26009;&#22411;&#21029;&gt;<span style="color: #4f97d7;">)</span>&#8232;<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#30697;&#38499;&#22823;&#23567;&#20197; tuple &#25351;&#23450; </span></code><br /></li>
+<li>單位矩陣(Identity)：<code class="src src-python"> np.eye<span style="color: #4f97d7;">(</span>&lt;m&gt;, &lt;&#36039;&#26009;&#22411;&#21029;&gt;<span style="color: #4f97d7;">)</span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">eye &#33287; I &#21516;&#38899; </span></code><br /></li>
+<li>反矩陣(Inverse)：<code class="src src-python"> np.linalg.inv<span style="color: #4f97d7;">(</span>&lt;&#30697;&#38499;&gt;<span style="color: #4f97d7;">)</span> &#8232;<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#34892;&#21015;&#24335;&#19981;&#21487;&#28858;0 </span></code><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np.zeros:\n'</span>, np.zeros<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span><span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">5</span><span style="color: #2d9574;">)</span>, dtype=<span style="color: #2d9574;">'int'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np.ones:\n'</span>, np.ones<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span><span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">5</span><span style="color: #2d9574;">)</span>, dtype=<span style="color: #2d9574;">'int'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np.eyes:\n'</span>, np.eye<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">4</span>, dtype=<span style="color: #2d9574;">'int'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 6: </span><span style="color: #7590db;">x</span> = np.random.randint<span style="color: #4f97d7;">(</span> <span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">10</span>, size=<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">3</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'x:\n'</span>, x<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 8: </span><span style="color: #7590db;">xt</span> = x.T <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36681;&#32622;</span>
+<span class="linenr"> 9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'xt:\n'</span>, xt<span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span><span style="color: #7590db;">mat</span> = xt.dot<span style="color: #4f97d7;">(</span>x<span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'mat:\n'</span>, mat<span style="color: #4f97d7;">)</span>
+<span class="linenr">12: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'np.linalg.inv(mat):\n'</span>, np.linalg.inv<span style="color: #bc6ec5;">(</span>mat<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">13: </span>
+</pre>
+</div>
+
+<pre class="example">
+np.zeros:
+ [[0 0 0 0 0]
+ [0 0 0 0 0]
+ [0 0 0 0 0]]
+np.ones:
+ [[1 1 1 1 1]
+ [1 1 1 1 1]
+ [1 1 1 1 1]]
+np.eyes:
+ [[1 0 0 0]
+ [0 1 0 0]
+ [0 0 1 0]
+ [0 0 0 1]]
+x:
+ [[5 7 1]
+ [2 8 6]
+ [1 6 3]]
+xt:
+ [[5 2 1]
+ [7 8 6]
+ [1 6 3]]
+mat:
+ [[ 30  57  20]
+ [ 57 149  73]
+ [ 20  73  46]]
+np.linalg.inv(mat):
+ [[ 0.48628827 -0.37053571  0.37659439]
+ [-0.37053571  0.3125     -0.33482143]
+ [ 0.37659439 -0.33482143  0.38934949]]
+</pre>
+</div>
+</div>
+<div id="outline-container-orgd94b084" class="outline-3">
+<h3 id="orgd94b084"><span class="section-number-3">1.5</span> ndarray屬性</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>dtype：ndarray每個元素的資料型別 (可於創建矩陣時同時指定)<br />
+<ul class="org-ul">
+<li>int, float, bool, D(複數)<br /></li>
+</ul></li>
+<li>ndim：ndarray的維度<br /></li>
+<li>shape：ndarray的大小，即矩陣 m*n ( m 列 n 行 )<br /></li>
+<li>size：ndarray的元素個數<br /></li>
+<li>itemsize：ndarray中每個元素記憶體大小(單位byte)<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #7590db;">np1</span> = np.arange<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">12</span>, dtype=<span style="color: #2d9574;">'D'</span><span style="color: #4f97d7;">)</span>.reshape<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>np1<span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'dtype='</span>, np1.dtype<span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'shape='</span>, np1.shape<span style="color: #4f97d7;">)</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'size='</span>, np1.size<span style="color: #4f97d7;">)</span>
+<span class="linenr">8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'itemsize='</span>, np1.itemsize<span style="color: #4f97d7;">)</span>
+<span class="linenr">9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'nbytes='</span>, np1.nbytes<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[[ 0.+0.j  1.+0.j]
+  [ 2.+0.j  3.+0.j]]
+
+ [[ 4.+0.j  5.+0.j]
+  [ 6.+0.j  7.+0.j]]
+
+ [[ 8.+0.j  9.+0.j]
+  [10.+0.j 11.+0.j]]]
+dtype= complex128
+shape= (3, 2, 2)
+size= 12
+itemsize= 16
+nbytes= 16.0
+</pre>
+
+<ul class="org-ul">
+<li>nbytes：ndarray的記憶體大小(單位byte)<br />
+<ul class="org-ul">
+<li>real 和 imag：複數的實部和虛部<br /></li>
+<li>real 回傳複數的實部<br /></li>
+</ul></li>
+<li>imag 回傳複數的虛部<br /></li>
+<li>T：矩陣轉置<br /></li>
+</ul>
+</div>
+<div id="outline-container-org4cc097d" class="outline-4">
+<h4 id="org4cc097d"><span class="section-number-4">1.5.1</span> 練習</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<ul class="org-ul">
+<li>使用 random 函式產生 3*5 的矩陣 A<br /></li>
+<li>使用 randint 函式產生 5*3 的矩陣 B<br /></li>
+<li>使用 arange 和 reshape 函式產生 3*5 的矩陣 C<br /></li>
+<li>使用 list 自建 5*3 的矩陣 D<br /></li>
+<li>計算 10*A + C 和 B - D<br /></li>
+<li>計算 B•C 和 C•D<br /></li>
+<li>比較 (B•C)T 和 CT•BT 是否相同?<br /></li>
+<li>求矩陣 E 的反矩陣<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orga1af959" class="outline-3">
+<h3 id="orga1af959"><span class="section-number-3">1.6</span> 矩陣形狀轉換</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>reshape(m, n, …)：不改變原矩陣形狀<br /></li>
+<li>resize(m, n, …)：和 reshape 類似，但會改變原矩陣形狀<br /></li>
+<li>ravel( ) / flatten( )：將多維矩陣轉換成一維矩陣，原矩陣不變<br /></li>
+<li>shape = (m, n, …)：用 tuple 來指定矩陣大小，會改變原矩陣<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr"> 2: </span><span style="color: #7590db;">a</span> = np.arange<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">12</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a.reshape<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a.resize<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a.flatten<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span><span style="color: #7590db;">a.shape</span> = <span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">6</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+None
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+[ 0  1  2  3  4  5  6  7  8  9 10 11]
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]]
+</pre>
+</div>
+</div>
+<div id="outline-container-org8fa4c7b" class="outline-3">
+<h3 id="org8fa4c7b"><span class="section-number-3">1.7</span> 矩陣疊加</h3>
+<div class="outline-text-3" id="text-1-7">
+<ul class="org-ul">
+<li>水平疊加：np.hstack( &lt;tuple, list&gt; )<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>垂直疊加：np.vstack( &lt;tuple, list&gt; )<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>深度疊加：np.dstack( &lt;tuple, list&gt; ) 以此例，a, b原為2*6矩陣， 深度疊加後變成2*6*2矩陣。<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr"> 2: </span><span style="color: #7590db;">a</span> = np.arange<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">12</span><span style="color: #4f97d7;">)</span>.reshape<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">6</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 3: </span><span style="color: #7590db;">b</span> = a * <span style="color: #a45bad;">2</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>b<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>np.hstack<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">[</span>a, b<span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>np.vstack<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">[</span>a, b<span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>np.dstack<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">[</span>a, b<span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]]
+[[ 0  2  4  6  8 10]
+ [12 14 16 18 20 22]]
+[[ 0  1  2  3  4  5  0  2  4  6  8 10]
+ [ 6  7  8  9 10 11 12 14 16 18 20 22]]
+[[ 0  1  2  3  4  5]
+ [ 6  7  8  9 10 11]
+ [ 0  2  4  6  8 10]
+ [12 14 16 18 20 22]]
+[[[ 0  0]
+  [ 1  2]
+  [ 2  4]
+  [ 3  6]
+  [ 4  8]
+  [ 5 10]]
+
+ [[ 6 12]
+  [ 7 14]
+  [ 8 16]
+  [ 9 18]
+  [10 20]
+  [11 22]]]
+</pre>
+</div>
+</div>
+<div id="outline-container-org329a34b" class="outline-3">
+<h3 id="org329a34b"><span class="section-number-3">1.8</span> ndarray 轉 list</h3>
+<div class="outline-text-3" id="text-1-8">
+<ul class="org-ul">
+<li>ndarray 轉 list<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
+<span class="linenr">2: </span><span style="color: #7590db;">a</span> = np.arange<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">12</span><span style="color: #4f97d7;">)</span>.reshape<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #7590db;">b</span> = a.tolist<span style="color: #4f97d7;">()</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>b<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[[ 0  1  2]
+ [ 3  4  5]
+ [ 6  7  8]
+ [ 9 10 11]]
+[[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]]
+</pre>
+</div>
+</div>
+<div id="outline-container-orge5fb753" class="outline-3">
+<h3 id="orge5fb753"><span class="section-number-3">1.9</span> Numpy常用統計函數</h3>
+<div class="outline-text-3" id="text-1-9">
+<ul class="org-ul">
+<li>np.sum(&lt;np&gt;)：回傳和<br /></li>
+<li>np.mean(&lt;np&gt;)：回傳平均值<br /></li>
+<li>np.max(&lt;np&gt;)：回傳最大值<br /></li>
+<li>np.min(&lt;np&gt;)：回傳最小值<br /></li>
+<li>np.ptp(&lt;np&gt;)：回傳最大值減最小值<br /></li>
+<li>np.std(&lt;np&gt;)：回傳標準差<br /></li>
+<li>np.var(&lt;np&gt;)：回傳變異數<br /></li>
+<li>np.cumsum(&lt;np&gt;)：回傳累加值<br /></li>
+<li>np.cumprod(&lt;np&gt;)：回傳累積值 註：使用時需要指定axis軸的方向，若不指定，預設統計整個numpy<br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc12f401" class="outline-2">
+<h2 id="orgc12f401"><span class="section-number-2">2</span> Matplotlib</h2>
+</div>
+
+<div id="outline-container-org990f81e" class="outline-2">
+<h2 id="org990f81e"><span class="section-number-2">3</span> 網路爬蟲</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>
+<span class="linenr"> 2: </span><span style="color: #4f97d7; font-weight: bold;">import</span> urllib.request <span style="color: #4f97d7; font-weight: bold;">as</span> req
+<span class="linenr"> 3: </span><span style="color: #7590db;">url</span> = <span style="color: #2d9574;">"https://huodalife.pixnet.net/blog/"</span>
+<span class="linenr"> 4: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
+<span class="linenr"> 5: </span><span style="color: #7590db;">request</span> = req.Request<span style="color: #4f97d7;">(</span>url, headers = <span style="color: #bc6ec5;">{</span>
+<span class="linenr"> 6: </span>    <span style="color: #2d9574;">"User-Agent"</span>:<span style="color: #2d9574;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
+<span class="linenr"> 7: </span><span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #4f97d7; font-weight: bold;">with</span> req.urlopen<span style="color: #4f97d7;">(</span>request<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">as</span> response:
+<span class="linenr">10: </span>    <span style="color: #7590db;">data</span> = response.read<span style="color: #4f97d7;">()</span>.decode<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"utf-8"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span>
+<span class="linenr">12: </span><span style="color: #4f97d7; font-weight: bold;">import</span> bs4
+<span class="linenr">13: </span><span style="color: #7590db;">root</span> = bs4.BeautifulSoup<span style="color: #4f97d7;">(</span>data,<span style="color: #2d9574;">"html.parser"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #7590db;">titles</span> = root.find_all<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"li"</span>, class_=<span style="color: #2d9574;">"title"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">16: </span><span style="color: #7590db;">pubs</span> = root.find_all<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"li"</span>, class_=<span style="color: #2d9574;">"publish"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">17: </span><span style="color: #4f97d7; font-weight: bold;">for</span> pub, title <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">zip</span><span style="color: #4f97d7;">(</span>pubs, titles<span style="color: #4f97d7;">)</span>:
+<span class="linenr">18: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>pub.span.string,title.a.string<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7a60a2e" class="outline-2">
+<h2 id="org7a60a2e"><span class="section-number-2">4</span> Python學習資源</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li><a href="https://www.runoob.com/python3/python3-tutorial.html">Python 3教程</a><br /></li>
+<li><a href="http://liyangbit.com/tutorials/">Python教程</a><br /></li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgaa0ca69" class="outline-2">
+<h2 id="orgaa0ca69"><span class="section-number-2">5</span> 0802 CNN</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+<a href="https://reurl.cc/Y2gKo">https://reurl.cc/Y2gKo</a>: 各種常用的library, function<br />
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge12ac83" class="outline-2">
+<h2 id="orge12ac83"><span class="section-number-2">6</span> 以python下載網路資料</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li>import urllib.request as req<br /></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcf02088" class="outline-2">
+<h2 id="orgcf02088"><span class="section-number-2">7</span> 網路爬蟲</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org6aa7f03" class="outline-3">
+<h3 id="org6aa7f03"><span class="section-number-3">7.1</span> parse HTML</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>what is HTML<br /></li>
+<li>精神：將程式模仿成一般user<br /></li>
+</ul>
+</div>
+<div id="outline-container-orge4285fa" class="outline-4">
+<h4 id="orge4285fa"><span class="section-number-4">7.1.1</span> 所需套件</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<ul class="org-ul">
+<li>BeautifulSoup<br /></li>
+</ul>
+<p>
+pip install beautifulsoup4<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9e7ca6b" class="outline-3">
+<h3 id="org9e7ca6b"><span class="section-number-3">7.2</span> 範例: 以程式抓取PTT電影板header</h3>
+<div class="outline-text-3" id="text-7-2">
+</div>
+<div id="outline-container-org79f77b5" class="outline-4">
+<h4 id="org79f77b5"><span class="section-number-4">7.2.1</span> 原則</h4>
+<div class="outline-text-4" id="text-7-2-1">
+<ol class="org-ol">
+<li>要抓網路資料，就要先仔細觀察網頁內容<br /></li>
+<li>要儘量欺騙網站自己是browser<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org14e27c8" class="outline-4">
+<h4 id="org14e27c8"><span class="section-number-4">7.2.2</span> 實作: 取得HTML資料</h4>
+<div class="outline-text-4" id="text-7-2-2">
+</div>
+<ol class="org-ol">
+<li><a id="orgff473d2"></a>第一版<br />
+<div class="outline-text-5" id="text-7-2-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25235;&#21462;PTT&#38651;&#24433;&#29256;header</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">import</span> urllib.request <span style="color: #4f97d7; font-weight: bold;">as</span> req
+<span class="linenr">3: </span><span style="color: #7590db;">url</span> = <span style="color: #2d9574;">"https://www.ptt.cc/bbs/Stock/index.html"</span>
+<span class="linenr">4: </span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">with</span> req.urlopen<span style="color: #4f97d7;">(</span>url<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">as</span> response:
+<span class="linenr">6: </span>    <span style="color: #7590db;">data</span> = response.read<span style="color: #4f97d7;">()</span>.decode<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"utf-8"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+</pre>
+
+<p>
+被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是HTTP協議中的一個HTTP狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>。<br />
+</p>
+</div>
+</li>
+
+<li><a id="org2edc7a6"></a>第二版:加入header<br />
+<div class="outline-text-5" id="text-7-2-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> urllib.request <span style="color: #4f97d7; font-weight: bold;">as</span> req
+<span class="linenr"> 2: </span><span style="color: #7590db;">url</span> = <span style="color: #2d9574;">"https://www.ptt.cc/bbs/Stock/index.html"</span>
+<span class="linenr"> 3: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
+<span class="linenr"> 4: </span><span style="color: #7590db;">request</span> = req.Request<span style="color: #4f97d7;">(</span>url, headers = <span style="color: #bc6ec5;">{</span>
+<span class="linenr"> 5: </span>    <span style="color: #2d9574;">"User-Agent"</span>:<span style="color: #2d9574;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
+<span class="linenr"> 6: </span><span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">with</span> req.urlopen<span style="color: #4f97d7;">(</span>request<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">as</span> response:
+<span class="linenr"> 9: </span>    <span style="color: #7590db;">data</span> = response.read<span style="color: #4f97d7;">()</span>.decode<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"utf-8"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'&#25152;&#21462;&#24471;&#30340;&#36039;&#26009;&#22411;&#24907;&#65306;'</span>,<span style="color: #4f97d7;">type</span><span style="color: #bc6ec5;">(</span>data<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">700</span>:<span style="color: #a45bad;">1000</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+所取得的資料型態： &lt;class 'str'&gt;
+er"&gt;
+	&lt;div id="topbar" class="bbs-content"&gt;
+		&lt;a id="logo" href="/bbs/"&gt;批踢踢實業坊&lt;/a&gt;
+		&lt;span&gt;&amp;rsaquo;&lt;/span&gt;
+		&lt;a class="board" href="/bbs/Stock/index.html"&gt;&lt;span class="board-label"&gt;看板 &lt;/span&gt;Stock&lt;/a&gt;
+		&lt;a class="right small" href="/about.html"&gt;關於我們&lt;/a&gt;
+		&lt;a class="right small" href="/contact.html"&gt;
+</pre>
+</div>
+</li>
+</ol>
+</div>
+
+<div id="outline-container-org03de36a" class="outline-4">
+<h4 id="org03de36a"><span class="section-number-4">7.2.3</span> 實作：解析HTML資料內容</h4>
+<div class="outline-text-4" id="text-7-2-3">
+</div>
+<ol class="org-ol">
+<li><a id="orgcbfc799"></a>安裝解析HTML所需套件<br />
+<div class="outline-text-5" id="text-7-2-3-1">
+<div class="org-src-container">
+<pre class="src src-shell">pip install beautifulsoup4
+</pre>
+</div>
+</div>
+</li>
+
+<li><a id="org4697eda"></a>第三版: 解析HTML<br />
+<div class="outline-text-5" id="text-7-2-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> urllib.request <span style="color: #4f97d7; font-weight: bold;">as</span> req
+<span class="linenr"> 2: </span><span style="color: #7590db;">url</span> = <span style="color: #2d9574;">"https://www.ptt.cc/bbs/Stock/index.html"</span>
+<span class="linenr"> 3: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
+<span class="linenr"> 4: </span><span style="color: #7590db;">request</span> = req.Request<span style="color: #4f97d7;">(</span>url, headers = <span style="color: #bc6ec5;">{</span>
+<span class="linenr"> 5: </span>    <span style="color: #2d9574;">"User-Agent"</span>:<span style="color: #2d9574;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
+<span class="linenr"> 6: </span><span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">with</span> req.urlopen<span style="color: #4f97d7;">(</span>request<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">as</span> response:
+<span class="linenr"> 9: </span>    <span style="color: #7590db;">data</span> = response.read<span style="color: #4f97d7;">()</span>.decode<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"utf-8"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">import</span> bs4
+<span class="linenr">12: </span><span style="color: #7590db;">root</span> = bs4.BeautifulSoup<span style="color: #4f97d7;">(</span>data,<span style="color: #2d9574;">"html.parser"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">13: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>root.title<span style="color: #4f97d7;">)</span>
+<span class="linenr">14: </span><span style="color: #7590db;">titles</span> = root.find<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"div"</span>, class_=<span style="color: #2d9574;">"title"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">15: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>titles<span style="color: #4f97d7;">)</span>
+<span class="linenr">16: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>titles.a.string<span style="color: #4f97d7;">)</span>
+<span class="linenr">17: </span><span style="color: #7590db;">titles</span> = root.find_all<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"div"</span>, class_=<span style="color: #2d9574;">"title"</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">18: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>titles<span style="color: #4f97d7;">)</span>
+<span class="linenr">19: </span><span style="color: #4f97d7; font-weight: bold;">for</span> title <span style="color: #4f97d7; font-weight: bold;">in</span> titles:
+<span class="linenr">20: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> title.a != <span style="color: #a45bad;">None</span>:
+<span class="linenr">21: </span>        <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>title.a.string<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+&lt;title&gt;看板 Stock 文章列表 - 批踢踢實業坊&lt;/title&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581985895.A.742.html"&gt;Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大&lt;/a&gt;
+&lt;/div&gt;
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[&lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581985895.A.742.html"&gt;Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581986080.A.0B9.html"&gt;[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581987000.A.EE7.html"&gt;[新聞] 超預期 國巨MLCC漲價五成&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581987018.A.192.html"&gt;[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581987846.A.95F.html"&gt;[新聞] 中芯國際14nm第二代FinFET批量須等到2020&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581989947.A.392.html"&gt;Re: [請益] 有人買股票而完全捨棄定存嗎?&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581990753.A.EB3.html"&gt;[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581994926.A.A50.html"&gt;[標的] 6531愛普&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581996309.A.C55.html"&gt;[請益] 是不是該立法更限制外資匯出資金？&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581999672.A.14E.html"&gt;Re: [請益] 存股標的選擇&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1582000361.A.6A2.html"&gt;[標的] 1201 味全 多&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1582000701.A.2AB.html"&gt;Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1582001420.A.3B8.html"&gt;[新聞] 用電大戶買綠電 電證分離更活絡&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1422199105.A.84E.html"&gt;[公告] 精華區導覽Q&amp;amp;A&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1541252211.A.8BE.html"&gt;[公告] Stock 板規V2.6             (2019/06/20)&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1579935755.A.395.html"&gt;[公告] 關於武漢肺炎新聞規範&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581919202.A.CF2.html"&gt;[閒聊] 2020/02/17 盤後閒聊&lt;/a&gt;
+&lt;/div&gt;, &lt;div class="title"&gt;
+&lt;a href="/bbs/Stock/M.1581985803.A.F3E.html"&gt;[閒聊] 2020/02/18 盤中閒聊&lt;/a&gt;
+&lt;/div&gt;]
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標
+[新聞] 超預期 國巨MLCC漲價五成
+[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠
+[新聞] 中芯國際14nm第二代FinFET批量須等到2020
+Re: [請益] 有人買股票而完全捨棄定存嗎?
+[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得
+[標的] 6531愛普
+[請益] 是不是該立法更限制外資匯出資金？
+Re: [請益] 存股標的選擇
+[標的] 1201 味全 多
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 用電大戶買綠電 電證分離更活絡
+[公告] 精華區導覽Q&amp;A
+[公告] Stock 板規V2.6             (2019/06/20)
+[公告] 關於武漢肺炎新聞規範
+[閒聊] 2020/02/17 盤後閒聊
+[閒聊] 2020/02/18 盤中閒聊
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org4424c11" class="outline-3">
+<h3 id="org4424c11"><span class="section-number-3">7.3</span> 參考資料</h3>
+<div class="outline-text-3" id="text-7-3">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=9Z9xKWfNo7k">https://www.youtube.com/watch?v=9Z9xKWfNo7k</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org06fa847" class="outline-2">
+<h2 id="org06fa847"><span class="section-number-2">8</span> 如何把python程式publish成網站應用程式</h2>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+<a href="https://zh.wikipedia.org/wiki/HTTP_403">維基百科: HTTP 403</a><br />
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: yen yung chin</p>
+<p class="date">Created: 2020-02-24 Mon 13:57</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
