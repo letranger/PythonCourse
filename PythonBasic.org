@@ -1,7 +1,8 @@
 #+Title: Basic Materials of Python
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-
+# -*- org-export-babel-evaluate: nil -*-
+#+STARTUP: showeverything
 #+PROPERTY: header-args :eval never-export
 #+STARTUP: inlineimages
 #+OPTIONS: H:3
@@ -57,9 +58,171 @@
 #+LATEX_HEADER: \usepackage[utf8]{inputenc}
 #+LATEX_HEADER: \vspace{-\topsep}
 
-* Python簡介與環境建置
-** Python簡介
-** Python環境建置
+* Python簡介
+** Python的誕生
+*** 科技報導的說法[fn:1]
+#+BEGIN_QUOTE
+1989 年，荷蘭的一位叫 Guido van Rossum 的宅男工程師覺得其他的程式語言都不好用，於是花三個月創造了一種新的程式語言。
+
+Guido 肯定沒有想到，30 年後，每天都有數百萬人使用他創立的這一新語言——Python。
+
+無論是專業人士還是非專業人士，都在使用 Python 解決大大小小的問題，尤其是網路開發者、數據科學家和系統管理員。
+
+今年早些時候，研究人員首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python，。
+
+一些全球大廠也在用 Python 處理關鍵業務，比如網飛（Netflix），用它將影片傳輸到全球超過 1 億個家庭，Instagram 用它實現照片共享功能，NASA 更是用它處理太空探索數據。
+#+END_QUOTE
+*** Guido van Rossum自己的說法[fn:2]
+#+begin_quote
+在1989年12月，我在尋找一門「課餘」編程項目來打發聖誕節前後的時間。我的辦公室會關門，但我有一台家用電腦，而且沒有太多其它東西。我決定為當時我正構思的一個新的腳本語言寫一個解釋器，它是ABC語言的後代，對UNIX / C程式設計師會有吸引力。作為一個略微有些無關想法的人，和一個《蒙提‧派森的飛行馬戲團》的狂熱愛好者，我選擇了Python作為項目的標題。
+#+end_quote
+
+** Python的優勢與應用[fn:3]
+*** Advantages 
+1. Presence of third-party modules
+1. Extensive support libraries(NumPy for numerical calculations, Pandas for data analytics etc)
+1. Open source and community development
+1. Easy to learn
+1. User-friendly data structures
+1. High-level language
+1. Dynamically typed language(No need to mention data type based on value assigned, it takes data type)
+1. Object-oriented language
+1. Portable and Interactive
+1. Portable across Operating systems
+
+*** Applications
+1. GUI based desktop applications(Games, Scientific Applications)
+1. Web frameworks and applications
+1. Enterprise and Business applications
+1. Operating Systems
+1. Language Development
+1. Prototyping
+
+*** Organizations using Python
+1. Google(Components of Google spider and Search Engine)
+1. Yahoo(Maps)
+1. YouTube
+1. Mozilla
+1. Dropbox
+1. Microsoft
+1. Cisco
+1. Spotify
+1. Quora
+
+* Python環境建置
+** 下載python
+- google: python download
+- 網址: [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
+- 若為Mac系統，則已預載安裝Python 2.7
+- 若為Linux系統，則多數也預載Python 2.x及3.x
+- 查詢目前的python版本，目前官方最新版本為3.8.2[fn:4]
+  #+begin_src shell 
+    python --version
+  #+end_src
+** python的幾種編寫環境
+*** 終端機(shell, command line): interpreter
+1. Linux / Mac: terminal
+1. Windows: 命令提示字元
+    #+CAPTION: pyhone terminal mode
+    #+name: fig:pythonTerminal
+    #+ATTR_LATEX: :width 400
+    #+ATTR_HTML: :width 560
+    #+ATTR_ORG: :width 560
+    #+RESULTS:
+    [[file:python-terminal-demo.jpg]]    
+1. 結束/回到terminal
+    - 下指令: src_python[:exports code]{ exit() }
+    - 結束鍵: Ctrl-D
+1. 此模式可配合文字編輯器撰寫程式碼，再於終端機下執行
+   - [[https://www.sublimetext.com/3][Sublime Text 3]]
+   - [[https://notepad-plus-plus.org/downloads/][Notepad++]]
+*** IDE(Integrated Development Environment)環境
+1. [[https://www.spyder-ide.org/][Spyder]]
+   #+CAPTION: Spyder
+   #+name: fig:Spyder
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 560
+   #+ATTR_ORG: :width 560
+   #+RESULTS:
+   [[file:Spyder.jpg]]
+1. [[https://code.visualstudio.com/][Visual Studio Code]]
+   #+CAPTION: Visual Studio Code
+   #+name: fig:VisualStudioCode
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 560
+   #+ATTR_ORG: :width 560
+   #+RESULTS:
+   [[file:VisualStudioCode.jpg]]
+1. [[https://www.jetbrains.com/pycharm/][PyCharm]]
+   #+CAPTION: PyCharm
+   #+name: fig:PyCharm
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 560
+   #+ATTR_ORG: :width 560
+   #+RESULTS:
+   [[file:PyCharm.png]]
+*** Web-based環境
+1. [[https://ipython.org/notebook.html][The Jupyter Notebook]]
+   #+CAPTION: The Jupyter Notebook
+   #+name: fig:JupyterNotebook
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 560
+   #+ATTR_ORG: :width 560
+   #+RESULTS:   
+   [[file:JupyterNotebook.png]]
+1. [[https://colab.research.google.com/][Google Colaboratory]]
+   #+CAPTION: The Google Colaboratory
+   #+name: fig:GoogleCoLab
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 560
+   #+ATTR_ORG: :width 560
+   #+RESULTS:   
+   [[file:GoogleCoLab.jpg]]
+1. [[https://www.programiz.com/python-programming/online-compiler/][Python Online Compiler]]
+
+** 兩種執行模式[fn:5]
+*** Interactive mode
+**** 執行: python -i filename.py
+**** 優點：
+- Helpful when your script is extremely short and you want immediate results.
+- Faster as you only have to type a command and then press the enter key to get the results.
+- Good for beginners who need to understand Python basics.
+**** 缺點:
+- Editing the code in interactive mode is hard as you have to move back to the previous commands or else you have to rewrite the whole command again.
+- It's very tedious to run long pieces of code.
+*** Script Mode
+**** 執行: python filename.py
+**** 優點:
+- It is easy to run large pieces of code.
+- Editing your script is easier in script mode.
+- Good for both beginners and experts.
+**** 缺點:
+- Can be tedious when you need to run only a single or a few lines of cod.
+- You must create and save a file before executing your code.
+
+** 安裝Jupyter Notebook
+*** pip
+**** 檢查是否已安裝Python套件管理工具(命令提示字元)
+#+begin_src shell
+python -m pip --version
+pip --version
+#+end_src
+**** 下載並安裝pip(命令提示字元)
+- 下載pip: [[https://bootstrap.pypa.io/get-pip.py][點此下載get-pip.py]]
+- 
+  #+begin_src shell
+  python get-pip.py
+  #+end_src
+*** 安裝Jupyter(命令提示字元)
+#+begin_src shell
+pip install jupyter
+#+end_src
+*** 啟動Jupyter(命令提示字元)
+#+begin_src shell
+jupyter notebook
+#+end_src
+*** Jupyter Notebook基本操作
+請參閱: [[https://officeguide.cc/windows-python-jupyter-notebook-installation-tutorial-2019/][Windows 安裝 Jupyter Notebook Python 程式開發教學]]
 
 * 變數、資料型態、輸出輸入
 ** 變數
@@ -442,7 +605,7 @@ Python變數不需宣告，依指派值自動設定資料型態。
 #+BEGIN_SRC dot :file ./YearJudge.png :cmdline -Kdot -Tpng 
   digraph TLS{
     rankdir=LR;
-    x1[shape=box, label = "輸入年份"];
+    x1[shape=box, labeVisualStudioCodel = "輸入年份"];
     x2[shape=diamond, label = "4的倍數"];
     x3[shape=diamond, label = "100的倍數"];
     x4[shape=diamond, label = "400的倍數"];
@@ -501,7 +664,7 @@ Python變數不需宣告，依指派值自動設定資料型態。
       ...
 #+END_SRC
 - for迴圈的變數會依序走訪序列中的元素
-- 序列[fn:1]可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
+- 序列[fn:6]可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
 
 *** List為range() function語法
 #+BEGIN_SRC python :exports both :eval no 
@@ -1004,7 +1167,7 @@ a-b-c
 : {'Vanissa': 100, 'May': 100, 'John': 100}
 
 ** List v.s. Tuple
-二者的差異與適用時機[fn:2]：
+二者的差異與適用時機[fn:7]：
 *** 能否改變內容
 Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed. 
 *** 可讀性
@@ -1237,7 +1400,6 @@ src_python[exports: code]{[ 變數 ] = 函式名稱( [引數1, 引數2, ... ] )}
 : 50
 : 78
 : 16
-
 ** 遞迴(recursive)
 *** 語法
 - 遞迴(recursive)：一個函式直接呼叫函式本身
@@ -1320,8 +1482,17 @@ src_python[exports: code]{[ 變數 ] = 函式名稱( [引數1, 引數2, ... ] )}
 
 * Footnotes
 
-[fn:1][[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
+[fn:1] [[https://buzzorange.com/techorange/2019/08/20/the-history-of-python/][【Python的誕生故事】覺得其他程式語言不好用，超狂荷蘭工程師花三個月打造自己的程式語言]]
 
-[fn:2][[https://www.programiz.com/python-programming/list-vs-tuples][Python List vs. Tuples]]
+[fn:2] [[https://www.techapple.com/archives/10553][因為打發時間，他改變了世界！講述 Python 之父 Guido van Rossum 的故事！ ]]
 
+[fn:3] [[https://www.geeksforgeeks.org/python-language-advantages-applications/][Python Language advantages and applications]]
+
+[fn:4] [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
+
+[fn:5] [[https://stackabuse.com/python-programming-in-interactive-vs-script-mode/][Python Programming in Interactive vs Script Mode]]
+
+[fn:6] [[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
+
+[fn:7] [[https://www.programiz.com/python-programming/list-vs-tuples][Python List vs. Tuples]]
 

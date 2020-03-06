@@ -58,9 +58,127 @@
 #+LATEX_HEADER: \vspace{-\topsep}
 
 #+COLUMNS: %25ITEM %TODO %3PRIORITY %TAGS
+
+* Python套件管理
+Python的一大優勢之一便是龐大的第三方函式庫，讓使用python的程式設計師可以方便的呼叫、進行如網路資料下載解析、資料的視覺化、甚或是大數據的複雜分析與人工智慧的balabala....，目前用來管理這些龐大套件的工具主要有二：pip與Conda。
+** pip v.s. conda
+*** pip
+- Python packages only.
+- Compiles everything from source. EDIT: pip now installs binary wheels, if they are available.
+- Blessed by the core Python community (i.e., Python 3.4+ includes code that automatically bootstraps pip).
+*** conda
+- Python agnostic. The main focus of existing packages are for Python, and indeed Conda itself is written in Python, but you can also have Conda packages for C libraries, or R packages, or really anything.
+- Installs binaries. There is a tool called conda build that builds packages from source, but conda install itself installs things from already built Conda packages.
+- External. Conda is the package manager of Anaconda, the Python distribution provided by Continuum Analytics, but it can be used outside of Anaconda too. You can use it with an existing Python installation by pip installing it (though this is not recommended unless you have a good reason to use an existing installation).
+*** In both cases:
+- Written in Python
+- Open source (Conda is BSD and pip is MIT)
+** Conda, Anaconda, Minconda[fn:1]
+*** difference between conda, anaconda, and miniconda [fn:2]
+- conda is both a command line tool, and a python package.
+- Miniconda installer = Python + conda
+- Anaconda installer = Python + conda + meta package anaconda
+- conda is an environment manager and a package manager. It means the tool itself. conda makes it possible to
+  + install package with conda install flake8
+  + create an environment with any version of Python with conda create -n myenv python=3.6
+- conda is not a binary command, is a Python package. To make conda work, you have to create a Python environment and install package conda into it. This is where Anaconda installer and Miniconda installer comes in.
+- Installer Minoconda installs a Python and the package conda. Installer Anaconda not only does what Miniconda does, it also install a meta Python package named anaconda for you.
+- 不一定要安裝Anaconda或Miniconda，也可透過pip直接安裝conda
+  #+begin_src shell 
+  pip install conda
+  #+end_src
+*** conda、miniconda、anaconda的區別[fn:3]
+- conda是一種通用包管理系統，旨在構建和管理任何語言和任何類型的軟件。舉個例子：包管理與pip的使用類似，環境管理則允許用戶方便地安裝不同版本的python並可以快速切換。
+- Anaconda則是一個打包的集合，裡面預裝好了conda、某個版本的python、眾多packages、科學計算工具等等，就是把很多常用的不常用的庫都給你裝好了。
+- Miniconda，顧名思義，它只包含最基本的內容——python與conda，以及相關的必須依賴項，對於空間要求嚴格的用戶，Miniconda是一種選擇。就只包含最基本的東西，其他的庫得自己裝。
+** conda 
+Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、Lua、Scala 與 Java 等任何程式語言的套件、依賴性以及工作環境管理員，特別受到以 Python 作為主要程式語言的資料科學團隊所喜愛。傳統 Python 使用者以 pip 作為套件管理員（package manager）、以 venv 作為工作環境管理員（environment manager），而 conda 則達成了「兩個願望、一次滿足」既可以管理套件亦能夠管理工作環境。在這個小節我們介紹如何使用 conda 最重要的幾個核心功能，讓資料科學團隊重現指定的工作環境設定。[fn:4]
+*** 下載 v.s. 安裝
+- [[https://www.anaconda.com/distribution/][Anaconda]]
+- [[https://docs.conda.io/en/latest/miniconda.html][Miniconda]]
+*** 常見 conda 指令
+- conda --version 檢視 conda 版本
+- conda update PACKAGE_NAME更新指定套件
+- conda --help 檢視 conda 指令說明文件
+- conda list --ENVIRONMENT 檢視指定工作環境安裝的套件清單
+- conda install PACAKGE_NAME=MAJOR.MINOR.PATCH 在目前的工作環境安裝指定套件
+- conda remove PACKAGE_NAME 在目前的工作環境移除指定套件
+- conda create --name ENVIRONMENT python=MAIN.MINOR.PATCH 建立新的工作環境且安裝指定 Python 版本
+- conda activate ENVIRONMENT 切換至指定工作環境
+- conda deactivate 回到 base 工作環境
+- conda env export --name ENVIRONMENT --file ENVIRONMENT.yml 將指定工作環境之設定匯出為 .yml 檔藉此複製且重現工作環境
+** python package安裝
+*** 安裝package: 
+src_python[:exports code]{ conda install packageName }
+#+begin_src shell -r -n :results output :exports both
+conda install pandas
+#+end_src
+*** 移除package: 
+src_python[:exports code]{ conda remove packageName }
+#+begin_src shell -r -n :results output :exports both
+conda remove pandas
+#+end_src
+*** 安裝特定版本python
+src_python[:exports code]{ conda install python=version }
+#+begin_src shell -r -n :results output :exports both
+conda install python=3.5
+#+end_src
+*** 了解目前系統可用套件
+src_python[:exports code]{ conda list }
+
+** python執行環境建立與維護[fn:5]
+*** 建立虛擬環境
+src_python[:exports code]{ conda create -n envName }
+#+begin_src shell -r -n :results output :exports both
+conda create -n myDLProject
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /Users/letranger/.conda/envs/myDLProject
+
+
+
+Proceed ([y]/n)? 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate myDLProject
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+#+end_example
+*** 啟用某個虛擬環境
+src_python[:exports code]{ source activate envName }
+#+begin_src shell -r -n :results output :exports both
+source activate myDLProject
+#+end_src
+*** 退出某個虛擬環境
+src_python[:exports code]{ source deactivate }
+#+begin_src shell -r -n :results output :exports both
+source deactiveate
+#+end_src
+*** 刪除某個虛擬環境
+src_python[:exports code]{ conda env remove -n envName }
+#+begin_src shell -r -n :results output :exports both
+conda env remove -n myDLProject
+#+end_src
+*** 列出目前系統中所有的虛擬環境
+src_python[:exports code]{ conda env list }
+
 * Numpy模組
 ** 匯入模組
-- 使用模組裡的函式要加模組名稱，如 numpy.arrry( )。例：src_python[:exports code]{ import numpy }
+- 使用模組裡的函式要加模組名稱，如 numpy.arrry( )。例：src_python[:exports code]{import numpy }
 - 匯入numpy模組並使用np作為簡寫，這是Numpy官方倡導的寫法src_python[:exports code]{ import numpy as np }
 - Numpy中的多維資料型別稱為ndarray
 ** Create ndarray
@@ -673,21 +791,21 @@ plt.pie( 比例列表 [, 參數1, 參數2, ...] )
 *** CSV
 為純文字檔，以逗號分隔值（Comma-Separated Values，CSV，有時也稱為字元分隔值，因為分隔字元也可以不是逗號）。
 純文字意味著該檔案是一個字元序列，不含必須像二進位制數字那樣被解讀的資料。
-CSV檔案由任意數目的記錄組成，記錄間以某種換行符分隔；每條記錄由欄位組成，欄位間的分隔符是其它字元或字串，最常見的是逗號或製表符。通常，所有記錄都有完全相同的欄位序列[fn:2]。
+CSV檔案由任意數目的記錄組成，記錄間以某種換行符分隔；每條記錄由欄位組成，欄位間的分隔符是其它字元或字串，最常見的是逗號或製表符。通常，所有記錄都有完全相同的欄位序列[fn:6]。
 *** Pandas
-Pandas是python的一個數據分析模組，2009 年底開源出來，提供高效能、簡易使用的資料格式(Data Frame)讓使用者可以快速操作及分析資料，Pandas強化了資料處理的方便性也能與處理網頁資料與資料庫資料等，有點類似於Office的Excel能更加方便的進行運算、分析等[fn:3]。
-Pandas主要特色有[fn:5]：
+Pandas是python的一個數據分析模組，2009 年底開源出來，提供高效能、簡易使用的資料格式(Data Frame)讓使用者可以快速操作及分析資料，Pandas強化了資料處理的方便性也能與處理網頁資料與資料庫資料等，有點類似於Office的Excel能更加方便的進行運算、分析等[fn:7]。
+Pandas主要特色有[fn:8]：
 1. 在異質數據的讀取、轉換和處理上，都讓分析人員更容易處理，例如：從列欄試算表中找到想要的值。
 1. Pandas 提供兩種主要的資料結構，Series 與 DataFrame。Series 顧名思義就是用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。DataFrame 則是用來處理結構化(Table like)的資料，有列索引與欄標籤的二維資料集，例如關聯式資料庫、CSV 等等。
 1. 透過載入至 Pandas 的資料結構物件後，可以透過結構化物件所提供的方法，來快速地進行資料的前處理，如資料補值，空值去除或取代等。
 1. 更多的輸入來源及輸出整合性，例如：可以從資料庫讀取資料進入 Dataframe，也可將處理完的資料存回資料庫。
 *** Pandas資料結構
-Pandas是Python的資料分析函式庫，從2009年底開放原始碼，提供簡易使用的資料結構和分析工具，讓分析人員可以快速方便的處理結構化資料。要使用Pandas之前，先瞭解兩個主要資料結構[fn:4]：
+Pandas是Python的資料分析函式庫，從2009年底開放原始碼，提供簡易使用的資料結構和分析工具，讓分析人員可以快速方便的處理結構化資料。要使用Pandas之前，先瞭解兩個主要資料結構[fn:9]：
 - Series: 是一維標籤陣列（array），能夠保存任何資料類型（整數、字符串、浮點數等）。
 - DataFrame: 是一個二維標籤資料結構，可以具有不同類型的行（column），類似Excel的資料表，對於有使用過統計軟體的分析人員應該不陌生。
 簡單來說，Series可以想像為一行多列（row）的資料，而DataFrame是多行多列的資料，藉由選擇索引（列標籤）和行（行標籤）的參數來操作資料，就像使用統計軟體透過樣本編號或變項名稱來操作資料。
 ** Pandas functions
-*** 資料選取[fn:6]
+*** 資料選取[fn:10]
 **** Select as dictinoary (column): 
   - src_python[:exports code]{ df[[[['col1', col2']]]] }
   - src_python[:exports code]{ df.col1 }
@@ -767,7 +885,7 @@ Name: id, Length: 212, dtype: int64
 211    False
 Name: homework, Length: 212, dtype: bool
 #+end_example
-**** loc, iloc, between [fn:7]
+**** loc, iloc, between [fn:11]
 - loc: 基於行標籤和列標籤（x_label、y_label）進行索引，以column名做為index
 - iloc: 基於行索引和列索引（index，columns） 都是從 0 開始，以數字做為index
 - between: 檢查區間值, src_python[:exports code]{ Series.between(self, left, right, inclusive=True) }
@@ -1123,7 +1241,7 @@ pip install beautifulsoup4
 urllib.error.HTTPError: HTTP Error 403: Forbidden
 #+end_src
 
-被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是HTTP協議中的一個HTTP狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務[fn:1]。
+被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是HTTP協議中的一個HTTP狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務[fn:12]。
 
 **** 第二版:加入header
 #+begin_src python -r -n :results output :exports both
@@ -1255,17 +1373,27 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 
 * Footnotes
 
-[fn:7] [[https://srdatw.blogspot.com/2019/01/python-pandas.html][ 使用Python進行資料整理 – 初探Pandas]]
+[fn:1] [[https://medium.com/ai%E5%8F%8D%E6%96%97%E5%9F%8E/anaconda-miniconda-conda-pip%E7%9A%84%E7%9B%B8%E4%BA%92%E9%97%9C%E4%BF%82-%E8%BD%89%E8%BC%89-a0536f3a257][Anaconda、Miniconda、Conda、pip的相互關係 (轉載)]]
 
-[fn:6][[https://medium.com/@b89202027_37759/%E5%AF%A6%E7%94%A8%E4%BD%86%E5%B8%B8%E5%BF%98%E8%A8%98%E7%9A%84pandas-dataframe%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4-1-976f48eb2bd5][實用但常忘記的Pandas Dataframe常用指令 1]] 
+[fn:2] [[https://stackoverflow.com/questions/30034840/what-are-the-differences-between-conda-and-anaconda][What are the differences between Conda and Anaconda?]]
 
-[fn:5][[https://oranwind.org/python-pandas-ji-chu-jiao-xue/][[Python] Pandas 基礎教學]] 
+[fn:3] [[https://blog.csdn.net/qq_18668137/article/details/80807829][conda、miniconda、anaconda的區別以及在pycharm中選擇conda的虛擬環境]]
 
-[fn:4][[https://srdatw.blogspot.com/2019/01/python-pandas.html][ 使用Python進行資料整理 – 初探Pandas]] 
+[fn:4] [[https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025][輕鬆學習 Python：conda 的核心功能]]
 
-[fn:3] [[https://ithelp.ithome.com.tw/articles/10208412][Day23- 資料處理模組-Pandas 介紹]] 
+[fn:5] [[https://ithelp.ithome.com.tw/articles/10192460][Day01 Anaconda環境安裝!]]
 
-[fn:2] [[https://www.itread01.com/content/1547569271.html][Python讀寫csv檔案的幾種方法 及 pandas.read_csv引數全解]] 
+[fn:6] [[https://www.itread01.com/content/1547569271.html][Python讀寫csv檔案的幾種方法 及 pandas.read_csv引數全解]]
 
-[fn:1] [[https://zh.wikipedia.org/wiki/HTTP_403][維基百科: HTTP 403]]
+[fn:7] [[https://ithelp.ithome.com.tw/articles/10208412][Day23- 資料處理模組-Pandas 介紹]]
+
+[fn:8] [[https://oranwind.org/python-pandas-ji-chu-jiao-xue/][PythonPandas 基礎教學]]
+
+[fn:9][[https://srdatw.blogspot.com/2019/01/python-pandas.html][ 使用Python進行資料整理 – 初探Pandas]]
+
+[fn:10][[https://medium.com/@b89202027_37759/%E5%AF%A6%E7%94%A8%E4%BD%86%E5%B8%B8%E5%BF%98%E8%A8%98%E7%9A%84pandas-dataframe%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4-1-976f48eb2bd5][ 實用但常忘記的Pandas Dataframe常用指令 1]]
+
+[fn:11] [[https://srdatw.blogspot.com/2019/01/python-pandas.html][使用Python進行資料整理 – 初探Pandas]]
+
+[fn:12] [[https://zh.wikipedia.org/wiki/HTTP_403][維基百科: HTTP 403]]
 
