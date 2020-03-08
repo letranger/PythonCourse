@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2020-03-08 Sun 13:56 -->
+<!-- 2020-03-08 Sun 14:07 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Advanced Materials of Python</title>
@@ -240,183 +240,183 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgc84a0c0">1. Python套件管理</a>
+<li><a href="#orga9669e8">1. Python套件管理</a>
 <ul>
-<li><a href="#org360f5aa">1.1. pip v.s. conda</a>
+<li><a href="#orgb2c4062">1.1. pip v.s. conda</a>
 <ul>
-<li><a href="#org0bd1d74">1.1.1. pip</a></li>
-<li><a href="#org9b2f3cc">1.1.2. conda</a></li>
-<li><a href="#orgd9a9023">1.1.3. In both cases:</a></li>
+<li><a href="#org582372a">1.1.1. pip</a></li>
+<li><a href="#orgdb00ed6">1.1.2. conda</a></li>
+<li><a href="#org54711ef">1.1.3. In both cases:</a></li>
 </ul>
 </li>
-<li><a href="#org1aae4c9">1.2. Conda, Anaconda, Minconda</a>
+<li><a href="#orge977f90">1.2. Conda, Anaconda, Minconda</a>
 <ul>
-<li><a href="#org695f163">1.2.1. difference between conda, anaconda, and miniconda </a></li>
-<li><a href="#org523e2ea">1.2.2. conda、miniconda、anaconda的區別</a></li>
+<li><a href="#orga74c4e0">1.2.1. difference between conda, anaconda, and miniconda </a></li>
+<li><a href="#orga99ddd9">1.2.2. conda、miniconda、anaconda的區別</a></li>
 </ul>
 </li>
-<li><a href="#org3ffcaa8">1.3. conda</a>
+<li><a href="#org45a77e4">1.3. conda</a>
 <ul>
-<li><a href="#orgd906b94">1.3.1. 下載 v.s. 安裝</a></li>
-<li><a href="#org1ab1d6c">1.3.2. 常見 conda 指令</a></li>
+<li><a href="#org984871a">1.3.1. 下載 v.s. 安裝</a></li>
+<li><a href="#org3793b36">1.3.2. 常見 conda 指令</a></li>
 </ul>
 </li>
-<li><a href="#org5170b32">1.4. python package安裝</a>
+<li><a href="#org2733e53">1.4. python package安裝</a>
 <ul>
-<li><a href="#org38a1e1d">1.4.1. 安裝package:</a></li>
-<li><a href="#orgab70c86">1.4.2. 移除package:</a></li>
-<li><a href="#org2e405b9">1.4.3. 安裝特定版本python</a></li>
-<li><a href="#org8873ca6">1.4.4. 了解目前系統可用套件</a></li>
+<li><a href="#orga1a2b9e">1.4.1. 安裝package:</a></li>
+<li><a href="#orgc3fbbf0">1.4.2. 移除package:</a></li>
+<li><a href="#org274b35f">1.4.3. 安裝特定版本python</a></li>
+<li><a href="#org1c13384">1.4.4. 了解目前系統可用套件</a></li>
 </ul>
 </li>
-<li><a href="#org59468af">1.5. python執行環境建立與維護</a>
+<li><a href="#orgba94632">1.5. python執行環境建立與維護</a>
 <ul>
-<li><a href="#org0f37613">1.5.1. 建立虛擬環境</a></li>
-<li><a href="#org934a3a9">1.5.2. 啟用某個虛擬環境</a></li>
-<li><a href="#org3217288">1.5.3. 退出某個虛擬環境</a></li>
-<li><a href="#org803b84c">1.5.4. 刪除某個虛擬環境</a></li>
-<li><a href="#org5a1fc1d">1.5.5. 列出目前系統中所有的虛擬環境</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a href="#org593f6ce">2. Numpy模組</a>
-<ul>
-<li><a href="#org64a2d7e">2.1. 匯入模組</a></li>
-<li><a href="#orgab4686a">2.2. Create ndarray</a>
-<ul>
-<li><a href="#org5e94587">2.2.1. 一維陣列</a></li>
-<li><a href="#org2f88026">2.2.2. 多維陣列</a></li>
-</ul>
-</li>
-<li><a href="#org980d638">2.3. 矩陣運算</a></li>
-<li><a href="#org2d6a188">2.4. 特殊矩陣</a></li>
-<li><a href="#org200462e">2.5. ndarray屬性</a>
-<ul>
-<li><a href="#orga0f01ba">2.5.1. 練習</a></li>
-</ul>
-</li>
-<li><a href="#org6088281">2.6. 矩陣形狀轉換</a></li>
-<li><a href="#orgc7e082a">2.7. 矩陣疊加</a></li>
-<li><a href="#org71119c8">2.8. ndarray 轉 list</a></li>
-<li><a href="#org8483590">2.9. Numpy常用統計函數</a></li>
-</ul>
-</li>
-<li><a href="#org305c427">3. Matplotlib</a>
-<ul>
-<li><a href="#org1feebc7">3.1. Matplotlib簡介</a></li>
-<li><a href="#orgc93d5ed">3.2. 折線圖</a>
-<ul>
-<li><a href="#org4122abf">3.2.1. 基本語法</a></li>
-<li><a href="#org562c1fb">3.2.2. 練習一：繪製折線圖</a></li>
-<li><a href="#org9c69e8f">3.2.3. 圖形美化: plot() function</a></li>
-<li><a href="#org7a05b3f">3.2.4. 練習2：圖表美化</a></li>
-</ul>
-</li>
-<li><a href="#org2be807b">3.3. bar chart: plt.bar()</a>
-<ul>
-<li><a href="#orgf6e8e64">3.3.1. 語法</a></li>
-<li><a href="#org711ac1e">3.3.2. 練習3： </a></li>
-</ul>
-</li>
-<li><a href="#orga5b7d7d">3.4. pie chart: plt.pie()</a>
-<ul>
-<li><a href="#org1ddcbd7">3.4.1. 語法： </a></li>
-<li><a href="#orgca73d60">3.4.2. 參數：</a></li>
-<li><a href="#orgea6fd55">3.4.3. 範例</a></li>
-</ul>
-</li>
-<li><a href="#org88c5589">3.5. 其它圖表</a></li>
-<li><a href="#orgcf69048">3.6. 文字註解: plt.text()</a>
-<ul>
-<li><a href="#orgd65e8ec">3.6.1. 語法</a></li>
-<li><a href="#org0087a5a">3.6.2. 範例</a></li>
-</ul>
-</li>
-<li><a href="#orgaa228cb">3.7. 子圖表: plt.subplot()</a></li>
-</ul>
-</li>
-<li><a href="#orga14f05e">4. 區域資料檔分析</a>
-<ul>
-<li><a href="#org972a890">4.1. Excel/CSV: Pandas模組</a>
-<ul>
-<li><a href="#org340106e">4.1.1. CSV</a></li>
-<li><a href="#org8a5b055">4.1.2. Pandas</a></li>
-<li><a href="#org8094bb3">4.1.3. Pandas資料結構</a></li>
-</ul>
-</li>
-<li><a href="#orgfb48f36">4.2. Pandas functions</a>
-<ul>
-<li><a href="#org20af0ee">4.2.1. 資料選取</a></li>
-<li><a href="#orga9a52c5">4.2.2. 條件式選取資料</a></li>
-</ul>
-</li>
-<li><a href="#org68da583">4.3. 進階分析</a>
-<ul>
-<li><a href="#orgd7a2e1e">4.3.1. 計算: Aggregation, Groupby</a></li>
-<li><a href="#org94a0e9c">4.3.2. 資料檔下載: file:scores.csv</a></li>
-</ul>
-</li>
-<li><a href="#orgf28d152">4.4. 資料視覺化</a>
-<ul>
-<li><a href="#orgceee3b3">4.4.1. Bar chart</a></li>
-<li><a href="#org3fa23c5">4.4.2. Pie chart</a></li>
-<li><a href="#orgafa0413">4.4.3. Scatter chart</a></li>
-<li><a href="#org0e46407">4.4.4. Line chart</a></li>
+<li><a href="#org45c72bd">1.5.1. 建立虛擬環境</a></li>
+<li><a href="#org591e01c">1.5.2. 啟用某個虛擬環境</a></li>
+<li><a href="#orgeb413e9">1.5.3. 退出某個虛擬環境</a></li>
+<li><a href="#org8c407d4">1.5.4. 刪除某個虛擬環境</a></li>
+<li><a href="#orgf8bb3bb">1.5.5. 列出目前系統中所有的虛擬環境</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#org3d4d8f6">5. 網路爬蟲</a>
+<li><a href="#org05a26e4">2. Numpy模組</a>
 <ul>
-<li><a href="#orgd8a5728">5.1. parse JSON</a>
+<li><a href="#orgd294700">2.1. 匯入模組</a></li>
+<li><a href="#orgf846392">2.2. Create ndarray</a>
 <ul>
-<li><a href="#org66ffbd1">5.1.1. What is JSON?</a></li>
-<li><a href="#org6d7b867">5.1.2. JSON的優點</a></li>
-<li><a href="#org7703953">5.1.3. JSON結構</a></li>
-<li><a href="#orgb952d82">5.1.4. 實作1: 國際主要國家貨幣每月匯率概況</a></li>
-<li><a href="#orgb6cce7e">5.1.5. 實作2: 澎湖生活博物館每月參觀人次統計資料</a></li>
-<li><a href="#org4dfa0f5">5.1.6. 實作3: 下載JSON</a></li>
-<li><a href="#org6a97941">5.1.7. 實作: 解析JSON</a></li>
-<li><a href="#orgc2f9d3f">5.1.8. 練習</a></li>
+<li><a href="#org28b3088">2.2.1. 一維陣列</a></li>
+<li><a href="#org2fcc78d">2.2.2. 多維陣列</a></li>
 </ul>
 </li>
-<li><a href="#org73f528c">5.2. parse HTML</a>
+<li><a href="#org934b211">2.3. 矩陣運算</a></li>
+<li><a href="#org03e9da8">2.4. 特殊矩陣</a></li>
+<li><a href="#org171bc89">2.5. ndarray屬性</a>
 <ul>
-<li><a href="#org9699913">5.2.1. 所需套件</a></li>
+<li><a href="#orgc83e7d8">2.5.1. 練習</a></li>
 </ul>
 </li>
-<li><a href="#orged773b0">5.3. 範例: 以程式抓取PTT電影板header</a>
+<li><a href="#org1ccf59f">2.6. 矩陣形狀轉換</a></li>
+<li><a href="#orgeee0c51">2.7. 矩陣疊加</a></li>
+<li><a href="#orge68a72f">2.8. ndarray 轉 list</a></li>
+<li><a href="#orgb6484ac">2.9. Numpy常用統計函數</a></li>
+</ul>
+</li>
+<li><a href="#org6498436">3. Matplotlib</a>
 <ul>
-<li><a href="#orgdee3ac6">5.3.1. 原則</a></li>
-<li><a href="#org72d78dc">5.3.2. 實作: 取得HTML資料</a></li>
-<li><a href="#orgc93f445">5.3.3. 實作：解析HTML資料內容</a></li>
+<li><a href="#org5bf71be">3.1. Matplotlib簡介</a></li>
+<li><a href="#org1dc4ba2">3.2. 折線圖</a>
+<ul>
+<li><a href="#org59fd071">3.2.1. 基本語法</a></li>
+<li><a href="#org565ded4">3.2.2. 練習一：繪製折線圖</a></li>
+<li><a href="#org66d8dd5">3.2.3. 圖形美化: plot() function</a></li>
+<li><a href="#org73057cd">3.2.4. 練習2：圖表美化</a></li>
 </ul>
 </li>
-<li><a href="#orgaf9f5ca">5.4. 參考資料</a></li>
+<li><a href="#org6cb01bc">3.3. bar chart: plt.bar()</a>
+<ul>
+<li><a href="#orgfd6f2d2">3.3.1. 語法</a></li>
+<li><a href="#org89cea3c">3.3.2. 練習3： </a></li>
 </ul>
 </li>
-<li><a href="#org3691761">6. Python學習資源</a></li>
-<li><a href="#org34a5038">7. 0802 CNN</a></li>
-<li><a href="#org2a97b02">8. 以python下載網路資料</a></li>
-<li><a href="#org0ea45c3">9. 如何把python程式publish成網站應用程式</a></li>
+<li><a href="#orgb7dfb01">3.4. pie chart: plt.pie()</a>
+<ul>
+<li><a href="#orgfd6832e">3.4.1. 語法： </a></li>
+<li><a href="#orgac5165d">3.4.2. 參數：</a></li>
+<li><a href="#org1c466a9">3.4.3. 範例</a></li>
+</ul>
+</li>
+<li><a href="#orgb6e45c2">3.5. 其它圖表</a></li>
+<li><a href="#org01f8aa3">3.6. 文字註解: plt.text()</a>
+<ul>
+<li><a href="#org2a8723a">3.6.1. 語法</a></li>
+<li><a href="#org3df2a19">3.6.2. 範例</a></li>
+</ul>
+</li>
+<li><a href="#org77fad74">3.7. 子圖表: plt.subplot()</a></li>
+</ul>
+</li>
+<li><a href="#orge17a8b1">4. 區域資料檔分析</a>
+<ul>
+<li><a href="#org70cc162">4.1. Excel/CSV: Pandas模組</a>
+<ul>
+<li><a href="#orge304162">4.1.1. CSV</a></li>
+<li><a href="#orgd35c97c">4.1.2. Pandas</a></li>
+<li><a href="#orge6e3873">4.1.3. Pandas資料結構</a></li>
+</ul>
+</li>
+<li><a href="#org3f268a5">4.2. Pandas functions</a>
+<ul>
+<li><a href="#orgac2dba1">4.2.1. 資料選取</a></li>
+<li><a href="#orga044257">4.2.2. 條件式選取資料</a></li>
+</ul>
+</li>
+<li><a href="#orgfc1f5eb">4.3. 進階分析</a>
+<ul>
+<li><a href="#org8f6983f">4.3.1. 計算: Aggregation, Groupby</a></li>
+<li><a href="#org76c644e">4.3.2. 資料檔下載: file:scores.csv</a></li>
+</ul>
+</li>
+<li><a href="#org46868ab">4.4. 資料視覺化</a>
+<ul>
+<li><a href="#org81926f9">4.4.1. Bar chart</a></li>
+<li><a href="#org0783226">4.4.2. Pie chart</a></li>
+<li><a href="#org815f0e1">4.4.3. Scatter chart</a></li>
+<li><a href="#org976b9ac">4.4.4. Line chart</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org0b5b333">5. 網路爬蟲</a>
+<ul>
+<li><a href="#org4166771">5.1. parse JSON</a>
+<ul>
+<li><a href="#org441edd2">5.1.1. What is JSON?</a></li>
+<li><a href="#org01af666">5.1.2. JSON的優點</a></li>
+<li><a href="#orgc7fa6fb">5.1.3. JSON結構</a></li>
+<li><a href="#org5c96730">5.1.4. 實作1: 國際主要國家貨幣每月匯率概況</a></li>
+<li><a href="#org1e8acde">5.1.5. 實作2: 澎湖生活博物館每月參觀人次統計資料</a></li>
+<li><a href="#org74a4a05">5.1.6. 實作3: 下載JSON</a></li>
+<li><a href="#org475ff21">5.1.7. 實作: 解析JSON</a></li>
+<li><a href="#org09141e5">5.1.8. 練習</a></li>
+</ul>
+</li>
+<li><a href="#org44898d6">5.2. parse HTML</a>
+<ul>
+<li><a href="#org227b485">5.2.1. 所需套件</a></li>
+</ul>
+</li>
+<li><a href="#org1ce7b1b">5.3. 範例: 以程式抓取PTT電影板header</a>
+<ul>
+<li><a href="#org082a520">5.3.1. 原則</a></li>
+<li><a href="#orgf20036d">5.3.2. 實作: 取得HTML資料</a></li>
+<li><a href="#org5580124">5.3.3. 實作：解析HTML資料內容</a></li>
+</ul>
+</li>
+<li><a href="#orga78c75c">5.4. 參考資料</a></li>
+</ul>
+</li>
+<li><a href="#org17d953d">6. Python學習資源</a></li>
+<li><a href="#org7b04a5b">7. 0802 CNN</a></li>
+<li><a href="#org1040689">8. 以python下載網路資料</a></li>
+<li><a href="#orgdc5a89e">9. 如何把python程式publish成網站應用程式</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orgc84a0c0" class="outline-2">
-<h2 id="orgc84a0c0"><span class="section-number-2">1</span> Python套件管理</h2>
+<div id="outline-container-orga9669e8" class="outline-2">
+<h2 id="orga9669e8"><span class="section-number-2">1</span> Python套件管理</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Python的一大優勢之一便是龐大的第三方函式庫，讓使用python的程式設計師可以方便的呼叫、進行如網路資料下載解析、資料的視覺化、甚或是大數據的複雜分析與人工智慧的balabala&#x2026;.，目前用來管理這些龐大套件的工具主要有二：pip與Conda。<br />
 </p>
 </div>
-<div id="outline-container-org360f5aa" class="outline-3">
-<h3 id="org360f5aa"><span class="section-number-3">1.1</span> pip v.s. conda</h3>
+<div id="outline-container-orgb2c4062" class="outline-3">
+<h3 id="orgb2c4062"><span class="section-number-3">1.1</span> pip v.s. conda</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org0bd1d74" class="outline-4">
-<h4 id="org0bd1d74"><span class="section-number-4">1.1.1</span> pip</h4>
+<div id="outline-container-org582372a" class="outline-4">
+<h4 id="org582372a"><span class="section-number-4">1.1.1</span> pip</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <ul class="org-ul">
 <li>Python packages only.<br /></li>
@@ -425,8 +425,8 @@ Python的一大優勢之一便是龐大的第三方函式庫，讓使用python�
 </ul>
 </div>
 </div>
-<div id="outline-container-org9b2f3cc" class="outline-4">
-<h4 id="org9b2f3cc"><span class="section-number-4">1.1.2</span> conda</h4>
+<div id="outline-container-orgdb00ed6" class="outline-4">
+<h4 id="orgdb00ed6"><span class="section-number-4">1.1.2</span> conda</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <ul class="org-ul">
 <li>Python agnostic. The main focus of existing packages are for Python, and indeed Conda itself is written in Python, but you can also have Conda packages for C libraries, or R packages, or really anything.<br /></li>
@@ -435,8 +435,8 @@ Python的一大優勢之一便是龐大的第三方函式庫，讓使用python�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd9a9023" class="outline-4">
-<h4 id="orgd9a9023"><span class="section-number-4">1.1.3</span> In both cases:</h4>
+<div id="outline-container-org54711ef" class="outline-4">
+<h4 id="org54711ef"><span class="section-number-4">1.1.3</span> In both cases:</h4>
 <div class="outline-text-4" id="text-1-1-3">
 <ul class="org-ul">
 <li>Written in Python<br /></li>
@@ -445,12 +445,12 @@ Python的一大優勢之一便是龐大的第三方函式庫，讓使用python�
 </div>
 </div>
 </div>
-<div id="outline-container-org1aae4c9" class="outline-3">
-<h3 id="org1aae4c9"><span class="section-number-3">1.2</span> Conda, Anaconda, Minconda<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
+<div id="outline-container-orge977f90" class="outline-3">
+<h3 id="orge977f90"><span class="section-number-3">1.2</span> Conda, Anaconda, Minconda<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org695f163" class="outline-4">
-<h4 id="org695f163"><span class="section-number-4">1.2.1</span> difference between conda, anaconda, and miniconda <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h4>
+<div id="outline-container-orga74c4e0" class="outline-4">
+<h4 id="orga74c4e0"><span class="section-number-4">1.2.1</span> difference between conda, anaconda, and miniconda <sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>conda is both a command line tool, and a python package.<br /></li>
@@ -473,8 +473,8 @@ Python的一大優勢之一便是龐大的第三方函式庫，讓使用python�
 </ul>
 </div>
 </div>
-<div id="outline-container-org523e2ea" class="outline-4">
-<h4 id="org523e2ea"><span class="section-number-4">1.2.2</span> conda、miniconda、anaconda的區別<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h4>
+<div id="outline-container-orga99ddd9" class="outline-4">
+<h4 id="orga99ddd9"><span class="section-number-4">1.2.2</span> conda、miniconda、anaconda的區別<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>conda是一種通用包管理系統，旨在構建和管理任何語言和任何類型的軟件。舉個例子：包管理與pip的使用類似，環境管理則允許用戶方便地安裝不同版本的python並可以快速切換。<br /></li>
@@ -484,15 +484,15 @@ Python的一大優勢之一便是龐大的第三方函式庫，讓使用python�
 </div>
 </div>
 </div>
-<div id="outline-container-org3ffcaa8" class="outline-3">
-<h3 id="org3ffcaa8"><span class="section-number-3">1.3</span> conda</h3>
+<div id="outline-container-org45a77e4" class="outline-3">
+<h3 id="org45a77e4"><span class="section-number-3">1.3</span> conda</h3>
 <div class="outline-text-3" id="text-1-3">
 <p>
 Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、Lua、Scala 與 Java 等任何程式語言的套件、依賴性以及工作環境管理員，特別受到以 Python 作為主要程式語言的資料科學團隊所喜愛。傳統 Python 使用者以 pip 作為套件管理員（package manager）、以 venv 作為工作環境管理員（environment manager），而 conda 則達成了「兩個願望、一次滿足」既可以管理套件亦能夠管理工作環境。在這個小節我們介紹如何使用 conda 最重要的幾個核心功能，讓資料科學團隊重現指定的工作環境設定。<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup><br />
 </p>
 </div>
-<div id="outline-container-orgd906b94" class="outline-4">
-<h4 id="orgd906b94"><span class="section-number-4">1.3.1</span> 下載 v.s. 安裝</h4>
+<div id="outline-container-org984871a" class="outline-4">
+<h4 id="org984871a"><span class="section-number-4">1.3.1</span> 下載 v.s. 安裝</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <ul class="org-ul">
 <li><a href="https://www.anaconda.com/distribution/">Anaconda</a><br /></li>
@@ -500,8 +500,8 @@ Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、
 </ul>
 </div>
 </div>
-<div id="outline-container-org1ab1d6c" class="outline-4">
-<h4 id="org1ab1d6c"><span class="section-number-4">1.3.2</span> 常見 conda 指令</h4>
+<div id="outline-container-org3793b36" class="outline-4">
+<h4 id="org3793b36"><span class="section-number-4">1.3.2</span> 常見 conda 指令</h4>
 <div class="outline-text-4" id="text-1-3-2">
 <ul class="org-ul">
 <li>conda &#x2013;version 檢視 conda 版本<br /></li>
@@ -518,12 +518,12 @@ Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、
 </div>
 </div>
 </div>
-<div id="outline-container-org5170b32" class="outline-3">
-<h3 id="org5170b32"><span class="section-number-3">1.4</span> python package安裝</h3>
+<div id="outline-container-org2733e53" class="outline-3">
+<h3 id="org2733e53"><span class="section-number-3">1.4</span> python package安裝</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
-<div id="outline-container-org38a1e1d" class="outline-4">
-<h4 id="org38a1e1d"><span class="section-number-4">1.4.1</span> 安裝package:</h4>
+<div id="outline-container-orga1a2b9e" class="outline-4">
+<h4 id="orga1a2b9e"><span class="section-number-4">1.4.1</span> 安裝package:</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <p>
 <code class="src src-python"> conda install packageName </code><br />
@@ -534,8 +534,8 @@ Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、
 </div>
 </div>
 </div>
-<div id="outline-container-orgab70c86" class="outline-4">
-<h4 id="orgab70c86"><span class="section-number-4">1.4.2</span> 移除package:</h4>
+<div id="outline-container-orgc3fbbf0" class="outline-4">
+<h4 id="orgc3fbbf0"><span class="section-number-4">1.4.2</span> 移除package:</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <p>
 <code class="src src-python"> conda remove packageName </code><br />
@@ -546,8 +546,8 @@ Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、
 </div>
 </div>
 </div>
-<div id="outline-container-org2e405b9" class="outline-4">
-<h4 id="org2e405b9"><span class="section-number-4">1.4.3</span> 安裝特定版本python</h4>
+<div id="outline-container-org274b35f" class="outline-4">
+<h4 id="org274b35f"><span class="section-number-4">1.4.3</span> 安裝特定版本python</h4>
 <div class="outline-text-4" id="text-1-4-3">
 <p>
 <code class="src src-python"> conda install <span style="color: #7590db;">python</span>=version </code><br />
@@ -558,8 +558,8 @@ Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、
 </div>
 </div>
 </div>
-<div id="outline-container-org8873ca6" class="outline-4">
-<h4 id="org8873ca6"><span class="section-number-4">1.4.4</span> 了解目前系統可用套件</h4>
+<div id="outline-container-org1c13384" class="outline-4">
+<h4 id="org1c13384"><span class="section-number-4">1.4.4</span> 了解目前系統可用套件</h4>
 <div class="outline-text-4" id="text-1-4-4">
 <p>
 <code class="src src-python"> conda <span style="color: #4f97d7;">list</span> </code><br />
@@ -568,12 +568,12 @@ Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、
 </div>
 </div>
 
-<div id="outline-container-org59468af" class="outline-3">
-<h3 id="org59468af"><span class="section-number-3">1.5</span> python執行環境建立與維護<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h3>
+<div id="outline-container-orgba94632" class="outline-3">
+<h3 id="orgba94632"><span class="section-number-3">1.5</span> python執行環境建立與維護<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-org0f37613" class="outline-4">
-<h4 id="org0f37613"><span class="section-number-4">1.5.1</span> 建立虛擬環境</h4>
+<div id="outline-container-org45c72bd" class="outline-4">
+<h4 id="org45c72bd"><span class="section-number-4">1.5.1</span> 建立虛擬環境</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <p>
 <code class="src src-python"> conda create -n envName </code><br />
@@ -609,8 +609,8 @@ Executing transaction: ...working... done
 </pre>
 </div>
 </div>
-<div id="outline-container-org934a3a9" class="outline-4">
-<h4 id="org934a3a9"><span class="section-number-4">1.5.2</span> 啟用某個虛擬環境</h4>
+<div id="outline-container-org591e01c" class="outline-4">
+<h4 id="org591e01c"><span class="section-number-4">1.5.2</span> 啟用某個虛擬環境</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <p>
 <code class="src src-python"> source activate envName </code><br />
@@ -621,8 +621,8 @@ Executing transaction: ...working... done
 </div>
 </div>
 </div>
-<div id="outline-container-org3217288" class="outline-4">
-<h4 id="org3217288"><span class="section-number-4">1.5.3</span> 退出某個虛擬環境</h4>
+<div id="outline-container-orgeb413e9" class="outline-4">
+<h4 id="orgeb413e9"><span class="section-number-4">1.5.3</span> 退出某個虛擬環境</h4>
 <div class="outline-text-4" id="text-1-5-3">
 <p>
 <code class="src src-python"> source deactivate </code><br />
@@ -633,8 +633,8 @@ Executing transaction: ...working... done
 </div>
 </div>
 </div>
-<div id="outline-container-org803b84c" class="outline-4">
-<h4 id="org803b84c"><span class="section-number-4">1.5.4</span> 刪除某個虛擬環境</h4>
+<div id="outline-container-org8c407d4" class="outline-4">
+<h4 id="org8c407d4"><span class="section-number-4">1.5.4</span> 刪除某個虛擬環境</h4>
 <div class="outline-text-4" id="text-1-5-4">
 <p>
 <code class="src src-python"> conda env remove -n envName </code><br />
@@ -645,8 +645,8 @@ Executing transaction: ...working... done
 </div>
 </div>
 </div>
-<div id="outline-container-org5a1fc1d" class="outline-4">
-<h4 id="org5a1fc1d"><span class="section-number-4">1.5.5</span> 列出目前系統中所有的虛擬環境</h4>
+<div id="outline-container-orgf8bb3bb" class="outline-4">
+<h4 id="orgf8bb3bb"><span class="section-number-4">1.5.5</span> 列出目前系統中所有的虛擬環境</h4>
 <div class="outline-text-4" id="text-1-5-5">
 <p>
 <code class="src src-python"> conda env <span style="color: #4f97d7;">list</span> </code><br />
@@ -656,12 +656,12 @@ Executing transaction: ...working... done
 </div>
 </div>
 
-<div id="outline-container-org593f6ce" class="outline-2">
-<h2 id="org593f6ce"><span class="section-number-2">2</span> Numpy模組</h2>
+<div id="outline-container-org05a26e4" class="outline-2">
+<h2 id="org05a26e4"><span class="section-number-2">2</span> Numpy模組</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org64a2d7e" class="outline-3">
-<h3 id="org64a2d7e"><span class="section-number-3">2.1</span> 匯入模組</h3>
+<div id="outline-container-orgd294700" class="outline-3">
+<h3 id="orgd294700"><span class="section-number-3">2.1</span> 匯入模組</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>使用模組裡的函式要加模組名稱，如 numpy.arrry( )。例：<code class="src src-python"><span style="color: #4f97d7; font-weight: bold;">import</span> numpy&#8232;</code><br /></li>
@@ -670,12 +670,12 @@ Executing transaction: ...working... done
 </ul>
 </div>
 </div>
-<div id="outline-container-orgab4686a" class="outline-3">
-<h3 id="orgab4686a"><span class="section-number-3">2.2</span> Create ndarray</h3>
+<div id="outline-container-orgf846392" class="outline-3">
+<h3 id="orgf846392"><span class="section-number-3">2.2</span> Create ndarray</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org5e94587" class="outline-4">
-<h4 id="org5e94587"><span class="section-number-4">2.2.1</span> 一維陣列</h4>
+<div id="outline-container-org28b3088" class="outline-4">
+<h4 id="org28b3088"><span class="section-number-4">2.2.1</span> 一維陣列</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <ul class="org-ul">
 <li>list 或 tuple 轉入<br /></li>
@@ -708,8 +708,8 @@ Executing transaction: ...working... done
 </pre>
 </div>
 </div>
-<div id="outline-container-org2f88026" class="outline-4">
-<h4 id="org2f88026"><span class="section-number-4">2.2.2</span> 多維陣列</h4>
+<div id="outline-container-org2fcc78d" class="outline-4">
+<h4 id="org2fcc78d"><span class="section-number-4">2.2.2</span> 多維陣列</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>二維陣列<br /></li>
@@ -784,8 +784,8 @@ np9: [[53 73 52]
 </div>
 </div>
 </div>
-<div id="outline-container-org980d638" class="outline-3">
-<h3 id="org980d638"><span class="section-number-3">2.3</span> 矩陣運算</h3>
+<div id="outline-container-org934b211" class="outline-3">
+<h3 id="org934b211"><span class="section-number-3">2.3</span> 矩陣運算</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> numpy <span style="color: #4f97d7; font-weight: bold;">as</span> np
@@ -831,8 +831,8 @@ np9: [[53 73 52]
 </pre>
 </div>
 </div>
-<div id="outline-container-org2d6a188" class="outline-3">
-<h3 id="org2d6a188"><span class="section-number-3">2.4</span> 特殊矩陣</h3>
+<div id="outline-container-org03e9da8" class="outline-3">
+<h3 id="org03e9da8"><span class="section-number-3">2.4</span> 特殊矩陣</h3>
 <div class="outline-text-3" id="text-2-4">
 <ul class="org-ul">
 <li>元素全為0矩陣：<code class="src src-python"> np.zeros<span style="color: #4f97d7;">(</span>&lt;&#22823;&#23567;&gt;, &lt;&#36039;&#26009;&#22411;&#21029;&gt;<span style="color: #4f97d7;">)</span> </code><br /></li>
@@ -890,8 +890,8 @@ np.linalg.inv(mat):
 </pre>
 </div>
 </div>
-<div id="outline-container-org200462e" class="outline-3">
-<h3 id="org200462e"><span class="section-number-3">2.5</span> ndarray屬性</h3>
+<div id="outline-container-org171bc89" class="outline-3">
+<h3 id="org171bc89"><span class="section-number-3">2.5</span> ndarray屬性</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>dtype：ndarray每個元素的資料型別 (可於創建矩陣時同時指定)<br />
@@ -942,8 +942,8 @@ nbytes= 16.0
 <li>T：矩陣轉置<br /></li>
 </ul>
 </div>
-<div id="outline-container-orga0f01ba" class="outline-4">
-<h4 id="orga0f01ba"><span class="section-number-4">2.5.1</span> 練習</h4>
+<div id="outline-container-orgc83e7d8" class="outline-4">
+<h4 id="orgc83e7d8"><span class="section-number-4">2.5.1</span> 練習</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <ul class="org-ul">
 <li>使用 random 函式產生 3*5 的矩陣 A<br /></li>
@@ -958,8 +958,8 @@ nbytes= 16.0
 </div>
 </div>
 </div>
-<div id="outline-container-org6088281" class="outline-3">
-<h3 id="org6088281"><span class="section-number-3">2.6</span> 矩陣形狀轉換</h3>
+<div id="outline-container-org1ccf59f" class="outline-3">
+<h3 id="org1ccf59f"><span class="section-number-3">2.6</span> 矩陣形狀轉換</h3>
 <div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li>reshape(m, n, …)：不改變原矩陣形狀<br /></li>
@@ -1001,8 +1001,8 @@ None
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc7e082a" class="outline-3">
-<h3 id="orgc7e082a"><span class="section-number-3">2.7</span> 矩陣疊加</h3>
+<div id="outline-container-orgeee0c51" class="outline-3">
+<h3 id="orgeee0c51"><span class="section-number-3">2.7</span> 矩陣疊加</h3>
 <div class="outline-text-3" id="text-2-7">
 <ul class="org-ul">
 <li>水平疊加：np.hstack( &lt;tuple, list&gt; )<br /></li>
@@ -1062,8 +1062,8 @@ None
 </pre>
 </div>
 </div>
-<div id="outline-container-org71119c8" class="outline-3">
-<h3 id="org71119c8"><span class="section-number-3">2.8</span> ndarray 轉 list</h3>
+<div id="outline-container-orge68a72f" class="outline-3">
+<h3 id="orge68a72f"><span class="section-number-3">2.8</span> ndarray 轉 list</h3>
 <div class="outline-text-3" id="text-2-8">
 <ul class="org-ul">
 <li>ndarray 轉 list<br /></li>
@@ -1087,8 +1087,8 @@ None
 </pre>
 </div>
 </div>
-<div id="outline-container-org8483590" class="outline-3">
-<h3 id="org8483590"><span class="section-number-3">2.9</span> Numpy常用統計函數</h3>
+<div id="outline-container-orgb6484ac" class="outline-3">
+<h3 id="orgb6484ac"><span class="section-number-3">2.9</span> Numpy常用統計函數</h3>
 <div class="outline-text-3" id="text-2-9">
 <ul class="org-ul">
 <li>np.sum(&lt;np&gt;)：回傳和<br /></li>
@@ -1105,12 +1105,12 @@ None
 </div>
 </div>
 
-<div id="outline-container-org305c427" class="outline-2">
-<h2 id="org305c427"><span class="section-number-2">3</span> Matplotlib</h2>
+<div id="outline-container-org6498436" class="outline-2">
+<h2 id="org6498436"><span class="section-number-2">3</span> Matplotlib</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org1feebc7" class="outline-3">
-<h3 id="org1feebc7"><span class="section-number-3">3.1</span> Matplotlib簡介</h3>
+<div id="outline-container-org5bf71be" class="outline-3">
+<h3 id="org5bf71be"><span class="section-number-3">3.1</span> Matplotlib簡介</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>NumPy的可視化操作界面<br /></li>
@@ -1121,12 +1121,12 @@ None
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc93d5ed" class="outline-3">
-<h3 id="orgc93d5ed"><span class="section-number-3">3.2</span> 折線圖</h3>
+<div id="outline-container-org1dc4ba2" class="outline-3">
+<h3 id="org1dc4ba2"><span class="section-number-3">3.2</span> 折線圖</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org4122abf" class="outline-4">
-<h4 id="org4122abf"><span class="section-number-4">3.2.1</span> 基本語法</h4>
+<div id="outline-container-org59fd071" class="outline-4">
+<h4 id="org59fd071"><span class="section-number-4">3.2.1</span> 基本語法</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <ul class="org-ul">
 <li>import matplotlib.pyplot as plt<br /></li>
@@ -1150,7 +1150,7 @@ None
 </div>
 
 
-<div id="orgc772a41" class="figure">
+<div id="orgfedab49" class="figure">
 <p><img src="simpleSin.png" alt="simpleSin.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>簡單的sin圖形</p>
@@ -1158,8 +1158,8 @@ None
 </div>
 </div>
 
-<div id="outline-container-org562c1fb" class="outline-4">
-<h4 id="org562c1fb"><span class="section-number-4">3.2.2</span> 練習一：繪製折線圖</h4>
+<div id="outline-container-org565ded4" class="outline-4">
+<h4 id="org565ded4"><span class="section-number-4">3.2.2</span> 練習一：繪製折線圖</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p class="verse">
 利用 list 繪製 <br />
@@ -1172,12 +1172,12 @@ None
 </p>
 </div>
 </div>
-<div id="outline-container-org9c69e8f" class="outline-4">
-<h4 id="org9c69e8f"><span class="section-number-4">3.2.3</span> 圖形美化: plot() function</h4>
+<div id="outline-container-org66d8dd5" class="outline-4">
+<h4 id="org66d8dd5"><span class="section-number-4">3.2.3</span> 圖形美化: plot() function</h4>
 <div class="outline-text-4" id="text-3-2-3">
 </div>
 <ol class="org-ol">
-<li><a id="org727cc81"></a>plot()函式參數可分為兩類：fmt字串 和 kwarg參數<br />
+<li><a id="org6bec83d"></a>plot()函式參數可分為兩類：fmt字串 和 kwarg參數<br />
 <div class="outline-text-5" id="text-3-2-3-1">
 <ul class="org-ul">
 <li>fmt 定義基本格式：顏色、標記、線條樣式<br /></li>
@@ -1287,7 +1287,7 @@ None
 </table>
 </div>
 </li>
-<li><a id="orgc3f68d9"></a>kwgarg參數<br />
+<li><a id="org4d28687"></a>kwgarg參數<br />
 <div class="outline-text-5" id="text-3-2-3-2">
 <ul class="org-ul">
 <li>colorg<br />
@@ -1304,10 +1304,10 @@ None
 </ul>
 </div>
 </li>
-<li><a id="orgd643690"></a>色彩對照<br />
+<li><a id="orga8c0131"></a>色彩對照<br />
 <div class="outline-text-5" id="text-3-2-3-3">
 
-<div id="orgf99df0b" class="figure">
+<div id="orgaae7965" class="figure">
 <p><img src="colors.jpg" alt="colors.jpg" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>色表</p>
@@ -1332,20 +1332,20 @@ None
 </div>
 
 
-<div id="orgdd1a0de" class="figure">
+<div id="org0898292" class="figure">
 <p><img src="line1.png" alt="line1.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>簡單的折線圖形#1</p>
 </div>
 
-<div id="org3bc3876" class="figure">
+<div id="orgb32bdfb" class="figure">
 <p><img src="line2.png" alt="line2.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 4: </span>簡單的折線圖形2</p>
 </div>
 </div>
 </li>
-<li><a id="org752a711"></a>其他參數<br />
+<li><a id="orgf917c70"></a>其他參數<br />
 <div class="outline-text-5" id="text-3-2-3-4">
 <ul class="org-ul">
 <li>x / y 座標範圍：plt.xlim(起始值, 終止值)  / plt.ylim(起, 止)<br /></li>
@@ -1357,13 +1357,13 @@ None
 </li>
 </ol>
 </div>
-<div id="outline-container-org7a05b3f" class="outline-4">
-<h4 id="org7a05b3f"><span class="section-number-4">3.2.4</span> 練習2：圖表美化</h4>
+<div id="outline-container-org73057cd" class="outline-4">
+<h4 id="org73057cd"><span class="section-number-4">3.2.4</span> 練習2：圖表美化</h4>
 <div class="outline-text-4" id="text-3-2-4">
 </div>
 <ol class="org-ol">
-<li><a id="org881960a"></a>將練習1的圖表加上標記、線條標籤，換線條顏色、線條樣式<br /></li>
-<li><a id="orgb1d0b4f"></a>請將下列資料繪成折線圖(男女折線不同顏色、樣式，加標記)<br />
+<li><a id="orgb638c01"></a>將練習1的圖表加上標記、線條標籤，換線條顏色、線條樣式<br /></li>
+<li><a id="orgc9b3547"></a>請將下列資料繪成折線圖(男女折線不同顏色、樣式，加標記)<br />
 <div class="outline-text-5" id="text-3-2-4-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1421,41 +1421,41 @@ None
 </ol>
 </div>
 </div>
-<div id="outline-container-org2be807b" class="outline-3">
-<h3 id="org2be807b"><span class="section-number-3">3.3</span> bar chart: plt.bar()</h3>
+<div id="outline-container-org6cb01bc" class="outline-3">
+<h3 id="org6cb01bc"><span class="section-number-3">3.3</span> bar chart: plt.bar()</h3>
 <div class="outline-text-3" id="text-3-3">
 </div>
-<div id="outline-container-orgf6e8e64" class="outline-4">
-<h4 id="orgf6e8e64"><span class="section-number-4">3.3.1</span> 語法</h4>
+<div id="outline-container-orgfd6f2d2" class="outline-4">
+<h4 id="orgfd6f2d2"><span class="section-number-4">3.3.1</span> 語法</h4>
 <div class="outline-text-4" id="text-3-3-1">
 <p>
 <code class="src src-python"> plt.bar<span style="color: #4f97d7;">(</span> x&#24231;&#27161;&#36039;&#26009;, y&#24231;&#27161;&#36039;&#26009; <span style="color: #bc6ec5;">[</span>, &#21443;&#25976;1, &#21443;&#25976;2, ...<span style="color: #bc6ec5;">]</span> <span style="color: #4f97d7;">)</span> </code><br />
 </p>
 </div>
 </div>
-<div id="outline-container-org711ac1e" class="outline-4">
-<h4 id="org711ac1e"><span class="section-number-4">3.3.2</span> 練習3： </h4>
+<div id="outline-container-org89cea3c" class="outline-4">
+<h4 id="org89cea3c"><span class="section-number-4">3.3.2</span> 練習3： </h4>
 <div class="outline-text-4" id="text-3-3-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgb30cf99"></a>請將練習2的男女初婚年齡改成長條圖<br /></li>
+<li><a id="org797b162"></a>請將練習2的男女初婚年齡改成長條圖<br /></li>
 </ol>
 </div>
 </div>
-<div id="outline-container-orga5b7d7d" class="outline-3">
-<h3 id="orga5b7d7d"><span class="section-number-3">3.4</span> pie chart: plt.pie()</h3>
+<div id="outline-container-orgb7dfb01" class="outline-3">
+<h3 id="orgb7dfb01"><span class="section-number-3">3.4</span> pie chart: plt.pie()</h3>
 <div class="outline-text-3" id="text-3-4">
 </div>
-<div id="outline-container-org1ddcbd7" class="outline-4">
-<h4 id="org1ddcbd7"><span class="section-number-4">3.4.1</span> 語法： </h4>
+<div id="outline-container-orgfd6832e" class="outline-4">
+<h4 id="orgfd6832e"><span class="section-number-4">3.4.1</span> 語法： </h4>
 <div class="outline-text-4" id="text-3-4-1">
 <p>
 plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </p>
 </div>
 </div>
-<div id="outline-container-orgca73d60" class="outline-4">
-<h4 id="orgca73d60"><span class="section-number-4">3.4.2</span> 參數：</h4>
+<div id="outline-container-orgac5165d" class="outline-4">
+<h4 id="orgac5165d"><span class="section-number-4">3.4.2</span> 參數：</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <ul class="org-ul">
 <li>colors：各子圖顏色，多以 list 表示<br /></li>
@@ -1467,8 +1467,8 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-orgea6fd55" class="outline-4">
-<h4 id="orgea6fd55"><span class="section-number-4">3.4.3</span> 範例</h4>
+<div id="outline-container-org1c466a9" class="outline-4">
+<h4 id="org1c466a9"><span class="section-number-4">3.4.3</span> 範例</h4>
 <div class="outline-text-4" id="text-3-4-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #4f97d7; font-weight: bold;">as</span> plt
@@ -1488,7 +1488,7 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </div>
 
 
-<div id="org0bc82cc" class="figure">
+<div id="org34472bd" class="figure">
 <p><img src="simplePie.png" alt="simplePie.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 5: </span>簡單的pie chart</p>
@@ -1496,8 +1496,8 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org88c5589" class="outline-3">
-<h3 id="org88c5589"><span class="section-number-3">3.5</span> 其它圖表</h3>
+<div id="outline-container-orgb6e45c2" class="outline-3">
+<h3 id="orgb6e45c2"><span class="section-number-3">3.5</span> 其它圖表</h3>
 <div class="outline-text-3" id="text-3-5">
 <ul class="org-ul">
 <li>直方圖(Histogram)：用來呈現各資料統計結果(<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html">參考資料</a>)<br /></li>
@@ -1506,12 +1506,12 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcf69048" class="outline-3">
-<h3 id="orgcf69048"><span class="section-number-3">3.6</span> 文字註解: plt.text()</h3>
+<div id="outline-container-org01f8aa3" class="outline-3">
+<h3 id="org01f8aa3"><span class="section-number-3">3.6</span> 文字註解: plt.text()</h3>
 <div class="outline-text-3" id="text-3-6">
 </div>
-<div id="outline-container-orgd65e8ec" class="outline-4">
-<h4 id="orgd65e8ec"><span class="section-number-4">3.6.1</span> 語法</h4>
+<div id="outline-container-org2a8723a" class="outline-4">
+<h4 id="org2a8723a"><span class="section-number-4">3.6.1</span> 語法</h4>
 <div class="outline-text-4" id="text-3-6-1">
 <ul class="org-ul">
 <li><code class="src src-python"> plt.text<span style="color: #4f97d7;">(</span> x&#30456;&#23565;&#24231;&#27161;, y&#30456;&#23565;&#24231;&#27161; , &#25991;&#23383;&#23383;&#20018; <span style="color: #bc6ec5;">[</span>, &#20854;&#23427;&#21443;&#25976;<span style="color: #bc6ec5;">]</span> <span style="color: #4f97d7;">)</span> </code><br /></li>
@@ -1519,8 +1519,8 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org0087a5a" class="outline-4">
-<h4 id="org0087a5a"><span class="section-number-4">3.6.2</span> 範例</h4>
+<div id="outline-container-org3df2a19" class="outline-4">
+<h4 id="org3df2a19"><span class="section-number-4">3.6.2</span> 範例</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> matplotlib.pyplot <span style="color: #4f97d7; font-weight: bold;">as</span> plt
@@ -1536,7 +1536,7 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </div>
 
 
-<div id="org722b92c" class="figure">
+<div id="org80fbcf3" class="figure">
 <p><img src="simpleText.png" alt="simpleText.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 6: </span>簡單的文字註解</p>
@@ -1544,8 +1544,8 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa228cb" class="outline-3">
-<h3 id="orgaa228cb"><span class="section-number-3">3.7</span> 子圖表: plt.subplot()</h3>
+<div id="outline-container-org77fad74" class="outline-3">
+<h3 id="org77fad74"><span class="section-number-3">3.7</span> 子圖表: plt.subplot()</h3>
 <div class="outline-text-3" id="text-3-7">
 <ul class="org-ul">
 <li>範例<br /></li>
@@ -1610,7 +1610,7 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </div>
 
 
-<div id="org83f2eb0" class="figure">
+<div id="org3e17335" class="figure">
 <p><img src="simpleSubplot.png" alt="simpleSubplot.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 7: </span>簡單的子圖表</p>
@@ -1623,16 +1623,16 @@ plt.pie( 比例列表 [, 參數1, 參數2, &#x2026;] )<br />
 </div>
 </div>
 
-<div id="outline-container-orga14f05e" class="outline-2">
-<h2 id="orga14f05e"><span class="section-number-2">4</span> 區域資料檔分析</h2>
+<div id="outline-container-orge17a8b1" class="outline-2">
+<h2 id="orge17a8b1"><span class="section-number-2">4</span> 區域資料檔分析</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org972a890" class="outline-3">
-<h3 id="org972a890"><span class="section-number-3">4.1</span> Excel/CSV: Pandas模組</h3>
+<div id="outline-container-org70cc162" class="outline-3">
+<h3 id="org70cc162"><span class="section-number-3">4.1</span> Excel/CSV: Pandas模組</h3>
 <div class="outline-text-3" id="text-4-1">
 </div>
-<div id="outline-container-org340106e" class="outline-4">
-<h4 id="org340106e"><span class="section-number-4">4.1.1</span> CSV</h4>
+<div id="outline-container-orge304162" class="outline-4">
+<h4 id="orge304162"><span class="section-number-4">4.1.1</span> CSV</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 為純文字檔，以逗號分隔值（Comma-Separated Values，CSV，有時也稱為字元分隔值，因為分隔字元也可以不是逗號）。<br />
@@ -1641,8 +1641,8 @@ CSV檔案由任意數目的記錄組成，記錄間以某種換行符分隔；�
 </p>
 </div>
 </div>
-<div id="outline-container-org8a5b055" class="outline-4">
-<h4 id="org8a5b055"><span class="section-number-4">4.1.2</span> Pandas</h4>
+<div id="outline-container-orgd35c97c" class="outline-4">
+<h4 id="orgd35c97c"><span class="section-number-4">4.1.2</span> Pandas</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
 Pandas是python的一個數據分析模組，2009 年底開源出來，提供高效能、簡易使用的資料格式(Data Frame)讓使用者可以快速操作及分析資料，Pandas強化了資料處理的方便性也能與處理網頁資料與資料庫資料等，有點類似於Office的Excel能更加方便的進行運算、分析等<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>。<br />
@@ -1656,8 +1656,8 @@ Pandas主要特色有<sup><a id="fnr.8" class="footref" href="#fn.8">8</a></sup>
 </ol>
 </div>
 </div>
-<div id="outline-container-org8094bb3" class="outline-4">
-<h4 id="org8094bb3"><span class="section-number-4">4.1.3</span> Pandas資料結構</h4>
+<div id="outline-container-orge6e3873" class="outline-4">
+<h4 id="orge6e3873"><span class="section-number-4">4.1.3</span> Pandas資料結構</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <p>
 Pandas是Python的資料分析函式庫，從2009年底開放原始碼，提供簡易使用的資料結構和分析工具，讓分析人員可以快速方便的處理結構化資料。要使用Pandas之前，先瞭解兩個主要資料結構<sup><a id="fnr.9" class="footref" href="#fn.9">9</a></sup>：<br />
@@ -1672,16 +1672,16 @@ Pandas是Python的資料分析函式庫，從2009年底開放原始碼，提供�
 </div>
 </div>
 </div>
-<div id="outline-container-orgfb48f36" class="outline-3">
-<h3 id="orgfb48f36"><span class="section-number-3">4.2</span> Pandas functions</h3>
+<div id="outline-container-org3f268a5" class="outline-3">
+<h3 id="org3f268a5"><span class="section-number-3">4.2</span> Pandas functions</h3>
 <div class="outline-text-3" id="text-4-2">
 </div>
-<div id="outline-container-org20af0ee" class="outline-4">
-<h4 id="org20af0ee"><span class="section-number-4">4.2.1</span> 資料選取<sup><a id="fnr.10" class="footref" href="#fn.10">10</a></sup></h4>
+<div id="outline-container-orgac2dba1" class="outline-4">
+<h4 id="orgac2dba1"><span class="section-number-4">4.2.1</span> 資料選取<sup><a id="fnr.10" class="footref" href="#fn.10">10</a></sup></h4>
 <div class="outline-text-4" id="text-4-2-1">
 </div>
 <ol class="org-ol">
-<li><a id="org4939654"></a>Select as dictinoary (column):<br />
+<li><a id="org83422b4"></a>Select as dictinoary (column):<br />
 <div class="outline-text-5" id="text-4-2-1-1">
 <ul class="org-ul">
 <li><code class="src src-python"> df<span style="color: #4f97d7;">[</span><span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">[</span><span style="color: #67b11d;">[</span><span style="color: #2d9574;">'col1'</span>, col2<span style="color: #2d9574;">']]]] </span></code><br /></li>
@@ -1730,7 +1730,7 @@ Name: id, Length: 212, dtype: int64
 </pre>
 </div>
 </li>
-<li><a id="org5f92f26"></a>Select using index (row):<br />
+<li><a id="org3b596ce"></a>Select using index (row):<br />
 <div class="outline-text-5" id="text-4-2-1-2">
 <ul class="org-ul">
 <li><code class="src src-python"> df<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>:<span style="color: #a45bad;">20</span><span style="color: #4f97d7;">]</span> </code><br /></li>
@@ -1770,7 +1770,7 @@ Name: homework, Length: 212, dtype: bool
 </pre>
 </div>
 </li>
-<li><a id="orgb57723f"></a>loc, iloc, between <sup><a id="fnr.11" class="footref" href="#fn.11">11</a></sup><br />
+<li><a id="org2d788a8"></a>loc, iloc, between <sup><a id="fnr.11" class="footref" href="#fn.11">11</a></sup><br />
 <div class="outline-text-5" id="text-4-2-1-3">
 <ul class="org-ul">
 <li>loc: 基於行標籤和列標籤（x<sub>label</sub>、y<sub>label</sub>）進行索引，以column名做為index<br /></li>
@@ -1779,7 +1779,7 @@ Name: homework, Length: 212, dtype: bool
 </ul>
 </div>
 <ol class="org-ol">
-<li><a id="org43cedcd"></a>範例1<br />
+<li><a id="org59e76f3"></a>範例1<br />
 <div class="outline-text-6" id="text-4-2-1-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> pandas <span style="color: #4f97d7; font-weight: bold;">as</span> pd
@@ -1806,7 +1806,7 @@ Name: homework, Length: 212, dtype: bool
 </pre>
 </div>
 </li>
-<li><a id="org4b836ee"></a>範例2<br />
+<li><a id="org12824d4"></a>範例2<br />
 <div class="outline-text-6" id="text-4-2-1-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -1865,12 +1865,12 @@ Name: midexam, Length: 212, dtype: bool
 </li>
 </ol>
 </div>
-<div id="outline-container-orga9a52c5" class="outline-4">
-<h4 id="orga9a52c5"><span class="section-number-4">4.2.2</span> 條件式選取資料</h4>
+<div id="outline-container-orga044257" class="outline-4">
+<h4 id="orga044257"><span class="section-number-4">4.2.2</span> 條件式選取資料</h4>
 <div class="outline-text-4" id="text-4-2-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgea33055"></a>語法<br />
+<li><a id="org71b9c59"></a>語法<br />
 <div class="outline-text-5" id="text-4-2-2-1">
 <ul class="org-ul">
 <li>src<sub>python</sub> [:exports code]{ df[(condition)] }<br /></li>
@@ -1878,7 +1878,7 @@ Name: midexam, Length: 212, dtype: bool
 </ul>
 </div>
 </li>
-<li><a id="orge64ff14"></a>範例<br />
+<li><a id="orgadc37c8"></a>範例<br />
 <div class="outline-text-5" id="text-4-2-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> pandas <span style="color: #4f97d7; font-weight: bold;">as</span> pd
@@ -1918,19 +1918,19 @@ Name: midexam, Length: 212, dtype: bool
 </ol>
 </div>
 </div>
-<div id="outline-container-org68da583" class="outline-3">
-<h3 id="org68da583"><span class="section-number-3">4.3</span> 進階分析</h3>
+<div id="outline-container-orgfc1f5eb" class="outline-3">
+<h3 id="orgfc1f5eb"><span class="section-number-3">4.3</span> 進階分析</h3>
 <div class="outline-text-3" id="text-4-3">
 </div>
-<div id="outline-container-orgd7a2e1e" class="outline-4">
-<h4 id="orgd7a2e1e"><span class="section-number-4">4.3.1</span> 計算: Aggregation, Groupby</h4>
+<div id="outline-container-org8f6983f" class="outline-4">
+<h4 id="org8f6983f"><span class="section-number-4">4.3.1</span> 計算: Aggregation, Groupby</h4>
 <div class="outline-text-4" id="text-4-3-1">
 </div>
 <ol class="org-ol">
-<li><a id="orgc8aceda"></a><a href="https://is.gd/y4tUl8">create new column based on other column</a><br /></li>
-<li><a id="org5da5cd1"></a>simple aggregation<br /></li>
-<li><a id="orgc8ea16a"></a>groupby with aggregation function<br /></li>
-<li><a id="org3a2db39"></a>範例<br />
+<li><a id="orgcc9c15c"></a><a href="https://is.gd/y4tUl8">create new column based on other column</a><br /></li>
+<li><a id="org24bfbf7"></a>simple aggregation<br /></li>
+<li><a id="org5c56ef5"></a>groupby with aggregation function<br /></li>
+<li><a id="org59fcf94"></a>範例<br />
 <div class="outline-text-5" id="text-4-3-1-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -1990,16 +1990,16 @@ Name: typing, dtype: float64
 </li>
 </ol>
 </div>
-<div id="outline-container-org94a0e9c" class="outline-4">
-<h4 id="org94a0e9c"><span class="section-number-4">4.3.2</span> 資料檔下載: <a href="scores.csv">scores.csv</a></h4>
+<div id="outline-container-org76c644e" class="outline-4">
+<h4 id="org76c644e"><span class="section-number-4">4.3.2</span> 資料檔下載: <a href="scores.csv">scores.csv</a></h4>
 </div>
 </div>
-<div id="outline-container-orgf28d152" class="outline-3">
-<h3 id="orgf28d152"><span class="section-number-3">4.4</span> 資料視覺化</h3>
+<div id="outline-container-org46868ab" class="outline-3">
+<h3 id="org46868ab"><span class="section-number-3">4.4</span> 資料視覺化</h3>
 <div class="outline-text-3" id="text-4-4">
 </div>
-<div id="outline-container-orgceee3b3" class="outline-4">
-<h4 id="orgceee3b3"><span class="section-number-4">4.4.1</span> Bar chart</h4>
+<div id="outline-container-org81926f9" class="outline-4">
+<h4 id="org81926f9"><span class="section-number-4">4.4.1</span> Bar chart</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -2025,15 +2025,15 @@ Name: typing, dtype: float64
 </div>
 
 
-<div id="orgff952b4" class="figure">
+<div id="org889b97e" class="figure">
 <p><img src="pandasPlot1.png" alt="pandasPlot1.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 8: </span>Pandas plot bar chart</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org3fa23c5" class="outline-4">
-<h4 id="org3fa23c5"><span class="section-number-4">4.4.2</span> Pie chart</h4>
+<div id="outline-container-org0783226" class="outline-4">
+<h4 id="org0783226"><span class="section-number-4">4.4.2</span> Pie chart</h4>
 <div class="outline-text-4" id="text-4-4-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -2066,15 +2066,15 @@ Level-3      101         101     101       101      100        101    100
 
 </pre>
 
-<div id="orge7b93a7" class="figure">
+<div id="org154d7db" class="figure">
 <p><img src="pandasPlot2.png" alt="pandasPlot2.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 9: </span>Pandas plot pie chart</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgafa0413" class="outline-4">
-<h4 id="orgafa0413"><span class="section-number-4">4.4.3</span> Scatter chart</h4>
+<div id="outline-container-org815f0e1" class="outline-4">
+<h4 id="org815f0e1"><span class="section-number-4">4.4.3</span> Scatter chart</h4>
 <div class="outline-text-4" id="text-4-4-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -2094,15 +2094,15 @@ Level-3      101         101     101       101      100        101    100
 </div>
 
 
-<div id="org412ac77" class="figure">
+<div id="org34aced8" class="figure">
 <p><img src="PandasPlot3.png" alt="PandasPlot3.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 10: </span>Pandas plot scatter chart</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org0e46407" class="outline-4">
-<h4 id="org0e46407"><span class="section-number-4">4.4.4</span> Line chart</h4>
+<div id="outline-container-org976b9ac" class="outline-4">
+<h4 id="org976b9ac"><span class="section-number-4">4.4.4</span> Line chart</h4>
 <div class="outline-text-4" id="text-4-4-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -2121,7 +2121,7 @@ Level-3      101         101     101       101      100        101    100
 </div>
 
 
-<div id="org856b696" class="figure">
+<div id="org9504b68" class="figure">
 <p><img src="PandasPlot4.png" alt="PandasPlot4.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 11: </span>Pandas plot scatter chart</p>
@@ -2131,24 +2131,24 @@ Level-3      101         101     101       101      100        101    100
 </div>
 </div>
 
-<div id="outline-container-org3d4d8f6" class="outline-2">
-<h2 id="org3d4d8f6"><span class="section-number-2">5</span> 網路爬蟲</h2>
+<div id="outline-container-org0b5b333" class="outline-2">
+<h2 id="org0b5b333"><span class="section-number-2">5</span> 網路爬蟲</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgd8a5728" class="outline-3">
-<h3 id="orgd8a5728"><span class="section-number-3">5.1</span> parse JSON</h3>
+<div id="outline-container-org4166771" class="outline-3">
+<h3 id="org4166771"><span class="section-number-3">5.1</span> parse JSON</h3>
 <div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org66ffbd1" class="outline-4">
-<h4 id="org66ffbd1"><span class="section-number-4">5.1.1</span> What is JSON?<sup><a id="fnr.12" class="footref" href="#fn.12">12</a></sup></h4>
+<div id="outline-container-org441edd2" class="outline-4">
+<h4 id="org441edd2"><span class="section-number-4">5.1.1</span> What is JSON?<sup><a id="fnr.12" class="footref" href="#fn.12">12</a></sup></h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字為基底去儲存和傳送簡單結構資料，你可以透過特定的格式去儲存任何資料(字串,數字,陣列,物件)，也可以透過物件或陣列來傳送較複雜的資料。一旦建立了您的 JSON 資料，就可以非常簡單的跟其他程式溝通或交換資料，因為 JSON 就只是純文字個格式。<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org6d7b867" class="outline-4">
-<h4 id="org6d7b867"><span class="section-number-4">5.1.2</span> JSON的優點</h4>
+<div id="outline-container-org01af666" class="outline-4">
+<h4 id="org01af666"><span class="section-number-4">5.1.2</span> JSON的優點</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <ul class="org-ul">
 <li>相容性高<br /></li>
@@ -2158,8 +2158,8 @@ JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字�
 </ul>
 </div>
 </div>
-<div id="outline-container-org7703953" class="outline-4">
-<h4 id="org7703953"><span class="section-number-4">5.1.3</span> JSON結構</h4>
+<div id="outline-container-orgc7fa6fb" class="outline-4">
+<h4 id="orgc7fa6fb"><span class="section-number-4">5.1.3</span> JSON結構</h4>
 <div class="outline-text-4" id="text-5-1-3">
 <ul class="org-ul">
 <li>物件: {}<br /></li>
@@ -2167,8 +2167,8 @@ JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb952d82" class="outline-4">
-<h4 id="orgb952d82"><span class="section-number-4">5.1.4</span> 實作1: <a href="https://data.gov.tw/dataset/31897">國際主要國家貨幣每月匯率概況</a></h4>
+<div id="outline-container-org5c96730" class="outline-4">
+<h4 id="org5c96730"><span class="section-number-4">5.1.4</span> 實作1: <a href="https://data.gov.tw/dataset/31897">國際主要國家貨幣每月匯率概況</a></h4>
 <div class="outline-text-4" id="text-5-1-4">
 <ul class="org-ul">
 <li><p>
@@ -2254,16 +2254,28 @@ JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字�
 </pre></li>
 </ul>
 
-<div id="orgc4b6f35" class="figure">
+<div id="org27e2b84" class="figure">
 <p><img src="jsonLine.png" alt="jsonLine.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 12: </span>滙率</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb6cce7e" class="outline-4">
-<h4 id="orgb6cce7e"><span class="section-number-4">5.1.5</span> 實作2: <a href="https://data.gov.tw/dataset/113063">澎湖生活博物館每月參觀人次統計資料</a></h4>
+<div id="outline-container-org1e8acde" class="outline-4">
+<h4 id="org1e8acde"><span class="section-number-4">5.1.5</span> 實作2: <a href="https://data.gov.tw/dataset/113063">澎湖生活博物館每月參觀人次統計資料</a></h4>
 <div class="outline-text-4" id="text-5-1-5">
+</div>
+<ol class="org-ol">
+<li><a id="orgd9f258f"></a>中文亂碼處理<br />
+<div class="outline-text-5" id="text-5-1-5-1">
+<ul class="org-ul">
+<li><a href="https://blog.csdn.net/lztttao/article/details/99697813">Python-MacOS上matplotlib顯示中文字體</a><br /></li>
+<li><a href="https://www.codenong.com/6390393/">關於python：Matplotlib使刻度標籤字體更小</a><br /></li>
+</ul>
+</div>
+</li>
+<li><a id="org7e262ea"></a>DEMO<br />
+<div class="outline-text-5" id="text-5-1-5-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">coding:utf-8 </span>
 <span class="linenr"> 2: </span><span style="color: #4f97d7; font-weight: bold;">import</span> requests
@@ -2297,15 +2309,17 @@ JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字�
 </div>
 
 
-<div id="orgb250d8c" class="figure">
+<div id="org717a48e" class="figure">
 <p><img src="jsonBar.png" alt="jsonBar.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 13: </span>參觀人數</p>
 </div>
 </div>
+</li>
+</ol>
 </div>
-<div id="outline-container-org4dfa0f5" class="outline-4">
-<h4 id="org4dfa0f5"><span class="section-number-4">5.1.6</span> 實作3: 下載JSON</h4>
+<div id="outline-container-org74a4a05" class="outline-4">
+<h4 id="org74a4a05"><span class="section-number-4">5.1.6</span> 實作3: 下載JSON</h4>
 <div class="outline-text-4" id="text-5-1-6">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> requests
@@ -2334,8 +2348,8 @@ JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字�
 </pre>
 </div>
 </div>
-<div id="outline-container-org6a97941" class="outline-4">
-<h4 id="org6a97941"><span class="section-number-4">5.1.7</span> 實作: 解析JSON</h4>
+<div id="outline-container-org475ff21" class="outline-4">
+<h4 id="org475ff21"><span class="section-number-4">5.1.7</span> 實作: 解析JSON</h4>
 <div class="outline-text-4" id="text-5-1-7">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> requests
@@ -2402,8 +2416,8 @@ JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字�
 </div>
 
 
-<div id="outline-container-orgc2f9d3f" class="outline-4">
-<h4 id="orgc2f9d3f"><span class="section-number-4">5.1.8</span> 練習</h4>
+<div id="outline-container-org09141e5" class="outline-4">
+<h4 id="org09141e5"><span class="section-number-4">5.1.8</span> 練習</h4>
 <div class="outline-text-4" id="text-5-1-8">
 <p>
 以程式抓取<a href="https://data.kcg.gov.tw/dataset?res_format=JSON">高雄市政府資料開放平台</a>的線上JSON資料，parse並輸出所需結果<br />
@@ -2411,16 +2425,16 @@ JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字�
 </div>
 </div>
 </div>
-<div id="outline-container-org73f528c" class="outline-3">
-<h3 id="org73f528c"><span class="section-number-3">5.2</span> parse HTML</h3>
+<div id="outline-container-org44898d6" class="outline-3">
+<h3 id="org44898d6"><span class="section-number-3">5.2</span> parse HTML</h3>
 <div class="outline-text-3" id="text-5-2">
 <ul class="org-ul">
 <li>what is HTML<br /></li>
 <li>精神：將程式模仿成一般user<br /></li>
 </ul>
 </div>
-<div id="outline-container-org9699913" class="outline-4">
-<h4 id="org9699913"><span class="section-number-4">5.2.1</span> 所需套件</h4>
+<div id="outline-container-org227b485" class="outline-4">
+<h4 id="org227b485"><span class="section-number-4">5.2.1</span> 所需套件</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <ul class="org-ul">
 <li>BeautifulSoup<br /></li>
@@ -2431,12 +2445,12 @@ pip install beautifulsoup4<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orged773b0" class="outline-3">
-<h3 id="orged773b0"><span class="section-number-3">5.3</span> 範例: 以程式抓取PTT電影板header</h3>
+<div id="outline-container-org1ce7b1b" class="outline-3">
+<h3 id="org1ce7b1b"><span class="section-number-3">5.3</span> 範例: 以程式抓取PTT電影板header</h3>
 <div class="outline-text-3" id="text-5-3">
 </div>
-<div id="outline-container-orgdee3ac6" class="outline-4">
-<h4 id="orgdee3ac6"><span class="section-number-4">5.3.1</span> 原則</h4>
+<div id="outline-container-org082a520" class="outline-4">
+<h4 id="org082a520"><span class="section-number-4">5.3.1</span> 原則</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <ol class="org-ol">
 <li>要抓網路資料，就要先仔細觀察網頁內容<br /></li>
@@ -2444,12 +2458,12 @@ pip install beautifulsoup4<br />
 </ol>
 </div>
 </div>
-<div id="outline-container-org72d78dc" class="outline-4">
-<h4 id="org72d78dc"><span class="section-number-4">5.3.2</span> 實作: 取得HTML資料</h4>
+<div id="outline-container-orgf20036d" class="outline-4">
+<h4 id="orgf20036d"><span class="section-number-4">5.3.2</span> 實作: 取得HTML資料</h4>
 <div class="outline-text-4" id="text-5-3-2">
 </div>
 <ol class="org-ol">
-<li><a id="orgbaf97f0"></a>第一版<br />
+<li><a id="org6c8163b"></a>第一版<br />
 <div class="outline-text-5" id="text-5-3-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25235;&#21462;PTT&#38651;&#24433;&#29256;header</span>
@@ -2472,7 +2486,7 @@ urllib.error.HTTPError: HTTP Error 403: Forbidden
 </div>
 </li>
 
-<li><a id="orgce35781"></a>第二版:加入header<br />
+<li><a id="org4f3b1da"></a>第二版:加入header<br />
 <div class="outline-text-5" id="text-5-3-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> urllib.request <span style="color: #4f97d7; font-weight: bold;">as</span> req
@@ -2505,12 +2519,12 @@ er"&gt;
 </ol>
 </div>
 
-<div id="outline-container-orgc93f445" class="outline-4">
-<h4 id="orgc93f445"><span class="section-number-4">5.3.3</span> 實作：解析HTML資料內容</h4>
+<div id="outline-container-org5580124" class="outline-4">
+<h4 id="org5580124"><span class="section-number-4">5.3.3</span> 實作：解析HTML資料內容</h4>
 <div class="outline-text-4" id="text-5-3-3">
 </div>
 <ol class="org-ol">
-<li><a id="orgb7b0b9d"></a>安裝解析HTML所需套件<br />
+<li><a id="org3f44754"></a>安裝解析HTML所需套件<br />
 <div class="outline-text-5" id="text-5-3-3-1">
 <div class="org-src-container">
 <pre class="src src-shell">pip install beautifulsoup4
@@ -2519,7 +2533,7 @@ er"&gt;
 </div>
 </li>
 
-<li><a id="orgbb83450"></a>第三版: 解析HTML<br />
+<li><a id="org4e64a1b"></a>第三版: 解析HTML<br />
 <div class="outline-text-5" id="text-5-3-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> urllib.request <span style="color: #4f97d7; font-weight: bold;">as</span> req
@@ -2613,8 +2627,8 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </ol>
 </div>
 </div>
-<div id="outline-container-orgaf9f5ca" class="outline-3">
-<h3 id="orgaf9f5ca"><span class="section-number-3">5.4</span> 參考資料</h3>
+<div id="outline-container-orga78c75c" class="outline-3">
+<h3 id="orga78c75c"><span class="section-number-3">5.4</span> 參考資料</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=9Z9xKWfNo7k">https://www.youtube.com/watch?v=9Z9xKWfNo7k</a><br /></li>
@@ -2623,8 +2637,8 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div>
 </div>
 
-<div id="outline-container-org3691761" class="outline-2">
-<h2 id="org3691761"><span class="section-number-2">6</span> Python學習資源</h2>
+<div id="outline-container-org17d953d" class="outline-2">
+<h2 id="org17d953d"><span class="section-number-2">6</span> Python學習資源</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><a href="https://www.runoob.com/python3/python3-tutorial.html">Python 3教程</a><br /></li>
@@ -2633,8 +2647,8 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div>
 </div>
 
-<div id="outline-container-org34a5038" class="outline-2">
-<h2 id="org34a5038"><span class="section-number-2">7</span> 0802 CNN</h2>
+<div id="outline-container-org7b04a5b" class="outline-2">
+<h2 id="org7b04a5b"><span class="section-number-2">7</span> 0802 CNN</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 <a href="https://reurl.cc/Y2gKo">https://reurl.cc/Y2gKo</a>: 各種常用的library, function<br />
@@ -2642,8 +2656,8 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div>
 </div>
 
-<div id="outline-container-org2a97b02" class="outline-2">
-<h2 id="org2a97b02"><span class="section-number-2">8</span> 以python下載網路資料</h2>
+<div id="outline-container-org1040689" class="outline-2">
+<h2 id="org1040689"><span class="section-number-2">8</span> 以python下載網路資料</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
 <li>import urllib.request as req<br /></li>
@@ -2651,8 +2665,8 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div>
 </div>
 
-<div id="outline-container-org0ea45c3" class="outline-2">
-<h2 id="org0ea45c3"><span class="section-number-2">9</span> 如何把python程式publish成網站應用程式</h2>
+<div id="outline-container-orgdc5a89e" class="outline-2">
+<h2 id="orgdc5a89e"><span class="section-number-2">9</span> 如何把python程式publish成網站應用程式</h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -2715,7 +2729,7 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: yen yung chin</p>
-<p class="date">Created: 2020-03-08 Sun 13:56</p>
+<p class="date">Created: 2020-03-08 Sun 14:07</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
