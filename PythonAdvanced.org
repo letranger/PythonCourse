@@ -965,7 +965,6 @@ Name: midexam, Length: 212, dtype: bool
 109  201911136          91     100     81.58     51.0        4.0
 171  201911626          98      72     97.37     50.0       75.0
 #+end_example
-
 *** 條件式選取資料
 **** 語法
 - src_python [:exports code]{ df[(condition)] }
@@ -1182,38 +1181,235 @@ Name: typing, dtype: float64
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 500
 [[file:PandasPlot4.png]]
-* 網路爬蟲
-#+begin_src python -r -n :results output :exports both
-  import urllib.request as req
-  url = "https://huodalife.pixnet.net/blog/"
-  # 幫request加上一個header
-  request = req.Request(url, headers = {
-      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
-  })
-  
-  with req.urlopen(request) as response:
-      data = response.read().decode("utf-8")
-
-  import bs4
-  root = bs4.BeautifulSoup(data,"html.parser")
-
-  titles = root.find_all("li", class_="title")
-  pubs = root.find_all("li", class_="publish")
-  for pub, title in zip(pubs, titles):
-      print(pub.span.string,title.a.string)
-#+end_src
-
-* Python學習資源
-- [[https://www.runoob.com/python3/python3-tutorial.html][Python 3教程]]
-- [[http://liyangbit.com/tutorials/][Python教程]]
-  
-* 0802 CNN
-https://reurl.cc/Y2gKo: 各種常用的library, function
-
-* 以python下載網路資料
-- import urllib.request as req 
 
 * 網路爬蟲
+** parse JSON
+*** What is JSON?[fn:13]
+JSON(JavaScript Object Notation，JavaScript物件表示法)是個以純文字為基底去儲存和傳送簡單結構資料，你可以透過特定的格式去儲存任何資料(字串,數字,陣列,物件)，也可以透過物件或陣列來傳送較複雜的資料。一旦建立了您的 JSON 資料，就可以非常簡單的跟其他程式溝通或交換資料，因為 JSON 就只是純文字個格式。
+*** JSON的優點
+- 相容性高
+- 格式容易瞭解，閱讀及修改方便
+- 支援許多資料格式 (number,string,booleans,nulls,array,associative array)
+- 許多程式都支援函式庫讀取或修改 JSON 資料
+*** JSON結構
+- 物件: {}
+- 陣列: []
+*** 實作1: [[https://data.gov.tw/dataset/31897][國際主要國家貨幣每月匯率概況]]
+- 下載JSON
+  #+BEGIN_SRC python -r -n :results output :exports both
+    import requests
+
+    json_url = 'https://apiservice.mol.gov.tw/OdService/download/A17030000J-000049-8nD'
+    response = requests.get(json_url)
+
+    jsonRes = response.json()
+    print(jsonRes)
+    print(type(jsonRes))
+    for item in jsonRes:
+        print(item['月別'], ": ", item['新台幣'], " / ", item['歐元'])
+    
+  #+END_SRC
+
+  #+RESULTS:
+  #+begin_example
+  [{'月別': '2019-01', '新台幣': '30.740', '人民幣': '6.7055', '日圓': '108.73', '韓元': '1112.7', '新加坡元': '1.3453', '歐元': '1.1497', '英鎊': '1.3135', '澳幣': '0.7270'}, {'月別': '2019-02', '新台幣': '30.775', '人民幣': '6.6835', '日圓': '110.37', '韓元': '1119.1', '新加坡元': '1.3479', '歐元': '1.1379', '英鎊': '1.3256', '澳幣': '0.7179'}, {'月別': '2019-03', '新台幣': '30.825', '人民幣': '6.7202', '日圓': '110.74', '韓元': '1135.1', '新加坡元': '1.3547', '歐元': '1.1232', '英鎊': '1.3025', '澳幣': '0.7090'}, {'月別': '2019-04', '新台幣': '30.905', '人民幣': '6.7366', '日圓': '111.33', '韓元': '1168.2', '新加坡元': '1.3620', '歐元': '1.1186', '英鎊': '1.2953', '澳幣': '0.7043'}, {'月別': '2019-05', '新台幣': '31.612', '人民幣': '6.9020', '日圓': '108.77', '韓元': '1190.9', '新加坡元': '1.3774', '歐元': '1.1144', '英鎊': '1.2621', '澳幣': '0.6924'}, {'月別': '2019-06', '新台幣': '31.072', '人民幣': '6.8683', '日圓': '107.64', '韓元': '1154.7', '新加坡元': '1.3528', '歐元': '1.1387', '英鎊': '1.2676', '澳幣': '0.7016'}, {'月別': '2019-07', '新台幣': '31.096', '人民幣': '6.8855', '日圓': '108.56', '韓元': '1183.1', '新加坡元': '1.3697', '歐元': '1.1153', '英鎊': '1.2165', '澳幣': '0.6888'}, {'月別': '2019-08', '新台幣': '31.410', '人民幣': '7.1452', '日圓': '106.51', '韓元': '1211.2', '新加坡元': '1.3884', '歐元': '1.1039', '英鎊': '1.2177', '澳幣': '0.6720'}, {'月別': '2019-09', '新台幣': '31.042', '人民幣': '7.1195', '日圓': '107.84', '韓元': '1199.9', '新加坡元': '1.3823', '歐元': '1.0918', '英鎊': '1.2280', '澳幣': '0.6758'}, {'月別': '2019-10', '新台幣': '30.462', '人民幣': '7.0350', '日圓': '108.59', '韓元': '1163.4', '新加坡元': '1.3602', '歐元': '1.1162', '英鎊': '1.2940', '澳幣': '0.6920'}, {'月別': '2019-11', '新台幣': '30.513', '人民幣': '7.0261', '日圓': '109.50', '韓元': '1181.2', '新加坡元': '1.3668', '歐元': '1.1012', '英鎊': '1.2918', '澳幣': '0.6778'}, {'月別': '2019-12', '新台幣': '30.106', '人民幣': '6.9662', '日圓': '108.64', '韓元': '1154.6', '新加坡元': '1.3461', '歐元': '1.1210', '英鎊': '1.3139', '澳幣': '0.7009'}, {'月別': '2020-01', '新台幣': '30.250', '人民幣': '6.9300', '日圓': '109.05', '韓元': '1191.8', '新加坡元': '1.3624', '歐元': '1.1028', '英鎊': '1.3128', '澳幣': '0.6710'}]
+  <class 'list'>
+  2019-01 :  30.740  /  1.1497
+  2019-02 :  30.775  /  1.1379
+  2019-03 :  30.825  /  1.1232
+  2019-04 :  30.905  /  1.1186
+  2019-05 :  31.612  /  1.1144
+  2019-06 :  31.072  /  1.1387
+  2019-07 :  31.096  /  1.1153
+  2019-08 :  31.410  /  1.1039
+  2019-09 :  31.042  /  1.0918
+  2019-10 :  30.462  /  1.1162
+  2019-11 :  30.513  /  1.1012
+  2019-12 :  30.106  /  1.1210
+  2020-01 :  30.250  /  1.1028
+  #+end_example
+- 資料視覺化
+  #+BEGIN_SRC python -r -n :results output :exports both
+    import requests
+    import pandas as pd
+
+    json_url = 'https://apiservice.mol.gov.tw/OdService/download/A17030000J-000049-8nD'
+    response = requests.get(json_url)
+    jsonRes = response.json()
+
+    dates = [i['月別'] for i in jsonRes]
+    NT = [float(i['新台幣']) for i in jsonRes]
+    JPY = [float(i['日圓']) for i in jsonRes]
+    EUR = [float(i['歐元']) for i in jsonRes]
+    df = pd.DataFrame({'月份':dates, '新台幣':NT, '日圓':JPY, '歐元':EUR})
+    df['月份'] = [pd.to_datetime(i, format='%y%m', errors='ignore') for i in df['月份']]
+    print(df)
+
+    import matplotlib.pyplot as plt
+
+    plt.clf()
+    plt.plot(df['月份'], NT)
+    #plt.plot(dates, JPY)
+    #plt.plot(dates, EUR)
+    plt.savefig('jsonLine.png', dpi=300)
+
+  #+END_SRC
+
+  #+RESULTS:
+  #+begin_example
+           月份     新台幣      日圓      歐元
+  0   2019-01  30.740  108.73  1.1497
+  1   2019-02  30.775  110.37  1.1379
+  2   2019-03  30.825  110.74  1.1232
+  3   2019-04  30.905  111.33  1.1186
+  4   2019-05  31.612  108.77  1.1144
+  5   2019-06  31.072  107.64  1.1387
+  6   2019-07  31.096  108.56  1.1153
+  7   2019-08  31.410  106.51  1.1039
+  8   2019-09  31.042  107.84  1.0918
+  9   2019-10  30.462  108.59  1.1162
+  10  2019-11  30.513  109.50  1.1012
+  11  2019-12  30.106  108.64  1.1210
+  12  2020-01  30.250  109.05  1.1028
+  #+end_example
+#+CAPTION: 滙率
+#+LABEL: fig:SimpleJSONPlot
+#+name: fig:SimpleJSONPlot
+#+ATTR_LATEX: :width 300
+#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 300
+[[file:jsonLine.png]]
+*** 實作2: [[https://data.gov.tw/dataset/113063][澎湖生活博物館每月參觀人次統計資料]]
+
+#+BEGIN_SRC python -r -n :results output :exports both
+  #coding:utf-8 
+  import requests
+  import pandas as pd
+  from datetime import datetime
+
+  json_url = 'http://opendataap2.penghu.gov.tw/resource/files/2020-01-12/eaa641fc3af66277e60b13201ca11232.json'
+
+  response = requests.get(json_url)
+  jsonRes = response.json()
+
+  year = [i['年度'] for i in jsonRes]
+  month = [i['月份'] for i in jsonRes]
+  visitor = [int(i['人數']) for i in jsonRes]
+
+  df = pd.DataFrame({'year':year, 'month':month, 'visitor':visitor})
+  df['date'] = [str(int(i)+1911)+'-'+j for i, j in zip(df['year'], df['month'])]
+
+  df['time'] = [pd.to_datetime(i, format='%y%m', errors='ignore') for i in df['date']]
+
+  import matplotlib.pyplot as plt
+  plt.rcParams['font.family'] = 'cwTeXFangSong'
+  plt.clf()
+  plt.bar(df['date'], df['visitor'])
+  plt.xticks(rotation=60, fontsize=6)
+  plt.ylabel('人數')
+  plt.xlabel('日期')
+  plt.title('澎湖生活博物館每月參觀人次')
+  plt.savefig('jsonBar.png', dpi=300, bbox_inches='tight')
+#+END_SRC
+
+#+RESULTS:
+
+#+CAPTION: 參觀人數
+#+LABEL: fig:SimpleJSONBar
+#+name: fig:SimpleJSONBar
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 300
+[[file:jsonBar.png]]
+*** 實作3: 下載JSON
+#+BEGIN_SRC python -r -n :results output :exports both
+  import requests
+  import json
+  json_url = 'http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1&rows=20'
+  response = requests.get(json_url)
+
+  print(response)
+  # 方法1
+  jsonRes1 = response.json()
+  print(type(jsonRes1))
+  # 
+  jsonRes2 = json.loads(response.text)
+  print(type(jsonRes2))
+
+  print(jsonRes2)
+#+END_SRC
+
+#+RESULTS:
+: <Response [200]>
+: <class 'dict'>
+: <class 'dict'>
+: {'total': 20, 'rows': [{'author': '立志高中', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/三民區108學年度立志高中第1號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度立志高中第1號第1次公告', 'pubDate': '109-03-06'}, {'author': '阿蓮國小', 'attributes': {'subjects': '五年級自然與生活科技領域', 'url': 'https://employ.kh.edu.tw/Html/2020/3/阿蓮區108學年度阿蓮國小第12號第3次公告簡章.html', 'target': '_blank'}, 'title': '108學年度阿蓮國小第12號第3次公告', 'pubDate': '109-03-06'}, {'author': '金潭國小', 'attributes': {'subjects': '學前不分類巡迴輔導班', 'url': 'https://employ.kh.edu.tw/Html/2020/3/林園區108學年度金潭國小第6號第3次公告簡章.html', 'target': '_blank'}, 'title': '108學年度金潭國小第6號第3次公告', 'pubDate': '109-03-06'}, {'author': '楠梓國中', 'attributes': {'subjects': '歷史', 'url': 'https://employ.kh.edu.tw/Html/2020/3/楠梓區108學年度楠梓國中第8號第3次公告簡章.html', 'target': '_blank'}, 'title': '108學年度楠梓國中第8號第3次公告', 'pubDate': '109-03-06'}, {'author': '燕巢國中', 'attributes': {'subjects': '資訊科技科(電腦科)', 'url': 'https://employ.kh.edu.tw/Html/2020/3/燕巢區108學年度燕巢國中第13號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度燕巢國中第13號第1次公告', 'pubDate': '109-03-06'}, {'author': '中崙國中', 'attributes': {'subjects': '英語', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鳳山區108學年度中崙國中第7號第3次公告簡章.html', 'target': '_blank'}, 'title': '108學年度中崙國中第7號第3次公告', 'pubDate': '109-03-05'}, {'author': '烏林國小', 'attributes': {'subjects': '特教身心障礙巡迴輔導班', 'url': 'https://employ.kh.edu.tw/Html/2020/3/仁武區108學年度烏林國小第3號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度烏林國小第3號第1次公告', 'pubDate': '109-03-04'}, {'author': '巴楠花部落中小學', 'attributes': {'subjects': '生物', 'url': 'https://employ.kh.edu.tw/Html/2020/3/杉林區108學年度巴楠花部落中小學第14號第3次公告簡章.html', 'target': '_blank'}, 'title': '108學年度巴楠花部落中小學第14號第3次公告', 'pubDate': '109-03-04'}, {'author': '中山國小', 'attributes': {'subjects': '綜合科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鼓山區108學年度中山國小第10號第2次公告簡章.html', 'target': '_blank'}, 'title': '108學年度中山國小第10號第2次公告', 'pubDate': '109-03-03'}, {'author': '福誠高中', 'attributes': {'subjects': '地理', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鳳山區108學年度福誠高中第19號第3次公告簡章.html', 'target': '_blank'}, 'title': '108學年度福誠高中第19號第3次公告', 'pubDate': '109-03-03'}, {'author': '彌陀國小', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/彌陀區108學年度彌陀國小第5號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度彌陀國小第5號第1次公告', 'pubDate': '109-03-03'}, {'author': '七賢國中', 'attributes': {'subjects': '數學', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鼓山區108學年度七賢國中第9號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度七賢國中第9號第1次公告', 'pubDate': '109-03-03'}, {'author': '文德國小', 'attributes': {'subjects': '普通科留職停薪', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鳳山區108學年度文德國小第5號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度文德國小第5號第1次公告', 'pubDate': '109-03-03'}, {'author': '巴楠花部落中小學', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/杉林區108學年度巴楠花部落中小學第13號第4次公告簡章.html', 'target': '_blank'}, 'title': '108學年度巴楠花部落中小學第13號第4次公告', 'pubDate': '109-03-03'}, {'author': '八卦國小', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/仁武區108學年度八卦國小第8號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度八卦國小第8號第1次公告', 'pubDate': '109-03-03'}, {'author': '登發國小', 'attributes': {'subjects': '普通科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/仁武區108學年度登發國小第3號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度登發國小第3號第1次公告', 'pubDate': '109-03-03'}, {'author': '溪埔國中', 'attributes': {'subjects': '特殊教育數學專長', 'url': 'https://employ.kh.edu.tw/Html/2020/3/大樹區108學年度溪埔國中第7號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度溪埔國中第7號第1次公告', 'pubDate': '109-03-02'}, {'author': '青山國小', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/小港區108學年度青山國小第7號第3次公告簡章.html', 'target': '_blank'}, 'title': '108學年度青山國小第7號第3次公告', 'pubDate': '109-03-02'}, {'author': '永清國小', 'attributes': {'subjects': '資源班', 'url': 'https://employ.kh.edu.tw/Html/2020/3/左營區108學年度永清國小第4號第2次公告簡章.html', 'target': '_blank'}, 'title': '108學年度永清國小第4號第2次公告', 'pubDate': '109-03-02'}, {'author': '甲仙國中', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/甲仙區108學年度甲仙國中第5號第1次公告簡章.html', 'target': '_blank'}, 'title': '108學年度甲仙國中第5號第1次公告', 'pubDate': '109-03-02'}]}
+*** 實作: 解析JSON
+#+BEGIN_SRC python -r -n :results output :exports both
+  import requests
+  import json
+
+  response = requests.get('http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1&rows=20')
+  jsonRes = response.json()
+  #print(jsonRes['rows'])
+  for item in jsonRes['rows']:
+      print(item['author'], ":", item['title']," / ", item['pubDate'])
+  sortJR = jsonRes['rows']
+  print(type(sortJR))
+
+  sortJR.sort(key=lambda x: x2['author'], reverse=False)
+  for item in sortJR:
+      print(item['author'], ":", item['title']," / ", item['pubDate'])
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+立志高中 : 108學年度立志高中第1號第1次公告  /  109-03-06
+阿蓮國小 : 108學年度阿蓮國小第12號第3次公告  /  109-03-06
+金潭國小 : 108學年度金潭國小第6號第3次公告  /  109-03-06
+楠梓國中 : 108學年度楠梓國中第8號第3次公告  /  109-03-06
+燕巢國中 : 108學年度燕巢國中第13號第1次公告  /  109-03-06
+中崙國中 : 108學年度中崙國中第7號第3次公告  /  109-03-05
+烏林國小 : 108學年度烏林國小第3號第1次公告  /  109-03-04
+巴楠花部落中小學 : 108學年度巴楠花部落中小學第14號第3次公告  /  109-03-04
+中山國小 : 108學年度中山國小第10號第2次公告  /  109-03-03
+福誠高中 : 108學年度福誠高中第19號第3次公告  /  109-03-03
+彌陀國小 : 108學年度彌陀國小第5號第1次公告  /  109-03-03
+七賢國中 : 108學年度七賢國中第9號第1次公告  /  109-03-03
+文德國小 : 108學年度文德國小第5號第1次公告  /  109-03-03
+巴楠花部落中小學 : 108學年度巴楠花部落中小學第13號第4次公告  /  109-03-03
+八卦國小 : 108學年度八卦國小第8號第1次公告  /  109-03-03
+登發國小 : 108學年度登發國小第3號第1次公告  /  109-03-03
+溪埔國中 : 108學年度溪埔國中第7號第1次公告  /  109-03-02
+青山國小 : 108學年度青山國小第7號第3次公告  /  109-03-02
+永清國小 : 108學年度永清國小第4號第2次公告  /  109-03-02
+甲仙國中 : 108學年度甲仙國中第5號第1次公告  /  109-03-02
+<class 'list'>
+七賢國中 : 108學年度七賢國中第9號第1次公告  /  109-03-03
+中山國小 : 108學年度中山國小第10號第2次公告  /  109-03-03
+中崙國中 : 108學年度中崙國中第7號第3次公告  /  109-03-05
+八卦國小 : 108學年度八卦國小第8號第1次公告  /  109-03-03
+巴楠花部落中小學 : 108學年度巴楠花部落中小學第14號第3次公告  /  109-03-04
+巴楠花部落中小學 : 108學年度巴楠花部落中小學第13號第4次公告  /  109-03-03
+彌陀國小 : 108學年度彌陀國小第5號第1次公告  /  109-03-03
+文德國小 : 108學年度文德國小第5號第1次公告  /  109-03-03
+楠梓國中 : 108學年度楠梓國中第8號第3次公告  /  109-03-06
+永清國小 : 108學年度永清國小第4號第2次公告  /  109-03-02
+溪埔國中 : 108學年度溪埔國中第7號第1次公告  /  109-03-02
+烏林國小 : 108學年度烏林國小第3號第1次公告  /  109-03-04
+燕巢國中 : 108學年度燕巢國中第13號第1次公告  /  109-03-06
+甲仙國中 : 108學年度甲仙國中第5號第1次公告  /  109-03-02
+登發國小 : 108學年度登發國小第3號第1次公告  /  109-03-03
+福誠高中 : 108學年度福誠高中第19號第3次公告  /  109-03-03
+立志高中 : 108學年度立志高中第1號第1次公告  /  109-03-06
+金潭國小 : 108學年度金潭國小第6號第3次公告  /  109-03-06
+阿蓮國小 : 108學年度阿蓮國小第12號第3次公告  /  109-03-06
+青山國小 : 108學年度青山國小第7號第3次公告  /  109-03-02
+#+end_example
+
+
+*** 練習
+以程式抓取[[https://data.kcg.gov.tw/dataset?res_format=JSON][高雄市政府資料開放平台]]的線上JSON資料，parse並輸出所需結果
 ** parse HTML
 - what is HTML
 - 精神：將程式模仿成一般user
@@ -1369,9 +1565,21 @@ Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
 ** 參考資料
 - https://www.youtube.com/watch?v=9Z9xKWfNo7k
 
+* Python學習資源
+- [[https://www.runoob.com/python3/python3-tutorial.html][Python 3教程]]
+- [[http://liyangbit.com/tutorials/][Python教程]]
+  
+* 0802 CNN
+https://reurl.cc/Y2gKo: 各種常用的library, function
+
+* 以python下載網路資料
+- import urllib.request as req 
+
 * 如何把python程式publish成網站應用程式
 
 * Footnotes
+
+[fn:13] [[https://blog.wu-boy.com/2011/04/%E4%BD%A0%E4%B8%8D%E5%8F%AF%E4%B8%8D%E7%9F%A5%E7%9A%84-json-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/][你不可不知的 JSON 基本介紹]]
 
 [fn:1] [[https://medium.com/ai%E5%8F%8D%E6%96%97%E5%9F%8E/anaconda-miniconda-conda-pip%E7%9A%84%E7%9B%B8%E4%BA%92%E9%97%9C%E4%BF%82-%E8%BD%89%E8%BC%89-a0536f3a257][Anaconda、Miniconda、Conda、pip的相互關係 (轉載)]]
 
