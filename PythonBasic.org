@@ -1,21 +1,41 @@
 #+Title: Basic Materials of Python
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-#+STARTUP: showeverything
-#+PROPERTY: header-args :eval never-export
-#+STARTUP: inlineimages
-#+OPTIONS: H:4
-#+OPTIONS: \n:t
 
+#+LANGUAGE: en
+#+LATEX_HEADER: \usepackage[AUTO]{babel}
+#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{Outline}}
 
 #+LATEX_HEADER: \usepackage[UTF8, heading]{ctex} 
-#+LATEX_HEADER: \usepackage[UTF8]{ctexcap} 
-#+LATEX_HEADER:  \usepackage{CJKnumb}
+#+LATEX_HEADER: \usepackage[UTF8]{ctexcap}
+#+LATEX_HEADER: \usepackage{xltxtra}
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \usepackage{lmodern}
+#+LATEX_HEADER: \usepackage{verbatim}
+#+LATEX_HEADER: \usepackage{float}
+#+LATEX_HEADER: \usepackage{tikz}
+#+LATEX_HEADER: \usepackage{wrapfig}
+#+LATEX_HEADER: \usepackage{soul}
+#+LATEX_HEADER: \usepackage{textcomp}
+#+LATEX_HEADER: \usepackage{listing}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \usepackage{algorithm}
+#+LATEX_HEADER: \usepackage{algorithmic}
+#+LATEX_HEADER: \usepackage{marvosym}
+#+LATEX_HEADER: \usepackage{wasysym}
+#+LATEX_HEADER: \usepackage{natbib}
+#+LATEX_HEADER: \usepackage{fancyhdr}
+#+LATEX_HEADER: \usepackage{fontspec,xunicode,xltxtra}
+#+LATEX_HEADER: \usepackage{CJKnumb}
+#+LATEX_HEADER: \usepackage{amsfonts}
+#+LATEX_HEADER: \usepackage[default]{sourcecodepro}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \setCJKmainfont{SimSun} % 設置缺省中文字體
+#+LATEX_HEADER: \setmainfont{Times New Roman} % 英文襯線字體
+#+LATEX_HEADER: \setsansfont{Source Code Pro} % 英文無襯線字體
+#+LATEX_HEADER: \setmonofont{Source Code Pro} % 英文等寬字體
+#+LATEX_HEADER: \setCJKmainfont[Scale=0.9]{Adobe Heiti Std} % 中文字體
+#+LATEX_HEADER: \setCJKmonofont[Scale=0.9]{Adobe Heiti Std}
 #+LATEX_HEADER: \usepackage{color}
-#+LATEX_HEADER: \usepackage{listings}
 #+LATEX_HEADER: \RequirePackage{fancyvrb}
-#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small}
-#+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
-#+LaTeX_HEADER: \lstset{basicstyle=\tiny\ttfamily}
 #+LATEX_HEADER: \usepackage{placeins}
 #+LATEX_HEADER: \vspace{-0.2cm}
 #+LATEX_CLASS: article
@@ -29,18 +49,63 @@
 #+LATEX_HEADER: \definecolor{gray}{rgb}{0.4,0.4,0.4}
 #+LATEX_HEADER: \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
 #+LATEX_HEADER: \definecolor{bubbles}{rgb}{0.91, 1.0, 1.0}
+#+LATEX_HEADER: \definecolor{foreground}{RGB}{220,220,204} % 淺灰
+#+LATEX_HEADER: \definecolor{background}{RGB}{62,62,62} % 淺黑
+#+LATEX_HEADER: \definecolor{preprocess}{RGB}{250,187,249} % 淺紫
+#+LATEX_HEADER: \definecolor{var}{RGB}{239,224,174} % 淺肉色
+#+LATEX_HEADER: \definecolor{string}{RGB}{154,150,230} % 淺紫色
+#+LATEX_HEADER: \definecolor{type}{RGB}{225,225,116} % 淺黃
+#+LATEX_HEADER: \definecolor{function}{RGB}{140,206,211} % 淺天藍
+#+LATEX_HEADER: \definecolor{keyword}{RGB}{239,224,174} % 淺肉色
+#+LATEX_HEADER: \definecolor{comment}{RGB}{180,98,4} % 深褐色
+#+LATEX_HEADER: \definecolor{doc}{RGB}{175,215,175} % 淺鉛綠
+#+LATEX_HEADER: \definecolor{comdil}{RGB}{111,128,111} % 深灰
+#+LATEX_HEADER: \definecolor{constant}{RGB}{220,162,170} % 粉紅
 #+LATEX_HEADER: \lstdefinelanguage{python}{
 #+LATEX_HEADER:  backgroundcolor=\color{bubbles},
-#+LATEX_HEADER:  basicstyle=\footnotesize \ttfamily \color{black} \bfseries,
+#+LATEX_HEADER:  basicstyle=\footnotesize \ttfamily \color{dblue} \small \mono \bfseries,
 #+LATEX_HEADER:  breakatwhitespace=false,
 #+LATEX_HEADER:  breaklines=true,
 #+LATEX_HEADER:  captionpos=b,
-#+LATEX_HEADER:  commentstyle=\color{dred},
+#+LATEX_HEADER:  comment=[l]{\#},
+#+LATEX_HEADER:  morecomment=[s]{/*}{*/},
+#+LATEX_HEADER:  commentstyle=\color{comment} \slshape \small \itshape,
+#+LATEX_HEADER:  ndkeywords={boolean, throw, import, typeof, null, catch, switch, for, in, int, str, float, self, return, class, if ,elif, endif, while, do, else, True, False , catch, def},
+#+LATEX_HEADER:  ndkeywordstyle=\color{dred} \bfseries \small \mono,
+#+LATEX_HEADER:  identifierstyle=\color{black},
 #+LATEX_HEADER:  deletekeywords={...},
 #+LATEX_HEADER:  escapeinside={\%*}{*)},
 #+LATEX_HEADER:  frame=single,
-#+LATEX_HEADER:  language=C++,
-#+LATEX_HEADER:  keywordstyle=\color{purple},
+#+LATEX_HEADER:  frameround=tttt,
+#+LATEX_HEADER:  framesep=0pt,
+#+LATEX_HEADER:  rulecolor=\color{background},
+#+LATEX_HEADER:  morekeywords={BRIEFDescriptorConfig,string,TiXmlNode,DetectorDescriptorConfigContainer,istringstream,cerr,exit},
+#+LATEX_HEADER:  identifierstyle=\color{black},
+#+LATEX_HEADER:  stringstyle=\color{blue},
+#+LATEX_HEADER:  rulecolor=\color{black},
+#+LATEX_HEADER:  showspaces=false,
+#+LATEX_HEADER:  showstringspaces=false,
+#+LATEX_HEADER:  showtabs=false,
+#+LATEX_HEADER:  stepnumber=1,
+#+LATEX_HEADER:  tabsize=5,
+#+LATEX_HEADER:  title=\lstname,
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \lstdefinelanguage{shell}{
+#+LATEX_HEADER:  backgroundcolor=\color{keyword},
+#+LATEX_HEADER:  basicstyle=\footnotesize \ttfamily \color{dblue} \small \mono \bfseries,
+#+LATEX_HEADER:  breakatwhitespace=false,
+#+LATEX_HEADER:  breaklines=true,
+#+LATEX_HEADER:  captionpos=b,
+#+LATEX_HEADER:  comment=[l]{\#},
+#+LATEX_HEADER:  morecomment=[s]{/*}{*/},
+#+LATEX_HEADER:  commentstyle=\color{comment} \slshape \small \itshape,
+#+LATEX_HEADER:  identifierstyle=\color{black},
+#+LATEX_HEADER:  deletekeywords={...},
+#+LATEX_HEADER:  escapeinside={\%*}{*)},
+#+LATEX_HEADER:  frame=single,
+#+LATEX_HEADER:  frameround=tttt,
+#+LATEX_HEADER:  framesep=0pt,
+#+LATEX_HEADER:  rulecolor=\color{background},
 #+LATEX_HEADER:  morekeywords={BRIEFDescriptorConfig,string,TiXmlNode,DetectorDescriptorConfigContainer,istringstream,cerr,exit},
 #+LATEX_HEADER:  identifierstyle=\color{black},
 #+LATEX_HEADER:  stringstyle=\color{blue},
@@ -60,18 +125,26 @@
 #+LATEX_HEADER: \vspace{-\topsep}
 
 #+BEGIN_COMMENT
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+投影片設定
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
 #+REVEAL_THEME: moon
 #+OPTIONS: reveal_width:1400 reveal_height:960
 #+OPTIONS: toc:1
-#+REVEAL_MARGIN: 0.1
-#+REVEAL_MIN_SCALE: 2
+#+REVEAL_MARGIN: 0.2
+#+REVEAL_MIN_SCALE: 0.8
 #+REVEAL_MAX_SCALE: 3.5
+
+網頁設定
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+STARTUP: showeverything
+#+PROPERTY: header-args :eval never-export
+#+STARTUP: inlineimages
+#+OPTIONS: H:4
+#+OPTIONS: \n:t
 #+END_COMMENT
 
+#+latex:\newpage
 * Python簡介
-#+TOC: headlines 2 local
 ** Python的誕生
 *** 科技報導的說法[fn:1]
 - 1989 年，荷蘭的一位叫Guido van Rossum的宅男工程師覺得其他的程式語言都不好用，於是花三個月創造了一種新的程式語言。
@@ -119,15 +192,16 @@
 1. Spotify
 1. Quora
 
+#+latex:\newpage
+
 * Python環境建置
-#+TOC: headlines 2 local
 ** 下載python
 - google: python download
 - 網址: [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
 - 若為Mac系統，則已預載安裝Python 2.7
 - 若為Linux系統，則多數也預載Python 2.x及3.x
 - 查詢目前的python版本，目前官方最新版本為3.8.2[fn:4]
-  #+begin_src shell :eval no 
+  #+begin_src shell
     python --version
   #+end_src
 
@@ -149,7 +223,7 @@
   #+end_src
 - 結束/回到terminal
   + 指令
-    #+begin_src shell -r -n :eval no
+    #+begin_src shell :eval no
       exit()
     #+end_src
   + 快速鍵: Ctrl-D
@@ -208,22 +282,22 @@
 #+RESULTS:   
 [[file:ReplIt-Python.jpg]]
 
-** 兩種執行模式[fn:5]
+** 兩種執行模式
 *** Interactive mode
 **** 啟動方式
-#+begin_src shell -r -n :eval no
+#+begin_src shell :eval no
 python -i filename.py
 #+end_src
-**** 優點：
+**** 優點[fn:5]
 - Helpful when your script is extremely short and you want immediate results.
 - Faster as you only have to type a command and then press the enter key to get the results.
 - Good for beginners who need to understand Python basics.
-**** 缺點:
+**** 缺點
 - Editing the code in interactive mode is hard as you have to move back to the previous commands or else you have to rewrite the whole command again.
 - It's very tedious to run long pieces of code.
 *** Script Mode
 **** 啟動方式
-#+begin_src shell -r -n :eval no
+#+begin_src shell-script :eval no
 python filename.py
 #+end_src
 **** 優點:
@@ -260,14 +334,15 @@ python filename.py
 - 預設網址: http://localhost:8888
 *** Jupyter Notebook基本操作
 - 變更預設port: XXXX
-  #+begin_src shell -r -n :results output :exports both
+  #+begin_src shell
     jupyter notebook --port XXXX
   #+end_src
 - 登出後重新登入：token
 - 結束Jupyter: 網頁右上角：Quit
 
+#+latex:\newpage
 * 變數、資料型態、輸出輸入
-#+TOC: headlines 1 local
+
 ** 變數
 *** 命名規則
 - 由英文、數字、底線、中文(不建議)組成
@@ -289,7 +364,7 @@ python filename.py
 *** 變數的指派(assign)
 - Python變數不需宣告，依指派值自動設定資料型態。
 - 語法
-  #+BEGIN_SRC python -r -n :results output :exports both
+  #+BEGIN_SRC python 
   變數名稱 = 指派值
   #+END_SRC
 - 變數不再使用時，可用del指令將其刪除，以節省記憶體。
@@ -415,14 +490,14 @@ python filename.py
 *** input注意事項
 - input 每筆輸入讀至換行符號為止
 - 若測試資料輸入以空白間隔，則讀入整行字串後， 再以字串分割處理
-#+begin_src python -r -n :results output :exports both
-  inp = input()
-  inpstr = inp.split()
-  # 依此類推逐一取得輸入值
-  a = int(inpstr[0])
-  b = int(inpstr[1])
-  c = int(inpstr[2])
-#+end_src
+  #+begin_src python -r -n :results output :exports both
+    inp = input()
+    inpstr = inp.split()
+    # 依此類推逐一取得輸入值
+    a = int(inpstr[0])
+    b = int(inpstr[1])
+    c = int(inpstr[2])
+  #+end_src
 
 ** 註解
 - 語法
@@ -445,8 +520,9 @@ python filename.py
 ** 實作練習
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/][skyoj #161華氏溫度轉攝氏溫度]]
 
+#+latex:\newpage
+
 * 運算元與運算式
-#+TOC: headlines 2 local
 ** 算術運算
 - +: 加
 - -: 減
@@ -516,8 +592,8 @@ python filename.py
 | += | -= | *= | /= | %= | //= | **= |
 |----+----+----+----+----+-----+-----|
 
+#+latex:\newpage
 * 判斷結構
-#+TOC: headlines 1 local
 ** if
 *** 語法
 - 條件式可不用括號( )含括，條件式後需搭配冒號：
@@ -671,8 +747,9 @@ python filename.py
 *** 練習題
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/162/][skyoj #162 成績等第判別]]
 
+#+latex:\newpage
+
 * 迴圈結構
-#+TOC: headlines 1 local
 ** for
 *** 語法
 #+BEGIN_SRC python -r -n :eval no
@@ -847,8 +924,9 @@ python filename.py
 : 8*1= 8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 8*9=72 
 : 9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 
 
+#+latex:\newpage
+
 * 資料型別
-#+TOC: headlines 1 local
 ** 字串string
 *** 資料格式
 以單引號(')或雙引號(")將資料含括起來
@@ -1282,8 +1360,8 @@ a-b-c
 | 集合set    | { }        | ✔️         | ✖️         | 可不同      |
 |------------+------------+-----------+-----------+-------------|
 
+#+latex:\newpage
 * FUNCTION
-#+TOC: headlines 1 local
 ** 函式(function)基本操作
 *** 函式(function)的重要性
 - function為一段程式的集合，可視為一個獨立的區段。
@@ -1508,6 +1586,7 @@ a-b-c
   #+RESULTS:
   : 4x + -29y = 3
 
+#+latex:\newpage
 * Footnotes
 
 [fn:1] [[https://buzzorange.com/techorange/2019/08/20/the-history-of-python][Python的誕生故事]]
