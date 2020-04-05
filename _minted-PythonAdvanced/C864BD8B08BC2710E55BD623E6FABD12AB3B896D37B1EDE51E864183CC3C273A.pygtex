@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kn}{import} \PYG{n+nn}{requests}
+  \PYG{k+kn}{import} \PYG{n+nn}{json}
+  \PYG{n}{json\PYGZus{}url} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1\PYGZam{}rows=20\PYGZsq{}}
+  \PYG{n}{response} \PYG{o}{=} \PYG{n}{requests}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{json\PYGZus{}url}\PYG{p}{)}
+
+  \PYG{k}{print}\PYG{p}{(}\PYG{n}{response}\PYG{p}{)}
+  \PYG{c+c1}{\PYGZsh{} 方法1}
+  \PYG{n}{jsonRes1} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{json}\PYG{p}{()}
+  \PYG{k}{print}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n}{jsonRes1}\PYG{p}{))}
+  \PYG{c+c1}{\PYGZsh{}}
+  \PYG{n}{jsonRes2} \PYG{o}{=} \PYG{n}{json}\PYG{o}{.}\PYG{n}{loads}\PYG{p}{(}\PYG{n}{response}\PYG{o}{.}\PYG{n}{text}\PYG{p}{)}
+  \PYG{k}{print}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n}{jsonRes2}\PYG{p}{))}
+
+  \PYG{k}{print}\PYG{p}{(}\PYG{n}{jsonRes2}\PYG{p}{)}
+\end{Verbatim}

@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+    \PYG{k+kn}{import} \PYG{n+nn}{requests}
+
+    \PYG{n}{json\PYGZus{}url} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}https://quality.data.gov.tw/dq\PYGZus{}download\PYGZus{}json.php?nid=11339\PYGZam{}md5\PYGZus{}url=f2fdbc21603c55b11aead08c84184b8f\PYGZsq{}}
+    \PYG{n}{response} \PYG{o}{=} \PYG{n}{requests}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{json\PYGZus{}url}\PYG{p}{)}
+
+    \PYG{n}{jsonRes} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{json}\PYG{p}{()}
+    \PYG{k}{print}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n}{jsonRes}\PYG{p}{))}
+    \PYG{k}{print}\PYG{p}{(}\PYG{n}{jsonRes}\PYG{p}{)}
+    \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}日期\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s2}{\PYGZdq{}:}\PYG{l+s+se}{\PYGZbs{}t}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}美元／新台幣\PYGZsq{}}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{jsonRes}\PYG{p}{:}
+        \PYG{k}{print}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}日期\PYGZsq{}}\PYG{p}{],} \PYG{l+s+s2}{\PYGZdq{}:}\PYG{l+s+se}{\PYGZbs{}t}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}美元／新台幣\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}

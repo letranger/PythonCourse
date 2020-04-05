@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kn}{import} \PYG{n+nn}{requests}
+  \PYG{k+kn}{import} \PYG{n+nn}{json}
+
+  \PYG{n}{response} \PYG{o}{=} \PYG{n}{requests}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1\PYGZam{}rows=20\PYGZsq{}}\PYG{p}{)}
+  \PYG{n}{jsonRes} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{json}\PYG{p}{()}
+  \PYG{c+c1}{\PYGZsh{}print(jsonRes[\PYGZsq{}rows\PYGZsq{}])}
+  \PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{jsonRes}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}rows\PYGZsq{}}\PYG{p}{]:}
+      \PYG{k}{print}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}author\PYGZsq{}}\PYG{p}{],} \PYG{l+s+s2}{\PYGZdq{}:\PYGZdq{}}\PYG{p}{,} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}title\PYGZsq{}}\PYG{p}{],}\PYG{l+s+s2}{\PYGZdq{} / \PYGZdq{}}\PYG{p}{,} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}pubDate\PYGZsq{}}\PYG{p}{])}
+  \PYG{n}{sortJR} \PYG{o}{=} \PYG{n}{jsonRes}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}rows\PYGZsq{}}\PYG{p}{]}
+  \PYG{k}{print}\PYG{p}{(}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n}{sortJR}\PYG{p}{))}
+
+  \PYG{n}{sortJR}\PYG{o}{.}\PYG{n}{sort}\PYG{p}{(}\PYG{n}{key}\PYG{o}{=}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{:} \PYG{n}{x}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}author\PYGZsq{}}\PYG{p}{],} \PYG{n}{reverse}\PYG{o}{=}\PYG{n+nb+bp}{False}\PYG{p}{)}
+  \PYG{k}{for} \PYG{n}{item} \PYG{o+ow}{in} \PYG{n}{sortJR}\PYG{p}{:}
+      \PYG{k}{print}\PYG{p}{(}\PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}author\PYGZsq{}}\PYG{p}{],} \PYG{l+s+s2}{\PYGZdq{}:\PYGZdq{}}\PYG{p}{,} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}title\PYGZsq{}}\PYG{p}{],}\PYG{l+s+s2}{\PYGZdq{} / \PYGZdq{}}\PYG{p}{,} \PYG{n}{item}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}pubDate\PYGZsq{}}\PYG{p}{])}
+\end{Verbatim}

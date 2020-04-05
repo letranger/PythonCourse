@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{c+c1}{\PYGZsh{} 抓取PTT電影版header}
+  \PYG{k+kn}{import} \PYG{n+nn}{urllib.request} \PYG{k+kn}{as} \PYG{n+nn}{req}
+  \PYG{n}{url} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}https://www.ptt.cc/bbs/Stock/index.html\PYGZdq{}}
+
+  \PYG{k}{with} \PYG{n}{req}\PYG{o}{.}\PYG{n}{urlopen}\PYG{p}{(}\PYG{n}{url}\PYG{p}{)} \PYG{k}{as} \PYG{n}{response}\PYG{p}{:}
+      \PYG{n}{data} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}utf\PYGZhy{}8\PYGZdq{}}\PYG{p}{)}
+  \PYG{k}{print}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}
+\end{Verbatim}

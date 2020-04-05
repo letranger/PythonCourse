@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+  \PYG{k+kn}{import} \PYG{n+nn}{urllib.request} \PYG{k+kn}{as} \PYG{n+nn}{req}
+  \PYG{n}{url} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}https://www.ptt.cc/bbs/Stock/index.html\PYGZdq{}}
+  \PYG{c+c1}{\PYGZsh{} 幫request加上一個header}
+  \PYG{n}{request} \PYG{o}{=} \PYG{n}{req}\PYG{o}{.}\PYG{n}{Request}\PYG{p}{(}\PYG{n}{url}\PYG{p}{,} \PYG{n}{headers} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+      \PYG{l+s+s2}{\PYGZdq{}User\PYGZhy{}Agent\PYGZdq{}}\PYG{p}{:}\PYG{l+s+s2}{\PYGZdq{}Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0\PYGZdq{}}
+  \PYG{p}{\PYGZcb{})}
+
+  \PYG{k}{with} \PYG{n}{req}\PYG{o}{.}\PYG{n}{urlopen}\PYG{p}{(}\PYG{n}{request}\PYG{p}{)} \PYG{k}{as} \PYG{n}{response}\PYG{p}{:}
+      \PYG{n}{data} \PYG{o}{=} \PYG{n}{response}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}\PYG{o}{.}\PYG{n}{decode}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}utf\PYGZhy{}8\PYGZdq{}}\PYG{p}{)}
+  \PYG{k}{print}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}所取得的資料型態：\PYGZsq{}}\PYG{p}{,}\PYG{n+nb}{type}\PYG{p}{(}\PYG{n}{data}\PYG{p}{))}
+  \PYG{k}{print}\PYG{p}{(}\PYG{n}{data}\PYG{p}{[}\PYG{l+m+mi}{700}\PYG{p}{:}\PYG{l+m+mi}{1200}\PYG{p}{])}
+\end{Verbatim}
