@@ -1,4 +1,4 @@
-% Created 2020-04-05 Sun 20:04
+% Created 2020-04-06 Mon 13:04
 % Intended LaTeX compiler: pdflatex
 
 \documentclass[a4paper,12pt]{article}
@@ -57,7 +57,7 @@
 \usepackage{placeins}
 \vspace{-0.2cm}
 \usepackage{xcolor}
-\hypersetup{pdfauthor={Name}}
+\hypersetup{pdfauthor={Name},colorlinks,linkcolor={red!50!black},citecolor={blue!50!black},urlcolor={blue!80!black}}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{dred}{rgb}{0.545,0,0}
 \definecolor{dblue}{rgb}{0,0,0.545}
@@ -148,38 +148,38 @@ title=\lstname,
 
 \newpage
 \section{Python 套件管理}
-\label{sec:org2cbf47c}
+\label{sec:orga07e762}
 \subsection{pip v.s. conda}
-\label{sec:org242f2ac}
+\label{sec:org3f2f04e}
 \subsubsection{pip or conda}
-\label{sec:orgbd71f83}
+\label{sec:org2c7d6a7}
 \begin{itemize}
 \item Python 的一大優勢之一便是龐大的第三方函式庫，讓使用 python 的程式設計師可以方便的呼叫、進行如網路資料下載解析、資料的視覺化、甚或是大數據的複雜分析與人工智慧的相關套件。，
 \item 目前用來管理這些龐大套件的工具主要有二：pip 與 Conda。
 \end{itemize}
 \subsubsection{pip}
-\label{sec:orgf354665}
+\label{sec:org8e37b34}
 \begin{itemize}
 \item Pip是\href{https://www.pypa.io/en/latest/}{Python Packaging Authority}推薦、用於從\href{https://pypi.org/}{Python Package Index}安裝套件的工具，提供了對 Python 套件的搜㝷、下載、安裝、卸載的功能。
 \item 若在 python.org 下載最新版本的 python，則已內建 pip 安裝套件。 Python 3.4+ 以上版本均已包括 pip
 \item 該工具類似 Linux 下的 apt/yum 或 MAC 下的\href{https://brew.sh/index\_zh-tw}{Homebrew}。
 \end{itemize}
 \subsubsection{conda}
-\label{sec:orga3b02ef}
+\label{sec:org8ed5ee8}
 \begin{itemize}
 \item Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、Lua、Scala 與 Java 等任何程式語言的套件、依賴性以及工作環境管理員，特別受到以 Python 作為主要程式語言的資料科學團隊所喜愛。
-\item 傳統 Python 使用者以 pip 作為套件管理員（package manager）、以 venv 作為工作環境管理員（environment manager），而 conda 則達成了「兩個願望、一次滿足」既可以管理套件亦能夠管理工作環境。\footnote{\href{https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025}{輕鬆學習 Python：conda 的核心功能}\label{org2570cf1}}
+\item 傳統 Python 使用者以 pip 作為套件管理員（package manager）、以 venv 作為工作環境管理員（environment manager），而 conda 則達成了「兩個願望、一次滿足」既可以管理套件亦能夠管理工作環境。\footnote{\href{https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025}{輕鬆學習 Python：conda 的核心功能}\label{org4c19c05}}
 \end{itemize}
 \subsubsection{In both cases:}
-\label{sec:orgdf352fe}
+\label{sec:orgb4c6e2e}
 \begin{itemize}
 \item Written in Python
 \item Open source (Conda is BSD and pip is MIT)
 \end{itemize}
 \subsubsection{difference between conda, anaconda, and miniconda}
-\label{sec:org3c89092}
+\label{sec:orgb56c16c}
 \begin{itemize}
-\item conda is both a command line tool, and a python package. \footnote{\href{https://stackoverflow.com/questions/30034840/what-are-the-differences-between-conda-and-anaconda}{What are the differences between Conda nd Anaconda?}\label{orgc94b9ba}}
+\item conda is both a command line tool, and a python package. \footnote{\href{https://stackoverflow.com/questions/30034840/what-are-the-differences-between-conda-and-anaconda}{What are the differences between Conda nd Anaconda?}\label{orgcf376a7}}
 \item Anaconda 發行版會預裝很多 pydata 生態圈裡的軟件，而 Miniconda 是最小的 conda 安裝環境， 一個乾淨的 conda 環境。
 \item pip  只是運與安裝 python package，而 conda 用來安裝管理任何語言的包。
 \item 不一定要安裝 Anaconda 或 Miniconda，也可透過 pip 直接安裝 conda
@@ -190,15 +190,15 @@ title=\lstname,
 \end{itemize}
 
 \subsection{conda 安裝與使用}
-\label{sec:org626dd5e}
+\label{sec:org04a1943}
 \subsubsection{下載 v.s. 安裝}
-\label{sec:orge991fc8}
+\label{sec:orgfa2d593}
 \begin{itemize}
 \item \href{https://www.anaconda.com/distribution/}{Anaconda}
 \item \href{https://docs.conda.io/en/latest/miniconda.html}{Miniconda}
 \end{itemize}
 \subsubsection{常見 conda 指令}
-\label{sec:orge2548fd}
+\label{sec:org70ea444}
 \begin{itemize}
 \item \lstinline[breaklines=true,language=shell]~ conda --version ~: 檢視 conda 版本
 \item \lstinline[breaklines=true,language=shell]~ conda update PACKAGE_NAME ~: 更新指定套件
@@ -213,9 +213,9 @@ title=\lstname,
 \item \lstinline[breaklines=true,language=shell]~ conda env export --name ENVIRMOMENT --file ENVIRMOMENT.yml ~: 將指定工作環境之設定匯出為 .yml 檔藉此複製且重現工作環境
 \end{itemize}
 \subsection{Python 常用函式庫}
-\label{sec:org108326c}
+\label{sec:org86f909a}
 \subsubsection{爬蟲}
-\label{sec:org7eb6ca5}
+\label{sec:org55bb8c5}
 \begin{itemize}
 \item Scrapy: 舉世聞名，分散式爬蟲框架，不僅僅是簡單的庫
 \item beautifulsoup4: Beautiful Soup 是一個可以從 HTML 或 XML 文件中提取數據的 Python 庫.\footnote{\href{https://kknews.cc/code/y3mzkgg.html}{Python爬蟲解析庫——BeautifulSoup4}}
@@ -223,20 +223,20 @@ title=\lstname,
 \item selenium: Selenium 原為網頁測試工具，但由於可以直接以程式碼操控瀏覽器的特性，使其成為網路爬蟲必備的工具之一。\footnote{\href{https://freelancerlife.info/zh/blog/python\%E7\%B6\%B2\%E8\%B7\%AF\%E7\%88\%AC\%E8\%9F\%B2\%E6\%95\%99\%E5\%AD\%B8-selenium\%E5\%9F\%BA\%E6\%9C\%AC\%E6\%93\%8D\%E4\%BD\%9C/}{python網路爬蟲教學-Selenium基本操作}}
 \end{itemize}
 \subsubsection{網站}
-\label{sec:org48811c1}
+\label{sec:orgf71149e}
 \begin{itemize}
 \item Django: 重量級網頁框架
 \item Flask: 輕量級網頁框架
 \end{itemize}
 \subsubsection{資料處理科學計算}
-\label{sec:org8fd53a1}
+\label{sec:org169147b}
 \begin{itemize}
 \item Numpy: 陣列矩陣神器
 \item Scipy: 科學計算神器
 \item Pandas
 \end{itemize}
 \subsubsection{視覺化}
-\label{sec:orgdbcf9ef}
+\label{sec:orgbcbab74}
 \begin{itemize}
 \item matplotlib: matlab 風格式的套件
 \item seaborn: 散點圖矩陣神器
@@ -244,7 +244,7 @@ title=\lstname,
 \item plotly: 這個神器是個 js 庫，不過也有各種流行的語言介面
 \end{itemize}
 \subsubsection{機器學習}
-\label{sec:orgd10cfa2}
+\label{sec:org36ccbfa}
 \begin{itemize}
 \item scikit-learn:幾乎所有機器學習演算法都囊括
 \item NLTK: 自然語言處理工具套件
@@ -252,7 +252,7 @@ title=\lstname,
 \item PyTorch: Numpy 的 GPU 版
 \end{itemize}
 \subsubsection{地圖學/地圖視覺化}
-\label{sec:org6572af2}
+\label{sec:orga1ecd77}
 \begin{itemize}
 \item basemap/cartopy: 畫地圖的 package
 \item Folium: leaflet 的 Python 版本
@@ -262,13 +262,13 @@ title=\lstname,
 \item PySAL: 空間計量經濟學的一個神套件
 \end{itemize}
 \subsubsection{ArcGIS}
-\label{sec:org5287b33}
+\label{sec:org7925efd}
 \begin{itemize}
 \item arcpy: ArcGIS 內嵌 Python 的神器，可以非常方便呼叫 ArcGIS 各項功能，但是有一點就是不開源（畢竟人家是商業軟體嘛，所以那些老想著在自己安裝的 Python 上 import arcpy 的同學可以省省
 \item ArcGIS API for Python: 基於 portal 和 online 的一套 API，還是有些可以玩的價值，後面也會考慮介紹這個內容。
 \end{itemize}
 \subsection{python package 安裝(conda)}
-\label{sec:orgc357f7e}
+\label{sec:org5aa9092}
 \begin{itemize}
 \item 安裝 package: 
 \lstinline[breaklines=true,language=Python]~ conda install packageName ~
@@ -295,9 +295,9 @@ title=\lstname,
 \end{lstlisting}
 \end{itemize}
 \subsection{python 執行環境建立與維護}
-\label{sec:org4b5821b}
+\label{sec:org1d45384}
 \begin{itemize}
-\item 建立\footnote{\href{https://ithelp.ithome.com.tw/articles/10192460}{Day01 Anaconda環境安裝!}\label{org723ef49}}
+\item 建立\footnote{\href{https://ithelp.ithome.com.tw/articles/10192460}{Day01 Anaconda環境安裝!}\label{org4c94a33}}
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
   conda create -n envName
@@ -327,16 +327,16 @@ title=\lstname,
 \newpage
 
 \section{Numpy 模組}
-\label{sec:orgd11d5ea}
+\label{sec:org2dd035d}
 \subsection{Numpy}
-\label{sec:orgcf0d00d}
+\label{sec:orgc9f7a6d}
 \begin{itemize}
-\item Numpy 是 Python 的一個重要模組，主要用於資料處理上。Numpy 底層以 C 和 Fortran 語言實作，所以能快速操作多重維度的陣列。\footnote{\href{https://blog.techbridge.cc/2017/07/28/data-science-101-numpy-tutorial/}{從零開始學資料科學：Numpy 基礎入門}\label{org75002a8}}
+\item Numpy 是 Python 的一個重要模組，主要用於資料處理上。Numpy 底層以 C 和 Fortran 語言實作，所以能快速操作多重維度的陣列。\footnote{\href{https://blog.techbridge.cc/2017/07/28/data-science-101-numpy-tutorial/}{從零開始學資料科學：Numpy 基礎入門}\label{org06ada5a}}
 \item 當 Python 處理龐大資料時，其原生 list 效能表現並不理想（但可以動態存異質資料），而 Numpy 具備平行處理的能力，可以將操作動作一次套用在大型陣列上。
 \item Python 其餘重量級的資料科學相關套件（例如：Pandas、SciPy、Scikit-learn 等）都幾乎是奠基在 Numpy 的基礎上。因此學會 Numpy 對於往後學習其他資料科學相關套件打好堅實的基礎。
 \end{itemize}
 \subsection{匯入模組}
-\label{sec:org4e134be}
+\label{sec:orgd582d83}
 \begin{itemize}
 \item 使用模組裡的函式要加模組名稱
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
@@ -351,13 +351,13 @@ title=\lstname,
 \item Numpy 中的多維資料型別稱為 ndarray
 \end{itemize}
 \subsection{Create ndarray}
-\label{sec:org951a7a7}
+\label{sec:orgbb11694}
 \begin{itemize}
 \item Numpy 的重點在於陣列的操作，其所有功能特色都建築在同質且多重維度的 ndarray（N-dimensional array）上。
-\item ndarray 的關鍵屬性是維度（ndim）、形狀（shape）和數值類型（dtype）。 一般我們稱一維陣列為 vector 而二維陣列為 matrix\textsuperscript{\ref{org75002a8}}。
+\item ndarray 的關鍵屬性是維度（ndim）、形狀（shape）和數值類型（dtype）。 一般我們稱一維陣列為 vector 而二維陣列為 matrix\textsuperscript{\ref{org06ada5a}}。
 \end{itemize}
 \subsubsection{一維陣列}
-\label{sec:orgdf0a2e1}
+\label{sec:orgd42575b}
 \begin{itemize}
 \item list 或 tuple 轉入
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
@@ -384,7 +384,7 @@ title=\lstname,
 \end{verbatim}
 \end{itemize}
 \subsubsection{二維陣列}
-\label{sec:org85f1e9a}
+\label{sec:org735bfef}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
   import numpy as np
@@ -410,13 +410,13 @@ np6:
  [4 5 6 7]]
 \end{verbatim}
 \subsubsection{多維陣列}
-\label{sec:orgc927df4}
+\label{sec:orgd0c7ed5}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import numpy as np
-  
-  np7 = np.arange(24).reshape(2, 3, 4)
-  print('np7:\n',np7)
+import numpy as np
+
+np7 = np.arange(24).reshape(2, 3, 4)
+print('np7:\n',np7)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -430,37 +430,37 @@ np7:
   [20 21 22 23]]]
 \end{verbatim}
 \subsubsection{隨機矩陣}
-\label{sec:orgdce42ae}
+\label{sec:orgd698942}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import numpy as np
+import numpy as np
 
-  np8 = np.random.random((3, 2)) #矩陣大小以tuple表示
-  print('np8:\n', np8)
+np8 = np.random.random((3, 2)) #矩陣大小以tuple表示
+print('np8:\n', np8)
 
-  np9 = np.random.randint(0, 100, size=[4, 3]) #矩陣大小以list表示
-  print('np9:\n', np9)
+np9 = np.random.randint(0, 100, size=[4, 3]) #矩陣大小以list表示
+print('np9:\n', np9)
 \end{lstlisting}
 
 \begin{verbatim}
 np8:
- [[0.64716686 0.89109206]
- [0.86738452 0.95346256]
- [0.40312749 0.71623046]]
+ [[0.25790607 0.49465406]
+ [0.22828345 0.77978968]
+ [0.00990244 0.71363209]]
 np9:
- [[32 82 99]
- [88 41  3]
- [72 58 79]
- [66 85  5]]
+ [[82 72 39]
+ [72 51 84]
+ [96 75 59]
+ [33 40 99]]
 \end{verbatim}
 
 
 \newpage
 
 \section{Matplotlib}
-\label{sec:org0d66152}
+\label{sec:org018044b}
 \subsection{Matplotlib 簡介}
-\label{sec:org2b1948d}
+\label{sec:orgf536542}
 \begin{itemize}
 \item NumPy 的可視化操作界面
 \item 為 Python 最多人使用的 2D 繪圖工具
@@ -469,9 +469,9 @@ np9:
 \item 維基百科 \url{https://zh.wikipedia.org/wiki/Matplotlib}
 \end{itemize}
 \subsection{折線圖}
-\label{sec:org6fff813}
+\label{sec:org7a6cd8a}
 \subsubsection{基本語法}
-\label{sec:orga50fcd6}
+\label{sec:orgac84ccb}
 \begin{itemize}
 \item import matplotlib.pyplot as plt
 \item plt.plot( )函式為 matplotlib.pyplot 模組畫線條方法，其語法如下 
@@ -501,7 +501,7 @@ np9:
 \caption{\label{fig:SimpleSin}簡單的 sin 圖形}
 \end{figure}
 \subsubsection{\label{練習#1}練習\#1：繪製折線圖}
-\label{sec:org1559963}
+\label{sec:org38dae65}
 \begin{itemize}
 \item 利用 list 繪製 
 \begin{itemize}
@@ -516,10 +516,10 @@ np9:
 \item 執行 plt.plot(x2, x2**2)看看畫出什麼圖形??
 \end{itemize}
 \subsubsection{圖形美化: plot() function}
-\label{sec:org8d5c06d}
+\label{sec:orgcaca8f1}
 \begin{enumerate}
 \item plot()函式參數可分為兩類：fmt 字串 和 kwarg 參數
-\label{sec:orgd553e02}
+\label{sec:org852a1d4}
 \begin{itemize}
 \item fmt 定義基本格式：顏色、標記、線條樣式
 \item kwarg 為 Line2D 屬性(參考資料)：color, linestyle, marker, label, linewidth, ….
@@ -541,7 +541,7 @@ np9:
 \end{tabular}
 \end{center}
 \item kwgarg 參數
-\label{sec:orgf8341cc}
+\label{sec:org6dc9d50}
 \begin{itemize}
 \item colorg
 \begin{itemize}
@@ -556,24 +556,24 @@ np9:
 \end{itemize}
 \end{itemize}
 \item 色彩對照
-\label{sec:org9d0d765}
+\label{sec:orgb3daf7e}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{colors.jpg}
 \caption{\label{fig:colors}色表}
 \end{figure}
 \item 折線示範\#1
-\label{sec:orgd566798}
+\label{sec:org75d0cb9}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import matplotlib.pyplot as plt
-  import numpy as np
+import matplotlib.pyplot as plt
+import numpy as np
 
-  x1 = [1, 2, 3, 4, 5, 6]
-  y1 = [1, 2, 3, 4, 5, 6]
-  plt.clf()
-  plt.plot(x1, y1, color='c', linestyle='-', marker='p')
-  plt.savefig('line1.png', dpi=300)
+x1 = [1, 2, 3, 4, 5, 6]
+y1 = [1, 2, 3, 4, 5, 6]
+plt.clf()
+plt.plot(x1, y1, color='c', linestyle='-', marker='p')
+plt.savefig('line1.png', dpi=300)
 \end{lstlisting}
 \begin{figure}[htbp]
 \centering
@@ -581,19 +581,19 @@ np9:
 \caption{\label{fig:SimpleSin}簡單的折線圖形\#1}
 \end{figure}
 \item 折線示範\#2
-\label{sec:org685eefc}
+\label{sec:org4dd358e}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import matplotlib.pyplot as plt
-  import numpy as np
+import matplotlib.pyplot as plt
+import numpy as np
 
-  x1 = [1, 2, 3, 4, 5, 6]
-  y1 = [1, 2, 3, 4, 5, 6]
-  x2 = np.arange(0, 3, 0.01)
-  x3 = np.arange(8).reshape(2, 4)
+x1 = [1, 2, 3, 4, 5, 6]
+y1 = [1, 2, 3, 4, 5, 6]
+x2 = np.arange(0, 3, 0.01)
+x3 = np.arange(8).reshape(2, 4)
 
-  plt.plot(y1, 'c-p', x2, x2**2, x3, x3+3, '-*')
-  plt.savefig('line2.png', dpi=300)
+plt.plot(y1, 'c-p', x2, x2**2, x3, x3+3, '-*')
+plt.savefig('line2.png', dpi=300)
 \end{lstlisting}
 \begin{figure}[htbp]
 \centering
@@ -601,7 +601,7 @@ np9:
 \caption{\label{fig:SimpleSin}簡單的折線圖形 2}
 \end{figure}
 \item 其他參數
-\label{sec:org93c3bf1}
+\label{sec:orgd56d3da}
 \begin{itemize}
 \item x / y 座標範圍：plt.xlim(起始值, 終止值)  / plt.ylim(起, 止)
 \item 圖表標題：plt.title(字串)
@@ -610,7 +610,7 @@ np9:
 \end{itemize}
 \end{enumerate}
 \subsubsection{\label{練習#2}練習\#2：圖表美化}
-\label{sec:orgc2a051c}
+\label{sec:orgae61cce}
 \begin{enumerate}
 \item 將\ref{練習#1}的圖表加上標記、線條標籤，換線條顏色、線條樣式
 \item 請將下列資料繪成折線圖(男女折線不同顏色、樣式，加標記)
@@ -629,19 +629,19 @@ np9:
 \end{itemize}
 \end{enumerate}
 \subsection{bar chart: plt.bar()}
-\label{sec:org2ead3d1}
+\label{sec:org6d493a8}
 \begin{itemize}
 \item 語法
 \lstinline[breaklines=true,language=Python]~ plt.bar( x座標資料, y座標資料 [, 參數1, 參數2, ...] ) ~
 \item 練習\#3: 請將\ref{練習#2}的男女初婚年齡改成長條圖
 \end{itemize}
 \subsection{pie chart: plt.pie()}
-\label{sec:orgfbfb261}
+\label{sec:org5f5ba50}
 \subsubsection{語法： }
-\label{sec:orgac20225}
+\label{sec:orgb98ca1c}
 plt.pie( 比例列表 [, 參數 1, 參數 2, \ldots{}] )
 \subsubsection{參數：}
-\label{sec:org84e02e6}
+\label{sec:org84c1ec0}
 \begin{itemize}
 \item colors：各子圖顏色，多以 list 表示
 \item labels：各子圖標籤，多以 list 表示
@@ -651,22 +651,22 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, \ldots{}] )
 \item 若要以正圓形繪製，請再加上 plt.axis('equal')
 \end{itemize}
 \subsubsection{範例}
-\label{sec:orge7050a0}
+\label{sec:orga07335c}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import matplotlib.pyplot as plt
-  import numpy as np
+import matplotlib.pyplot as plt
+import numpy as np
 
-  parts = [35.35, 23, 26.65, 15]
-  labels = ['Harrison', 'Vanessa', 'James', 'Ruby']
-  colors = ['red', 'lightblue', 'purple', 'yellow']
-  explodes = [0.1, 0, 0, 0.1]
-  plt.pie(parts, colors = colors, labels = labels, explode = explodes, autopct = '%3.2f%%')
-  plt.axis('equal')
-  plt.legend()
+parts = [35.35, 23, 26.65, 15]
+labels = ['Harrison', 'Vanessa', 'James', 'Ruby']
+colors = ['red', 'lightblue', 'purple', 'yellow']
+explodes = [0.1, 0, 0, 0.1]
+plt.pie(parts, colors = colors, labels = labels, explode = explodes, autopct = '%3.2f%%')
+plt.axis('equal')
+plt.legend()
 
-  #plt.show()
-  plt.savefig('simplePie.png', dpi=300)
+#plt.show()
+plt.savefig('simplePie.png', dpi=300)
 \end{lstlisting}
 
 \begin{figure}[htbp]
@@ -675,22 +675,22 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, \ldots{}] )
 \caption{\label{fig:SimplePie}簡單的 pie chart}
 \end{figure}
 \subsection{其它圖表}
-\label{sec:orgbf76c90}
+\label{sec:org74744f7}
 \begin{itemize}
 \item 直方圖(Histogram)：用來呈現各資料統計結果(\href{https://matplotlib.org/api/\_as\_gen/matplotlib.pyplot.hist.html}{參考資料})
 \item 散佈圖(Scatter)：用來呈現群聚關係(\href{https://matplotlib.org/api/\_as\_gen/matplotlib.pyplot.scatter.html}{參考資料})
 \item \href{https://matplotlib.org/gallery/index.html}{進階學習資源}
 \end{itemize}
 \subsection{文字註解: plt.text()}
-\label{sec:orgc83dbd9}
+\label{sec:orgde5ce73}
 \subsubsection{語法}
-\label{sec:orgaa7d6b2}
+\label{sec:org7e95564}
 \begin{itemize}
 \item \lstinline[breaklines=true,language=Python]~ plt.text( x相對座標, y相對座標 , 文字字串 [, 其它參數] ) ~
 \item \href{https://matplotlib.org/api/\_as\_gen/matplotlib.pyplot.text.html}{參考資料}
 \end{itemize}
 \subsubsection{範例}
-\label{sec:org54fc670}
+\label{sec:orgb741829}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
   import matplotlib.pyplot as plt
@@ -710,7 +710,7 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, \ldots{}] )
 \caption{\label{fig:SimplePie}簡單的文字註解}
 \end{figure}
 \subsection{子圖表: plt.subplot()}
-\label{sec:org7e1ac16}
+\label{sec:orgf8a8265}
 \begin{itemize}
 \item 範例\footnote{\href{https://matplotlib.org/api/\_as\_gen/matplotlib.pyplot.subplot.html}{matplotlib.pyplot.subplot}}
 \end{itemize}
@@ -786,22 +786,22 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, \ldots{}] )
 \newpage
 
 \section{區域資料檔分析}
-\label{sec:org089a473}
+\label{sec:orge7aee58}
 \subsection{Excel/CSV: Pandas 模組}
-\label{sec:org8ec673c}
+\label{sec:org9ca7392}
 \subsubsection{CSV}
-\label{sec:org3c37364}
+\label{sec:org16c6d6c}
 \begin{itemize}
 \item 為純文字檔，以逗號分隔值（Comma-Separated Values，CSV，有時也稱為字元分隔值，因為分隔字元也可以不是逗號）。
 \item 純文字意味著該檔案是一個字元序列，不含必須像二進位制數字那樣被解讀的資料。
-\item CSV 檔案由任意數目的記錄組成，記錄間以某種換行符分隔；每條記錄由欄位組成，欄位間的分隔符是其它字元或字串，最常見的是逗號或製表符。通常，所有記錄都有完全相同的欄位序列\textsuperscript{\ref{orgc94b9ba}}。
+\item CSV 檔案由任意數目的記錄組成，記錄間以某種換行符分隔；每條記錄由欄位組成，欄位間的分隔符是其它字元或字串，最常見的是逗號或製表符。通常，所有記錄都有完全相同的欄位序列\textsuperscript{\ref{orgcf376a7}}。
 \end{itemize}
 \subsubsection{Pandas}
-\label{sec:orgc0a041c}
+\label{sec:org21839a6}
 \begin{itemize}
 \item Pandas 是 python 的一個數據分析模組，2009 年底開源出來，提供高效能、簡易使用的資料格式(Data Frame)讓使用者可以快速操作及分析資料。
 \item Pandas 強化了資料處理的方便性也能與處理網頁資料與資料庫資料等，有點類似於 Office 的 Excel 能更加方便的進行運算、分析等\footnote{\href{https://blog.csdn.net/qq\_18668137/article/details/80807829}{conda、miniconda、anaconda的區別以及在pycharm中選擇conda的虛擬環境}}。
-\item Pandas 主要特色有\textsuperscript{\ref{org723ef49}}：
+\item Pandas 主要特色有\textsuperscript{\ref{org4c94a33}}：
 \begin{enumerate}
 \item 在異質數據的讀取、轉換和處理上，都讓分析人員更容易處理，例如：從列欄試算表中找到想要的值。
 \item Pandas 提供兩種主要的資料結構，Series 與 DataFrame。Series 顧名思義就是用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。DataFrame 則是用來處理結構化(Table like)的資料，有列索引與欄標籤的二維資料集，例如關聯式資料庫、CSV 等等。
@@ -810,10 +810,10 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, \ldots{}] )
 \end{enumerate}
 \end{itemize}
 \subsubsection{Pandas 資料結構}
-\label{sec:org6aa9dcc}
+\label{sec:orgd375547}
 \begin{itemize}
 \item Pandas 是 Python 的資料分析函式庫，從 2009 年底開放原始碼，提供簡易使用的資料結構和分析工具，讓分析人員可以快速方便的處理結構化資料。
-\item 要使用 Pandas 之前，先瞭解兩個主要資料結構\textsuperscript{\ref{org2570cf1}}：
+\item 要使用 Pandas 之前，先瞭解兩個主要資料結構\textsuperscript{\ref{org4c19c05}}：
 \begin{itemize}
 \item Series: 是一維標籤陣列（array），能夠保存任何資料類型（整數、字符串、浮點數等）。
 \item DataFrame: 是一個二維標籤資料結構，可以具有不同類型的行（column），類似 Excel 的資料表，對於有使用過統計軟體的分析人員應該不陌生。
@@ -821,12 +821,12 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, \ldots{}] )
 \end{itemize}
 \end{itemize}
 \subsection{Pandas functions}
-\label{sec:orgb7533f7}
+\label{sec:orgabc6bc5}
 \subsubsection{資料選取}
-\label{sec:org1372b1c}
+\label{sec:orgdee299b}
 \begin{enumerate}
 \item Select as dictinoary (column): \footnote{\href{https://www.itread01.com/content/1547569271.html}{Python讀寫csv檔案的幾種方法 及 pandas.read\textsubscript{csv} 引數全解}}
-\label{sec:org3dc2f11}
+\label{sec:org3d87af6}
 \begin{itemize}
 \item \lstinline[breaklines=true,language=Python]~ df[[[['col1', 'col2']]]] ~
 \item \lstinline[breaklines=true,language=Python]~ df.col1 ~
@@ -874,18 +874,18 @@ Name: id, Length: 212, dtype: int64
 [212 rows x 2 columns]
 \end{verbatim}
 \item Select using index (row):
-\label{sec:org94243b4}
+\label{sec:orgac0531f}
 \begin{itemize}
 \item \lstinline[breaklines=true,language=Python]~ df[1:20] ~
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import pandas as pd
+import pandas as pd
 
-  df = pd.read_csv("scores.csv")
+df = pd.read_csv("scores.csv")
 
-  print(df[1:3])
-  print(df[df.homework<30])
+print(df[1:3])
+print(df[df.homework<30])
 \end{lstlisting}
 
 \begin{verbatim}
@@ -912,7 +912,7 @@ Name: id, Length: 212, dtype: int64
 Name: homework, Length: 212, dtype: bool
 \end{verbatim}
 \item loc, iloc, between \footnote{\href{https://ithelp.ithome.com.tw/articles/10208412}{Day23- 資料處理模組-Pandas 介紹}}
-\label{sec:org759d6ae}
+\label{sec:org939626e}
 \begin{itemize}
 \item loc: 基於行標籤和列標籤（x\textsubscript{label}、y\textsubscript{label}）進行索引，以 column 名做為 index
 \item iloc: 基於行索引和列索引（index，columns） 都是從 0 開始，以數字做為 index
@@ -920,16 +920,16 @@ Name: homework, Length: 212, dtype: bool
 \end{itemize}
 \begin{enumerate}
 \item 範例 1
-\label{sec:org7406725}
+\label{sec:orgfecc3ef}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import pandas as pd
+import pandas as pd
 
-  df = pd.read_csv("scores.csv")
+df = pd.read_csv("scores.csv")
 
-  print(df.loc[df.homework<25, ['id', 'homework']])
-  print(df.iloc[:5, 2:5])
-  
+print(df.loc[df.homework<25, ['id', 'homework']])
+print(df.iloc[:5, 2:5])
+
 \end{lstlisting}
 
 \begin{verbatim}
@@ -945,25 +945,25 @@ Name: homework, Length: 212, dtype: bool
 4      56     42.11      0.0
 \end{verbatim}
 \item 範例 2
-\label{sec:orgf51ec8d}
+\label{sec:org034a419}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  # 載入函式庫
-  import pandas as pd
+# 載入函式庫
+import pandas as pd
 
-  print("Pandas version:", pd.__version__)
-  # 讀取csv
-  df = pd.read_csv("scores.csv")
-  # 輸出前3筆
-  print(df.iloc[:3])
-  # 輸出前3筆的第2,3欄
-  print(df.iloc[:2, 1:3])
-  # 輸出第3筆user的homework成績
-  print(df.loc[2,'homework'])
+print("Pandas version:", pd.__version__)
+# 讀取csv
+df = pd.read_csv("scores.csv")
+# 輸出前3筆
+print(df.iloc[:3])
+# 輸出前3筆的第2,3欄
+print(df.iloc[:2, 1:3])
+# 輸出第3筆user的homework成績
+print(df.loc[2,'homework'])
 
-  print(df['midexam'].between(50, 60))
-  midFilter = df['midexam'].between(50, 55)
-  print(df[midFilter])
+print(df['midexam'].between(50, 60))
+midFilter = df['midexam'].between(50, 55)
+print(df[midFilter])
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1000,23 +1000,23 @@ Name: midexam, Length: 212, dtype: bool
 \end{enumerate}
 \end{enumerate}
 \subsubsection{條件式選取資料}
-\label{sec:orgbd59884}
+\label{sec:org4e02265}
 \begin{enumerate}
 \item 語法
-\label{sec:org97b007b}
+\label{sec:orge596beb}
 \begin{itemize}
 \item \lstinline[breaklines=true,language=Python]~ df[(condition)] ~
 \item \lstinline[breaklines=true,language=Python]~ df[(condition 1) & (condition 2) ] ~
 \end{itemize}
 \item 範例
-\label{sec:orgb21f495}
+\label{sec:orgcd54aab}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import pandas as pd
+import pandas as pd
 
-  df = pd.read_csv("scores.csv") 
+df = pd.read_csv("scores.csv")
 
-  print(df[(df.midexam >= 100) & (df.finalexam >= 100)])
+print(df[(df.midexam >= 100) & (df.finalexam >= 100)])
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1045,44 +1045,45 @@ Name: midexam, Length: 212, dtype: bool
 \end{verbatim}
 \end{enumerate}
 \subsection{進階分析}
-\label{sec:orgdff93d5}
+\label{sec:org8f2eacb}
 \subsubsection{計算: Aggregation, Groupby}
-\label{sec:orgc1c13a3}
+\label{sec:orgd341ca5}
 \begin{enumerate}
 \item \href{https://is.gd/y4tUl8}{create new column based on other column}
-\label{sec:org966c789}
+\label{sec:org1fb691c}
 \item simple aggregation
-\label{sec:org8362dac}
+\label{sec:orgf06733d}
 \item groupby with aggregation function
-\label{sec:org765a289}
+\label{sec:org2ae1e98}
 \item 範例
-\label{sec:orgcb82926}
+\label{sec:org5b2c835}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  # 載入函式庫
-  import pandas as pd
+# 載入函式庫
+import pandas as pd
 
-  # 讀取csv
-  df = pd.read_csv("scores.csv")
+# 讀取csv
+df = pd.read_csv("scores.csv")
 
-  # 計算總分'
-  df['Final'] = df.classparti*.1 + df.typing*.1 + df.homework*.2 + df.midexam*.3 + df.finalexam*.3
+# 計算總分'
+df['Final'] = df.classparti*.1 + df.typing*.1 + df.homework*.2 + df.midexam*.3 + df.finalexam*.3
 
-  # create new column according to typing speed
-  df.loc[df.typing < 30, 'TypingSpeed' ] = 'LOW'
-  df.loc[df.typing.between(30, 60), 'TypingSpeed' ] = 'MID'
-  df.loc[df.typing > 60, 'TypingSpeed' ] = 'HIGH'
+# create new column according to typing speed
+df.loc[df.typing < 30, 'TypingSpeed' ] = 'LOW'
+df.loc[df.typing.between(30, 60), 'TypingSpeed' ] = 'MID'
+df.loc[df.typing > 60, 'TypingSpeed' ] = 'HIGH'
 
-  print(df)
+print(df)
 
-  # 依打字速度分組
-  print(df.groupby('TypingSpeed')['Final'].mean())
+# 依打字速度分組
+print(df.groupby('TypingSpeed')['Final'].mean())
 
-  # PASS/FAIL
-  df.loc[df.Final < 60, 'PASS'] = False
-  df.loc[df.Final >= 60, 'PASS'] = True
+# PASS/FAIL
+df.loc[df.Final < 60, 'PASS'] = False
+df.loc[df.Final >= 60, 'PASS'] = True
 
-  print(df.groupby('PASS')['typing'].mean())
+print(df.groupby('PASS')['typing'].mean())
+
 
 \end{lstlisting}
 
@@ -1113,11 +1114,11 @@ Name: typing, dtype: float64
 \end{verbatim}
 \end{enumerate}
 \subsubsection{資料檔下載: \url{scores.csv}}
-\label{sec:org1cf0703}
+\label{sec:org5777d98}
 \subsection{資料視覺化}
-\label{sec:org724cb73}
+\label{sec:org03fa14d}
 \subsubsection{Bar chart}
-\label{sec:org9567fa1}
+\label{sec:orgd159f2e}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
   # 載入函式庫
@@ -1147,27 +1148,27 @@ Name: typing, dtype: float64
 \caption{\label{fig:PandasPlot-1}Pandas plot bar chart}
 \end{figure}
 \subsubsection{Pie chart}
-\label{sec:orgd058e7d}
+\label{sec:orgb956031}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  # 載入函式庫
-  import pandas as pd
-  import matplotlib.pyplot as plt
-  # 讀取csv
-  df = pd.read_csv("scores.csv")
+# 載入函式庫
+import pandas as pd
+import matplotlib.pyplot as plt
+# 讀取csv
+df = pd.read_csv("scores.csv")
 
-  # 計算總分'
-  df['Final'] = df.classparti*.1 + df.typing*.1 + df.homework*.2 + df.midexam*.3 + df.finalexam*.3
+# 計算總分'
+df['Final'] = df.classparti*.1 + df.typing*.1 + df.homework*.2 + df.midexam*.3 + df.finalexam*.3
 
-  # create new column according to typing speed
-  df.loc[df.typing < 60, 'TypingSpeed' ] = 'Level-1'
-  df.loc[df.typing.between(60, 80), 'TypingSpeed' ] = 'Level-2'
-  df.loc[df.typing > 80, 'TypingSpeed' ] = 'Level-3'
-  print(df.groupby('TypingSpeed').count())
+# create new column according to typing speed
+df.loc[df.typing < 60, 'TypingSpeed' ] = 'Level-1'
+df.loc[df.typing.between(60, 80), 'TypingSpeed' ] = 'Level-2'
+df.loc[df.typing > 80, 'TypingSpeed' ] = 'Level-3'
+print(df.groupby('TypingSpeed').count())
 
-  fig = df.groupby('TypingSpeed')['TypingSpeed'].count().plot(kind='pie', title="XXX", rot=0, legend=True)
-  savefig = fig.get_figure()
-  savefig.savefig('pandasPlot2.png', bbox_inches='tight')
+fig = df.groupby('TypingSpeed')['TypingSpeed'].count().plot(kind='pie', title="XXX", rot=0, legend=True)
+savefig = fig.get_figure()
+savefig.savefig('pandasPlot2.png', bbox_inches='tight')
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1180,48 +1181,48 @@ Level-3      101         101     101       101      100        101    100
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=400]{pandasPlot2.png}
+\includegraphics[width=300]{pandasPlot2.png}
 \caption{\label{fig:PandasPlot-2}Pandas plot pie chart}
 \end{figure}
 \subsubsection{Scatter chart}
-\label{sec:org81b61f9}
+\label{sec:orgd79eea7}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  # 載入函式庫
-  import pandas as pd
-  import matplotlib.pyplot as plt
+# 載入函式庫
+import pandas as pd
+import matplotlib.pyplot as plt
 
-  # 讀取csv
-  df = pd.read_csv("scores.csv")
+# 讀取csv
+df = pd.read_csv("scores.csv")
 
-  fig = df[['typing','homework']].plot(kind='scatter', x=0, y=1)
-  df[['typing','homework']].plot.line(x=0, y=1)
-  #fig = df[['typing','finalexam']].plot(kind='scatter', x=0, y=1)
+fig = df[['typing','homework']].plot(kind='scatter', x=0, y=1)
+df[['typing','homework']].plot.line(x=0, y=1)
+#fig = df[['typing','finalexam']].plot(kind='scatter', x=0, y=1)
 
-  savefig = fig.get_figure()
-  savefig.savefig('PandasPlot3.png')
+savefig = fig.get_figure()
+savefig.savefig('PandasPlot3.png')
 \end{lstlisting}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=400]{PandasPlot3.png}
+\includegraphics[width=300]{PandasPlot3.png}
 \caption{\label{fig:PandasPlot-3}Pandas plot scatter chart}
 \end{figure}
 \subsubsection{Line chart}
-\label{sec:org03cc8da}
+\label{sec:orgbe2dc84}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  # 載入函式庫
-  import pandas as pd
-  import matplotlib.pyplot as plt
+# 載入函式庫
+import pandas as pd
+import matplotlib.pyplot as plt
 
-  # 讀取csv
-  df = pd.read_csv("scores.csv")
+# 讀取csv
+df = pd.read_csv("scores.csv")
 
-  fig = df[['midexam','finalexam']].plot(kind='scatter', x=0, y=1)
+fig = df[['midexam','finalexam']].plot(kind='scatter', x=0, y=1)
 
-  savefig = fig.get_figure()
-  savefig.savefig('PandasPlot4.png')
+savefig = fig.get_figure()
+savefig.savefig('PandasPlot4.png')
 
 \end{lstlisting}
 
@@ -1234,17 +1235,17 @@ Level-3      101         101     101       101      100        101    100
 \newpage
 
 \section{網路爬蟲}
-\label{sec:org1925e60}
+\label{sec:org12b4004}
 \subsection{parse JSON}
-\label{sec:orge09cf5a}
+\label{sec:org2df8ecb}
 \subsubsection{What is JSON?}
-\label{sec:org29a1e3b}
+\label{sec:org661982b}
 \begin{itemize}
 \item JSON(JavaScript Object Notation，JavaScript 物件表示法)是個以純文字為基底去儲存和傳送簡單結構資料，你可以透過特定的格式去儲存任何資料(字串,數字,陣列,物件)，也可以透過物件或陣列來傳送較複雜的資料。\footnote{\href{https://blog.wu-boy.com/2011/04/\%E4\%BD\%A0\%E4\%B8\%8D\%E5\%8F\%AF\%E4\%B8\%8D\%E7\%9F\%A5\%E7\%9A\%84-json-\%E5\%9F\%BA\%E6\%9C\%AC\%E4\%BB\%8B\%E7\%B4\%B9/}{你不可不知的 JSON 基本介紹}}
 \item 一旦建立了您的 JSON 資料，就可以非常簡單的跟其他程式溝通或交換資料，因為 JSON 就只是純文字個格式。
 \end{itemize}
 \subsubsection{JSON 的優點}
-\label{sec:orgee8f9bc}
+\label{sec:orgcaf65df}
 \begin{itemize}
 \item 相容性高
 \item 格式容易瞭解，閱讀及修改方便
@@ -1252,97 +1253,97 @@ Level-3      101         101     101       101      100        101    100
 \item 許多程式都支援函式庫讀取或修改 JSON 資料
 \end{itemize}
 \subsubsection{JSON 結構}
-\label{sec:orga57cf01}
+\label{sec:org38f2583}
 \begin{itemize}
 \item 物件: \{\}
 \item 陣列: []
 \end{itemize}
 \subsubsection{實作 1: \href{https://data.gov.tw/dataset/31897}{國際主要國家貨幣每月匯率概況}}
-\label{sec:orgfec6e3f}
+\label{sec:orgf9bc96a}
 \begin{enumerate}
 \item 下載 JSON
-\label{sec:org0e18070}
+\label{sec:org7635f7d}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-    import requests
+import requests
 
-    json_url = 'https://quality.data.gov.tw/dq_download_json.php?nid=11339&md5_url=f2fdbc21603c55b11aead08c84184b8f'
-    response = requests.get(json_url)
+json_url = 'https://quality.data.gov.tw/dq_download_json.php?nid=11339&md5_url=f2fdbc21603c55b11aead08c84184b8f'
+response = requests.get(json_url)
 
-    jsonRes = response.json()
-    print(type(jsonRes))
-    print(jsonRes)
-    print('日期', ":\t", '美元／新台幣')
-    for item in jsonRes:
-        print(item['日期'], ":\t", item['美元／新台幣'])
+jsonRes = response.json()
+print(type(jsonRes))
+print(jsonRes[:10])
+print('日期', ":", '美元／新台幣')
+for item in jsonRes:
+    print(item['日期'], ":", item['美元／新台幣'])
 \end{lstlisting}
 
-\begin{verbatim}
-  <class 'list'>
-  [{'日期': '2020/2/3', '美元／新台幣': '30.332', '人民幣／新台幣': '4.321461', '歐元／美元': '1.1077', '美元／日幣': '108.535', '英鎊／美元': '1.3147', '澳幣／美元': '0.6695', '美元／港幣': '7.7685', '美元／人民幣': '7.0189', '美元／南非幣': '14.9376', '紐幣／美元': '0.64675'}, {'日期': '2020/2/4', '美元／新台幣': '30.207', '人民幣／新台幣': '4.320537', '歐元／美元': '1.1056', '美元／日幣': '108.945', '英鎊／美元': '1.29605', '澳幣／美元': '0.67185', '美元／港幣': '7.76895', '美元／人民幣': '6.9915', '美元／南非幣': '14.8117', '紐幣／美元': '0.6466'}, {'日期': '2020/2/5', '美元／新台幣': '30.152', '人民幣／新台幣': '4.306248', '歐元／美元': '1.1044', '美元／日幣': '109.345', '英鎊／美元': '1.3046', '澳幣／美元': '0.6741', '美元／港幣': '7.7644', '美元／人民幣': '7.0019', '美元／南非幣': '14.8205', '紐幣／美元': '0.6484'}, {'日期': '2020/2/6', '美元／新台幣': '30.082', '人民幣／新台幣': '4.315112', '歐元／美元': '1.1002', '美元／日幣': '109.905', '英鎊／美元': '1.29915', '澳幣／美元': '0.6751', '美元／港幣': '7.7633', '美元／人民幣': '6.9713', '美元／南非幣': '14.73', '紐幣／美元': '0.6466'}, {'日期': '2020/2/7', '美元／新台幣': '30.126', '人民幣／新台幣': '4.311904', '歐元／美元': '1.09685', '美元／日幣': '109.905', '英鎊／美元': '1.29315', '澳幣／美元': '0.6706', '美元／港幣': '7.76115', '美元／人民幣': '6.9867', '美元／南非幣': '14.9919', '紐幣／美元': '0.64405'}, {'日期': '2020/2/10', '美元／新台幣': '30.102', '人民幣／新台幣': '4.30883', '歐元／美元': '1.0946', '美元／日幣': '109.845', '英鎊／美元': '1.28835', '澳幣／美元': '0.6697', '美元／港幣': '7.76475', '美元／人民幣': '6.9861', '美元／南非幣': '15.014', '紐幣／美元': '0.64075'}, {'日期': '2020/2/11', '美元／新台幣': '30.068', '人民幣／新台幣': '4.307872', '歐元／美元': '1.0908', '美元／日幣': '109.915', '英鎊／美元': '1.2897', '澳幣／美元': '0.6707', '美元／港幣': '7.76335', '美元／人民幣': '6.9798', '美元／南非幣': '14.92815', '紐幣／美元': '0.6385'}, {'日期': '2020/2/12', '美元／新台幣': '30.032', '人民幣／新台幣': '4.305388', '歐元／美元': '1.0917', '美元／日幣': '109.885', '英鎊／美元': '1.2969', '澳幣／美元': '0.6732', '美元／港幣': '7.76805', '美元／人民幣': '6.97545', '美元／南非幣': '14.78', '紐幣／美元': '0.6464'}, {'日期': '2020/2/13', '美元／新台幣': '30.037', '人民幣／新台幣': '4.301749', '歐元／美元': '1.08805', '美元／日幣': '109.735', '英鎊／美元': '1.2975', '澳幣／美元': '0.67255', '美元／港幣': '7.76855', '美元／人民幣': '6.9825', '美元／南非幣': '14.96025', '紐幣／美元': '0.64555'}, {'日期': '2020/2/14', '美元／新台幣': '30.051', '人民幣／新台幣': '4.301741', '歐元／美元': '1.08345', '美元／日幣': '109.775', '英鎊／美元': '1.3052', '澳幣／美元': '0.67255', '美元／港幣': '7.7672', '美元／人民幣': '6.9858', '美元／南非幣': '14.88945', '紐幣／美元': '0.6434'}, {'日期': '2020/2/17', '美元／新台幣': '30.056', '人民幣／新台幣': '4.305011', '歐元／美元': '1.084', '美元／日幣': '109.865', '英鎊／美元': '1.3042', '澳幣／美元': '0.6726', '美元／港幣': '7.76665', '美元／人民幣': '6.98165', '美元／南非幣': '14.8793', '紐幣／美元': '0.643'}, {'日期': '2020/2/18', '美元／新台幣': '30.125', '人民幣／新台幣': '4.300163', '歐元／美元': '1.0828', '美元／日幣': '109.765', '英鎊／美元': '1.2976', '澳幣／美元': '0.6686', '美元／港幣': '7.7684', '美元／人民幣': '7.00555', '美元／南非幣': '15.0167', '紐幣／美元': '0.64095'}, {'日期': '2020/2/19', '美元／新台幣': '30.152', '人民幣／新台幣': '4.307877', '歐元／美元': '1.08', '美元／日幣': '110.075', '英鎊／美元': '1.30015', '澳幣／美元': '0.66955', '美元／港幣': '7.77105', '美元／人民幣': '6.99925', '美元／南非幣': '14.96755', '紐幣／美元': '0.6395'}, {'日期': '2020/2/20', '美元／新台幣': '30.254', '人民幣／新台幣': '4.307928', '歐元／美元': '1.0789', '美元／日幣': '111.745', '英鎊／美元': '1.28955', '澳幣／美元': '0.66375', '美元／港幣': '7.77715', '美元／人民幣': '7.02285', '美元／南非幣': '15.0643', '紐幣／美元': '0.63455'}, {'日期': '2020/2/21', '美元／新台幣': '30.403', '人民幣／新台幣': '4.310203', '歐元／美元': '1.07965', '美元／日幣': '111.585', '英鎊／美元': '1.28955', '澳幣／美元': '0.6591', '美元／港幣': '7.78995', '美元／人民幣': '7.05375', '美元／南非幣': '15.1692', '紐幣／美元': '0.6307'}, {'日期': '2020/2/24', '美元／新台幣': '30.472', '人民幣／新台幣': '4.327359', '歐元／美元': '1.0823', '美元／日幣': '111.475', '英鎊／美元': '1.2929', '澳幣／美元': '0.65925', '美元／港幣': '7.7927', '美元／人民幣': '7.0417', '美元／南非幣': '15.157', '紐幣／美元': '0.6309'}, {'日期': '2020/2/25', '美元／新台幣': '30.402', '人民幣／新台幣': '4.329458', '歐元／美元': '1.0854', '美元／日幣': '110.665', '英鎊／美元': '1.29505', '澳幣／美元': '0.66115', '美元／港幣': '7.7886', '美元／人民幣': '7.02215', '美元／南非幣': '15.1187', '紐幣／美元': '0.63345'}, {'日期': '2020/2/26', '美元／新台幣': '30.383', '人民幣／新台幣': '4.320979', '歐元／美元': '1.08795', '美元／日幣': '110.455', '英鎊／美元': '1.299', '澳幣／美元': '0.65775', '美元／港幣': '7.79095', '美元／人民幣': '7.0315', '美元／南非幣': '15.2246', '紐幣／美元': '0.6309'}, {'日期': '2020/2/27', '美元／新台幣': '30.33', '人民幣／新台幣': '4.318689', '歐元／美元': '1.09285', '美元／日幣': '110.03', '英鎊／美元': '1.29145', '澳幣／美元': '0.65645', '美元／港幣': '7.7964', '美元／人民幣': '7.02295', '美元／南非幣': '15.3078', '紐幣／美元': '0.6307'}, {'日期': '2020/3/2', '美元／新台幣': '30.124', '人民幣／新台幣': '4.329783', '歐元／美元': '1.10845', '美元／日幣': '108.375', '英鎊／美元': '1.27755', '澳幣／美元': '0.6566', '美元／港幣': '7.7788', '美元／人民幣': '6.9574', '美元／南非幣': '15.46135', '紐幣／美元': '0.6264'}, {'日期': '2020/3/3', '美元／新台幣': '30.087', '人民幣／新台幣': '4.309963', '歐元／美元': '1.11255', '美元／日幣': '108.025', '英鎊／美元': '1.2796', '澳幣／美元': '0.65635', '美元／港幣': '7.78075', '美元／人民幣': '6.9808', '美元／南非幣': '15.4663', '紐幣／美元': '0.6274'}, {'日期': '2020/3/4', '美元／新台幣': '30.038', '人民幣／新台幣': '4.331359', '歐元／美元': '1.11675', '美元／日幣': '107.375', '英鎊／美元': '1.2792', '澳幣／美元': '0.6599', '美元／港幣': '7.76875', '美元／人民幣': '6.935', '美元／南非幣': '15.4147', '紐幣／美元': '0.6282'}, {'日期': '2020/3/5', '美元／新台幣': '29.96', '人民幣／新台幣': '4.318824', '歐元／美元': '1.1132', '美元／日幣': '107.27', '英鎊／美元': '1.2887', '澳幣／美元': '0.66275', '美元／港幣': '7.77055', '美元／人民幣': '6.93705', '美元／南非幣': '15.3171', '紐幣／美元': '0.6307'}, {'日期': '2020/3/6', '美元／新台幣': '30.04', '人民幣／新台幣': '4.326661', '歐元／美元': '1.12395', '美元／日幣': '105.845', '英鎊／美元': '1.297', '澳幣／美元': '0.6637', '美元／港幣': '7.7718', '美元／人民幣': '6.943', '美元／南非幣': '15.61445', '紐幣／美元': '0.63545'}, {'日期': '2020/3/9', '美元／新台幣': '30.13', '人民幣／新台幣': '4.337093', '歐元／美元': '1.14195', '美元／日幣': '102.395', '英鎊／美元': '1.3165', '澳幣／美元': '0.655', '美元／港幣': '7.76875', '美元／人民幣': '6.94705', '美元／南非幣': '16.13755', '紐幣／美元': '0.6272'}, {'日期': '2020/3/10', '美元／新台幣': '30.036', '人民幣／新台幣': '4.323292', '歐元／美元': '1.13965', '美元／日幣': '103.975', '英鎊／美元': '1.3064', '澳幣／美元': '0.6562', '美元／港幣': '7.76865', '美元／人民幣': '6.9475', '美元／南非幣': '15.9612', '紐幣／美元': '0.6305'}, {'日期': '2020/3/11', '美元／新台幣': '30.095', '人民幣／新台幣': '4.328082', '歐元／美元': '1.13145', '美元／日幣': '105.055', '英鎊／美元': '1.29175', '澳幣／美元': '0.6522', '美元／港幣': '7.76705', '美元／人民幣': '6.95345', '美元／南非幣': '15.9834', '紐幣／美元': '0.63125'}, {'日期': '2020/3/12', '美元／新台幣': '30.15', '人民幣／新台幣': '4.314405', '歐元／美元': '1.1305', '美元／日幣': '103.665', '英鎊／美元': '1.28265', '澳幣／美元': '0.64575', '美元／港幣': '7.7712', '美元／人民幣': '6.9882', '美元／南非幣': '16.3743', '紐幣／美元': '0.62745'}, {'日期': '2020/3/13', '美元／新台幣': '30.21', '人民幣／新台幣': '4.311481', '歐元／美元': '1.11935', '美元／日幣': '105.865', '英鎊／美元': '1.2612', '澳幣／美元': '0.6286', '美元／港幣': '7.76655', '美元／人民幣': '7.00685', '美元／南非幣': '16.3106', '紐幣／美元': '0.612'}, {'日期': '2020/3/16', '美元／新台幣': '30.22', '人民幣／新台幣': '4.308465', '歐元／美元': '1.1186', '美元／日幣': '106.555', '英鎊／美元': '1.23585', '澳幣／美元': '0.6173', '美元／港幣': '7.7653', '美元／人民幣': '7.0141', '美元／南非幣': '16.53155', '紐幣／美元': '0.6038'}, {'日期': '2020/3/17', '美元／新台幣': '30.25', '人民幣／新台幣': '4.309385', '歐元／美元': '1.11425', '美元／日幣': '106.925', '英鎊／美元': '1.2227', '澳幣／美元': '0.6091', '美元／港幣': '7.76535', '美元／人民幣': '7.01955', '美元／南非幣': '16.48065', '紐幣／美元': '0.60435'}, {'日期': '2020/3/18', '美元／新台幣': '30.276', '人民幣／新台幣': '4.296013', '歐元／美元': '1.0986', '美元／日幣': '107.335', '英鎊／美元': '1.2043', '澳幣／美元': '0.5962', '美元／港幣': '7.76725', '美元／人民幣': '7.04745', '美元／南非幣': '16.7624', '紐幣／美元': '0.58935'}, {'日期': '2020/3/19', '美元／新台幣': '30.506', '人民幣／新台幣': '4.282432', '歐元／美元': '1.082', '美元／日幣': '109.17', '英鎊／美元': '1.148', '澳幣／美元': '0.5683', '美元／港幣': '7.76295', '美元／人民幣': '7.1235', '美元／南非幣': '17.4708', '紐幣／美元': '0.56175'}, {'日期': '2020/3/20', '美元／新台幣': '30.302', '人民幣／新台幣': '4.278976', '歐元／美元': '1.0777', '美元／日幣': '109.655', '英鎊／美元': '1.18145', '澳幣／美元': '0.59435', '美元／港幣': '7.75695', '美元／人民幣': '7.0816', '美元／南非幣': '17.1728', '紐幣／美元': '0.5837'}, {'日期': '2020/3/23', '美元／新台幣': '30.405', '人民幣／新台幣': '4.257491', '歐元／美元': '1.0691', '美元／日幣': '110.135', '英鎊／美元': '1.16085', '澳幣／美元': '0.5786', '美元／港幣': '7.75575', '美元／人民幣': '7.14155', '美元／南非幣': '17.83985', '紐幣／美元': '0.5651'}, {'日期': '2020/3/24', '美元／新台幣': '30.316', '人民幣／新台幣': '4.276921', '歐元／美元': '1.0837', '美元／日幣': '110.655', '英鎊／美元': '1.165', '澳幣／美元': '0.5955', '美元／港幣': '7.75545', '美元／人民幣': '7.0883', '美元／南非幣': '17.68235', '紐幣／美元': '0.58255'}, {'日期': '2020/3/25', '美元／新台幣': '30.325', '人民幣／新台幣': '4.260996', '歐元／美元': '1.0808', '美元／日幣': '111.53', '英鎊／美元': '1.18305', '澳幣／美元': '0.6037', '美元／港幣': '7.7547', '美元／人民幣': '7.1169', '美元／南非幣': '17.3912', '紐幣／美元': '0.5877'}, {'日期': '2020/3/26', '美元／新台幣': '30.306', '人民幣／新台幣': '4.262327', '歐元／美元': '1.0934', '美元／日幣': '110.415', '英鎊／美元': '1.1927', '澳幣／美元': '0.5954', '美元／港幣': '7.7538', '美元／人民幣': '7.1102', '美元／南非幣': '17.4674', '紐幣／美元': '0.5852'}]
-  日期 :	 美元／新台幣
-  2020/2/3 :	 30.332
-  2020/2/4 :	 30.207
-  2020/2/5 :	 30.152
-  2020/2/6 :	 30.082
-  2020/2/7 :	 30.126
-  2020/2/10 :	 30.102
-  2020/2/11 :	 30.068
-  2020/2/12 :	 30.032
-  2020/2/13 :	 30.037
-  2020/2/14 :	 30.051
-  2020/2/17 :	 30.056
-  2020/2/18 :	 30.125
-  2020/2/19 :	 30.152
-  2020/2/20 :	 30.254
-  2020/2/21 :	 30.403
-  2020/2/24 :	 30.472
-  2020/2/25 :	 30.402
-  2020/2/26 :	 30.383
-  2020/2/27 :	 30.33
-  2020/3/2 :	 30.124
-  2020/3/3 :	 30.087
-  2020/3/4 :	 30.038
-  2020/3/5 :	 29.96
-  2020/3/6 :	 30.04
-  2020/3/9 :	 30.13
-  2020/3/10 :	 30.036
-  2020/3/11 :	 30.095
-  2020/3/12 :	 30.15
-  2020/3/13 :	 30.21
-  2020/3/16 :	 30.22
-  2020/3/17 :	 30.25
-  2020/3/18 :	 30.276
-  2020/3/19 :	 30.506
-  2020/3/20 :	 30.302
-  2020/3/23 :	 30.405
-  2020/3/24 :	 30.316
-  2020/3/25 :	 30.325
-  2020/3/26 :	 30.306
-\end{verbatim}
+\begin{results}
+<class 'list'>
+[\{'日期': '2020/2/3', '美元／新台幣': '30.332', '人民幣／新台幣': '4.321461', '歐元／美元': '1.1077', '美元／日幣': '108.535', '英鎊／美元': '1.3147', '澳幣／美元': '0.6695', '美元／港幣': '7.7685', '美元／人民幣': '7.0189', '美元／南非幣': '14.9376', '紐幣／美元': '0.64675'\}, \{'日期': '2020/2/4', '美元／新台幣': '30.207', '人民幣／新台幣': '4.320537', '歐元／美元': '1.1056', '美元／日幣': '108.945', '英鎊／美元': '1.29605', '澳幣／美元': '0.67185', '美元／港幣': '7.76895', '美元／人民幣': '6.9915', '美元／南非幣': '14.8117', '紐幣／美元': '0.6466'\}, \{'日期': '2020/2/5', '美元／新台幣': '30.152', '人民幣／新台幣': '4.306248', '歐元／美元': '1.1044', '美元／日幣': '109.345', '英鎊／美元': '1.3046', '澳幣／美元': '0.6741', '美元／港幣': '7.7644', '美元／人民幣': '7.0019', '美元／南非幣': '14.8205', '紐幣／美元': '0.6484'\}, \{'日期': '2020/2/6', '美元／新台幣': '30.082', '人民幣／新台幣': '4.315112', '歐元／美元': '1.1002', '美元／日幣': '109.905', '英鎊／美元': '1.29915', '澳幣／美元': '0.6751', '美元／港幣': '7.7633', '美元／人民幣': '6.9713', '美元／南非幣': '14.73', '紐幣／美元': '0.6466'\}, \{'日期': '2020/2/7', '美元／新台幣': '30.126', '人民幣／新台幣': '4.311904', '歐元／美元': '1.09685', '美元／日幣': '109.905', '英鎊／美元': '1.29315', '澳幣／美元': '0.6706', '美元／港幣': '7.76115', '美元／人民幣': '6.9867', '美元／南非幣': '14.9919', '紐幣／美元': '0.64405'\}, \{'日期': '2020/2/10', '美元／新台幣': '30.102', '人民幣／新台幣': '4.30883', '歐元／美元': '1.0946', '美元／日幣': '109.845', '英鎊／美元': '1.28835', '澳幣／美元': '0.6697', '美元／港幣': '7.76475', '美元／人民幣': '6.9861', '美元／南非幣': '15.014', '紐幣／美元': '0.64075'\}, \{'日期': '2020/2/11', '美元／新台幣': '30.068', '人民幣／新台幣': '4.307872', '歐元／美元': '1.0908', '美元／日幣': '109.915', '英鎊／美元': '1.2897', '澳幣／美元': '0.6707', '美元／港幣': '7.76335', '美元／人民幣': '6.9798', '美元／南非幣': '14.92815', '紐幣／美元': '0.6385'\}, \{'日期': '2020/2/12', '美元／新台幣': '30.032', '人民幣／新台幣': '4.305388', '歐元／美元': '1.0917', '美元／日幣': '109.885', '英鎊／美元': '1.2969', '澳幣／美元': '0.6732', '美元／港幣': '7.76805', '美元／人民幣': '6.97545', '美元／南非幣': '14.78', '紐幣／美元': '0.6464'\}, \{'日期': '2020/2/13', '美元／新台幣': '30.037', '人民幣／新台幣': '4.301749', '歐元／美元': '1.08805', '美元／日幣': '109.735', '英鎊／美元': '1.2975', '澳幣／美元': '0.67255', '美元／港幣': '7.76855', '美元／人民幣': '6.9825', '美元／南非幣': '14.96025', '紐幣／美元': '0.64555'\}, \{'日期': '2020/2/14', '美元／新台幣': '30.051', '人民幣／新台幣': '4.301741', '歐元／美元': '1.08345', '美元／日幣': '109.775', '英鎊／美元': '1.3052', '澳幣／美元': '0.67255', '美元／港幣': '7.7672', '美元／人民幣': '6.9858', '美元／南非幣': '14.88945', '紐幣／美元': '0.6434'\}]
+日期 : 美元／新台幣
+2020/2/3 : 30.332
+2020/2/4 : 30.207
+2020/2/5 : 30.152
+2020/2/6 : 30.082
+2020/2/7 : 30.126
+2020/2/10 : 30.102
+2020/2/11 : 30.068
+2020/2/12 : 30.032
+2020/2/13 : 30.037
+2020/2/14 : 30.051
+2020/2/17 : 30.056
+2020/2/18 : 30.125
+2020/2/19 : 30.152
+2020/2/20 : 30.254
+2020/2/21 : 30.403
+2020/2/24 : 30.472
+2020/2/25 : 30.402
+2020/2/26 : 30.383
+2020/2/27 : 30.33
+2020/3/2 : 30.124
+2020/3/3 : 30.087
+2020/3/4 : 30.038
+2020/3/5 : 29.96
+2020/3/6 : 30.04
+2020/3/9 : 30.13
+2020/3/10 : 30.036
+2020/3/11 : 30.095
+2020/3/12 : 30.15
+2020/3/13 : 30.21
+2020/3/16 : 30.22
+2020/3/17 : 30.25
+2020/3/18 : 30.276
+2020/3/19 : 30.506
+2020/3/20 : 30.302
+2020/3/23 : 30.405
+2020/3/24 : 30.316
+2020/3/25 : 30.325
+2020/3/26 : 30.306
+\end{results}
 
 \item 資料視覺化
-\label{sec:org17ef5df}
+\label{sec:org4c5dfb6}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-    import requests
-    import pandas as pd
-    json_url = 'https://quality.data.gov.tw/dq_download_json.php?nid=11339&md5_url=f2fdbc21603c55b11aead08c84184b8f'
-    response = requests.get(json_url)
-    jsonRes = response.json()
+import requests
+import pandas as pd
+json_url = 'https://quality.data.gov.tw/dq_download_json.php?nid=11339&md5_url=f2fdbc21603c55b11aead08c84184b8f'
+response = requests.get(json_url)
+jsonRes = response.json()
 
-    dates = [i['日期'] for i in jsonRes]
-    NTUS = [float(i['美元／新台幣']) for i in jsonRes]
-    df = pd.DataFrame({'日期':dates, '美元/新台幣':NTUS})
+dates = [i['日期'] for i in jsonRes]
+NTUS = [float(i['美元／新台幣']) for i in jsonRes]
+df = pd.DataFrame({'日期':dates, '美元/新台幣':NTUS})
 
-    import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
-    plt.clf()
-    plt.plot(df['日期'], NTUS)
-    plt.xticks(rotation=60, fontsize=6)
-    ##plt.plot(dates, JPY)
-    ##plt.plot(dates, EUR)
-    plt.savefig('jsonLine.png', dpi=300)
+plt.clf()
+plt.plot(df['日期'], NTUS)
+plt.xticks(rotation=60, fontsize=6)
+##plt.plot(dates, JPY)
+##plt.plot(dates, EUR)
+plt.savefig('jsonLine.png', dpi=300)
 \end{lstlisting}
 
 \begin{figure}[htbp]
@@ -1352,7 +1353,7 @@ Level-3      101         101     101       101      100        101    100
 \end{figure}
 \end{enumerate}
 \subsubsection{實作 2: \href{https://data.gov.tw/dataset/113063}{澎湖生活博物館每月參觀人次統計資料}}
-\label{sec:org0bdd32d}
+\label{sec:org9dd86fe}
 \begin{enumerate}
 \item 中文亂碼處理
 \begin{itemize}
@@ -1399,124 +1400,126 @@ Level-3      101         101     101       101      100        101    100
 \end{figure}
 \end{enumerate}
 \subsubsection{實作 3: 下載 JSON}
-\label{sec:org39fc0e3}
+\label{sec:org935ab83}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import requests
-  import json
-  json_url = 'http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1&rows=20'
-  response = requests.get(json_url)
+import requests
+import json
+json_url = 'http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1&rows=20'
+response = requests.get(json_url)
 
-  print(response)
-  # 方法1
-  jsonRes1 = response.json()
-  print(type(jsonRes1))
-  # 
-  jsonRes2 = json.loads(response.text)
-  print(type(jsonRes2))
+print(response)
+# 方法1
+jsonRes1 = response.json()
+print(type(jsonRes1))
+# 
+jsonRes2 = json.loads(response.text)
+print(type(jsonRes2))
 
-  print(jsonRes2)
+print(jsonRes2)
 \end{lstlisting}
 
-\begin{verbatim}
+\begin{results}
 <Response [200]>
 <class 'dict'>
 <class 'dict'>
-{'total': 20, 'rows': [{'author': '文德國小', 'attributes': {'subjects': '普通科留職停薪', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鳳山區 108 學年度文德國小第 5 號第 3 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度文德國小第 5 號第 3 次公告', 'pubDate': '109-03-12'}, {'author': '興仁國中', 'attributes': {'subjects': '生物', 'url': 'https://employ.kh.edu.tw/Html/2020/3/前鎮區 108 學年度興仁國中第 8 號第 1 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度興仁國中第 8 號第 1 次公告', 'pubDate': '109-03-12'}, {'author': '燕巢國中', 'attributes': {'subjects': '資訊科技科(電腦科)', 'url': 'https://employ.kh.edu.tw/Html/2020/3/燕巢區 108 學年度燕巢國中第 13 號第 2 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度燕巢國中第 13 號第 2 次公告', 'pubDate': '109-03-12'}, {'author': '登發國小', 'attributes': {'subjects': '普通科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/仁武區 108 學年度登發國小第 3 號第 2 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度登發國小第 3 號第 2 次公告', 'pubDate': '109-03-11'}, {'author': '青年國中', 'attributes': {'subjects': '國文', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鳳山區 108 學年度青年國中第 13 號第 1 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度青年國中第 13 號第 1 次公告', 'pubDate': '109-03-10'}, {'author': '龍華國中', 'attributes': {'subjects': '地理', 'url': 'https://employ.kh.edu.tw/Html/2020/3/左營區 108 學年度龍華國中第 11 號第 1 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度龍華國中第 11 號第 1 次公告', 'pubDate': '109-03-10'}, {'author': '鼓山高中', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鼓山區 108 學年度鼓山高中第 11 號第 1 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度鼓山高中第 11 號第 1 次公告', 'pubDate': '109-03-10'}, {'author': '烏林國小', 'attributes': {'subjects': '特教身心障礙巡迴輔導班', 'url': 'https://employ.kh.edu.tw/Html/2020/3/仁武區 108 學年度烏林國小第 3 號第 2 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度烏林國小第 3 號第 2 次公告', 'pubDate': '109-03-10'}, {'author': '七賢國中', 'attributes': {'subjects': '數學', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鼓山區 108 學年度七賢國中第 9 號第 2 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度七賢國中第 9 號第 2 次公告', 'pubDate': '109-03-09'}, {'author': '溪埔國中', 'attributes': {'subjects': '特殊教育數學專長', 'url': 'https://employ.kh.edu.tw/Html/2020/3/大樹區 108 學年度溪埔國中第 7 號第 2 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度溪埔國中第 7 號第 2 次公告', 'pubDate': '109-03-09'}, {'author': '楠梓國中', 'attributes': {'subjects': '歷史', 'url': 'https://employ.kh.edu.tw/Html/2020/3/楠梓區 108 學年度楠梓國中第 8 號第 4 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度楠梓國中第 8 號第 4 次公告', 'pubDate': '109-03-09'}, {'author': '甲仙國中', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/甲仙區 108 學年度甲仙國中第 5 號第 2 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度甲仙國中第 5 號第 2 次公告', 'pubDate': '109-03-09'}, {'author': '立志高中', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/三民區 108 學年度立志高中第 1 號第 1 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度立志高中第 1 號第 1 次公告', 'pubDate': '109-03-06'}, {'author': '阿蓮國小', 'attributes': {'subjects': '五年級自然與生活科技領域', 'url': 'https://employ.kh.edu.tw/Html/2020/3/阿蓮區 108 學年度阿蓮國小第 12 號第 3 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度阿蓮國小第 12 號第 3 次公告', 'pubDate': '109-03-06'}, {'author': '金潭國小', 'attributes': {'subjects': '學前不分類巡迴輔導班', 'url': 'https://employ.kh.edu.tw/Html/2020/3/林園區 108 學年度金潭國小第 6 號第 3 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度金潭國小第 6 號第 3 次公告', 'pubDate': '109-03-06'}, {'author': '中崙國中', 'attributes': {'subjects': '英語', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鳳山區 108 學年度中崙國中第 7 號第 3 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度中崙國中第 7 號第 3 次公告', 'pubDate': '109-03-05'}, {'author': '巴楠花部落中小學', 'attributes': {'subjects': '生物', 'url': 'https://employ.kh.edu.tw/Html/2020/3/杉林區 108 學年度巴楠花部落中小學第 14 號第 3 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度巴楠花部落中小學第 14 號第 3 次公告', 'pubDate': '109-03-04'}, {'author': '中山國小', 'attributes': {'subjects': '綜合科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鼓山區 108 學年度中山國小第 10 號第 2 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度中山國小第 10 號第 2 次公告', 'pubDate': '109-03-03'}, {'author': '福誠高中', 'attributes': {'subjects': '地理', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鳳山區 108 學年度福誠高中第 19 號第 3 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度福誠高中第 19 號第 3 次公告', 'pubDate': '109-03-03'}, {'author': '彌陀國小', 'attributes': {'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/彌陀區 108 學年度彌陀國小第 5 號第 1 次公告簡章.html', 'target': '_blank'}, 'title': '108 學年度彌陀國小第 5 號第 1 次公告', 'pubDate': '109-03-03'}]}
-\end{verbatim}
+\{'total': 20, 'rows': [\{'author': '加昌國小', 'attributes': \{'subjects': '閩南語', 'url': 'https://employ.kh.edu.tw/Html/2020/4/楠梓區 108 學年度加昌國小第 3 號第 14 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度加昌國小第 3 號第 14 次公告', 'pubDate': '109-04-03'\}, \{'author': '加昌國小', 'attributes': \{'subjects': '普通科', 'url': 'https://employ.kh.edu.tw/Html/2020/4/楠梓區 108 學年度加昌國小第 10 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度加昌國小第 10 號第 1 次公告', 'pubDate': '109-04-03'\}, \{'author': '瑞祥高中', 'attributes': \{'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/4/前鎮區 108 學年度瑞祥高中第 9 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度瑞祥高中第 9 號第 1 次公告', 'pubDate': '109-04-01'\}, \{'author': '鼓山高中', 'attributes': \{'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/4/鼓山區 108 學年度鼓山高中第 11 號第 2 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度鼓山高中第 11 號第 2 次公告', 'pubDate': '109-04-01'\}, \{'author': '橫山國小', 'attributes': \{'subjects': '特殊教育（身心障礙類）不分類巡迴輔導班', 'url': 'https://employ.kh.edu.tw/Html/2020/4/燕巢區 108 學年度橫山國小第 7 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度橫山國小第 7 號第 1 次公告', 'pubDate': '109-04-01'\}, \{'author': '陽明國小', 'attributes': \{'subjects': '自然科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/三民區 108 學年度陽明國小第 7 號第 3 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度陽明國小第 7 號第 3 次公告', 'pubDate': '109-03-31'\}, \{'author': '巴楠花部落中小學', 'attributes': \{'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/杉林區 108 學年度巴楠花部落中小學第 13 號第 6 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度巴楠花部落中小學第 13 號第 6 次公告', 'pubDate': '109-03-31'\}, \{'author': '林園高中', 'attributes': \{'subjects': '表演藝術', 'url': 'https://employ.kh.edu.tw/Html/2020/3/林園區 108 學年度林園高中第 18 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度林園高中第 18 號第 1 次公告', 'pubDate': '109-03-31'\}, \{'author': '小港國小', 'attributes': \{'subjects': '健康與體適能科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/小港區 108 學年度小港國小第 14 號第 3 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度小港國小第 14 號第 3 次公告', 'pubDate': '109-03-31'\}, \{'author': '新民國小', 'attributes': \{'subjects': '普通科代理(須代導師)', 'url': 'https://employ.kh.edu.tw/Html/2020/3/左營區 108 學年度新民國小第 9 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度新民國小第 9 號第 1 次公告', 'pubDate': '109-03-31'\}, \{'author': '鳳雄國小', 'attributes': \{'subjects': '普通科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/燕巢區 108 學年度鳳雄國小第 2 號第 2 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度鳳雄國小第 2 號第 2 次公告', 'pubDate': '109-03-31'\}, \{'author': '龍華國中', 'attributes': \{'subjects': '輔導活動', 'url': 'https://employ.kh.edu.tw/Html/2020/3/左營區 108 學年度龍華國中第 12 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度龍華國中第 12 號第 1 次公告', 'pubDate': '109-03-31'\}, \{'author': '燕巢國中', 'attributes': \{'subjects': '資訊科技科(電腦科)', 'url': 'https://employ.kh.edu.tw/Html/2020/3/燕巢區 108 學年度燕巢國中第 14 號第 2 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度燕巢國中第 14 號第 2 次公告', 'pubDate': '109-03-30'\}, \{'author': '蔡文國小', 'attributes': \{'subjects': '普通科', 'url': 'https://employ.kh.edu.tw/Html/2020/3/路竹區 108 學年度蔡文國小第 6 號第 3 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度蔡文國小第 6 號第 3 次公告', 'pubDate': '109-03-27'\}, \{'author': '橋頭國中', 'attributes': \{'subjects': '專任輔導', 'url': 'https://employ.kh.edu.tw/Html/2020/3/橋頭區 108 學年度橋頭國中第 6 號第 3 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度橋頭國中第 6 號第 3 次公告', 'pubDate': '109-03-27'\}, \{'author': '七賢國中', 'attributes': \{'subjects': '體育', 'url': 'https://employ.kh.edu.tw/Html/2020/3/鼓山區 108 學年度七賢國中第 10 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度七賢國中第 10 號第 1 次公告', 'pubDate': '109-03-26'\}, \{'author': '七賢國小', 'attributes': \{'subjects': '雙語實驗計畫英語專長', 'url': 'https://employ.kh.edu.tw/Html/2020/3/新興區 108 學年度七賢國小第 5 號第 4 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度七賢國小第 5 號第 4 次公告', 'pubDate': '109-03-26'\}, \{'author': '文府國小', 'attributes': \{'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/左營區 108 學年度文府國小第 5 號第 1 次公告第 1 次修正簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度文府國小第 5 號第 1 次公告第 1 次修正', 'pubDate': '109-03-24'\}, \{'author': '蚵寮國小', 'attributes': \{'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/梓官區 108 學年度蚵寮國小第 4 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度蚵寮國小第 4 號第 1 次公告', 'pubDate': '109-03-23'\}, \{'author': '高雄高工', 'attributes': \{'subjects': '', 'url': 'https://employ.kh.edu.tw/Html/2020/3/三民區 108 學年度高雄高工第 3 號第 1 次公告簡章.html', 'target': '\textsubscript{blank}'\}, 'title': '108 學年度高雄高工第 3 號第 1 次公告', 'pubDate': '109-03-20'\}]\}
+\end{results}
+
 \subsubsection{實作: 解析 JSON}
-\label{sec:org6b82469}
+\label{sec:org0290b02}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import requests
-  import json
+import requests
+import json
 
-  response = requests.get('http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1&rows=20')
-  jsonRes = response.json()
-  #print(jsonRes['rows'])
-  for item in jsonRes['rows']:
-      print(item['author'], ":", item['title']," / ", item['pubDate'])
-  sortJR = jsonRes['rows']
-  print(type(sortJR))
+response = requests.get('http://www.kh.edu.tw/json/bulletin/employ/datagrid?page=1&rows=20')
+jsonRes = response.json()
+#print(jsonRes['rows'])
+for item in jsonRes['rows']:
+    print(item['author'], ":", item['title'],"/", item['pubDate'],"\n")
+    sortJR = jsonRes['rows']
+    print(type(sortJR))
 
-  sortJR.sort(key=lambda x: x['author'], reverse=False)
-  for item in sortJR:
-      print(item['author'], ":", item['title']," / ", item['pubDate'])
+sortJR.sort(key=lambda x: x['author'], reverse=False)
+for item in sortJR:
+    print(item['author'], ":", item['title'],"/", item['pubDate'])
 \end{lstlisting}
 
-\begin{verbatim}
-文德國小 : 108學年度文德國小第5號第3次公告  /  109-03-12
-興仁國中 : 108學年度興仁國中第8號第1次公告  /  109-03-12
-燕巢國中 : 108學年度燕巢國中第13號第2次公告  /  109-03-12
-登發國小 : 108學年度登發國小第3號第2次公告  /  109-03-11
-青年國中 : 108學年度青年國中第13號第1次公告  /  109-03-10
-龍華國中 : 108學年度龍華國中第11號第1次公告  /  109-03-10
-鼓山高中 : 108學年度鼓山高中第11號第1次公告  /  109-03-10
-烏林國小 : 108學年度烏林國小第3號第2次公告  /  109-03-10
-七賢國中 : 108學年度七賢國中第9號第2次公告  /  109-03-09
-溪埔國中 : 108學年度溪埔國中第7號第2次公告  /  109-03-09
-楠梓國中 : 108學年度楠梓國中第8號第4次公告  /  109-03-09
-甲仙國中 : 108學年度甲仙國中第5號第2次公告  /  109-03-09
-立志高中 : 108學年度立志高中第1號第1次公告  /  109-03-06
-阿蓮國小 : 108學年度阿蓮國小第12號第3次公告  /  109-03-06
-金潭國小 : 108學年度金潭國小第6號第3次公告  /  109-03-06
-中崙國中 : 108學年度中崙國中第7號第3次公告  /  109-03-05
-巴楠花部落中小學 : 108學年度巴楠花部落中小學第14號第3次公告  /  109-03-04
-中山國小 : 108學年度中山國小第10號第2次公告  /  109-03-03
-福誠高中 : 108學年度福誠高中第19號第3次公告  /  109-03-03
-彌陀國小 : 108學年度彌陀國小第5號第1次公告  /  109-03-03
+\begin{results}
+文德國小 : 108 學年度文德國小第 5 號第 3 次公告  /  109-03-12
+興仁國中 : 108 學年度興仁國中第 8 號第 1 次公告  /  109-03-12
+燕巢國中 : 108 學年度燕巢國中第 13 號第 2 次公告  /  109-03-12
+登發國小 : 108 學年度登發國小第 3 號第 2 次公告  /  109-03-11
+青年國中 : 108 學年度青年國中第 13 號第 1 次公告  /  109-03-10
+龍華國中 : 108 學年度龍華國中第 11 號第 1 次公告  /  109-03-10
+鼓山高中 : 108 學年度鼓山高中第 11 號第 1 次公告  /  109-03-10
+烏林國小 : 108 學年度烏林國小第 3 號第 2 次公告  /  109-03-10
+七賢國中 : 108 學年度七賢國中第 9 號第 2 次公告  /  109-03-09
+溪埔國中 : 108 學年度溪埔國中第 7 號第 2 次公告  /  109-03-09
+楠梓國中 : 108 學年度楠梓國中第 8 號第 4 次公告  /  109-03-09
+甲仙國中 : 108 學年度甲仙國中第 5 號第 2 次公告  /  109-03-09
+立志高中 : 108 學年度立志高中第 1 號第 1 次公告  /  109-03-06
+阿蓮國小 : 108 學年度阿蓮國小第 12 號第 3 次公告  /  109-03-06
+金潭國小 : 108 學年度金潭國小第 6 號第 3 次公告  /  109-03-06
+中崙國中 : 108 學年度中崙國中第 7 號第 3 次公告  /  109-03-05
+巴楠花部落中小學 : 108 學年度巴楠花部落中小學第 14 號第 3 次公告  /  109-03-04
+中山國小 : 108 學年度中山國小第 10 號第 2 次公告  /  109-03-03
+福誠高中 : 108 學年度福誠高中第 19 號第 3 次公告  /  109-03-03
+彌陀國小 : 108 學年度彌陀國小第 5 號第 1 次公告  /  109-03-03
 <class 'list'>
-七賢國中 : 108學年度七賢國中第9號第2次公告  /  109-03-09
-中山國小 : 108學年度中山國小第10號第2次公告  /  109-03-03
-中崙國中 : 108學年度中崙國中第7號第3次公告  /  109-03-05
-巴楠花部落中小學 : 108學年度巴楠花部落中小學第14號第3次公告  /  109-03-04
-彌陀國小 : 108學年度彌陀國小第5號第1次公告  /  109-03-03
-文德國小 : 108學年度文德國小第5號第3次公告  /  109-03-12
-楠梓國中 : 108學年度楠梓國中第8號第4次公告  /  109-03-09
-溪埔國中 : 108學年度溪埔國中第7號第2次公告  /  109-03-09
-烏林國小 : 108學年度烏林國小第3號第2次公告  /  109-03-10
-燕巢國中 : 108學年度燕巢國中第13號第2次公告  /  109-03-12
-甲仙國中 : 108學年度甲仙國中第5號第2次公告  /  109-03-09
-登發國小 : 108學年度登發國小第3號第2次公告  /  109-03-11
-福誠高中 : 108學年度福誠高中第19號第3次公告  /  109-03-03
-立志高中 : 108學年度立志高中第1號第1次公告  /  109-03-06
-興仁國中 : 108學年度興仁國中第8號第1次公告  /  109-03-12
-金潭國小 : 108學年度金潭國小第6號第3次公告  /  109-03-06
-阿蓮國小 : 108學年度阿蓮國小第12號第3次公告  /  109-03-06
-青年國中 : 108學年度青年國中第13號第1次公告  /  109-03-10
-鼓山高中 : 108學年度鼓山高中第11號第1次公告  /  109-03-10
-龍華國中 : 108學年度龍華國中第11號第1次公告  /  109-03-10
-\end{verbatim}
+七賢國中 : 108 學年度七賢國中第 9 號第 2 次公告  /  109-03-09
+中山國小 : 108 學年度中山國小第 10 號第 2 次公告  /  109-03-03
+中崙國中 : 108 學年度中崙國中第 7 號第 3 次公告  /  109-03-05
+巴楠花部落中小學 : 108 學年度巴楠花部落中小學第 14 號第 3 次公告  /  109-03-04
+彌陀國小 : 108 學年度彌陀國小第 5 號第 1 次公告  /  109-03-03
+文德國小 : 108 學年度文德國小第 5 號第 3 次公告  /  109-03-12
+楠梓國中 : 108 學年度楠梓國中第 8 號第 4 次公告  /  109-03-09
+溪埔國中 : 108 學年度溪埔國中第 7 號第 2 次公告  /  109-03-09
+烏林國小 : 108 學年度烏林國小第 3 號第 2 次公告  /  109-03-10
+燕巢國中 : 108 學年度燕巢國中第 13 號第 2 次公告  /  109-03-12
+甲仙國中 : 108 學年度甲仙國中第 5 號第 2 次公告  /  109-03-09
+登發國小 : 108 學年度登發國小第 3 號第 2 次公告  /  109-03-11
+福誠高中 : 108 學年度福誠高中第 19 號第 3 次公告  /  109-03-03
+立志高中 : 108 學年度立志高中第 1 號第 1 次公告  /  109-03-06
+興仁國中 : 108 學年度興仁國中第 8 號第 1 次公告  /  109-03-12
+金潭國小 : 108 學年度金潭國小第 6 號第 3 次公告  /  109-03-06
+阿蓮國小 : 108 學年度阿蓮國小第 12 號第 3 次公告  /  109-03-06
+青年國中 : 108 學年度青年國中第 13 號第 1 次公告  /  109-03-10
+鼓山高中 : 108 學年度鼓山高中第 11 號第 1 次公告  /  109-03-10
+龍華國中 : 108 學年度龍華國中第 11 號第 1 次公告  /  109-03-10
+\end{results}
+
 \subsubsection{練習}
-\label{sec:orgb587186}
+\label{sec:orgf68e1c7}
 \begin{itemize}
 \item 以程式抓取\href{https://data.kcg.gov.tw/dataset?res\_format=JSON}{高雄市政府資料開放平台}的線上 JSON 資料，parse 並輸出所需結果
 \end{itemize}
 \subsection{parse HTML}
-\label{sec:orgdebe19c}
+\label{sec:org14e850c}
 \begin{itemize}
 \item what is HTML
 \item 精神：將程式模仿成一般 user
 \end{itemize}
 \subsubsection{所需套件}
-\label{sec:orga3d9a2e}
+\label{sec:orga5dcf77}
 \begin{itemize}
 \item BeautifulSoup
+\item 安裝：pip install beautifulsoup4
 \end{itemize}
-pip install beautifulsoup4
 \subsection{範例: 以程式抓取 PTT 電影板 header}
-\label{sec:orga6f41bf}
+\label{sec:org39b4ba1}
 \subsubsection{原則}
-\label{sec:org70be7b1}
+\label{sec:org32119e7}
 \begin{enumerate}
 \item 要抓網路資料，就要先仔細觀察網頁內容
 \item 要儘量欺騙網站自己是 browser
 \end{enumerate}
 \subsubsection{實作: 取得 HTML 資料}
-\label{sec:org4c16e12}
+\label{sec:orgb359a3e}
 \begin{enumerate}
 \item 第一版
-\label{sec:org1b72aff}
+\label{sec:orgbc0fdbe}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
   # 抓取PTT電影版header
@@ -1535,62 +1538,59 @@ urllib.error.HTTPError: HTTP Error 403: Forbidden
 被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是 HTTP 協議中的一個 HTTP 狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務\footnote{\href{https://medium.com/ai\%E5\%8F\%8D\%E6\%96\%97\%E5\%9F\%8E/anaconda-miniconda-conda-pip\%E7\%9A\%84\%E7\%9B\%B8\%E4\%BA\%92\%E9\%97\%9C\%E4\%BF\%82-\%E8\%BD\%89\%E8\%BC\%89-a0536f3a257}{Anaconda、Miniconda、Conda、pip的相互關係 (轉載)}}。
 
 \item 第二版:加入 header
-\label{sec:org54fc7ae}
+\label{sec:orgc560732}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-  import urllib.request as req
-  url = "https://www.ptt.cc/bbs/Stock/index.html"
-  # 幫request加上一個header
-  request = req.Request(url, headers = {
-      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
-  })
+import urllib.request as req
+url = "https://www.ptt.cc/bbs/Stock/index.html"
+# 幫request加上一個header
+request = req.Request(url, headers = {
+    "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+})
 
-  with req.urlopen(request) as response:
-      data = response.read().decode("utf-8")
-  print('所取得的資料型態：',type(data))
-  print(data[700:1200])
+with req.urlopen(request) as response:
+    data = response.read().decode("utf-8")
+print('所取得的資料型態：',type(data))
+print(data[700:1200])
 \end{lstlisting}
 
-\begin{verbatim}
+\begin{results}
 所取得的資料型態： <class 'str'>
 api.js'></script></head>
     <body>
-		
-<div id="topbar-container">
-	<div id="topbar" class="bbs-content">
-		<a id="logo" href="/bbs/">批踢踢實業坊</a>
-		<span>&rsaquo;</span>
-		<a class="board" href="/bbs/Stock/index.html"><span class="board-label">看板 </span>Stock</a>
-		<a class="right small" href="/about.html">關於我們</a>
-		<a class="right small" href="/contact.html">聯絡資訊</a>
+
+<div id=``topbar-container''>
+	<div id=``topbar'' class=``bbs-content''>
+		<a id=``logo'' href=``\emph{bbs}''>批踢踢實業坊</a>
+		<span>\&rsaquo;</span>
+		<a class=``board'' href=``/bbs/Stock/index.html''><span class=``board-label''>看板 </span>Stock</a>
+		<a class=``right small'' href=``/about.html''>關於我們</a>
+		<a class=``right small'' href=``/contact.html''>聯絡資訊</a>
 	</div>
 </div>
 
-<div id="main-container">
-	<div id="action-bar-container">
-		<div class="action-bar">
-			<div class="btn-group bt
-\end{verbatim}
+<div id=``main-container''>
+	<div id=``action-bar-container''>
+		<div class=``action-bar''>
+			<div class=``btn-group bt
+\end{results}
 \end{enumerate}
+
 \subsubsection{實作：解析 HTML 資料內容}
-\label{sec:orgf137b14}
+\label{sec:orgc4f2b62}
 \begin{enumerate}
 \item 安裝解析 HTML 所需套件
-\label{sec:orgcf3df7d}
+\label{sec:orgfe7b27c}
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
 pip install beautifulsoup4
 \end{lstlisting}
-
-\begin{center}
-\begin{tabular}{lllllllll}
-Requirement & already & satisfied: & beautifulsoup4 & in & /Users/letranger/anaconda3/lib/python3.7/site-packages & (4.8.0) &  & \\
-Requirement & already & satisfied: & soupsieve>=1.2 & in & /Users/letranger/anaconda3/lib/python3.7/site-packages & (from & beautifulsoup4) & (1.9.4)\\
-\end{tabular}
-\end{center}
-
+\begin{verbatim}
+| Requirement | already | satisfied: | beautifulsoup4 | in | /Users/letranger/anaconda3/lib/python3.7/site-packages | (4.8.0) |                 |         |
+| Requirement | already | satisfied: | soupsieve>=1.2 | in | /Users/letranger/anaconda3/lib/python3.7/site-packages | (from   | beautifulsoup4) | (1.9.4) |
+\end{verbatim}
 \item 第三版: 解析 HTML
-\label{sec:org0354c56}
+\label{sec:orgfa094d0}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
   import urllib.request as req
@@ -1634,7 +1634,7 @@ Re: [新聞] 國際油價又崩跌回到25美元 川普推文只有
 [閒聊] 2020/04/01 盤後閒聊
 \end{verbatim}
 \item 第四版: 解析 HTML
-\label{sec:org0daa1d1}
+\label{sec:org32f221d}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
   import urllib.request as req
@@ -1679,7 +1679,7 @@ Nov  優群(3217)_穩定型成長股_2019.3Q&2019/10
 \end{enumerate}
 
 \section{如何把 python 程式 publish 成網站應用程式}
-\label{sec:orgfd91c4b}
+\label{sec:orga753e7c}
 
 \newpage
 \end{document}
