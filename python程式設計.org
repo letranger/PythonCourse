@@ -1,0 +1,1295 @@
+#+Title: Python programming
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+
+
+#+PROPERTY: header-args :eval never-export
+#+STARTUP: inlineimages
+#+OPTIONS: H:3
+#+OPTIONS: \n:t
+#+LATEX_HEADER: \usepackage{xeCJK}
+#+LATEX_HEADER: \setCJKmainfont{SimSun}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+#+LaTeX_HEADER: \lstset{basicstyle=\scriptsize\ttfamily}
+#+LaTeX_HEADER: \lstset{basicstyle=\tiny\ttfamily}
+#+LATEX_HEADER: \usepackage{placeins}
+#+LATEX_HEADER: \vspace{-0.2cm}
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [a4paper,12pt]
+#+LATEX_HEADER: \usepackage{xcolor}
+#+LATEX_HEADER: \definecolor{dkgreen}{rgb}{0,0.6,0}
+#+LATEX_HEADER: \definecolor{dred}{rgb}{0.545,0,0}
+#+LATEX_HEADER: \definecolor{dblue}{rgb}{0,0,0.545}
+#+LATEX_HEADER: \definecolor{lgrey}{rgb}{0.9,0.9,0.9}
+#+LATEX_HEADER: \definecolor{gray}{rgb}{0.4,0.4,0.4}
+#+LATEX_HEADER: \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+#+LATEX_HEADER: \definecolor{bubbles}{rgb}{0.91, 1.0, 1.0}
+#+LATEX_HEADER: \lstdefinelanguage{python}{
+#+LATEX_HEADER:  backgroundcolor=\color{bubbles},
+#+LATEX_HEADER:  basicstyle=\footnotesize \ttfamily \color{black} \bfseries,
+#+LATEX_HEADER:  breakatwhitespace=false,
+#+LATEX_HEADER:  breaklines=true,
+#+LATEX_HEADER:  captionpos=b,
+#+LATEX_HEADER:  commentstyle=\color{dred},
+#+LATEX_HEADER:  deletekeywords={...},
+#+LATEX_HEADER:  escapeinside={\%*}{*)},
+#+LATEX_HEADER:  frame=single,
+#+LATEX_HEADER:  language=C++,
+#+LATEX_HEADER:  keywordstyle=\color{purple},
+#+LATEX_HEADER:  morekeywords={BRIEFDescriptorConfig,string,TiXmlNode,DetectorDescriptorConfigContainer,istringstream,cerr,exit},
+#+LATEX_HEADER:  identifierstyle=\color{black},
+#+LATEX_HEADER:  stringstyle=\color{blue},
+#+LATEX_HEADER:  rulecolor=\color{black},
+#+LATEX_HEADER:  showspaces=false,
+#+LATEX_HEADER:  showstringspaces=false,
+#+LATEX_HEADER:  showtabs=false,
+#+LATEX_HEADER:  stepnumber=1,
+#+LATEX_HEADER:  tabsize=5,
+#+LATEX_HEADER:  title=\lstname,
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \usepackage{enumitem}
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+
+
+
+* 變數、資料型態、輸出輸入
+*** 變數
+*** 命名規則
+- 由英文、數字、底線、中文(不建議)組成
+- 不得以數字開頭
+- 不能與Python內建的保留字相同
+
+*** 範例
+- abc\under123: 
+- 3pigs
+- Happy New Year
+- Class
+- Good!
+
+** 變數的指派(assign)
+Python變數不需宣告，依指派值自動設定資料型態。
+
+*** 指派語法：        
+- 變數名稱 = 指派值
+- 變數不再使用時，可用del指令將其刪除，以節省記憶體。
+
+*** 範例：
+#+begin_src python -r -n :results output :exports both
+  a = 5
+  b = 3.14
+  c = 'TNFSH'
+  a = b = c = 10
+  name, number = 'TNFSH', 35
+#+end_src
+
+#+RESULTS:
+
+*** 資料型態
+*** 常用類型
+- 整數: int
+- 浮點數: float 
+- 布林值(True / False): bool, T 與 F要大寫
+- 字串: str, 以'或"含括,若輸出字串要包含引號，則以另一種引號含括該字串。如: 
+#+begin_src python -r -n :results output :exports both
+  good_words = " 請常說'請'、'謝謝'、'對不起' "
+  print(good_words)
+#+end_src
+
+#+RESULTS:
+:  請常說'請'、'謝謝'、'對不起' 
+
+*** 型態間的轉換
+
+- 自動轉換
+#+begin_src python
+  score = 60 + 3.5		# 自動轉換為浮點數，結果為63.5	
+#+end_src
+
+#+RESULTS:
+: None
+
+- 強制轉換
+#+begin_src python
+  score = int(30.22)			# 將括弧內的資料轉換為整數
+  score = float(score)		# 將括弧內的資料轉換為浮點數
+  test = str(score)				# 將括弧內的資料轉換為字串
+#+end_src
+
+#+RESULTS:
+: None
+
+** 輸出: print
+*** 語法
+ - print( 項目1, [ 項目2, … , sep = 分隔字元 , end = 結束字元 ] )
+ - sep (分隔字元) 預設為空白字元
+ - end (結束字元) 預設為換行字元\n 
+*** 範例 
+#+begin_src python -r -n :results output :exports both
+  a, b = 5, 10
+  print(a, b)
+  print(a, b, sep =',')
+  print(a, end='\t')
+  print(b)
+  print(a, end='')
+  print(b)
+#+end_src
+
+#+RESULTS:
+: 5 10
+: 5,10
+: 5	10
+: 510
+*** escape char
+  |----------+-------------------------|
+  | 跳脫字元 | 說明                    |
+  |----------+-------------------------|
+  | \\       | 印出 \                  |
+  | \'       | 印出 '                  |
+  | \n       | 換行字元                |
+  | \t       | 水平跳格字元(Tab)       |
+  | \b       | 倒退一格字元(Backspace) |
+  |----------+-------------------------|
+
+*** 格式化輸出
+**** 語法
+- 格式化輸出語法：print( 字串  %(參數) ) 
+- 字串裡 %s 代表字串、%d 代表整數、%f 代表浮點數
+
+**** 範例
+#+begin_src python -r -n :results output :exports both
+  name = '台北101'
+  height = 508
+  fee = 18.24
+  print('%s的高度為%d公尺，參觀門票為%3.2f美金.' %(name, height, fee))
+
+#+end_src
+
+#+RESULTS:
+: 台北101的高度為508公尺，參觀門票為18.24美金.
+
+*** format格式化輸出
+**** 語法 
+- format格式化輸出語法：print(字串.format (參數) ) 
+- 字串裡以{0}、{1}、... 來對應參數列裡的變數
+
+**** 範例
+#+begin_src python -r -n :results output :exports both
+  name = 'Taipei101'
+  height = 508.35
+  print('{0}的高度為{1}公尺'.format (name, height))
+  print('{0:15s}的高度為{1:10.1f}公尺'.format (name, height))
+#+end_src
+
+#+RESULTS:
+: Taipei101的高度為508.35公尺
+: Taipei101      的高度為     508.4公尺
+
+** 輸入 
+*** 語法
+#+begin_src python -r -n :results both :eval no
+  variable = intpu([提示字元])
+#+end_src
+- PS: 經由input( )函式讀入的資料，其資料型態皆為字串
+
+*** 範例
+#+begin_src python -r -n :results output :exports both
+  a = input('輸入國文成績:')
+  b = input('輸入數學成績:')
+  c = input()
+  print('三科成績分別為%5s %5s %5s' %(a, b, c))
+#+end_src
+
+#+BEGIN_SRC python :session :exports both :tangle input.py
+  name = input()
+  age = input()
+  print("My name is " + name + ", and I am " + age + " years old.")
+#+END_SRC
+
+#+RESULTS:
+
+*** 輸入搭配型別轉換
+**** 範例
+#+begin_src python -r -n :results output :exports both
+  a = int(input('輸入國文成績:'))
+  b = int(input('輸入數學成績:'))
+  c = int(input())
+  print('總分為%5d' %(a+b+c))
+#+end_src
+
+#+RESULTS:
+
+*** input注意事項
+- input 每筆輸入讀至換行符號為止
+- 若測試資料輸入以空白間隔，則讀入整行字串後， 再以字串分割處理
+- Inline code src_python[:exports code]{echo -e "test"}
+
+#+begin_src python -r -n :results output :exports both
+  inp = input()
+  inpstr = inp.split()
+  # 依此類推逐一取得輸入值
+  a = int(inpstr[0])
+  b = int(inpstr[1])
+  c = int(inpstr[2])
+#+end_src
+
+
+** 註解
+*** 語法
+- 單行註解：以 # 開頭
+- 多行註解：前後以 ''' 或 """ 含括
+
+*** 範例
+#+begin_src python -r -n :results output :exports both
+  ## 這是單行註解
+  int a = 3
+  '''
+  這是多行註解
+  LALALA
+  '''
+  print(a)
+  """
+  這也是
+  """
+#+end_src
+
+** 實作練習
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/][skyoj #161華氏溫度轉攝氏溫度]]
+
+* 運算元與運算式
+** 算術運算
+- +: 加
+- -: 減
+- *: 乘
+- /: 除
+- %: 取餘數
+- //: 求商
+- **: 指數
+
+*** 範例#1
+ #+BEGIN_SRC python -r -n :results output :exports both
+   # python code for arithematic opearation
+   print(5+3)
+   print(5-3)
+   print(5*3)
+   print(5/3)
+   print(5%3)
+   print(5//3)
+   print(5**3)
+ #+END_SRC
+
+ #+RESULTS:
+ : 8
+ : 2
+ : 15
+ : 1.6666666666666667
+ : 2
+ : 1
+ : 125
+
+*** 範例#2
+#+NAME: 計算機
+#+BEGIN_SRC python -r -n :results output :exports both
+a = int(input("input a: "))
+op = input("input op: ")
+b = int(input("input b: "))
+
+if op == '+':
+    ans = a + b;
+elif op == '-':
+    ans = a - b;
+elif op == '*':
+    ans = a * b;
+elif op == '/':
+    ans = a / b;
+elif op == '%':
+    ans = a % b;
+
+print(str(a) + op + str(b) + "=" + str(ans))
+#+END_SRC
+
+** 關係運算子
+|------+------+----------+----------+------+--------|
+| >    | <    | >=        | <=       | ==   | !=     |
+|------+------+----------+----------+------+--------|
+| 大於 | 小於 | 大於等於 | 小於等於 | 等於 | 不等於 |
+|------+------+----------+----------+------+--------|
+
+** 邏輯運算子
+|---------------+----------------+----------|
+| and           | or             | not      |
+|---------------+----------------+----------|
+| (a>b)and(a<c) | (a>b)or<(a==b) | not(a>b) |
+|---------------+----------------+----------|
+
+** 複合指定運算子
+|----+----+----+----+----+-----+-----|
+| += | -= | *= | /= | %= | //= | **= |
+|----+----+----+----+----+-----+-----|
+
+* 判斷結構
+** if
+*** 語法
+- 條件式可不用括號( )含括，條件式後需搭配冒號：
+- 程式區塊以縮排方式處理，同一層縮排視為同一程式區塊
+
+#+BEGIN_SRC python :exports both :eval no 
+  if condition:
+      statement 1
+      ...
+#+END_SRC
+
+*** 範例
+ #+BEGIN_SRC python -r -n :results output :exports both
+   num = 31
+   if num % 2 == 0:
+       print('%d is even' %(num))
+   if num % 2 == 1:
+       print('%d is odd' %(num))
+#+END_SRC
+
+#+RESULTS:
+: 31 is odd
+
+** if ... else ...
+*** 語法
+#+BEGIN_SRC python :exports both :eval no 
+  if condition:
+      statement 1
+      ...
+  else:
+      statement 3
+      ...
+#+END_SRC
+
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports 
+  num = 32
+  if num % 2 == 0:
+      print('%d is even' %(num))
+  else:
+      print('%d is odd' %(num))
+#+END_SRC
+
+#+RESULTS:
+: 32 is even
+
+** if ... elif ... else ...
+*** 語法
+#+BEGIN_SRC python :exports both :eval no 
+  if condition 1:
+      statement 1
+      ...
+  elif condition 2:
+      statement 3
+      ...
+  elif condition 3:
+      statement 5
+      ...
+  else:
+      statement N
+#+END_SRC
+
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports 
+  score = 87
+  if score >= 90:
+      print('A')
+  elif score >= 80:
+      print('B')
+  elif score >= 70:
+      print('C')
+  elif score >= 60:
+      print('D')
+  else:
+      print('F')
+#+END_SRC
+
+#+RESULTS:
+: B
+
+** 巢狀if
+*** 語法
+#+BEGIN_SRC python :exports both :eval no 
+  if condition 1:
+      statement 1
+      ...
+      if condition 2:
+          statement 3
+          ...
+      else:
+          statement 5
+          ...
+  else:
+      if condition 3:
+          statement 7
+          ...
+      else:
+          statement N
+          ...
+#+END_SRC
+
+*** 範例: 某年份是否為閏年
+#+BEGIN_SRC dot :file ./YearJudge.png :cmdline -Kdot -Tpng 
+  digraph TLS{
+    rankdir=LR;
+    x1[shape=box, label = "輸入年份"];
+    x2[shape=diamond, label = "4的倍數"];
+    x3[shape=diamond, label = "100的倍數"];
+    x4[shape=diamond, label = "400的倍數"];
+    xY[shape=circle, fontcolor=Red, label="閏年"]
+    xN[shape=circle, fontcolor=Blue, label="平年"]
+
+    x1 -> x2; 
+    x2 -> xN[label="No"]; x2 -> x3[label="Yes"];
+    x3 -> xY[label="No"]; x3 -> x4[label="Yes"]; 
+    x4 -> xN[label="No"]; x4 -> xY[label="Yes"]; 
+  }
+#+END_SRC
+#+CAPTION: 閏年判斷流程
+#+name: fig:YearJudge
+#+ATTR_LATEX: :width 560
+#+ATTR_HTML: :width 560
+#+ATTR_ORG: :width 560
+#+RESULTS:
+ [[file:./YearJudge.png]] 
+
+*** code #1
+#+BEGIN_SRC python :session :exports both :tangle input.py
+  year = int(input("請輸入一個年份:"))
+  if (year % 4) == 0:
+      if (year % 100) == 0:
+          if (year % 400) == 0:
+              print("%s年是世紀閏年" % year)
+          else:
+              print("%s年為平年" % year)
+      else:
+          print("%s年是普通閏年" % year)
+  else:
+      print("%s年為平年" % year)
+#+END_SRC
+
+*** code #2
+#+BEGIN_SRC python :session :exports both :tangle input.py
+  year = int(input("請輸入一個年份:"))
+  if (year % 4) == 0 and (year % 100) !=0 or (year % 400) == 0:
+      print("%s年是閏年" % year)
+  else:
+      print("%s年為平年" % year)
+#+END_SRC
+
+*** 練習題
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/162/][skyoj #162 成績等第判別]]
+
+* 迴圈結構
+
+** for
+
+*** 語法
+#+BEGIN_SRC python :exports both :eval no 
+  for variable in List:
+      statement 1
+      ...
+#+END_SRC
+- for迴圈的變數會依序走訪序列中的元素
+- 序列[fn:2]可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
+
+*** List為range() function語法
+#+BEGIN_SRC python :exports both :eval no 
+  for variable in range([起始值,] 終止值 [,遞增值]):
+      statement 1
+      ...
+#+END_SRC
+- 起始值預設為0，遞增值預設為1
+- 起始值 ≤ range( )的範圍 < 終止值
+
+*** List為range() function語法
+#+BEGIN_SRC python -r -n :results output :exports both
+  for x in range(6):
+      print(x, end=' ')
+  print('\n====')
+  for x in range(3, 10, 2):
+      print(x, ' ')
+  print('\n====')
+  for x in range(3, 10):
+      print(x, end=' ')
+#+END_SRC
+
+#+RESULTS:
+: 0 1 2 3 4 5 
+: ====
+: 3  
+: 5  
+: 7  
+: 9  
+: 
+: ====
+: 3 4 5 6 7 8 9 
+
+*** List為String
+#+BEGIN_SRC python -r -n :results output :exports both:eval no 
+  school = 'TNFSH'
+  for x in school:
+      print(x, end=' ')
+  print('\n=========')
+  for x in school:
+      print(chr(ord(x)+1), end=' ')
+#+END_SRC
+
+#+RESULTS:
+: T N F S H 
+: =========
+: U O G T I 
+
+- ord( ) -> 將字元轉為ASCII編碼(整數)
+- chr( ) -> 將ASCII編碼(整數)轉為字元
+
+** while
+*** 語法
+#+BEGIN_SRC python :exports both :eval no 
+  while (condition):
+      statement 1
+      ...
+#+END_SRC
+
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  n = 12345
+  while (n > 0):
+      print(n%10)
+      n //= 10
+#+END_SRC
+
+#+RESULTS:
+: 5
+: 4
+: 3
+: 2
+: 1
+
+#+NAME=最大公因數
+#+BEGIN_SRC python -r -n :results output :exports both
+  m, n = 42, 75
+  while (n > 0):
+      m, n = n, m % n
+  print(m)
+#+END_SRC
+
+#+RESULTS:
+: 3
+
+** while + else
+*** 語法
+#+BEGIN_SRC python :exports both :eval no 
+  while (condition):
+      statement 1
+      ...
+  else:
+      statement 3
+      ...
+#+END_SRC
+
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  n = 56
+  while (n%2 == 0):
+      print(n, end=' ')
+      n //= 2
+  else:
+      print('end with %d' %n)
+#+END_SRC
+
+#+RESULTS:
+: 56 28 14 end with 7
+
+** break
+跳出整個loop
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  for letter in 'Python':
+      if letter == 'h':
+          print('Now stop...')
+          break
+      print('Processing Letrer:', letter)
+#+END_SRC
+
+#+RESULTS:
+: Processing Letrer: P
+: Processing Letrer: y
+: Processing Letrer: t
+: Now stop...
+
+** continue
+跳出單次loop
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  for letter in 'Python':
+      if letter == 'h':
+          print('Now skip...')
+          continue
+      print('Processing Letrer:', letter)
+#+END_SRC
+
+#+RESULTS:
+: Processing Letrer: P
+: Processing Letrer: y
+: Processing Letrer: t
+: Now skip...
+: Processing Letrer: o
+: Processing Letrer: n
+
+** 巢狀迴圈
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  for i in range(1, 10):
+      for j in range(1, 10):
+          print('%d*%d=%2d' %(i, j, i*j), end=' ')
+      print()
+#+END_SRC
+
+#+RESULTS:
+: 1*1= 1 1*2= 2 1*3= 3 1*4= 4 1*5= 5 1*6= 6 1*7= 7 1*8= 8 1*9= 9 
+: 2*1= 2 2*2= 4 2*3= 6 2*4= 8 2*5=10 2*6=12 2*7=14 2*8=16 2*9=18 
+: 3*1= 3 3*2= 6 3*3= 9 3*4=12 3*5=15 3*6=18 3*7=21 3*8=24 3*9=27 
+: 4*1= 4 4*2= 8 4*3=12 4*4=16 4*5=20 4*6=24 4*7=28 4*8=32 4*9=36 
+: 5*1= 5 5*2=10 5*3=15 5*4=20 5*5=25 5*6=30 5*7=35 5*8=40 5*9=45 
+: 6*1= 6 6*2=12 6*3=18 6*4=24 6*5=30 6*6=36 6*7=42 6*8=48 6*9=54 
+: 7*1= 7 7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49 7*8=56 7*9=63 
+: 8*1= 8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 8*9=72 
+: 9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 
+
+* 資料型別
+** 字串string
+*** 資料格式
+以單引號(')或雙引號(")將資料含括起來
+*** 範例
+|--------------+-----+----+----+----+----+----+----+----+----+----|
+| index 左至右 |   0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 |
+| 字串         |   0 |  6 |  - |  2 |  3 |  7 |  1 |  2 |  0 |  6 |
+| index 右至左 | -10 | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
+|--------------+-----+----+----+----+----+----+----+----+----+----|
+*** 字串運算子
+- +: 連接字串
+- *: 重複字串
+- [index]: 字串中index所在字元
+- [start:end:increment]: 截取部份字串
+- in: 判斷是否為子字串
+#+BEGIN_SRC python -r -n :results output :exports both
+  tel = '06-2371206'
+  ext = '#600'
+  # +
+  print('tel+ext:',tel+ext)
+  # *
+  print('ext*2:', ext*2)
+  # [index]
+  print('tel[5]:', tel[5])
+  # [start:end:increment]
+  print('tel[1:4]:',tel[1:4])
+  print('tel[6: ]:',tel[6: ])
+  print('tel[ :6]:',tel[ :6])
+  print('tel[::-1]:',tel[::-1])
+  # in
+  print("'9' in tel:", '9' in tel)
+#+END_SRC
+
+#+RESULTS:
+: tel+ext: 06-2371206#600
+: ext*2: #600#600
+: tel[5]: 7
+: tel[1:4]: 6-2
+: tel[6: ]: 1206
+: tel[ :6]: 06-237
+: tel[::-1]: 6021732-60
+: '9' in tel: False
+*** 字串function與method
+- len(<str>):	計算字串長度
+- <str>.lower(): 字串轉小寫
+- <str>.upper(): 字串轉大寫
+- <str>.islower(): 字串中英文全大寫
+- <str>.isupper(): 字串中英文全小寫
+- <str>.find(<str1>): 在<str>尋找<str1>，回傳索引值； 若未找到，回傳-1
+- <str>.replace(<str1>, <str2>): 將<str>中的<str1>以<str2>取代
+- <str>.split([sep]): 字串以sep分割, sep預設值為空白
+#+BEGIN_SRC python -r -n :results output :exports both
+  school = 'Tnfsh'
+  print('school:', school)
+  print('len(school):', len(school))
+  print('school.lower():', school.lower())
+  print('school.isupper():', school.isupper())
+  print("school.find('fsh'):", school.find('fsh'))
+  print("school.replace('fsh', ssh'):", school.replace('fsh', 'ssh'))
+  school = school.replace('fsh', 'ssh')
+  print("school.split('f'):", school.split('n'))
+#+END_SRC
+
+#+RESULTS:
+: school: Tnfsh
+: len(school): 5
+: school.lower(): tnfsh
+: school.isupper(): False
+: school.find('fsh'): 2
+: school.replace('fsh', ssh'): Tnssh
+: school.split('f'): ['T', 'ssh']
+
+** 列表list
+*** 資料格式
+- 以[ ]將不同型態的資料含括起來，以 , 分隔
+- 表列中的資料是有序排列，從0開始編號
+- 格式：src_python[:exports code]{表列名稱 = [元素1, 元素2, … ]}
+#+BEGIN_SRC python -r -n :results output :exports both
+  data = ['John', [95, 118], 'May', 100]
+  print(data[1])
+#+END_SRC
+
+#+RESULTS:
+: [95, 118]
+
+*** 表列函式與方法
+- len(<list>): 計算表列元素個數
+- list(<str>): 將<str>轉成表列
+- <list>.clear():	清除表列中所有元素
+- <list>.append(<obj>): 將<obj>加到<list>尾端
+- <list>.extend(<list1>): 將<list1>合併至<list>尾端
+- <list>.remove(<obj>): 移除<list>中<obj>元素
+- <list>.insert(<i>,<obj>): 將<obj>加到<list>的索引值<i>位置
+- <list>.pop([index]): 從<list>取出指定元素 若[index]未指定，則取出尾端元素
+- <list>.reverse():	反轉表列元素
+- sum(<list>): 將表列中所有元素加總(註：僅限表列元素皆為數字)
+- <list>.sort(): 將表列中所有元素排序
+-  '[sep]'.join( <list>): 用[sep]來連結表列元素，若未指定[sep]，則無間隔(僅限表列元素皆為字串)
+#+BEGIN_SRC python -r -n :results output :exports both
+  data = ['John', [95, 118], 'May', 100]
+  print(len(data))
+  print(len(data[1]))
+  print(list('TNFSH'))
+  data.clear()
+  print(data)
+  data.append(35)
+  print(data)
+  data1 = [89, 'James', 100]
+  data.extend(data1)
+  print(data)
+  data.remove('James')
+  print(data)
+  data.insert(1, 200)
+  print(data)
+  data.pop()
+  data.reverse()
+  print(data)
+  print(sum(data))
+  data.sort()
+  print(data)
+  # string
+  data_s = ["a", "b", "c"]
+  sep = "-"
+  print(sep.join(data_s))
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+4
+2
+['T', 'N', 'F', 'S', 'H']
+[]
+[35]
+[35, 89, 'James', 100]
+[35, 89, 100]
+[35, 200, 89, 100]
+[89, 200, 35]
+324
+[35, 89, 200]
+a-b-c
+#+end_example
+
+*** 練習
+- 連續輸入成績(輸入-1結束)，將成績由高至低排序輸出，並輸出總分、平均
+#+BEGIN_SRC python :session :exports both :tangle input.py
+  score = []
+  while(True):
+      sc = int(input())
+      if (sc != -1):
+          score.append(sc)
+      else: 
+          break
+  score.sort(reverse=True)
+  print(score)
+#+END_SRC
+
+#+RESULTS:
+
+** 元組tuple
+*** 資料格式
+- 資料格式：以( )將不同型態的資料含括起來，以 , 分隔
+- 元組中的資料是有序排列，從0開始編號
+- 格式：元組名稱 = (元素1, 元素2, … )
+- 與表列list類似，但元組tuple內的元素不能修改
+- 特列：src_python[:exports code]{tup1 = (53, )  #只有一個元素時，其後要加逗號}
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  data = ( 'John', [95, 118], 'May', 100 )
+  print(data[1])
+  tup1 = (53, )    #只有一個元素時，其後要加逗號
+  print(tup1)
+#+END_SRC
+
+#+RESULTS:
+: [95, 118]
+: (53,)
+*** 練習: 史上最強掌法
+自從鐵掌無敵馬掌門出任武林盟主後，綠林豪傑一片哀鴻，民不聊生，痛苦指數破表，眾家名門弟子甚至遠避異鄉以求溫飽。近來馬掌門更獨創「油電雙掌」，以圖鞏固武林領導地位，此套掌法高深莫測，武林中人聞風喪膽，少林、武當各派高手不得不拋開門戶之見，齊聚「竹園崗」合作商議對策。目前僅由歴來幾次掌下逃生者的對戰經驗分析出以下數據
+| 與馬掌門對戰時間(秒) | 對戰者每秒接受之傷害值 |
+|----------------------+------------------------|
+| 120以下              |                   2.10 |
+| 121~330              |                   3.02 |
+| 331~500              |                   4.39 |
+| 501~700              |                   4.97 |
+| 701以上              |                   5.63 |
+請你幫這些可憐的高手寫一個程式分析對戰時間與受傷指數間的關係。
+輸入：0 ~ 10000秒之間任意值
+輸出：受傷指數
+*** 解1
+#+BEGIN_SRC python -r -n :results output :exports both
+  #sec = input()
+  sec = 800
+  if sec <= 120:
+      print(sec*2.10)
+  elif sec > 120 and sec <= 330:
+      print(120*2.10+(sec-120)*3.02)
+  elif sec > 330 and sec <= 500:
+      print(120*2.10+(330-120)*3.02+(sec-300)*4.39)
+  elif sec > 500 and sec <= 700:
+      print(120*2.10+(330-120)*3.02+(500-330)*4.39+(sec-500)*4.97)
+  elif sec > 700:
+      print(120*2.10+(330-120)*3.02+(500-330)*4.39+(700-500)*4.97+(sec-700)*5.63)
+#+END_SRC
+
+#+RESULTS:
+: 3189.5
+
+*** 解2
+#+BEGIN_SRC python -r -n :results output :exports both
+  #sec = input()
+  sec = 800
+  hurt = 0
+  gap = (700, 500, 330, 120, 0)
+  rate = (5.63, 4.97, 4.39, 3.02, 2.10)
+  for i in range(5):
+      if sec > gap[i]:
+          hurt += (sec-gap[i])*rate[i]
+          sec = gap[i]
+  print(hurt)
+#+END_SRC
+
+#+RESULTS:
+: 3189.5
+
+** 字典dict
+*** 資料格式
+- 以{ }將各組鍵:值對應資料含括起來，以 , 分隔
+- 字典中的資料是無序的
+- 格式：字典名稱 = {k1:v1, k2:v2,  … }
+- 註：若字典中有相同的key，則會取出最後的value
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  data = { 'John': 95,  'May': 100 }
+  print(data['May'])
+#+END_SRC
+
+#+RESULTS:
+: 100
+*** dic操作
+- 新增、修改、刪除
+#+BEGIN_SRC python -r -n :results output :exports both
+  data = { 'John': 95,  'May': 100 }
+  # 新增
+  data['Harrison'] = 88
+  # 修改
+  data['John'] = 99
+  # 刪除鍵值對
+  del data['John']
+  print(data)
+  # 刪除dic
+  del data
+  # print(data) --> NameError: name 'data' is not defined
+#+END_SRC
+
+#+RESULTS:
+: {'May': 100, 'Harrison': 88}
+*** dic method
+- <dict>.clear()
+- <dict>.copy()
+- <dict>.get(key, default=None)
+- <dict>.items()
+- <dict>.keys()
+- <dict>.values()
+- <dict>.popitem()
+- <dict>.pop(key[, default])
+- <dict>.fromkes(<seq>[, val])
+
+| <dict>.clear()                | data.clear()                | {} |
+| <dict>.copy()                 | data.copy()                 | {} |
+| <dict>.get(key, default=None) | data.get(key, default=None) |    |
+| <dict>.items()                | data.items()                |    |
+| <dict>.keys()                 | data.keys()                 |    |
+| <dict>.values()               | data.values()               |    |
+| <dict>.popitem()              | data.popitem()              |    |
+| <dict>.pop(key[, default])    | data.pop(key[, default])    |    |
+| <dict>.fromkes(<seq>[, val])  | data.fromkes(<seq>[, val])  |    |
+
+
+|data.clear()
+|data.copy()
+|data.get(key, default=None)
+|data.items()
+|data.keys()
+|data.values()
+|data.popitem()
+|data.pop(key[, default])
+|data.fromkes(<seq>[, val])
+
+
+
+#+BEGIN_SRC python -r -n :results output :exports both
+  data = { 'John': 95,  'May': 100, 'John': 105 }
+  print("data:",data)
+  print("data.clear():",data.clear())
+  data = { 'John': 95,  'May': 100, 'John': 105 }
+  data1 = data.copy()
+  print("data1 = data.copy():",data1.copy())
+  print("data.get('John'):",data.get('John'))
+  print("data.items():",data.items())
+  print("data.keys():",data.keys())
+  print("data.values()",data.values())
+  pop1 = data.popitem()
+  print(pop1)
+  print(data)
+  #print("data.pop(key[, default])",data.pop(key[, default]))
+  #print("data.fromkes(<seq>[, val])",data.fromkes(<seq>[, val]))
+#+END_SRC
+
+#+RESULTS:
+: data: {'John': 105, 'May': 100}
+: data.clear(): None
+: data1 = data.copy(): {'John': 105, 'May': 100}
+: data.get('John'): 105
+: data.items(): dict_items([('John', 105), ('May', 100)])
+: data.keys(): dict_keys(['John', 'May'])
+: data.values() dict_values([105, 100])
+: ('May', 100)
+: {'John': 105}
+
+** List v.s. Tuple
+二者的差異與適用時機[fn:3]：
+*** 能否改變內容
+Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed. 
+*** 可讀性
+Reading data is simpler when tuples are stored inside a list. For example,
+#+BEGIN_SRC python -r -n :results output :exports both
+  [(2,4), (5,7), (3,8), (5,9)]
+#+END_SRC
+is easier to read than
+#+BEGIN_SRC python -r -n :results output :exports both
+  [[2,4], [5,7], [3,8], [5,9]]
+#+END_SRC
+*** 與dictionary的相似性
+Tuples are commonly used as the equivalent of a dictionary without keys to store data. For Example,
+#+BEGIN_SRC python -r -n :results output :exports both
+  [('Swordfish', 'Dominic Sena', 2001), ('Snowden', ' Oliver Stone', 2016), ('Taxi Driver', 'Martin Scorsese', 1976)]
+#+END_SRC
+Above example contains tuples inside list which has a list of movies.
+Tuple can also be used as key in dictionary due to their hashable and immutable nature whereas Lists are not used as key in a dictionary because list can't handle __hash__() and have mutable nature.
+#+BEGIN_SRC python -r -n :results output :exports both
+  key_val= {('alpha','bravo'):123} #Valid
+key_val = {['alpha','bravo']:123} #Invalid
+#+END_SRC
+
+** 集合set
+*** 資料格式
+- 
+*** 範例
+#+BEGIN_SRC python -r -n :results output :exports both
+  
+#+END_SRC
+
+** 由a加到b
+#+NAME: 計算機
+#+BEGIN_SRC python -r -n :results output :exports both
+a = int(input("input a: "))
+b = int(input("input b: "))
+# while solution
+sum = 0
+while a <= b:
+    sum = sum + a
+    a = a + 1
+print("Result :" + str(sum))
+# for solution
+sum = 0
+for i in range(a, b):
+    sum = sum + i
+print("Result:" + str(sum))
+#+END_SRC
+
+** 由a乘到b
+#+NAME: 計算機
+#+BEGIN_SRC python -r -n :results output :exports both
+a = int(input("input a: "))
+b = int(input("input b: "))
+# for solution
+x = 1
+for i in range(a, b + 1):
+    x = x * i
+print(x)
+# while solution
+p = 1
+while a <= b:
+    p = p * a
+    a = a + 1
+
+print("Result:" + str(p))
+#+END_SRC
+
+** list
+#+NAME: 計算機
+#+BEGIN_SRC python -n :session :exports both :tangle example1.py
+  sum = 0
+  grades = []
+  for i in range(0, 5):
+      x = int(input("請輸入第" + str(i + 1) + "個成績: "))
+      grades.append(x)
+      sum += x
+  print(sum/5)
+  print(grades)
+#+END_SRC
+
+#+RESULTS: 計算機
+
+
+#+begin_src sh
+date
+#+end_src
+
+#+RESULTS:
+: Fri Feb 14 22:41:36 CST 2020
+#+begin_src python -r -n :results output :exports both
+
+  import urllib.request as req
+  url = "https://huodalife.pixnet.net/blog/"
+  # 幫request加上一個header
+  request = req.Request(url, headers = {
+      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+  })
+  
+  with req.urlopen(request) as response:
+      data = response.read().decode("utf-8")
+
+  import bs4
+  root = bs4.BeautifulSoup(data,"html.parser")
+
+  titles = root.find_all("li", class_="title")
+  pubs = root.find_all("li", class_="publish")
+  for pub, title in zip(pubs, titles):
+      print(pub.span.string,title.a.string)
+#+end_src
+
+
+* 0725
+** swap a, b
+- a, b = b, a
+** gcd
+#+BEGIN_SRC python -r -n :results output :exports both
+  a = input()
+  b = input()
+  while(a % b != 0):
+      b = a
+      a = a % b
+  print(b)
+#+END_SRC
+
+** python 14 list
+#+BEGIN_SRC python -r -n :results output :exports both
+  import numpy as np
+  students = []
+  grades = []
+  for i in range(6):
+      name = input()
+      grades.append(name)
+      for j in range(3):
+
+
+#+END_SRC
+
+* 0802 CNN
+https://reurl.cc/Y2gKo: 各種常用的library, function
+
+* 以python下載網路資料
+- import urllib.request as req 
+
+* 網路爬蟲
+** parse HTML
+- what is HTML
+- 精神：將程式模仿成一般user
+*** 所需套件
+- BeautifulSoup
+pip install beautifulsoup4
+** 範例: 以程式抓取PTT電影板header
+*** 原則
+1. 要抓網路資料，就要先仔細觀察網頁內容
+1. 要儘量欺騙網站自己是browser
+*** 實作: 取得HTML資料
+**** 第一版
+#+begin_src python -r -n :results output :exports both
+  # 抓取PTT電影版header
+  import urllib.request as req
+  url = "https://www.ptt.cc/bbs/Stock/index.html"
+
+  with req.urlopen(url) as response:
+      data = response.read().decode("utf-8")
+  print(data)
+#+end_src
+
+#+RESULTS:
+#+begin_src 
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+#+end_src
+
+被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是HTTP協議中的一個HTTP狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務[fn:1]。
+
+**** 第二版:加入header
+#+begin_src python -r -n :results output :exports both
+  import urllib.request as req
+  url = "https://www.ptt.cc/bbs/Stock/index.html"
+  # 幫request加上一個header
+  request = req.Request(url, headers = {
+      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+  })
+
+  with req.urlopen(request) as response:
+      data = response.read().decode("utf-8")
+  print('所取得的資料型態：',type(data))
+  print(data[700:1000])
+#+end_src
+
+#+RESULTS:
+: 所取得的資料型態： <class 'str'>
+: er">
+: 	<div id="topbar" class="bbs-content">
+: 		<a id="logo" href="/bbs/">批踢踢實業坊</a>
+: 		<span>&rsaquo;</span>
+: 		<a class="board" href="/bbs/Stock/index.html"><span class="board-label">看板 </span>Stock</a>
+: 		<a class="right small" href="/about.html">關於我們</a>
+: 		<a class="right small" href="/contact.html">
+
+*** 實作：解析HTML資料內容
+**** 安裝解析HTML所需套件
+#+begin_src shell
+pip install beautifulsoup4
+#+end_src
+
+#+RESULTS:
+| Requirement | already | satisfied: | beautifulsoup4 | in | /Users/letranger/anaconda3/lib/python3.7/site-packages | (4.8.0) |                 |         |
+| Requirement | already | satisfied: | soupsieve>=1.2 | in | /Users/letranger/anaconda3/lib/python3.7/site-packages | (from   | beautifulsoup4) | (1.9.4) |
+
+**** 第三版: 解析HTML
+#+begin_src python -r -n :results output :exports both
+  import urllib.request as req
+  url = "https://www.ptt.cc/bbs/Stock/index.html"
+  # 幫request加上一個header
+  request = req.Request(url, headers = {
+      "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+  })
+
+  with req.urlopen(request) as response:
+      data = response.read().decode("utf-8")
+
+  import bs4
+  root = bs4.BeautifulSoup(data,"html.parser")
+  print(root.title)
+  titles = root.find("div", class_="title")
+  print(titles)
+  print(titles.a.string)
+  titles = root.find_all("div", class_="title")
+  print(titles)
+  for title in titles:
+      if title.a != None:
+          print(title.a.string)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+<title>看板 Stock 文章列表 - 批踢踢實業坊</title>
+<div class="title">
+<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[<div class="title">
+<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581986080.A.0B9.html">[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987000.A.EE7.html">[新聞] 超預期 國巨MLCC漲價五成</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987018.A.192.html">[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987846.A.95F.html">[新聞] 中芯國際14nm第二代FinFET批量須等到2020</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581989947.A.392.html">Re: [請益] 有人買股票而完全捨棄定存嗎?</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581990753.A.EB3.html">[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581994926.A.A50.html">[標的] 6531愛普</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581996309.A.C55.html">[請益] 是不是該立法更限制外資匯出資金？</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581999672.A.14E.html">Re: [請益] 存股標的選擇</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582000361.A.6A2.html">[標的] 1201 味全 多</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582000701.A.2AB.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582001420.A.3B8.html">[新聞] 用電大戶買綠電 電證分離更活絡</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1422199105.A.84E.html">[公告] 精華區導覽Q&amp;A</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1541252211.A.8BE.html">[公告] Stock 板規V2.6             (2019/06/20)</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1579935755.A.395.html">[公告] 關於武漢肺炎新聞規範</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581919202.A.CF2.html">[閒聊] 2020/02/17 盤後閒聊</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581985803.A.F3E.html">[閒聊] 2020/02/18 盤中閒聊</a>
+</div>]
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標
+[新聞] 超預期 國巨MLCC漲價五成
+[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠
+[新聞] 中芯國際14nm第二代FinFET批量須等到2020
+Re: [請益] 有人買股票而完全捨棄定存嗎?
+[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得
+[標的] 6531愛普
+[請益] 是不是該立法更限制外資匯出資金？
+Re: [請益] 存股標的選擇
+[標的] 1201 味全 多
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 用電大戶買綠電 電證分離更活絡
+[公告] 精華區導覽Q&A
+[公告] Stock 板規V2.6             (2019/06/20)
+[公告] 關於武漢肺炎新聞規範
+[閒聊] 2020/02/17 盤後閒聊
+[閒聊] 2020/02/18 盤中閒聊
+#+end_example
+
+** 參考資料
+- https://www.youtube.com/watch?v=9Z9xKWfNo7k
+
+
+* 如何把python程式publish成網站應用程式
+
+* Footnotes
+
+[fn:3][[https://www.programiz.com/python-programming/list-vs-tuples][Python List vs. Tuples]] 
+
+[fn:2][[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]] 
+
+[fn:1] [[https://zh.wikipedia.org/wiki/HTTP_403][維基百科: HTTP 403]] 

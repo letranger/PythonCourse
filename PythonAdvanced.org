@@ -261,7 +261,7 @@
 #+latex:\newpage
 
 * Numpy 模組
-** Numpy 
+** Numpy
 - Numpy 是 Python 的一個重要模組，主要用於資料處理上。Numpy 底層以 C 和 Fortran 語言實作，所以能快速操作多重維度的陣列。[fn:7]
 - 當 Python 處理龐大資料時，其原生 list 效能表現並不理想（但可以動態存異質資料），而 Numpy 具備平行處理的能力，可以將操作動作一次套用在大型陣列上。
 - Python 其餘重量級的資料科學相關套件（例如：Pandas、SciPy、Scikit-learn 等）都幾乎是奠基在 Numpy 的基礎上。因此學會 Numpy 對於往後學習其他資料科學相關套件打好堅實的基礎。
@@ -1446,6 +1446,21 @@ Nov  優群(3217)_穩定型成長股_2019.3Q&2019/10
 #+latex:\newpage
 
 * 如何把 python 程式 publish 成網站應用程式
+** Flash
+#+begin_src python -r -n :results output :exports both
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello World!"
+
+if __name__ == "__main__":
+    app.run()
+
+#+end_src
+
+#+RESULTS:
 
 #+latex:\newpage
 

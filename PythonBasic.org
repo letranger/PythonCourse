@@ -1,6 +1,12 @@
 #+Title: Basic Materials of Python
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+STARTUP: showeverything
+#+PROPERTY: header-args :eval never-export
+#+STARTUP: inlineimages
+#+OPTIONS: H:5
+#+OPTIONS: \n:t
 
-#+LANGUAGE: en
+#+LANGUAGE: zh-TW
 #+LATEX_HEADER: \usepackage[AUTO]{babel}
 #+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{Outline}}
 
@@ -144,26 +150,47 @@
 #+END_COMMENT
 
 #+latex:\newpage
-* Python簡介
-** Python的誕生
+* Python 簡介
+** Python 的誕生
 *** 科技報導的說法[fn:1]
-- 1989 年，荷蘭的一位叫Guido van Rossum的宅男工程師覺得其他的程式語言都不好用，於是花三個月創造了一種新的程式語言。
-- 30年後，每天都有數百萬人使用他創立的這一新語言。系統管理員。
-- 研究人員於2019年首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python。
--   
-    #+ATTR_LATEX: :width 400
+- 1989 年，荷蘭的一位叫 Guido van Rossum 的宅男工程師覺得其他的程式語言都不好用，
+  於是花三個月創造了一種新的程式語言。
+  #+ATTR_LATEX: :width 400
+  #+ATTR_HTML: :width 560
+  #+ATTR_ORG: :width 560
+  #+RESULTS:
+  [[file:Rossum.jpeg]]
+- 30 年後，每天都有數百萬人使用他創立的這一新語言。系統管理員。
+  + 依據 TOIBE 的調查，目前 Python 在[[https://www.tiobe.com/tiobe-index/][TOIBE]]最受歡迎語言的排名第三[fn:2]
+    #+ATTR_LATEX: :width 560
     #+ATTR_HTML: :width 560
     #+ATTR_ORG: :width 560
     #+RESULTS:
-    [[file:blackhole.jpg]]
+    [[file:TOIBE-2020.jpg]]
+  + [[https://www.youtube.com/watch?v=A_B7owR94XY][幾種不同語言受歡迎程度的變
+    化:TIOBE 2001-2019]]
+- 研究人員於 2019 年首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python。
+  #+ATTR_LATEX: :width 400
+  #+ATTR_HTML: :width 560
+  #+ATTR_ORG: :width 560
+  #+RESULTS:
+  [[file:blackhole.jpg]]
 
-*** Guido van Rossum自己的說法[fn:2]
-- 在1989年12月，我在尋找一門「課餘」編程項目來打發聖誕節前後的時間。
-- 我決定為當時我正構思的一個新的腳本語言寫一個解釋器，它是ABC語言的後代，對UNIX/C程式設計師會有吸引力。
-- 作為一個略微有些無關想法的人，和一個《蒙提‧派森的飛行馬戲團》的狂熱愛好者，我選擇了Python作為項目的標題。
+*** Guido van Rossum 自己的說法[fn:3]
+- 在 1989 年 12 月，我在尋找一門「課餘」編程項目來打發聖誕節前後的時間。
+- 我決定為當時我正構思的一個新的腳本語言([[https://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80][Scripting language]])寫一個解釋器，它是 [[https://zh.wikipedia.org/wiki/ABC_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)][ABC]] 語言的後代，對 UNIX/C 程式設計師會有吸引力。
+- 作為一個略微有些無關想法的人，和一個《蒙提‧派森的飛行馬戲團》的狂熱愛好者，我
+  選擇了 Python 作為項目的標題。
+- In December 1989, Van Rossum had been looking for a " 'hobby' programming
+  project that would keep [him] occupied during the week around Christmas" as
+  his office was closed when he decided to write an interpreter for a "new
+  scripting language [he] had been thinking about lately: a descendant of ABC
+  that would appeal to Unix/C hackers". He attributes choosing the name "Python"
+  to "being in a slightly irreverent mood (and a big fan of Monty Python's
+  Flying Circus)".[fn:4]
 
-** Python的優勢與應用[fn:3]
-*** Advantages 
+** Python 的優勢與應用[fn:5]
+*** Advantages
 1. Presence of third-party modules
 1. Extensive support libraries(NumPy for numerical calculations, Pandas for data analytics etc)
 1. Open source and community development
@@ -182,46 +209,45 @@
 1. Language Development
 1. Prototyping
 *** Organizations using Python
-1. Google(Components of Google spider and Search Engine)
-1. Yahoo(Maps)
-1. YouTube
-1. Mozilla
-1. Dropbox
-1. Microsoft
-1. Cisco
-1. Spotify
-1. Quora
+1. [[https://www.google.com/][Google]] (Components of Google spider and Search Engine)
+1. [[https://www.youtube.com/channel/UCNJIEbGZaScUDsq_DMYTjYg][Youtube]]
+1. [[https://www.instagram.com/][Instagram]]
+1. [[https://www.netflix.com/][Netflix]]
+1. [[https://www.dropbox.com/][Dropbox]]
+1. [[https://www.reddit.com/][Reddit]]
+1. [[https://www.uber.com/][Uber]]
+1. [[https://www.pinterest.com/][Pinterest]]
 
 #+latex:\newpage
 
-* Python環境建置
-** 下載python
+* Python 環境建置
+** 下載 python
 - google: python download
 - 網址: [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
-- 若為Mac系統，則已預載安裝Python 2.7
-- 若為Linux系統，則多數也預載Python 2.x及3.x
-- 查詢目前的python版本，目前官方最新版本為3.8.2[fn:4]
+- 若為 Mac 系統，則已預載安裝 Python 2.7
+- 若為 Linux 系統，則多數也預載 Python 2.x 及 3.x
+- 查詢目前的 python 版本，目前官方最新版本為 3.8.2[fn:6]
   #+begin_src shell
     python --version
   #+end_src
 
-** python的幾種編寫環境
+** python 的幾種編寫環境
 *** 終端機(shell, command line): interpreter
 **** 執行環境
 - Linux / Mac: terminal
 - Windows: 命令提示字元
-#+CAPTION: 命令列下執行Python interpreter
+#+CAPTION: 命令列下執行 Python interpreter
 #+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 560
 #+ATTR_ORG: :width 560
 #+RESULTS:
 [[file:python-terminal-demo.jpg]]    
 **** 執行方式
-- 啟用Python interpreter
+- 啟用 Python interpreter
   #+begin_src shell -r -n :eval no
     python
   #+end_src
-- 結束/回到terminal
+- 結束/回到 terminal
   + 指令
     #+begin_src shell :eval no
       exit()
@@ -256,7 +282,7 @@
 #+ATTR_ORG: :width 560
 #+RESULTS:
 [[file:PyCharm.png]]
-*** Web-based環境
+*** Web-based 環境
 **** [[https://ipython.org/notebook.html][The Jupyter Notebook]]
 #+CAPTION: The Jupyter Notebook
 #+name: fig:JupyterNotebook
@@ -288,7 +314,7 @@
 #+begin_src shell :eval no
 python -i filename.py
 #+end_src
-**** 優點[fn:5]
+**** 優點[fn:7]
 - Helpful when your script is extremely short and you want immediate results.
 - Faster as you only have to type a command and then press the enter key to get the results.
 - Good for beginners who need to understand Python basics.
@@ -308,21 +334,21 @@ python filename.py
 - Can be tedious when you need to run only a single or a few lines of cod.
 - You must create and save a file before executing your code.
 
-** 安裝Jupyter Notebook
-*** 安裝pip
-**** 檢查是否已安裝Python套件管理工具(命令提示字元)
+** 安裝 Jupyter Notebook
+*** 安裝 pip
+**** 檢查是否已安裝 Python 套件管理工具(命令提示字元)
 #+begin_src shell
   python -m pip --version
   pip --version
 #+end_src
-**** 下載並安裝pip(命令提示字元)
-1. 下載pip
+**** 下載並安裝 pip(命令提示字元)
+1. 下載 pip 安裝檔
   [[https://bootstrap.pypa.io/get-pip.py][ 點此下載get-pip.py]]
-2. 執行get-pip.py
+2. 執行 get-pip.py
    #+begin_src shell
      python get-pip.py
    #+end_src
-*** 安裝Jupyter(命令提示字元)
+*** 安裝 Jupyter(命令提示字元)
 - 安裝
   #+begin_src shell
     pip install jupyter
@@ -332,13 +358,13 @@ python filename.py
     jupyter notebook
   #+end_src
 - 預設網址: http://localhost:8888
-*** Jupyter Notebook基本操作
-- 變更預設port: XXXX
+*** Jupyter Notebook 基本操作
+- 變更預設 port: XXXX
   #+begin_src shell
     jupyter notebook --port XXXX
   #+end_src
 - 登出後重新登入：token
-- 結束Jupyter: 網頁右上角：Quit
+- 結束 Jupyter: 網頁右上角：Quit
 
 #+latex:\newpage
 * 變數、資料型態、輸出輸入
@@ -347,27 +373,27 @@ python filename.py
 *** 命名規則
 - 由英文、數字、底線、中文(不建議)組成
 - 不得以數字開頭
-- 不能與Python內建的保留字相同
+- 不能與 Python 內建的保留字相同
 
 *** 範例
 #+ATTR_LATEX: :options [noitemsep]
-|----------------+---------------|
+|----------------+-------|
 | Example        | \checkmark / \times |
-|----------------+---------------|
-| abc\under123     | \checkmark    |
-| 3pigs          | \times        |
-| Happy New Year | \times        |
-| Class          | \times        |
-| Good!          | \times        |
-|----------------+---------------|
+|----------------+-------|
+| abc\under123        | \checkmark     |
+| 3pigs          | \times     |
+| Happy New Year | \times     |
+| Class          | \times     |
+| Good!          | \times     |
+|----------------+-------|
 
 *** 變數的指派(assign)
-- Python變數不需宣告，依指派值自動設定資料型態。
+- Python 變數不需宣告，依指派值自動設定資料型態。
 - 語法
   #+BEGIN_SRC python 
   變數名稱 = 指派值
   #+END_SRC
-- 變數不再使用時，可用del指令將其刪除，以節省記憶體。
+- 變數不再使用時，可用 del 指令將其刪除，以節省記憶體。
 - 範例：
   #+begin_src python -r -n :eval no
   a = 5
@@ -381,7 +407,7 @@ python filename.py
 *** 常用類型
 - 整數: int
 - 浮點數: float 
-- 布林值(True / False): bool, T 與 F要大寫
+- 布林值(True / False): bool, T 與 F 要大寫
 - 字串: str, 以'或"含括,若輸出字串要包含引號，則以另一種引號含括該字串。如: 
 #+begin_src python -r -n :eval no
   age = 18
@@ -403,10 +429,10 @@ python filename.py
 
 ** 輸出: print
 *** 語法
- - print( 項目1, [ 項目2, … , sep = 分隔字元 , end = 結束字元 ] )
+ - print( 項目 1, [ 項目 2, … , sep = 分隔字元 , end = 結束字元 ] )
  - sep (分隔字元) 預設為空白字元
  - end (結束字元) 預設為換行字元\n 
-*** 範例 
+*** 範例
 #+begin_src python -r -n :results output :exports both
   a, b = 5, 10
   print(a, b)
@@ -420,16 +446,13 @@ python filename.py
 : 5,10
 : 5	5
 *** 跳脫字元
-  |----------+-------------------------|
-  | 跳脫字元 | 說明                    |
-  |----------+-------------------------|
-  | \\       | 印出 \                  |
-  | \'       | 印出 '                  |
-  | \n       | 換行字元                |
-  | \t       | 水平跳格字元(Tab)       |
-  | \b       | 倒退一格字元(Backspace) |
-  |----------+-------------------------|
-
+#+CAPTION: Escape char
+#+name: fig:EscapeCharMap
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 400
+#+RESULTS:
+[[file:escape.png]]
 *** 格式化輸出
 - 語法
   + 格式化輸出語法：print( 字串  %(參數) ) 
@@ -445,10 +468,10 @@ python filename.py
   #+end_src
 
   #+RESULTS:
-  : 台北101的高度為508公尺，參觀門票為18.24美金.
-*** format格式化輸出
+  : 台北 101 的高度為 508 公尺，參觀門票為 18.24 美金.
+*** format 格式化輸出
 - 語法 
-  + format格式化輸出語法：print(字串.format (參數) ) 
+  + format 格式化輸出語法：print(字串.format (參數) ) 
   + 字串裡以{0}、{1}、... 來對應參數列裡的變數
 
 - 範例
@@ -460,16 +483,16 @@ python filename.py
   #+end_src
 
   #+RESULTS:
-  : Taipei101的高度為508.35公尺
-  : Taipei101      的高度為     508.4公尺
+  : Taipei101 的高度為 508.35 公尺
+  : Taipei101      的高度為     508.4 公尺
 
-** 輸入 
+** 輸入
 *** 語法/範例
 - 語法
   #+begin_src python -r -n :results both :eval no
     variable = intpu([提示字元])
   #+end_src
-- PS: 經由input( )函式讀入的資料，其資料型態皆為字串
+- PS: 經由 input( )函式讀入的資料，其資料型態皆為字串
 
 - 範例
   #+begin_src python -r -n  :eval no
@@ -487,7 +510,7 @@ python filename.py
   print('總分為%5d' %(a+b+c))
 #+end_src
 
-*** input注意事項
+*** input 注意事項
 - input 每筆輸入讀至換行符號為止
 - 若測試資料輸入以空白間隔，則讀入整行字串後， 再以字串分割處理
   #+begin_src python -r -n :results output :exports both
@@ -502,7 +525,7 @@ python filename.py
 ** 註解
 - 語法
   + 單行註解：以 # 開頭
-  + 多行註解：前後以 ''' 或 """ 含括
+  + 多行註解：前後以  '''  或  """  含括
 - 範例
   #+begin_src python -r -n :results output :exports both
     ## 這是單行註解
@@ -592,6 +615,9 @@ python filename.py
 | += | -= | *= | /= | %= | //= | **= |
 |----+----+----+----+----+-----+-----|
 
+** 實作練習
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/277/][skyoj 277. 一元二次方程式求解]]
+
 #+latex:\newpage
 * 判斷結構
 ** if
@@ -674,7 +700,7 @@ python filename.py
 #+RESULTS:
 : B
 
-** 巢狀if
+** 巢狀 if
 *** 語法
 #+BEGIN_SRC python -r -n :eval no
   if condition 1:
@@ -746,6 +772,7 @@ python filename.py
 
 *** 練習題
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/162/][skyoj #162 成績等第判別]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/164/][skyoj #164 獎金給多少]]
 
 #+latex:\newpage
 
@@ -757,19 +784,19 @@ python filename.py
       statement 1
       ...
 #+END_SRC
-- for迴圈的變數會依序走訪sequence中的元素
-- sequence[fn:6]可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
+- for 迴圈的變數會依序走訪 sequence 中的元素
+- sequence[fn:8]可為 range 函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
 
-*** List為range() function語法
+*** List 為 range() function 語法
 #+BEGIN_SRC python :exports both :eval no 
   for variable in range([起始值,] 終止值 [,遞增值]):
       statement 1
       ...
 #+END_SRC
-- 起始值預設為0，遞增值預設為1
+- 起始值預設為 0，遞增值預設為 1
 - 起始值 ≤ range( )的範圍 < 終止值
 
-*** List為range() function語法
+*** List 為 range() function 語法
 #+BEGIN_SRC python -r -n :results output :exports both
   for x in range(6):
       print(x, end=' ')
@@ -792,7 +819,7 @@ python filename.py
 : ====
 : 3 4 5 6 7 8 9 
 
-*** List為String
+*** List 為 String
 #+BEGIN_SRC python -r -n :results output :exports both:eval no 
   school = 'TNFSH'
   for x in school:
@@ -807,8 +834,8 @@ python filename.py
 : =========
 : U O G T I 
 
-- ord( ) -> 將字元轉為ASCII編碼(整數)
-- chr( ) -> 將ASCII編碼(整數)轉為字元
+- ord( ) -> 將字元轉為 ASCII 編碼(整數)
+- chr( ) -> 將 ASCII 編碼(整數)轉為字元
 
 ** while
 *** 語法
@@ -869,7 +896,7 @@ python filename.py
 : 56 28 14 end with 7
 
 ** break
-跳出整個loop
+跳出整個 loop
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
   for letter in 'Python':
@@ -886,7 +913,7 @@ python filename.py
 : Now stop...
 
 ** continue
-跳出單次loop
+跳出單次 loop
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
   for letter in 'Python':
@@ -927,14 +954,14 @@ python filename.py
 #+latex:\newpage
 
 * 資料型別
-** 字串string
+** 字串 string
 *** 資料格式
 以單引號(')或雙引號(")將資料含括起來
 #+begin_src python :eval no
   stringA = 'Hello Python'
   stringB = "Hello Python"
 #+end_src
-*** 範例1
+*** 範例 1
 |-------+-----+-----+-----+----+----+----+----+----+----+----+----+----|
 | index |   0 |   1 |   2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 | 11 |
 |-------+-----+-----+-----+----+----+----+----+----+----+----+----+----|
@@ -945,10 +972,10 @@ python filename.py
 *** 字串運算子
 - +: 連接字串
 - *: 重複字串
-- [index]: 字串中index所在字元
+- [index]: 字串中 index 所在字元
 - [start:end:increment]: 截取部份字串
 - in: 判斷是否為子字串
-*** 範例2
+*** 範例 2
 #+BEGIN_SRC python -r -n :results output :exports both
   tel = '06-2371206'
   ext = '#600'
@@ -976,7 +1003,7 @@ python filename.py
 : tel[ :6]: 06-237
 : tel[::-1]: 6021732-60
 : '9' in tel: False
-*** 字串function與method
+*** 字串 function 與 method
 - len(<str>):	計算字串長度
 - <str>.lower(): 字串轉小寫
 - <str>.upper(): 字串轉大寫
@@ -984,8 +1011,8 @@ python filename.py
 - <str>.isupper(): 字串中英文全小寫
 - <str>.find(<str1>): 在<str>尋找<str1>，回傳索引值； 若未找到，回傳-1
 - <str>.replace(<str1>, <str2>): 將<str>中的<str1>以<str2>取代
-- <str>.split([sep]): 字串以sep分割, sep預設值為空白
-*** 範例3
+- <str>.split([sep]): 字串以 sep 分割, sep 預設值為空白
+*** 範例 3
 #+BEGIN_SRC python -r -n :results output :exports both
   school = 'Tnfsh'
   print('school:', school)
@@ -1007,11 +1034,11 @@ python filename.py
 : school.replace('fsh', ssh'): Tnssh
 : school.split('f'): ['T', 'ssh']
 
-** 列表list
+** 列表 list
 *** 資料格式
 - 以[ ]將不同型態的資料含括起來，以 , 分隔
-- 表列中的資料是有序排列，從0開始編號
-- 格式：表列名稱 = [元素1, 元素2, … ]
+- 表列中的資料是有序排列，從 0 開始編號
+- 格式：表列名稱 = [元素 1, 元素 2, … ]
 #+BEGIN_SRC python -r -n :results output :exports both
   data = ['John', [95, 118], 'May', 100]
   print(data[1])
@@ -1033,7 +1060,7 @@ python filename.py
 - sum(<list>): 將表列中所有元素加總(註：僅限表列元素皆為數字)
 - <list>.sort(): 將表列中所有元素排序
 -  '[sep]'.join( <list>): 用[sep]來連結表列元素，若未指定[sep]，則無間隔(僅限表列元素皆為字串)
-*** list範例
+*** list 範例
 #+BEGIN_SRC python -r -n :results output :exports both
   data = ['John', [95, 118], 'May', 100]
   print(len(data))
@@ -1077,8 +1104,8 @@ python filename.py
 a-b-c
 #+end_example
 
-*** list練習
-- 連續輸入成績(輸入-1結束)，將成績由高至低排序輸出，並輸出總分、平均
+*** list 練習
+- 連續輸入成績(輸入-1 結束)，將成績由高至低排序輸出，並輸出總分、平均
 #+NAME: 分數排序
 #+BEGIN_SRC python -n -r :eval no
   score = []
@@ -1104,12 +1131,12 @@ a-b-c
   print(grades)
 #+END_SRC
 
-** 元組tuple
+** 元組 tuple
 *** 資料格式
 - 資料格式：以( )將不同型態的資料含括起來，以 , 分隔
-- 元組中的資料是有序排列，從0開始編號
-- 格式：元組名稱 = (元素1, 元素2, … )
-- 與表列list類似，但元組tuple內的元素不能修改
+- 元組中的資料是有序排列，從 0 開始編號
+- 格式：元組名稱 = (元素 1, 元素 2, … )
+- 與表列 list 類似，但元組 tuple 內的元素不能修改
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
   data = ( 'John', [95, 118], 'May', 100 )
@@ -1126,15 +1153,15 @@ a-b-c
 自從鐵掌無敵馬掌門出任武林盟主後，綠林豪傑一片哀鴻，民不聊生，痛苦指數破表，眾家名門弟子甚至遠避異鄉以求溫飽。近來馬掌門更獨創「油電雙掌」，以圖鞏固武林領導地位，此套掌法高深莫測，武林中人聞風喪膽，少林、武當各派高手不得不拋開門戶之見，齊聚「竹園崗」合作商議對策。目前僅由歴來幾次掌下逃生者的對戰經驗分析出以下數據
 | 與馬掌門對戰時間(秒) | 對戰者每秒接受之傷害值 |
 |----------------------+------------------------|
-| 120以下              |                   2.10 |
+| 120 以下             |                   2.10 |
 | 121~330              |                   3.02 |
 | 331~500              |                   4.39 |
 | 501~700              |                   4.97 |
-| 701以上              |                   5.63 |
+| 701 以上             |                   5.63 |
 請你幫這些可憐的高手寫一個程式分析對戰時間與受傷指數間的關係。
-輸入：0 ~ 10000秒之間任意值
+輸入：0 ~ 10000 秒之間任意值
 輸出：受傷指數
-*** 解1
+*** 解 1
 #+BEGIN_SRC python -r -n :results output :exports both
   #sec = input()
   sec = 800
@@ -1153,7 +1180,7 @@ a-b-c
 #+RESULTS:
 : 3189.5
 
-*** 解2
+*** 解 2
 #+BEGIN_SRC python -r -n :results output :exports both
   #sec = input()
   sec = 800
@@ -1170,13 +1197,13 @@ a-b-c
 #+RESULTS:
 : 3189.5
 
-** 字典dict
+** 字典 dict
 *** 資料格式
 - 以{ }將各組鍵:值對應資料含括起來，以 , 分隔
 - 字典中的資料是無序的
 - 格式：字典名稱 = {k1:v1, k2:v2,  … }
 - 範例：
-- 註：若字典中有相同的key，則會取出最後的value
+- 註：若字典中有相同的 key，則會取出最後的 value
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
   data = { 'John': 95,  'May': 100 }
@@ -1185,7 +1212,7 @@ a-b-c
 
 #+RESULTS:
 : 100
-*** dic操作
+*** dic 操作
 - 新增、修改、刪除
 #+BEGIN_SRC python -r -n :results output :exports both
   data = { 'John': 95,  'May': 100 }
@@ -1244,7 +1271,7 @@ a-b-c
 : data.values() dict_values([105, 100])
 
 **** fromkes
-- <dict>.fromkes(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value為字典所有鍵對應的初始值。
+- <dict>.fromkes(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value 為字典所有鍵對應的初始值。
 #+BEGIN_SRC python -r -n :results output :exports both
   data = { 'John': 95,  'May': 100, 'John': 105 }
   name = ('Vanissa', 'May', 'John')
@@ -1259,7 +1286,7 @@ a-b-c
 : {'Vanissa': 100, 'May': 100, 'John': 100}
 
 ** List v.s. Tuple
-二者的差異與適用時機[fn:7]：
+二者的差異與適用時機[fn:2]：
 *** 能否改變內容
 - Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed. 
 *** 可讀性
@@ -1271,7 +1298,7 @@ a-b-c
   #+BEGIN_SRC python -r -n :results output :exports both
     [[2,4], [5,7], [3,8], [5,9]]
   #+END_SRC
-*** 與dictionary的相似性
+*** 與 dictionary 的相似性
 - Tuples are commonly used as the equivalent of a dictionary without keys to store data. For Example,
   #+BEGIN_SRC python -r -n :results output :exports both
     [('Swordfish', 'Dominic Sena', 2001), ('Snowden', ' Oliver Stone', 2016), ('Taxi Driver', 'Martin Scorsese', 1976)]
@@ -1283,9 +1310,9 @@ a-b-c
     key_val = {['alpha','bravo']:123} #Invalid
   #+END_SRC
 
-** 集合set
+** 集合 set
 *** 資料格式
-- 資料格式：以{}將各組資料含括起來，以','分隔,或以set()建立
+- 資料格式：以{}將各組資料含括起來，以','分隔,或以 set()建立
 - 集合中的資料是無序的，會自動刪除重複元素
 - 格式
   #+BEGIN_SRC python -r -n :results output :exports both
@@ -1302,7 +1329,7 @@ a-b-c
   <set>.add(<item>)
   <set>.remove(<item>)
 #+END_SRC
-- remove()若無此item會發生錯誤
+- remove()若無此 item 會發生錯誤
 #+BEGIN_SRC python -r -n :results output :exports both
   s = set('apple')
   s.add('x')
@@ -1315,13 +1342,13 @@ a-b-c
 : {'e', 'p', 'x', 'l', 'a'}
 : {'e', 'x', 'l', 'a'}
 *** 集合運算
-| 運算 | 符號  |
-|------+-------|
-| 聯集 | \vert |
-| 交集 | &     |
-| 差集 | -     |
-| 互斥 | ^     |
-| 屬於 | in    |
+| 運算 | 符號 |
+|------+------|
+| 聯集 | \vert    |
+| 交集 | &    |
+| 差集 | -    |
+| 互斥 | ^    |
+| 屬於 | in   |
 #+BEGIN_SRC python -r -n :results output :exports both
   c = {'1234', 'TNFSH', 'qq', '434'}
   print(c)
@@ -1350,26 +1377,26 @@ a-b-c
 *** 練習：[[http://skyoj.tnfsh.tn.edu.tw/sky/index.php][skyoj ⇒ Contest ⇒ Python練習題(資料型別)]]
 
 ** 資料型別整理
-|------------+------------+-----------+-----------+-------------|
-| 資料型別   | 符號       | 資料可改? | 資料有序? | 資料類型    |
-|------------+------------+-----------+-----------+-------------|
-| 字串string | ' ' 或 " " | ✖️         | ✔️         | 相同(字元)  |
-| 表列list   | [ ]        | ✔️         | ✔️         | 可不同      |
-| 元組tuple  | ( )        | ✖         | ️✔         | ️可不同      |
-| 字典dict   | { }        | ✔️         | ✖️         | 相同(鍵:值) |
-| 集合set    | { }        | ✔️         | ✖️         | 可不同      |
-|------------+------------+-----------+-----------+-------------|
+|-------------+------------+-----------+-----------+-------------|
+| 資料型別    | 符號       | 資料可改? | 資料有序? | 資料類型    |
+|-------------+------------+-----------+-----------+-------------|
+| 字串 string | ' ' 或 " " | ✖️         | ✔️         | 相同(字元)  |
+| 表列 list   | [ ]        | ✔️         | ✔️         | 可不同      |
+| 元組 tuple  | ( )        | ✖         | ️✔         | ️可不同      |
+| 字典 dict   | { }        | ✔️         | ✖️         | 相同(鍵:值) |
+| 集合 set    | { }        | ✔️         | ✖️         | 可不同      |
+|-------------+------------+-----------+-----------+-------------|
 
 #+latex:\newpage
 * FUNCTION
 ** 函式(function)基本操作
 *** 函式(function)的重要性
-- function為一段程式的集合，可視為一個獨立的區段。
-- function可重覆使用，因此為結構化程式語言的重要元素。 可將龐大複雜的程式分解為小問題，由多人分別以function解決，縮短開發時間。
-- function可區分為以下三類：
-  + Python內建function，如: print()、len()、int()、str()...。
-  + 第三方公司所開發的模組module(多個function組合)。
-  + 自定義function。
+- function 為一段程式的集合，可視為一個獨立的區段。
+- function 可重覆使用，因此為結構化程式語言的重要元素。 可將龐大複雜的程式分解為小問題，由多人分別以 function 解決，縮短開發時間。
+- function 可區分為以下三類：
+  + Python 內建 function，如: print()、len()、int()、str()...。
+  + 第三方公司所開發的模組 module(多個 function 組合)。
+  + 自定義 function。
 *** 自定義函式
 - 宣告語法
   #+BEGIN_SRC python -r -n :eval no
@@ -1378,8 +1405,8 @@ a-b-c
         [ return 值 ]
   #+END_SRC
 - 說明 :
-  + 參數可省略，亦即呼叫function不需傳入任何資料(引數)。
-  + 若無回傳值，則無需return。
+  + 參數可省略，亦即呼叫 function 不需傳入任何資料(引數)。
+  + 若無回傳值，則無需 return。
   + 若多個回傳值可用逗號隔開。
 *** 自定義函式的呼叫
 - 呼叫函式語法：
@@ -1395,7 +1422,7 @@ a-b-c
   #+END_SRC
 
   #+RESULTS:
-  : 半徑10的圓面積：314
+  : 半徑 10 的圓面積：314
 
 *** 多參數函式
 - 呼叫函式時引數(arugment)個數
@@ -1458,13 +1485,13 @@ a-b-c
   : 20
 
 *** 傳值與傳址
-- 引數(argument)的傳遞分為兩種方式，由Python自動判別：
+- 引數(argument)的傳遞分為兩種方式，由 Python 自動判別：
   + 傳值呼叫(Call-by-Value)
   + 傳址呼叫(Call-by-Reference)
-| 引數傳遞                  | 傳遞內容       | 參數改變 | 資料型別                          |
-|---------------------------+----------------+----------+-----------------------------------|
-| 傳值呼叫 call-by-value    | 引數值         | 否       | bool, int, float, str, tuple, chr |
-| 傳址呼叫call-by-reference | 引數記憶體位址 | 是       | list, dict, set                   |
+| 引數傳遞                   | 傳遞內容       | 參數改變 | 資料型別                          |
+|----------------------------+----------------+----------+-----------------------------------|
+| 傳值呼叫 call-by-value     | 引數值         | 否       | bool, int, float, str, tuple, chr |
+| 傳址呼叫 call-by-reference | 引數記憶體位址 | 是       | list, dict, set                   |
 #+BEGIN_SRC python -r -n :results output :exports both
   # str傳值、list傳址
   def ccc(name, score):
@@ -1561,9 +1588,9 @@ a-b-c
   : 10
 
 *** 練習
-- 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入5，輸出5! = 120。
-- 計算C(n, r)組合數。 輸入 n, r，輸出C(n, r) = XX。如輸入9, 4，輸出C(9, 4) = 126。
-- 計算擴展歐幾里德。 輸入 a, b，輸出a*x + b*y = gcd。如輸入3, 5，輸出3*2 + 5*-1 = 1
+- 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入 5，輸出 5! = 120。
+- 計算 C(n, r)組合數。 輸入 n, r，輸出 C(n, r) = XX。如輸入 9, 4，輸出 C(9, 4) = 126。
+- 計算擴展歐幾里德。 輸入 a, b，輸出 a*x + b*y = gcd。如輸入 3, 5，輸出 3*2 + 5*-1 = 1
   #+BEGIN_SRC python -n :results output :exports both
     def ext_euclid(a, b):
         old_s,s=1,0
@@ -1587,19 +1614,21 @@ a-b-c
   : 4x + -29y = 3
 
 #+latex:\newpage
+
 * Footnotes
 
 [fn:1] [[https://buzzorange.com/techorange/2019/08/20/the-history-of-python][Python的誕生故事]]
 
-[fn:2] [[https://www.techapple.com/archives/10553][因為打發時間，他改變了世界！講述 Python 之父 Guido van Rossum 的故事！ ]]
+[fn:2] [[https://www.tiobe.com/][https://www.tiobe.com/]]
 
-[fn:3] [[https://www.geeksforgeeks.org/python-language-advantages-applications/][Python Language advantages and applications]]
+[fn:3] [[https://www.techapple.com/archives/10553][因為打發時間，他改變了世界！講述 Python 之父 Guido van Rossum 的故事！ ]]
 
-[fn:4] [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
+[fn:4] [[https://en.wikipedia.org/wiki/Guido_van_Rossum][Guido van Rossum]]
 
-[fn:5] [[https://stackabuse.com/python-programming-in-interactive-vs-script-mode/][Python Programming in Interactive vs Script Mode]]
+[fn:5] [[https://www.geeksforgeeks.org/python-language-advantages-applications/][Python Language advantages and applications]]
 
-[fn:6] [[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
+[fn:6] [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
 
-[fn:7] [[https://www.programiz.com/python-programming/list-vs-tuples][Python List vs. Tuples]]
+[fn:7] [[https://stackabuse.com/python-programming-in-interactive-vs-script-mode/][Python Programming in Interactive vs Script Mode]]
 
+[fn:8] [[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]

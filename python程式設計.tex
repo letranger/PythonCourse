@@ -1,0 +1,708 @@
+% Created 2020-02-18 Tue 20:38
+% Intended LaTeX compiler: pdflatex
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{amssymb}
+\tolerance=1000
+\usepackage{listings}
+\usepackage{xeCJK}
+\setCJKmainfont{SimSun}
+\usepackage{color}
+\usepackage{listings}
+\RequirePackage{fancyvrb}
+\DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\scriptsize}
+\lstset{basicstyle=\scriptsize\ttfamily}
+\lstset{basicstyle=\tiny\ttfamily}
+\usepackage{placeins}
+\vspace{-0.2cm}
+\usepackage{xcolor}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{dred}{rgb}{0.545,0,0}
+\definecolor{dblue}{rgb}{0,0,0.545}
+\definecolor{lgrey}{rgb}{0.9,0.9,0.9}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{bubbles}{rgb}{0.91, 1.0, 1.0}
+\lstdefinelanguage{python}{
+backgroundcolor=\color{bubbles},
+basicstyle=\footnotesize \ttfamily \color{black} \bfseries,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+commentstyle=\color{dred},
+deletekeywords={...},
+escapeinside={\%*}{*)},
+frame=single,
+language=C++,
+keywordstyle=\color{purple},
+morekeywords={BRIEFDescriptorConfig,string,TiXmlNode,DetectorDescriptorConfigContainer,istringstream,cerr,exit},
+identifierstyle=\color{black},
+stringstyle=\color{blue},
+rulecolor=\color{black},
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+stepnumber=1,
+tabsize=5,
+title=\lstname,
+}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc}
+\author{yen yung chin}
+\date{\today}
+\title{Python programming}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+
+\section{Python程式設計}
+\label{sec:orgfb5ffd5}
+\subsection{變數、資料型態、輸出輸入}
+\label{sec:org88bb171}
+\subsubsection{變數}
+\label{sec:orgc596e1c}
+\begin{enumerate}
+\item 命名規則
+\label{sec:org315aad5}
+\begin{itemize}itemsep=1pt
+\item 由英文、數字、底線、中文(不建議)組成\\
+\item 不得以數字開頭\\
+\item 不能與Python內建的保留字相同\\
+\end{itemize}
+\item practice
+\label{sec:org66743b3}
+\begin{itemize}itemsep=2pt
+\item abc\_123\\
+\item 3pigs\\
+\item Happy New Year\\
+\item Class\\
+\item Good!\\
+\end{itemize}
+\end{enumerate}
+
+\subsubsection{變數的指派(assign)}
+\label{sec:orge4a9153}
+\begin{itemize}
+\item Python變數不需宣告，依指派值自動設定資料型態。\\
+\end{itemize}
+
+\begin{enumerate}
+\item 指派語法： 
+\label{sec:orgc24164c}
+\begin{itemize}
+\item 變數名稱 = 指派值\\
+\item 變數不再使用時，可用del指令將其刪除，以節省記憶體。\\
+\end{itemize}
+
+\item 範例：
+\label{sec:orgd93b46c}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a = 5
+b = 3.14
+c = 'TNFSH'
+a = b = c = 10
+name, number = 'TNFSH', 35
+\end{lstlisting}
+\end{enumerate}
+
+\subsubsection{資料型態}
+\label{sec:org5ae6e7e}
+\begin{enumerate}
+\item 常用類型
+\label{sec:org06799f4}
+\begin{itemize}
+\item 整數: int\\
+\item 浮點數: float\\
+\item 布林值(True / False): bool, T 與 F要大寫\\
+\item 字串: str, 以'或"含括,若輸出字串要包含引號，則以另一種引號含括該字串。如:\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+good_words = " 請常說'請'、'謝謝'、'對不起' "
+print(good_words)
+\end{lstlisting}
+
+\begin{verbatim}
+ 請常說'請'、'謝謝'、'對不起' 
+\end{verbatim}
+
+\item 型態間的轉換
+\label{sec:org9a7d4eb}
+
+\begin{itemize}
+\item 自動轉換\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+score = 60 + 3.5		# 自動轉換為浮點數，結果為63.5	
+\end{lstlisting}
+
+\begin{itemize}
+\item 強制轉換\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+score = int(30.22)			# 將括弧內的資料轉換為整數
+score = float(score)		# 將括弧內的資料轉換為浮點數
+test = str(score)				# 將括弧內的資料轉換為字串
+\end{lstlisting}
+\end{enumerate}
+
+\subsubsection{輸出: print}
+\label{sec:orge21230c}
+\begin{enumerate}
+\item 語法
+\label{sec:orgdbfd770}
+\begin{itemize}
+\item print( 項目1, [ 項目2, … , sep = 分隔字元 , end = 結束字元 ] )\\
+\item sep (分隔字元) 預設為空白字元\\
+\item end (結束字元) 預設為換行字元\n \\
+\end{itemize}
+\item 範例
+\label{sec:org43c9a9b}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a, b = 5, 10
+print(a, b)
+print(a, b, sep =',')
+print(a, end='\t')
+print(b)
+print(a, end='')
+print(b)
+\end{lstlisting}
+
+\begin{verbatim}
+5 10
+5,10
+5	10
+510
+\end{verbatim}
+\item escape char
+\label{sec:org196faff}
+\begin{center}
+\begin{tabular}{ll}
+\hline
+跳脫字元 & 說明\\
+\hline
+$\backslash$\ & 印出 $\backslash$\\
+$\backslash$' & 印出 '\\
+\n & 換行字元\\
+\t & 水平跳格字元(Tab)\\
+\b & 倒退一格字元(Backspace)\\
+\hline
+\end{tabular}
+\end{center}
+
+\item 格式化輸出
+\label{sec:orgacb6e1d}
+\begin{enumerate}
+\item 語法
+\label{sec:org73436d5}
+\begin{itemize}
+\item 格式化輸出語法：print( 字串  \%(參數) ) \\
+\item PS: 字串裡 \%s 代表字串、\%d 代表整數、\%f 代表浮點數\\
+\end{itemize}
+\item 範例
+\label{sec:org9fe253a}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+name = '台北101'
+height = 508
+fee = 18.24
+print('%s的高度為%d公尺，參觀門票為%3.2f美金.' %(name, height, fee))
+
+\end{lstlisting}
+
+\begin{verbatim}
+台北101的高度為508公尺，參觀門票為18.24美金.
+\end{verbatim}
+\end{enumerate}
+
+\item format格式化輸出
+\label{sec:orgf711221}
+\begin{enumerate}
+\item 語法
+\label{sec:org21f2e89}
+\begin{itemize}
+\item format格式化輸出語法：print(字串.format (參數) ) \\
+\item PS: 字串裡以\{0\}、\{1\}、\ldots{} 來對應參數列裡的變數\\
+\end{itemize}
+\item 範例
+\label{sec:orgc8c06d3}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+name = 'Taipei101'
+height = 508.35
+print('{0}的高度為{1}公尺'.format (name, height))
+print('{0:15s}的高度為{1:10.1f}公尺'.format (name, height))
+\end{lstlisting}
+
+\begin{verbatim}
+Taipei101的高度為508.35公尺
+Taipei101      的高度為     508.4公尺
+\end{verbatim}
+\end{enumerate}
+\end{enumerate}
+
+\subsubsection{輸入}
+\label{sec:org4801b6a}
+\begin{enumerate}
+\item 語法
+\label{sec:orged74e33}
+\begin{itemize}
+\item 輸入語法：變數 = input( [提示字串] ) \\
+\item PS: 經由input( )函式讀入的資料，其資料型態皆為字串\\
+\end{itemize}
+
+\item 範例
+\label{sec:orgd83b110}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a = input('輸入國文成績:')
+b = input('輸入數學成績:')
+c = input()
+print('三科成績分別為%5s %5s %5s' %(a, b, c))
+\end{lstlisting}
+
+\item 輸入搭配型別轉換
+\label{sec:org61b12f5}
+\begin{enumerate}
+\item 範例
+\label{sec:orgc112a56}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a = int(input('輸入國文成績:'))
+b = int(input('輸入數學成績:'))
+c = int(input())
+print('總分為%5d' %(a+b+c))
+\end{lstlisting}
+\end{enumerate}
+
+\item input注意事項
+\label{sec:orgeb00edd}
+\begin{itemize}
+\item input 每筆輸入讀至換行符號為止\\
+\item 若測試資料輸入以空白間隔，則讀入整行字串後， 再以字串分割處理\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+inp = input()
+inpstr = inp.split()
+# 依此類推逐一取得輸入值
+a = int(inpstr[0])
+b = int(inpstr[1])
+c = int(inpstr[2])
+\end{lstlisting}
+\end{enumerate}
+
+\subsubsection{註解}
+\label{sec:org0267d06}
+\begin{enumerate}
+\item 語法
+\label{sec:orgff1de68}
+\begin{itemize}
+\item 單行註解：以 \# 開頭\\
+\item 多行註解：前後以 ''' 或 """ 含括\\
+\end{itemize}
+
+\item 範例
+\label{sec:orgad58e0d}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+## 這是單行註解
+int a = 3
+'''
+這是多行註解
+LALALA
+'''
+print(a)
+"""
+這也是
+"""
+\end{lstlisting}
+\end{enumerate}
+
+\subsubsection{實作練習}
+\label{sec:org89c46e6}
+\begin{itemize}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/}{skyoj \#161華氏溫度轉攝氏溫度}\\
+\end{itemize}
+\subsection{運算元與運算式}
+\label{sec:org8ef5b3a}
+\subsubsection{算術運算}
+\label{sec:orgd1df183}
+\begin{itemize}
+\item +: 加\\
+\item -: 減\\
+\item *: 乘\\
+\item /: 除\\
+\item \%: 取餘數\\
+\item //: 求商\\
+\item **: 指數\\
+\end{itemize}
+
+\subsubsection{範例}
+\label{sec:orgd1a297a}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+# python code for arithematic opearation
+print(5+3)
+print(5-3)
+print(5*3)
+print(5/3)
+print(5%3)
+print(5//3)
+print(5**3)
+\end{lstlisting}
+
+\begin{verbatim}
+Hello world
+Nice to meet you, Letranger
+\end{verbatim}
+
+\subsubsection{input 指令}
+\label{sec:org10aafd3}
+\subsubsection{if else 語法}
+\label{sec:org8dd342d}
+\subsubsection{四則運算}
+\label{sec:orgcf04b7e}
+\begin{itemize}
+\item // 整除\\
+\item \% 取餘數\\
+\end{itemize}
+\lstset{breaklines=true,language=Python,label=計算機,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a = int(input("input a: "))
+op = input("input op: ")
+b = int(input("input b: "))
+
+if op == '+':
+    ans = a + b;
+elif op == '-':
+    ans = a - b;
+elif op == '*':
+    ans = a * b;
+elif op == '/':
+    ans = a / b;
+elif op == '%':
+    ans = a % b;
+
+print(str(a) + op + str(b) + "=" + str(ans))
+\end{lstlisting}
+
+\subsubsection{由a加到b}
+\label{sec:org96acf98}
+\lstset{breaklines=true,language=Python,label=計算機,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a = int(input("input a: "))
+b = int(input("input b: "))
+# while solution
+sum = 0
+while a <= b:
+    sum = sum + a
+    a = a + 1
+print("Result :" + str(sum))
+# for solution
+sum = 0
+for i in range(a, b):
+    sum = sum + i
+print("Result:" + str(sum))
+\end{lstlisting}
+
+\subsubsection{由a乘到b}
+\label{sec:org9a75bfe}
+\lstset{breaklines=true,language=Python,label=計算機,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a = int(input("input a: "))
+b = int(input("input b: "))
+# for solution
+x = 1
+for i in range(a, b + 1):
+    x = x * i
+print(x)
+# while solution
+p = 1
+while a <= b:
+    p = p * a
+    a = a + 1
+
+print("Result:" + str(p))
+\end{lstlisting}
+
+\subsubsection{list}
+\label{sec:org06ffc3e}
+\lstset{breaklines=true,language=sh,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+date
+\end{lstlisting}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+
+import urllib.request as req
+url = "https://huodalife.pixnet.net/blog/"
+# 幫request加上一個header
+request = req.Request(url, headers = {
+    "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+})
+
+with req.urlopen(request) as response:
+    data = response.read().decode("utf-8")
+
+import bs4
+root = bs4.BeautifulSoup(data,"html.parser")
+
+titles = root.find_all("li", class_="title")
+pubs = root.find_all("li", class_="publish")
+for pub, title in zip(pubs, titles):
+    print(pub.span.string,title.a.string)
+\end{lstlisting}
+
+
+\subsection{0725}
+\label{sec:orgc613a68}
+\subsubsection{swap a, b}
+\label{sec:org64df84e}
+\begin{itemize}
+\item a, b = b, a\\
+\end{itemize}
+\subsubsection{gcd}
+\label{sec:org3ba7df7}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+a = input()
+b = input()
+while(a % b != 0):
+    b = a
+    a = a % b
+print(b)
+\end{lstlisting}
+
+\subsubsection{python 14 list}
+\label{sec:org5252041}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import numpy as np
+students = []
+grades = []
+for i in range(6):
+    name = input()
+    grades.append(name)
+    for j in range(3):
+
+
+\end{lstlisting}
+
+\subsection{0802 CNN}
+\label{sec:orge312555}
+\url{https://reurl.cc/Y2gKo}: 各種常用的library, function\\
+
+\section{以python下載網路資料}
+\label{sec:org46394e1}
+\begin{itemize}
+\item import urllib.request as req\\
+\end{itemize}
+
+\section{網路爬蟲}
+\label{sec:org32a7038}
+\subsection{parse HTML}
+\label{sec:org758b9b4}
+\begin{itemize}
+\item what is HTML\\
+\item 精神：將程式模仿成一般user\\
+\end{itemize}
+\subsubsection{所需套件}
+\label{sec:org536b198}
+\begin{itemize}
+\item BeautifulSoup\\
+\end{itemize}
+pip install beautifulsoup4\\
+\subsection{範例: 以程式抓取PTT電影板header}
+\label{sec:org91a8952}
+\subsubsection{原則}
+\label{sec:orgf5955de}
+\begin{enumerate}
+\item 要抓網路資料，就要先仔細觀察網頁內容\\
+\item 要儘量欺騙網站自己是browser\\
+\end{enumerate}
+\subsubsection{實作: 取得HTML資料}
+\label{sec:org83b4602}
+\begin{enumerate}
+\item 第一版
+\label{sec:org728b532}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+# 抓取PTT電影版header
+import urllib.request as req
+url = "https://www.ptt.cc/bbs/Stock/index.html"
+
+with req.urlopen(url) as response:
+    data = response.read().decode("utf-8")
+print(data)
+\end{lstlisting}
+
+\begin{verbatim}
+urllib.error.HTTPError: HTTP Error 403: Forbidden
+\end{verbatim}
+
+被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是HTTP協議中的一個HTTP狀態碼（Status Code）。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務\footnote{\href{https://zh.wikipedia.org/wiki/HTTP\_403}{維基百科: HTTP 403} \\}。\\
+
+\item 第二版:加入header
+\label{sec:orgc3fa9dd}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import urllib.request as req
+url = "https://www.ptt.cc/bbs/Stock/index.html"
+# 幫request加上一個header
+request = req.Request(url, headers = {
+    "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+})
+
+with req.urlopen(request) as response:
+    data = response.read().decode("utf-8")
+print('所取得的資料型態：',type(data))
+print(data[700:1000])
+\end{lstlisting}
+
+\begin{verbatim}
+所取得的資料型態： <class 'str'>
+er">
+	<div id="topbar" class="bbs-content">
+		<a id="logo" href="/bbs/">批踢踢實業坊</a>
+		<span>&rsaquo;</span>
+		<a class="board" href="/bbs/Stock/index.html"><span class="board-label">看板 </span>Stock</a>
+		<a class="right small" href="/about.html">關於我們</a>
+		<a class="right small" href="/contact.html">
+\end{verbatim}
+\end{enumerate}
+
+\subsubsection{實作：解析HTML資料內容}
+\label{sec:org7de1d18}
+\begin{enumerate}
+\item 安裝解析HTML所需套件
+\label{sec:org64c0039}
+\lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+pip install beautifulsoup4
+\end{lstlisting}
+
+\item 第三版: 解析HTML
+\label{sec:orgfac7f19}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+import urllib.request as req
+url = "https://www.ptt.cc/bbs/Stock/index.html"
+# 幫request加上一個header
+request = req.Request(url, headers = {
+    "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"
+})
+
+with req.urlopen(request) as response:
+    data = response.read().decode("utf-8")
+
+import bs4
+root = bs4.BeautifulSoup(data,"html.parser")
+print(root.title)
+titles = root.find("div", class_="title")
+print(titles)
+print(titles.a.string)
+titles = root.find_all("div", class_="title")
+print(titles)
+for title in titles:
+    if title.a != None:
+        print(title.a.string)
+\end{lstlisting}
+
+\begin{verbatim}
+<title>看板 Stock 文章列表 - 批踢踢實業坊</title>
+<div class="title">
+<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[<div class="title">
+<a href="/bbs/Stock/M.1581985895.A.742.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581986080.A.0B9.html">[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987000.A.EE7.html">[新聞] 超預期 國巨MLCC漲價五成</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987018.A.192.html">[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581987846.A.95F.html">[新聞] 中芯國際14nm第二代FinFET批量須等到2020</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581989947.A.392.html">Re: [請益] 有人買股票而完全捨棄定存嗎?</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581990753.A.EB3.html">[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581994926.A.A50.html">[標的] 6531愛普</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581996309.A.C55.html">[請益] 是不是該立法更限制外資匯出資金？</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581999672.A.14E.html">Re: [請益] 存股標的選擇</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582000361.A.6A2.html">[標的] 1201 味全 多</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582000701.A.2AB.html">Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1582001420.A.3B8.html">[新聞] 用電大戶買綠電 電證分離更活絡</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1422199105.A.84E.html">[公告] 精華區導覽Q&amp;A</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1541252211.A.8BE.html">[公告] Stock 板規V2.6             (2019/06/20)</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1579935755.A.395.html">[公告] 關於武漢肺炎新聞規範</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581919202.A.CF2.html">[閒聊] 2020/02/17 盤後閒聊</a>
+</div>, <div class="title">
+<a href="/bbs/Stock/M.1581985803.A.F3E.html">[閒聊] 2020/02/18 盤中閒聊</a>
+</div>]
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 武漢肺炎衝擊 蘋果率先示警營收無法達標
+[新聞] 超預期 國巨MLCC漲價五成
+[新聞] 武漢肺炎》上海美國商會：1/3企業若工廠
+[新聞] 中芯國際14nm第二代FinFET批量須等到2020
+Re: [請益] 有人買股票而完全捨棄定存嗎?
+[新聞] 斷絕華為貨源！美擬祭禁令限制中企取得
+[標的] 6531愛普
+[請益] 是不是該立法更限制外資匯出資金？
+Re: [請益] 存股標的選擇
+[標的] 1201 味全 多
+Re: [新聞] 蝗蟲抵達邊境 中國人自信：威脅不大
+[新聞] 用電大戶買綠電 電證分離更活絡
+[公告] 精華區導覽Q&A
+[公告] Stock 板規V2.6             (2019/06/20)
+[公告] 關於武漢肺炎新聞規範
+[閒聊] 2020/02/17 盤後閒聊
+[閒聊] 2020/02/18 盤中閒聊
+\end{verbatim}
+\end{enumerate}
+
+\subsection{參考資料}
+\label{sec:orgf064e47}
+\begin{itemize}
+\item \url{https://www.youtube.com/watch?v=9Z9xKWfNo7k}\\
+\end{itemize}
+
+
+\section{如何把python程式publish成網站應用程式}
+\label{sec:org2927c7e}
+\end{document}
