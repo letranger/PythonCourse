@@ -453,7 +453,7 @@ python filename.py
 #+ATTR_ORG: :width 400
 #+RESULTS:
 [[file:escape.png]]
-*** 格式化輸出
+*** 格式化輸出: % (舊版)
 - 語法
   + 格式化輸出語法：print( 字串  %(參數) ) 
   + 字串裡 %s 代表字串、%d 代表整數、%f 代表浮點數
@@ -469,23 +469,39 @@ python filename.py
 
   #+RESULTS:
   : 台北 101 的高度為 508 公尺，參觀門票為 18.24 美金.
-*** format 格式化輸出
+*** 格式化輸出: format() (新版)
 - 語法 
   + format 格式化輸出語法：print(字串.format (參數) ) 
   + 字串裡以{0}、{1}、... 來對應參數列裡的變數
 
 - 範例
-  #+begin_src python -r -n :results output :exports both
-    name = 'Taipei101'
-    height = 508.35
-    print('{0}的高度為{1}公尺'.format (name, height))
-    print('{0:15s}的高度為{1:10.1f}公尺'.format (name, height))
-  #+end_src
+#+begin_src python -r -n :results output :exports both
+name = 'Taipei101'
+height = 508.35
+print('{0}的高度為{1}公尺'.format (name, height))
+print('{0:15s}的高度為{1:10.1f}公尺'.format (name, height))
+print('{building}的高度為{height}'.format(building=name, height=height))
+#+end_src
 
   #+RESULTS:
   : Taipei101 的高度為 508.35 公尺
   : Taipei101      的高度為     508.4 公尺
+  : Taipei101 的高度為 508.35
+*** 格式化輸出: Template
+#+begin_src python -r -n :results output :exports both
+from string import Template
 
+name = 'TNFSH'
+tmp = Template('Hello, $who')
+print(tmp.substitute(who = name))
+
+#+end_src
+
+#+RESULTS:
+: Hello, TNFSH
+
+*** 進階閱讀
+- [[https://blog.techbridge.cc/2019/05/03/how-to-use-python-string-format-method/][如何使用 Python 進行字串格式化]]
 ** 輸入
 *** 語法/範例
 - 語法
@@ -713,7 +729,7 @@ python filename.py
           statement 5
           ...
   else:
-      if condition 3:
+      if conditi6on 3:
           statement 7
           ...
       else:
