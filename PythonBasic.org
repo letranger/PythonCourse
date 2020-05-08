@@ -1,4 +1,5 @@
 #+Title: Basic Materials of Python
+
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 #+STARTUP: showeverything
 #+PROPERTY: header-args :eval never-export
@@ -151,17 +152,37 @@
 
 #+latex:\newpage
 * Python 簡介
+** What is Python
+- Python is an advanced *scripting language* that is being used successfully to
+  *glue together* large software components. It spans *multiple platforms*,
+  middleware products, and application domains. Python is an *object-oriented
+  language* with *high-level data structures*, *dynamic typing*, and *dynamic binding*.
+  Python has been around since 1991, and has a very active user community. For
+  more information, see the Python website http://www.python.org.
 ** Python 的誕生
-*** 科技報導的說法[fn:1]
-- 1989 年，荷蘭的一位叫 Guido van Rossum 的宅男工程師覺得其他的程式語言都不好用，
-  於是花三個月創造了一種新的程式語言。
+*** 一句話講完一部電影
+- The Martian
+  #+ATTR_LATEX: :width 300
+  #+ATTR_HTML: :width 400
+  #+ATTR_ORG: :width 400
+  #+RESULTS:
+  [[file:theMartian.jpg]]
+- 一個男人在火星上種菜的故事
+*** 一句話講完 Python 的誕生[fn:1]
+- 1989 年，一個宅男工程師為了打發聖誔假期(順便打趴其他語言)、花了三個月創造了一
+  種新的程式語言。
+- [[https://zh.wikipedia.org/zh-tw/%E5%90%89%E5%A4%9A%C2%B7%E8%8C%83%E7%BD%97%E8%8B%8F%E5%A7%86][Guido van Rossum]]
   #+ATTR_LATEX: :width 400
   #+ATTR_HTML: :width 560
   #+ATTR_ORG: :width 560
   #+RESULTS:
   [[file:Rossum.jpeg]]
-- 30 年後，每天都有數百萬人使用他創立的這一新語言。系統管理員。
-  + 依據 TOIBE 的調查，目前 Python 在[[https://www.tiobe.com/tiobe-index/][TOIBE]]最受歡迎語言的排名第三[fn:2]
+- 30 年後，每天都有數百萬人使用他創立的這一新語言。
+  + Python Customers
+    Get access to data on [[https://trends.builtwith.com/websitelist/Python/Historical][941,453 websites]] that are Python Customers. We know of
+    120,915 live websites using Python and an additional 820,538 sites that used
+    Python historically and [[https://trends.builtwith.com/websitelist/Python/Taiwan][807 websites in Taiwan]]. [fn:2]
+  + 依據 TOIBE 的調查，目前 Python 在[[https://www.tiobe.com/tiobe-index/][TOIBE]]最受歡迎語言的排名第三[fn:3]
     #+ATTR_LATEX: :width 560
     #+ATTR_HTML: :width 560
     #+ATTR_ORG: :width 560
@@ -176,28 +197,28 @@
   #+RESULTS:
   [[file:blackhole.jpg]]
 
-*** Guido van Rossum 自己的說法[fn:3]
-- 在 1989 年 12 月，我在尋找一門「課餘」編程項目來打發聖誕節前後的時間。
-- 我決定為當時我正構思的一個新的腳本語言([[https://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80][Scripting language]])寫一個解釋器，它是 [[https://zh.wikipedia.org/wiki/ABC_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)][ABC]] 語言的後代，對 UNIX/C 程式設計師會有吸引力。
-- 作為一個略微有些無關想法的人，和一個《蒙提‧派森的飛行馬戲團》的狂熱愛好者，我
-  選擇了 Python 作為項目的標題。
-- In December 1989, Van Rossum had been looking for a " 'hobby' programming
-  project that would keep [him] occupied during the week around Christmas" as
-  his office was closed when he decided to write an interpreter for a "new
-  scripting language [he] had been thinking about lately: a descendant of ABC
-  that would appeal to Unix/C hackers". He attributes choosing the name "Python"
-  to "being in a slightly irreverent mood (and a big fan of Monty Python's
-  Flying Circus)".[fn:4]
+*** Guido van Rossum 自己的說法[fn:4]
+- ...in December 1989, I was looking for a "hobby" programming project that
+  would keep me occupied during the week around Christmas.
+- My office (a government-run research lab in Amsterdam) would be closed, but I
+  had a home computer, and not much else on my hands. I decided to write an
+  interpreter for the new [[https://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80][Script language]] I had been thinking about lately: a
+  descendant of [[https://zh.wikipedia.org/wiki/ABC_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)][ABC]] that would appeal to Unix/C hackers.
+- I chose Python as a
+  working title for the project, being in a slightly irreverent mood (and a big
+  fan of Monty Python's Flying Circus). [fn:5]
 
-** Python 的優勢與應用[fn:5]
+** Python 的優勢與應用[fn:6]
 *** Advantages
 1. Presence of third-party modules
-1. Extensive support libraries(NumPy for numerical calculations, Pandas for data analytics etc)
+1. Extensive support libraries(NumPy for numerical calculations, Pandas for data
+   analytics etc)
 1. Open source and community development
 1. Easy to learn
 1. User-friendly data structures
 1. High-level language
-1. Dynamically typed language(No need to mention data type based on value assigned, it takes data type)
+1. [[https://www.itread01.com/p/1441246.html][Dynamically typed language]](No need to mention data type based on value
+   assigned, it takes data type)
 1. Object-oriented language
 1. Portable and Interactive
 1. Portable across Operating systems
@@ -205,9 +226,6 @@
 1. GUI based desktop applications(Games, Scientific Applications)
 1. Web frameworks and applications
 1. Enterprise and Business applications
-1. Operating Systems
-1. Language Development
-1. Prototyping
 *** Organizations using Python
 1. [[https://www.google.com/][Google]] (Components of Google spider and Search Engine)
 1. [[https://www.youtube.com/channel/UCNJIEbGZaScUDsq_DMYTjYg][Youtube]]
@@ -226,7 +244,7 @@
 - 網址: [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
 - 若為 Mac 系統，則已預載安裝 Python 2.7
 - 若為 Linux 系統，則多數也預載 Python 2.x 及 3.x
-- 查詢目前的 python 版本，目前官方最新版本為 3.8.2[fn:6]
+- 查詢目前的 python 版本，目前官方最新版本為 3.8.2[fn:7]
   #+begin_src shell
     python --version
   #+end_src
@@ -253,9 +271,11 @@
       exit()
     #+end_src
   + 快速鍵: Ctrl-D
-- 此模式可配合文字編輯器撰寫程式碼，再於終端機下執行
-  + [[https://www.sublimetext.com/3][Sublime Text 3]]
-  + [[https://notepad-plus-plus.org/downloads/][Notepad++]]
+- 此模式可配合文字編輯器(如[[https://www.sublimetext.com/3][Sublime Text 3]]、[[https://notepad-plus-plus.org/downloads/][Notepad++]])撰寫程式碼，若檔名為 test.py，
+  執行該程式的方法為：於終端機下輸入
+  #+begin_src shell :eval no
+python test.py
+  #+end_src
 
 *** IDE(Integrated Development Environment)環境
 **** [[https://www.spyder-ide.org/][Spyder]]
@@ -314,7 +334,7 @@
 #+begin_src shell :eval no
 python -i filename.py
 #+end_src
-**** 優點[fn:7]
+**** 優點[fn:8]
 - Helpful when your script is extremely short and you want immediate results.
 - Faster as you only have to type a command and then press the enter key to get the results.
 - Good for beginners who need to understand Python basics.
@@ -367,6 +387,21 @@ python filename.py
 - 結束 Jupyter: 網頁右上角：Quit
 
 #+latex:\newpage
+
+* Hello World: C++ v.s. Python
+** C++
+#+begin_src cpp -r -n :results output :exports both
+#include <iostream>
+using namespace std;
+int main() {
+  cout << "Hellow world!";
+}
+#+end_src
+** Python
+#+begin_src python -r -n :results output :exports both
+print("Hello world!")
+#+end_src
+
 * 變數、資料型態、輸出輸入
 
 ** 變數
@@ -388,7 +423,7 @@ python filename.py
 |----------------+-------|
 
 *** 變數的指派(assign)
-- Python 變數不需宣告，依指派值自動設定資料型態。
+- Python 變數不需宣告，依指派值自動設定資料型態(dynamically typing)。
 - 語法
   #+BEGIN_SRC python 
   變數名稱 = 指派值
@@ -396,11 +431,13 @@ python filename.py
 - 變數不再使用時，可用 del 指令將其刪除，以節省記憶體。
 - 範例：
   #+begin_src python -r -n :eval no
-  a = 5
-  b = 3.14
-  c = 'TNFSH'
-  a = b = c = 10
-  name, number = 'TNFSH', 35
+a = 5
+b = 3.14
+c = 'TNFSH'
+a = b = c = 10
+name, number = 'TNFSH', 35
+del c
+print(name)
 #+end_src
 
 ** 資料型態
@@ -460,14 +497,15 @@ python filename.py
 
 - 範例
   #+begin_src python -r -n :results output :exports both
-    name = '台北101'
-    height = 508
-    fee = 18.24
-    print('%s的高度為%d公尺，參觀門票為%3.2f美金.' %(name, height, fee))
-  
+name = '台北101'
+height = 508
+fee = 18.24
+print('%s的高度為%d公尺，參觀門票為%8.2f美金.' %(name, height, fee))
+print('%s的高度為%d公尺，參觀門票為%0.2f美金.' %(name, height, fee))
   #+end_src
 
   #+RESULTS:
+  : 台北 101 的高度為 508 公尺，參觀門票為   18.24 美金.
   : 台北 101 的高度為 508 公尺，參觀門票為 18.24 美金.
 *** 格式化輸出: format() (新版)
 - 語法 
@@ -623,7 +661,7 @@ print(tmp.substitute(who = name))
 |---------------+----------------+----------|
 | and           | or             | not      |
 |---------------+----------------+----------|
-| (a>b)and(a<c) | (a>b)or<(a==b) | not(a>b) |
+| (a>b) and (a<c) | (a>b) or (a==b)  | not (a>b) |
 |---------------+----------------+----------|
 
 ** 複合指定運算子
@@ -754,13 +792,16 @@ print(tmp.substitute(who = name))
     x4 -> xN[label="No"]; x4 -> xY[label="Yes"]; 
   }
 #+END_SRC
+
+#+RESULTS:
+[[file:./YearJudge.png]]
+
 #+CAPTION: 閏年判斷流程
 #+name: fig:YearJudge
-#+ATTR_LATEX: :width 300
+#+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 560
 #+ATTR_ORG: :width 560
 #+RESULTS:
- [[file:./YearJudge.png]] 
 
 *** code #1
 #+BEGIN_SRC python :session :exports both :tangle input.py
@@ -802,7 +843,7 @@ print(tmp.substitute(who = name))
       ...
 #+END_SRC
 - for 迴圈的變數會依序走訪 sequence 中的元素
-- sequence[fn:8]可為 range 函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
+- sequence[fn:9]可為 range 函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
 
 *** List 為 range() function 語法
 #+BEGIN_SRC python :exports both :eval no 
@@ -901,12 +942,12 @@ print(tmp.substitute(who = name))
 
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
-  n = 56
-  while (n%2 == 0):
-      print(n, end=' ')
-      n //= 2
-  else:
-      print('end with %d' %n)
+n = 56
+while (n%2 == 0):
+    print(n, end=' ')
+    n //= 2
+else:
+    print('end with %d' %n)
 #+END_SRC
 
 #+RESULTS:
@@ -967,6 +1008,11 @@ print(tmp.substitute(who = name))
 : 7*1= 7 7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49 7*8=56 7*9=63 
 : 8*1= 8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 8*9=72 
 : 9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 
+
+** 實作練習
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/165/][skyoj 165. 完全數/巢狀 for迴圈]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/167/][skyoj 167. 高中運動會/巢狀for迴圈]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/279/][skyoj 279. 所有位數和/While]]
 
 #+latex:\newpage
 
@@ -1057,12 +1103,16 @@ print(tmp.substitute(who = name))
 - 表列中的資料是有序排列，從 0 開始編號
 - 格式：表列名稱 = [元素 1, 元素 2, … ]
 #+BEGIN_SRC python -r -n :results output :exports both
-  data = ['John', [95, 118], 'May', 100]
-  print(data[1])
+data = ['John', [95, 118], 'May', 100]
+print(data[0])
+print(data[1][1])
+print(data[2][1])
 #+END_SRC
 
 #+RESULTS:
-: [95, 118]
+: John
+: 118
+: a
 
 *** 表列函式與方法
 - len(<list>): 計算表列元素個數
@@ -1303,7 +1353,7 @@ a-b-c
 : {'Vanissa': 100, 'May': 100, 'John': 100}
 
 ** List v.s. Tuple
-二者的差異與適用時機[fn:2]：
+二者的差異與適用時機[fn:3]：
 *** 能否改變內容
 - Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed. 
 *** 可讀性
@@ -1403,6 +1453,12 @@ a-b-c
 | 字典 dict   | { }        | ✔️         | ✖️         | 相同(鍵:值) |
 | 集合 set    | { }        | ✔️         | ✖️         | 可不同      |
 |-------------+------------+-----------+-----------+-------------|
+
+** 實作練習
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/169/][skyoj 160. 神文/String]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/170/][skyoj 170. 日期強迫症/String]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/171/][skyoj 171. Decrypt the cipher/dict]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/172/][skyoj 172. Sim-Scoreboard/list]]
 
 #+latex:\newpage
 * FUNCTION
@@ -1636,16 +1692,18 @@ a-b-c
 
 [fn:1] [[https://buzzorange.com/techorange/2019/08/20/the-history-of-python][Python的誕生故事]]
 
-[fn:2] [[https://www.tiobe.com/][https://www.tiobe.com/]]
+[fn:2] [[https://trends.builtwith.com/framework/Python][Python Usage Statistics]]
 
-[fn:3] [[https://www.techapple.com/archives/10553][因為打發時間，他改變了世界！講述 Python 之父 Guido van Rossum 的故事！ ]]
+[fn:3] [[https://www.tiobe.com/][https://www.tiobe.com/]]
 
 [fn:4] [[https://en.wikipedia.org/wiki/Guido_van_Rossum][Guido van Rossum]]
 
-[fn:5] [[https://www.geeksforgeeks.org/python-language-advantages-applications/][Python Language advantages and applications]]
+[fn:5] [[https://www.python.org/doc/essays/foreword/][Foreword for "Programming Python" (1st ed.)]]
 
-[fn:6] [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
+[fn:6] [[https://www.geeksforgeeks.org/python-language-advantages-applications/][Python Language advantages and applications]]
 
-[fn:7] [[https://stackabuse.com/python-programming-in-interactive-vs-script-mode/][Python Programming in Interactive vs Script Mode]]
+[fn:7] [[https://www.python.org/downloads/][https://www.python.org/downloads/]]
 
-[fn:8] [[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
+[fn:8] [[https://stackabuse.com/python-programming-in-interactive-vs-script-mode/][Python Programming in Interactive vs Script Mode]]
+
+[fn:9] [[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
