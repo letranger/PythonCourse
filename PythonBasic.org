@@ -210,16 +210,16 @@
 
 ** Python 的優勢與應用[fn:6]
 *** Advantages
-1. Presence of third-party modules
-1. Extensive support libraries(NumPy for numerical calculations, Pandas for data
-   analytics etc)
-1. Open source and community development
 1. Easy to learn
-1. User-friendly data structures
 1. High-level language
+1. User-friendly data structures
 1. [[https://www.itread01.com/p/1441246.html][Dynamically typed language]](No need to mention data type based on value
    assigned, it takes data type)
 1. Object-oriented language
+1. Open source and community development
+1. Presence of third-party modules
+1. Extensive support libraries(NumPy for numerical calculations, Pandas for data
+   analytics etc)
 1. Portable and Interactive
 1. Portable across Operating systems
 *** Applications
@@ -383,13 +383,13 @@ python filename.py
   #+begin_src shell
     jupyter notebook --port XXXX
   #+end_src
-- 登出後重新登入：token
-- 結束 Jupyter: 網頁右上角：Quit
+- 登出後重新登入：tokenk Python
 
 #+latex:\newpage
 
-* Hello World: C++ v.s. Python
-** C++
+* 變數、資料型態、輸出輸入
+** Hello World
+*** C++
 #+begin_src cpp -r -n :results output :exports both
 #include <iostream>
 using namespace std;
@@ -397,12 +397,10 @@ int main() {
   cout << "Hellow world!";
 }
 #+end_src
-** Python
+*** Python
 #+begin_src python -r -n :results output :exports both
 print("Hello world!")
 #+end_src
-
-* 變數、資料型態、輸出輸入
 
 ** 變數
 *** 命名規則
@@ -447,9 +445,9 @@ print(name)
 - 布林值(True / False): bool, T 與 F 要大寫
 - 字串: str, 以'或"含括,若輸出字串要包含引號，則以另一種引號含括該字串。如: 
 #+begin_src python -r -n :eval no
-  age = 18
-  weight = 67.87
-  good_words = " 請常說'請'、'謝謝'、'對不起' "
+age = 18
+weight = 67.87
+good_words = " 請常說'請'、'謝謝'、'對不起' "
 #+end_src
 
 *** 型態間的轉換
@@ -459,9 +457,9 @@ print(name)
 #+end_src
 - 強制轉換
 #+begin_src python -r -n :eval no
-  score = int(30.22)			# 將括弧內的資料轉換為整數
-  score = float(score)		# 將括弧內的資料轉換為浮點數
-  test = str(score)				# 將括弧內的資料轉換為字串
+score = int(30.22)			# 將括弧內的資料轉換為整數
+score = float(score)		# 將括弧內的資料轉換為浮點數
+test = str(score)				# 將括弧內的資料轉換為字串
 #+end_src
 
 ** 輸出: print
@@ -471,17 +469,19 @@ print(name)
  - end (結束字元) 預設為換行字元\n 
 *** 範例
 #+begin_src python -r -n :results output :exports both
-  a, b = 5, 10
-  print(a, b)
-  print(a, b, sep =',')
-  print(a, end='\t')
-  print(a, end='')
+a, b = 5, 10
+print(a, b)
+print(a, b, sep =',')
+print(a, b, sep ='分隔')
+print(a, b, end='\t')
+print(a, b, end='')
 #+end_src
 
 #+RESULTS:
 : 5 10
 : 5,10
-: 5	5
+: 5 分隔 10
+: 5 10	5 10
 *** 跳脫字元
 #+CAPTION: Escape char
 #+name: fig:EscapeCharMap
@@ -794,7 +794,6 @@ print(tmp.substitute(who = name))
 #+END_SRC
 
 #+RESULTS:
-[[file:./YearJudge.png]]
 
 #+CAPTION: 閏年判斷流程
 #+name: fig:YearJudge
@@ -856,35 +855,35 @@ print(tmp.substitute(who = name))
 
 *** List 為 range() function 語法
 #+BEGIN_SRC python -r -n :results output :exports both
-  for x in range(6):
-      print(x, end=' ')
-  print('\n====')
-  for x in range(3, 10, 2):
-      print(x, ' ')
-  print('\n====')
-  for x in range(3, 10):
-      print(x, end=', ')
+for x in range(6):
+    print(x, end=' ')
+print('\n====')
+for x in range(3, 10, 2):
+    print(x)
+print('\n====')
+for x in range(3, 10):
+    print(x, end=', ')
 #+END_SRC
 
 #+RESULTS:
-: 0 1 2 3 4 5 
+: 0 1 2 3 4 5
 : ====
-: 3  
-: 5  
-: 7  
-: 9  
-: 
+: 3
+: 5
+: 7
+: 9
+:
 : ====
-: 3 4 5 6 7 8 9 
+: 3, 4, 5, 6, 7, 8, 9,
 
 *** List 為 String
 #+BEGIN_SRC python -r -n :results output :exports both:eval no 
-  school = 'TNFSH'
-  for x in school:
-      print(x, end=' ')
-  print('\n=========')
-  for x in school:
-      print(chr(ord(x)+1), end=' ')
+school = 'TNFSH'
+for x in school:
+    print(x, end=' ')
+print('\n=========')
+for x in school:
+    print(chr(ord(x)+1), end=' ')
 #+END_SRC
 
 #+RESULTS:
@@ -894,6 +893,21 @@ print(tmp.substitute(who = name))
 
 - ord( ) -> 將字元轉為 ASCII 編碼(整數)
 - chr( ) -> 將 ASCII 編碼(整數)轉為字元
+
+#+begin_src python -r -n :results output :exports both
+school = '高雄市'
+for x in school:
+    print(x, end=' ')
+print('\n=========')
+for x in school:
+    print(chr(ord(x)+1), end=' ')
+
+#+end_src
+
+#+RESULTS:
+: 高 雄 市
+: =========
+: 髙 雅 布
 
 ** while
 *** 語法
@@ -1175,17 +1189,20 @@ a-b-c
 - 連續輸入成績(輸入-1 結束)，將成績由高至低排序輸出，並輸出總分、平均
 #+NAME: 分數排序
 #+BEGIN_SRC python -n -r :eval no
-  score = []
-  while(True):
-      sc = int(input())
-      if (sc != -1):
-          score.append(sc)
-      else: 
-          break
-  score.sort(reverse=True)
-  print(score)
+score = []
+sum = 0
+while(True):
+    sc = int(input())
+    if (sc != -1):
+        score.append(sc)
+        sum += sc
+    else:
+        break
+score.sort(reverse=True)
+print(score)
+print('全班總分：{0:d},全班平均：{1:0.2f}'.format(sum, sum/len(score)))
 #+END_SRC
-
+- 連續輸入成績(加入提示字元)
 #+NAME: 計算機
 #+BEGIN_SRC python -n :eval no
   sum = 0
@@ -1324,28 +1341,28 @@ a-b-c
 - <dict>.keys()
 - <dict>.values()
 #+BEGIN_SRC python -r -n :results output :exports both
-  data = { 'John': 95,  'May': 100, 'John': 105 }
-  print("data.get('John'):",data.get('John'))
-  print("data.items():",data.items())
-  print("data.keys():",data.keys())
-  print("data.values()",data.values())
+data = { 'Vanessa': 95,  'May': 100, 'John': 105 }
+print("data.get('John'):",data.get('John'))
+print("data.items():",data.items())
+print("data.keys():",data.keys())
+print("data.values(),data.values"())
 #+END_SRC
 
 #+RESULTS:
 : data.get('John'): 105
-: data.items(): dict_items([('John', 105), ('May', 100)])
-: data.keys(): dict_keys(['John', 'May'])
-: data.values() dict_values([105, 100])
+: data.items(): dict_items([('Vanessa', 95), ('May', 100), ('John', 105)])
+: data.keys(): dict_keys(['Vanessa', 'May', 'John'])
+: data.values() dict_values([95, 100, 105])
 
 **** fromkes
 - <dict>.fromkes(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value 為字典所有鍵對應的初始值。
 #+BEGIN_SRC python -r -n :results output :exports both
-  data = { 'John': 95,  'May': 100, 'John': 105 }
-  name = ('Vanissa', 'May', 'John')
-  data2 = data.fromkeys(name)
-  print(data2)
-  data2 = data.fromkeys(name, 100)
-  print(data2)
+data = { 'John': 95,  'May': 100, 'John': 105 }
+name = ('Vanissa', 'May', 'John')
+data2 = data.fromkeys(name)
+print(data2)
+data2 = data.fromkeys(name, 100)
+print(data2)
 #+END_SRC
 
 #+RESULTS:
@@ -1359,23 +1376,31 @@ a-b-c
 *** 可讀性
 - Reading data is simpler when tuples are stored inside a list. For example,
   #+BEGIN_SRC python -r -n :results output :exports both
-    [(2,4), (5,7), (3,8), (5,9)]
+[(2,4), (5,7), (3,8), (5,9)]
   #+END_SRC
   is easier to read than
   #+BEGIN_SRC python -r -n :results output :exports both
-    [[2,4], [5,7], [3,8], [5,9]]
+[[2,4], [5,7], [3,8], [5,9]]
   #+END_SRC
-*** 與 dictionary 的相似性
+*** Tuple 與 dictionary 的相似性
 - Tuples are commonly used as the equivalent of a dictionary without keys to store data. For Example,
   #+BEGIN_SRC python -r -n :results output :exports both
-    [('Swordfish', 'Dominic Sena', 2001), ('Snowden', ' Oliver Stone', 2016), ('Taxi Driver', 'Martin Scorsese', 1976)]
+[('Swordfish', 'Dominic Sena', 2001), ('Snowden', ' Oliver Stone', 2016), ('Taxi Driver', 'Martin Scorsese', 1976)]
   #+END_SRC
 - Above example contains tuples inside list which has a list of movies.
-- Tuple can also be used as key in dictionary due to their hashable and immutable nature whereas Lists are not used as key in a dictionary because list can't handle __hash__() and have mutable nature.
-  #+BEGIN_SRC python -r -n :results output :exports both
-    key_val= {('alpha','bravo'):123} #Valid
-    key_val = {['alpha','bravo']:123} #Invalid
-  #+END_SRC
+- Tuple can also be used as key in dictionary due to their hashable and immutable nature whereas Lists are not used as key in a dictionary because list can't handle \under{}\under{}hash\under{}\under{}() and have mutable nature.
+#+BEGIN_SRC python -r -n :results output :exports both
+key_val= {('alpha','bravo'):123} #Valid
+#key_val = {['alpha','bravo']:123} #Invalid
+print(key_val)
+print(key_val.keys())
+print(key_val.values())
+#+END_SRC
+
+#+RESULTS:
+: {('alpha', 'bravo'): 123}
+: dict_keys([('alpha', 'bravo')])
+: dict_values([123])
 
 ** 集合 set
 *** 資料格式
@@ -1383,26 +1408,26 @@ a-b-c
 - 集合中的資料是無序的，會自動刪除重複元素
 - 格式
   #+BEGIN_SRC python -r -n :results output :exports both
-    集合名稱 = {元素1, 元素2, … }
+集合名稱 = {元素1, 元素2, … }
   #+END_SRC
 - 註：set(<seq>)函式的參數<seq>可為字串、表列、元組、字典
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
-  S1 = { 'John', 95, 'May', 100, 'John' } 		
-  S2 = set('apple')  ⇒ {'l', 'a', 'e', 'p'}  # 集合的資料是無序的
+S1 = { 'John', 95, 'May', 100, 'John' } 
+S2 = set('apple')  ⇒ {'l', 'a', 'e', 'p'}  # 集合的資料是無序的
 #+END_SRC
 *** 元素新增刪除
 #+BEGIN_SRC python -r -n :results output :exports both
-  <set>.add(<item>)
-  <set>.remove(<item>)
+<set>.add(<item>)
+<set>.remove(<item>)
 #+END_SRC
 - remove()若無此 item 會發生錯誤
 #+BEGIN_SRC python -r -n :results output :exports both
-  s = set('apple')
-  s.add('x')
-  print(s)
-  s.remove('p')
-  print(s)
+s = set('apple')
+s.add('x')
+print(s)
+s.remove('p')
+print(s)
 #+END_SRC
 
 #+RESULTS:
@@ -1417,17 +1442,17 @@ a-b-c
 | 互斥 | ^    |
 | 屬於 | in   |
 #+BEGIN_SRC python -r -n :results output :exports both
-  c = {'1234', 'TNFSH', 'qq', '434'}
-  print(c)
-  a = set('1234')
-  b = set('357')
-  print("a | b:", a | b)
-  print("a & b:", a & b)
-  print("a - b:", a - b)
-  print("b | a:", b | a)
-  print("a ^ b:", a ^ b)
-  print("'5' in a:", '5' in a)
-  print("'5' in b:", '5' in b)
+c = {'1234', 'TNFSH', 'qq', '434'}
+print(c)
+a = set('1234')
+b = set('357')
+print("a | b:", a | b)
+print("a & b:", a & b)
+print("a - b:", a - b)
+print("b | a:", b | a)
+print("a ^ b:", a ^ b)
+print("'5' in a:", '5' in a)
+print("'5' in b:", '5' in b)
 #+END_SRC
 
 #+RESULTS:
@@ -1441,7 +1466,6 @@ a-b-c
 : '5' in b: True
 *** 詳細語法
 - [[https://www.runoob.com/python3/python3-set.html][Python3 集合 ]]
-*** 練習：[[http://skyoj.tnfsh.tn.edu.tw/sky/index.php][skyoj ⇒ Contest ⇒ Python練習題(資料型別)]]
 
 ** 資料型別整理
 |-------------+------------+-----------+-----------+-------------|
@@ -1461,6 +1485,7 @@ a-b-c
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/172/][skyoj 172. Sim-Scoreboard/list]]
 
 #+latex:\newpage
+
 * FUNCTION
 ** 函式(function)基本操作
 *** 函式(function)的重要性
@@ -1660,31 +1685,9 @@ a-b-c
   #+RESULTS:
   : 10
 
-*** 練習
+** 實作練習
 - 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入 5，輸出 5! = 120。
 - 計算 C(n, r)組合數。 輸入 n, r，輸出 C(n, r) = XX。如輸入 9, 4，輸出 C(9, 4) = 126。
-- 計算擴展歐幾里德。 輸入 a, b，輸出 a*x + b*y = gcd。如輸入 3, 5，輸出 3*2 + 5*-1 = 1
-  #+BEGIN_SRC python -n :results output :exports both
-    def ext_euclid(a, b):
-        old_s,s=1,0
-        old_t,t=0,1
-        old_r,r=a,b
-        if b == 0:
-            return 1, 0, a
-        else:
-            while(r!=0):
-                q=old_r//r
-                old_r,r=r,old_r-q*r
-                old_s,s=s,old_s-q*s
-                old_t,t=t,old_t-q*t
-        return old_s, old_t, old_r
-  
-    a, b, c = ext_euclid(240, 33)
-    print('%dx + %dy = %d' %(a, b, c))
-  #+END_SRC
-
-  #+RESULTS:
-  : 4x + -29y = 3
 
 #+latex:\newpage
 
