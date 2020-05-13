@@ -485,6 +485,8 @@ a, b = 5, 10
 print(a, b)
 print(a, b, sep =',')
 print(a, b, sep ='分隔')
+print(a, b, end='\r')
+print(a, b, end='\r\n')
 print(a, b, end='\t')
 print(a, b, end='')
 #+end_src
@@ -493,6 +495,7 @@ print(a, b, end='')
 : 5 10
 : 5,10
 : 5 分隔 10
+: 5 105 10
 : 5 10	5 10
 *** 跳脫字元
 #+CAPTION: Escape char
@@ -502,6 +505,7 @@ print(a, b, end='')
 #+ATTR_ORG: :width 400
 #+RESULTS:
 [[file:escape.png]]
+[[https://www.itread01.com/content/1545069543.html][CRLF、CR、LF詳解]]
 *** 格式化輸出: % (舊版)
 - 語法
   + 格式化輸出語法：print( 字串  %(參數) ) 
@@ -606,9 +610,6 @@ print(tmp.substitute(who = name))
     """
   #+end_src
 
-** 實作練習
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/][skyoj #161華氏溫度轉攝氏溫度]]
-
 #+latex:\newpage
 
 * 運算元與運算式
@@ -682,7 +683,8 @@ print(tmp.substitute(who = name))
 |----+----+----+----+----+-----+-----|
 
 ** 實作練習
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/277/][skyoj 277. 一元二次方程式求解]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/][skyoj #161華氏溫度轉攝氏溫度]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/277/][skyoj #277. 一元二次方程式求解]]
 
 #+latex:\newpage
 * 判斷結構
@@ -903,7 +905,7 @@ for x in school:
 : =========
 : U O G T I 
 
-- ord( ) -> 將字元轉為 ASCII 編碼(整數)
+- ord( ) -> 將字元轉為 [[https://zh.wikipedia.org/wiki/ASCII][ASCII]] 編碼(整數)
 - chr( ) -> 將 ASCII 編碼(整數)轉為字元
 
 #+begin_src python -r -n :results output :exports both
@@ -955,30 +957,6 @@ for x in school:
 #+RESULTS:
 : 3
 
-** while + else
-*** 語法
-#+BEGIN_SRC python :exports both :eval no 
-  while (condition):
-      statement 1
-      ...
-  else:
-      statement 3
-      ...
-#+END_SRC
-
-*** 範例
-#+BEGIN_SRC python -r -n :results output :exports both
-n = 56
-while (n%2 == 0):
-    print(n, end=' ')
-    n //= 2
-else:
-    print('end with %d' %n)
-#+END_SRC
-
-#+RESULTS:
-: 56 28 14 end with 7
-
 ** break
 跳出整個 loop
 *** 範例
@@ -1015,25 +993,29 @@ else:
 : Processing Letrer: o
 : Processing Letrer: n
 
+** if / while + else
+[[https://note.pcwu.net/2017/02/26/python-loop-else/][[Python] Loop 配合 else 的妙用]]
+
 ** 巢狀迴圈
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
-  for i in range(1, 10):
-      for j in range(1, 10):
-          print('%d*%d=%2d' %(i, j, i*j), end=' ')
-      print()
+for i in range(1, 10):
+    for j in range(1, 10):
+        print('%d*%d=%2d' %(i, j, i*j), end=' ')
+    print()
+
 #+END_SRC
 
 #+RESULTS:
-: 1*1= 1 1*2= 2 1*3= 3 1*4= 4 1*5= 5 1*6= 6 1*7= 7 1*8= 8 1*9= 9 
-: 2*1= 2 2*2= 4 2*3= 6 2*4= 8 2*5=10 2*6=12 2*7=14 2*8=16 2*9=18 
-: 3*1= 3 3*2= 6 3*3= 9 3*4=12 3*5=15 3*6=18 3*7=21 3*8=24 3*9=27 
-: 4*1= 4 4*2= 8 4*3=12 4*4=16 4*5=20 4*6=24 4*7=28 4*8=32 4*9=36 
-: 5*1= 5 5*2=10 5*3=15 5*4=20 5*5=25 5*6=30 5*7=35 5*8=40 5*9=45 
-: 6*1= 6 6*2=12 6*3=18 6*4=24 6*5=30 6*6=36 6*7=42 6*8=48 6*9=54 
-: 7*1= 7 7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49 7*8=56 7*9=63 
-: 8*1= 8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 8*9=72 
-: 9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 
+: 1*1= 1 1*2= 2 1*3= 3 1*4= 4 1*5= 5 1*6= 6 1*7= 7 1*8= 8 1*9= 9
+: 2*1= 2 2*2= 4 2*3= 6 2*4= 8 2*5=10 2*6=12 2*7=14 2*8=16 2*9=18
+: 3*1= 3 3*2= 6 3*3= 9 3*4=12 3*5=15 3*6=18 3*7=21 3*8=24 3*9=27
+: 4*1= 4 4*2= 8 4*3=12 4*4=16 4*5=20 4*6=24 4*7=28 4*8=32 4*9=36
+: 5*1= 5 5*2=10 5*3=15 5*4=20 5*5=25 5*6=30 5*7=35 5*8=40 5*9=45
+: 6*1= 6 6*2=12 6*3=18 6*4=24 6*5=30 6*6=36 6*7=42 6*8=48 6*9=54
+: 7*1= 7 7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49 7*8=56 7*9=63
+: 8*1= 8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 8*9=72
+: 9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81
 
 ** 實作練習
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/165/][skyoj 165. 完全數/巢狀 for迴圈]]
@@ -1047,8 +1029,8 @@ else:
 *** 資料格式
 以單引號(')或雙引號(")將資料含括起來
 #+begin_src python :eval no
-  stringA = 'Hello Python'
-  stringB = "Hello Python"
+stringA = 'Hello Python'
+stringB = "Hello Python"
 #+end_src
 *** 範例 1
 |-------+-----+-----+-----+----+----+----+----+----+----+----+----+----|
@@ -1103,15 +1085,14 @@ else:
 - <str>.split([sep]): 字串以 sep 分割, sep 預設值為空白
 *** 範例 3
 #+BEGIN_SRC python -r -n :results output :exports both
-  school = 'Tnfsh'
-  print('school:', school)
-  print('len(school):', len(school))
-  print('school.lower():', school.lower())
-  print('school.isupper():', school.isupper())
-  print("school.find('fsh'):", school.find('fsh'))
-  print("school.replace('fsh', ssh'):", school.replace('fsh', 'ssh'))
-  school = school.replace('fsh', 'ssh')
-  print("school.split('f'):", school.split('n'))
+school = 'Tnfsh'
+print('school:', school)
+print('len(school):', len(school))
+print('school.lower():', school.lower())
+print('school.isupper():', school.isupper())
+print("school.find('fsh'):", school.find('fsh'))
+print("school.replace('fsh', ssh'):", school.replace('fsh', 'ssh'))
+print("school.split('f'):", school.split('f'))
 #+END_SRC
 
 #+RESULTS:
@@ -1121,7 +1102,7 @@ else:
 : school.isupper(): False
 : school.find('fsh'): 2
 : school.replace('fsh', ssh'): Tnssh
-: school.split('f'): ['T', 'ssh']
+: school.split('f'): ['Tn', 'sh']
 
 ** 列表 list
 *** 資料格式
@@ -1370,7 +1351,7 @@ print("data.values(),data.values"())
 - <dict>.fromkes(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value 為字典所有鍵對應的初始值。
 #+BEGIN_SRC python -r -n :results output :exports both
 data = { 'John': 95,  'May': 100, 'John': 105 }
-name = ('Vanissa', 'May', 'John')
+name = ('Vanessa', 'May', 'John')
 data2 = data.fromkeys(name)
 print(data2)
 data2 = data.fromkeys(name, 100)
@@ -1378,8 +1359,8 @@ print(data2)
 #+END_SRC
 
 #+RESULTS:
-: {'Vanissa': None, 'May': None, 'John': None}
-: {'Vanissa': 100, 'May': 100, 'John': 100}
+: {'Vanessa': None, 'May': None, 'John': None}
+: {'Vanessa': 100, 'May': 100, 'John': 100}
 
 ** List v.s. Tuple
 二者的差異與適用時機[fn:3]：
