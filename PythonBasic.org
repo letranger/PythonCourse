@@ -1,6 +1,14 @@
 # -*- org-export-babel-evaluate: nil -*-
 #+Title: Basic Materials of Python
 
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+STARTUP: showeverything
+#+PROPERTY: header-args :eval never-export
+#+STARTUP: inlineimages
+#+OPTIONS: H:4
+#+OPTIONS: \n:t
+
+
 #+LANGUAGE: en
 #+LATEX_HEADER: \usepackage[AUTO]{babel}
 #+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{Outline}}
@@ -125,6 +133,10 @@
 #+LATEX_HEADER: \vspace{-\topsep}
 
 #+BEGIN_COMMENT
+PDF 設定
+#+OPTIONS: H:2
+#+OPTIONS: \n:t
+
 投影片設定
 #+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
 #+REVEAL_THEME: moon
@@ -348,20 +360,25 @@ python filename.py
 - You must create and save a file before executing your code.
 
 ** 安裝 Jupyter Notebook
-*** 安裝 pip
-**** 檢查是否已安裝 Python 套件管理工具(命令提示字元)
+*** Mac/Linux 系統
+**** 安裝 pip
+***** 檢查是否已安裝 Python 套件管理工具(命令提示字元)
 #+begin_src shell
   python -m pip --version
   pip --version
 #+end_src
-**** 下載並安裝 pip(命令提示字元)
+***** 下載並安裝 pip(命令提示字元)
 1. 下載 pip 安裝檔
   [[https://bootstrap.pypa.io/get-pip.py][ 點此下載get-pip.py]]
 2. 執行 get-pip.py
    #+begin_src shell
      python get-pip.py
    #+end_src
-*** 安裝 Jupyter(命令提示字元)
+3. 升級 pip
+   #+begin_src shell
+     pip3 install --upgrade pip
+   #+end_src
+**** 安裝 Jupyter(命令提示字元)
 - 安裝
   #+begin_src shell
     pip install jupyter
@@ -371,6 +388,8 @@ python filename.py
     jupyter notebook
   #+end_src
 - 預設網址: http://localhost:8888
+*** Windows 系統
+**** 直接下載安裝[[https://www.anaconda.com/download][Anaconda]]，內建 Jupyter
 *** Jupyter Notebook 基本操作
 - 變更預設 port: XXXX
   #+begin_src shell
