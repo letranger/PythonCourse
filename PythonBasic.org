@@ -1,5 +1,5 @@
 # -*- org-export-babel-evaluate: nil -*-
-#+Title: Basic Materials of Python
+#+Title: Basic Materials of Python Basic
 
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
 #+STARTUP: showeverything
@@ -869,26 +869,25 @@ print(tmp.substitute(who = name))
 
 *** List 為 range() function 語法
 #+BEGIN_SRC python -r -n :results output :exports both
-for x in range(6):
-    print(x, end=' ')
-print('\n====')
-for x in range(3, 10, 2):
+for x in range(4):
     print(x)
-print('\n====')
+print('========')
 for x in range(3, 10):
     print(x, end=', ')
+print('\n========')
+for x in range(3, 10, 2):
+    print(x, end=',')
 #+END_SRC
 
 #+RESULTS:
-: 0 1 2 3 4 5
-: ====
+: 0
+: 1
+: 2
 : 3
-: 5
-: 7
-: 9
-:
-: ====
+: ========
 : 3, 4, 5, 6, 7, 8, 9,
+: ========
+: 3,5,7,9,
 
 *** List 為 String
 #+BEGIN_SRC python -r -n :results output :exports both:eval no 
@@ -993,7 +992,7 @@ for x in school:
 : Processing Letrer: o
 : Processing Letrer: n
 
-** if / while + else
+** for / while + else
 [[https://note.pcwu.net/2017/02/26/python-loop-else/][[Python] Loop 配合 else 的妙用]]
 
 ** 巢狀迴圈
@@ -1112,13 +1111,17 @@ print("school.split('f'):", school.split('f'))
 #+BEGIN_SRC python -r -n :results output :exports both
 data = ['John', [95, 118], 'May', 100]
 print(data[0])
+print(data[1])
 print(data[1][1])
+print(data[2])
 print(data[2][1])
 #+END_SRC
 
 #+RESULTS:
 : John
+: [95, 118]
 : 118
+: May
 : a
 
 *** 表列函式與方法
@@ -1183,17 +1186,16 @@ a-b-c
 #+NAME: 分數排序
 #+BEGIN_SRC python -n -r :eval no
 score = []
-sum = 0
 while(True):
     sc = int(input())
     if (sc != -1):
         score.append(sc)
-        sum += sc
     else:
         break
 score.sort(reverse=True)
 print(score)
-print('全班總分：{0:d},全班平均：{1:0.2f}'.format(sum, sum/len(score)))
+sos = sum(score)
+print('全班總分：{0:d},全班平均：{1:0.2f}'.format(sos, sos/len(score)))
 #+END_SRC
 - 連續輸入成績(加入提示字元)
 #+NAME: 計算機
@@ -1348,14 +1350,13 @@ print("data.values(),data.values"())
 : data.values() dict_values([95, 100, 105])
 
 **** fromkes
-- <dict>.fromkes(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value 為字典所有鍵對應的初始值。
+- <dict>.fromkeys(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value 為字典所有鍵對應的初始值。
 #+BEGIN_SRC python -r -n :results output :exports both
-data = { 'John': 95,  'May': 100, 'John': 105 }
 name = ('Vanessa', 'May', 'John')
-data2 = data.fromkeys(name)
-print(data2)
-data2 = data.fromkeys(name, 100)
-print(data2)
+data = dict.fromkeys(name)
+print(data)
+data = dict.fromkeys(name, 100)
+print(data)
 #+END_SRC
 
 #+RESULTS:
@@ -1435,26 +1436,21 @@ print(s)
 | 互斥 | ^    |
 | 屬於 | in   |
 #+BEGIN_SRC python -r -n :results output :exports both
-c = {'1234', 'TNFSH', 'qq', '434'}
-print(c)
-a = set('1234')
+a = {'a', '2', '3', '4'}
 b = set('357')
 print("a | b:", a | b)
 print("a & b:", a & b)
 print("a - b:", a - b)
-print("b | a:", b | a)
 print("a ^ b:", a ^ b)
 print("'5' in a:", '5' in a)
 print("'5' in b:", '5' in b)
 #+END_SRC
 
 #+RESULTS:
-: {'1234', 'TNFSH', '434', 'qq'}
-: a | b: {'4', '2', '1', '5', '7', '3'}
+: a | b: {'a', '4', '3', '2', '5', '7'}
 : a & b: {'3'}
-: a - b: {'4', '2', '1'}
-: b | a: {'4', '5', '2', '1', '7', '3'}
-: a ^ b: {'4', '2', '7', '5', '1'}
+: a - b: {'a', '4', '2'}
+: a ^ b: {'a', '2', '5', '4', '7'}
 : '5' in a: False
 : '5' in b: True
 *** 詳細語法
@@ -1470,7 +1466,6 @@ print("'5' in b:", '5' in b)
 | 字典 dict   | { }        | ✔️         | ✖️         | 相同(鍵:值) |
 | 集合 set    | { }        | ✔️         | ✖️         | 可不同      |
 |-------------+------------+-----------+-----------+-------------|
-
 ** 實作練習
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/169/][skyoj 160. 神文/String]]
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/170/][skyoj 170. 日期強迫症/String]]
@@ -1501,32 +1496,32 @@ print("'5' in b:", '5' in b)
   + 若多個回傳值可用逗號隔開。
 *** 自定義函式的呼叫
 - 呼叫函式語法：
-  #+BEGIN_SRC python -r -n :eval no
-    [ 變數 ] = 函式名稱( [引數1, 引數2, ... ] )
-  #+END_SRC
-  #+BEGIN_SRC python -r -n :results output :exports both
-    def circle(r):
-        return r*r*3.14;
-  
-    r = 10
-    print('半徑%d的圓面積：%d' %(r, circle(r)))
-  #+END_SRC
+#+BEGIN_SRC python -r -n :eval no
+  [ 變數 ] = 函式名稱( [引數1, 引數2, ... ] )
+#+END_SRC
+#+BEGIN_SRC python -r -n :results output :exports both
+def circle(r):
+    return r*r*3.14;
+
+r = 10
+print('半徑%d的圓面積：%.2f' %(r, circle(r)))
+#+END_SRC
 
   #+RESULTS:
-  : 半徑 10 的圓面積：314
+  : 半徑 10 的圓面積：314.00
 
 *** 多參數函式
 - 呼叫函式時引數(arugment)個數
 - 自定義函式的參數(parameter)個數
 - 設定參數初始值。 若呼叫時無引數傳入， 則使用其初始值。
-  #+BEGIN_SRC python -r -n :results output :exports both
-    def printInfo(name, school='TNFSH'):
-        print('學生:',name,'就讀:',school)
-        return
-  
-    printInfo(name='James')
-    printInfo(name='Harrison',school='TNSSH')
-  #+END_SRC
+#+BEGIN_SRC python -r -n :results output :exports both
+def printInfo(name, school='TNFSH'):
+    print('學生:',name,'就讀:',school)
+    return
+
+printInfo(name='James')
+printInfo(name='Harrison',school='TNSSH')
+#+END_SRC
 
   #+RESULTS:
   : 學生: James 就讀: TNFSH
@@ -1534,21 +1529,22 @@ print("'5' in b:", '5' in b)
 
 *** 多回傳值函式
 - 呼叫函式多個回傳值語法
-  #+BEGIN_SRC python -r -n :eval no
-    [ 變數1, 變數2, ... ] = 函式名稱( [引數1, 引數2, ... ] )
-  #+END_SRC
+#+BEGIN_SRC python -r -n :eval no
+  [ 變數1, 變數2, ... ] = 函式名稱( [引數1, 引數2, ... ] )
+#+END_SRC
 
-  #+BEGIN_SRC python -r -n :results output :exports both
-    def scoreProcessor(score):
-        sum = 0
-        for x in score:
-            sum += x
-        return sum, sum/len(score)
-  
-    scores = (21, 33, 83, 100, 75, 60)
-    sum, avg = scoreProcessor(scores)
-    print('sum=',sum,',average=',avg)
-  #+END_SRC
+#+BEGIN_SRC python -r -n :results output :exports both
+def scoreProcessor(score):
+     sos = 0
+     for x in score:
+         sos += x
+     # sos = sum(score)
+     return sos, sos/len(score)
+
+scores = (21, 33, 83, 100, 75, 60)
+sum, avg = scoreProcessor(scores)
+print('sum=',sum,',average=',avg)
+#+END_SRC
 
   #+RESULTS:
   : sum= 372 ,average= 62.0
@@ -1559,17 +1555,17 @@ print("'5' in b:", '5' in b)
   + 全域變數：宣告在任何函式外，所有函式皆可存取。
   + 區域變數：宣告在函式內，僅函式內可存取。c
 - 全域變數與區域變數範例
-  #+BEGIN_SRC python -r -n :results output :exports both
-    def printGlobal(x, y):
-        print(a+b)
-  
-    def printLocal(a, b):
-        print(a+b)
-  
-    a, b = 5, 10
-    printGlobal(10, 10)
-    printLocal(10,10)
-  #+END_SRC
+#+BEGIN_SRC python -r -n :results output :exports both
+  def printGlobal(x, y):
+      print(a+b)
+
+  def printLocal(a, b):
+      print(a+b)
+
+  a, b = 5, 10
+  printGlobal(10, 10)
+  printLocal(10,10)
+#+END_SRC
 
   #+RESULTS:
   : 15
@@ -1607,23 +1603,51 @@ print("'5' in b:", '5' in b)
 
 ** 模組(module)
 *** 匯入模組語法：
+A library in Python is called a module.
 #+BEGIN_SRC python -r -n :eval no
-  import 模組1 [, 模組2, ... ] 
-  from 模組 import 函式
+import 模組1 [, 模組2, ... ]
+from 模組 import 函式
 #+END_SRC
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
-  import random as ran
+import random as ran
 
-  print(ran.randint(1, 100))
-  print(ran.randint(1, 100))
-  print(ran.randint(1, 100))
+print(ran.randint(1, 100))
+print(ran.randint(1, 100))
+print(ran.randint(1, 100))
 #+END_SRC
 
 #+RESULTS:
 : 50
 : 78
 : 16
+*** 自訂模組
+- 定義: myModule.py
+#+begin_src python -r -n :results output :exports both
+# name: myModule.py
+
+def pp(n):
+    return n+1
+
+def mm(n):
+    return n-1
+#+end_src
+- 使用
+#+begin_src python -r -n :results output :exports both
+import myModule as my
+
+print(my.pp(5))
+print(my.mm(5))
+print(my.__name__)
+print(dir(my))
+#+end_src
+
+#+RESULTS:
+: 6
+: 4
+: myModule
+: ['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'mm', 'pp']
+
 ** 遞迴(recursive)
 *** 語法
 - 遞迴(recursive)：一個函式直接呼叫函式本身
@@ -1683,6 +1707,9 @@ print("'5' in b:", '5' in b)
 - 計算 C(n, r)組合數。 輸入 n, r，輸出 C(n, r) = XX。如輸入 9, 4，輸出 C(9, 4) = 126。
 
 #+latex:\newpage
+
+* Other Material
+- file:PythonAdvance.org
 
 * Footnotes
 

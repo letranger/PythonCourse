@@ -1,4 +1,4 @@
-% Created 2020-04-04 Sat 18:40
+% Created 2020-05-13 Wed 09:00
 % Intended LaTeX compiler: pdflatex
 
 \documentclass[a4paper,12pt]{article}
@@ -23,8 +23,8 @@
 \usepackage{listings}
 \usepackage[english]{babel}
 \addto\captionsenglish{\renewcommand\contentsname{Outline}}
+\hypersetup{colorlinks=true}
 \usepackage[UTF8, heading]{ctex}
-\usepackage[UTF8]{ctexcap}
 \usepackage{xltxtra}
 \usepackage{xeCJK}
 \usepackage{lmodern}
@@ -139,7 +139,7 @@ title=\lstname,
 \setenumerate{nolistsep}
 \setitemize{nolistsep}
 \vspace{-\topsep}
-\author{yen yung chin}
+\author{Yung Chin, Yen}
 \date{\today}
 \title{Basic Materials of Python}
 \begin{document}
@@ -148,94 +148,139 @@ title=\lstname,
 \tableofcontents
 
 \newpage
-\section{Python簡介}
-\label{sec:org302c144}
-\subsection{Python的誕生}
-\label{sec:orgb6ef317}
-\subsubsection{科技報導的說法\footnote{\href{https://buzzorange.com/techorange/2019/08/20/the-history-of-python}{Python的誕生故事}}}
-\label{sec:org47eea1d}
+\section{Python 簡介}
+\label{sec:org167990d}
+\subsection{What is Python}
+\label{sec:orgc76632b}
 \begin{itemize}
-\item 1989 年，荷蘭的一位叫Guido van Rossum的宅男工程師覺得其他的程式語言都不好用，於是花三個月創造了一種新的程式語言。
-\item 30年後，每天都有數百萬人使用他創立的這一新語言。系統管理員。
-\item 研究人員於2019年首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python。
-\item \begin{center}
+\item Python is an advanced \textbf{scripting language} that is being used successfully to
+\textbf{glue together} large software components. It spans \textbf{multiple platforms},
+middleware products, and application domains. Python is an \textbf{object-oriented
+language} with \textbf{high-level data structures}, \textbf{dynamic typing}, and \textbf{dynamic binding}.
+Python has been around since 1991, and has a very active user community. For
+more information, see the Python website \url{http://www.python.org}.
+\end{itemize}
+\subsection{Python 的誕生}
+\label{sec:org40c752c}
+\begin{enumerate}
+\item 一句話講完一部電影
+\label{sec:orgc9c0849}
+\begin{itemize}
+\item The Martian
+\begin{center}
+\includegraphics[width=300]{theMartian.jpg}
+\end{center}
+\item 一個男人在火星上種菜的故事
+\end{itemize}
+\item 一句話講完 Python 的誕生
+\label{sec:orga39fef0}
+\begin{itemize}
+\item 1989 年，一個宅男工程師為了打發聖誔假期(順便打趴其他語言)、花了三個月創造了一
+種新的程式語言。\footnote{\href{https://buzzorange.com/techorange/2019/08/20/the-history-of-python}{Python的誕生故事}}
+\item \href{https://zh.wikipedia.org/zh-tw/\%E5\%90\%89\%E5\%A4\%9A\%C2\%B7\%E8\%8C\%83\%E7\%BD\%97\%E8\%8B\%8F\%E5\%A7\%86}{Guido van Rossum}
+\begin{center}
+\includegraphics[width=400]{Rossum.jpeg}
+\end{center}
+\item 30 年後，每天都有數百萬人使用他創立的這一新語言。
+\begin{itemize}
+\item Python Customers
+Get access to data on \href{https://trends.builtwith.com/websitelist/Python/Historical}{941,453 websites} that are Python Customers. We know of
+120,915 live websites using Python and an additional 820,538 sites that used
+Python historically and \href{https://trends.builtwith.com/websitelist/Python/Taiwan}{807 websites in Taiwan}. \footnote{\href{https://trends.builtwith.com/framework/Python}{Python Usage Statistics}}
+\item 依據 TOIBE 的調查，目前 Python 在\href{https://www.tiobe.com/tiobe-index/}{TOIBE}最受歡迎語言的排名第三\footnote{\href{https://www.tiobe.com/}{https://www.tiobe.com/}\label{org3f5d51c}}
+\begin{center}
+\includegraphics[width=560]{TOIBE-2020.jpg}
+\end{center}
+\item \href{https://www.youtube.com/watch?v=A\_B7owR94XY}{幾種不同語言受歡迎程度的變
+化:TIOBE 2001-2019}
+\end{itemize}
+\item 研究人員於 2019 年首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python。
+\begin{center}
 \includegraphics[width=400]{blackhole.jpg}
 \end{center}
 \end{itemize}
 
-\subsubsection{Guido van Rossum自己的說法\footnote{\href{https://www.techapple.com/archives/10553}{因為打發時間，他改變了世界！講述 Python 之父 Guido van Rossum 的故事！ }}}
-\label{sec:org84134e5}
+\item Guido van Rossum 自己的說法
+\label{sec:org6d3cc7c}
 \begin{itemize}
-\item 在1989年12月，我在尋找一門「課餘」編程項目來打發聖誕節前後的時間。
-\item 我決定為當時我正構思的一個新的腳本語言寫一個解釋器，它是ABC語言的後代，對UNIX/C程式設計師會有吸引力。
-\item 作為一個略微有些無關想法的人，和一個《蒙提‧派森的飛行馬戲團》的狂熱愛好者，我選擇了Python作為項目的標題。
+\item \ldots{}in December 1989, I was looking for a ``hobby'' programming project that
+would keep me occupied during the week around Christmas.\footnote{\href{https://en.wikipedia.org/wiki/Guido\_van\_Rossum}{Guido van Rossum}}
+\item My office (a government-run research lab in Amsterdam) would be closed, but I
+had a home computer, and not much else on my hands. I decided to write an
+interpreter for the new \href{https://zh.wikipedia.org/wiki/\%E8\%84\%9A\%E6\%9C\%AC\%E8\%AF\%AD\%E8\%A8\%80}{Script language} I had been thinking about lately: a
+descendant of \href{https://zh.wikipedia.org/wiki/ABC\_(\%E7\%A8\%8B\%E5\%BC\%8F\%E8\%AA\%9E\%E8\%A8\%80)}{ABC} that would appeal to Unix/C hackers.
+\item I chose Python as a
+working title for the project, being in a slightly irreverent mood (and a big
+fan of Monty Python's Flying Circus). \footnote{\href{https://www.python.org/doc/essays/foreword/}{Foreword for ``Programming Python'' (1st ed.)}}
 \end{itemize}
+\end{enumerate}
 
-\subsection{Python的優勢與應用\footnote{\href{https://www.geeksforgeeks.org/python-language-advantages-applications/}{Python Language advantages and applications}}}
-\label{sec:org3f962ae}
-\subsubsection{Advantages}
-\label{sec:orgb945013}
+\subsection{Python 的優勢與應用}
+\label{sec:org702939e}
 \begin{enumerate}
-\item Presence of third-party modules
-\item Extensive support libraries(NumPy for numerical calculations, Pandas for data analytics etc)
-\item Open source and community development
+\item Advantages\footnote{\href{https://www.geeksforgeeks.org/python-language-advantages-applications/}{Python Language advantages and applications}}
+\label{sec:org04b8bb7}
+\begin{enumerate}
 \item Easy to learn
-\item User-friendly data structures
 \item High-level language
-\item Dynamically typed language(No need to mention data type based on value assigned, it takes data type)
+\item User-friendly data structures
+\item \href{https://www.itread01.com/p/1441246.html}{Dynamically typed language}(No need to mention data type based on value
+assigned, it takes data type)
 \item Object-oriented language
+\item Open source and community development
+\item Presence of third-party modules
+\item Extensive support libraries(NumPy for numerical calculations, Pandas for data
+analytics etc)
 \item Portable and Interactive
 \item Portable across Operating systems
 \end{enumerate}
-\subsubsection{Applications}
-\label{sec:org9466ba5}
+\item Applications
+\label{sec:org26a7257}
 \begin{enumerate}
 \item GUI based desktop applications(Games, Scientific Applications)
 \item Web frameworks and applications
 \item Enterprise and Business applications
-\item Operating Systems
-\item Language Development
-\item Prototyping
 \end{enumerate}
-\subsubsection{Organizations using Python}
-\label{sec:orge77d4ef}
+\item Organizations using Python
+\label{sec:orgdf018cc}
 \begin{enumerate}
-\item Google(Components of Google spider and Search Engine)
-\item Yahoo(Maps)
-\item YouTube
-\item Mozilla
-\item Dropbox
-\item Microsoft
-\item Cisco
-\item Spotify
-\item Quora
+\item \href{https://www.google.com/}{Google} (Components of Google spider and Search Engine)
+\item \href{https://www.youtube.com/channel/UCNJIEbGZaScUDsq\_DMYTjYg}{Youtube}
+\item \href{https://www.instagram.com/}{Instagram}
+\item \href{https://www.netflix.com/}{Netflix}
+\item \href{https://www.dropbox.com/}{Dropbox}
+\item \href{https://www.reddit.com/}{Reddit}
+\item \href{https://www.uber.com/}{Uber}
+\item \href{https://www.pinterest.com/}{Pinterest}
 \end{enumerate}
 
 \newpage
+\end{enumerate}
 
-\section{Python環境建置}
-\label{sec:org3f0e2c1}
-\subsection{下載python}
-\label{sec:org673b965}
+\section{Python 環境建置}
+\label{sec:org957f1c4}
+\subsection{下載 python}
+\label{sec:org79fb0e1}
 \begin{itemize}
 \item google: python download
 \item 網址: \href{https://www.python.org/downloads/}{https://www.python.org/downloads/}
-\item 若為Mac系統，則已預載安裝Python 2.7
-\item 若為Linux系統，則多數也預載Python 2.x及3.x
-\item 查詢目前的python版本，目前官方最新版本為3.8.2\footnote{\href{https://www.python.org/downloads/}{https://www.python.org/downloads/}}
-\lstset{breaklines=true,language=bash,label= ,caption= ,captionpos=b,numbers=none}
+\item 若為 Mac 系統，則已預載安裝 Python 2.7
+\item 若為 Linux 系統，則多數也預載 Python 2.x 及 3.x
+\item 查詢目前的 python 版本，目前官方最新版本為 3.8.2\footnote{\href{https://www.python.org/downloads/}{https://www.python.org/downloads/}}
+\lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-python --version
+    python --version
 \end{lstlisting}
 \end{itemize}
 
-\subsection{python的幾種編寫環境}
-\label{sec:orgc1fa4d0}
-\subsubsection{終端機(shell, command line): interpreter}
-\label{sec:org8fc2cc1}
+\subsection{python 的幾種編寫環境}
+\label{sec:org7ec92ab}
+\begin{enumerate}
+\item 終端機(shell, command line): interpreter
+\label{sec:orgcb0eb4b}
 \begin{enumerate}
 \item 執行環境
-\label{sec:org25a5aab}
+\label{sec:org2edbdb2}
 \begin{itemize}
 \item Linux / Mac: terminal
 \item Windows: 命令提示字元
@@ -243,206 +288,242 @@ python --version
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{python-terminal-demo.jpg}
-\caption{命令列下執行Python interpreter}
+\caption{命令列下執行 Python interpreter}
 \end{figure}    
 \item 執行方式
-\label{sec:orge5199e8}
+\label{sec:orgdc68983}
 \begin{itemize}
-\item 啟用Python interpreter
+\item 啟用 Python interpreter
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-python
+    python
 \end{lstlisting}
-\item 結束/回到terminal
+\item 結束/回到 terminal
 \begin{itemize}
 \item 指令
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-exit()
+      exit()
 \end{lstlisting}
 \item 快速鍵: Ctrl-D
 \end{itemize}
-\item 此模式可配合文字編輯器撰寫程式碼，再於終端機下執行
-\begin{itemize}
-\item \href{https://www.sublimetext.com/3}{Sublime Text 3}
-\item \href{https://notepad-plus-plus.org/downloads/}{Notepad++}
-\end{itemize}
+\item 此模式可配合文字編輯器(如\href{https://www.sublimetext.com/3}{Sublime Text 3}、\href{https://notepad-plus-plus.org/downloads/}{Notepad++})撰寫程式碼，若檔名為 test.py，
+執行該程式的方法為：於終端機下輸入
+\lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+python test.py
+\end{lstlisting}
 \end{itemize}
 \end{enumerate}
 
-\subsubsection{IDE(Integrated Development Environment)環境}
-\label{sec:org1e0ae32}
+\item IDE(Integrated Development Environment)環境
+\label{sec:org1e05e53}
 \begin{enumerate}
 \item \href{https://www.spyder-ide.org/}{Spyder}
-\label{sec:orgcfb4733}
+\label{sec:org5597b10}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{Spyder.jpg}
-\caption{\label{fig:Spyder}
-Spyder IDE for Python}
+\caption{\label{fig:Spyder}Spyder IDE for Python}
 \end{figure}
 \item \href{https://code.visualstudio.com/}{Visual Studio Code}
-\label{sec:org362dc87}
+\label{sec:org95e63bc}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{VisualStudioCode.jpg}
-\caption{\label{fig:VisualStudioCode}
-Visual Studio Code}
+\caption{\label{fig:VisualStudioCode}Visual Studio Code}
 \end{figure}
 \item \href{https://www.jetbrains.com/pycharm/}{PyCharm}
-\label{sec:org72c3c64}
+\label{sec:orgea8f1ed}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{PyCharm.png}
-\caption{\label{fig:PyCharm}
-PyCharm}
+\caption{\label{fig:PyCharm}PyCharm}
 \end{figure}
 \end{enumerate}
-\subsubsection{Web-based環境}
-\label{sec:org286dbb8}
+\item Web-based 環境
+\label{sec:org01e777d}
 \begin{enumerate}
 \item \href{https://ipython.org/notebook.html}{The Jupyter Notebook}
-\label{sec:orga91b08b}
+\label{sec:orgc11ce62}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{JupyterNotebook.png}
-\caption{\label{fig:JupyterNotebook}
-The Jupyter Notebook}
+\caption{\label{fig:JupyterNotebook}The Jupyter Notebook}
 \end{figure}
 \item \href{https://colab.research.google.com/}{Google Colaboratory}
-\label{sec:org7756816}
+\label{sec:org4e4795a}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{GoogleCoLab.jpg}
-\caption{\label{fig:GoogleCoLab}
-The Google Colaboratory}
+\caption{\label{fig:GoogleCoLab}The Google Colaboratory}
 \end{figure}
 \item \href{https://www.programiz.com/python-programming/online-compiler/}{Python Online Compiler: repl.it}
-\label{sec:orgfb1c975}
+\label{sec:orge05dc99}
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=400]{ReplIt-Python.jpg}
-\caption{\label{fig:ReplIt}
-Repl.it}
+\caption{\label{fig:ReplIt}Repl.it}
 \end{figure}
+\end{enumerate}
 \end{enumerate}
 
 \subsection{兩種執行模式}
-\label{sec:orgc6d4a20}
-\subsubsection{Interactive mode}
-\label{sec:org31b395d}
+\label{sec:org60b3e28}
+\begin{enumerate}
+\item Interactive mode
+\label{sec:org15da08c}
 \begin{enumerate}
 \item 啟動方式
-\label{sec:orgcec1810}
+\label{sec:org0f0b09e}
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
 python -i filename.py
 \end{lstlisting}
 \item 優點\footnote{\href{https://stackabuse.com/python-programming-in-interactive-vs-script-mode/}{Python Programming in Interactive vs Script Mode}}
-\label{sec:org1ab8708}
+\label{sec:org4651ee9}
 \begin{itemize}
 \item Helpful when your script is extremely short and you want immediate results.
 \item Faster as you only have to type a command and then press the enter key to get the results.
 \item Good for beginners who need to understand Python basics.
 \end{itemize}
 \item 缺點
-\label{sec:org3a19552}
+\label{sec:orgb53f318}
 \begin{itemize}
 \item Editing the code in interactive mode is hard as you have to move back to the previous commands or else you have to rewrite the whole command again.
 \item It's very tedious to run long pieces of code.
 \end{itemize}
 \end{enumerate}
-\subsubsection{Script Mode}
-\label{sec:org920d168}
+\item Script Mode
+\label{sec:org4988acb}
 \begin{enumerate}
 \item 啟動方式
-\label{sec:orgd878c90}
+\label{sec:orgf82afc7}
 \lstset{breaklines=true,language=bash,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
 python filename.py
 \end{lstlisting}
 \item 優點:
-\label{sec:orgec8ea72}
+\label{sec:orgf248046}
 \begin{itemize}
 \item It is easy to run large pieces of code.
 \item Editing your script is easier in script mode.
 \item Good for both beginners and experts.
 \end{itemize}
 \item 缺點:
-\label{sec:org2c7ea73}
+\label{sec:org07839e6}
 \begin{itemize}
 \item Can be tedious when you need to run only a single or a few lines of cod.
 \item You must create and save a file before executing your code.
 \end{itemize}
 \end{enumerate}
+\end{enumerate}
 
-\subsection{安裝Jupyter Notebook}
-\label{sec:org1ce1bd8}
-\subsubsection{安裝pip}
-\label{sec:org2eaa261}
+\subsection{安裝 Jupyter Notebook}
+\label{sec:orgf8abba8}
 \begin{enumerate}
-\item 檢查是否已安裝Python套件管理工具(命令提示字元)
-\label{sec:orge631330}
+\item Mac/Linux 系統
+\label{sec:orgbc5b233}
+\begin{enumerate}
+\item 安裝 pip
+\label{sec:org31b2e53}
+\begin{enumerate}
+\item 檢查是否已安裝 Python 套件管理工具(命令提示字元)
+\label{sec:org0c61309}
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-python -m pip --version
-pip --version
+  python -m pip --version
+  pip --version
 \end{lstlisting}
-\item 下載並安裝pip(命令提示字元)
-\label{sec:org501a6be}
+\item 下載並安裝 pip(命令提示字元)
+\label{sec:org270993c}
 \begin{enumerate}
-\item 下載pip
+\item 下載 pip 安裝檔
 \href{https://bootstrap.pypa.io/get-pip.py}{ 點此下載get-pip.py}
-\item 執行get-pip.py
+\item 執行 get-pip.py
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-python get-pip.py
+     python get-pip.py
+\end{lstlisting}
+\item 升級 pip
+\lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+     pip3 install --upgrade pip
 \end{lstlisting}
 \end{enumerate}
 \end{enumerate}
-\subsubsection{安裝Jupyter(命令提示字元)}
-\label{sec:org03e6f73}
+\item 安裝 Jupyter(命令提示字元)
+\label{sec:orgd7deeb1}
 \begin{itemize}
 \item 安裝
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-pip install jupyter
+    pip install jupyter
 \end{lstlisting}
 \item 啟動
 \lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-jupyter notebook
+    jupyter notebook
 \end{lstlisting}
 \item 預設網址: \url{http://localhost:8888}
 \end{itemize}
-\subsubsection{Jupyter Notebook基本操作}
-\label{sec:orgf7c8588}
+\end{enumerate}
+\item Windows 系統
+\label{sec:org182f4f6}
+\begin{enumerate}
+\item 直接下載安裝\href{https://www.anaconda.com/download}{Anaconda}，內建 Jupyter
+\label{sec:orgffbf7ba}
+\end{enumerate}
+\item Jupyter Notebook 基本操作
+\label{sec:orgb97c44c}
 \begin{itemize}
-\item 變更預設port: XXXX
-\lstset{breaklines=true,language=bash,label= ,caption= ,captionpos=b,numbers=none}
+\item 變更預設 port: XXXX
+\lstset{breaklines=true,language=shell,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-jupyter notebook --port XXXX
+    jupyter notebook --port XXXX
 \end{lstlisting}
-\item 登出後重新登入：token
-\item 結束Jupyter: 網頁右上角：Quit
+\item 登出後重新登入：tokenk Python
 \end{itemize}
 
 \newpage
+\end{enumerate}
+
 \section{變數、資料型態、輸出輸入}
-\label{sec:org8ac0510}
+\label{sec:orge7cadea}
+\subsection{Hello World}
+\label{sec:orga418516}
+\begin{enumerate}
+\item C++
+\label{sec:org2319f66}
+\lstset{breaklines=true,language=cpp,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+#include <iostream>
+using namespace std;
+int main() {
+  cout << "Hellow world!";
+}
+\end{lstlisting}
+\item Python
+\label{sec:orgf7af60f}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+print("Hello world!")
+\end{lstlisting}
+\end{enumerate}
 
 \subsection{變數}
-\label{sec:orgf727750}
-\subsubsection{命名規則}
-\label{sec:orgc89b9f2}
+\label{sec:orgf333f11}
+\begin{enumerate}
+\item 命名規則
+\label{sec:orgcc1e36d}
 \begin{itemize}
 \item 由英文、數字、底線、中文(不建議)組成
 \item 不得以數字開頭
-\item 不能與Python內建的保留字相同
+\item 不能與 Python 內建的保留字相同
 \end{itemize}
 
-\subsubsection{範例}
-\label{sec:org4f41d44}
+\item 範例
+\label{sec:org21cc642}
 \begin{center}
 \begin{tabular}{ll}
 \hline
@@ -457,16 +538,16 @@ Good! & \texttimes{}\\
 \end{tabular}
 \end{center}
 
-\subsubsection{變數的指派(assign)}
-\label{sec:orgcb043ed}
+\item 變數的指派(assign)
+\label{sec:orgcad016d}
 \begin{itemize}
-\item Python變數不需宣告，依指派值自動設定資料型態。
+\item Python 變數不需宣告，依指派值自動設定資料型態(dynamically typing)。
 \item 語法
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-    變數名稱 = 指派值
+  變數名稱 = 指派值
 \end{lstlisting}
-\item 變數不再使用時，可用del指令將其刪除，以節省記憶體。
+\item 變數不再使用時，可用 del 指令將其刪除，以節省記憶體。
 \item 範例：
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
@@ -475,18 +556,22 @@ b = 3.14
 c = 'TNFSH'
 a = b = c = 10
 name, number = 'TNFSH', 35
+del c
+print(name)
 \end{lstlisting}
 \end{itemize}
+\end{enumerate}
 
 \subsection{資料型態}
-\label{sec:orgfd5e30a}
-\subsubsection{常用類型}
-\label{sec:orgc77f795}
+\label{sec:org5b7b912}
+\begin{enumerate}
+\item 常用類型
+\label{sec:orgb907e5a}
 \begin{itemize}
 \item 整數: int
 \item 浮點數: float
-\item 布林值(True / False): bool, T 與 F要大寫
-\item 字串: str, 以'或"含括,若輸出字串要包含引號，則以另一種引號含括該字串。如:
+\item 布林值(True / False): bool, T 與 F 要大寫
+\item 字串: str, 以'或``含括,若輸出字串要包含引號，則以另一種引號含括該字串。如:
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
@@ -495,14 +580,14 @@ weight = 67.87
 good_words = " 請常說'請'、'謝謝'、'對不起' "
 \end{lstlisting}
 
-\subsubsection{型態間的轉換}
-\label{sec:org720d797}
+\item 型態間的轉換
+\label{sec:orgd508e74}
 \begin{itemize}
 \item 自動轉換
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-score = 60 + 3.5		# 自動轉換為浮點數，結果為63.5	
+  score = 60 + 3.5		# 自動轉換為浮點數，結果為63.5	
 \end{lstlisting}
 \begin{itemize}
 \item 強制轉換
@@ -513,50 +598,45 @@ score = int(30.22)			# 將括弧內的資料轉換為整數
 score = float(score)		# 將括弧內的資料轉換為浮點數
 test = str(score)				# 將括弧內的資料轉換為字串
 \end{lstlisting}
+\end{enumerate}
 
 \subsection{輸出: print}
-\label{sec:org97e9479}
-\subsubsection{語法}
-\label{sec:org23afc35}
+\label{sec:org3e11d7a}
+\begin{enumerate}
+\item 語法
+\label{sec:org2c084b6}
 \begin{itemize}
-\item print( 項目1, [ 項目2, … , sep = 分隔字元 , end = 結束字元 ] )
+\item print( 項目 1, [ 項目 2, … , sep = 分隔字元 , end = 結束字元 ] )
 \item sep (分隔字元) 預設為空白字元
 \item end (結束字元) 預設為換行字元\n
 \end{itemize}
-\subsubsection{範例}
-\label{sec:orga0fdc69}
+\item 範例
+\label{sec:orgd1fa454}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 a, b = 5, 10
 print(a, b)
 print(a, b, sep =',')
-print(a, end='\t')
-print(a, end='')
+print(a, b, sep ='分隔')
+print(a, b, end='\t')
+print(a, b, end='')
 \end{lstlisting}
 
 \begin{verbatim}
 5 10
 5,10
-5	5
+5 分隔 10
+5 10	5 10
 \end{verbatim}
-\subsubsection{跳脫字元}
-\label{sec:org0db03c8}
-\begin{center}
-\begin{tabular}{ll}
-\hline
-跳脫字元 & 說明\\
-\hline
-$\backslash$\ & 印出 $\backslash$\\
-$\backslash$' & 印出 '\\
-\n & 換行字元\\
-\t & 水平跳格字元(Tab)\\
-\b & 倒退一格字元(Backspace)\\
-\hline
-\end{tabular}
-\end{center}
-
-\subsubsection{格式化輸出}
-\label{sec:org0c0cad9}
+\item 跳脫字元
+\label{sec:org4b38026}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=400]{escape.png}
+\caption{\label{fig:EscapeCharMap}Escape char}
+\end{figure}
+\item 格式化輸出: \% (舊版)
+\label{sec:org2a06da7}
 \begin{itemize}
 \item 語法
 \begin{itemize}
@@ -570,112 +650,138 @@ $\backslash$' & 印出 '\\
 name = '台北101'
 height = 508
 fee = 18.24
-print('%s的高度為%d公尺，參觀門票為%3.2f美金.' %(name, height, fee))
-
+print('%s的高度為%d公尺，參觀門票為%8.2f美金.' %(name, height, fee))
+print('%s的高度為%d公尺，參觀門票為%0.2f美金.' %(name, height, fee))
 \end{lstlisting}
 
 \begin{verbatim}
-台北101的高度為508公尺，參觀門票為18.24美金.
+台北 101 的高度為 508 公尺，參觀門票為   18.24 美金.
+台北 101 的高度為 508 公尺，參觀門票為 18.24 美金.
 \end{verbatim}
 \end{itemize}
-\subsubsection{format格式化輸出}
-\label{sec:org5bf39f4}
+\item 格式化輸出: format() (新版)
+\label{sec:orgf23decc}
 \begin{itemize}
 \item 語法 
 \begin{itemize}
-\item format格式化輸出語法：print(字串.format (參數) ) 
+\item format 格式化輸出語法：print(字串.format (參數) ) 
 \item 字串裡以\{0\}、\{1\}、\ldots{} 來對應參數列裡的變數
 \end{itemize}
 
 \item 範例
+\end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 name = 'Taipei101'
 height = 508.35
 print('{0}的高度為{1}公尺'.format (name, height))
 print('{0:15s}的高度為{1:10.1f}公尺'.format (name, height))
+print('{building}的高度為{height}'.format(building=name, height=height))
 \end{lstlisting}
 
 \begin{verbatim}
-Taipei101的高度為508.35公尺
-Taipei101      的高度為     508.4公尺
+Taipei101 的高度為 508.35 公尺
+Taipei101      的高度為     508.4 公尺
+Taipei101 的高度為 508.35
 \end{verbatim}
-\end{itemize}
+\item 格式化輸出: Template
+\label{sec:orgcc83b86}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+from string import Template
 
+name = 'TNFSH'
+tmp = Template('Hello, $who')
+print(tmp.substitute(who = name))
+
+\end{lstlisting}
+
+\begin{verbatim}
+Hello, TNFSH
+\end{verbatim}
+
+\item 進階閱讀
+\label{sec:orgad8a1e3}
+\begin{itemize}
+\item \href{https://blog.techbridge.cc/2019/05/03/how-to-use-python-string-format-method/}{如何使用 Python 進行字串格式化}
+\end{itemize}
+\end{enumerate}
 \subsection{輸入}
-\label{sec:org4c60d0c}
-\subsubsection{語法/範例}
-\label{sec:org63acf86}
+\label{sec:org6ba5bee}
+\begin{enumerate}
+\item 語法/範例
+\label{sec:org245eede}
 \begin{itemize}
 \item 語法
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-variable = intpu([提示字元])
+    variable = intpu([提示字元])
 \end{lstlisting}
-\item PS: 經由input( )函式讀入的資料，其資料型態皆為字串
+\item PS: 經由 input( )函式讀入的資料，其資料型態皆為字串
 
 \item 範例
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-a = input('輸入國文成績:')
-b = input('輸入數學成績:')
-c = input()
-print('三科成績分別為%5s %5s %5s' %(a, b, c))
+    a = input('輸入國文成績:')
+    b = input('輸入數學成績:')
+    c = input()
+    print('三科成績分別為%5s %5s %5s' %(a, b, c))
 \end{lstlisting}
 \end{itemize}
 
-\subsubsection{輸入搭配型別轉換}
-\label{sec:orgc6583fd}
+\item 輸入搭配型別轉換
+\label{sec:org2743354}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-a = int(input('輸入國文成績:'))
-b = int(input('輸入數學成績:'))
-c = int(input())
-print('總分為%5d' %(a+b+c))
+  a = int(input('輸入國文成績:'))
+  b = int(input('輸入數學成績:'))
+  c = int(input())
+  print('總分為%5d' %(a+b+c))
 \end{lstlisting}
 
-\subsubsection{input注意事項}
-\label{sec:orga17516a}
+\item input 注意事項
+\label{sec:orga7ed46d}
 \begin{itemize}
 \item input 每筆輸入讀至換行符號為止
 \item 若測試資料輸入以空白間隔，則讀入整行字串後， 再以字串分割處理
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-inp = input()
-inpstr = inp.split()
-# 依此類推逐一取得輸入值
-a = int(inpstr[0])
-b = int(inpstr[1])
-c = int(inpstr[2])
+    inp = input()
+    inpstr = inp.split()
+    # 依此類推逐一取得輸入值
+    a = int(inpstr[0])
+    b = int(inpstr[1])
+    c = int(inpstr[2])
 \end{lstlisting}
 \end{itemize}
+\end{enumerate}
 
 \subsection{註解}
-\label{sec:org618a542}
+\label{sec:org96a4335}
 \begin{itemize}
 \item 語法
 \begin{itemize}
 \item 單行註解：以 \# 開頭
-\item 多行註解：前後以 ''' 或 """ 含括
+\item 多行註解：前後以  '''  或  ``''``  含括
 \end{itemize}
 \item 範例
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-## 這是單行註解
-int a = 3
-'''
-這是多行註解
-LALALA
-'''
-print(a)
-"""
-這也是
-"""
+    ## 這是單行註解
+    int a = 3
+    '''
+    這是多行註解
+    LALALA
+    '''
+    print(a)
+    """
+    這也是
+    """
 \end{lstlisting}
 \end{itemize}
 
 \subsection{實作練習}
-\label{sec:org21c503f}
+\label{sec:orgdb7619a}
 \begin{itemize}
 \item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/}{skyoj \#161華氏溫度轉攝氏溫度}
 \end{itemize}
@@ -683,9 +789,9 @@ print(a)
 \newpage
 
 \section{運算元與運算式}
-\label{sec:orgf68d8f2}
+\label{sec:org6bfcfd1}
 \subsection{算術運算}
-\label{sec:org68fb0ee}
+\label{sec:orgf220864}
 \begin{itemize}
 \item +: 加
 \item -: 減
@@ -695,18 +801,19 @@ print(a)
 \item //: 求商
 \item **: 指數
 \end{itemize}
-\subsubsection{算術運算範例\#1}
-\label{sec:org7341475}
+\begin{enumerate}
+\item 算術運算範例\#1
+\label{sec:org81aef17}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-# python code for arithematic opearation
-print(5+3)
-print(5-3)
-print(5*3)
-print(5/3)
-print(5%3)
-print(5//3)
-print(5**3)
+   # python code for arithematic opearation
+   print(5+3)
+   print(5-3)
+   print(5*3)
+   print(5/3)
+   print(5%3)
+   print(5//3)
+   print(5**3)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -719,30 +826,31 @@ print(5**3)
 125
 \end{verbatim}
 
-\subsubsection{算術運算範例\#2}
-\label{sec:org7090704}
+\item 算術運算範例\#2
+\label{sec:org54c03da}
 \lstset{breaklines=true,language=Python,label=計算機,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-a = int(input("input a: "))
-op = input("input op: ")
-b = int(input("input b: "))
+  a = int(input("input a: "))
+  op = input("input op: ")
+  b = int(input("input b: "))
 
-if op == '+':
-    ans = a + b;
-elif op == '-':
-    ans = a - b;
-elif op == '*':
-    ans = a * b;
-elif op == '/':
-    ans = a / b;
-elif op == '%':
-    ans = a % b;
+  if op == '+':
+      ans = a + b;
+  elif op == '-':
+      ans = a - b;
+  elif op == '*':
+      ans = a * b;
+  elif op == '/':
+      ans = a / b;
+  elif op == '%':
+      ans = a % b;
 
-print(str(a) + op + str(b) + "=" + str(ans))
+  print(str(a) + op + str(b) + "=" + str(ans))
 \end{lstlisting}
+\end{enumerate}
 
 \subsection{關係運算子}
-\label{sec:org1f31440}
+\label{sec:org88b98a0}
 \begin{center}
 \begin{tabular}{llllll}
 \hline
@@ -754,19 +862,19 @@ print(str(a) + op + str(b) + "=" + str(ans))
 \end{center}
 
 \subsection{邏輯運算子}
-\label{sec:orgd4eb859}
+\label{sec:orge55bfba}
 \begin{center}
 \begin{tabular}{lll}
 \hline
 and & or & not\\
 \hline
-(a>b)and(a<c) & (a>b)or<(a==b) & not(a>b)\\
+(a>b) and (a<c) & (a>b) or (a==b) & not (a>b)\\
 \hline
 \end{tabular}
 \end{center}
 
 \subsection{複合指定運算子}
-\label{sec:orga8daed2}
+\label{sec:org5348f25}
 \begin{center}
 \begin{tabular}{lllllll}
 \hline
@@ -775,13 +883,20 @@ and & or & not\\
 \end{tabular}
 \end{center}
 
+\subsection{實作練習}
+\label{sec:orgb267a39}
+\begin{itemize}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/277/}{skyoj 277. 一元二次方程式求解}
+\end{itemize}
+
 \newpage
 \section{判斷結構}
-\label{sec:orga38fa43}
+\label{sec:org99528b0}
 \subsection{if}
-\label{sec:org3729dd9}
-\subsubsection{語法}
-\label{sec:orgc18394f}
+\label{sec:orgd2af153}
+\begin{enumerate}
+\item 語法
+\label{sec:org3abc0d0}
 \begin{itemize}
 \item 條件式可不用括號( )含括，條件式後需搭配冒號：
 \item 程式區塊以縮排方式處理，同一層縮排視為同一程式區塊
@@ -789,214 +904,243 @@ and & or & not\\
 
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-if condition:
-    statement 1
-    ...
+  if condition:
+      statement 1
+      ...
 \end{lstlisting}
 
-\subsubsection{範例}
-\label{sec:org1b3e6b3}
+\item 範例
+\label{sec:org6aa9a33}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-num = 31
-if num % 2 == 0:
-    print('%d is even' %(num))
-if num % 2 == 1:
-    print('%d is odd' %(num))
+   num = 31
+   if num % 2 == 0:
+       print('%d is even' %(num))
+   if num % 2 == 1:
+       print('%d is odd' %(num))
 \end{lstlisting}
 
 \begin{verbatim}
 31 is odd
 \end{verbatim}
+\end{enumerate}
 
 \subsection{if \ldots{} else \ldots{}}
-\label{sec:orgd50e942}
-\subsubsection{語法}
-\label{sec:org14cbc8b}
+\label{sec:orgbfab909}
+\begin{enumerate}
+\item 語法
+\label{sec:org199fe92}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-if condition:
-    statement 1
-    ...
-else:
-    statement 3
-    ...
+  if condition:
+      statement 1
+      ...
+  else:
+      statement 3
+      ...
 \end{lstlisting}
 
-\subsubsection{範例}
-\label{sec:org535df3b}
+\item 範例
+\label{sec:org96108f8}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-num = 32
-if num % 2 == 0:
-    print('%d is even' %(num))
-else:
-    print('%d is odd' %(num))
+  num = 32
+  if num % 2 == 0:
+      print('%d is even' %(num))
+  else:
+      print('%d is odd' %(num))
 \end{lstlisting}
+
+\begin{verbatim}
+32 is even
+\end{verbatim}
+\end{enumerate}
 
 \subsection{if \ldots{} elif \ldots{} else \ldots{}}
-\label{sec:orgc6e4c7a}
-\subsubsection{語法}
-\label{sec:orgea0e958}
+\label{sec:org7b209ee}
+\begin{enumerate}
+\item 語法
+\label{sec:org365fa36}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-if condition 1:
-    statement 1
-    ...
-elif condition 2:
-    statement 3
-    ...
-elif condition 3:
-    statement 5
-    ...
-else:
-    statement N
+  if condition 1:
+      statement 1
+      ...
+  elif condition 2:
+      statement 3
+      ...
+  elif condition 3:
+      statement 5
+      ...
+  else:
+      statement N
 \end{lstlisting}
 
-\subsubsection{範例}
-\label{sec:org6742d5d}
+\item 範例
+\label{sec:org3a6e1dc}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-score = 87
-if score >= 90:
-    print('A')
-elif score >= 80:
-    print('B')
-elif score >= 70:
-    print('C')
-elif score >= 60:
-    print('D')
-else:
-    print('F')
+  score = 87
+  if score >= 90:
+      print('A')
+  elif score >= 80:
+      print('B')
+  elif score >= 70:
+      print('C')
+  elif score >= 60:
+      print('D')
+  else:
+      print('F')
 \end{lstlisting}
 
-\subsection{巢狀if}
-\label{sec:org2bad492}
-\subsubsection{語法}
-\label{sec:org2895c55}
+\begin{verbatim}
+B
+\end{verbatim}
+\end{enumerate}
+
+\subsection{巢狀 if}
+\label{sec:org0fa9626}
+\begin{enumerate}
+\item 語法
+\label{sec:org8b07c13}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-if condition 1:
-    statement 1
-    ...
-    if condition 2:
-        statement 3
-        ...
-    else:
-        statement 5
-        ...
-else:
-    if condition 3:
-        statement 7
-        ...
-    else:
-        statement N
-        ...
+  if condition 1:
+      statement 1
+      ...
+      if condition 2:
+          statement 3
+          ...
+      else:
+          statement 5
+          ...
+  else:
+      if conditi6on 3:
+          statement 7
+          ...
+      else:
+          statement N
+          ...
 \end{lstlisting}
 
-\subsubsection{範例: 某年份是否為閏年}
-\label{sec:org639206b}
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=300]{./YearJudge.png}
-\caption{\label{fig:YearJudge}
-閏年判斷流程}
-\end{figure}
+\item 範例: 某年份是否為閏年
+\label{sec:orgadba54b}
+\lstset{breaklines=true,language=dot,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+  digraph TLS{
+    rankdir=LR;
+    x1[shape=box, labeVisualStudioCodel = "輸入年份"];
+    x2[shape=diamond, label = "4的倍數"];
+    x3[shape=diamond, label = "100的倍數"];
+    x4[shape=diamond, label = "400的倍數"];
+    xY[shape=circle, fontcolor=Red, label="閏年"]
+    xN[shape=circle, fontcolor=Blue, label="平年"]
 
-\subsubsection{code \#1}
-\label{sec:org8b606ad}
+    x1 -> x2; 
+    x2 -> xN[label="No"]; x2 -> x3[label="Yes"];
+    x3 -> xY[label="No"]; x3 -> x4[label="Yes"]; 
+    x4 -> xN[label="No"]; x4 -> xY[label="Yes"]; 
+  }
+\end{lstlisting}
+
+\item code \#1
+\label{sec:org6ce9c9f}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-year = int(input("請輸入一個年份:"))
-if (year % 4) == 0:
-    if (year % 100) == 0:
-        if (year % 400) == 0:
-            print("%s年是世紀閏年" % year)
-        else:
-            print("%s年為平年" % year)
-    else:
-        print("%s年是普通閏年" % year)
-else:
-    print("%s年為平年" % year)
+  year = int(input("請輸入一個年份:"))
+  if (year % 4) == 0:
+      if (year % 100) == 0:
+          if (year % 400) == 0:
+              print("%s年是世紀閏年" % year)
+          else:
+              print("%s年為平年" % year)
+      else:
+          print("%s年是普通閏年" % year)
+  else:
+      print("%s年為平年" % year)
 \end{lstlisting}
 
-\subsubsection{code \#2}
-\label{sec:orga969bdd}
+\item code \#2
+\label{sec:org6a3c33b}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-year = int(input("請輸入一個年份:"))
-if (year % 4) == 0 and (year % 100) !=0 or (year % 400) == 0:
-    print("%s年是閏年" % year)
-else:
-    print("%s年為平年" % year)
+  year = int(input("請輸入一個年份:"))
+  if (year % 4) == 0 and (year % 100) !=0 or (year % 400) == 0:
+      print("%s年是閏年" % year)
+  else:
+      print("%s年為平年" % year)
 \end{lstlisting}
+\end{enumerate}
 
-\subsubsection{練習題}
-\label{sec:org17e1873}
+\subsection{實作練習}
+\label{sec:org64af6df}
 \begin{itemize}
 \item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/162/}{skyoj \#162 成績等第判別}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/164/}{skyoj \#164 獎金給多少}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/278/}{skyoj \#278 三角關係}
 \end{itemize}
 
 \newpage
 
 \section{迴圈結構}
-\label{sec:org93729ab}
+\label{sec:org2817bb7}
 \subsection{for}
-\label{sec:org61a2fbe}
-\subsubsection{語法}
-\label{sec:orgc2bc522}
+\label{sec:org564f400}
+\begin{enumerate}
+\item 語法
+\label{sec:orgacad83b}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-for variable in sequence:
-    statement 1
-    ...
+  for variable in sequence:
+      statement 1
+      ...
 \end{lstlisting}
 \begin{itemize}
-\item for迴圈的變數會依序走訪sequence中的元素
-\item sequence\footnote{\href{http://liyangbit.com/tutorials/python-list/}{Python數據類型-List介紹}}可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
+\item for 迴圈的變數會依序走訪 sequence 中的元素
+\item sequence\footnote{\href{http://liyangbit.com/tutorials/python-list/}{Python數據類型-List介紹}}可為 range 函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
 \end{itemize}
 
-\subsubsection{List為range() function語法}
-\label{sec:org8515d95}
+\item List 為 range() function 語法
+\label{sec:org33f2472}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-for variable in range([起始值,] 終止值 [,遞增值]):
-    statement 1
-    ...
+  for variable in range([起始值,] 終止值 [,遞增值]):
+      statement 1
+      ...
 \end{lstlisting}
 \begin{itemize}
-\item 起始值預設為0，遞增值預設為1
+\item 起始值預設為 0，遞增值預設為 1
 \item 起始值 ≤ range( )的範圍 < 終止值
 \end{itemize}
 
-\subsubsection{List為range() function語法}
-\label{sec:org860321a}
+\item List 為 range() function 語法
+\label{sec:org3406015}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 for x in range(6):
     print(x, end=' ')
 print('\n====')
 for x in range(3, 10, 2):
-    print(x, ' ')
+    print(x)
 print('\n====')
 for x in range(3, 10):
     print(x, end=', ')
 \end{lstlisting}
 
 \begin{verbatim}
-0 1 2 3 4 5 
+0 1 2 3 4 5
 ====
-3  
-5  
-7  
-9  
+3
+5
+7
+9
 
 ====
-3, 4, 5, 6, 7, 8, 9, 
+3, 4, 5, 6, 7, 8, 9,
 \end{verbatim}
 
-\subsubsection{List為String}
-\label{sec:orgb912ffa}
+\item List 為 String
+\label{sec:org6538173}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 school = 'TNFSH'
@@ -1013,72 +1157,91 @@ T N F S H
 U O G T I 
 \end{verbatim}
 
+
 \begin{itemize}
-\item ord( ) -> 將字元轉為ASCII編碼(整數)
-\item chr( ) -> 將ASCII編碼(整數)轉為字元
+\item ord( ) -> 將字元轉為 ASCII 編碼(整數)
+\item chr( ) -> 將 ASCII 編碼(整數)轉為字元
 \end{itemize}
 
-\subsection{while}
-\label{sec:org7dead6b}
-\subsubsection{語法}
-\label{sec:orgc432467}
-\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
-\begin{lstlisting}
-while (condition):
-    statement 1
-    ...
-\end{lstlisting}
-
-\subsubsection{範例}
-\label{sec:orgc2d47de}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-n = 12345
-while (n > 0):
-    print(n%10)
-    n //= 10
+school = '高雄市'
+for x in school:
+    print(x, end=' ')
+print('\n=========')
+for x in school:
+    print(chr(ord(x)+1), end=' ')
+
 \end{lstlisting}
 
 \begin{verbatim}
-5
+高 雄 市
+=========
+髙 雅 布
+\end{verbatim}
+\end{enumerate}
+
+\subsection{while}
+\label{sec:org3b5eee0}
+\begin{enumerate}
+\item 語法
+\label{sec:orgdb373cb}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
+\begin{lstlisting}
+  while (condition):
+      statement 1
+      ...
+\end{lstlisting}
+
+\item 範例
+\label{sec:orgfe94807}
+\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
+\begin{lstlisting}
+  n = 12345
+  while (n > 0):
+      print(n%10)
+      n //= 10
+\end{lstlisting}
+
+\begin{verbatim}
+5 
 4
 3
 2
 1
 \end{verbatim}
 
+
 \lstset{breaklines=true,language=Python,label=最大公因數,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-m, n = 42, 75
-while (n > 0):
-    m, n = n, m % n
-print(m)
+  m, n = 42, 75
+  while (n > 0):
+      m, n = n, m % n
+  print(m)
 \end{lstlisting}
 
 \begin{verbatim}
 3
 \end{verbatim}
-
-\begin{verbatim}
-3
-\end{verbatim}
+\end{enumerate}
 
 \subsection{while + else}
-\label{sec:orga414328}
-\subsubsection{語法}
-\label{sec:org15f4346}
+\label{sec:org9f5326d}
+\begin{enumerate}
+\item 語法
+\label{sec:org94eb39e}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-while (condition):
-    statement 1
-    ...
-else:
-    statement 3
-    ...
+  while (condition):
+      statement 1
+      ...
+  else:
+      statement 3
+      ...
 \end{lstlisting}
 
-\subsubsection{範例}
-\label{sec:org8f2e819}
+\item 範例
+\label{sec:org93326fa}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 n = 56
@@ -1092,19 +1255,21 @@ else:
 \begin{verbatim}
 56 28 14 end with 7
 \end{verbatim}
+\end{enumerate}
 
 \subsection{break}
-\label{sec:orgef8fd1b}
-跳出整個loop
-\subsubsection{範例}
-\label{sec:org32794d9}
+\label{sec:org19d4a40}
+跳出整個 loop
+\begin{enumerate}
+\item 範例
+\label{sec:org8de4446}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-for letter in 'Python':
-    if letter == 'h':
-        print('Now stop...')
-        break
-    print('Processing Letrer:', letter)
+  for letter in 'Python':
+      if letter == 'h':
+          print('Now stop...')
+          break
+      print('Processing Letrer:', letter)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1113,19 +1278,21 @@ Processing Letrer: y
 Processing Letrer: t
 Now stop...
 \end{verbatim}
+\end{enumerate}
 
 \subsection{continue}
-\label{sec:org6523cb0}
-跳出單次loop
-\subsubsection{範例}
-\label{sec:org251cbe4}
+\label{sec:org65517dd}
+跳出單次 loop
+\begin{enumerate}
+\item 範例
+\label{sec:orga2c0e29}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-for letter in 'Python':
-    if letter == 'h':
-        print('Now skip...')
-        continue
-    print('Processing Letrer:', letter)
+  for letter in 'Python':
+      if letter == 'h':
+          print('Now skip...')
+          continue
+      print('Processing Letrer:', letter)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1136,17 +1303,19 @@ Now skip...
 Processing Letrer: o
 Processing Letrer: n
 \end{verbatim}
+\end{enumerate}
 
 \subsection{巢狀迴圈}
-\label{sec:org9524210}
-\subsubsection{範例}
-\label{sec:orgd336b45}
+\label{sec:org6aced68}
+\begin{enumerate}
+\item 範例
+\label{sec:orgd6ce6af}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-for i in range(1, 10):
-    for j in range(1, 10):
-        print('%d*%d=%2d' %(i, j, i*j), end=' ')
-    print()
+  for i in range(1, 10):
+      for j in range(1, 10):
+          print('%d*%d=%2d' %(i, j, i*j), end=' ')
+      print()
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1160,23 +1329,33 @@ for i in range(1, 10):
 8*1= 8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 8*9=72 
 9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 
 \end{verbatim}
+\end{enumerate}
+
+\subsection{實作練習}
+\label{sec:orgf8c1f4e}
+\begin{itemize}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/165/}{skyoj 165. 完全數/巢狀 for迴圈}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/167/}{skyoj 167. 高中運動會/巢狀for迴圈}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/279/}{skyoj 279. 所有位數和/While}
+\end{itemize}
 
 \newpage
 
 \section{資料型別}
-\label{sec:org44e9764}
-\subsection{字串string}
-\label{sec:org311fc15}
-\subsubsection{資料格式}
-\label{sec:org5eb90e4}
-以單引號(')或雙引號(")將資料含括起來
+\label{sec:orgf59bfc4}
+\subsection{字串 string}
+\label{sec:org2d0ae08}
+\begin{enumerate}
+\item 資料格式
+\label{sec:org395e36b}
+以單引號(')或雙引號(``)將資料含括起來
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,numbers=none}
 \begin{lstlisting}
-stringA = 'Hello Python'
-stringB = "Hello Python"
+  stringA = 'Hello Python'
+  stringB = "Hello Python"
 \end{lstlisting}
-\subsubsection{範例1}
-\label{sec:orgd8b1fdc}
+\item 範例 1
+\label{sec:org2d79ea7}
 \begin{center}
 \begin{tabular}{lrrrrrrrrrrrr}
 \hline
@@ -1188,34 +1367,34 @@ index & -12 & -11 & -10 & -9 & -8 & -7 & -6 & -5 & -4 & -3 & -2 & -1\\
 \hline
 \end{tabular}
 \end{center}
-\subsubsection{字串運算子}
-\label{sec:org525db2c}
+\item 字串運算子
+\label{sec:org86c15f8}
 \begin{itemize}
 \item +: 連接字串
 \item *: 重複字串
-\item\relax [index]: 字串中index所在字元
+\item\relax [index]: 字串中 index 所在字元
 \item\relax [start:end:increment]: 截取部份字串
 \item in: 判斷是否為子字串
 \end{itemize}
-\subsubsection{範例2}
-\label{sec:org612329a}
+\item 範例 2
+\label{sec:orga9a2ea1}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-tel = '06-2371206'
-ext = '#600'
-# +
-print('tel+ext:',tel+ext)
-# *
-print('ext*2:', ext*2)
-# [index]
-print('tel[5]:', tel[5])
-# [start:end:increment]
-print('tel[1:4]:',tel[1:4])
-print('tel[6: ]:',tel[6: ])
-print('tel[ :6]:',tel[ :6])
-print('tel[::-1]:',tel[::-1])
-# in
-print("'9' in tel:", '9' in tel)
+  tel = '06-2371206'
+  ext = '#600'
+  # +
+  print('tel+ext:',tel+ext)
+  # *
+  print('ext*2:', ext*2)
+  # [index]
+  print('tel[5]:', tel[5])
+  # [start:end:increment]
+  print('tel[1:4]:',tel[1:4])
+  print('tel[6: ]:',tel[6: ])
+  print('tel[ :6]:',tel[ :6])
+  print('tel[::-1]:',tel[::-1])
+  # in
+  print("'9' in tel:", '9' in tel)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1228,8 +1407,8 @@ tel[ :6]: 06-237
 tel[::-1]: 6021732-60
 '9' in tel: False
 \end{verbatim}
-\subsubsection{字串function與method}
-\label{sec:orgd1f93ae}
+\item 字串 function 與 method
+\label{sec:org0b70d95}
 \begin{itemize}
 \item len(<str>):	計算字串長度
 \item <str>.lower(): 字串轉小寫
@@ -1238,21 +1417,21 @@ tel[::-1]: 6021732-60
 \item <str>.isupper(): 字串中英文全小寫
 \item <str>.find(<str1>): 在<str>尋找<str1>，回傳索引值； 若未找到，回傳-1
 \item <str>.replace(<str1>, <str2>): 將<str>中的<str1>以<str2>取代
-\item <str>.split([sep]): 字串以sep分割, sep預設值為空白
+\item <str>.split([sep]): 字串以 sep 分割, sep 預設值為空白
 \end{itemize}
-\subsubsection{範例3}
-\label{sec:orgfae1e69}
+\item 範例 3
+\label{sec:org12de6ab}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-school = 'Tnfsh'
-print('school:', school)
-print('len(school):', len(school))
-print('school.lower():', school.lower())
-print('school.isupper():', school.isupper())
-print("school.find('fsh'):", school.find('fsh'))
-print("school.replace('fsh', ssh'):", school.replace('fsh', 'ssh'))
-school = school.replace('fsh', 'ssh')
-print("school.split('f'):", school.split('n'))
+  school = 'Tnfsh'
+  print('school:', school)
+  print('len(school):', len(school))
+  print('school.lower():', school.lower())
+  print('school.isupper():', school.isupper())
+  print("school.find('fsh'):", school.find('fsh'))
+  print("school.replace('fsh', ssh'):", school.replace('fsh', 'ssh'))
+  school = school.replace('fsh', 'ssh')
+  print("school.split('f'):", school.split('n'))
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1264,28 +1443,34 @@ school.find('fsh'): 2
 school.replace('fsh', ssh'): Tnssh
 school.split('f'): ['T', 'ssh']
 \end{verbatim}
+\end{enumerate}
 
-\subsection{列表list}
-\label{sec:org6310392}
-\subsubsection{資料格式}
-\label{sec:org4911286}
+\subsection{列表 list}
+\label{sec:orgd3d30da}
+\begin{enumerate}
+\item 資料格式
+\label{sec:orgafd5c94}
 \begin{itemize}
 \item 以[ ]將不同型態的資料含括起來，以 , 分隔
-\item 表列中的資料是有序排列，從0開始編號
-\item 格式：表列名稱 = [元素1, 元素2, … ]
+\item 表列中的資料是有序排列，從 0 開始編號
+\item 格式：表列名稱 = [元素 1, 元素 2, … ]
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 data = ['John', [95, 118], 'May', 100]
-print(data[1])
+print(data[0])
+print(data[1][1])
+print(data[2][1])
 \end{lstlisting}
 
 \begin{verbatim}
-[95, 118]
+John
+118
+a
 \end{verbatim}
 
-\subsubsection{表列函式與方法}
-\label{sec:org18dd410}
+\item 表列函式與方法
+\label{sec:orge6e05e8}
 \begin{itemize}
 \item len(<list>): 計算表列元素個數
 \item list(<str>): 將<str>轉成表列
@@ -1300,40 +1485,41 @@ print(data[1])
 \item <list>.sort(): 將表列中所有元素排序
 \item '[sep]'.join( <list>): 用[sep]來連結表列元素，若未指定[sep]，則無間隔(僅限表列元素皆為字串)
 \end{itemize}
-\subsubsection{list範例}
-\label{sec:org609a909}
+\item list 範例
+\label{sec:org11ebc75}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-data = ['John', [95, 118], 'May', 100]
-print(len(data))
-print(len(data[1]))
-print(list('TNFSH'))
-data.clear()  #清空list
-data.append(35)
-print(data)
-data1 = [89, 'James', 100]
-data.extend(data1)
-print(data)
-data.remove('James')
-print(data)
-data.insert(1, 200)
-print(data)
-data.pop()
-data.reverse()
-print(data)
-print(sum(data))
-data.sort()
-print(data)
-# string
-data_s = ["a", "b", "c"]
-sep = "-"
-print(sep.join(data_s))
+  data = ['John', [95, 118], 'May', 100]
+  print(len(data))
+  print(len(data[1]))
+  print(list('TNFSH'))
+  data.clear()  #清空list
+  data.append(35)
+  print(data)
+  data1 = [89, 'James', 100]
+  data.extend(data1)
+  print(data)
+  data.remove('James')
+  print(data)
+  data.insert(1, 200)
+  print(data)
+  data.pop()
+  data.reverse()
+  print(data)
+  print(sum(data))
+  data.sort()
+  print(data)
+  # string
+  data_s = ["a", "b", "c"]
+  sep = "-"
+  print(sep.join(data_s))
 \end{lstlisting}
 
 \begin{verbatim}
 4
 2
 ['T', 'N', 'F', 'S', 'H']
+[]
 [35]
 [35, 89, 'James', 100]
 [35, 89, 100]
@@ -1344,54 +1530,61 @@ print(sep.join(data_s))
 a-b-c
 \end{verbatim}
 
-\subsubsection{list練習}
-\label{sec:org2560206}
+\item list 練習
+\label{sec:orgecc924a}
 \begin{itemize}
-\item 連續輸入成績(輸入-1結束)，將成績由高至低排序輸出，並輸出總分、平均
+\item 連續輸入成績(輸入-1 結束)，將成績由高至低排序輸出，並輸出總分、平均
 \end{itemize}
 \lstset{breaklines=true,language=Python,label=分數排序,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 score = []
+sum = 0
 while(True):
     sc = int(input())
     if (sc != -1):
         score.append(sc)
-    else: 
+        sum += sc
+    else:
         break
 score.sort(reverse=True)
 print(score)
+print('全班總分：{0:d},全班平均：{1:0.2f}'.format(sum, sum/len(score)))
 \end{lstlisting}
-
+\begin{itemize}
+\item 連續輸入成績(加入提示字元)
+\end{itemize}
 \lstset{breaklines=true,language=Python,label=計算機,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-sum = 0
-grades = []
-for i in range(0, 5):
-    x = int(input("請輸入第" + str(i + 1) + "個成績: "))
-    grades.append(x)
-    sum += x
-print(sum/5)
-print(grades)
+  sum = 0
+  grades = []
+  for i in range(0, 5):
+      x = int(input("請輸入第" + str(i + 1) + "個成績: "))
+      grades.append(x)
+      sum += x
+  print(sum/5)
+  print(grades)
 \end{lstlisting}
+\end{enumerate}
 
-\subsection{元組tuple}
-\label{sec:orgbbd4611}
-\subsubsection{資料格式}
-\label{sec:org04132bd}
+\subsection{元組 tuple}
+\label{sec:orgbdf84ef}
+\begin{enumerate}
+\item 資料格式
+\label{sec:org63d2bf4}
 \begin{itemize}
 \item 資料格式：以( )將不同型態的資料含括起來，以 , 分隔
-\item 元組中的資料是有序排列，從0開始編號
-\item 格式：元組名稱 = (元素1, 元素2, … )
-\item 與表列list類似，但元組tuple內的元素不能修改
+\item 元組中的資料是有序排列，從 0 開始編號
+\item 格式：元組名稱 = (元素 1, 元素 2, … )
+\item 與表列 list 類似，但元組 tuple 內的元素不能修改
 \end{itemize}
-\subsubsection{範例}
-\label{sec:orga4f0c1c}
+\item 範例
+\label{sec:orgf52536b}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-data = ( 'John', [95, 118], 'May', 100 )
-print(data[1])
-tup1 = (53, )    #只有一個元素時，其後要加逗號
-print(tup1)
+  data = ( 'John', [95, 118], 'May', 100 )
+  print(data[1])
+  tup1 = (53, )    #只有一個元素時，其後要加逗號
+  print(tup1)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1399,115 +1592,117 @@ print(tup1)
 (53,)
 \end{verbatim}
 
-\subsubsection{練習: 史上最強掌法}
-\label{sec:org0e4bb8d}
+\item 練習: 史上最強掌法
+\label{sec:org2942bd3}
 自從鐵掌無敵馬掌門出任武林盟主後，綠林豪傑一片哀鴻，民不聊生，痛苦指數破表，眾家名門弟子甚至遠避異鄉以求溫飽。近來馬掌門更獨創「油電雙掌」，以圖鞏固武林領導地位，此套掌法高深莫測，武林中人聞風喪膽，少林、武當各派高手不得不拋開門戶之見，齊聚「竹園崗」合作商議對策。目前僅由歴來幾次掌下逃生者的對戰經驗分析出以下數據
 \begin{center}
 \begin{tabular}{lr}
 與馬掌門對戰時間(秒) & 對戰者每秒接受之傷害值\\
 \hline
-120以下 & 2.10\\
+120 以下 & 2.10\\
 121\textasciitilde{}330 & 3.02\\
 331\textasciitilde{}500 & 4.39\\
 501\textasciitilde{}700 & 4.97\\
-701以上 & 5.63\\
+701 以上 & 5.63\\
 \end{tabular}
 \end{center}
 請你幫這些可憐的高手寫一個程式分析對戰時間與受傷指數間的關係。
-輸入：0 \textasciitilde{} 10000秒之間任意值
+輸入：0 \textasciitilde{} 10000 秒之間任意值
 輸出：受傷指數
-\subsubsection{解1}
-\label{sec:org9cf8481}
+\item 解 1
+\label{sec:org2f593df}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-#sec = input()
-sec = 800
-if sec <= 120:
-    print(sec*2.10)
-elif sec > 120 and sec <= 330:
-    print(120*2.10+(sec-120)*3.02)
-elif sec > 330 and sec <= 500:
-    print(120*2.10+(330-120)*3.02+(sec-300)*4.39)
-elif sec > 500 and sec <= 700:
-    print(120*2.10+(330-120)*3.02+(500-330)*4.39+(sec-500)*4.97)
-elif sec > 700:
-    print(120*2.10+(330-120)*3.02+(500-330)*4.39+(700-500)*4.97+(sec-700)*5.63)
+  #sec = input()
+  sec = 800
+  if sec <= 120:
+      print(sec*2.10)
+  elif sec > 120 and sec <= 330:
+      print(120*2.10+(sec-120)*3.02)
+  elif sec > 330 and sec <= 500:
+      print(120*2.10+(330-120)*3.02+(sec-300)*4.39)
+  elif sec > 500 and sec <= 700:
+      print(120*2.10+(330-120)*3.02+(500-330)*4.39+(sec-500)*4.97)
+  elif sec > 700:
+      print(120*2.10+(330-120)*3.02+(500-330)*4.39+(700-500)*4.97+(sec-700)*5.63)
 \end{lstlisting}
 
 \begin{verbatim}
 3189.5
 \end{verbatim}
 
-\subsubsection{解2}
-\label{sec:org05a260a}
+\item 解 2
+\label{sec:orga91b6d8}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-#sec = input()
-sec = 800
-hurt = 0
-gap = (700, 500, 330, 120, 0)
-rate = (5.63, 4.97, 4.39, 3.02, 2.10)
-for i in range(5):
-    if sec > gap[i]:
-        hurt += (sec-gap[i])*rate[i]
-        sec = gap[i]
-print(hurt)
+  #sec = input()
+  sec = 800
+  hurt = 0
+  gap = (700, 500, 330, 120, 0)
+  rate = (5.63, 4.97, 4.39, 3.02, 2.10)
+  for i in range(5):
+      if sec > gap[i]:
+          hurt += (sec-gap[i])*rate[i]
+          sec = gap[i]
+  print(hurt)
 \end{lstlisting}
 
 \begin{verbatim}
 3189.5
 \end{verbatim}
+\end{enumerate}
 
-\subsection{字典dict}
-\label{sec:org917675d}
-\subsubsection{資料格式}
-\label{sec:orgc0dcbd2}
+\subsection{字典 dict}
+\label{sec:org890ade9}
+\begin{enumerate}
+\item 資料格式
+\label{sec:org28ff325}
 \begin{itemize}
 \item 以\{ \}將各組鍵:值對應資料含括起來，以 , 分隔
 \item 字典中的資料是無序的
 \item 格式：字典名稱 = \{k1:v1, k2:v2,  … \}
 \item 範例：
-\item 註：若字典中有相同的key，則會取出最後的value
+\item 註：若字典中有相同的 key，則會取出最後的 value
 \end{itemize}
-\subsubsection{範例}
-\label{sec:org600da26}
+\item 範例
+\label{sec:orga3cd3c8}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-data = { 'John': 95,  'May': 100 }
-print(data['May'])
+  data = { 'John': 95,  'May': 100 }
+  print(data['May'])
 \end{lstlisting}
 
 \begin{verbatim}
 100
 \end{verbatim}
-\subsubsection{dic操作}
-\label{sec:orgb3d7402}
+\item dic 操作
+\label{sec:org03d5008}
 \begin{itemize}
 \item 新增、修改、刪除
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-data = { 'John': 95,  'May': 100 }
-# 新增
-data['Harrison'] = 88
-# 修改
-data['John'] = 99
-# 刪除鍵值對
-del data['John']
-print(data)
-# 刪除dic
-del data
-# print(data) --> NameError: name 'data' is not defined
+  data = { 'John': 95,  'May': 100 }
+  # 新增
+  data['Harrison'] = 88
+  # 修改
+  data['John'] = 99
+  # 刪除鍵值對
+  del data['John']
+  print(data)
+  # 刪除dic
+  del data
+  # print(data) --> NameError: name 'data' is not defined
 \end{lstlisting}
 
 \begin{verbatim}
 {'May': 100, 'Harrison': 88}
 \end{verbatim}
-\subsubsection{dic method}
-\label{sec:org5ab8511}
+\item dic method
+\label{sec:org963da46}
 \begin{enumerate}
 \item 增/剛
-\label{sec:orgfad2675}
+\label{sec:orga7418b4}
 \begin{itemize}
 \item <dict>.clear()
 \item <dict>.popitem()
@@ -1515,13 +1710,13 @@ del data
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-data = { 'John': 95,  'May': 100, 'John': 105 }
-data1 = data.copy()
-print("data1 = data.copy():",data1.copy())
-print("data:",data)
-print("data.clear():",data.clear())
-pop1 = data1.popitem()
-print(pop1)
+  data = { 'John': 95,  'May': 100, 'John': 105 }
+  data1 = data.copy()
+  print("data1 = data.copy():",data1.copy())
+  print("data:",data)
+  print("data.clear():",data.clear())
+  pop1 = data1.popitem()
+  print(pop1)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1532,7 +1727,7 @@ data.clear(): None
 \end{verbatim}
 
 \item 取值
-\label{sec:orgba6b2c4}
+\label{sec:org4d1ed13}
 \begin{itemize}
 \item <dict>.get(key, default=None)
 \item <dict>.items()
@@ -1541,24 +1736,24 @@ data.clear(): None
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-data = { 'John': 95,  'May': 100, 'John': 105 }
+data = { 'Vanessa': 95,  'May': 100, 'John': 105 }
 print("data.get('John'):",data.get('John'))
 print("data.items():",data.items())
 print("data.keys():",data.keys())
-print("data.values()",data.values())
+print("data.values(),data.values"())
 \end{lstlisting}
 
 \begin{verbatim}
 data.get('John'): 105
-data.items(): dict_items([('John', 105), ('May', 100)])
-data.keys(): dict_keys(['John', 'May'])
-data.values() dict_values([105, 100])
+data.items(): dict_items([('Vanessa', 95), ('May', 100), ('John', 105)])
+data.keys(): dict_keys(['Vanessa', 'May', 'John'])
+data.values() dict_values([95, 100, 105])
 \end{verbatim}
 
 \item fromkes
-\label{sec:org6c73357}
+\label{sec:org6567855}
 \begin{itemize}
-\item <dict>.fromkes(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value為字典所有鍵對應的初始值。
+\item <dict>.fromkes(<seq>[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value 為字典所有鍵對應的初始值。
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
@@ -1575,82 +1770,89 @@ print(data2)
 {'Vanissa': 100, 'May': 100, 'John': 100}
 \end{verbatim}
 \end{enumerate}
+\end{enumerate}
 
 \subsection{List v.s. Tuple}
-\label{sec:org8d8d909}
-二者的差異與適用時機\footnote{\href{https://www.programiz.com/python-programming/list-vs-tuples}{Python List vs. Tuples}}：
-\subsubsection{能否改變內容}
-\label{sec:org3089800}
+\label{sec:org7274214}
+二者的差異與適用時機\textsuperscript{\ref{org3f5d51c}}：
+\begin{enumerate}
+\item 能否改變內容
+\label{sec:org238e132}
 \begin{itemize}
 \item Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed.
 \end{itemize}
-\subsubsection{可讀性}
-\label{sec:orgaa36594}
+\item 可讀性
+\label{sec:orgecf35ce}
 \begin{itemize}
 \item Reading data is simpler when tuples are stored inside a list. For example,
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 [(2,4), (5,7), (3,8), (5,9)]
 \end{lstlisting}
-
 is easier to read than
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 [[2,4], [5,7], [3,8], [5,9]]
 \end{lstlisting}
 \end{itemize}
-
-\subsubsection{與dictionary的相似性}
-\label{sec:orgabefbf4}
+\item Tuple 與 dictionary 的相似性
+\label{sec:orgb279236}
 \begin{itemize}
 \item Tuples are commonly used as the equivalent of a dictionary without keys to store data. For Example,
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 [('Swordfish', 'Dominic Sena', 2001), ('Snowden', ' Oliver Stone', 2016), ('Taxi Driver', 'Martin Scorsese', 1976)]
 \end{lstlisting}
-
 \item Above example contains tuples inside list which has a list of movies.
-\item Tuple can also be used as key in dictionary due to their hashable and immutable nature whereas Lists are not used as key in a dictionary because list can't handle \_\(_{\text{hash}}\)\_\(_{\text{()}}\) and have mutable nature.
+\item Tuple can also be used as key in dictionary due to their hashable and immutable nature whereas Lists are not used as key in a dictionary because list can't handle \_\_hash\_\_() and have mutable nature.
+\end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 key_val= {('alpha','bravo'):123} #Valid
-key_val = {['alpha','bravo']:123} #Invalid
+#key_val = {['alpha','bravo']:123} #Invalid
+print(key_val)
+print(key_val.keys())
+print(key_val.values())
 \end{lstlisting}
-\end{itemize}
 
-\subsection{集合set}
-\label{sec:orgae3d601}
-\subsubsection{資料格式}
-\label{sec:org40acd07}
+\begin{verbatim}
+{('alpha', 'bravo'): 123}
+dict_keys([('alpha', 'bravo')])
+dict_values([123])
+\end{verbatim}
+\end{enumerate}
+
+\subsection{集合 set}
+\label{sec:org14b51e2}
+\begin{enumerate}
+\item 資料格式
+\label{sec:orgcac7f3e}
 \begin{itemize}
-\item 資料格式：以\{\}將各組資料含括起來，以','分隔,或以set()建立
+\item 資料格式：以\{\}將各組資料含括起來，以','分隔,或以 set()建立
 \item 集合中的資料是無序的，會自動刪除重複元素
 \item 格式
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-      集合名稱 = {元素1, 元素2, … }
+集合名稱 = {元素1, 元素2, … }
 \end{lstlisting}
-
 \item 註：set(<seq>)函式的參數<seq>可為字串、表列、元組、字典
 \end{itemize}
-\subsubsection{範例}
-\label{sec:orgc369368}
+\item 範例
+\label{sec:org98f8578}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-S1 = { 'John', 95, 'May', 100, 'John' } 		
+S1 = { 'John', 95, 'May', 100, 'John' } 
 S2 = set('apple')  ⇒ {'l', 'a', 'e', 'p'}  # 集合的資料是無序的
 \end{lstlisting}
-
-\subsubsection{元素新增刪除}
-\label{sec:org6ccd4d5}
+\item 元素新增刪除
+\label{sec:org5b45779}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
 <set>.add(<item>)
 <set>.remove(<item>)
 \end{lstlisting}
-
 \begin{itemize}
-\item remove()若無此item會發生錯誤
+\item remove()若無此 item 會發生錯誤
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
@@ -1662,11 +1864,11 @@ print(s)
 \end{lstlisting}
 
 \begin{verbatim}
-{'l', 'e', 'a', 'x', 'p'}
-{'l', 'e', 'a', 'x'}
+{'e', 'p', 'x', 'l', 'a'}
+{'e', 'x', 'l', 'a'}
 \end{verbatim}
-\subsubsection{集合運算}
-\label{sec:org3497023}
+\item 集合運算
+\label{sec:org7af7a66}
 \begin{center}
 \begin{tabular}{ll}
 運算 & 符號\\
@@ -1694,109 +1896,119 @@ print("'5' in b:", '5' in b)
 \end{lstlisting}
 
 \begin{verbatim}
-{'qq', 'TNFSH', '1234', '434'}
-a | b: {'1', '7', '2', '4', '3', '5'}
+{'1234', 'TNFSH', '434', 'qq'}
+a | b: {'4', '2', '1', '5', '7', '3'}
 a & b: {'3'}
 a - b: {'4', '2', '1'}
-b | a: {'1', '7', '2', '4', '5', '3'}
-a ^ b: {'7', '2', '5', '1', '4'}
+b | a: {'4', '5', '2', '1', '7', '3'}
+a ^ b: {'4', '2', '7', '5', '1'}
 '5' in a: False
 '5' in b: True
 \end{verbatim}
-\subsubsection{詳細語法}
-\label{sec:org0d63430}
+\item 詳細語法
+\label{sec:org7c66339}
 \begin{itemize}
 \item \href{https://www.runoob.com/python3/python3-set.html}{Python3 集合 }
 \end{itemize}
-\subsubsection{練習：\href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php}{skyoj ⇒ Contest ⇒ Python練習題(資料型別)}}
-\label{sec:org26e7617}
+\end{enumerate}
 
 \subsection{資料型別整理}
-\label{sec:org275d06b}
+\label{sec:org5a38568}
 \begin{center}
 \begin{tabular}{lllll}
 \hline
 資料型別 & 符號 & 資料可改? & 資料有序? & 資料類型\\
 \hline
-字串string & ' ' 或 " " & ✖️ & ✔️ & 相同(字元)\\
-表列list & [ ] & ✔️ & ✔️ & 可不同\\
-元組tuple & ( ) & ✖ & ️✔ & ️可不同\\
-字典dict & \{ \} & ✔️ & ✖️ & 相同(鍵:值)\\
-集合set & \{ \} & ✔️ & ✖️ & 可不同\\
+字串 string & ' ' 或 `` '' & ✖️ & ✔️ & 相同(字元)\\
+表列 list & [ ] & ✔️ & ✔️ & 可不同\\
+元組 tuple & ( ) & ✖ & ️✔ & ️可不同\\
+字典 dict & \{ \} & ✔️ & ✖️ & 相同(鍵:值)\\
+集合 set & \{ \} & ✔️ & ✖️ & 可不同\\
 \hline
 \end{tabular}
 \end{center}
 
+\subsection{實作練習}
+\label{sec:org3d5fd50}
+\begin{itemize}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/169/}{skyoj 160. 神文/String}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/170/}{skyoj 170. 日期強迫症/String}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/171/}{skyoj 171. Decrypt the cipher/dict}
+\item \href{http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/172/}{skyoj 172. Sim-Scoreboard/list}
+\end{itemize}
+
 \newpage
+
 \section{FUNCTION}
-\label{sec:org2644f65}
+\label{sec:orgc0212cc}
 \subsection{函式(function)基本操作}
-\label{sec:org247cde2}
-\subsubsection{函式(function)的重要性}
-\label{sec:orgaeb6689}
+\label{sec:org9a38325}
+\begin{enumerate}
+\item 函式(function)的重要性
+\label{sec:org8b4cce0}
 \begin{itemize}
-\item function為一段程式的集合，可視為一個獨立的區段。
-\item function可重覆使用，因此為結構化程式語言的重要元素。 可將龐大複雜的程式分解為小問題，由多人分別以function解決，縮短開發時間。
-\item function可區分為以下三類：
+\item function 為一段程式的集合，可視為一個獨立的區段。
+\item function 可重覆使用，因此為結構化程式語言的重要元素。 可將龐大複雜的程式分解為小問題，由多人分別以 function 解決，縮短開發時間。
+\item function 可區分為以下三類：
 \begin{itemize}
-\item Python內建function，如: print()、len()、int()、str()\ldots{}。
-\item 第三方公司所開發的模組module(多個function組合)。
-\item 自定義function。
+\item Python 內建 function，如: print()、len()、int()、str()\ldots{}。
+\item 第三方公司所開發的模組 module(多個 function 組合)。
+\item 自定義 function。
 \end{itemize}
 \end{itemize}
-\subsubsection{自定義函式}
-\label{sec:orga90a9f9}
+\item 自定義函式
+\label{sec:orgd7e501a}
 \begin{itemize}
 \item 宣告語法
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-def 函式名稱 ( [參數1, 參數2, ...] ):
-    程式區塊 
-    [ return 值 ]
+    def 函式名稱 ( [參數1, 參數2, ...] ):
+        程式區塊 
+        [ return 值 ]
 \end{lstlisting}
 \item 說明 :
 \begin{itemize}
-\item 參數可省略，亦即呼叫function不需傳入任何資料(引數)。
-\item 若無回傳值，則無需return。
+\item 參數可省略，亦即呼叫 function 不需傳入任何資料(引數)。
+\item 若無回傳值，則無需 return。
 \item 若多個回傳值可用逗號隔開。
 \end{itemize}
 \end{itemize}
-\subsubsection{自定義函式的呼叫}
-\label{sec:orgb4c8ac2}
+\item 自定義函式的呼叫
+\label{sec:orgb4174fa}
 \begin{itemize}
 \item 呼叫函式語法：
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-[ 變數 ] = 函式名稱( [引數1, 引數2, ... ] )
+    [ 變數 ] = 函式名稱( [引數1, 引數2, ... ] )
 \end{lstlisting}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-def circle(r):
-    return r*r*3.14;
-
-r = 10
-print('半徑%d的圓面積：%d' %(r, circle(r)))
+    def circle(r):
+        return r*r*3.14;
+  
+    r = 10
+    print('半徑%d的圓面積：%d' %(r, circle(r)))
 \end{lstlisting}
 
 \begin{verbatim}
-半徑10的圓面積：314
+半徑 10 的圓面積：314
 \end{verbatim}
 \end{itemize}
 
-\subsubsection{多參數函式}
-\label{sec:orgf547e85}
+\item 多參數函式
+\label{sec:orgcc1c1e4}
 \begin{itemize}
 \item 呼叫函式時引數(arugment)個數
 \item 自定義函式的參數(parameter)個數
 \item 設定參數初始值。 若呼叫時無引數傳入， 則使用其初始值。
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-def printInfo(name, school='TNFSH'):
-    print('學生:',name,'就讀:',school)
-    return
-
-printInfo(name='James')
-printInfo(name='Harrison',school='TNSSH')
+    def printInfo(name, school='TNFSH'):
+        print('學生:',name,'就讀:',school)
+        return
+  
+    printInfo(name='James')
+    printInfo(name='Harrison',school='TNSSH')
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1805,35 +2017,36 @@ printInfo(name='Harrison',school='TNSSH')
 \end{verbatim}
 \end{itemize}
 
-\subsubsection{多回傳值函式}
-\label{sec:org4c09874}
+\item 多回傳值函式
+\label{sec:org28c697e}
 \begin{itemize}
 \item 呼叫函式多個回傳值語法
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-[ 變數1, 變數2, ... ] = 函式名稱( [引數1, 引數2, ... ] )
+    [ 變數1, 變數2, ... ] = 函式名稱( [引數1, 引數2, ... ] )
 \end{lstlisting}
 
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-def scoreProcessor(score):
-    sum = 0
-    for x in score:
-        sum += x
-    return sum, sum/len(score)
-
-scores = (21, 33, 83, 100, 75, 60)
-sum, avg = scoreProcessor(scores)
-print('sum=',sum,',average=',avg)
+    def scoreProcessor(score):
+        sum = 0
+        for x in score:
+            sum += x
+        return sum, sum/len(score)
+  
+    scores = (21, 33, 83, 100, 75, 60)
+    sum, avg = scoreProcessor(scores)
+    print('sum=',sum,',average=',avg)
 \end{lstlisting}
 
 \begin{verbatim}
 sum= 372 ,average= 62.0
 \end{verbatim}
 \end{itemize}
+\end{enumerate}
 
 \subsection{引數(argument)的傳遞}
-\label{sec:orgcedfa66}
+\label{sec:org3b22e8a}
 \begin{itemize}
 \item 每一個函式都是獨立的，所以函式只知道自己程式區域內的變數，不認識函式外的變數。
 \item 變數因其所宣告位置，可區分為全域變數(Global variable)、區域變數(Local variable)。
@@ -1844,15 +2057,15 @@ sum= 372 ,average= 62.0
 \item 全域變數與區域變數範例
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-def printGlobal(x, y):
-    print(a+b)
-
-def printLocal(a, b):
-    print(a+b)
-
-a, b = 5, 10
-printGlobal(10, 10)
-printLocal(10,10)
+    def printGlobal(x, y):
+        print(a+b)
+  
+    def printLocal(a, b):
+        print(a+b)
+  
+    a, b = 5, 10
+    printGlobal(10, 10)
+    printLocal(10,10)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1861,10 +2074,11 @@ printLocal(10,10)
 \end{verbatim}
 \end{itemize}
 
-\subsubsection{傳值與傳址}
-\label{sec:orgc2f0d21}
+\begin{enumerate}
+\item 傳值與傳址
+\label{sec:orgc1d5a37}
 \begin{itemize}
-\item 引數(argument)的傳遞分為兩種方式，由Python自動判別：
+\item 引數(argument)的傳遞分為兩種方式，由 Python 自動判別：
 \begin{itemize}
 \item 傳值呼叫(Call-by-Value)
 \item 傳址呼叫(Call-by-Reference)
@@ -1875,24 +2089,24 @@ printLocal(10,10)
 引數傳遞 & 傳遞內容 & 參數改變 & 資料型別\\
 \hline
 傳值呼叫 call-by-value & 引數值 & 否 & bool, int, float, str, tuple, chr\\
-傳址呼叫call-by-reference & 引數記憶體位址 & 是 & list, dict, set\\
+傳址呼叫 call-by-reference & 引數記憶體位址 & 是 & list, dict, set\\
 \end{tabular}
 \end{center}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-# str傳值、list傳址
-def ccc(name, score):
-    name = 'Amy'
-    score.append(99)
-    print('--函式內輸出---')
-    print('name:', name,'\tscore:',score)
+  # str傳值、list傳址
+  def ccc(name, score):
+      name = 'Amy'
+      score.append(99)
+      print('--函式內輸出---')
+      print('name:', name,'\tscore:',score)
 
-name = 'Josh'
-score = [77, 88]
-
-ccc(name, score)
-print('--主程式輸出--')
-print('name:', name,'\tscore:',score)
+  name = 'Josh'
+  score = [77, 88]
+  
+  ccc(name, score)
+  print('--主程式輸出--')
+  print('name:', name,'\tscore:',score)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1901,81 +2115,83 @@ name: Amy 	score: [77, 88, 99]
 --主程式輸出--
 name: Josh 	score: [77, 88, 99]
 \end{verbatim}
+\end{enumerate}
 
 \subsection{模組(module)}
-\label{sec:org379ae3a}
-\subsubsection{匯入模組語法：}
-\label{sec:org6b2a9ed}
+\label{sec:orga05735c}
+\begin{enumerate}
+\item 匯入模組語法：
+\label{sec:org639c2da}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-import 模組1 [, 模組2, ... ] 
-from 模組 import 函式
+  import 模組1 [, 模組2, ... ] 
+  from 模組 import 函式
 \end{lstlisting}
-\subsubsection{範例}
-\label{sec:org4dfbb81}
+\item 範例
+\label{sec:orgc9ccc24}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-import random as ran
+  import random as ran
 
-print(ran.randint(1, 100))
-print(ran.randint(1, 100))
-print(ran.randint(1, 100))
+  print(ran.randint(1, 100))
+  print(ran.randint(1, 100))
+  print(ran.randint(1, 100))
 \end{lstlisting}
 
 \begin{verbatim}
-9
-80
-40
+50
+78
+16
 \end{verbatim}
+\end{enumerate}
 \subsection{遞迴(recursive)}
-\label{sec:orgd0a0c0b}
-\subsubsection{語法}
-\label{sec:org760368c}
+\label{sec:org7a58718}
+\begin{enumerate}
+\item 語法
+\label{sec:org1dbe5d9}
 \begin{itemize}
 \item 遞迴(recursive)：一個函式直接呼叫函式本身
 \end{itemize}
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-def fib(n):
-    if n == 1 or n == 2:
-        return 1
-    else:
-        return fib(n-1) + fib(n-2)
+  def fib(n):
+      if n == 1 or n == 2:
+          return 1
+      else:
+          return fib(n-1) + fib(n-2)
 
-print('The %d-th Fibonacci number = %d' %(10, fib(10)))
+  print('The %d-th Fibonacci number = %d' %(10, fib(10)))
 \end{lstlisting}
 
 \begin{verbatim}
 The 10-th Fibonacci number = 55
 \end{verbatim}
 
-\subsubsection{基本條件}
-\label{sec:orge6c9d22}
+\item 基本條件
+\label{sec:org32d5afc}
 \begin{itemize}
 \item 遞迴程式設計要滿足兩條件:
 \begin{enumerate}
 \item 遞迴關係式，如 
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-fib(n) = fib(n-1) + fib(n-2)
-sum(n) = n + sum(n-1) 
+       fib(n) = fib(n-1) + fib(n-2)
+       sum(n) = n + sum(n-1) 
 \end{lstlisting}
-
 \item 遞迴終止式，如
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-f(1) = f(2) = 1
-sum(0) = 0
+        f(1) = f(2) = 1
+        sum(0) = 0
 \end{lstlisting}
 \end{enumerate}
-
 \item 範例:GCD-while
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-m, n = 20, 50
-while (n>0):
-    m, n = n, m % n
-print(m)
+    m, n = 20, 50
+    while (n>0):
+        m, n = n, m % n
+    print(m)
 \end{lstlisting}
 
 \begin{verbatim}
@@ -1983,55 +2199,32 @@ print(m)
 \end{verbatim}
 \end{itemize}
 
-\subsubsection{範例}
-\label{sec:org3f06475}
+\item 範例
+\label{sec:orge55370e}
 \begin{itemize}
 \item 範例:GCD-recursive
 \lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
 \begin{lstlisting}
-def gcd(a, b):
-    if b == 0:
-        return a
-    return gcd(b, a % b)
-
-a, b = 10, 50
-print(gcd(a, b))
+    def gcd(a, b):
+        if b == 0:
+            return a
+        return gcd(b, a % b)
+  
+    a, b = 10, 50
+    print(gcd(a, b))
 \end{lstlisting}
 
 \begin{verbatim}
 10
 \end{verbatim}
 \end{itemize}
+\end{enumerate}
 
-\subsubsection{練習}
-\label{sec:org145dd4b}
+\subsection{實作練習}
+\label{sec:orgadfdd58}
 \begin{itemize}
-\item 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入5，輸出5! = 120。
-\item 計算C(n, r)組合數。 輸入 n, r，輸出C(n, r) = XX。如輸入9, 4，輸出C(9, 4) = 126。
-\item 計算擴展歐幾里德。 輸入 a, b，輸出a*x + b*y = gcd。如輸入3, 5，輸出3*2 + 5*-1 = 1
-\lstset{breaklines=true,language=Python,label= ,caption= ,captionpos=b,firstnumber=1,numbers=left}
-\begin{lstlisting}
-def ext_euclid(a, b):
-    old_s,s=1,0
-    old_t,t=0,1
-    old_r,r=a,b
-    if b == 0:
-        return 1, 0, a
-    else:
-        while(r!=0):
-            q=old_r//r
-            old_r,r=r,old_r-q*r
-            old_s,s=s,old_s-q*s
-            old_t,t=t,old_t-q*t
-    return old_s, old_t, old_r
-
-a, b, c = ext_euclid(240, 33)
-print('%dx + %dy = %d' %(a, b, c))
-\end{lstlisting}
-
-\begin{verbatim}
-4x + -29y = 3
-\end{verbatim}
+\item 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入 5，輸出 5! = 120。
+\item 計算 C(n, r)組合數。 輸入 n, r，輸出 C(n, r) = XX。如輸入 9, 4，輸出 C(9, 4) = 126。
 \end{itemize}
 
 \newpage
