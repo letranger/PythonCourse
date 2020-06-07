@@ -1,0 +1,39 @@
+#    -*- mode: org -*-
+
+
+Archived entries from file /Volumes/Vanessa/GoogleDrive/My Drive/Letranger/org/PythonCourse/PythonAdvanced.org
+
+
+* 折線示範#1
+  :PROPERTIES:
+  :ARCHIVE_TIME: 2020-05-28 Thu 23:20
+  :ARCHIVE_FILE: /Volumes/Vanessa/GoogleDrive/My Drive/Letranger/org/PythonCourse/PythonAdvanced.org
+  :ARCHIVE_OLPATH: Matplotlib/Line Chart
+  :ARCHIVE_CATEGORY: PythonAdvanced
+  :END:
+#+BEGIN_SRC python -r -n :results output :exports both
+import matplotlib.pyplot as plt
+import numpy as np
+
+x1 = [1, 2, 3, 4, 5, 6]
+y1 = [1, 2, 3, 4, 5, 6]
+x2 = np.arange(0, 3, 0.3)
+x3 = np.arange(8).reshape(2, 4)
+print(x3)
+print(x3+3)
+plt.plot(y1, 'c-p', x2, x2**2, 'ms:', x3, x3+3, '-*')
+plt.savefig('line2.png', dpi=300)
+#+END_SRC
+#+RESULTS:
+: [[0 1 2 3]
+:  [4 5 6 7]]
+: [[ 3  4  5  6]
+:  [ 7  8  9 10]]
+#+CAPTION: 簡單的折線圖形 2
+#+LABEL: fig:SimpleSin
+#+name: fig:SimpleSin
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 400
+[[file:line2.png]]
+

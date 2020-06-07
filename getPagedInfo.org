@@ -1,0 +1,36 @@
+#+TITLE: Get Paged Info
+
+#+begin_src python -r -n :results output :exports both
+import sys
+import urllib3
+import time
+from bs4 import BeautifulSoup
+from selenium import webdriver
+
+def substring(whole, sub1, sub2):
+    return whole[whole.index(sub1)+len(sub1) : whole.index(sub2)]
+
+url = 'https://university.1111.com.tw/univ_depsearchsub.aspx?mgno=1&fno=2&agent=out_careerdata_university'
+
+driver = webdriver.Chrome('/usr/local/bin/chromedriver')
+driver.get(url)
+
+soup = BeautifulSoup(driver.page_source, "lxml")
+
+schools = list(soup.find_all("span", id=lambda value: value and value.startswith("main_lvCollegeMajor")))
+
+print(schools)
+i = 0
+for school in schools:
+    i += 1
+    print(i, end=": ")
+    print(substring(str(school), "</i>", "</a>"))
+#+end_src
+
+#+RESULTS:
+: [<span id="main_lvCollegeMajor_lbschoolname_0"> <a href="univ_depinfo.aspx?sno=100101"> <i class="uk-icon-building"></i>國立臺北商業大學</a></span>, <span id="main_lvCollegeMajor_lbschoolname_1"> <a href="univ_depinfo.aspx?sno=100102"> <i class="uk-icon-university"></i>國立臺灣大學</a></span>, <span id="main_lvCollegeMajor_lbschoolname_2"> <a href="univ_depinfo.aspx?sno=100104"> <i class="uk-icon-building"></i>國立臺灣科技大學</a></span>, <span id="main_lvCollegeMajor_lbschoolname_3"> <a href="univ_depinfo.aspx?sno=100109"> <i class="uk-icon-building"></i>國立臺北護理健康大學</a></span>, <span id="main_lvCollegeMajor_lbschoolname_4"> <a href="univ_depinfo.aspx?sno=100111"> <i class="uk-icon-university"></i>國立政治大學</a></span>]
+: 1: 國立臺北商業大學
+: 2: 國立臺灣大學
+: 3: 國立臺灣科技大學
+: 4: 國立臺北護理健康大學
+: 5: 國立政治大學

@@ -1,0 +1,66 @@
+#+TITLE: 研習彩蛋
+
+* 作答記錄讀取
+#+begin_src python -r -n :results output :exports both
+import pandas as pd
+#process history
+history = pd.read_csv("~/Downloads/104.csv")
+h1 = history.loc[history.uid >= 4336].sort_values(by='uid')
+h2 = h1.loc[h1.uid <= 4372]
+#print(h2)
+# process name
+name = pd.read_csv("~/Downloads/account.csv")
+n1 = name[['uid','nickname']].sort_values(by = 'uid')
+#print(n1)
+#merge two df
+mg_left=pd.merge(left=h2, right=n1, how='left', left_on='uid', right_on='uid')
+#print(mg_left.sort_values(by='uid'))
+# item
+itemsAry = [["QA",288],["A",58],["A",59],["A",153],["B",60],["B",63],["B",154],["B",155],["C",61],["C",62],["C",156],["C",247],["D",101],["D",102],["D",103],["D",274],["E",107],["E",108],["E",109],["B1",282],["B1",286],["B2",287],["B2",118],["B3",281],["B3",283],["B4",284],["B4",285]]
+itemsdf = pd.DataFrame(itemsAry, columns = ["item", "pid"])
+#print(itemsdf)
+scores = pd.merge(left=mg_left, right=itemsdf, how = 'left', left_on = 'pid', right_on = 'pid')
+done=scores[['nickname','item','score','timestamp']]
+
+done['ni']=done['nickname'].astype(str) + done['item'].astype(str)
+print(done)
+done1 = done.drop_duplicates(subset='ni', keep='last')
+done2 = done1[['nickname', 'item', 'score']]
+done3 = done2.pivot(index='nickname', columns='item', values='score')
+done4 = done3.fillna(0)
+done4 = done4[[ 'A', 'B', 'C', 'D', 'E', 'B1', 'B2', 'B3', 'B4']]
+print(done4.columns.values)
+done4['ALL'] = done4.sum(axis=1)
+print(done4)
+done4.to_csv("~/Downloads/TNFSH_109上學期期中考_104.csv")
+
+#+end_src
+
+* 統計錄影時間
+#+begin_src python -r -n :results output :exports both
+from os import listdir
+from os.path import join
+from moviepy.editor import VideoFileClip
+
+def caltime(path):
+    files = listdir(path)
+
+    tot = 0
+    for f in files:
+        if f.endswith("mp4"):
+           fullpath = join(path, f)
+           clip = VideoFileClip(fullpath)
+           tot += clip.duration
+    return tot/3600
+
+path = "/Users/letranger/Desktop/研習/入門"
+print("入門: %.2f小時" %(caltime(path)))
+path = "/Users/letranger/Desktop/研習/進階"
+print("入門: %.2f小時" %(caltime(path)))
+
+
+#+end_src
+
+#+RESULTS:
+: 入門: 3.27 小時
+: 入門: 5.66 小時

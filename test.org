@@ -1,5 +1,60 @@
 #+TITLE: Test
 
+* IPMap
+#+begin_src python -r -n :results output :exports both
+import pandas as pd
+from mapsplotlib import mapsplot as mplt
+from gmplot import gmplot
+import numpy as np
+import subprocess, os, platform 
+
+import IP2Location
+
+IP2LocObj = IP2Location.IP2Location()
+IP2LocObj.open("/Users/letranger/Downloads/IP2L/IP2LOCATION-LITE-DB5.BIN")
+
+df = pd.read_csv("~/Downloads/ips.txt", header=None)
+df.columns = ["ip"]
+
+def ipInfo(addr=''):
+    from urllib.request import urlopen
+    from json import load
+    if addr == '':
+        url = 'https://ipinfo.io/json'
+    else:
+        url = 'https://ipinfo.io/' + addr + '/json'
+    res = urlopen(url)
+    #response from url(if res==None then check connection)
+    data = load(res)
+
+    return float(data['loc'].split(',')[0]), float(data['loc'].split(',')[1])
+
+lat_values = []
+lon_values = []
+for ip in df.ip:
+    #lat, lon = ipInfo(ip)
+
+    lat = IP2LocObj.get_all(ip).latitude
+    lon = IP2LocObj.get_all(ip).longitude
+    lat_values.append(lat)
+    lon_values.append(lon)
+center_lat = np.mean(lat_values)
+center_lon = np.mean(lon_values)
+#
+center_lon = lon
+zoom = 5
+#
+gmap = gmplot.GoogleMapPlotter(center_lat, center_lon, zoom)
+gmap.apikey = "AIzaSyDeRNMnZ__VnQDiATiuz4kPjF_c9r1kWe8"
+#gmap.apikey = "p9gd5OxUypv12GIr3lvBKepcJi0"
+gmap.scatter(lat_values, lon_values)
+gmap.draw('my_map.html')
+subprocess.call(('open', 'my_map.html'))
+#+end_src
+
+#+RESULTS:
+*
+
 * Python 語法
 #+BEGIN_SRC python :results output :exports both
 x = 3
