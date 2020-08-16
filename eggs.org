@@ -1,6 +1,13 @@
 #+TITLE: 研習彩蛋
 
 * 作答記錄讀取
+=this is a test=
+/another test/
++how about this+
++中文可以嗎+
+/中文/
+*中文*
+
 #+begin_src python -r -n :results output :exports both
 import pandas as pd
 #process history
@@ -51,6 +58,7 @@ def caltime(path):
            fullpath = join(path, f)
            clip = VideoFileClip(fullpath)
            tot += clip.duration
+           print(clip.duration/50,": ", fullpath)
     return tot/3600
 
 path = "/Users/letranger/Desktop/研習/入門"
@@ -62,5 +70,21 @@ print("入門: %.2f小時" %(caltime(path)))
 #+end_src
 
 #+RESULTS:
-: 入門: 3.27 小時
-: 入門: 5.66 小時
+#+begin_example
+42.9666 :  /Users/letranger/Desktop/研習/入門/3-Python變數與輸入輸出.mp4
+22.4354 :  /Users/letranger/Desktop/研習/入門/9-彩蛋.mp4
+9.608600000000001 :  /Users/letranger/Desktop/研習/入門/4-Python運算元.mp4
+8.8154 :  /Users/letranger/Desktop/研習/入門/5-Python條件判斷.mp4
+17.0126 :  /Users/letranger/Desktop/研習/入門/6-Python迴圈結構.mp4
+40.816 :  /Users/letranger/Desktop/研習/入門/2-Python環境建置.mp4
+20.722600000000003 :  /Users/letranger/Desktop/研習/入門/1-python簡介.mp4
+29.318 :  /Users/letranger/Desktop/研習/入門/8-Python函數.mp4
+44.06399999999999 :  /Users/letranger/Desktop/研習/入門/7-Python資料型別.mp4
+入門: 3.27小時
+75.9134 :  /Users/letranger/Desktop/研習/進階/3-Matplitlib.mp4
+104.8274 :  /Users/letranger/Desktop/研習/進階/4-Pandas.mp4
+81.2574 :  /Users/letranger/Desktop/研習/進階/1-python套件管理.mp4
+84.7934 :  /Users/letranger/Desktop/研習/進階/5-網路資料解析與爬蟲.mp4
+60.868 :  /Users/letranger/Desktop/研習/進階/2-Numpy.mp4
+入門: 5.66小時
+#+end_example

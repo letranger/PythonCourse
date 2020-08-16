@@ -1,153 +1,10 @@
 # -*- org-export-babel-evaluate: nil -*-
 #+Title: Basic Materials of Python Basic
 
-#+LANGUAGE: en
-#+LATEX_HEADER: \usepackage[AUTO]{babel}
-#+LATEX_HEADER: \addto\captionsenglish{\renewcommand\contentsname{Outline}}
-#+LaTeX_HEADER: \hypersetup{linktoc = all, colorlinks = true, urlcolor = DodgerBlue4, citecolor = PaleGreen1, linkcolor = black}
-#+LATEX_HEADER: \usepackage[UTF8, heading]{ctex}
-#+LATEX_HEADER: \usepackage{xltxtra}
-#+LATEX_HEADER: \usepackage{xeCJK}
-#+LATEX_HEADER: \usepackage{lmodern}
-#+LATEX_HEADER: \usepackage{verbatim}
-#+LATEX_HEADER: \usepackage{float}
-#+LATEX_HEADER: \usepackage{tikz}
-#+LATEX_HEADER: \usepackage{wrapfig}
-#+LATEX_HEADER: \usepackage{soul}
-#+LATEX_HEADER: \usepackage{textcomp}
-#+LATEX_HEADER: \usepackage{listing}
-#+LATEX_HEADER: \usepackage{geometry}
-#+LATEX_HEADER: \usepackage{algorithm}
-#+LATEX_HEADER: \usepackage{algorithmic}
-#+LATEX_HEADER: \usepackage{marvosym}
-#+LATEX_HEADER: \usepackage{wasysym}
-#+LATEX_HEADER: \usepackage{natbib}
-#+LATEX_HEADER: \usepackage{fancyhdr}
-#+LATEX_HEADER: \usepackage{fontspec,xunicode,xltxtra}
-#+LATEX_HEADER: \usepackage{CJKnumb}
-#+LATEX_HEADER: \usepackage{amsfonts}
-#+LATEX_HEADER: \usepackage[default]{sourcecodepro}
-#+LATEX_HEADER: \usepackage[T1]{fontenc}
-#+LATEX_HEADER: \setCJKmainfont{SimSun} % 設置缺省中文字體
-#+LATEX_HEADER: \setmainfont{Times New Roman} % 英文襯線字體
-#+LATEX_HEADER: \setsansfont{Source Code Pro} % 英文無襯線字體
-#+LATEX_HEADER: \setmonofont{Source Code Pro} % 英文等寬字體
-#+LATEX_HEADER: \setCJKmainfont[Scale=0.9]{Adobe Heiti Std} % 中文字體
-#+LATEX_HEADER: \setCJKmonofont[Scale=0.9]{Adobe Heiti Std}
-#+LATEX_HEADER: \usepackage{color}
-#+LATEX_HEADER: \RequirePackage{fancyvrb}
-#+LATEX_HEADER: \usepackage{placeins}
-#+LATEX_HEADER: \vspace{-0.2cm}
-#+LATEX_CLASS: article
-#+LATEX_CLASS_OPTIONS: [a4paper,12pt]
-#+LATEX_HEADER: \usepackage{xcolor}
-#+LATEX_HEADER: \hypersetup{pdfauthor={Name}}
-#+LATEX_HEADER: \definecolor{dkgreen}{rgb}{0,0.6,0}
-#+LATEX_HEADER: \definecolor{dred}{rgb}{0.545,0,0}
-#+LATEX_HEADER: \definecolor{dblue}{rgb}{0,0,0.545}
-#+LATEX_HEADER: \definecolor{lgrey}{rgb}{0.9,0.9,0.9}
-#+LATEX_HEADER: \definecolor{gray}{rgb}{0.4,0.4,0.4}
-#+LATEX_HEADER: \definecolor{darkblue}{rgb}{0.0,0.0,0.6}
-#+LATEX_HEADER: \definecolor{bubbles}{rgb}{0.91, 1.0, 1.0}
-#+LATEX_HEADER: \definecolor{foreground}{RGB}{220,220,204} % 淺灰
-#+LATEX_HEADER: \definecolor{background}{RGB}{62,62,62} % 淺黑
-#+LATEX_HEADER: \definecolor{preprocess}{RGB}{250,187,249} % 淺紫
-#+LATEX_HEADER: \definecolor{var}{RGB}{239,224,174} % 淺肉色
-#+LATEX_HEADER: \definecolor{string}{RGB}{154,150,230} % 淺紫色
-#+LATEX_HEADER: \definecolor{type}{RGB}{225,225,116} % 淺黃
-#+LATEX_HEADER: \definecolor{function}{RGB}{140,206,211} % 淺天藍
-#+LATEX_HEADER: \definecolor{keyword}{RGB}{239,224,174} % 淺肉色
-#+LATEX_HEADER: \definecolor{comment}{RGB}{180,98,4} % 深褐色
-#+LATEX_HEADER: \definecolor{doc}{RGB}{175,215,175} % 淺鉛綠
-#+LATEX_HEADER: \definecolor{comdil}{RGB}{111,128,111} % 深灰
-#+LATEX_HEADER: \definecolor{constant}{RGB}{220,162,170} % 粉紅
-#+LATEX_HEADER: \lstdefinelanguage{python}{
-#+LATEX_HEADER:  backgroundcolor=\color{bubbles},
-#+LATEX_HEADER:  basicstyle=\footnotesize \ttfamily \color{dblue} \small \mono \bfseries,
-#+LATEX_HEADER:  breakatwhitespace=false,
-#+LATEX_HEADER:  breaklines=true,
-#+LATEX_HEADER:  captionpos=b,
-#+LATEX_HEADER:  comment=[l]{\#},
-#+LATEX_HEADER:  morecomment=[s]{/*}{*/},
-#+LATEX_HEADER:  commentstyle=\color{comment} \slshape \small \itshape,
-#+LATEX_HEADER:  ndkeywords={boolean, throw, import, typeof, null, catch, switch, for, in, int, str, float, self, return, class, if ,elif, endif, while, do, else, True, False , catch, def},
-#+LATEX_HEADER:  ndkeywordstyle=\color{dred} \bfseries \small \mono,
-#+LATEX_HEADER:  identifierstyle=\color{black},
-#+LATEX_HEADER:  deletekeywords={...},
-#+LATEX_HEADER:  escapeinside={\%*}{*)},
-#+LATEX_HEADER:  frame=single,
-#+LATEX_HEADER:  frameround=tttt,
-#+LATEX_HEADER:  framesep=0pt,
-#+LATEX_HEADER:  rulecolor=\color{background},
-#+LATEX_HEADER:  morekeywords={BRIEFDescriptorConfig,string,TiXmlNode,DetectorDescriptorConfigContainer,istringstream,cerr,exit},
-#+LATEX_HEADER:  identifierstyle=\color{black},
-#+LATEX_HEADER:  stringstyle=\color{blue},
-#+LATEX_HEADER:  rulecolor=\color{black},
-#+LATEX_HEADER:  showspaces=false,
-#+LATEX_HEADER:  showstringspaces=false,
-#+LATEX_HEADER:  showtabs=false,
-#+LATEX_HEADER:  stepnumber=1,
-#+LATEX_HEADER:  tabsize=5,
-#+LATEX_HEADER:  title=\lstname,
-#+LATEX_HEADER: }
-#+LATEX_HEADER: \lstdefinelanguage{shell}{
-#+LATEX_HEADER:  backgroundcolor=\color{keyword},
-#+LATEX_HEADER:  basicstyle=\footnotesize \ttfamily \color{dblue} \small \mono \bfseries,
-#+LATEX_HEADER:  breakatwhitespace=false,
-#+LATEX_HEADER:  breaklines=true,
-#+LATEX_HEADER:  captionpos=b,
-#+LATEX_HEADER:  comment=[l]{\#},
-#+LATEX_HEADER:  morecomment=[s]{/*}{*/},
-#+LATEX_HEADER:  commentstyle=\color{comment} \slshape \small \itshape,
-#+LATEX_HEADER:  identifierstyle=\color{black},
-#+LATEX_HEADER:  deletekeywords={...},
-#+LATEX_HEADER:  escapeinside={\%*}{*)},
-#+LATEX_HEADER:  frame=single,
-#+LATEX_HEADER:  frameround=tttt,
-#+LATEX_HEADER:  framesep=0pt,
-#+LATEX_HEADER:  rulecolor=\color{background},
-#+LATEX_HEADER:  morekeywords={BRIEFDescriptorConfig,string,TiXmlNode,DetectorDescriptorConfigContainer,istringstream,cerr,exit},
-#+LATEX_HEADER:  identifierstyle=\color{black},
-#+LATEX_HEADER:  stringstyle=\color{blue},
-#+LATEX_HEADER:  rulecolor=\color{black},
-#+LATEX_HEADER:  showspaces=false,
-#+LATEX_HEADER:  showstringspaces=false,
-#+LATEX_HEADER:  showtabs=false,
-#+LATEX_HEADER:  stepnumber=1,
-#+LATEX_HEADER:  tabsize=5,
-#+LATEX_HEADER:  title=\lstname,
-#+LATEX_HEADER: }
-#+LATEX_HEADER: \usepackage{enumitem}
-#+LATEX_HEADER: \setenumerate{noitemsep}
-#+LATEX_HEADER: \setenumerate{nolistsep}
-#+LATEX_HEADER: \setitemize{nolistsep}
+#+TAGS: Python, Basic
+#+INCLUDE: ../pdf.org
+#+LATEX:\newpage
 
-#+LATEX_HEADER: \vspace{-\topsep}
-
-#+BEGIN_COMMENT
-PDF 設定
-#+OPTIONS: H:2
-#+OPTIONS: \n:t
-
-投影片設定
-#+REVEAL_ROOT: https://cdn.jsdelivr.net/reveal.js/3.0.0/
-#+REVEAL_THEME: moon
-#+OPTIONS: reveal_width:1400 reveal_height:960
-#+OPTIONS: toc:1
-#+REVEAL_MARGIN: 0.2
-#+REVEAL_MIN_SCALE: 0.8
-#+REVEAL_MAX_SCALE: 3.5
-
-網頁設定
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
-#+STARTUP: showeverything
-#+PROPERTY: header-args :eval never-export
-#+STARTUP: inlineimages
-#+OPTIONS: H:4
-#+OPTIONS: \n:t
-#+END_COMMENT
-
-#+latex:\newpage
 * Python 簡介
 ** What is Python
 - Python is an advanced *scripting language* that is being used successfully to
@@ -406,6 +263,13 @@ int main() {
 print("Hello world!")
 #+end_src
 
+#+begin_src python -r -n :results output :exports both
+print("This is a test")
+#+end_src
+
+#+RESULTS:
+: This is a test
+
 ** 變數
 *** 命名規則
 - 由英文、數字、底線、中文(不建議)組成
@@ -443,9 +307,16 @@ print(name)
 #+end_src
 
 ** 資料型態
+*** 變數型態的判斷: type()
+#+begin_src python -r -n :eval no
+print(type(2020))
+print(type(3.1416))
+print(type('Hello world'))
+#+end_src
+
 *** 常用類型
 - 整數: int
-- 浮點數: float 
+- 浮點數: float
 - 布林值(True / False): bool, T 與 F 要大寫
 - 字串: str, 以'或"含括,若輸出字串要包含引號，則以另一種引號含括該字串。如: 
 #+begin_src python -r -n :eval no
@@ -453,6 +324,9 @@ age = 18
 weight = 67.87
 good_words = " 請常說'請'、'謝謝'、'對不起' "
 #+end_src
+- 序列型態: list, tuple
+- 集合型態: set
+- 對映型態: dict
 
 *** 型態間的轉換
 - 自動轉換
@@ -466,7 +340,7 @@ score = float(score)		# 將括弧內的資料轉換為浮點數
 test = str(score)				# 將括弧內的資料轉換為字串
 #+end_src
 
-** 輸出: print
+** 進階輸出: print
 *** 語法
  - print( 項目 1, [ 項目 2, … , sep = 分隔字元 , end = 結束字元 ] )
  - sep (分隔字元) 預設為空白字元
@@ -548,6 +422,7 @@ print(tmp.substitute(who = name))
 
 *** 進階閱讀
 - [[https://blog.techbridge.cc/2019/05/03/how-to-use-python-string-format-method/][如何使用 Python 進行字串格式化]]
+
 ** 輸入
 *** 語法/範例
 - 語法
@@ -655,6 +530,16 @@ print(tmp.substitute(who = name))
   print(str(a) + op + str(b) + "=" + str(ans))
 #+END_SRC
 
+*** 字串運算
+#+begin_src python -r -n :results output :exports both
+print("Python"+"基䂾")
+print(3*"Python基礎")
+#+end_src
+
+#+RESULTS:
+: Python 基䂾
+: Python 基礎 Python 基礎 Python 基礎
+
 ** 關係運算子
 |------+------+----------+----------+------+--------|
 | >    | <    | >=       | <=       | ==   | !=     |
@@ -679,6 +564,340 @@ print(tmp.substitute(who = name))
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/277/][skyoj #277. 一元二次方程式求解]]
 
 #+latex:\newpage
+
+
+* 內建函數
+** 基本函數與運算子
+- ord(): 傳回某字元的 ASCII code /Unicode
+#+begin_src python -r -n :results output :exports both
+print(ord('A'))
+print(ord('©'))
+#+end_src
+  #+RESULTS:
+  : 65
+  : 169
+- chr(): 傳回某 ASCII/Unicode 所代表的字元
+#+begin_src python -r -n :results output :exports both
+print(chr(97))
+print(chr(169))
+#+end_src
+#+RESULTS:
+: a
+: ©
+- len(): 傳回字串長度
+#+begin_src python -r -n :results output :exports both
+print(len('Python基礎'))
+#+end_src
+
+#+RESULTS:
+: 8
+
+- max()/min(): 傳回字串 Unicode 最大/最小字元
+#+begin_src python -r -n :results output :exports both
+print(max('Python基礎'))
+print(min('Python基礎'))
+#+end_src
+
+#+RESULTS:
+: 礎
+: P
+
+- str(): 將數值參數轉為字串
+#+begin_src python -r -n :results output :exports both
+print(str(3.1416) + str(2020))
+#+end_src
+
+#+RESULTS:
+: 3.14162020
+
+** 字串處理函數
+*** 字串轉換函數
+- str.upper(): 將字串 s 所有字元轉成大寫
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.upper())
+#+end_src
+
+#+RESULTS:
+
+- str.lower(s): 將字串 s 所有字元轉成小寫
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.lower())
+#+end_src
+
+#+RESULTS:
+: to be or not to be
+
+- str.swapcase(s): 將字串 s 大小寫互換
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.swapcase())
+#+end_src
+
+#+RESULTS:
+: tO BE OR NOT TO be
+
+- str.capitalize(s): 首字大寫
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.capitalize())
+#+end_src
+
+#+RESULTS:
+: To be or not to be
+
+- str.title(s): 每個單字的第一個字元大寫
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.title())
+#+end_src
+
+#+RESULTS:
+: To Be Or Not To Be
+
+- str.replace(old, new): 置換子字串
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.replace('be', 'die'))
+#+end_src
+
+#+RESULTS:
+: To die or not to BE
+
+*** 字串測試函數
+- str.isupper(): 是否整段字串均為大寫英文字母
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.isupper())
+print("PYTHON".isupper())
+#+end_src
+
+#+RESULTS:
+: False
+: True
+
+- str.islower()
+#+begin_src python -r -n :results output :exports both
+s = 'To be or not to BE'
+print(s.islower())
+print("python".islower())
+#+end_src
+
+#+RESULTS:
+: False
+: True
+
+- str.isidentifier(): 是否為合法的識別字(含關鍵字)
+#+begin_src python -r -n :results output :exports both
+print("while".isidentifier())
+print("computer".isidentifier())
+print("-_-".isidentifier())
+#+end_src
+
+#+RESULTS:
+: True
+: True
+: False
+
+- str.isalpha(): 字串是否只包含英文
+#+begin_src python -r -n :results output :exports both
+print("AbCdXyZ".isalpha())
+print("1A2B".isalpha())
+#+end_src
+
+#+RESULTS:
+: True
+: False
+
+- str.isdecimal(), str.isdigit(), str.isnumeric(): 字串是否為數字[fn:20]
+  + isdigit()
+    - True: Unicode 數字，byte 數字（單位元組），全形數字（雙位元組），羅馬數字
+    - False: 漢字數字
+    - Error: 無
+  + isdecimal()
+    - True: Unicode 數字，，全形數字（雙位元組）
+    - False: 羅馬數字，漢字數字
+    - Error: byte 數字（單位元組）
+  + isnumeric()
+    - True: Unicode 數字，全形數字（雙位元組），羅馬數字，漢字數字
+    - False: 無
+    - Error: byte 數字（單位元組）
+#+begin_src python -r -n :results output :exports both
+print("4".isdecimal())
+print("4".isdigit())
+print("4".isnumeric())
+print("IV".isdecimal())
+print("IV".isdigit())
+print("IV".isnumeric())
+print("四".isdecimal())
+print("四".isdigit())
+print("四".isnumeric())
+#+end_src
+
+#+RESULTS:
+: True
+: True
+: True
+: False
+: False
+: False
+: False
+: False
+: True
+
+- str.isspace(): 字串是否為空白
+- str.istitle(): 字串是否每個單字
+
+*** 搜尋子字串函數
+- str.count(s): 傳回字串中出現 s 的次數
+#+begin_src python -r -n :results output :exports both
+x = "HIHI Python"
+print(x.count('HI'))
+#+end_src
+
+#+RESULTS:
+: 2
+
+- str.startswith(s): 字串是否以 s 開頭
+#+begin_src python -r -n :results output :exports both
+x = 'HIHI Python'
+print(x.startswith('HI'))
+print(x.startswith('python'))
+#+end_src
+
+#+RESULTS:
+: True
+: False
+
+- str.endswith(s): 字串是否以 s 結尾
+#+begin_src python -r -n :results output :exports both
+x = 'HIHI Python'
+print(x.endswith('HI'))
+print(x.endswith('python'))
+#+end_src
+
+#+RESULTS:
+: False
+: False
+
+- str.find(s): s 在字串中的位置(找到的第一個)
+#+begin_src python -r -n :results output :exports both
+x = 'HIHI Python'
+print(x.find('HI'))
+print(x.find('Python'))
+print(x.find('python'))
+#+end_src
+
+#+RESULTS:
+: 0
+: 5
+: -1
+
+- str.rfind(s): s 在字串中的位置(找到的最後一個)
+#+begin_src python -r -n :results output :exports both
+x = 'HIHI Python'
+print(x.rfind('HI'))
+print(x.rfind('Python'))
+print(x.rfind('python'))
+#+end_src
+
+#+RESULTS:
+: 2
+: 5
+: -1
+
+*** 切割/刪除字串
+- str.split([chars]): 從整個字串中根據 chars 來切割，若省略 chars 則以空白進行切割
+#+begin_src python -r -n :results output :exports both
+x = 'To be or not to be.'
+print(x.split())
+print(x.split('be'))
+#+end_src
+
+#+RESULTS:
+: ['To', 'be', 'or', 'not', 'to', 'be.']
+: ['To ', ' or not to ', '.']
+
+- str.strip([chars]): 由字串*兩側*刪除 chars，若省略 chars 則以空白進行切割
+#+begin_src python -r -n :results output :exports both
+x = '  Cogito, ergo sum   '
+print(x.strip())
+print('ABCDEDCBA'.strip('A'))
+#+end_src
+
+#+RESULTS:
+: Cogito, ergo sum
+: BCDEDCB
+
+- str.lstrip([chars]): 由字串*左側*刪除 chars，若省略 chars 則以空白進行切割
+- str.rstrip([chars]): 由字串*右側*刪除 chars，若省略 chars 則以空白進行切割
+
+*** 格式化函數
+- str.center(width): 傳回欄位索度為 width 所指定的置中字串
+#+begin_src python -r -n :results output :exports both
+s = '**'
+x = 'Hello python'
+print(s + x.center(20) + s)
+#+end_src
+
+#+RESULTS:
+: **    Hello python    **
+
+- str.ljust(width): 傳回欄位索度為 width 所指定的靠左字串
+#+begin_src python -r -n :results output :exports both
+s = '**'
+x = 'Hello python'
+print(s + x.ljust(20) + s)
+#+end_src
+
+#+RESULTS:
+: **Hello python        **
+
+- str.rjust(width): 傳回欄位索度為 width 所指定的靠右字元
+#+begin_src python -r -n :results output :exports both
+s = '**'
+x = 'Hello python'
+print(s + x.rjust(20) + s)
+#+end_src
+
+#+RESULTS:
+: **        Hello python**
+
+- str.zfill(width): 左側填零
+#+begin_src python -r -n :results output :exports both
+s = '**'
+x = 'Hello python'
+print(s + x.zfill(20) + s)
+#+end_src
+
+#+RESULTS:
+: **00000000Hello python**
+
+- str.format(spec): 設定欄位寬度與對齊方式
+#+begin_src python -r -n :results output :exports both
+s = '**'
+x = 'Hello python'
+print(s + format(x, '20') + s)
+print(s + format(x, '>20') + s)
+print(s + format(x, '<20') + s)
+#+end_src
+
+#+RESULTS:
+: **Hello python        **
+: **        Hello python**
+: **Hello python        **
+
+** 數值處理函數
+- abs(x)
+- min(x1, x2 [, x3...])
+- max(x1, x2 [, x3...])
+- pow(x, y)
+- divmod(x, y)
+-
+
+#+latex:\newpage
+
 * 判斷結構
 ** if
 *** 語法
@@ -1702,6 +1921,8 @@ print(dir(my))
 
 
 * Footnotes
+
+[fn:20] [[https://www.itread01.com/content/1550041754.html][python判斷字串，str函式isdigit、isdecimal、isnumeric的區別]]
 
 [fn:1] [[https://buzzorange.com/techorange/2019/08/20/the-history-of-python][Python的誕生故事]]
 
