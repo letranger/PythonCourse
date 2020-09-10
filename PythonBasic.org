@@ -996,6 +996,20 @@ words = words.capitalize()
 print(words)
 #+END_COMMENT
 
+*** 資安檢查
+#+BEGIN_COMMENT
+urls = "https://www.google.com.tw"
+ok = False
+if urls.startswith("https://") and urls.endswith("tn.edu.tw"):
+    ok = True
+if urls.endswith("tnfsh.tn.edu.tw"):
+    if urls.startswith("http://") or urls.startswith("https://"):
+        ok = True
+if ok:
+    print("OK.")
+else:
+    print("Invalid web site URL!")
+#+END_COMMENT
 
 
 #+latex:\newpage
