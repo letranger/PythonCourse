@@ -45,8 +45,7 @@
     #+ATTR_ORG: :width 560
     #+RESULTS:
     [[file:TOIBE-2020.jpg]]
-  + [[https://www.youtube.com/watch?v=A_B7owR94XY][幾種不同語言受歡迎程度的變
-    化:TIOBE 2001-2019]]
+  + [[https://www.youtube.com/watch?v=A_B7owR94XY][幾種不同語言受歡迎程度的變化:TIOBE 2001-2019]]
 - 研究人員於 2019 年首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python。
   #+ATTR_LATEX: :width 400
   #+ATTR_HTML: :width 560
@@ -726,25 +725,83 @@ Print("1a2b".Isalpha())
 : False
 
 - str.isdecimal(), str.isdigit(), str.isnumeric(): 字串是否為數字[fn:20]
-  + isdigit()
-    - True: Unicode 數字，byte 數字（單位元組），全形數字（雙位元組），羅馬數字
-    - False: 漢字數字
-    - Error: 無
-  + isdecimal()
-    - True: Unicode 數字，，全形數字（雙位元組）
-    - False: 羅馬數字，漢字數字
-    - Error: byte 數字（單位元組）
-  + isnumeric()
-    - True: Unicode 數字，全形數字（雙位元組），羅馬數字，漢字數字
-    - False: 無
-    - Error: byte 數字（單位元組）
+  以涵蓋範圍論，isdecimal() ⊆ isdigit() ⊆ isnumeric()，即，若一字串為 decimal，則一定也是 digit 和 numeric。
+- isdigit()
+  - True: Unicode 數字，byte 數字（單位元組），全形數字（雙位元組），羅馬數字
+  - False: 漢字數字
+  - Error: 無
+- isdecimal()
+  - True: Unicode 數字，，全形數字（雙位元組）
+  - False: 羅馬數字，漢字數字
+  - Error: byte 數字（單位元組）
+- isnumeric()
+  - True: Unicode 數字，全形數字（雙位元組），羅馬數字，漢字數字
+  - False: 無
+  - Error: byte 數字（單位元組）
+- Some examples of characters isdecimal()==True [fn:21]
+  1. "0123456789"  DIGIT ZERO~NINE
+  1. "٠١٢٣٤٥٦٧٨٩"  ARABIC-INDIC DIGIT ZERO~NINE
+  1. "०१२३४५६७८९"  DEVANAGARI DIGIT ZERO~NINE
+  1. "০১২৩৪৫৬৭৮৯"  BENGALI DIGIT ZERO~NINE
+  1. "੦੧੨੩੪੫੬੭੮੯"  GURMUKHI DIGIT ZERO~NINE
+  1. "૦૧૨૩૪૫૬૭૮૯"  GUJARATI DIGIT ZERO~NINE
+  1. "୦୧୨୩୪୫୬୭୮୯"  ORIYA DIGIT ZERO~NINE
+  1. "௦௧௨௩௪௫௬௭௮௯"  TAMIL DIGIT ZERO~NINE
+  1. "౦౧౨౩౪౫౬౭౮౯"  TELUGU DIGIT ZERO~NINE
+  1. "೦೧೨೩೪೫೬೭೮೯"  KANNADA DIGIT ZERO~NINE
+  1. "൦൧൨൩൪൫൬൭൮൯"  MALAYALAM DIGIT ZERO~NINE
+  1. "๐๑๒๓๔๕๖๗๘๙"  THAI DIGIT ZERO~NINE
+  1. "໐໑໒໓໔໕໖໗໘໙"  LAO DIGIT ZERO~NINE
+  1. "༠༡༢༣༤༥༦༧༨༩"  TIBETAN DIGIT ZERO~NINE
+  1. "၀၁၂၃၄၅၆၇၈၉"  MYANMAR DIGIT ZERO~NINE
+  1. "០១២៣៤៥៦៧៨៩"  KHMER DIGIT ZERO~NINE
+  1. "０１２３４５６７８９"  FULLWIDTH DIGIT ZERO~NINE
+- Some examples of characters isdecimal()==False but isdigit()==True
+  1. "⁰¹²³⁴⁵⁶⁷⁸⁹"  SUPERSCRIPT ZERO~NINE
+  1. "₀₁₂₃₄₅₆₇₈₉"  SUBSCRIPT ZERO~NINE
+  1. "🄀⒈⒉⒊⒋⒌⒍⒎⒏⒐"  DIGIT ZERO~NINE FULL STOP
+  1. "🄁🄂🄃🄄🄅🄆🄇🄈🄉🄊"  DIGIT ZERO~NINE COMMA
+  1. "⓪①②③④⑤⑥⑦⑧⑨"  CIRCLED DIGIT ZERO~NINE
+  1. "⓿❶❷❸❹❺❻❼❽❾"  NEGATIVE CIRCLED DIGIT ZERO~NINE
+  1. "⑴⑵⑶⑷⑸⑹⑺⑻⑼"  PARENTHESIZED DIGIT ONE~NINE
+  1. "➀➁➂➃➄➅➆➇➈"  DINGBAT CIRCLED SANS-SERIF DIGIT ONE~NINE
+  1. "⓵⓶⓷⓸⓹⓺⓻⓼⓽"  DOUBLE CIRCLED DIGIT ONE~NINE
+  1. "➊➋➌➍➎➏➐➑➒"  DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ONE~NINE
+  1. "፩፪፫፬፭፮፯፰፱"  ETHIOPIC DIGIT ONE~NINE
+- Some examples of characters isdecimal()==False and isdigit()==False but isnumeric()==True
+  1. "½⅓¼⅕⅙⅐⅛⅑⅒⅔¾⅖⅗⅘⅚⅜⅝⅞⅟↉"  VULGAR FRACTION
+  1. "৴৵৶৷৸৹"  BENGALI CURRENCY NUMERATOR
+  1. "௰௱௲"  TAMIL NUMBER TEN, ONE HUNDRED, ONE THOUSAND
+  1. "౸౹౺౻౼౽౾"  TELUGU FRACTION DIGIT
+  1. "൰൱൲൳൴൵"  MALAYALAM NUMBER, MALAYALAM FRACTION
+  1. "༳༪༫༬༭༮༯༰༱༲"  TIBETAN DIGIT HALF ZERO~NINE
+  1. "፲፳፴፵፶፷፸፹፺፻፼"  ETHIOPIC NUMBER TEN~NINETY, HUNDRED, TEN THOUSAND
+  1. "៰៱៲៳៴៵៶៷៸៹"  KHMER SYMBOL LEK ATTAK
+  1. "ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩⅪⅫⅬⅭⅮⅯ"  ROMAN NUMERAL
+  1. "ⅰⅱⅲⅳⅴⅵⅶⅷⅸⅹⅺⅻⅼⅽⅾⅿ"  SMALL ROMAN NUMERAL
+  1. "ↀↁↂↅↆ"  ROMAN NUMERAL
+  1. "⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳㉑㉒㉓㉔㉕㉖㉗㉘㉙㉚㉛㉜㉝㉞㉟㊱㊲㊳㊴㊵㊶㊷㊸㊹㊺㊻㊼㊽㊾㊿"  CIRCLED NUMBER TEN~FIFTY
+  1. "㉈㉉㉊㉋㉌㉍㉎㉏"  CIRCLED NUMBER TEN~EIGHTY ON BLACK SQUARE
+  1. "⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇"  PARENTHESIZED NUMBER TEN~TWENTY
+  1. "⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛"  NUMBER TEN~TWENTY FULL STOP
+  1. "⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴"  NEGATIVE CIRCLED NUMBER ELEVEN
+  1. "⓾➉❿➓"  various styles of CIRCLED NUMBER TEN
+  1. "🄌"  DINGBAT NEGATIVE CIRCLED SANS-SERIF DIGIT ZERO
+  1. "〇"  IDEOGRAPHIC NUMBER ZERO
+  1. "〡〢〣〤〥〦〧〨〩〸〹〺"  HANGZHOU NUMERAL ONE~TEN, TWENTY, THIRTY
+  1. "㆒㆓㆔㆕"  IDEOGRAPHIC ANNOTATION ONE~FOUR MARK
+  1. "㈠㈡㈢㈣㈤㈥㈦㈧㈨㈩"  PARENTHESIZED IDEOGRAPH ONE~TEN
+  1. "㊀㊁㊂㊃㊄㊅㊆㊇㊈㊉"  CIRCLED IDEOGRAPH ONE~TEN
+  1. "一二三四五六七八九十壹貳參肆伍陸柒捌玖拾零百千萬億兆弐貮贰㒃㭍漆什㐅陌阡佰仟万亿幺兩㠪亖卄卅卌廾廿"  CJK UNIFIED IDEOGRAPH
+  1. "參拾兩零六陸什"  CJK COMPATIBILITY IDEOGRAPH
+
 #+begin_src python -r -n :results output :exports both
 print("4".isdecimal())
 print("4".isdigit())
 print("4".isnumeric())
-print("IV".isdecimal())
-print("IV".isdigit())
-print("IV".isnumeric())
+print("Ⅳ".isdecimal())
+print("Ⅳ".isdigit())
+print("Ⅳ".isnumeric())
 print("四".isdecimal())
 print("四".isdigit())
 print("四".isnumeric())
@@ -756,7 +813,7 @@ print("四".isnumeric())
 : True
 : False
 : False
-: False
+: True
 : False
 : False
 : True
@@ -909,7 +966,37 @@ print(s + format(x, '<20') + s)
 - max(x1, x2 [, x3...])
 - pow(x, y)
 - divmod(x, y)
--
+
+** 作業
+*** 小編日常
+#+BEGIN_COMMENT
+words = "Pen Pie Pineapple Apple Pen"
+# words = input()
+print(words.lower().capitalize())
+#+END_COMMENT
+
+*** 小編日常二
+#+BEGIN_COMMENT
+words = "He has resigned from the position of chairperson."
+print(words.lower().replace(" does ", " did ").replace(" has "," had ").replace(" have "," had ").replace(" do "," did ").replace(".","!").replace("she ","I ").replace("he ","I ").capitalize())
+#+END_COMMENT
+
+#+BEGIN_COMMENT
+import re
+words = "He has resigned from the position of chairperson."
+words = words.lower()
+words = re.sub(r"\bhe\b","I", words)
+words = re.sub(r"\bshe\b","I", words)
+words = re.sub(r"\bhas\b","had", words)
+words = re.sub(r"\bhave\b","had", words)
+words = re.sub(r"\bdo\b","did", words)
+words = re.sub(r"\bdoes\b","did", words)
+words = words.replace(".","!")
+words = words.capitalize()
+print(words)
+#+END_COMMENT
+
+
 
 #+latex:\newpage
 
@@ -1948,6 +2035,8 @@ print(dir(my))
 
 
 * Footnotes
+
+[fn:21] [[https://stackoverflow.com/questions/44891070/whats-the-difference-between-str-isdigit-isnumeric-and-isdecimal-in-python][What's the difference between str.isdigit, isnumeric and isdecimal in python?]]
 
 [fn:20] [[https://www.itread01.com/content/1550041754.html][python判斷字串，str函式isdigit、isdecimal、isnumeric的區別]]
 
