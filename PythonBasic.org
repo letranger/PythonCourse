@@ -1,6 +1,7 @@
 # -*- org-export-babel-evaluate: nil -*-
 #+Title: Basic Materials of Python Basic
 
+# -*- org-export-babel-evaluate: nil -*-
 #+TAGS: Python, Basic
 #+INCLUDE: ../bigweb.org
 #+LATEX:\newpage
@@ -724,7 +725,7 @@ Print("1a2b".Isalpha())
 : True
 : False
 
-- str.isdecimal(), str.isdigit(), str.isnumeric(): 字串是否為數字[fn:20]
+- str.isdecimal(), str.isdigit(), str.isnumeric(): 字串是否為數字[fn:9]
   以涵蓋範圍論，isdecimal() ⊆ isdigit() ⊆ isnumeric()，即，若一字串為 decimal，則一定也是 digit 和 numeric。
 - isdigit()
   - True: Unicode 數字，byte 數字（單位元組），全形數字（雙位元組），羅馬數字
@@ -738,7 +739,7 @@ Print("1a2b".Isalpha())
   - True: Unicode 數字，全形數字（雙位元組），羅馬數字，漢字數字
   - False: 無
   - Error: byte 數字（單位元組）
-- Some examples of characters isdecimal()==True [fn:21]
+- Some examples of characters isdecimal()==True [fn:10]
   1. "0123456789"  DIGIT ZERO~NINE
   1. "٠١٢٣٤٥٦٧٨٩"  ARABIC-INDIC DIGIT ZERO~NINE
   1. "०१२३४५६७८९"  DEVANAGARI DIGIT ZERO~NINE
@@ -1120,7 +1121,7 @@ else:
 #+END_SRC
 
 *** 範例: 某年份是否為閏年
-#+BEGIN_SRC dot :file ./YearJudge.png :cmdline -Kdot -Tpng 
+#+BEGIN_SRC dot :file ./YearJudge.png :cmdline -Kdot -Tpng :noexport:
   digraph TLS{
     rankdir=LR;
     x1[shape=box, labeVisualStudioCodel = "輸入年份"];
@@ -1136,15 +1137,13 @@ else:
     x4 -> xN[label="No"]; x4 -> xY[label="Yes"]; 
   }
 #+END_SRC
-
-#+RESULTS:
-
 #+CAPTION: 閏年判斷流程
 #+name: fig:YearJudge
 #+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 560
 #+ATTR_ORG: :width 560
 #+RESULTS:
+[[file:./YearJudge.png]]
 
 *** code #1
 #+BEGIN_SRC python :session :exports both :tangle input.py
@@ -1175,6 +1174,26 @@ else:
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/164/][skyoj #164 獎金給多少]]
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/278/][skyoj #278 三角關係]]
 
+** 作業
+*** [[https://moodle.tnfsh.tn.edu.tw/mod/vpl/view.php?id=1870][5D. No one is perfect]]
+#+BEGIN_COMMENT
+import sys
+x = int(input())
+y = int(input())
+
+for n in range(x, y+1):
+    sum = 0
+    for i in range(1, n):
+        if n % i == 0:
+            sum += i
+    if sum == n:
+        print(sum)
+        sys.exit()
+print("No one is perfect")
+#+end_src
+
+
+
 #+latex:\newpage
 
 * 迴圈結構
@@ -1189,7 +1208,7 @@ else:
       ...
 #+END_SRC
 - for 迴圈的變數會依序走訪 sequence 中的元素
-- sequence[fn:9]可為 range 函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
+- sequence[fn:11]可為 range 函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)
 
 *** List 為 range() function 語法
 #+BEGIN_SRC python :exports both :eval no 
@@ -1305,6 +1324,21 @@ for x in school:
 : Processing Letrer: y
 : Processing Letrer: t
 : Now stop...
+*** 練習
+Given a positive integer N. The task is to write a Python program to check if the number is prime or not.
+- Definition:
+  A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. The first few prime numbers are {2, 3, 5, 7, 11, ….}.
+- Examples :
+#+BEGIN_QUOTE
+Input:  11
+Output: true
+
+Input:  15
+Output: false
+
+Input:  1
+Output: false
+#+END_QUOTE
 
 ** continue
 跳出單次 loop
@@ -1324,6 +1358,19 @@ for x in school:
 : Now skip...
 : Processing Letrer: o
 : Processing Letrer: n
+*** 練習
+Given a string. Prints all letters in this string except 'N' and 'S'.
+-Example:
+#+BEGIN_QUOTE
+Input: TNFSH
+Output: TFH
+#+END_QUOTE
+#+BEGIN_COMMENT
+for letter in 'TNFSH':
+    if letter in ['N', 'S']:
+        continue
+    print(letter, end='')
+#+end_src
 
 ** for / while + else
 [[https://note.pcwu.net/2017/02/26/python-loop-else/][[Python] Loop 配合 else 的妙用]]
@@ -1460,7 +1507,7 @@ print(data[2][1])
 : May
 : a
 
-*** 表列函式與方法
+*** list 函式與方法
 - len(<list>): 計算表列元素個數
 - list(<str>): 將<str>轉成表列
 - <list>.clear():	清除表列中所有元素
@@ -1516,6 +1563,37 @@ print(data[2][1])
 [35, 89, 200]
 a-b-c
 #+end_example
+*** zip()
+**** zip 與 for 迴圈
+在 Python 中若要將兩個 list 以迴圈的方式一次各取一個元素出來處理，可以使用 zip 打包之後配合 for 迴圈來處理，如下例
+#+begin_src python -r -n :results output :exports both
+# 第一個 List
+names = ["A", "B", "C"]
+
+# 第二個 List
+values = [11, 23, 46]
+
+# 使用 zip 同時迭代兩個 List
+for x, y in zip(names, values):
+  print(x, y)
+#+end_src
+這裡的 zip(names, values) 會將 names 與 values 的每個元素以一對一的方式配對起來，組成一個新的迭代器，然後交給 for 迴圈進行迭代，所以每一次迭代時所取的 x 值會來自於 names，而 y 則會來自於 values[fn:12]。結果如下：
+#+RESULTS:
+: A 11
+: B 23
+: C 46
+**** 不同長度的 Lists
+zip 若遇到不同長度的 list 時，會以長度最短的 list 為準，超過長度的部分就會被捨棄。zip 也可應用於兩個以上的 list，如：
+#+begin_src python -r -n :results output :exports both
+# 多個 Lists
+names = ["A", "B", "C"]
+values = [11, 23, 46]
+ages = [45, 67, 82]
+
+# 使用 zip 同時迭代多個 List
+for x, y, z in zip(names, values, ages):
+  print(x, y, z)
+#+end_src
 
 *** list 練習
 - 連續輸入成績(輸入-1 結束)，將成績由高至低排序輸出，並輸出總分、平均
@@ -1545,6 +1623,41 @@ print('全班總分：{0:d},全班平均：{1:0.2f}'.format(sos, sos/len(score))
   print(sum/5)
   print(grades)
 #+END_SRC
+
+*** 課堂練習
+- Given a two Python list. Iterate both lists simultaneously such that list1 should display item in original order and list2 in reverse order
+- Example:
+#+BEGIN_QUOTE
+Input: [可以將輸入直接複製貼上到 code 中]
+list1 = [10, 20, 30, 40]
+list2 = [100, 200, 300, 400]
+Output:
+10 400
+20 300
+30 200
+40 100
+#+END_QUOTE
+
+*** 作業
+**** lone wolf
+讀入一整數 n、接下來讀入 n 個整數，列出這幾個整數中未成對者
+- Examples
+#+BEGIN_QUOTE
+Input: 3 2 2 1
+Output: 1
+Input: 5 4 1 2 1 2
+Output: 4
+#+END_QUOTE
+#+BEGIN_COMMENT
+nums = [5, 5, 9, 1, 2, 1, 2]
+n = nums[0]
+for i in nums[1:]:
+    n ^= i
+print(n)
+#+end_src
+
+#+RESULTS:
+: 9
 
 ** 元組 tuple
 *** 資料格式
@@ -1699,6 +1812,20 @@ print(data)
 : {'Vanessa': None, 'May': None, 'John': None}
 : {'Vanessa': 100, 'May': 100, 'John': 100}
 
+*** 練習
+Get the key corresponding to the minimum value from the following dictionary
+#+BEGIN_QUOTE
+sampleDict = {
+  'Physics': 82,
+  'Math': 65,
+  'history': 75
+}
+
+Expected output:
+Math
+#+END_QUOTE
+
+
 ** List v.s. Tuple
 二者的差異與適用時機[fn:3]：
 *** 能否改變內容
@@ -1763,6 +1890,7 @@ print(s)
 #+RESULTS:
 : {'e', 'p', 'x', 'l', 'a'}
 : {'e', 'x', 'l', 'a'}
+
 *** 集合運算
 | 運算 | 符號 |
 |------+------|
@@ -1789,8 +1917,18 @@ print("'5' in b:", '5' in b)
 : a ^ b: {'a', '2', '5', '4', '7'}
 : '5' in a: False
 : '5' in b: True
-*** 詳細語法
-- [[https://www.runoob.com/python3/python3-set.html][Python3 集合 ]]
+
+*** 練習
+Remove items from set1 that are not common to both set1 and set2
+#+BEGIN_QUOTE
+set1 = {10, 20, 30, 40, 50}
+set2 = {30, 40, 50, 60, 70}
+
+Expected output:
+{40, 50, 30}
+#+END_QUOTE
+
+
 
 ** 資料型別整理
 |-------------+------------+-----------+-----------+-------------|
@@ -2047,12 +2185,7 @@ print(dir(my))
 
 #+latex:\newpage
 
-
 * Footnotes
-
-[fn:21] [[https://stackoverflow.com/questions/44891070/whats-the-difference-between-str-isdigit-isnumeric-and-isdecimal-in-python][What's the difference between str.isdigit, isnumeric and isdecimal in python?]]
-
-[fn:20] [[https://www.itread01.com/content/1550041754.html][python判斷字串，str函式isdigit、isdecimal、isnumeric的區別]]
 
 [fn:1] [[https://buzzorange.com/techorange/2019/08/20/the-history-of-python][Python的誕生故事]]
 
@@ -2070,4 +2203,10 @@ print(dir(my))
 
 [fn:8] [[https://stackabuse.com/python-programming-in-interactive-vs-script-mode/][Python Programming in Interactive vs Script Mode]]
 
-[fn:9] [[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
+[fn:9] [[https://www.itread01.com/content/1550041754.html][python判斷字串，str函式isdigit、isdecimal、isnumeric的區別]]
+
+[fn:10] [[https://stackoverflow.com/questions/44891070/whats-the-difference-between-str-isdigit-isnumeric-and-isdecimal-in-python][What's the difference between str.isdigit, isnumeric and isdecimal in python?]]
+
+[fn:11] [[http://liyangbit.com/tutorials/python-list/][Python數據類型-List介紹]]
+
+[fn:12] [[https://blog.gtwang.org/programming/python-iterate-through-multiple-lists-in-parallel/][Python 使用 zip 與 for 迴圈同時對多個 List 進行迭代]]
