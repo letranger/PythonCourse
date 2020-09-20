@@ -4,7 +4,6 @@
 # -*- org-export-babel-evaluate: nil -*-
 #+TAGS: Python, Basic
 #+INCLUDE: ../bigweb.org
-#+LATEX:\newpage
 
 * Python 簡介
 :PROPERTIES:
@@ -970,19 +969,20 @@ print(s + format(x, '<20') + s)
 
 ** 作業
 *** 小編日常
-#+BEGIN_COMMENT
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
 words = "Pen Pie Pineapple Apple Pen"
 # words = input()
 print(words.lower().capitalize())
-#+END_COMMENT
-
+#+end_src
 *** 小編日常二
-#+BEGIN_COMMENT
+**** solution #1 :noexport:
+#+begin_src python -r -n :results output :exports both
 words = "He has resigned from the position of chairperson."
 print(words.lower().replace(" does ", " did ").replace(" has "," had ").replace(" have "," had ").replace(" do "," did ").replace(".","!").replace("she ","I ").replace("he ","I ").capitalize())
-#+END_COMMENT
-
-#+BEGIN_COMMENT
+#+end_src
+**** solution #2 :noexport:
+#+begin_src python -r -n :results output :exports both
 import re
 words = "He has resigned from the position of chairperson."
 words = words.lower()
@@ -995,10 +995,11 @@ words = re.sub(r"\bdoes\b","did", words)
 words = words.replace(".","!")
 words = words.capitalize()
 print(words)
-#+END_COMMENT
+#+end_src
 
 *** 資安檢查
-#+BEGIN_COMMENT
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
 urls = "https://www.google.com.tw"
 ok = False
 if urls.startswith("https://") and urls.endswith("tn.edu.tw"):
@@ -1010,8 +1011,7 @@ if ok:
     print("OK.")
 else:
     print("Invalid web site URL!")
-#+END_COMMENT
-
+#+end_src
 
 #+latex:\newpage
 
@@ -1176,7 +1176,8 @@ else:
 
 ** 作業
 *** [[https://moodle.tnfsh.tn.edu.tw/mod/vpl/view.php?id=1870][5D. No one is perfect]]
-#+BEGIN_COMMENT
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
 import sys
 x = int(input())
 y = int(input())
@@ -1190,7 +1191,7 @@ for n in range(x, y+1):
         print(sum)
         sys.exit()
 print("No one is perfect")
-#+END_COMMENT
+#+end_src
 
 #+latex:\newpage
 
@@ -1327,16 +1328,14 @@ Given a positive integer N. The task is to write a Python program to check if th
 - Definition:
   A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself. The first few prime numbers are {2, 3, 5, 7, 11, ….}.
 - Examples :
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Input:  11
 Output: true
-
 Input:  15
 Output: false
-
 Input:  1
 Output: false
-#+END_QUOTE
+#+END_EXAMPLE
 
 ** continue
 跳出單次 loop
@@ -1357,22 +1356,23 @@ Output: false
 : Processing Letrer: o
 : Processing Letrer: n
 *** 練習
-Given a string. Prints all letters in this string except 'N' and 'S'.
--Example:
-#+BEGIN_QUOTE
+Given a string. Print all letters in this string except 'N' and 'S'.
+- Example:
+#+BEGIN_EXAMPLE
 Input: TNFSH
 Output: TFH
-#+END_QUOTE
-#+BEGIN_COMMENT
+#+END_EXAMPLE
+
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
 for letter in 'TNFSH':
     if letter in ['N', 'S']:
         continue
     print(letter, end='')
-#+END_COMMENT
-
+#+end_src
 
 ** for / while + else
-[[https://note.pcwu.net/2017/02/26/python-loop-else/][[Python] Loop 配合 else 的妙用]]
+*** reading: [[https://note.pcwu.net/2017/02/26/python-loop-else/][[Python] Loop 配合 else 的妙用]]
 
 ** 巢狀迴圈
 *** 範例
@@ -1396,10 +1396,16 @@ for i in range(1, 10):
 : 9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81
 
 ** 實作練習
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/165/][skyoj 165. 完全數/巢狀 for迴圈]]
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/167/][skyoj 167. 高中運動會/巢狀for迴圈]]
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/279/][skyoj 279. 所有位數平方和/While]]
-#+BEGIN_COMMENT
+*** 所有位數平方和
+輸入一整整數，輸出該整數所有位數平方和
+Example
+#+BEGIN_EXAMPLE
+Input: 12345
+Output: 55
+#+END_EXAMPLE
+
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
 num = 12345
 sos = 0
 while (num>0):
@@ -1407,18 +1413,19 @@ while (num>0):
     sos += dig * dig
     num //= 10
 print(sos)
-#+END_COMMENT
+#+end_src
 
 ** 作業
 *** 6B. 保安～～可以讓人這樣一乘再乘嗎？
 - 輸入：讀入一整數 n、接下來讀入 n 個整數，最後輸入一個整數 m。
 - 輸出：將所有 n 個數相乘、再將所得乘積除以 m、輸出餘數
 - 提示：( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
-#+BEGIN_COMMENT
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
 def findremainder(arr, lens, n):
     mul = 1
 
-    for i in range(lens):
+    for iin range(lens):
         mul = (mul * (arr[i] % n)) % n
 
     return mul % n
@@ -1428,7 +1435,7 @@ lens = len(arr)
 n = 11
 
 print( findremainder(arr, lens, n))
-#+END_COMMENT
+#+end_src
 
 * 資料型別
 :PROPERTIES:
@@ -1638,7 +1645,7 @@ print('全班總分：{0:d},全班平均：{1:0.2f}'.format(sos, sos/len(score))
 *** 課堂練習
 - Given a two Python list. Iterate both lists simultaneously such that list1 should display item in original order and list2 in reverse order
 - Example:
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Input: [可以將輸入直接複製貼上到 code 中]
 list1 = [10, 20, 30, 40]
 list2 = [100, 200, 300, 400]
@@ -1647,45 +1654,276 @@ Output:
 20 300
 30 200
 40 100
-#+END_QUOTE
+#+END_EXAMPLE
 
 *** 作業
 **** lone wolf
 讀入一整數 n、接下來讀入 n 個整數，列出這幾個整數中未成對者
 - Examples
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 Input: 3 2 2 1
 Output: 1
 Input: 5 4 1 2 1 2
 Output: 4
-#+END_QUOTE
-#+BEGIN_COMMENT
+#+END_EXAMPLE
+***** solution :noexport:
+#+begin_src python -r -n :results output :exports both
 nums = [5, 5, 9, 1, 2, 1, 2]
 n = nums[0]
 for i in nums[1:]:
     n ^= i
 print(n)
-#+END_COMMENT
+#+end_src
+
+**** removing the Nth occurence element
+- 讀入一字串
+- 再讀入一 word x, 一整數 n (n<字串長度)，刪除上述字串中第 n 個重複出現的 x
+- 輸出剩下的字串
+- Examples
+  #+BEGIN_EXAMPLE
+Input: to be or not to be, that is the question.
+       be
+       2
+Output: to be or not to, that is the question.
+  #+END_EXAMPLE
+***** solution :noexport:
+#+begin_src python -r -n :results output :exports both
+str = "to be or not to be that is the question"
+list = str.split()
+print(list)
+
+tarList = []
+n = 2
+word = 'be'
+for item in list:
+    if item == word:
+        if n > 1:
+            tarList.append(item)
+            n -= 1
+    else:
+        tarList.append(item)
+
+tarStr = " "
+print(tarStr.join(tarList))
+#+end_src
+
+**** Maximum Subarray
+item description here...
+
+***** Solution #1 :noexport:
+#+begin_src python -r -n :results output :exports both
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+max = nums[0]
+for i in range(0, len(nums), 1):
+    for j in range(i, len(nums), 1):
+        sum = 0
+        for k in range(i, j+1, 1):
+            sum += nums[k]
+        if sum > max:
+            max = sum
+print(max)
+#+end_src
+
+***** Solution #2 :noexport:
+#+begin_src python -r -n :results output :exports both
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+max = nums[0]
+for i in range(0, len(nums), 1):
+    sum = 0
+    for j in range(i, len(nums), 1):
+        sum += nums[j]
+        if sum > max:
+            max = sum
+print(max)
+#+end_src
+
+***** Solution #3 :noexport:
+#+begin_src python -r -n :results output :exports both
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+f = []
+f.append(nums[0])
+for i in range(1, len(nums), 1):
+    f.append(max(f[i-1] + nums[i], nums[i]))
+
+print(max(f))
+#+end_src
+
+***** Solution #4 :noexport:
+#+begin_src python -r -n :results output :exports both
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+
+ans = nums[0]
+sum = nums[0]
+
+for i in range(1, len(nums), 1):
+    sum = max(sum + nums[i], nums[i])
+    if sum > ans:
+        ans = sum
+print(ans)
+#+end_src
+
+
 
 ** 元組 tuple
+A tuple in Python is similar to a list. The difference between the two is that we cannot change the elements of a tuple once it is assigned whereas we can change the elements of a list.[fn:16]
+
 *** 資料格式
 - 資料格式：以( )將不同型態的資料含括起來，以 , 分隔
 - 元組中的資料是有序排列，從 0 開始編號
 - 格式：元組名稱 = (元素 1, 元素 2, … )
 - 與表列 list 類似，但元組 tuple 內的元素不能修改
-*** 範例
-#+BEGIN_SRC python -r -n :results output :exports both
-  data = ( 'John', [95, 118], 'May', 100 )
-  print(data[1])
-  tup1 = (53, )    #只有一個元素時，其後要加逗號
-  print(tup1)
-#+END_SRC
+
+*** Creating a Tuple
+A tuple is created by placing all the items (elements) inside parentheses (), separated by commas. The parentheses are optional, however, it is a good practice to use them.
+#+begin_src python -r -n :results output :exports both
+# Different types of tuples
+
+# Empty tuple
+my_tuple = ()
+print(my_tuple)
+
+# Tuple having integers
+my_tuple = (1, 2, 3)
+print(my_tuple)
+
+# tuple with mixed datatypes
+my_tuple = (1, "Hello", 3.4)
+print(my_tuple)
+
+# nested tuple
+my_tuple = ("mouse", [8, 4, 6], (1, 2, 3))
+print(my_tuple)
+
+tup1 = (53, )    #只有一個元素時，其後要加逗號
+print(tup1)
+
+#+end_src
 
 #+RESULTS:
-: [95, 118]
-: (53,)
+: ()
+: (1, 2, 3)
+: (1, 'Hello', 3.4)
+: ('mouse', [8, 4, 6], (1, 2, 3))
 
-*** 練習: 史上最強掌法
+*** Access Tuple Elements
+**** Indexing
+We can use the index operator [] to access an item in a tuple, where the index starts from 0.
+#+begin_src python -r -n :results output :exports both
+# Accessing tuple elements using indexing
+my_tuple = ('p','e','r','m','i','t')
+
+print(my_tuple[0])   # 'p'
+print(my_tuple[5])   # 't'
+
+# IndexError: list index out of range
+# print(my_tuple[6])
+
+# Index must be an integer
+# TypeError: list indices must be integers, not float
+# my_tuple[2.0]
+
+# nested tuple
+n_tuple = ("mouse", [8, 4, 6], (1, 2, 3))
+
+# nested index
+print(n_tuple[0][3])       # 's'
+print(n_tuple[1][1])       # 4
+#+end_src
+
+#+RESULTS:
+: p
+: t
+: s
+: 4
+
+**** Negative Indexing
+Python allows negative indexing for its sequences.
+#+begin_src python -r -n :results output :exports both
+# Negative indexing for accessing tuple elements
+my_tuple = ('p', 'e', 'r', 'm', 'i', 't')
+
+# Output: 't'
+print(my_tuple[-1])
+
+# Output: 'p'
+print(my_tuple[-6])
+#+end_src
+
+#+RESULTS:
+: t
+: p
+
+**** Slicing
+We can access a range of items in a tuple by using the slicing operator colon :.
+#+begin_src python -r -n :results output :exports both
+# Accessing tuple elements using slicing
+my_tuple = ('p','r','o','g','r','a','m','i','z')
+
+# elements 2nd to 4th
+# Output: ('r', 'o', 'g')
+print(my_tuple[1:4])
+
+# elements beginning to 2nd
+# Output: ('p', 'r')
+print(my_tuple[:-7])
+
+# elements 8th to end
+# Output: ('i', 'z')
+print(my_tuple[7:])
+
+# elements beginning to end
+# Output: ('p', 'r', 'o', 'g', 'r', 'a', 'm', 'i', 'z')
+print(my_tuple[:])
+#+end_src
+
+#+RESULTS:
+: ('r', 'o', 'g')
+: ('p', 'r')
+: ('i', 'z')
+: ('p', 'r', 'o', 'g', 'r', 'a', 'm', 'i', 'z')
+
+**** Tuple Methods
+Methods that add items or remove items are not available with tuple. Only the following two methods are available.
+#+begin_src python -r -n :results output :exports both
+my_tuple = ('a', 'p', 'p', 'l', 'e',)
+
+print(my_tuple.count('p'))  # Output: 2
+print(my_tuple.index('l'))  # Output: 3
+#+end_src
+
+#+RESULTS:
+: 2
+: 3
+
+**** Iterating Through a Tuple
+#+begin_src python -r -n :results output :exports both
+# Using a for loop to iterate through a tuple
+for name in ('John', 'Kate'):
+    print("Hello", name)
+#+end_src
+
+#+RESULTS:
+: Hello John
+: Hello Kate
+
+*** 練習
+**** Modify the first item (maybe any number, 33 in this case) of a list inside a following tuple to n
+Examples
+#+BEGIN_EXAMPLE
+tuple1 = (11, [22, 33], 44, 55)
+Expected output:
+tuple1 = (11, [222, 33], 44, 55)
+#+END_EXAMPLE
+#+begin_src python -r -n :results output :exports both
+tuple1 = (11, [22, 33], 44, 55)
+tuple1[1][0] = 222
+print(tuple1)
+#+end_src
+
+#+RESULTS:
+: (11, [222, 33], 44, 55)
+
+**** 練習: 史上最強掌法
 自從鐵掌無敵馬掌門出任武林盟主後，綠林豪傑一片哀鴻，民不聊生，痛苦指數破表，眾家名門弟子甚至遠避異鄉以求溫飽。近來馬掌門更獨創「油電雙掌」，以圖鞏固武林領導地位，此套掌法高深莫測，武林中人聞風喪膽，少林、武當各派高手不得不拋開門戶之見，齊聚「竹園崗」合作商議對策。目前僅由歴來幾次掌下逃生者的對戰經驗分析出以下數據
 | 與馬掌門對戰時間(秒) | 對戰者每秒接受之傷害值 |
 |----------------------+------------------------|
@@ -1697,7 +1935,8 @@ print(n)
 請你幫這些可憐的高手寫一個程式分析對戰時間與受傷指數間的關係。
 輸入：0 ~ 10000 秒之間任意值
 輸出：受傷指數
-*** 解 1
+
+***** 解 1
 #+BEGIN_SRC python -r -n :results output :exports both
   #sec = input()
   sec = 800
@@ -1716,7 +1955,7 @@ print(n)
 #+RESULTS:
 : 3189.5
 
-*** 解 2
+***** 解 2
 #+BEGIN_SRC python -r -n :results output :exports both
   #sec = input()
   sec = 800
@@ -1740,6 +1979,7 @@ print(n)
 - 格式：字典名稱 = {k1:v1, k2:v2,  … }
 - 範例：
 - 註：若字典中有相同的 key，則會取出最後的 value
+
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
   data = { 'John': 95,  'May': 100 }
@@ -1748,6 +1988,7 @@ print(n)
 
 #+RESULTS:
 : 100
+
 *** dic 操作
 - 新增、修改、刪除
 #+BEGIN_SRC python -r -n :results output :exports both
@@ -1766,6 +2007,7 @@ print(n)
 
 #+RESULTS:
 : {'May': 100, 'Harrison': 88}
+
 *** dic method
 **** 增/剛
 - <dict>.clear()
@@ -1822,7 +2064,7 @@ print(data)
 
 *** 練習
 Get the key corresponding to the minimum value from the following dictionary
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 sampleDict = {
   'Physics': 82,
   'Math': 65,
@@ -1831,7 +2073,7 @@ sampleDict = {
 
 Expected output:
 Math
-#+END_QUOTE
+#+END_EXAMPLE
 
 
 ** List v.s. Tuple
@@ -1847,6 +2089,7 @@ Math
   #+BEGIN_SRC python -r -n :results output :exports both
 [[2,4], [5,7], [3,8], [5,9]]
   #+END_SRC
+
 *** Tuple 與 dictionary 的相似性
 - Tuples are commonly used as the equivalent of a dictionary without keys to store data. For Example,
   #+BEGIN_SRC python -r -n :results output :exports both
@@ -1876,11 +2119,25 @@ print(key_val.values())
 集合名稱 = {元素1, 元素2, … }
   #+END_SRC
 - 註：set(<seq>)函式的參數<seq>可為字串、表列、元組、字典
+
+*** 空集合
+如果你要建立空集合，不可以直接使用{}不 包括任何元素的實字寫法，因為{}不 包括任何元素的實字寫法表示一個空字典物件，如果你要建立空集合，必須使用 set 類 別建構[fn:15]。例如：
+#+begin_src python -r -n :results output :exports both
+family = set()
+family.add("James")
+family.add("Vanessa")
+print(family)
+#+end_src
+
+#+RESULTS:
+: {'James', 'Vanessa'}
+
 *** 範例
 #+BEGIN_SRC python -r -n :results output :exports both
 S1 = { 'John', 95, 'May', 100, 'John' } 
 S2 = set('apple')  ⇒ {'l', 'a', 'e', 'p'}  # 集合的資料是無序的
 #+END_SRC
+
 *** 元素新增刪除
 #+BEGIN_SRC python -r -n :results output :exports both
 <set>.add(<item>)
@@ -1898,6 +2155,43 @@ print(s)
 #+RESULTS:
 : {'e', 'p', 'x', 'l', 'a'}
 : {'e', 'x', 'l', 'a'}
+
+*** 集合可使用函式
+與串列 (List) 和數組 (Tuple) 一樣可以使用以下函式[fn:14]
+- len(): 回傳長度
+- sum(): 回傳總和
+- max(): 回傳最大值
+- min(): 回傳最小值
+
+*** 判斷某 element 是否存在於 set 中
+與串列 (List) 和數組 (Tuple) 一樣可以使用 in 和 not in 來判斷元素是否存在於集合中
+#+begin_src python -r -n :results output :exports both
+set1 = {2, 4, 6, 8, 10}
+
+print(2 in set1)
+print(11 in set1)
+print(3 not in set1)
+print(4 not in set1)
+
+#+end_src
+
+#+RESULTS:
+: True
+: False
+: True
+: False
+
+*** 利用 for 來遍歷 set
+因為集合 (Set) 沒辦法使用索引 (Index) 來印出, 所以用 for 迴圈寫時要這樣寫
+#+begin_src python -r -n :results output :exports both
+set1 = {2, 4, 6, 8, 10}
+
+for i in set1:
+	print(i, end = ' ')
+#+end_src
+
+#+RESULTS:
+: 2 4 6 8 10
 
 *** 集合運算
 | 運算 | 符號 |
@@ -1928,14 +2222,76 @@ print("'5' in b:", '5' in b)
 
 *** 練習
 Remove items from set1 that are not common to both set1 and set2
-#+BEGIN_QUOTE
+#+BEGIN_EXAMPLE
 set1 = {10, 20, 30, 40, 50}
 set2 = {30, 40, 50, 60, 70}
 
 Expected output:
 {40, 50, 30}
-#+END_QUOTE
+#+END_EXAMPLE
 
+** 作業[set]
+*** 你快樂嗎？我很快樂
+快樂數有以下的特性：在給定的進位制下，該數字所有數位（英語：digits）的平方和，得到的新數再次求所有數位的平方和，如此重複進行，最終結果必為 1。 [fn:13]
+- 輸入任一整數，回傳 Happy/Unhappy 來說明這個數是否快樂。
+- Examples:
+#+BEGIN_EXAMPLE
+Input: 28
+Output: Happy
+Input: 4
+Output: Unhappy
+#+END_EXAMPLE
+**** solution :noexport:
+***** #1
+#+begin_src python -r -n :results output :exports both
+def nextN(n):
+    sos = 0
+    while n != 0:
+        r = n % 10
+        sos += r * r
+        n //= 10
+    return sos
+
+n = 4
+histN = set()
+
+while n not in histN:
+    histN.add(n)
+    n = nextN(n)
+
+if n == 1:
+    print("Happy")
+else:
+    print("Unhappy")
+
+#+end_src
+***** #2
+#+begin_src python -r -n :results output :exports both
+### better solution: 不用 set 來存歷史記錄
+def nextN(n):
+    sos = 0
+    while n != 0:
+        r = n % 10
+        sos += r * r
+        n //= 10
+    return sos
+
+n = 28
+
+slow = n
+fast = n
+while True:
+    slow = nextN(slow)
+    fast = nextN(nextN(fast))
+    if slow == fast:
+        break
+
+if fast == 1:
+    print("Happy")
+else:
+    print("Unhappy")
+
+#+end_src
 
 ** 資料型別整理
 |-------------+------------+-----------+-----------+-------------|
@@ -1968,6 +2324,7 @@ Expected output:
   + Python 內建 function，如: print()、len()、int()、str()...。
   + 第三方公司所開發的模組 module(多個 function 組合)。
   + 自定義 function。
+
 *** 自定義函式
 - 宣告語法
   #+BEGIN_SRC python -r -n :eval no
@@ -1979,6 +2336,7 @@ Expected output:
   + 參數可省略，亦即呼叫 function 不需傳入任何資料(引數)。
   + 若無回傳值，則無需 return。
   + 若多個回傳值可用逗號隔開。
+
 *** 自定義函式的呼叫
 - 呼叫函式語法：
 #+BEGIN_SRC python -r -n :eval no
@@ -2194,6 +2552,14 @@ print(dir(my))
 #+latex:\newpage
 
 * Footnotes
+
+[fn:16] [[https://www.programiz.com/python-programming/tuple][Python Tuple]]
+
+[fn:15] [[https://openhome.cc/Gossip/Python/SetType.html][集合]]
+
+[fn:14] [[https://wenyuangg.github.io/posts/python3/python-set.html][[Python] 學習使用集合 (Set)]]
+
+[fn:13] [[https://zh.wikipedia.org/wiki/%E5%BF%AB%E6%A8%82%E6%95%B8][快樂數]]
 
 [fn:1] [[https://buzzorange.com/techorange/2019/08/20/the-history-of-python][Python的誕生故事]]
 
