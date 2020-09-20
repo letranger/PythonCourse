@@ -1190,9 +1190,7 @@ for n in range(x, y+1):
         print(sum)
         sys.exit()
 print("No one is perfect")
-#+end_src
-
-
+#+END_COMMENT
 
 #+latex:\newpage
 
@@ -1370,7 +1368,8 @@ for letter in 'TNFSH':
     if letter in ['N', 'S']:
         continue
     print(letter, end='')
-#+end_src
+#+END_COMMENT
+
 
 ** for / while + else
 [[https://note.pcwu.net/2017/02/26/python-loop-else/][[Python] Loop 配合 else 的妙用]]
@@ -1399,9 +1398,37 @@ for i in range(1, 10):
 ** 實作練習
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/165/][skyoj 165. 完全數/巢狀 for迴圈]]
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/167/][skyoj 167. 高中運動會/巢狀for迴圈]]
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/279/][skyoj 279. 所有位數和/While]]
+- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/279/][skyoj 279. 所有位數平方和/While]]
+#+BEGIN_COMMENT
+num = 12345
+sos = 0
+while (num>0):
+    dig  = num % 10
+    sos += dig * dig
+    num //= 10
+print(sos)
+#+END_COMMENT
 
-#+latex:\newpage
+** 作業
+*** 6B. 保安～～可以讓人這樣一乘再乘嗎？
+- 輸入：讀入一整數 n、接下來讀入 n 個整數，最後輸入一個整數 m。
+- 輸出：將所有 n 個數相乘、再將所得乘積除以 m、輸出餘數
+- 提示：( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
+#+BEGIN_COMMENT
+def findremainder(arr, lens, n):
+    mul = 1
+
+    for i in range(lens):
+        mul = (mul * (arr[i] % n)) % n
+
+    return mul % n
+
+arr = [ 100, 10, 5, 25, 35, 14 ]
+lens = len(arr)
+n = 11
+
+print( findremainder(arr, lens, n))
+#+END_COMMENT
 
 * 資料型別
 :PROPERTIES:
@@ -1409,23 +1436,7 @@ for i in range(1, 10):
 :END:
 ** 字串 string
 *** 資料格式
-以單引號(')或雙引號(")將資料含括起來
-#+begin_src python :eval no
-stringA = 'Hello Python'
-stringB = "Hello Python"
-#+end_src
-*** 範例 1
-|-------+-----+-----+-----+----+----+----+----+----+----+----+----+----|
-| index |   0 |   1 |   2 |  3 |  4 |  5 |  6 |  7 |  8 |  9 | 10 | 11 |
-|-------+-----+-----+-----+----+----+----+----+----+----+----+----+----|
-| 字串  |   H |   e |   l |  l |  o |    |  P |  y |  t |  h |  o |  n |
-|-------+-----+-----+-----+----+----+----+----+----+----+----+----+----|
-| index | -12 | -11 | -10 | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
-|-------+-----+-----+-----+----+----+----+----+----+----+----+----+----|
-*** 字串運算子
-- +: 連接字串
-- *: 重複字串
-- [index]: 字串中 index 所在字元
+以單引號(')d [index]: 字串中 index 所在字元
 - [start:end:increment]: 截取部份字串
 - in: 判斷是否為子字串
 *** 範例 2
@@ -1654,10 +1665,7 @@ n = nums[0]
 for i in nums[1:]:
     n ^= i
 print(n)
-#+end_src
-
-#+RESULTS:
-: 9
+#+END_COMMENT
 
 ** 元組 tuple
 *** 資料格式
@@ -1929,7 +1937,6 @@ Expected output:
 #+END_QUOTE
 
 
-
 ** 資料型別整理
 |-------------+------------+-----------+-----------+-------------|
 | 資料型別    | 符號       | 資料可改? | 資料有序? | 資料類型    |
@@ -1945,6 +1952,7 @@ Expected output:
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/170/][skyoj 170. 日期強迫症/String]]
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/171/][skyoj 171. Decrypt the cipher/dict]]
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/172/][skyoj 172. Sim-Scoreboard/list]]
+
 
 #+latex:\newpage
 
