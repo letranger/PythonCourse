@@ -1417,7 +1417,7 @@ print(sos)
 
 ** 作業
 *** 6B. 保安～～可以讓人這樣一乘再乘嗎？
-- 輸入：讀入一整數 n、接下來讀入 n 個整數，最後輸入一個整數 m。
+- 輸入： 讀入一整數 n、接下來讀入 n 個整數，最後輸入一個整數 m。
 - 輸出：將所有 n 個數相乘、再將所得乘積除以 m、輸出餘數
 - 提示：( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
 **** solution :noexport:
@@ -1668,12 +1668,15 @@ Output: 4
 #+END_EXAMPLE
 ***** solution :noexport:
 #+begin_src python -r -n :results output :exports both
-nums = [5, 5, 9, 1, 2, 1, 2]
+nums = [11, 11, 1, 5, 100, 1, 5]
 n = nums[0]
 for i in nums[1:]:
     n ^= i
 print(n)
 #+end_src
+
+#+RESULTS:
+: 20
 
 **** removing the Nth occurence element
 - 讀入一字串
