@@ -1596,7 +1596,7 @@ scores = [78, 12, 97, 45, 12, 45, 98, 100, 9, 23]
 - 全班平均：至小數點第 2 位
 - 全班最高分分數
 - 全班最低分分數
-
+  
 *** zip()
 **** zip 與 for 迴圈
 在 Python 中若要將兩個 list 以迴圈的方式一次各取一個元素出來處理，可以使用 zip 打包之後配合 for 迴圈來處理，如下例
@@ -1682,7 +1682,7 @@ Output: 1
 Input: 5 4 1 2 1 2
 Output: 4
 #+END_EXAMPLE
-***** solution :noexport:
+***** solution #1 :noexport:
 #+begin_src python -r -n :results output :exports both
 nums = [11, 11, 1, 5, 100, 1, 5]
 n = nums[0]
@@ -1693,6 +1693,21 @@ print(n)
 
 #+RESULTS:
 : 20
+***** solution #2 :noexport:
+#+begin_src python -r -n :results output :exports both
+strList = [11, 11, 1, 5, 100, 1, 5]
+##str = input()
+##strList = str.split()
+
+for x in strList:
+  if strList.count(x) == 1:
+    print(x)
+    break
+#+end_src
+
+#+RESULTS:
+: 100
+
 
 **** removing the Nth occurence element
 - 讀入一字串
