@@ -3,25 +3,20 @@
 
 # -*- org-export-babel-evaluate: nil -*-
 #+TAGS: Python, Basic
-#+INCLUDE: ../bigweb.org
+#+INCLUDE: ../web.org
 
 * Python 簡介
 :PROPERTIES:
 :CUSTOM_ID: py-introduction
 :END:
 ** What is Python
-- Python is an advanced *scripting language* that is being used successfully to
-  *glue together* large software components. It spans *multiple platforms*,
-  middleware products, and application domains. Python is an *object-oriented
-  language* with *high-level data structures*, *dynamic typing*, and *dynamic binding*.
-  Python has been around since 1991, and has a very active user community. For
-  more information, see the Python website http://www.python.org.
+Python is an advanced *scripting language* that is being used successfully to *glue together* large software components. It spans *multiple platforms*, middleware products, and application domains. Python is an *object-oriented language* with *high-level data structures*, *dynamic typing*, and *dynamic binding*. Python has been around since 1991, and has a very active user community. For more information, see the Python website http://www.python.org.
 ** Python 的誕生
 *** 一句話講完一部電影
 - The Martian
-  #+ATTR_LATEX: :width 300
+  #+ATTR_LATEX: :width 200
   #+ATTR_HTML: :width 300
-  #+ATTR_ORG: :width 400
+  #+ATTR_ORG: :width 300
   #+RESULTS:
   [[file:theMartian.jpg]]
 - 一個男人在火星上種菜的故事
@@ -29,9 +24,9 @@
 - 1989 年，一個宅男工程師為了打發聖誔假期(順便打趴其他語言)、花了三個月創造了一
   種新的程式語言。[fn:1]
 - [[https://zh.wikipedia.org/zh-tw/%E5%90%89%E5%A4%9A%C2%B7%E8%8C%83%E7%BD%97%E8%8B%8F%E5%A7%86][Guido van Rossum]]
-  #+ATTR_LATEX: :width 400
-  #+ATTR_HTML: :width 560
-  #+ATTR_ORG: :width 560
+  #+ATTR_LATEX: :width 200
+  #+ATTR_HTML: :width 300
+  #+ATTR_ORG: :width 300
   #+RESULTS:
   [[file:Rossum.jpeg]]
 - 30 年後，每天都有數百萬人使用他創立的這一新語言。
@@ -40,57 +35,49 @@
     120,915 live websites using Python and an additional 820,538 sites that used
     Python historically and [[https://trends.builtwith.com/websitelist/Python/Taiwan][807 websites in Taiwan]]. [fn:2]
   + 依據 TOIBE 的調查，目前 Python 在[[https://www.tiobe.com/tiobe-index/][TOIBE]]最受歡迎語言的排名第三[fn:3]
-    #+ATTR_LATEX: :width 560
-    #+ATTR_HTML: :width 560
-    #+ATTR_ORG: :width 560
+    #+ATTR_LATEX: :width 400
+    #+ATTR_HTML: :width 400
+    #+ATTR_ORG: :width 400
     #+RESULTS:
     [[file:TOIBE-2020.jpg]]
   + [[https://www.youtube.com/watch?v=A_B7owR94XY][幾種不同語言受歡迎程度的變化:TIOBE 2001-2019]]
 - 研究人員於 2019 年首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python。
-  #+ATTR_LATEX: :width 400
-  #+ATTR_HTML: :width 560
-  #+ATTR_ORG: :width 560
+  #+ATTR_LATEX: :width 300
+  #+ATTR_HTML: :width 300
+  #+ATTR_ORG: :width 300
   #+RESULTS:
   [[file:blackhole.jpg]]
 
 *** Guido van Rossum 自己的說法
-- ...in December 1989, I was looking for a "hobby" programming project that
-  would keep me occupied during the week around Christmas.[fn:4]
-- My office (a government-run research lab in Amsterdam) would be closed, but I
-  had a home computer, and not much else on my hands. I decided to write an
-  interpreter for the new [[https://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80][Script language]] I had been thinking about lately: a
-  descendant of [[https://zh.wikipedia.org/wiki/ABC_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)][ABC]] that would appeal to Unix/C hackers.
-- I chose Python as a
-  working title for the project, being in a slightly irreverent mood (and a big
-  fan of Monty Python's Flying Circus). [fn:5]
+- ...in December 1989, I was looking for a "hobby" programming project that would keep me occupied during the week around Christmas.[fn:4]
+- My office (a government-run research lab in Amsterdam) would be closed, but I had a home computer, and not much else on my hands. I decided to write an interpreter for the new [[https://zh.wikipedia.org/wiki/%E8%84%9A%E6%9C%AC%E8%AF%AD%E8%A8%80][Script language]] I had been thinking about lately: a descendant of [[https://zh.wikipedia.org/wiki/ABC_(%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80)][ABC]] that would appeal to Unix/C hackers.
+- I chose Python as a working title for the project, being in a slightly irreverent mood (and a big fan of Monty Python's Flying Circus). [fn:5]
 
 ** Python 的優勢與應用
 *** Advantages[fn:6]
 1. Easy to learn
-1. High-level language
-1. User-friendly data structures
-1. [[https://www.itread01.com/p/1441246.html][Dynamically typed language]](No need to mention data type based on value
-   assigned, it takes data type)
-1. Object-oriented language
-1. Open source and community development
-1. Presence of third-party modules
-1. Extensive support libraries(NumPy for numerical calculations, Pandas for data
-   analytics etc)
-1. Portable and Interactive
-1. Portable across Operating systems
+2. High-level language
+3. User-friendly data structures
+4. [[https://www.itread01.com/p/1441246.html][Dynamically typed language]](No need to mention data type based on value assigned, it takes data type)
+5. Object-oriented language
+6. Open source and community development
+7. Presence of third-party modules
+8. Extensive support libraries(NumPy for numerical calculations, Pandas for data analytics etc)
+9. Portable and Interactive
+10. Portable across Operating systems
 *** Applications
 1. GUI based desktop applications(Games, Scientific Applications)
-1. Web frameworks and applications
-1. Enterprise and Business applications
+2. Web frameworks and applications
+3. Enterprise and Business applications
 *** Organizations using Python
 1. [[https://www.google.com/][Google]] (Components of Google spider and Search Engine)
-1. [[https://www.youtube.com/channel/UCNJIEbGZaScUDsq_DMYTjYg][Youtube]]
-1. [[https://www.instagram.com/][Instagram]]
-1. [[https://www.netflix.com/][Netflix]]
-1. [[https://www.dropbox.com/][Dropbox]]
-1. [[https://www.reddit.com/][Reddit]]
-1. [[https://www.uber.com/][Uber]]
-1. [[https://www.pinterest.com/][Pinterest]]
+2. [[https://www.youtube.com/channel/UCNJIEbGZaScUDsq_DMYTjYg][Youtube]]
+3. [[https://www.instagram.com/][Instagram]]
+4. [[https://www.netflix.com/][Netflix]]
+5. [[https://www.dropbox.com/][Dropbox]]
+6. [[https://www.reddit.com/][Reddit]]
+7. [[https://www.uber.com/][Uber]]
+8. [[https://www.pinterest.com/][Pinterest]]
 
 #+latex:\newpage
 
@@ -114,9 +101,9 @@
 - Linux / Mac: terminal
 - Windows: 命令提示字元
 #+CAPTION: 命令列下執行 Python interpreter
-#+ATTR_LATEX: :width 400
-#+ATTR_HTML: :width 560
-#+ATTR_ORG: :width 560
+#+ATTR_LATEX: :width 300
+#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 400
 #+RESULTS:
 [[file:python-terminal-demo.jpg]]    
 **** 執行方式
@@ -130,8 +117,7 @@
       exit()
     #+end_src
   + 快速鍵: Ctrl-D
-- 此模式可配合文字編輯器(如[[https://www.sublimetext.com/3][Sublime Text 3]]、[[https://notepad-plus-plus.org/downloads/][Notepad++]])撰寫程式碼，若檔名為 test.py，
-  執行該程式的方法為：於終端機下輸入
+- 此模式可配合文字編輯器(如[[https://www.sublimetext.com/3][Sublime Text 3]]、[[https://notepad-plus-plus.org/downloads/][Notepad++]])撰寫程式碼，若檔名為 test.py，執行該程式的方法為：於終端機下輸入
   #+begin_src shell :eval no
 python test.py
   #+end_src
@@ -724,8 +710,7 @@ Print("1a2b".Isalpha())
 : True
 : False
 
-- str.isdecimal(), str.isdigit(), str.isnumeric(): 字串是否為數字[fn:9]
-  以涵蓋範圍論，isdecimal() ⊆ isdigit() ⊆ isnumeric()，即，若一字串為 decimal，則一定也是 digit 和 numeric。
+- str.isdecimal(), str.isdigit(), str.isnumeric(): 字串是否為數字[fn:9]以涵蓋範圍論，isdecimal() ⊆ isdigit() ⊆ isnumeric()，即，若一字串為 decimal，則一定也是 digit 和 numeric。
 - isdigit()
   - True: Unicode 數字，byte 數字（單位元組），全形數字（雙位元組），羅馬數字
   - False: 漢字數字
@@ -1176,11 +1161,13 @@ else:
 
 ** 作業
 *** [[https://moodle.tnfsh.tn.edu.tw/mod/vpl/view.php?id=1870][5D. No one is perfect]]
-**** solution :noexport:
+**** solution 1 :noexport:
 #+begin_src python -r -n :results output :exports both
 import sys
-x = int(input())
-y = int(input())
+##x = int(input())
+##y = int(input())
+x = 20
+y = 200
 
 for n in range(x, y+1):
     sum = 0
@@ -1192,6 +1179,33 @@ for n in range(x, y+1):
         sys.exit()
 print("No one is perfect")
 #+end_src
+
+#+RESULTS:
+: 28
+
+#+latex:\newpage
+**** solution 2 :noexport:
+#+begin_src python -r -n :results output :exports both
+import sys
+##x = int(input())
+##y = int(input())
+x = 29
+y = 10000
+
+for n in range(x, y+1):
+    sum = 0
+    for i in range(1, n):
+        if n % i == 0:
+            sum += i
+    if sum == n:
+        print(sum)
+        break;
+else:
+    print("No one is perfect")
+#+end_src
+
+#+RESULTS:
+: 496
 
 #+latex:\newpage
 
@@ -1377,6 +1391,49 @@ for letter in 'TNFSH':
 #+end_src
 
 ** for / while + else
+Python 一個十分有趣的 loop 語法是它能配合 else 來用，語法如下：
+#+begin_src python -r -n :results output :exports both
+for n in ...:
+    if condition is true:
+        ....
+        break
+else:
+    print("all condition is false")
+#+end_src
+如果上述的 for 迴圈從頭到尾都沒有去跑過 break(也就是說 condition 都不成立，for 正常結束)，那麼 else 裡的程式碼就會被執行。那麼，何時會用到這個有趣的語法呢？
+
+以質數判斷為例：原本的寫法為:
+#+begin_src python -r -n :results output :exports both
+n = 22
+isPrime = True
+for x in range(2, n//2 + 1):
+    if n % x == 0:
+        isPrime = False
+        print("Composite Number!")
+        break
+if isPrime:
+    print("Prime number")
+#+end_src
+
+#+RESULTS:
+: Composite Number!
+
+套用 else 後則可改為
+#+begin_src python -r -n :results output :exports both
+n = 23
+for x in range(2, n//2 + 1):
+    if n % x == 0:
+        print("Composite Number!")
+        break
+else:
+    print("Prime number")
+
+#+end_src
+
+#+RESULTS:
+: Prime number
+
+當我們要在 for/while 內佈署一些條件判斷(如果條件成立就 break，例如，判斷某數是否為質數)，如果找到因數，則臢
 *** reading: [[https://note.pcwu.net/2017/02/26/python-loop-else/][[Python] Loop 配合 else 的妙用]]
 
 ** 巢狀迴圈
@@ -1405,22 +1462,64 @@ for i in range(1, 10):
 輸入一整整數，輸出該整數所有位數平方和
 Example
 #+BEGIN_EXAMPLE
+
 Input: 12345
 Output: 55
 #+END_EXAMPLE
 
-**** solution :noexport:
+**** solution #1 :noexport:
 #+begin_src python -r -n :results output :exports both
-num = 12345
+qnum = 12345
 sos = 0
 while (num>0):
     dig  = num % 10
     sos += dig * dig
     num //= 10
 print(sos)
+
+
 #+end_src
 
+#+RESULTS:
+: 55
+
+*** 求 1+2+3+...+n<=m，已知 m 時之最大的 n 值。輸入 m，輸出 n。
+*** 輸出 99 乘法表
+*** 拉斯維加斯
+
 ** 作業
+*** 5A. 因數和
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
+import sys
+n = 23
+sum = 0
+i = 2
+while i <= n/2 + 1:
+    if n % i == 0:
+        sum += i
+    i += 1
+if sum == 0:
+    print("XD")
+    sys.exit(0)
+print(sum)
+#+end_src
+
+#+RESULTS:
+: XD
+
+*** 5C. 所有位數和
+**** solution 1 :noexport:
+#+begin_src python -r -n :results output :exports both
+str = '12345'
+intLst = map(int, list(str))
+
+print(sum(intLst))
+#+end_src
+
+#+RESULTS:
+: 15
+
 *** 6B. 保安～～可以讓人這樣一乘再乘嗎？
 - 輸入： 讀入一整數 n、接下來讀入 n 個整數，最後輸入一個整數 m。
 - 輸出：將所有 n 個數相乘、再將所得乘積除以 m、輸出餘數
@@ -1796,7 +1895,11 @@ for i in range(1, len(nums), 1):
 print(ans)
 #+end_src
 
-
+*** 2d List
+**** 練習: 利用 for-loop 取出二維 List 中的元素
+#+begin_src python -r -n :results output :exports both
+ClassNo = [[101,102,103], [201,202,203], [301,302,303]]
+#+end_src
 
 ** 元組 tuple
 A tuple in Python is similar to a list. The difference between the two is that we cannot change the elements of a tuple once it is assigned whereas we can change the elements of a list.[fn:16]
@@ -1929,7 +2032,7 @@ print(my_tuple.index('l'))  # Output: 3
 : 2
 : 3
 
-**** Iterating Through a Tuple
+**** Tuple遍歷
 #+begin_src python -r -n :results output :exports both
 # Using a for loop to iterate through a tuple
 for name in ('John', 'Kate'):
@@ -2096,6 +2199,19 @@ print(data)
 : {'Vanessa': None, 'May': None, 'John': None}
 : {'Vanessa': 100, 'May': 100, 'John': 100}
 
+**** 遍歷 Dict
+#+begin_src python -r -n :results output :exports both
+data = { 'John': 95,  'May': 100, 'Vanessa': 105, 'James': 999 }
+for k, v in data.items():
+    print(k, " : ", v)
+#+end_src
+
+#+RESULTS:
+: John  :  95
+: May  :  100
+: Vanessa  :  105
+: James  :  999
+
 *** 練習
 Get the key corresponding to the minimum value from the following dictionary
 #+BEGIN_EXAMPLE
@@ -2108,7 +2224,54 @@ sampleDict = {
 Expected output:
 Math
 #+END_EXAMPLE
+**** solution #1 :noexport:
+#+begin_src python -r -n :results output :exports both
+sampleDict = {
+  'Physics': 82,
+  'Math': 65,
+  'history': 75
+}
 
+minV = min(sampleDict.values())
+print(minV)
+for k, v in sampleDict.items():
+    if v == minV:
+        print(k)
+        break
+
+#+end_src
+
+#+RESULTS:
+: 65
+: Math
+**** solution #2 :noexport:
+#+begin_src python -r -n :results output :exports both
+sampleDict = {
+  'Physics': 82,
+  'Math': 65,
+  'history': 75
+}
+
+print(min(sampleDict, key=lambda k: sampleDict[k]))
+#+end_src
+
+#+RESULTS:
+: Math
+**** solution #3 :noexport:
+#+begin_src python -r -n :results output :exports both
+sampleDict = {
+  'Physics': 82,
+  'Math': 65,
+  'history': 75
+}
+
+from operator import itemgetter
+min_key, _ = min(sampleDict.items(), key=itemgetter(1))
+print(min_key)
+#+end_src
+
+#+RESULTS:
+: Math
 
 ** List v.s. Tuple
 二者的差異與適用時機[fn:3]：
@@ -2215,7 +2378,7 @@ print(4 not in set1)
 : True
 : False
 
-*** 利用 for 來遍歷 set
+*** 遍歷 set
 因為集合 (Set) 沒辦法使用索引 (Index) 來印出, 所以用 for 迴圈寫時要這樣寫
 #+begin_src python -r -n :results output :exports both
 set1 = {2, 4, 6, 8, 10}
@@ -2265,6 +2428,9 @@ Expected output:
 #+END_EXAMPLE
 
 ** 作業[set]
+*** 測資讀取的方式
+- [[https://ithelp.ithome.com.tw/articles/10230292][OJ上如何讀測資的教學? ]]
+- [[https://stackoverflow.com/questions/28990034/whats-the-equivalent-for-while-cin-var-in-python][What's the equivalent for while (cin >> var) in python?]]
 *** 你快樂嗎？我很快樂
 快樂數有以下的特性：在給定的進位制下，該數字所有數位（英語：digits）的平方和，得到的新數再次求所有數位的平方和，如此重複進行，最終結果必為 1。 [fn:13]
 - 輸入任一整數，回傳 Happy/Unhappy 來說明這個數是否快樂。
@@ -2326,6 +2492,136 @@ else:
     print("Unhappy")
 
 #+end_src
+*** read data into Dict :dict:
+輸入購物清單，轉成dict，輸出dict，輸出總金額
+週年慶到了，將敗家視為日常活動的小珍開始認真研究各家百貨公司寄來的敗家專用廣告。由於小珍是百貨公司敗家排行榜中的VVIP，自然在啟動敗家專案前自然是要先做好規劃。
+以下這列字串是小珍隨手寫下的敗家行動計劃，請你幫忙把這份計劃轉成較為清楚的格式，並列出全部金額以及最高金額的項目名稱。
+
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
+buyStr = "LAMY:2000,Waterman:20000,Platinum:30000,TWSBI:100000,Pelikan:54000,Montblanc:200000,SAILOR:90000"
+d = dict()
+buyList = buyStr.split(",")
+
+for x in buyList:
+    d[x.split(":")[0]] = int(x.split(":")[1])
+
+print(d)
+for key, value in d.items():
+    print(key,":",value)
+
+# Summary value
+print("Sum",":",sum(map(int, list(d.values()))))
+# Find the max value in a dictionary
+max_key = max(d, key=d.get)
+print("Top",":",max_key)
+print("Top",":",list(d.keys())[list(d.values()).index(max(list(d.values())))])
+#+end_src
+
+#+RESULTS:
+#+begin_example
+{'LAMY': 2000, 'Waterman': 20000, 'Platinum': 30000, 'TWSBI': 100000, 'Pelikan': 54000, 'Montblanc': 200000, 'SAILOR': 90000}
+LAMY : 2000
+Waterman : 20000
+Platinum : 30000
+TWSBI : 100000
+Pelikan : 54000
+Montblanc : 200000
+SAILOR : 90000
+Sum : 496000
+Top : Montblanc
+Top : Montblanc
+#+end_example
+
+*** unique character in string check :set:
+讀入字串若干行(我也不知道有幾行)，每行代表一集合。輸出所有集合的交集項目數與聯集項目數。
+A,B,D,X,Q,M,G,C
+B,C,Y,N,M,L,H
+Q,C,Y,M,D,H
+
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
+strA = 'A,B,D,X,Q,M,G,C'
+strB = 'B,C,Y,N,M,L,H'
+strC = 'Q,C,Y,M,D,H'
+strD = 'M'
+
+setA = set(strA.split(','))
+setB = set(strB.split(','))
+setC = set(strC.split(','))
+
+print(len(setA & setB),':',sorted(setA & setB))
+print(sorted(setA | setB))
+print(len(setA & setB))
+print(len(setA | setB))
+#+end_src
+
+#+RESULTS:
+: 3 : ['B', 'C', 'M']
+: ['A', 'B', 'C', 'D', 'G', 'H', 'L', 'M', 'N', 'Q', 'X', 'Y']
+: 3
+: 12
+**** solution for moodle :noexport:
+while input()
+#+begin_src python -r -n :results output :exports both
+interSet = set()
+unionSet = set()
+while True:
+    try:
+        interSet = interSet & set(input().split(','))
+    except:
+        break
+print(len(interSet))
+#+end_src
+*** removing all duplicate words and sorting :set:
+Write a program that accepts a sequence of whitespace separated words as input and prints the words after removing all duplicate words and sorting them alphanumerically.
+Suppose the following input is supplied to the program:
+hello world and practice makes perfect and hello world again
+Then, the output should be:
+again and hello makes perfect practice world
+
+Hints:
+In case of input data being supplied to the question, it should be assumed to be a console input.
+We use set container to remove duplicated data automatically and then use sorted() to sort the data.
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
+s = raw_input()
+words = [word for word in s.split(" ")]
+print " ".join(sorted(list(set(words))))
+#+end_src
+*** word frequency :dict:
+讀入一段字，輸出所有字的頻率
+#+begin_src python -r -n :results output :exports both
+tmpStr = 'Return all non-overlapping matches of pattern in string, as a list of strings. The string is scanned left-to-right, and matches are returned in the order found. If one or more groups are present in the pattern, return a list of groups; this will be a list of tuples if the pattern has more than one group. Empty matches are included in the result unless they touch the beginning of another match. Are you kidding?'
+
+tmpStr = 'to be or not to be? that is a question.'
+symbs = ['.', ',', '?']
+for s in symbs:
+    tmpStr = tmpStr.replace(s, '')
+
+tmpList = list(tmpStr.lower().split(' '))
+frqDict = {}
+
+for w in tmpList:
+    if w in frqDict:
+        frqDict[w] = frqDict.get(w, 0) + 1
+    else:
+        frqDict[w] = 1
+
+for k, v in frqDict.items():
+    print(k, ':', v)
+
+#+end_src
+
+#+RESULTS:
+: to : 2
+: be : 2
+: or : 1
+: not : 1
+: that : 1
+: is : 1
+: a : 1
+: question : 1
 
 ** 資料型別整理
 |-------------+------------+-----------+-----------+-------------|
@@ -2337,6 +2633,7 @@ else:
 | 字典 dict   | { }        | ✔️         | ✖️         | 相同(鍵:值) |
 | 集合 set    | { }        | ✔️         | ✖️         | 可不同      |
 |-------------+------------+-----------+-----------+-------------|
+
 ** 實作練習
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/169/][skyoj 160. 神文/String]]
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/170/][skyoj 170. 日期強迫症/String]]
@@ -2350,6 +2647,34 @@ else:
 :PROPERTIES:
 :CUSTOM_ID: py--functions
 :END:
+** What for?
+*** 作業 5A: No one is perfect
+#+begin_src python -r -n :results output :exports both
+import sys
+a , b = int(input()), int(input())
+d=0
+for i in range(a,b+1):
+    c=0
+    for j in range(1,i):
+        if i%j==0:
+            c=c+j
+    if c == i and c!=1:
+        print(i)
+        sys.exit()
+print("No number is perfect")
+#+end_src
+*** 如果有個 fucntion 叫 isPerfect，傳入一整數，若該整數為完全數，則傳回 True，否則傳回 False，那上述 solution 就能改為:
+#+begin_src python -r -n :results output :exports both
+import sys
+a , b = int(input()), int(input())
+for i in range(a,b+1):
+    c=0
+    if isPerfect(i):
+        print(i)
+        sys.exit()
+print("No number is perfect")
+#+end_src
+
 ** 函式(function)基本操作
 *** 函式(function)的重要性
 - function 為一段程式的集合，可視為一個獨立的區段。
@@ -2578,6 +2903,7 @@ print(dir(my))
 
   #+RESULTS:
   : 10
+
 
 ** 實作練習
 - 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入 5，輸出 5! = 120。
