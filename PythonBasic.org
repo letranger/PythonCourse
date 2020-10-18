@@ -2591,10 +2591,10 @@ print " ".join(sorted(list(set(words))))
 #+end_src
 *** word frequency :dict:
 讀入一段字，輸出所有字的頻率
+**** solution :noexport:
 #+begin_src python -r -n :results output :exports both
-tmpStr = 'Return all non-overlapping matches of pattern in string, as a list of strings. The string is scanned left-to-right, and matches are returned in the order found. If one or more groups are present in the pattern, return a list of groups; this will be a list of tuples if the pattern has more than one group. Empty matches are included in the result unless they touch the beginning of another match. Are you kidding?'
+tmpStr = 'I have a dream that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit down together at the table of brotherhood. I have a dream that one day even the state of Mississippi, a state sweltering with the heat of injustice, sweltering with the heat of oppression, will be transformed into an oasis of freedom and justice. I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character.'
 
-tmpStr = 'to be or not to be? that is a question.'
 symbs = ['.', ',', '?']
 for s in symbs:
     tmpStr = tmpStr.replace(s, '')
@@ -2614,14 +2614,70 @@ for k, v in frqDict.items():
 #+end_src
 
 #+RESULTS:
-: to : 2
-: be : 2
-: or : 1
-: not : 1
-: that : 1
-: is : 1
-: a : 1
-: question : 1
+#+begin_example
+i : 3
+have : 3
+a : 5
+dream : 3
+that : 3
+one : 3
+day : 3
+on : 1
+the : 9
+red : 1
+hills : 1
+of : 10
+georgia : 1
+sons : 2
+former : 2
+slaves : 1
+and : 2
+slave : 1
+owners : 1
+will : 4
+be : 3
+able : 1
+to : 1
+sit : 1
+down : 1
+together : 1
+at : 1
+table : 1
+brotherhood : 1
+even : 1
+state : 2
+mississippi : 1
+sweltering : 2
+with : 2
+heat : 2
+injustice : 1
+oppression : 1
+transformed : 1
+into : 1
+an : 1
+oasis : 1
+freedom : 1
+justice : 1
+my : 1
+four : 1
+little : 1
+children : 1
+live : 1
+in : 1
+nation : 1
+where : 1
+they : 1
+not : 1
+judged : 1
+by : 2
+color : 1
+their : 2
+skin : 1
+but : 1
+content : 1
+character : 1
+#+end_example
+
 
 ** 資料型別整理
 |-------------+------------+-----------+-----------+-------------|
@@ -2633,13 +2689,6 @@ for k, v in frqDict.items():
 | 字典 dict   | { }        | ✔️         | ✖️         | 相同(鍵:值) |
 | 集合 set    | { }        | ✔️         | ✖️         | 可不同      |
 |-------------+------------+-----------+-----------+-------------|
-
-** 實作練習
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/169/][skyoj 160. 神文/String]]
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/170/][skyoj 170. 日期強迫症/String]]
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/171/][skyoj 171. Decrypt the cipher/dict]]
-- [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/172/][skyoj 172. Sim-Scoreboard/list]]
-
 
 #+latex:\newpage
 
