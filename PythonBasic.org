@@ -2955,8 +2955,59 @@ print(dir(my))
 
 
 ** 實作練習
-- 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入 5，輸出 5! = 120。
-- 計算 C(n, r)組合數。 輸入 n, r，輸出 C(n, r) = XX。如輸入 9, 4，輸出 C(9, 4) = 126。
+*** 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入 5，輸出 5! = 120。
+*** 計算 C(n, r)組合數。 輸入 n, r，輸出 C(n, r) = XX。如輸入 9, 4，輸出 C(9, 4) = 126。
+*** Harmonic sum :Recursion:
+Write a Python program to calculate the harmonic sum of n-1.
+Note: The harmonic sum is the sum of reciprocals of the positive integers.
+$$ 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ... +  \frac{1}{n-1}    $$
+**** COMMENT solution :noexport:
+#+begin_src python -r -n :results output :exports both
+def harmonic_sum(n):
+  if n < 2:
+    return 1
+  else:
+    return 1 / n + (harmonic_sum(n - 1))
+
+print("{0:.4f}".format(harmonic_sum(7)))
+print("{0:.4f}".format(harmonic_sum(1)))
+print("{0:.4f}".format(harmonic_sum(27)))
+print("{0:.4f}".format(harmonic_sum(37)))
+
+#+end_src
+
+#+RESULTS:
+: 2.5929
+: 1.0000
+: 3.8915
+: 4.2016
+
+*** Sum of recursive list :list:recursion:
+Write a Python program of recursion list sum. Go to the editor
+Test Data: [1, 2, [3,4], [5,6]]
+Expected Result: 21
+**** solution :noexport:
+#+begin_src python -r -n :results output :exports both
+import ast
+
+def sumOfList(intLst):
+    total = 0
+    for element in intLst:
+        if type(element) == type([]):
+            total += sumOfList(element)
+        else:
+            total += element
+    return total
+
+intStr = '[1, 2, [3, 4, [5, 6, 7]]]'
+
+intLst = ast.literal_eval(intStr)
+
+print(sumOfList(intLst))
+#+end_src
+
+#+RESULTS:
+: 28
 
 #+latex:\newpage
 
