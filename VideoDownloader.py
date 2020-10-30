@@ -9,7 +9,7 @@ from googleapiclient.discovery import build
 
 # 申請Youtube Data API key
 # https://hackmd.io/@c36ICNyhQE6-iTXKxoIocg/S1eYdtA1P
-api_key='AIzaSyAldObC55whNHf7Zx3gwj-e0BSDjYIi7Ps'
+api_key='申請好的API KEY'
 
 youtube = build('youtube', 'v3', developerKey=api_key)
 
