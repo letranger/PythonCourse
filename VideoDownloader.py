@@ -22,7 +22,8 @@ search_by = 'machine learning tutorial'
 # 搜尋影片id
 #while True:
 videoList = []
-for times in range(5): #會超過query上限
+VideoYouWant = 5 #決定一次要抓多少影片
+for times in range(VideoYouWant): 
     req = youtube.search().list(q=search_by, part='snippet', videoDuration='short', type='video', maxResults=MAX_COUNT, pageToken=nextPageToken)
     res = req.execute()
     nextPageToken = res['nextPageToken']
