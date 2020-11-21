@@ -290,7 +290,8 @@ print("This is a test")
   #+END_SRC
 - 變數不再使用時，可用 del 指令將其刪除，以節省記憶體。
 - 範例：
-  #+begin_src python -r -n :eval no
+
+#+begin_src python -r -n :results output :exports both
 a = 5
 b = 3.14
 c = 'TNFSH'
@@ -561,7 +562,6 @@ print(3*"Python基礎")
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/277/][skyoj #277. 一元二次方程式求解]]
 
 #+latex:\newpage
-
 
 * 內建函數
 :PROPERTIES:
@@ -2604,7 +2604,7 @@ frqDict = {}
 
 for w in tmpList:
     if w in frqDict:
-        frqDict[w] = frqDict.get(w, 0) + 1
+        frqDict[w] = frqDict.get(w) + 1
     else:
         frqDict[w] = 1
 

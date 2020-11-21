@@ -3,7 +3,7 @@
 
 #+TAGS: Python, Advanced
 #+INCLUDE: ../web.org
-#+INCLUDE: ../pdf.org
+#+OPTIONS: num:3
 #+LATEX:\newpage
 
 * Python 套件管理
@@ -31,7 +31,6 @@
   #+BEGIN_SRC shell
   pip install conda
   #+END_SRC
-
 ** conda 安裝與使用
 *** 下載 v.s. 安裝
 - [[https://www.anaconda.com/distribution/][Anaconda]]
@@ -285,10 +284,14 @@ python -m ipykernel install --user --name 虛擬環境名稱 --display-name "在
 #+latex:\newpage
 
 * Numpy
+:PROPERTIES:
+:CUSTOM_ID: Numpy
+:END:
 ** 關於 Numpy
 - Numpy 是 Python 的一個重要模組，主要用於資料處理上。Numpy 底層以 C 和 Fortran 語言實作，所以能快速操作多重維度的陣列。[fn:24]
 - 當 Python 處理龐大資料時，其原生 list 效能表現並不理想（但可以動態存異質資料），而 Numpy 具備平行處理的能力，可以將操作動作一次套用在大型陣列上。
 - Python 多數重量級的資料科學相關套件（例如：Pandas、SciPy、Scikit-learn 等）都幾乎是奠基在 Numpy 的基礎上。因此學會 Numpy 對於往後學習其他資料科學相關套件打好堅實的基礎。
+- 延伸閱讀: [[https://hsinchengchao.medium.com/%E7%82%BA%E4%BB%80%E9%BA%BC%E8%A6%81%E7%94%A8-numpy-c829e0049977][為什麼要用 Numpy？]]
 ** 匯入模組
 - 使用模組裡的函式要加模組名稱
   #+BEGIN_SRC python 
@@ -315,21 +318,27 @@ python -m ipykernel install --user --name 虛擬環境名稱 --display-name "在
 
 - 使用 np.arange( ) 方法
   #+BEGIN_SRC python -n :results output :exports both
-  import numpy as np
-  np2 = np.arange(5)
-  print(np2)
+import numpy as np
+
+np2 = np.arange(5)
+print("=====np2=====")
+print(np2)
+np3 = np.arange(1, 4, 0.5)
+print("=====np3=====")
+print(np3)
   #+END_SRC
 
   #+RESULTS:
+  : =====np2=====
   : [0 1 2 3 4]
+  : =====np3=====
+  : [1.  1.5 2.  2.5 3.  3.5]
 
 - np.arange() v.s. range()
-  [[file:PythonBasic.org::List 為 range() function 語法]]
   差異：
   + range()為 python 內建函數
   + range() return 的是 range object，而 np.nrange() return 的是 numpy.ndarray()
   + range()不支援 step 為小數，np.arange()支援 step 為小數
-
 *** 二維陣列
   #+BEGIN_SRC python -n :results output :exports both
 import numpy as np
@@ -397,23 +406,21 @@ import numpy as np
 
 np8 = np.random.random((3, 2)) #矩陣大小以tuple表示
 print('np8:\n', np8)
-
-np9 = np.random.randint(0, 100, size=[4, 3]) #矩陣大小以list表示
+# 四個人擲骰子，每人擲兩次
+np9 = np.random.randint(1, 7, size=[4, 2]) #矩陣大小以list表示
 print('np9:\n', np9)
 #+END_SRC
 
   #+RESULTS:
   : np8:
-  :  [[0.19177424 0.61013156]
-  :  [0.02364242 0.39419561]
-  :  [0.51674289 0.16583224]]
+  :  [[0.7263954  0.71063088]
+  :  [0.07725825 0.11562424]
+  :  [0.57923875 0.85345365]]
   : np9:
-  :  [[72 28 95]
-  :  [99 85 49]
-  :  [27 67 47]
-  :  [70  8 55]]
-
-
+  :  [[5 6]
+  :  [2 2]
+  :  [5 5]
+  :  [5 2]]
 *** 0/1 矩陣
 - np.zeros: np.zeros( (陣列各維度大小用逗號區分) )：建立全為 0 的陣列，可以小括號定義陣列的各個維度的大小
 #+BEGIN_SRC python -n :results output :exports both
@@ -443,8 +450,127 @@ print("oness=>\n{0}".format(ones))
 :  [1. 1. 1.]
 :  [1. 1. 1.]
 :  [1. 1. 1.]]
-
+*** 練習
+- 模擬一個37人/7科的全班月考成績
 ** 矩陣運算
+*** 索引(Indexing)、切片(Slicing)
+    索引(Indexing)的用途不外乎就是為了要從陣列和矩陣中取值，但除此之外有很多種功能！\
+    可以取出連續區間，還可以間隔取值！[fn:25]
+- 選取連續區間 [a:b]
+  #+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.arange(10) ** 2
+print("a=> {0}".format(a))
+print("a[2:5]=> {0}".format(a[2:5]))
+  #+end_src
+
+  #+RESULTS:
+  : a=> [ 0  1  4  9 16 25 36 49 64 81]
+  : a[2:5]=> [ 4  9 16]
+- 間隔選取[::c]
+  以1維陣列來說明x[a:b:c]
+  - a：選取資料的起始索引
+  - b：選取資料的結束索引+1
+  - c：選取資料間隔，以索引值可以被此值整除的元素，不指定表示1
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.arange(10) ** 2
+print("a==> {0}".format(a))
+a[2:9:3] = 999
+print("a==> {0}".format(a))
+#+end_src
+
+#+RESULTS:
+: a==> [ 0  1  4  9 16 25 36 49 64 81]
+: a==> [  0   1 999   9  16 999  36  49 999  81]
+*** 取出特定行列、特定範圍
+    - 取出第x列: Ary[x]
+    - 取出第x行: Ary[:,x]
+    - 取出第x_{1}~x_{2}列、第y_{1}~y_{2}行的範圍: Ary[x_{1}:x_{2} + 1, y_{1}:y_{2} + 1]
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.arange(12).reshape(3, 4)
+print(a)
+print(a[1])
+print(a[:,1])
+print(a[1:3, 1:3])
+#+end_src
+
+#+RESULTS:
+: [[ 0  1  2  3]
+:  [ 4  5  6  7]
+:  [ 8  9 10 11]]
+: [4 5 6 7]
+: [1 5 9]
+: [[ 5  6]
+:  [ 9 10]]
+*** 刪除行/列
+np.delete(temp,0,axis=1)#temp為操作物件，0表示要刪除的物件索引，axis表示行還是列，axis=0表示刪除行，axis=1表示刪除列。
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+
+a = np.arange(12).reshape(3, 4)
+print(a)
+a_delCol1 = np.delete(a, 1, 0)
+print('刪除第1行')
+print(a_delCol1)
+a_delRow1 = np.delete(a, 1, 1)
+print('刪除第1列')
+print(a_delRow1)
+print('現在的a')
+print(a)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+刪除第1行
+[[ 0  1  2  3]
+ [ 8  9 10 11]]
+刪除第1列
+[[ 0  2  3]
+ [ 4  6  7]
+ [ 8 10 11]]
+現在的a
+[[ 0  1  2  3]
+ [ 4  5  6  7]
+ [ 8  9 10 11]]
+#+end_example
+*** 迭代
+- 一維陣列
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.arange(4) ** 2
+print("a: ",a)
+for i in a:
+    print("a**(1/2)=> {0}".format(np.round(i**(1/2), 0)))
+#+end_src
+
+#+RESULTS:
+: [0 1 4 9]
+: a**(1/2)=> 0.0
+: a**(1/2)=> 1.0
+: a**(1/2)=> 2.0
+: a**(1/2)=> 3.0
+- 多維陣列: 多維陣列在for loop中取值時，會以第一維度為優先！
+  #+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.arange(1, 41).reshape(5, 8)
+for row in a:
+    for i in row:
+        print("{0:3d}".format(i), end='')
+    print()
+
+  #+end_src
+
+  #+RESULTS:
+  :   1  2  3  4  5  6  7  8
+  :   9 10 11 12 13 14 15 16
+  :  17 18 19 20 21 22 23 24
+  :  25 26 27 28 29 30 31 32
+  :  33 34 35 36 37 38 39 40
 *** 基礎運算
 - 維度相同的矩陣相加、減
 #+BEGIN_SRC python -n :results output :exports both
@@ -480,8 +606,27 @@ print("c=>{0}".format(c))
 :  [ 23  23  84  96]]
 : c=>[[2601 5476 9604 1369]
 :  [ 169  169 5476 7396]]
+*** 矩陣轉置
+$$a=\begin{bmatrix}1&0\\2&3\end{bmatrix}, a^T=\begin{bmatrix}1&2\\0&3\end{bmatrix}$$
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.array([[1, 0],
+              [2, 3]])
+print(a)
+print('--Matrix transpose--')
+print(a.transpose())
+#+end_src
+
+#+RESULTS:
+: [[1 0]
+:  [2 3]]
+: --Matrix transpose--
+: [[1 2]
+:  [0 3]]
 *** 矩陣相乘
 - 矩陣乘法
+  $$a=\begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}, b=\begin{bmatrix}b_{11}&b_{12}&b_{13}\\b_{21}&b_{22}&b_{23}\end{bmatrix}$$
+  $$a \cdot b=\begin{bmatrix}a_{11}*b_{11}+a_{12}*b_{21}&a_{11}*b_{12}+a_{12}*b_{22}&a_{11}*b_{13}+a_{12}*b_{23}\\a_{21}*b_{11}+a_{22}*b_{21}&a_{21}*b_{12}+a_{22}*b_{22}&a_{21}*b_{13}+a_{22}*b_{23}\end{bmatrix}$$
 #+begin_src python -r -n :results output :exports both
 import numpy as np
 A = np.array([[1, 2, 3], [4, 3, 2]])
@@ -493,12 +638,14 @@ print("{0}".format(A.dot(B)))
 : [[14 -1]
 :  [16  6]]
 - 相對位置乘法
+  $$a=\begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}, b=\begin{bmatrix}b_{11}&b_{12}\\b_{21}&b_{22}\end{bmatrix}$$
+  $$a \cdot b=\begin{bmatrix}a_{11}*b_{11}&a_{12}*b_{12}\\a_{21}*b_{21}&a_{22}*b_{22}\end{bmatrix}$$
 #+begin_src python -r -n :results output :exports both
 import numpy as np
 A = np.array([[1, 2], [4, 5]])
 B = np.array([[7, 8], [9, 10]])
 print("A:\n{0}".format(A))
-print("B:\n{0}".format(A))
+print("B:\n{0}".format(B))
 print("A*B:\n{0}".format(A*B))
 
 #+end_src
@@ -508,8 +655,8 @@ print("A*B:\n{0}".format(A*B))
 : [[1 2]
 :  [4 5]]
 : B:
-: [[1 2]
-:  [4 5]]
+: [[ 7  8]
+:  [ 9 10]]
 : A*B:
 : [[ 7 16]
 :  [36 50]]
@@ -528,7 +675,6 @@ print(C)
 #+RESULTS:
 : [False  True False False  True]
 : [1 0 1 1 0]
-
 *** 反矩陣
 AB=BA=I, 其中 I 為單位矩陣
 #+begin_src python -r -n :results output :exports both
@@ -551,35 +697,227 @@ print("A dot B:\n", A.dot(B))
 : A dot B:
 :  [[1. 0.]
 :  [0. 1.]]
-
-** 矩陣函數
-*** [[https://numpy.org/doc/stable/reference/generated/numpy.sum.html][官網]]
-*** 語法
-#+begin_src python :eval no
-numpy.sum(a, axis=None, dtype=None, out=None, keepdims=<no value>, initial=<no value>, where=<no value>)
-#+end_src
-*** 範例
+*** 合併矩陣
+**** vstack
 #+begin_src python -r -n :results output :exports both
 import numpy as np
-
-print(np.sum([0.5, 1.5]))
-print(np.sum([0.5, 0.7, 0.2, 1.5], dtype=np.int32))
-print(np.sum([[0, 1], [0, 5]], axis=0))
-print(np.sum([[0, 1], [0, 5]], axis=1))
-# 語法1
-A = np.array([[4, -7], [2, -3]])
-print(np.sum(A))
-# 語法2(若A為ndarray)
-print(A.sum())
+a = np.ones((2, 2))
+b = np.zeros(2)
+print(a)
+print(b)
+c = np.vstack((a, b))
+print(c)
 #+end_src
 
 #+RESULTS:
-: 2.0
+: [[1. 1.]
+:  [1. 1.]]
+: [0. 0.]
+: [[1. 1.]
+:  [1. 1.]
+:  [0. 0.]]
+
+**** hstack
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.ones((2, 2))
+b = [[3],
+     [4]]
+print(a)
+print(b)
+c = np.hstack((a, b))
+print(c)
+
+#+end_src
+
+#+RESULTS:
+: [[1. 1.]
+:  [1. 1.]]
+: [[3], [4]]
+: [[1. 1. 3.]
+:  [1. 1. 4.]]
+** 矩陣函數
+*** [[https://numpy.org/doc/stable/reference/generated/numpy.sum.html][官網]]
+*** numpy.sum()
+**** 語法
+#+begin_src python :eval no
+numpy.sum(a, axis=None, dtype=None, out=None, keepdims=<no value>, initial=<no value>, where=<no value>)
+#+end_src
+**** 範例
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+
+np_array_2x3 = np.array([[0,2,4],[1,3,5]])
+print('=====Array=====')
+print(np_array_2x3)
+print('=====列=====')
+print(np.sum(np_array_2x3, axis = 0))
+print('=====行=====')
+print(np.sum(np_array_2x3, axis = 1))
+print('=====陣列總和1=====')
+print(np.sum(np_array_2x3))
+print('=====陣列總和2=====')
+print(np_array_2x3.sum())
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+=====Array=====
+[[0 2 4]
+ [1 3 5]]
+=====列=====
+[1 5 9]
+=====行=====
+[6 9]
+=====陣列=====
+15
+=====陣列=====
+15
+#+end_example
+*** numpy.max()
+**** 語法
+#+begin_src python -r -n :results output :exports both
+numpy.max(a, axis=None, out=None, keepdims=False)
+#+end_src
+- 求序列的最值
+- 最少接收一個引數
+- axis：預設為列向（也即 axis=0），axis = 1 時為行方向的最值；
+**** 範例
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+
+np_array_2x3 = np.array([[9,2,8],[4,7,5]])
+print('=====Array=====')
+print(np_array_2x3)
+print('=====列=====')
+print(np.max(np_array_2x3, axis = 0))
+print('=====行=====')
+print(np.max(np_array_2x3, axis = 1))
+print('=====陣列=====')
+print(np.max(np_array_2x3))
+#+end_src
+
+#+RESULTS:
+: =====Array=====
+: [[9 2 8]
+:  [4 7 5]]
+: =====列=====
+: [9 7 8]
+: =====行=====
+: [9 7]
+: =====陣列=====
+: 9
+*** numpy.maxium()
+**** 語法
+#+begin_src python -r -n :results output :exports both
+numpy.maximum：(X, Y, out=None)
+#+end_src
+- X 與 Y 逐位比較取其大者；
+- 最少接收兩個引數
+**** 範例
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+npA1 = np.array([[9,-9,8],[4,7,5]])
+npA2 = np.array([[0,1,8],[10,-7,5]])
+print("=====npA1=====")
+print(npA1)
+print("=====npA2=====")
+print(npA2)
+print("=====maximum=====")
+print(np.maximum(npA1, npA2))
+#+end_src
+
+#+RESULTS:
+: =====npA1=====
+: [[ 9 -9  8]
+:  [ 4  7  5]]
+: =====npA2=====
+: [[ 0  1  8]
+:  [10 -7  5]]
+: =====maximum=====
+: [[ 9  1  8]
+:  [10  7  5]]
+*** numpy.argmax()
+**** 語法
+#+begin_src python -r -n :results output :exports both
+numpy.argmax(a, axis=None, out=None)[source]¶
+#+end_src
+- a: 可以轉換為陣列的陣列或物件，我們需要在其中找到最高值的索引。
+- axis: 沿著行(axis=0)或列(axis=1)查詢最大值的索引。預設情況下，通過對陣列進行展平可以找到最大值的索引。
+- out: np.argmax 方法結果的佔位符。它必須有適當的大小以容納結果。Returns the indices of the maximum values along an axis.
+**** 範例
+***** 一維陣列
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+
+a=np.array([2,6,1,6])
+
+print("Array:")
+print(a)
+
+req_index=np.argmax(a)
+print("\nIndex with the largest value:")
+print(req_index)
+
+print("\nThe largest value in the array:")
+print(a[req_index])
+#+end_src
+
+#+RESULTS:
+: Array:
+: [2 6 1 6]
+:
+: Index with the largest value:
 : 1
-: [0 6]
-: [1 5]
-: -4
-: -4
+:
+: The largest value in the array:
+: 6
+
+***** 二維陣列
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+
+a = np.array([[2,1,6],
+            [7,14,5]])
+
+print("Array:")
+print(a)
+
+req_index=np.argmax(a, axis=0)
+print("\nIndex with the largest value(axis=0):")
+print(req_index)
+req_index=np.argmax(a, axis=1)
+print("\nIndex with the largest value(axis=1):")
+print(req_index)
+req_index=np.argmax(a)
+print("\nIndex with the largest value:")
+print(req_index)
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Array:
+[[ 2  1  6]
+ [ 7 14  5]]
+
+Index with the largest value(axis=0):
+[1 1 0]
+
+Index with the largest value(axis=1):
+[2 1]
+
+Index with the largest value:
+4
+#+end_example
+#+CAPTION: Sequence of Arg in array
+#+LABEL: fig:argSeq
+#+name: fig:argSeq
+#+ATTR_LATEX: :width 200
+#+ATTR_HTML: :width 200
+#+ATTR_ORG: :width 200
+[[file:images/argSeq.jpg]]
 *** about axis
 #+CAPTION: Axis in ndarray
 #+LABEL: fig:ndaryAix
@@ -588,14 +926,117 @@ print(A.sum())
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 300
 [[file:images/aryaxis.jpg]]
+*** tile()
+numpy.tile()是個什麼函數呢，說白了，就是把數組沿各個方向複製
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+print('=====一維tile=====')
+b = np.array([[1, 2], [3, 4]])
+b1 = np.tile(b, 2)
+print(b1)
+print('=====二維tile=====')
+b2 = np.tile(b, (2, 3))
+print(b2)
+#+end_src
+
+#+RESULTS:
+: =====一維tile=====
+: [[1 2 1 2]
+:  [3 4 3 4]]
+: =====二維tile=====
+: [[1 2 1 2 1 2]
+:  [3 4 3 4 3 4]
+:  [1 2 1 2 1 2]
+:  [3 4 3 4 3 4]]
+*** numpy.allclose
+- Returns True if two arrays are element-wise equal within a tolerance.
+- The tolerance values are positive, typically very small numbers. The relative difference (rtol * abs(b)) and the absolute difference atol are added together to compare against the absolute difference between a and b.
+- NaNs are treated as equal if they are in the same place and if equal_nan=True. Infs are treated as equal if they are in the same place and of the same sign in both arrays.
+**** 語法
+#+begin_src python -r -n :results output :exports both
+numpy.allclose(a, b, rtol=1e-05, atol=1e-08, equal_nan=False)
+#+end_src
+**** Parameters
+- a, b: array_like. Input arrays to compare.
+- rtol: float. The relative tolerance parameter (see Notes).
+- atol: float. The absolute tolerance parameter (see Notes).
+- equal\under{}nan: bool. Whether to compare NaN’s as equal. If True, NaN’s in a will be considered equal to NaN’s in b in the output array.
+**** Returns
+- allclose: bool. Returns True if the two arrays are equal within the given tolerance; False otherwise.
+**** See also:
+- [[https://numpy.org/doc/stable/reference/generated/numpy.isclose.html#numpy.isclose][isclose]]
+- [[https://numpy.org/doc/stable/reference/generated/numpy.all.html#numpy.all][all]]
+- [[https://numpy.org/doc/stable/reference/generated/numpy.all.html#numpy.all][any]]
+- [[https://numpy.org/doc/stable/reference/generated/numpy.equal.html#numpy.equal][equal]]
+**** DEMO
+參考: [[https://www.itdaan.com/tw/cc576c8f8162ab7ee9e3d6afdbf454fc][測試兩個numpy數組(接近)是否相等，包括形狀]]
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+import math
+
+print(math.pi)
+x = np.array([[3.14159265, -0.1], [-0.1, 0.1]])
+y = np.array([[math.pi, -0.1], [-0.1, 0.1]])
+
+z1 = np.array([[[3.14159265, -0.1], [-0.1, 0.1]],
+              [[3.14159265, -0.1], [-0.1, 0.1]]])
+z2 = np.array([[[math.pi, -0.1], [-0.1, 0.1]],
+              [[math.pi, -0.1], [-0.1, 0.1]]])
+
+print(np.allclose(x,y))
+# Returns true, as expected
+
+print(np.allclose(x,z1))
+# Also returns true, even though matrices are different shapes. Unwanted.
+
+
+a = np.array([[2,2,2],
+              [3,3,3]])
+b = np.array([[2,3,2],
+              [3,3,2]])
+print("=====allclose(atol=0.5)=====")
+print(np.allclose(a, b, atol=0.5))
+print("=====allclose(atol=1.0)=====")
+print(np.allclose(a, b, atol=1.0))
+print("=====equal()=====")
+print(np.equal(a,b))
+
+a = np.array([[2,2,2],
+              [3,3,3.1]])
+print(np.allclose(a, b, atol=1.0))
+print('=====isclose()=====')
+print(np.isclose(a, b, atol=1.0))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+3.141592653589793
+True
+True
+=====allclose(atol=0.5)=====
+False
+=====allclose(atol=1.0)=====
+True
+=====equal()=====
+[[ True False  True]
+ [ True  True False]]
+False
+=====isclose()=====
+[[ True  True  True]
+ [ True  True False]]
+#+end_example
+
 *** 其他常用函數
 - min()
 - max()
+- argmin
 - mean()
 - std()
 - var()
 - sqrt()
-
+- size()
+- dtype()
+- itemsize()
 #+begin_src python -r -n :results output :exports both
 import numpy as np
 
@@ -612,15 +1053,15 @@ print("mean:", np.mean(np1))
 #+RESULTS:
 #+begin_example
 np
- [[9 8]
- [3 8]
- [0 2]]
-np1.sum 30
-sum: [12 18]
-sum: [15 21]
+ [[0 0]
+ [0 3]
+ [0 3]]
+np1.sum 6
+sum: [0 6]
+sum: [3 9]
 min: 0
-max: 9
-mean: 5.0
+max: 3
+mean: 1.0
 #+end_example
 *** sum() v.s. np.sum()
 #+CAPTION: sum() v.s. np.sum()
@@ -630,8 +1071,690 @@ mean: 5.0
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
 [[file:images/2sum.png]]
-** 實作練習
-*** 練習要求
+** 解聯立方程式
+Numpy的linalg function可以用來解線性方程組，若目標方程式為$$Ax=b$$，其中$$x$$為所求之解，求解語法為：
+#+begin_src swift -r -n :results output :exports nil
+import numpy as np
+x = np.linalg.solve(A, b)
+#+end_src
+*** 範例1
+以如下方程式為例
+$$\begin{cases}2x+y=5\\x+y=3\end{cases}$$
+可將之視為求解$$Ax=b$$，其中
+$$A=\begin{pmatrix}2&1\\1&1 \end{pmatrix}$$, $$b=\begin{pmatrix} 5\\3 \end{pmatrix} $$
+**** solution
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+A = np.array([[2, 1],
+              [1, 1]])
+b = np.array([5, 3])
+x = np.linalg.solve(A, b)
+print(x)
+print(np.allclose(np.dot(A, x), b)) ##評估兩個向量是否接近(relative tolerance:1e-05, absolute tolerance: 1e-08)
+print(np.dot(A, x)) ##驗證正確性
+#+end_src
+
+#+RESULTS:
+: [2. 1.]
+: True
+: [5. 3.]
+*** 範例2
+求解下列方程式
+$$\begin{cases}3x_0+2x_1+x_2=11\\2x_0+3x_1+x_2=13\\x_0+x_1+4x_2=12 \end{cases}$$, 以$$Ax=b$$表示，則
+$$A=\begin{pmatrix}3&2&1\\2&3&1\\1&1&4\end{pmatrix}, x=\begin{pmatrix}x_0\\x_1\\x_2\end{pmatrix}, b=\begin{pmatrix}11\\13\\12\end{pmatrix}$$
+**** solution
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+A = np.array([[3, 2, 1],
+              [2, 3, 1],
+              [1, 1, 4]])
+b = np.array([11, 13, 12])
+x = np.linalg.solve(A, b)
+print(x)
+print(np.allclose(np.dot(A, x), b))
+print(np.dot(A, x))
+#+end_src
+
+#+RESULTS:
+: [1. 3. 2.]
+: True
+: [11. 13. 12.]
+** 讀取外部檔案
+NumPy提供了多種存取陣列內容的檔案操作函式。儲存陣列資料的檔案可以是二進位制格式或者文字格式。二進位制格式的檔案又分為NumPy專用的格式化二進位制型別和無格式型別。[fn:26][fn:27]
+*** Bineary Format
+**** save(), load()
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+a = np.arange(0, 12).reshape(3,4)
+print(a)
+np.save('a', a)
+# 讀入
+b = np.load('a.npy')
+print(b)
+#+end_src
+
+#+RESULTS:
+: [[ 0  1  2  3]
+:  [ 4  5  6  7]
+:  [ 8  9 10 11]]
+: [[ 0  1  2  3]
+:  [ 4  5  6  7]
+:  [ 8  9 10 11]]
+**** savez()
+我們可以儲存多個陣列在一個zip的檔案中，使用np.savez就可以了！
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+aAry = [1,2,3,4,5,6]
+bAry = [7,8,9,10,11,12]
+#save
+np.savez('ab.npz', a = aAry, b = bAry)
+#load
+myZip = np.load('ab.npz')
+print(myZip['a'])
+print(myZip['b'])
+#+end_src
+
+#+RESULTS:
+: [1 2 3 4 5 6]
+: [ 7  8  9 10 11 12]
+*** Text Files: csv
+目標文字檔(csv)如下：
+#+begin_src shell -r -n :results output :exports both
+cat cs-scores.csv
+#+end_src
+
+#+RESULTS:
+#+begin_example
+109.00,87,100.00,86.00,50.00
+86.00,66,68.97,33.20,55.00
+82.00,51,72.87,57.00,70.00
+90.00,81,100.00,100.00,100.00
+80.00,45,39.66,0.00,0.00
+83.00,36,74.14,20.00,10.00
+84.00,51,67.24,25.00,0.00
+75.00,72,89.66,43.00,40.00
+76.00,63,96.55,40.00,0.00
+80.00,75,100.00,32.80,50.00
+85.00,96,89.48,83.70,30.00
+#+end_example
+**** load
+在Numpy內會使用.loadtxt或特定的np.genfromtxt來讀取文字檔
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+myAry = np.loadtxt('cs-scores.csv', delimiter=',')
+print(myAry)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+[[109.    87.   100.    86.    50.  ]
+ [ 86.    66.    68.97  33.2   55.  ]
+ [ 82.    51.    72.87  57.    70.  ]
+ [ 90.    81.   100.   100.   100.  ]
+ [ 80.    45.    39.66   0.     0.  ]
+ [ 83.    36.    74.14  20.    10.  ]
+ [ 84.    51.    67.24  25.     0.  ]
+ [ 75.    72.    89.66  43.    40.  ]
+ [ 76.    63.    96.55  40.     0.  ]
+ [ 80.    75.   100.    32.8   50.  ]
+ [ 85.    96.    89.48  83.7   30.  ]]
+#+end_example
+**** save
+將處理完的陣列回存成csv檔：
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+myAry = np.loadtxt('cs-scores.csv', delimiter=',')
+print(myAry)
+np.savetxt('cs-scores.csv', myAry)
+
+#+end_src
+*** 讀取混合格式的文字資料
+如果資料中某些欄位的資料格式是字串 (string)，處理起來相當麻煩，改用 numpy.genfromtxt 會比較簡單。[fn:28]
+[[https://numpy.org/doc/stable/user/basics.io.genfromtxt.html][Importing data with genfromtxt]]
+目標文字檔(csv)如下：
+#+begin_src shell -r -n :results output :exports both
+cat cs-scores2.csv
+#+end_src
+
+#+RESULTS:
+#+begin_example
+學號,平時成績,打字成績,作業成績,期中考,期末考
+201811101,109.00,87,100.00,86.00,50.00
+201811102,86.00,66,68.97,33.20,55.00
+201811103,82.00,51,72.87,57.00,70.00
+201811104,90.00,81,100.00,100.00,100.00
+201811105,80.00,45,39.66,0.00,0.00
+201811106,83.00,36,74.14,20.00,10.00
+201811107,84.00,51,67.24,25.00,0.00
+201811108,75.00,72,89.66,43.00,40.00
+201811109,76.00,63,96.55,40.00,0.00
+201811110,80.00,75,100.00,32.80,50.00
+201811111,85.00,96,89.48,83.70,30.00
+#+end_example
+Pyton 3在讀取文字時，dtype應設為U(Unicode)，否則會在讀到的字首多出b[fn:29]
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+# Python3 is working with Unicode.
+# I had the same issue when using loadtxt with dtype='S'. But using dtype='U as Unicode string in both numpy.loadtxt or numpy.genfromtxt, it will give output without b
+data = np.genfromtxt("cs-scores2.csv", delimiter=',',
+                     dtype=[('id', 'U10'), ('cls', float),
+                            ('typing', float), ('hw', float),
+                            ('mid', float), ('finl', float)],
+                     skip_header=1, encoding='UTF-8')
+print(data)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+[('201811101', 109., 87., 100.  ,  86. ,  50.)
+ ('201811102',  86., 66.,  68.97,  33.2,  55.)
+ ('201811103',  82., 51.,  72.87,  57. ,  70.)
+ ('201811104',  90., 81., 100.  , 100. , 100.)
+ ('201811105',  80., 45.,  39.66,   0. ,   0.)
+ ('201811106',  83., 36.,  74.14,  20. ,  10.)
+ ('201811107',  84., 51.,  67.24,  25. ,   0.)
+ ('201811108',  75., 72.,  89.66,  43. ,  40.)
+ ('201811109',  76., 63.,  96.55,  40. ,   0.)
+ ('201811110',  80., 75., 100.  ,  32.8,  50.)
+ ('201811111',  85., 96.,  89.48,  83.7,  30.)]
+#+end_example
+*** 讀取一個欄位資料
+在 numpy.genfromtxt() 中, 使用 usecols 參數指定取出的欄位編號, 即可取出特定欄位
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+
+classScore = np.genfromtxt("cs-scores2.csv", delimiter=',', skip_header=1,
+                     dtype=float, usecols=(2,), unpack=True, encoding='UTF-8')
+print(classScore)
+#+end_src
+
+#+RESULTS:
+: [87. 66. 51. 81. 45. 36. 51. 72. 63. 75. 96.]
+** 基礎練習
+資料來源: [[https://www.itread01.com/content/1553930535.html][[轉]numpy 100道練習題]]
+*** 創建一個長度為10的零向量，並把第五個值賦值為1
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+z = np.zeros(10)
+z[4] = 1
+print(z)
+#+end_src
+**** example
+#+RESULTS:
+: [0. 0. 0. 0. 1. 0. 0. 0. 0. 0.]
+*** 創建一個5x5的矩陣，值域為1,3,5,7...,49
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+z = np.arange(1, 50, 2).reshape(5, 5)
+print(z)
+#+end_src
+**** example
+#+RESULTS:
+: [[ 1  3  5  7  9]
+:  [11 13 15 17 19]
+:  [21 23 25 27 29]
+:  [31 33 35 37 39]
+:  [41 43 45 47 49]]
+*** 創建一個3x3x3的隨機數組
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+z = np.random.random((3, 3 ,3))
+print(z)
+#+end_src
+**** example
+#+RESULTS:
+#+begin_example
+[[[0.65641795 0.9853537  0.64412663]
+  [0.52595413 0.17452888 0.44484008]
+  [0.69218998 0.37001109 0.94711544]]
+
+ [[0.80803134 0.93661621 0.61489936]
+  [0.19635856 0.98132637 0.36713757]
+  [0.89105201 0.31710182 0.12375642]]
+
+ [[0.42944896 0.24734458 0.97763098]
+  [0.96900319 0.64789449 0.42795362]
+  [0.72306476 0.07604109 0.13012237]]]
+#+end_example
+*** 創建一個8x8的國際象棋棋盤矩陣（黑塊為0，白塊為1）
+**** Solution #1 :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+z = np.zeros((8, 8), dtype=int)
+z[1::2, ::2] = 1
+z[::2, 1::2] = 1
+print(z)
+#+end_src
+**** example
+#+RESULTS:
+: [[0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]
+:  [0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]
+:  [0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]
+:  [0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]]
+**** Solution #2 :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+z = [[0, 1], [1, 0]]
+print(np.tile(z, (4, 4)))
+#+end_src
+
+#+RESULTS:
+: [[0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]
+:  [0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]
+:  [0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]
+:  [0 1 0 1 0 1 0 1]
+:  [1 0 1 0 1 0 1 0]]
+*** 對5x5的隨機矩陣進行歸一化(Normalization)
+(提示: (x - min) / (max - min))
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+z = np.random.random((5, 5)) * 100
+print(z)
+Zmax, Zmin = z.max(), z.min()
+z = (z-Zmin)/(Zmax-Zmin)
+print(z)
+#+end_src
+**** example
+#+RESULTS:
+#+begin_example
+[[93.91707     7.2497428  80.03357931 67.36581629 11.58313519]
+ [12.57003038 38.52508111 83.86899353 27.63880275 25.8237963 ]
+ [18.68409281 64.40845991 41.08228881 62.87822465 52.23296308]
+ [90.53354354 78.60844019 46.98888235 29.757448   38.46802081]
+ [71.53666934 63.90804362 64.40403658 29.34575551 82.74560132]]
+[[1.         0.         0.8398071  0.69364172 0.0500003 ]
+ [0.06138747 0.36086654 0.88406154 0.23525659 0.21431437]
+ [0.1319338  0.65951863 0.39037256 0.64186221 0.5190332 ]
+ [0.96095961 0.82336331 0.45852504 0.25970231 0.36020815]
+ [0.74176658 0.65374464 0.65946759 0.25495205 0.87109942]]
+#+end_example
+*** 如何找出兩個數組公共的元素?
+(提示: np.intersect1d)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+Z1 = np.random.randint(0, 10, 10)
+Z2 = np.random.randint(0, 10, 10)
+print(Z1)
+print(Z2)
+print(np.intersect1d(Z1, Z2))
+#+end_src
+**** example
+#+RESULTS:
+: [3 4 2 8 0 3 5 4 7 9]
+: [9 3 4 6 5 6 3 0 5 6]
+: [0 3 4 5 9]
+*** 如何用一個生成10個整數的函數來構建數組
+(提示: np.fromiter)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+def generate():
+    for x in range(10):
+      yield x
+Z = np.fromiter(generate(), dtype=float, count=-1)
+print (Z)
+#+end_src
+**** example
+#+RESULTS:
+: [0. 1. 2. 3. 4. 5. 6. 7. 8. 9.]
+*** 對一個小數組進行求和有沒有辦法比np.sum更快?
+(提示: np.add.reduce)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+Z = np.arange(10)
+print(np.sum(Z))
+print(np.add.reduce(Z))
+
+# np.add.reduce 是numpy.add模塊中的一個ufunc(universal function)函數,C語言實現
+#+end_src
+**** example
+#+RESULTS:
+: 45
+: 45
+*** 如何判斷兩隨機數組相等
+(提示: np.allclose, np.array\under{}equal)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+A = np.random.randint(0, 2, 5)
+B = np.random.randint(0, 2, 5)
+print('=====A=====')
+print(A)
+print('=====B=====')
+print(B)
+# 假設array的形狀(shape)相同和一個誤差容限（tolerance）
+equal = np.allclose(A,B)
+print(equal)
+
+# 檢查形狀和元素值，沒有誤差容限（值必須完全相等）
+equal = np.array_equal(A,B)
+print(equal)
+#+end_src
+**** example
+#+RESULTS:
+: =====A=====
+: [1 1 0 0 0]
+: =====B=====
+: [1 1 0 0 0]
+: True
+: True
+*** 創建一個大小為10的隨機向量並且將該向量中最大的值替換為0
+(提示: argmax)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+Z = np.random.random(10)
+np.set_printoptions(precision=3)
+print(Z)
+Z[Z.argmax()] = 0
+print(Z)
+#+end_src
+**** example
+#+RESULTS:
+: [0.509 0.491 0.888 0.604 0.409 0.136 0.523 0.068 0.307 0.869]
+: [0.509 0.491 0.    0.604 0.409 0.136 0.523 0.068 0.307 0.869]
+*** 思考形狀為(100, 2)的隨機向量，求出點與點之間的距離
+(提示: np.atleast\under{}2d, T, np.sqrt)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+Z = np.random.random((5, 2))
+np.set_printoptions(precision=2)
+print(Z)
+X, Y = np.atleast_2d(Z[:, 0], Z[:, 1])
+D = np.sqrt((X-X.T)**2 + (Y-Y.T)**2)
+print(D)
+
+# 使用scipy庫可以更快
+import scipy.spatial
+
+Z = np.random.random((5,2))
+D = scipy.spatial.distance.cdist(Z,Z)
+print(D)
+#+end_src
+**** example
+#+RESULTS:
+#+begin_example
+[[0.24 0.44]
+ [0.87 0.84]
+ [0.87 0.63]
+ [0.56 0.11]
+ [0.67 0.47]]
+[[0.   0.74 0.66 0.46 0.43]
+ [0.74 0.   0.21 0.79 0.42]
+ [0.66 0.21 0.   0.61 0.26]
+ [0.46 0.79 0.61 0.   0.37]
+ [0.43 0.42 0.26 0.37 0.  ]]
+[[0.   0.45 0.29 0.77 0.78]
+ [0.45 0.   0.68 1.04 0.76]
+ [0.29 0.68 0.   0.93 1.05]
+ [0.77 1.04 0.93 0.   0.58]
+ [0.78 0.76 1.05 0.58 0.  ]]
+#+end_example
+*** 如何在二維數組的隨機位置放置p個元素?(提示: np.put, np.random.choice)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+# Author: Divakar
+
+n = 5
+p = 3
+Z = np.zeros((n,n))
+np.put(Z, np.random.choice(range(n*n), p, replace=False),1)
+print(Z)
+#+end_src
+**** example
+#+RESULTS:
+: [[0. 0. 0. 0. 1.]
+:  [0. 0. 1. 0. 0.]
+:  [0. 0. 1. 0. 0.]
+:  [0. 0. 0. 0. 0.]
+:  [0. 0. 0. 0. 0.]]
+***  如何對數組通過第n列進行排序? (提示: argsort)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+# Author: Steve Tjoa
+
+Z = np.random.randint(0,10,(3,3))
+print(Z)
+print(Z[ Z[:,2].argsort() ])
+#+end_src
+**** example
+#+RESULTS:
+: [[6 1 5]
+:  [8 7 9]
+:  [9 5 1]]
+: [[9 5 1]
+:  [6 1 5]
+:  [8 7 9]]
+*** 從數組中找出與給定值最接近的值(提示: np.abs, argmin, flat)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+Z = np.random.uniform(0,1,10)
+z = 0.5
+print(Z)
+print('=====最接近',z,'的陣列值及其位置=====')
+m = Z.flat[np.abs(Z - z).argmin()]
+print(np.where(Z==m),': ',m)
+#+end_src
+**** example
+#+RESULTS:
+: [0.10888426 0.00635016 0.80979507 0.99058779 0.37085609 0.0438693
+:  0.33289479 0.02195115 0.74203634 0.48734223]
+: =====最接近 0.5 的陣列值及其位置=====
+: (array([9]),) :  0.487342230530487
+*** 創建一個具有name屬性的數組類(提示: class method)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+class NameArray(np.ndarray):
+    def __new__(cls, array, name="no name"):
+        obj = np.asarray(array).view(cls)
+        obj.name = name
+        return obj
+    def __array_finalize__(self, obj):
+        if obj is None: return
+        self.info = getattr(obj, 'name', "no name")
+
+Z = NameArray(np.arange(10), "range_10")
+print (Z.name)
+#+end_src
+**** example
+#+RESULTS:
+: range_10
+*** 考慮一個維度(5,5,3)的數組，如何將其與一個(5,5)的數組相乘？(提示: array[:, :, None])
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+A = np.ones((5,5,3))
+B = 2*np.ones((5,5))
+print(A * B[:,:,None])
+#+end_src
+**** example
+#+RESULTS:
+#+begin_example
+[[[2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]]
+
+ [[2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]]
+
+ [[2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]]
+
+ [[2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]]
+
+ [[2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]
+  [2. 2. 2.]]]
+#+end_example
+***  如何對一個數組中任意兩行做交換?(提示: array[[]] = array[[]])
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+A = np.arange(25).reshape(5,5)
+print(A)
+A[[0,1]] = A[[1,0]]
+print(A)
+#+end_src
+**** example
+#+RESULTS:
+#+begin_example
+[[ 0  1  2  3  4]
+ [ 5  6  7  8  9]
+ [10 11 12 13 14]
+ [15 16 17 18 19]
+ [20 21 22 23 24]]
+[[ 5  6  7  8  9]
+ [ 0  1  2  3  4]
+ [10 11 12 13 14]
+ [15 16 17 18 19]
+ [20 21 22 23 24]]
+#+end_example
+*** 思考描述10個三角形（共享頂點）的一組10個三元組，找到組成所有三角形的唯一線段集(提示: repeat, np.roll, np.sort, view, np.unique)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+# Author: Nicolas P. Rougier
+
+faces = np.random.randint(0,100,(10,3))
+F = np.roll(faces.repeat(2,axis=1),-1,axis=1)
+F = F.reshape(len(F)*3,2)
+F = np.sort(F,axis=1)
+G = F.view( dtype=[('p0',F.dtype),('p1',F.dtype)] )
+G = np.unique(G)
+print(G)
+#+end_src
+**** example
+#+RESULTS:
+: [( 1, 31) ( 1, 77) ( 2, 23) ( 2, 33) ( 8, 43) ( 8, 88) ( 9, 55) ( 9, 93)
+:  (17, 61) (17, 65) (17, 70) (17, 74) (21, 38) (21, 67) (23, 33) (31, 77)
+:  (36, 58) (36, 63) (38, 67) (43, 88) (52, 65) (52, 92) (55, 93) (58, 63)
+:  (61, 70) (65, 74) (65, 92) (90, 91) (90, 98) (91, 98)]
+*** 如何找出數組中出現頻率最高的值?(提示: np.bincount, argmax)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+Z = np.random.randint(0,10,50)
+print(np.bincount(Z).argmax())
+#+end_src
+*** 從一個5x5的矩陣中提取出連續的3x3區塊**(提示: stride\under{}tricks.as_strided)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+# Author: Chris Barker
+
+Z = np.random.randint(0,9,(5,5))
+print(Z)
+n = 3
+i = 1 + (Z.shape[0]-3)
+j = 1 + (Z.shape[1]-3)
+C = np.lib.stride_tricks.as_strided(Z, shape=(i, j, n, n), strides=Z.strides + Z.strides)
+print(C)
+#+end_src
+**** example
+#+RESULTS:
+#+begin_example
+[[2 5 1 4 6]
+ [2 6 7 2 4]
+ [3 7 7 4 6]
+ [8 1 4 0 3]
+ [1 1 7 7 4]]
+[[[[2 5 1]
+   [2 6 7]
+   [3 7 7]]
+
+  [[5 1 4]
+   [6 7 2]
+   [7 7 4]]
+
+  [[1 4 6]
+   [7 2 4]
+   [7 4 6]]]
+
+
+ [[[2 6 7]
+   [3 7 7]
+   [8 1 4]]
+
+  [[6 7 2]
+   [7 7 4]
+   [1 4 0]]
+
+  [[7 2 4]
+   [7 4 6]
+   [4 0 3]]]
+
+
+ [[[3 7 7]
+   [8 1 4]
+   [1 1 7]]
+
+  [[7 7 4]
+   [1 4 0]
+   [1 7 7]]
+
+  [[7 4 6]
+   [4 0 3]
+   [7 7 4]]]]
+#+end_example
+*** 對於一個16x16的數組，如何得到一個區域的和(區域大小為4x4)? (提示: np.add.reduceat)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+# Author: Robert Kern
+
+Z = np.ones((16,16))
+k = 4
+S = np.add.reduceat(np.add.reduceat(Z, np.arange(0, Z.shape[0], k), axis=0), np.arange(0, Z.shape[1], k), axis=1)
+print(S)
+#+end_src
+*** 如何找到一個數組的第n個最大值?(提示: np.argsort | np.argpartition)
+**** code :noexport:
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+Z = np.arange(10000)
+np.random.shuffle(Z)
+n = 5
+
+# Slow
+print (Z[np.argsort(Z)[-n:]])
+
+# Fast
+print (Z[np.argpartition(-Z,n)[:n]])
+#+end_src
+** 作業
+*** 作業1
 1. 隨機產生一組 150 個 0~100 的陣列。
 1. 將上述陣列 reshape 為 30*5 的二維陣列，模擬成一個班級的某次考試成績(30 人*5 科)。
 1. 輸出此次 5 科考科的全班總分、平均。某班資電腦科期中考成績(30 人，分數為 0~100)，將分數以「開根
@@ -639,7 +1762,7 @@ mean: 5.0
 1. 輸出各科標準差(提示：std)
 1. 將全班分數以「開根號乘以 10」的方式進行調整。
 1. 上述輸出至小數點第二位(提示：set\under{}printoptions)
-*** 結果範例
+**** 結果範例
 #+begin_example
 各科總分: [1427 1338 1417 1380 1678]
 各科平均: [47.57 44.6  47.23 46.   55.93]
@@ -678,7 +1801,7 @@ mean: 5.0
  [85.44 67.08 33.17 68.56 44.72]
  [17.32 69.28 37.42 68.56 40.  ]]
 #+end_example
-#+BEGIN_COMMENT
+**** solution :noexport:
 #+begin_src python -r -n :results output :exports both
 import numpy as np
 import math
@@ -739,8 +1862,70 @@ print("調整分數:\n",np.sqrt(sc2)*10)
  [85.44 67.08 33.17 68.56 44.72]
  [17.32 69.28 37.42 68.56 40.  ]]
 #+end_example
+*** 作業2
+Nearest neighbor: Find nearest neighbors according to )of a numpy array in list of numpy arrays
+**** 結果範例
+#+BEGIN_EXAMPLE
+[[21 89 59 80]
+ [94 48 85 34]
+ [39 10 79 31]
+ [88 76 94 37]]
+最接近50的值在Array[1][1]: 48
+#+END_EXAMPLE
 
-#+END_COMMENT
+**** solution :noexport:
+題目提示說用 argmin 函數，用 argmin 函數找出 A - z 中絕對值最小的元素的位置，返回 A 中相應位置的元素。
+#+begin_src python -r -n :results output :exports both
+import numpy as np
+
+def find_closest(A, z):
+    C = np.abs(A - z)
+    idx = np.argmin(C)
+    return idx // A.shape[0], idx % A.shape[0] , A[idx // A.shape[0]][idx % A.shape[0]]
+
+A = (np.random.random((4, 4))*100).astype(int)
+print(A)
+n = 50
+x, y, value = find_closest(A, n)
+print("最接近%d的值在Array[%d][%d]: %d" %(n, x, y, value))
+#+end_src
+**** example
+#+RESULTS:
+: [[21 89 59 80]
+:  [94 48 85 34]
+:  [39 10 79 31]
+:  [88 76 94 37]]
+: 最接近50的值在Array[1][1]: 48
+** 資料的正規化(Normalization)及標準化(Standardization)
+當我們在比較分析兩組數據資料時，可能會遭遇因單位的不同(例如：身高與體重)，或數字大小的代表性不同(例如：粉專1萬人與滿足感0.8)，造成各自變化的程度不一，進而影響統計分析的結果；為解決此類的問題，我們可利用資料的正規化(Normalization)與標準化(Standardization)，藉由將原始資料轉換成無量綱(Dimensionless)的純量後，來進行數據的比較及分析。[fn:30]
+*** Normalization
+原始資料的數據按比例縮放於 [0, 1] 區間中，且不改變其原本分佈。舉例來說，若我們現有兩組數據資料，分別表示 500 項商品的銷售量 Sample 1 及銷售額 Sample 2，如下圖所示，很明顯地，此兩組資料的單位不同，且數字上有著懸殊的差異，分別透過資料正規化後，兩組資料將同時轉換成純量縮放於 [0,1] 區間中，如下右圖所示；這樣的資料轉換，能排除資料單位的限制，提供我們一個相同的基準來進行後續比較分析。
+#+CAPTION: Normalization
+#+LABEL: fig:Normalization
+#+name: fig:Normalization
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 500
+[[file:images/Norm.jpg]]
+**** 實作
+最小值最大值正規化的用意，是將資料等比例縮放到 [0, 1] 區間中，可利用下列公式進行轉換：
+$$X_{nom} = \frac{X-X_{min}}{X_{max}-X{min}} \in [0,1]$$
+其中 Xmax 與 Xmin 分別為資料中的最小值與最大值。此種方法有一點需我們特別注意，即若原始資料有新的數據加入，有可能導致最小值 Xmin 及最大值 Xmax 的改變，則這時候我們需再重新定義公式中的 Xmin 及 Xmax。另外，若將轉換公式修改成下列：
+$$X_{nom} = \frac{X-\mu}{X_{max}-X{min}} \in [-1,1]$$
+其中$$\mu$$為資料的平均值，則資料將縮放到 [-1, 1] 區間中且平均值 = 0，我們稱這為平均值正規化(Mean Normalization)。
+
+在實務操作最小值最大值正規化時，我們可使用 Scikit-learn 套件的MinMaxScaler 物件執行。
+*** Standardization
+會將所有特徵數據縮放成平均為0、平方差為1。資料的標準化(Standardization)可運用在機器學習演算法中，它能帶給模型下面兩個好處：
+- 提升模型的收斂速度
+  在建構機器學習模型時，我們會利用梯度下降法(Gradient Descent)來計算成本函數(Cost Function)的最佳解；假設我們現有兩個特徵值 x1 in [0,1] 與 x2 in [0,10000]，則在 x1-x2 平面上成本函數的等高線會呈窄長型，導致需較多的迭代步驟，另外也可能導致無法收斂的情況發生。因此，若將資料標準化，則能減少梯度下降法的收斂時間。
+- 提高模型的精準度
+  將特徵值 x1 及 x2 餵入一些需計算樣本彼此的距離(例如:歐氏距離)分類器演算法中，則 x2 的影響很可能將遠大於 x1，若實際上 x1 的指標意義及重要性高於 x2，這將導致我們分析的結果失真。因此，資料的標準化是有必要的，可讓每個特徵值對結果做出相近程度的貢獻。
+**** 實作
+$$Z = \frac{X-\mu}{\delta} \sim N(0, 1)$$
+經 Z分數標準化後，資料將符合標準常態分佈(Standard Normal Distribution)，轉換後的平均值=0、標準差=1，且用標準分數或稱 Z分數(Z-Score)來作為單位。Z分數標準化適用於分佈大致對稱的資料，因為在非常不對稱的分佈中，標準差的意義並不明確，此時若標準化資料，可能會對結果做出錯誤的解讀，另外，當我們未知資料的最大值與最小值，或存在超出觀察範圍的離群值時，可透過 Z分數標準化來降低離群值對整個模型的影響。
+
+在實務操作時，我們可先分別計算資料的平均值及標準差，再代入上述公式完成標準化，另一種方法，我們可使用Scikit-learn 套件的preprocessing 模組來執行資料標準化。
 
   #+latex:\newpage
 
@@ -751,7 +1936,7 @@ print("調整分數:\n",np.sqrt(sc2)*10)
 - pylab 已經幾乎實作了在學術介最常用的套件 — Matlab 所支援的繪圖功能，或
   者可以說 pylab 其實就是 Matlab 的 Python 版本；
 - pyplot 是把 pylab 再加上 Numpy，讓使用者在使用 pyplot 時，可以直
-  接呼叫 Numpy 的函式做計算後再以圖型的方式呈現。[fn:25]
+  接呼叫 Numpy 的函式做計算後再以圖型的方式呈現。[fn:31]
 - 為 Python 最多人使用的 2D 繪圖工具
 - 優點：圖形美觀、類型多、相容於 Matlab
 - 官方社群網站 https://matplotlib.org/
@@ -1049,7 +2234,6 @@ plt.savefig('barChart.png', dpi=300)
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 300
 [[file:barChart.png]]
-
 ** Pie chart
 *** 語法： 
 plt.pie( 比例列表 [, 參數 1, 參數 2, ...] )
@@ -1129,7 +2313,7 @@ plt.savefig('simpleText.png', dpi = 300)
 #+ATTR_ORG: :width 300
 [[file:simpleText.png]]
 ** 子圖表: plt.subplot()
-*** 範例[fn:26]
+*** 範例[fn:32]
 #+BEGIN_SRC python -r -n :results output :exports both
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1328,14 +2512,14 @@ plt.savefig('images/scosct.png')
 - 於 2009 年底開源出來，提供高效能、簡易使用的
   資料格式(Data Frame，為 R 語言主要資料格式)，可以讓使用者可以快速操作及分析資料。
 - Pandas 強化了資料處理的方便性也能與處理網頁資料與資料庫資料等，有點類似於
-  Office 的 Excel，能更加方便的進行運算、分析等[fn:27]。
+  Office 的 Excel，能更加方便的進行運算、分析等[fn:33]。
 - Pandas 主要特色有[fn:23]：
   1. 在異質數據的讀取、轉換和處理上，都讓分析人員更容易處理，例如：從列欄試算表中找到想要的值。
   1. Pandas 提供兩種主要的資料結構，Series 與 DataFrame。Series 顧名思義就是用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。DataFrame 則是用來處理結構化(Table like)的資料，有列索引與欄標籤的二維資料集，例如關聯式資料庫、CSV 等等。
   1. 透過載入至 Pandas 的資料結構物件後，可以透過結構化物件所提供的方法，來快速地進行資料的前處理，如資料補值，空值去除或取代等。
   1. 更多的輸入來源及輸出整合性，例如：可以從資料庫讀取資料進入 Dataframe，也可將處理完的資料存回資料庫。
 ** Pandas 資料結構
-Pandas 兩類資料結構[fn:1]：[fn:28]
+Pandas 兩類資料結構[fn:1]：[fn:34]
 1. Series: 用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。
 1. DataFrame: 是一個二維標籤資料結構，可以具有不同類型的行（column），類似 Excel
    的資料表，對於有使用過統計軟體的分析人員應該不陌生。簡單來說，Series 可以想像
@@ -1425,7 +2609,6 @@ speedCamera4    4312
 speedCamera5     533
 dtype: object
 #+end_example
-
 ** DataFrame
 *** DataFrame 建立
 可利用 Dictionary 或是 Array 來建立，並使用 DataFrame 的方法來操作資料查看、資料篩選、資料切片、資料排序等運算。
@@ -1511,7 +2694,6 @@ print(df)
 
 [212 rows x 6 columns]
 #+end_example
-
 ** DataFrame 的資料瀏覽
 *** 碁本函數
 - shape
@@ -1717,10 +2899,9 @@ print(fillv)
 8  201910909       999.0    64.0     44.74        20
 9  201910910        93.0   120.0     97.37        16
 #+end_example
-
 ** Dataframe 的選取與過濾
 
-*** 資料選取: Select column(s) [fn:29]
+*** 資料選取: Select column(s) [fn:35]
 - src_python[:exports code]{ df[['col1', 'col2']] }
 - src_python[:exports code]{ df.col1 }
 #+BEGIN_SRC python -r -n :results output :exports both
@@ -1841,9 +3022,8 @@ print(df[(df.midexam >= 100) & (df.finalexam >= 100)])
 203  201911722         105     120    102.63    101.5     105.00
 210  201911729          87      84    105.26    112.3     103.00
 #+end_example
-
 ** Dataframe 進階條件過濾
-*** loc, iloc, between [fn:30]
+*** loc, iloc, between [fn:36]
 - loc: 基於行標籤和列標籤（x\under{}label、y\under{}label）進行索引，以 column 名做為 index
 - iloc: 基於行索引和列索引（index，columns） 都是從 0 開始，以數字做為 index
 - between: 檢查區間值, src_python[:exports code]{ Series.between(self, left, right, inclusive=True) }
@@ -1923,7 +3103,6 @@ Name: midexam, Length: 212, dtype: bool
 109  201911136          91     100     81.58     51.0        4.0
 171  201911626          98      72     97.37     50.0       75.0
 #+end_example
-
 ** 進階分析
 *** 由其他 column 產生新的 column
 - 全部指定
@@ -1981,7 +3160,6 @@ True   84.525547  96.350730
 #+end_example
 
 *** 資料檔下載: [[file:scores.csv]]
-
 ** 資料視覺化
 *** Bar chart
 #+BEGIN_SRC python -r -n :results output :exports both
@@ -2136,7 +3314,6 @@ savefig.savefig('images/PandasPlot4.png')
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 500
 [[file:images/PandasPlot4.png]]
-
 ** 實作練習
 *** 403 期中考得分統計
 - 原始數據
@@ -2248,12 +3425,11 @@ resfig.savefig("images/task8.png")
 ** 網路資料分析的兩種類型
 - 可直接下載的靜態結構化資料，如 CSV、JSON、XML
 - 直接分析網站的線上內容(HTML): 爬蟲(Web Crawler)
-
 ** JSON
 *** What is JSON?
 - JSON(JavaScript Object Notation，JavaScript 物件表示法)是個以純文字來描述
   資料的簡單結構，在 JSON 中可以透過特定的格式去儲存任何資料(字串,數字,陣列,物件)，
-  也可以透過物件或陣列來傳送較複雜的資料。[fn:31]
+  也可以透過物件或陣列來傳送較複雜的資料。[fn:37]
 - JSON 常用於網站上的資料呈現、傳輸 (例如將資料從伺服器送至用戶端，以利顯示網頁)。
 - 一旦建立了 JSON 資料，就可以非常簡單的跟其他程式溝通或交換資料，因為 JSON 就只
   是純文字格式。
@@ -2678,16 +3854,14 @@ for item in jsonRes['rows']:
 林園高中 : 108學年度林園高中第18號第3次公告 / 109-04-14
 大社國中 : 108學年度大社國中第4號第3次公告 / 109-04-13
 #+end_example
-
-
 ** 網路爬蟲
 *** HTML
 **** What is HTML
 - [[https://data.gov.tw/datasets/search?qs=tid%3A6410][政府資料開放平台]]
-- 超文本標記語言（HyperText Markup Language）是一種用於建立網頁的標準標記語言。HTML 是一種基礎技術，常與 CSS、JavaScript 一起被眾多網站用於設計網頁、網頁應用程式以及行動應用程式的使用者介面。[fn:32]
-- HTML 元素是構建網站的基石。HTML 允許嵌入圖像與物件，並且可以用於建立互動式表單，它被用來結構化資訊——例如標題、段落和列表等等，也可用來在一定程度上描述文件的外觀和語意。[fn:32]
+- 超文本標記語言（HyperText Markup Language）是一種用於建立網頁的標準標記語言。HTML 是一種基礎技術，常與 CSS、JavaScript 一起被眾多網站用於設計網頁、網頁應用程式以及行動應用程式的使用者介面。[fn:38]
+- HTML 元素是構建網站的基石。HTML 允許嵌入圖像與物件，並且可以用於建立互動式表單，它被用來結構化資訊——例如標題、段落和列表等等，也可用來在一定程度上描述文件的外觀和語意。[fn:38]
 - HTML 的語言形式為<>包圍的 HTML 元素（如<html>），瀏覽器使用 HTML 標籤和指
-  令碼來詮釋網頁內容，但不會將它們顯示在頁面上。 [fn:32]
+  令碼來詮釋網頁內容，但不會將它們顯示在頁面上。 [fn:38]
 - 網頁就是由各式標籤 (tag) 所組成的階層式文件。
 **** HTML 範例
 - HTML code
@@ -2741,7 +3915,7 @@ for item in jsonRes['rows']:
 [[file:images/html-tree.png]]
 - HTML 文件內不同的標籤 (例如 <title>, <h1>, <p>, <a> 
 - 不同的標籤有著不同的語義，表示建構網頁用的不同元件，且標籤可以有各種屬性 (例如 id, class, style 等通用屬性, 或 href 等專屬屬性)，
-- 因此我們可以用標籤 + 屬性去定位資料所在的區塊並取得資料。[fn:33]
+- 因此我們可以用標籤 + 屬性去定位資料所在的區塊並取得資料。[fn:39]
 **** 爬蟲精神：將程式模仿成一般 user
 ***** 原則
 1. 要抓網路資料，就要先仔細觀察網頁內容
@@ -2762,7 +3936,7 @@ for item in jsonRes['rows']:
 #+BEGIN_SRC shell :eval no
 urllib.error.HTTPError: HTTP Error 403: Forbidden
 #+END_SRC
-- 被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是 HTTP 協議中的一個 [[https://zh.wikipedia.org/zh-tw/HTTP%E7%8A%B6%E6%80%81%E7%A0%81][HTTP 狀態碼（Status Code）]]。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務[fn:34]。
+- 被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是 HTTP 協議中的一個 [[https://zh.wikipedia.org/zh-tw/HTTP%E7%8A%B6%E6%80%81%E7%A0%81][HTTP 狀態碼（Status Code）]]。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務[fn:40]。
 - urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料的 Python 模
   組。它提供一個了非常簡單的介面能接受多種不同的協議(protocol, 如 http, ftp)， urlopen 函數。
 ****** 第二版:加入 headers
@@ -2844,8 +4018,8 @@ print(type(root.prettify()))
 **** Beautifulsoup 解析器
 - 在上面的語句中，大家可以看到我們使用了一個 html.parser。 這是一個解析器，在構造
   BeautifulSoup 物件的時候，需要用到解析器。BeautifulSoup 支援 python 內建的解析器
-  和少數第三方解析器。[fn:35]
-- 詳細對比如下：[fn:36]
+  和少數第三方解析器。[fn:41]
+- 詳細對比如下：[fn:42]
 #+Results:
 #+Caption: Parsers 比較
 #+Label: fig:Parsers 比較
@@ -2906,8 +4080,6 @@ for t in titles:
 : <a href="/bbs/Kaohsiung/M.1591246810.A.667.html">[公告] 20.06.06 0:00 禁止宣傳贊成/反對罷免資訊</a>
 : <a href="/bbs/Kaohsiung/M.1591396114.A.CBC.html">[公告] 投票路程聊天區(禁止拉票)</a>
 : <a href="/bbs/Kaohsiung/M.1591314761.A.E1C.html">[閒聊] 0605-0607 天氣提醒(1300 陣雨)</a>
-
-
 ** 實作練習
 - 由[[https://data.kcg.gov.tw/dataset?res_format=JSON][高雄市政府資料開放平台]]找到[高雄市各級學校甄選公告]，線上讀取其線上 JSON 資料，輸
   出校名及出缺科別。
@@ -3017,6 +4189,7 @@ if __name__ == "__main__":
 
 [fn:19] [[https://towardsdatascience.com/deep-learning-framework-power-scores-2018-23607ddf297a][Deep Learning Framework Power Scores 2018
 ]]
+
 [fn:20][[https://makerpro.cc/2019/06/self-learning-series5-of-ai/][【自學AI#5】深度學習必備：Keras、Jupyter安裝教學]]
 
 [fn:21] [[https://medium.com/chiukevin0321/tensorflow%E8%88%87keras%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9-621352fc7150][Tensorflow與Keras基本介紹]]
@@ -3027,28 +4200,40 @@ if __name__ == "__main__":
 
 [fn:24] [[https://blog.techbridge.cc/2017/07/28/data-science-101-numpy-tutorial/][從零開始學資料科學：Numpy 基礎入門]]
 
-[fn:25] [[https://medium.com/@jemmy1234/matplotlib-%E7%B0%A1%E4%BB%8B-857323964e2d][Matplotlib 簡介]]
+[fn:25] [[https://www.brilliantcode.net/1093/numpy-1-14-tutorial-04-indexing-slicing-iterating-from-function/][NumPy 1.14 教學:索引(Indexing)、切片(Slicing)、迭代(Iterating)、From Function]]
 
-[fn:26] [[https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplot.html][matplotlib.pyplot.subplot]]
+[fn:26] [[https://ithelp.ithome.com.tw/articles/10196167][[Day18]Numpy檔案輸入與輸出！ ]]
 
-[fn:27] [[https://blog.csdn.net/qq_18668137/article/details/80807829][conda、miniconda、anaconda的區別以及在pycharm中選擇conda的虛擬環境]]
+[fn:27] [[https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/570647/][NumPy 檔案存取 tofile，fromfile， load，save]]
 
-[fn:28] [[https://oranwind.org/python-pandas-ji-chu-jiao-xue/][[Python] Pandas 基礎教學]]
+[fn:28] [[https://hackmd.io/@yizhewang/HJjG8ha5r][使用 numpy.genfromtxt 讀取混合格式的資料]]
 
-[fn:29] [[https://www.itread01.com/content/1547569271.html][Python讀寫csv檔案的幾種方法 及 pandas.read_csv 引數全解]]
+[fn:29] [[https://stackoverflow.com/questions/33655641/b-character-added-when-using-numpy-loadtxt]['b' character added when using numpy loadtxt]]
 
-[fn:30] [[https://ithelp.ithome.com.tw/articles/10208412][Day23- 資料處理模組-Pandas 介紹]]
+[fn:30] [[https://aifreeblog.herokuapp.com/posts/54/data_science_203/][資料的正規化與標準化]]
 
-[fn:31] [[https://blog.wu-boy.com/2011/04/%E4%BD%A0%E4%B8%8D%E5%8F%AF%E4%B8%8D%E7%9F%A5%E7%9A%84-json-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/][你不可不知的 JSON 基本介紹]]
+[fn:31] [[https://medium.com/@jemmy1234/matplotlib-%E7%B0%A1%E4%BB%8B-857323964e2d][Matplotlib 簡介]]
 
-[fn:32] [[https://zh.wikipedia.org/zh-tw/HTML][HTML]]
+[fn:32] [[https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplot.html][matplotlib.pyplot.subplot]]
 
-[fn:33] [[http://blog.castman.net/%E6%95%99%E5%AD%B8/2016/12/22/python-data-science-tutorial-3.html][給初學者的 Python 網頁爬蟲與資料分析 (3) 解構並擷取網頁資料]]
+[fn:33] [[https://blog.csdn.net/qq_18668137/article/details/80807829][conda、miniconda、anaconda的區別以及在pycharm中選擇conda的虛擬環境]]
 
-[fn:34] [[https://medium.com/ai%E5%8F%8D%E6%96%97%E5%9F%8E/anaconda-miniconda-conda-pip%E7%9A%84%E7%9B%B8%E4%BA%92%E9%97%9C%E4%BF%82-%E8%BD%89%E8%BC%89-a0536f3a257][Anaconda、Miniconda、Conda、pip的相互關係 (轉載)]]
+[fn:34] [[https://oranwind.org/python-pandas-ji-chu-jiao-xue/][[Python] Pandas 基礎教學]]
 
-[fn:35] [[https://iter01.com/60617.html][Python 爬蟲十六式 - 第五式：BeautifulSoup，美味的湯]]
+[fn:35] [[https://www.itread01.com/content/1547569271.html][Python讀寫csv檔案的幾種方法 及 pandas.read_csv 引數全解]]
 
-[fn:36] [[https://hiskio.com/courses/112/lectures/3161][解析器之間的差異]]
+[fn:36] [[https://ithelp.ithome.com.tw/articles/10208412][Day23- 資料處理模組-Pandas 介紹]]
 
-[fn:37] [[https://kknews.cc/code/y3mzkgg.html][Python爬蟲解析庫——BeautifulSoup4]]
+[fn:37] [[https://blog.wu-boy.com/2011/04/%E4%BD%A0%E4%B8%8D%E5%8F%AF%E4%B8%8D%E7%9F%A5%E7%9A%84-json-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/][你不可不知的 JSON 基本介紹]]
+
+[fn:38] [[https://zh.wikipedia.org/zh-tw/HTML][HTML]]
+
+[fn:39] [[http://blog.castman.net/%E6%95%99%E5%AD%B8/2016/12/22/python-data-science-tutorial-3.html][給初學者的 Python 網頁爬蟲與資料分析 (3) 解構並擷取網頁資料]]
+
+[fn:40] [[https://medium.com/ai%E5%8F%8D%E6%96%97%E5%9F%8E/anaconda-miniconda-conda-pip%E7%9A%84%E7%9B%B8%E4%BA%92%E9%97%9C%E4%BF%82-%E8%BD%89%E8%BC%89-a0536f3a257][Anaconda、Miniconda、Conda、pip的相互關係 (轉載)]]
+
+[fn:41] [[https://iter01.com/60617.html][Python 爬蟲十六式 - 第五式：BeautifulSoup，美味的湯]]
+
+[fn:42] [[https://hiskio.com/courses/112/lectures/3161][解析器之間的差異]]
+
+[fn:43] [[https://kknews.cc/code/y3mzkgg.html][Python爬蟲解析庫——BeautifulSoup4]]
