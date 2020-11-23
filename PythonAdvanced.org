@@ -2437,12 +2437,32 @@ plt.savefig('simpleSubplot.png', dpi = 300)
 - [[https://www.delftstack.com/zh-tw/howto/matplotlib/how-to-make-different-subplot-sizes-in-matplotlib/][Matplotlib 中如何建立不同大小的子圖 subplot]]
 - [[https://kernel.blog.csdn.net/article/details/61416645?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control][python使用matplotlib:subplot繪製多個子圖]]
 ** 實作練習
-1. Line: 輸入 a, b, c，畫出曲線圖：y=$ax^2+bx+c$
-1. Bar: 將前一章的練習題所產生 30*5 的二維隨機陣列，將五科科目的平均製成長條圖，此五科科目設定為:國文、英文、數學、理化、史地。
-1. Scatter: 找出國文與英文兩科成績，畫出兩科成績的散佈圖(Scatter)，觀察學生在這兩科的得分是否有正相關。
-*** 參考解答
+1. Line: 輸入 a, b, c，畫出曲線圖：y=$ax^2+bx+c$，參考結果如下:
+   #+CAPTION: 方程式曲線圖
+   #+LABEL: fig:SimpleSubplot
+   #+name: fig:SimpleSubplot
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 400
+   #+ATTR_ORG: :width 400
+   [[file:images/eqcurve.png]]
+1. Bar: 將前一章的練習題所產生 30*5 的二維隨機陣列，將五科科目的平均製成長條圖，此五科科目設定為:國文、英文、數學、理化、史地。參考結果如下:
+   #+CAPTION: 分數長條圖
+   #+LABEL: fig:SimpleSubplot
+   #+name: fig:SimpleSubplot
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 400
+   #+ATTR_ORG: :width 400
+   [[file:images/scobars.png]]
+1. Scatter: 找出國文與英文兩科成績，畫出兩科成績的散佈圖(Scatter)，觀察學生在這兩科的得分是否有正相關。參考結果如下:
+   #+CAPTION: 兩科成績的關係圖
+   #+LABEL: fig:SimpleSubplot
+   #+name: fig:SimpleSubplot
+   #+ATTR_LATEX: :width 400
+   #+ATTR_HTML: :width 400
+   #+ATTR_ORG: :width 400
+   [[file:images/scosct.png]]
+*** 參考解答 :noexport:
 **** 1. Line
-#+BEGIN_COMMENT
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
 import numpy as np
@@ -2465,7 +2485,6 @@ plt.grid(True)
 plt.savefig('images/eqcurve.png', dpi=300)
 
 #+end_src
-#+END_COMMENT
 
 #+RESULTS:
 #+CAPTION: 方程式曲線圖
@@ -2476,7 +2495,6 @@ plt.savefig('images/eqcurve.png', dpi=300)
 #+ATTR_ORG: :width 400
 [[file:images/eqcurve.png]]
 **** 2. Bar
-#+BEGIN_COMMENT
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
 import numpy as np
@@ -2501,7 +2519,6 @@ plt.xlabel('分數')
 
 plt.savefig('images/scobars.png')
 #+end_src
-#+END_COMMENT
 
 #+RESULTS:
 #+CAPTION: 分數長條圖
@@ -2512,7 +2529,6 @@ plt.savefig('images/scobars.png')
 #+ATTR_ORG: :width 400
 [[file:images/scobars.png]]
 **** 3. Scatter
-#+BEGIN_COMMENT
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
 import numpy as np
@@ -2539,7 +2555,6 @@ plt.scatter(st1, st2, s=st ,label=st,  alpha=0.5)
 plt.savefig('images/scosct.png')
 
 #+end_src
-#+END_COMMENT
 
 #+RESULTS:
 #+CAPTION: 兩科成績的關係圖
@@ -3381,12 +3396,45 @@ savefig.savefig('images/PandasPlot4.png')
 - 任務 3: 求出換算得分(即總得分除以 5)。
 - 任務 4: 由學號欄提出班級資料， 新增一欄班級欄，班級為學號的第 5~7 碼，如 201910107，
   表示該生為 101 班。
-- 任務 5: 求出各題的平均得分，以直條長條圖顯示。
-- 任務 6: 以班級為分組依據，畫出各班平均得分，以橫向長條圖顯示。
-- 任務 7: 求 119 班各題平均得分，以 pie chart 顯示。
-- 任務 8: 求所有受試者第 B 及 B1 兩題的 scatter plot 以及 regression line。
+- 任務 5: 求出各題的平均得分，以直條長條圖顯示。如下圖:
+  #+CAPTION: task5
+  #+LABEL: fig:task5
+  #+name: fig:task5
+  #+ATTR_LATEX: :width 400
+  #+ATTR_HTML: :width 560
+  #+ATTR_ORG: :width 560
+  #+RESULTS:
+  [[file:images/task5.png]]
+- 任務 6: 以班級為分組依據，畫出各班平均得分，以橫向長條圖顯示。如下圖:
+  #+CAPTION: task6
+  #+LABEL: fig:tas6
+  #+name: fig:task6
+  #+ATTR_LATEX: :width 400
+  #+ATTR_HTML: :width 560
+  #+ATTR_ORG: :width 560
+  #+RESULTS:
+  [[file:images/task6.png]]
+- 任務 7: 求 119 班各題平均得分，以 pie chart 顯示。如下圖:
+  #+CAPTION: task7
+  #+LABEL: fig:tas7
+  #+name: fig:task7
+  #+ATTR_LATEX: :width 400
+  #+ATTR_HTML: :width 560
+  #+ATTR_ORG: :width 560
+  #+RESULTS:
+  [[file:images/task7.png]]
+- 任務 8: 求所有受試者第 B 及 B1 兩題的 scatter plot 以及 regression line。如下圖:
+  #+CAPTION: task8
+  #+LABEL: fig:tas
+  #+name: fig:task
+  #+ATTR_LATEX: :width 400
+  #+ATTR_HTML: :width 560
+  #+ATTR_ORG: :width 560
+  #+RESULTS:
+  [[file:images/task8.png]]
+**** Solution :noexport:
 #+begin_src python -r -n :results output :exports both
-}import numpy as np
+import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -3438,35 +3486,35 @@ resfig.savefig("images/task8.png")
 #+CAPTION: task5
 #+LABEL: fig:task5
 #+name: fig:task5
-  #+ATTR_LATEX: :width 400
-  #+ATTR_HTML: :width 560
-  #+ATTR_ORG: :width 560
-  #+RESULTS:
-  [[file:images/task5.png]]
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 560
+#+ATTR_ORG: :width 560
+#+RESULTS:
+[[file:images/task5.png]]
 #+CAPTION: task6
 #+LABEL: fig:tas6
 #+name: fig:task6
-  #+ATTR_LATEX: :width 400
-  #+ATTR_HTML: :width 560
-  #+ATTR_ORG: :width 560
-  #+RESULTS:
-  [[file:images/task6.png]]
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 560
+#+ATTR_ORG: :width 560
+#+RESULTS:
+[[file:images/task6.png]]
 #+CAPTION: task7
 #+LABEL: fig:tas7
 #+name: fig:task7
-  #+ATTR_LATEX: :width 400
-  #+ATTR_HTML: :width 560
-  #+ATTR_ORG: :width 560
-  #+RESULTS:
-  [[file:images/task7.png]]
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 560
+#+ATTR_ORG: :width 560
+#+RESULTS:
+[[file:images/task7.png]]
 #+CAPTION: task8
 #+LABEL: fig:tas
 #+name: fig:task
-  #+ATTR_LATEX: :width 400
-  #+ATTR_HTML: :width 560
-  #+ATTR_ORG: :width 560
-  #+RESULTS:
-  [[file:images/task8.png]]
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 560
+#+ATTR_ORG: :width 560
+#+RESULTS:
+[[file:images/task8.png]]
 
 #+latex:\newpage
 
