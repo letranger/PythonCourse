@@ -17,13 +17,13 @@ MAX_COUNT = 1
 nextPageToken =  None
 
 # 設定搜尋關鍵字
-search_by = 'machine learning tutorial'
+search_by = 'naked yoga'
 
 # 搜尋影片id
 #while True:
 videoList = []
-for times in range(5): #會超過query上限
-    req = youtube.search().list(q=search_by, part='snippet', videoDuration='short', type='video', maxResults=MAX_COUNT, pageToken=nextPageToken)
+for times in range(40): #會超過query上限
+    req = youtube.search().list(q=search_by, part='snippet', videoDuration='any', type='video', maxResults=MAX_COUNT, pageToken=nextPageToken)
     res = req.execute()
     nextPageToken = res['nextPageToken']
     items = res['items']

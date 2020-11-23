@@ -2349,6 +2349,21 @@ plt.savefig('simpleText.png', dpi = 300)
 #+ATTR_ORG: :width 300
 [[file:simpleText.png]]
 ** 子圖表: plt.subplot()
+matplotlib下, 一個 Figure 對象可以包含多個子圖(Axes), 可以使用 subplot() 快速繪製, 其調用形式如下 :
+*** subplot語法
+subplot(numRows, numCols, plotNum)
+- 圖表的整個繪圖區域被分成 numRows 行和 numCols 列
+- 然後按照從左到右，從上到下的順序對每個子區域進行編號，左上的子區域的編號為1
+- plotNum 參數指定創建的 Axes 對象所在的區域
+- 如果 numRows, numCols 和 plotNum 這三個數都小於 10 的話, 可以把它們縮寫為一個整數, 例如 subplot(323) 和 subplot(3,2,3) 是相同的.
+*** subplots_adjust語法
+- subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
+- left  = 0.125  # 子圖(subplot)距畫板(figure)左邊的距離
+- right = 0.9    # 右邊
+- bottom = 0.1   # 底部
+- top = 0.9      # 頂部
+- wspace = 0.2   # 子圖水平間距
+- hspace = 0.2   # 子圖垂直間距
 *** 範例[fn:32]
 #+BEGIN_SRC python -r -n :results output :exports both
 import numpy as np
@@ -2400,6 +2415,7 @@ plt.grid(True)
 # Format the minor tick labels of the y-axis into empty strings with
 # `NullFormatter`, to avoid cumbering the axis with too many labels.
 plt.gca().yaxis.set_minor_formatter(NullFormatter())
+
 # Adjust the subplot layout, because the logit one may take more space
 # than usual, due to y-tick labels like "1 - 10^{-3}"
 plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25, wspace=0.35)
@@ -2415,18 +2431,17 @@ plt.savefig('simpleSubplot.png', dpi = 300)
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
 [[file:simpleSubplot.png]]
-
 *** 進階設定
 - [[https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplot.html][官網]]
 - [[https://ithelp.ithome.com.tw/articles/10201670][視覺化資料 - Matplotlib - legend、subplot、GridSpec、annotate]]
 - [[https://www.delftstack.com/zh-tw/howto/matplotlib/how-to-make-different-subplot-sizes-in-matplotlib/][Matplotlib 中如何建立不同大小的子圖 subplot]]
+- [[https://kernel.blog.csdn.net/article/details/61416645?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control][python使用matplotlib:subplot繪製多個子圖]]
 ** 實作練習
-*** 輸入 a, b, c，畫出曲線圖：y=$ax^2+bx+c$
-*** 將前一章的練習題所產生 30*5 的二維隨機陣列，將五科科目的平均製成長條圖，此五科科目設定為:國文、英文、數學、理化、史地。
-*** 找出國文與英文兩科成績，畫出兩科成績的散佈圖(Scatter)，觀察學生在這兩科的得分是否有正相關。
-
+1. Line: 輸入 a, b, c，畫出曲線圖：y=$ax^2+bx+c$
+1. Bar: 將前一章的練習題所產生 30*5 的二維隨機陣列，將五科科目的平均製成長條圖，此五科科目設定為:國文、英文、數學、理化、史地。
+1. Scatter: 找出國文與英文兩科成績，畫出兩科成績的散佈圖(Scatter)，觀察學生在這兩科的得分是否有正相關。
 *** 參考解答
-**** #1
+**** 1. Line
 #+BEGIN_COMMENT
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
@@ -2460,7 +2475,7 @@ plt.savefig('images/eqcurve.png', dpi=300)
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
 [[file:images/eqcurve.png]]
-**** #2
+**** 2. Bar
 #+BEGIN_COMMENT
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
@@ -2496,7 +2511,7 @@ plt.savefig('images/scobars.png')
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
 [[file:images/scobars.png]]
-**** #3
+**** 3. Scatter
 #+BEGIN_COMMENT
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
@@ -2549,7 +2564,7 @@ plt.savefig('images/scosct.png')
   資料格式(Data Frame，為 R 語言主要資料格式)，可以讓使用者可以快速操作及分析資料。
 - Pandas 強化了資料處理的方便性也能與處理網頁資料與資料庫資料等，有點類似於
   Office 的 Excel，能更加方便的進行運算、分析等[fn:33]。
-- Pandas 主要特色有[fn:23]：
+- Pandas 主要特色有[fn:34]：
   1. 在異質數據的讀取、轉換和處理上，都讓分析人員更容易處理，例如：從列欄試算表中找到想要的值。
   1. Pandas 提供兩種主要的資料結構，Series 與 DataFrame。Series 顧名思義就是用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。DataFrame 則是用來處理結構化(Table like)的資料，有列索引與欄標籤的二維資料集，例如關聯式資料庫、CSV 等等。
   1. 透過載入至 Pandas 的資料結構物件後，可以透過結構化物件所提供的方法，來快速地進行資料的前處理，如資料補值，空值去除或取代等。
@@ -2672,7 +2687,6 @@ print(df)
 : 3  Fishing     12
 : 4  Dancing      6
 : 5  cooking     58
-
 *** 由 Array 建立
 #+begin_src python -r -n :results output :exports both
 import pandas as pd
@@ -2693,8 +2707,7 @@ print(ary2df)
 : 3  Fishing     12
 : 4  Dancing      6
 : 5  cooking      8
-
-*** 讀入已存在的資料檔來建立 Dataframe
+*** 讀入外部資料檔來建立 Dataframe
 - 可以從異質資料來源讀取檔案(如 CSV 檔)內容，並將資料放入 DataFrame 中，進行資料查看、資料篩選、資料切片等運算。
 - 如果資料檔和程式放在同一目錄(資料夾)
 - 如果資料檔放在本機在其他地方
@@ -4225,7 +4238,6 @@ if __name__ == "__main__":
 
 [fn:19] [[https://towardsdatascience.com/deep-learning-framework-power-scores-2018-23607ddf297a][Deep Learning Framework Power Scores 2018
 ]]
-
 [fn:20][[https://makerpro.cc/2019/06/self-learning-series5-of-ai/][【自學AI#5】深度學習必備：Keras、Jupyter安裝教學]]
 
 [fn:21] [[https://medium.com/chiukevin0321/tensorflow%E8%88%87keras%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9-621352fc7150][Tensorflow與Keras基本介紹]]
