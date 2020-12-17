@@ -80,7 +80,6 @@ Python is an advanced *scripting language* that is being used successfully to *g
 8. [[https://www.pinterest.com/][Pinterest]]
 
 #+latex:\newpage
-
 * Python 環境建置
 :PROPERTIES:
 :CUSTOM_ID: py-environment
@@ -238,7 +237,6 @@ python filename.py
 - 登出後重新登入：tokenk Python
 
 #+latex:\newpage
-
 * 變數、資料型態、輸出輸入
 :PROPERTIES:
 :CUSTOM_ID: py-variables
@@ -263,7 +261,6 @@ print("This is a test")
 
 #+RESULTS:
 : This is a test
-
 ** 變數
 *** 命名規則
 - 由英文、數字、底線、中文(不建議)組成
@@ -300,7 +297,6 @@ name, number = 'TNFSH', 35
 del c
 print(name)
 #+end_src
-
 ** 資料型態
 *** 變數型態的判斷: type()
 #+begin_src python -r -n :eval no
@@ -334,7 +330,6 @@ score = int(30.22)			# 將括弧內的資料轉換為整數
 score = float(score)		# 將括弧內的資料轉換為浮點數
 test = str(score)				# 將括弧內的資料轉換為字串
 #+end_src
-
 ** 進階輸出: print
 *** 語法
  - print( 項目 1, [ 項目 2, … , sep = 分隔字元 , end = 結束字元 ] )
@@ -414,10 +409,21 @@ print(tmp.substitute(who = name))
 
 #+RESULTS:
 : Hello, TNFSH
-
 *** 進階閱讀
 - [[https://blog.techbridge.cc/2019/05/03/how-to-use-python-string-format-method/][如何使用 Python 進行字串格式化]]
+** 進階輸出: f-string
+Python 3.6起增加的新字串格式化功能，可以把Python運算式嵌入在字串裡，由於f-string轉換時會做最佳化，其速度會比前面的文字格式化稍稍快一點。
+#+begin_src python -r -n :results output :exports both
+name = 'James'
+age = 19
+print(f'{name} is {age} years old now')
+x, y = 3, 5
+print(f'{x} * {y} = {x*y}')
+#+end_src
 
+#+RESULTS:
+: James is 19 years old now
+: 3 * 5 = 15
 ** 輸入
 *** 語法/範例
 - 語法
@@ -453,7 +459,6 @@ print(tmp.substitute(who = name))
     b = int(inpstr[1])
     c = int(inpstr[2])
   #+end_src
-
 ** 註解
 - 語法
   + 單行註解：以 # 開頭
@@ -473,7 +478,6 @@ print(tmp.substitute(who = name))
   #+end_src
 
 #+latex:\newpage
-
 * 運算元與運算式
 :PROPERTIES:
 :CUSTOM_ID: py-operation
@@ -537,32 +541,42 @@ print(3*"Python基礎")
 #+RESULTS:
 : Python 基䂾
 : Python 基礎 Python 基礎 Python 基礎
-
 ** 關係運算子
 |------+------+----------+----------+------+--------|
 | >    | <    | >=       | <=       | ==   | !=     |
 |------+------+----------+----------+------+--------|
 | 大於 | 小於 | 大於等於 | 小於等於 | 等於 | 不等於 |
 |------+------+----------+----------+------+--------|
-
 ** 邏輯運算子
 |---------------+----------------+----------|
 | and           | or             | not      |
 |---------------+----------------+----------|
 | (a>b) and (a<c) | (a>b) or (a==b)  | not (a>b) |
 |---------------+----------------+----------|
-
 ** 複合指定運算子
 |----+----+----+----+----+-----+-----|
 | += | -= | *= | /= | %= | //= | **= |
 |----+----+----+----+----+-----+-----|
-
+** 指派運算子
+Assignment expression, Python 3.8起加入的新功能，其功能是指派值或運算式的結果給變數、接著傳回該變數的值。
+以下列程式為例，原本要每次都輸入一個值，判斷其值是否為0，再決定是否繼續下去。
+#+begin_src python -r -n :results output :exports both
+a = int(input())
+while a != 0:
+    print(f'value: {a}')
+    a = int(input())
+#+end_src
+若改為assignment(:=)，則可以寫為
+#+begin_src python -r -n :results output :exports both
+# 這個要再測試
+while a := int(input()):
+    print(f'value: {a}')
+#+end_src
 ** 實作練習
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/][skyoj #161華氏溫度轉攝氏溫度]]
 - [[http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/277/][skyoj #277. 一元二次方程式求解]]
 
 #+latex:\newpage
-
 * 內建函數
 :PROPERTIES:
 :CUSTOM_ID: py-build-in-functions
@@ -609,7 +623,6 @@ print(str(3.1416) + str(2020))
 
 #+RESULTS:
 : 3.14162020
-
 ** 字串處理函數
 *** 字串轉換函數
 - str.upper(): 將字串 s 所有字元轉成大寫
@@ -944,14 +957,12 @@ print(s + format(x, '<20') + s)
 : **Hello python        **
 : **        Hello python**
 : **Hello python        **
-
 ** 數值處理函數
 - abs(x)
 - min(x1, x2 [, x3...])
 - max(x1, x2 [, x3...])
 - pow(x, y)
 - divmod(x, y)
-
 ** 作業
 *** 小編日常
 **** solution :noexport:
@@ -999,7 +1010,6 @@ else:
 #+end_src
 
 #+latex:\newpage
-
 * 判斷結構
 :PROPERTIES:
 :CUSTOM_ID: py-if-else
@@ -1208,7 +1218,6 @@ else:
 : 496
 
 #+latex:\newpage
-
 * 迴圈結構
 :PROPERTIES:
 :CUSTOM_ID: py-for-loop
@@ -1540,7 +1549,6 @@ n = 11
 
 print( findremainder(arr, lens, n))
 #+end_src
-
 * 資料型別
 :PROPERTIES:
 :CUSTOM_ID: py-types
@@ -1607,8 +1615,8 @@ print("school.split('f'):", school.split('f'))
 : school.find('fsh'): 2
 : school.replace('fsh', ssh'): Tnssh
 : school.split('f'): ['Tn', 'sh']
-
 ** 列表 list
+list為Python的核心功能之一，雖名為list，實際為一種dynamic array，即，在新增或移除元素時，Python會負責調整list的儲存空間，動態配置或釋放記憶體。
 *** 資料格式
 - 以[ ]將不同型態的資料含括起來，以 , 分隔
 - 表列中的資料是有序排列，從 0 開始編號
@@ -1628,7 +1636,6 @@ print(data[2][1])
 : 118
 : May
 : a
-
 *** list 函式與方法
 - len(<list>): 計算表列元素個數
 - list(<str>): 將<str>轉成表列
@@ -1685,7 +1692,6 @@ print(data[2][1])
 [35, 89, 200]
 a-b-c
 #+end_example
-
 *** 課堂練習
 將以下 list 複製貼上至程式碼中
 #+begin_src python -r -n :results output :exports both
@@ -1695,7 +1701,6 @@ scores = [78, 12, 97, 45, 12, 45, 98, 100, 9, 23]
 - 全班平均：至小數點第 2 位
 - 全班最高分分數
 - 全班最低分分數
-  
 *** zip()
 **** zip 與 for 迴圈
 在 Python 中若要將兩個 list 以迴圈的方式一次各取一個元素出來處理，可以使用 zip 打包之後配合 for 迴圈來處理，如下例
@@ -1727,7 +1732,6 @@ ages = [45, 67, 82]
 for x, y, z in zip(names, values, ages):
   print(x, y, z)
 #+end_src
-
 *** list 練習
 - 連續輸入成績(輸入-1 結束)，將成績由高至低排序輸出，並輸出總分、平均
 #+NAME: 分數排序
@@ -1756,7 +1760,6 @@ print('全班總分：{0:d},全班平均：{1:0.2f}'.format(sos, sos/len(score))
   print(sum/5)
   print(grades)
 #+END_SRC
-
 *** 課堂練習
 - Given a two Python list. Iterate both lists simultaneously such that list1 should display item in original order and list2 in reverse order
 - Example:
@@ -1770,7 +1773,6 @@ Output:
 30 200
 40 100
 #+END_EXAMPLE
-
 *** 作業
 **** lone wolf
 讀入一整數 n、接下來讀入 n 個整數，列出這幾個整數中未成對者
@@ -1894,22 +1896,18 @@ for i in range(1, len(nums), 1):
         ans = sum
 print(ans)
 #+end_src
-
 *** 2d List
 **** 練習: 利用 for-loop 取出二維 List 中的元素
 #+begin_src python -r -n :results output :exports both
 ClassNo = [[101,102,103], [201,202,203], [301,302,303]]
 #+end_src
-
 ** 元組 tuple
 A tuple in Python is similar to a list. The difference between the two is that we cannot change the elements of a tuple once it is assigned whereas we can change the elements of a list.[fn:13]
-
 *** 資料格式
 - 資料格式：以( )將不同型態的資料含括起來，以 , 分隔
 - 元組中的資料是有序排列，從 0 開始編號
 - 格式：元組名稱 = (元素 1, 元素 2, … )
 - 與表列 list 類似，但元組 tuple 內的元素不能修改
-
 *** Creating a Tuple
 A tuple is created by placing all the items (elements) inside parentheses (), separated by commas. The parentheses are optional, however, it is a good practice to use them.
 #+begin_src python -r -n :results output :exports both
@@ -1941,7 +1939,6 @@ print(tup1)
 : (1, 2, 3)
 : (1, 'Hello', 3.4)
 : ('mouse', [8, 4, 6], (1, 2, 3))
-
 *** Access Tuple Elements
 **** Indexing
 We can use the index operator [] to access an item in a tuple, where the index starts from 0.
@@ -2042,7 +2039,6 @@ for name in ('John', 'Kate'):
 #+RESULTS:
 : Hello John
 : Hello Kate
-
 *** 練習
 **** Modify the first item (maybe any number, 33 in this case) of a list inside a following tuple to n
 Examples
@@ -2108,7 +2104,6 @@ print(tuple1)
 
 #+RESULTS:
 : 3189.5
-
 ** 字典 dict
 *** 資料格式
 - 以{ }將各組鍵:值對應資料含括起來，以 , 分隔
@@ -2272,7 +2267,6 @@ print(min_key)
 
 #+RESULTS:
 : Math
-
 ** List v.s. Tuple
 二者的差異與適用時機[fn:3]：
 *** 能否改變內容
@@ -2306,7 +2300,6 @@ print(key_val.values())
 : {('alpha', 'bravo'): 123}
 : dict_keys([('alpha', 'bravo')])
 : dict_values([123])
-
 ** 集合 set
 *** 資料格式
 - 資料格式：以{}將各組資料含括起來，以','分隔,或以 set()建立
@@ -2426,7 +2419,6 @@ set2 = {30, 40, 50, 60, 70}
 Expected output:
 {40, 50, 30}
 #+END_EXAMPLE
-
 ** 作業[set]
 *** 測資讀取的方式
 - [[https://ithelp.ithome.com.tw/articles/10230292][OJ上如何讀測資的教學? ]]
@@ -2677,8 +2669,6 @@ but : 1
 content : 1
 character : 1
 #+end_example
-
-
 ** 資料型別整理
 |-------------+------------+-----------+-----------+-------------|
 | 資料型別    | 符號       | 資料可改? | 資料有序? | 資料類型    |
@@ -2691,11 +2681,11 @@ character : 1
 |-------------+------------+-----------+-----------+-------------|
 
 #+latex:\newpage
-
 * FUNCTION
 :PROPERTIES:
 :CUSTOM_ID: py--functions
 :END:
+在Python中，function屬於一級物件(first-class object)，意思是可以被指派給變數、存在資料結構中、做為參數傳給其他function，甚至可以當作其他function的傳回值。
 ** What for?
 *** 作業 5A: No one is perfect
 #+begin_src python -r -n :results output :exports both
@@ -2723,7 +2713,6 @@ for i in range(a,b+1):
         sys.exit()
 print("No number is perfect")
 #+end_src
-
 ** 函式(function)基本操作
 *** 函式(function)的重要性
 - function 為一段程式的集合，可視為一個獨立的區段。
@@ -2799,7 +2788,6 @@ print('sum=',sum,',average=',avg)
 
   #+RESULTS:
   : sum= 372 ,average= 62.0
-
 ** 引數(argument)的傳遞
 - 每一個函式都是獨立的，所以函式只知道自己程式區域內的變數，不認識函式外的變數。
 - 變數因其所宣告位置，可區分為全域變數(Global variable)、區域變數(Local variable)。
@@ -2851,7 +2839,6 @@ print('sum=',sum,',average=',avg)
 : name: Amy 	score: [77, 88, 99]
 : --主程式輸出--
 : name: Josh 	score: [77, 88, 99]
-
 ** 模組(module)
 *** 匯入模組語法：
 A library in Python is called a module.
@@ -2898,7 +2885,6 @@ print(dir(my))
 : 4
 : myModule
 : ['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'mm', 'pp']
-
 ** 遞迴(recursive)
 *** 語法
 - 遞迴(recursive)：一個函式直接呼叫函式本身
@@ -2952,8 +2938,6 @@ print(dir(my))
 
   #+RESULTS:
   : 10
-
-
 ** 實作練習
 *** 計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入 5，輸出 5! = 120。
 *** 計算 C(n, r)組合數。 輸入 n, r，輸出 C(n, r) = XX。如輸入 9, 4，輸出 C(9, 4) = 126。
@@ -3010,6 +2994,15 @@ print(sumOfList(intLst))
 : 28
 
 #+latex:\newpage
+* Test
+#+begin_src swift -r -n :results output :exports nil
+import this
+#+end_src
+
+#+RESULTS:
+: <stdin>:1:8: error: no such module 'this'
+: import this
+:        ^
 
 * Footnotes
 

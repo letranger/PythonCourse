@@ -6,6 +6,1040 @@
 #+OPTIONS: num:3
 #+LATEX:\newpage
 
+* Function II
+** Function的特性
+*** Fnction為物件
+#+begin_src python -r -n :results output :exports both
+def yell(text):
+    return text.upper() + '!'
+
+print(yell('hello'))
+bark = yell # assign給其他變數
+print(bark('woof'))
+#+end_src
+
+#+RESULTS:
+: HELLO!
+: WOOF!
+*** Function可被放在資料結構中
+#+begin_src python -r -n :results output :exports both
+def yell(text):
+    return text.upper() + '!'
+
+bark = yell
+
+funcs = [bark, str.lower, str.capitalize]
+
+for func in funcs:
+    print(func('hey there!'))
+#+end_src
+
+#+RESULTS:
+: HEY THERE!!
+: hey there!
+: Hey there!
+*** Function可做為參數傳給其他function
+Function是物件，所以除了能指定給變數，更可以當成其他function的參數。
+#+begin_src python -r -n :results output :exports both
+def yell(text):
+    return text.upper() + '!'
+
+bark = yell
+
+def greet(func):
+    greeting = func('Hi, I am a Python Program')
+    print(greeting)
+
+greet(bark)
+#+end_src
+
+#+RESULTS:
+: HI, I AM A PYTHON PROGRAM!
+這種能接鶢其他function做為參數的格式也稱為高階function(higher-order function)。Python內建的map function即為higher-order的經典範例，它接受一個function object與一個可走訪物件(iterable)做為參數，然後會套用該function到iterable object內的每一元素，產出一系列結果：
+#+begin_src python -r -n :results output :exports both
+list = map(function, iterable object)
+#+end_src
+例如：
+#+begin_src python -r -n :results output :exports both
+def yellp(text):
+    return text.upper() + '!'
+
+bark = yell
+
+list1 = ['hello', 'hey', 'hi']
+print(list(map(bark, list1)))
+#+end_src
+
+#+RESULTS:
+: ['HELLO!', 'HEY!', 'HI!']
+*** Function可構成巢狀結構
+在function內定義function，稱之為巢狀function(nested function)或內部function(inner function)
+#+begin_src python -r -n :results output :exports both
+def speak(text):
+    def whisper(t):
+        return t.lower() + '...'
+    return whisper(text)
+
+print(speak('Hello, world'))
+#+end_src
+
+#+RESULTS:
+: hello, world...
+每次呼叫speak時，它會先定義內部function,而這個inner function在speak外並不存在。若一定要在speak之外存取內部function whisper，則要先把內部function傳回給父function的呼叫者：
+#+begin_src python -r -n :results output :exports both
+def get_speak_func(volume):
+    def whisper(text):
+        return text.lower() + '...'
+    def yell(text):
+        return text.upper() + '!'
+    if volume > 0.5:
+        return yell
+    else:
+        return whisper
+
+print(get_speak_func(0.3))
+print(get_speak_func(0.7))
+#+end_src
+
+#+RESULTS:
+: <function get_speak_func.<locals>.whisper at 0x7ff3f0951268>
+: <function get_speak_func.<locals>.yell at 0x7ff3f09512f0>
+*** Inner function可記住父function的參數狀態
+Function還可「捕捉並保留父function的部份狀態」：
+#+begin_src python -r -n :results output :exports both
+def get_speak_func(text, volume):
+    def whisper():
+        return text.lower() + '...'
+    def yell():
+        return text.upper() + '!'
+    if volume > 0.5:
+        return yell
+    else:
+        return whisper
+
+func = get_speak_func('Hello, world', 0.7)
+print(func())
+#+end_src
+
+#+RESULTS:
+: HELLO, WORLD!
+這種會捕捉並記住外部參數的function，稱之為詞法閉包(lexical closuer)，或簡稱閉包(closure)。閉包會記住外圍程式範圍裡的變數值，即便其程式流程已經離開該變數所在的範圍也一樣。
+*** 物件也能像function一樣被呼叫
+在Python中，function皆為object，反之object不見得是function，不過，我們能讓不是function的object變成可呼叫(callable)，許多情況下，甚至可以把callable object當成function，在後面加上小括號來呼叫它，甚至能傳入參數。要使object變為callable，方法是在類別加入__call__：
+#+begin_src python -r -n :results output :exports both
+class Addr:
+    def __init__(self, n):
+        self.n = n
+    def __call__(self, x):
+        return self.n + x
+
+plus_3 = Addr(3) #建立Addr物件，屬性n=3
+print(plus_3(4))
+#+end_src
+
+#+RESULTS:
+: 7
+** lambda
+lambda提供了可用來宣告小型匿㢱function的快速宣告方式:
+#+begin_src python -r :results output :exports both
+函式名稱 = lambda 參數:運算式
+#+end_src
+這種語法也稱為function expression，這與用def宣告的function一樣
+#+begin_src python -r -n :results output :exports both
+add = lambda x, y : x + y
+
+print(add(5, 3))
+#+end_src
+
+#+RESULTS:
+: 8
+那麼，以lambda定義function的優勢為何？
+#+begin_src python -r -n :results output :exports both
+print((lambda x, y : x + y)(5, 3))
+#+end_src
+
+#+RESULTS:
+: 8
+在許多場合中，使用lambda來定義臨時性的function就比較方便，但labmda function有個語法上的限制：只能含有一條運算式。
+
+lambda function使用時機: 任何需要快速用上function object的地方，例如sorted()：
+#+begin_src python -r -n :results output :exports both
+sorted(iterable object, key=function)
+#+end_src
+其中參數key可輸入一個function, sorted()會依據function的傳回值來排序物件的元素，如果忽略key參數，則會依據原始元素(或者元素的第一個值)來排序。
+#+begin_src python -r -n :results output :exports both
+tuples_list = [(1, 'd'), (2, 'b'), (4, 'a'), (3, 'c')]
+print(sorted(tuples_list))
+
+print(sorted(tuples_list, key=lambda x: x[1])) #指定key以tuple元素的第二子元素來排序
+print(sorted(range(-5, 6), key=lambda x: x**2)) #指定依平方值來排序
+# 上述方式只是為展示lambda用法，更精簡的方式為:
+print(sorted(range(-5, 6), key=abs))
+#+end_src
+
+#+RESULTS:
+: [(1, 'd'), (2, 'b'), (3, 'c'), (4, 'a')]
+: [(4, 'a'), (2, 'b'), (3, 'c'), (1, 'd')]
+: [0, -1, 1, -2, 2, -3, 3, -4, 4, -5, 5]
+: [0, -1, 1, -2, 2, -3, 3, -4, 4, -5, 5]
+
+使用lambda的缺點：不易閱讀
+** decorator
+Python的修飾器(decorator)可用來間接修改callable object(function, method, class)的行為，但不直接改動object本身，其用途包括:
+- 加入日誌(logging)
+- 存取權限管控與身份驗證
+- 加入監測function及衡量執行時間
+- 限制function執行頻率
+- 用快取暫存function的執行結果
+*** 修飾無參數function
+#+begin_src python -r -n :results output :exports both
+def uppercase(func):
+    def wrapper():
+        original_result = func()
+        modified_result = original_result.upper()
+        return modified_result
+    return wrapper
+
+@uppercase #以uppercase修飾greet
+def greet():
+    return 'Hello'
+
+print(greet())
+#+end_src
+
+#+RESULTS:
+: HELLO
+*** 多重修飾
+#+begin_src python -r -n :results output :exports both
+def strong(func):
+    def wrapper():
+        return f'<strong> { func() } </strong>'
+    return wrapper
+
+def emphasis(func):
+    def wrapper():
+        return f'<em> { func() } </em>'
+    return wrapper
+
+@strong
+@emphasis
+def greet():
+    return 'Hello!'
+
+print(greet)
+print(greet())
+#+end_src
+
+#+RESULTS:
+: <function strong.<locals>.wrapper at 0x7fcae6851400>
+: <strong> <em> Hello! </em> </strong>
+唯一要注意的是：若套用修飾器的層級過多會影響程式執行效能。
+*** 修飾有傳入參數的function
+若要修飾的function有帶參數，則wrapper()要改為wrapper(*args, **kwargs),這分別用來收集所有傳入的positional與keyword類參數，以tuple及dict形式儲存在arfs與kwargs變數裡，然後wrapper利用*與**將收集到的參數unpack後傳給原始func，如此就不會限制到參數個數。
+#+begin_src python -r -n :results output :exports both
+def trace(func):
+    def wrapper(*args, **kwargs):
+        print(f'trace: callable function {func.__name__}, with arguments: {args}, {kwargs}')
+        original_results = func(*args, **kwargs)
+        print(f'trace: function {func.__name__} reutrn results: {original_results}!')
+        return original_results
+    return wrapper
+
+@trace
+def say(name, line):
+    return f'{name}, {line}'
+
+print(say('James', 'hi'))
+#+end_src
+
+#+RESULTS:
+: trace: callable function say, with arguments: ('James', 'hi'), {}
+: trace: function say reutrn results: James, hi!
+: James, hi
+
+幫function加上效能監測功能
+#+begin_src python -r -n :results output :exports both
+import time
+def eval_time(func):
+    def wrapper(*args, **kwargs):
+        start = time.perf_counter()
+        res = func(*args, **kwargs)
+        finish = time.perf_counter()
+        print(f'Finished in {round(finish-start, 2)} second(s)')
+        return res
+    return wrapper
+
+@eval_time
+def sigma(n):
+    sum = 0
+    for i in range(n):
+        sum = sum + i
+    return sum
+
+print(sigma(100000000))
+#+end_src
+
+#+RESULTS:
+: Finished in 4.76 second(s)
+: 4999999950000000
+** *args and **kwargs
+*與**能讓function接受數量不定的額外參數，讓module與class能提供更有彈性的存取介面：
+#+begin_src python -r -n :results output :exports both
+def foo(required, *args, **kwargs):
+    print(required)
+    if args:
+        print(f'args: {args}')
+    if kwargs:
+        print(f'kwargs: {kwargs}')
+
+foo('1. Hi')
+foo('2. Hi', 1, 2, 3)
+foo('3. Hi', 1, 2, 3, Key1='value1', key2=456)
+#+end_src
+
+#+RESULTS:
+: 1. Hi
+: 2. Hi
+: args: (1, 2, 3)
+: 3. Hi
+: args: (1, 2, 3)
+: kwargs: {'Key1': 'value1', 'key2': 456}
+- *args接收額外的位置型參數(positional paramenters)(沒有鍵的參數)，將之放入一個tuple。
+- **kwargs接收額外的關鍵字參數(keyword parameters)(有鍵的參數)，將之放入一個dict。
+** Unpack function parameters
+*與**也可用來unpack function的args與kwargs，在呼叫function時，若在iterable object前加上*，就會unpack這個物件，將元素當成個別的positional parameters傳入參數;若加上**，則可unpack keyword parameters。
+#+begin_src python -r -n :results output :exports both
+def print_vector(x, y, z):
+    print(f'<{x}, {y}, {z}>')
+
+tuple_vector = (1, 0, 1)
+print_vector(tuple_vector[0], tuple_vector[1], tuple_vector[2])
+print_vector(*tuple_vector)
+
+dict_vector = { 'y': 4, 'z': 5, 'x': 3}
+print_vector(**dict_vector)
+#+end_src
+
+#+RESULTS:
+: <1, 0, 1>
+: <1, 0, 1>
+: <3, 4, 5>
+** Return or not
+- return 與return None效果一樣
+- 如果沒有傳回值，則可省略return，例如，一個只負責print的function並無任值可傳回，寫return會很奇怪。
+* Class v.s. Object
+** == v.s. is
+- ==: equal
+- is: identical
+#+begin_src python -r -n :results output :exports both
+a = [1, 2, 3]
+b = [1, 2, 3]
+c = a
+print(a == b)
+print(a is b)
+print(a == c)
+print(a is c)
+#+end_src
+
+#+RESULTS:
+: True
+: False
+: True
+: True
+** Shallow copy v.s. Deep copy
+簡單來說，淺與深的區別[fn:44]：
+- 淺複製僅複製容器中元素的地址
+- 深複製完全複製了一份副本，容器與容器中的元素地址都不一樣
+*** shallow copy
+#+begin_src python -r -n :results output :exports both
+xs = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+ys = list(xs) # shallow copy
+print(xs == ys) # 二者內容相同
+print(xs is ys) # 但為不同物件
+
+xs.append([10, 11, 12])
+print(xs)
+print(ys)
+
+# 但若是修改二者相同的部份，如
+xs[1][0] = 'X'
+print(xs)
+print(ys)
+#+end_src
+
+#+RESULTS:
+: True
+: False
+: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]]
+: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+: [[1, 2, 3], ['X', 5, 6], [7, 8, 9], [10, 11, 12]]
+: [[1, 2, 3], ['X', 5, 6], [7, 8, 9]]
+由上述例子中可發現，xs與ys其實共享同一份資料。
+*** deep copy
+#+begin_src python -r -n :results output :exports both
+import copy
+xs = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+zs = copy.deepcopy(xs)
+
+print(xs == zs)
+print(xs is zs)
+
+xs[1][0] = 'X'
+print(xs)
+print(zs)
+#+end_src
+
+#+RESULTS:
+: True
+: False
+: [[1, 2, 3], ['X', 5, 6], [7, 8, 9]]
+: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+*** copy any object
+不管想copy什麼object，包括自訂物件，解決之道亦是用copy module的copy()與deepcopy()。
+#+begin_src python -r -n :results output :exports both
+import copy
+
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    def __repr__(self):
+        return f'Point({self.x}, {self.y})'
+
+a = Point(23, 42)
+b = Point(23, 42)
+#b = copy.copy(a)
+print(a)
+print(b)
+print(a == b)
+print(a is b)
+#+end_src
+
+#+RESULTS:
+: Point(23, 42)
+: Point(23, 42)
+: False
+: False
+** ABC: Abstract Base Class
+C++、Java等語言都有「介面」(interface)這種本身無法建立object、卻能當成建立object template的機制。Python則可藉由ABC來實作。藉由ABC來建立class，便是可確保繼承之sub-class均有正確的特定method。
+#+begin_src python -r -n :results output :exports both
+from abc import ABC, abstractmethod
+
+class Base(ABC):
+
+    @abstractmethod
+    def foo(self):
+        pass
+
+    @abstractmethod
+    def bar(self):
+        pass
+
+class Concrete(Base):
+    def foo(self):
+        pass
+
+print(issubclass(Concrete, Base))
+#+end_src
+
+#+RESULTS:
+: True
+** object/class/static method
+#+begin_src python -r -n :results output :exports both
+class MyClass:
+
+    def objmethod(self): #object method
+        print(f'呼叫object method: {self}')
+
+    @classmethod
+    def clsmethod(cls):
+        print(f'呼叫class method: {cls}')
+
+    @staticmethod
+    def stcmethod():
+        print(f'呼叫static method')
+
+obj = MyClass()
+obj.objmethod()
+obj.clsmethod()
+obj.stcmethod()
+#+end_src
+
+#+RESULTS:
+: 呼叫object method: <__main__.MyClass object at 0x7ffd7008d9e8>
+: 呼叫class method: <class '__main__.MyClass'>
+: 呼叫static method
+- objmethod為一般object method，必須有self參數，該參數指向object本身
+- csmethod為class method，必項有cls參數，指向class本身
+- stcmethod為static method，沒有參數，無法修改物件或類別狀態，只能處理user傳入的參數
+*** DEMO
+#+begin_src python -r -n :results output :exports both
+class Drink:
+    def __init__(self, name, price, counts):
+        self.name = name
+        self.price = price
+        self.counts = counts
+
+    def costs(self):
+        return self.drink_costs(self.price, self.counts)
+
+    @classmethod
+    def blacktea(cls):
+        return cls('紅茶', 1, 25)
+
+    @classmethod
+    def coffee(cls):
+        return cls('熱美式', 1, 50)
+
+    @staticmethod
+    def drink_costs(price, counts):
+        return price * counts
+
+drink1 = Drink.blacktea()
+drink2 = Drink.coffee()
+drink3 = Drink('義式', 60, 3)
+print(f'{drink1.name}')
+print(f'{drink2.price}')
+print(f'{drink3.name!r} * {drink3.counts} = {drink3.costs()}')
+#+end_src
+
+#+RESULTS:
+: 紅茶
+: 1
+: '義式' * 3 = 180
+** class variable v.s. instance variable
+- class variable: 宣告在classs定義裡，但宣告位置在所有method之外
+- instance variable: 屬於由class所建立的某個instance，其內容並非存在class中，而是由各別instance負責
+*** 差異
+#+begin_src python -r -n :results output :exports both
+class Dog:
+    num_dogs = 0 #Demo class variable的適用時機
+    num_leg = 4
+
+    def __init__(self, name):
+        self.name = name
+        self.__class__.num_dogs += 1
+
+dd = Dog('DaiDai')
+bd = Dog('Bad luck')
+lk = Dog('Lucky')
+bd.num_leg = 3
+print(dd.num_leg)
+print(bd.num_leg)
+print(f'目前共有{Dog.num_dogs}隻狗')
+#+end_src
+
+#+RESULTS:
+: 4
+: 3
+: 目前共有3隻狗
+由class variable num_dogs的示範也可看出，善用class variable可以在各個instance object間取得某程程度的連繫。
+* 資料型別 II
+** Dict
+*** collections.ChainMap
+collections.ChainMap可以把多個dict集結串成單一個dict，如
+#+begin_src python -r -n :results output :exports both
+import collections
+
+dict1 = {'one':1, 'two': 2}
+dict2 = {'two':'貳', 'three': 'III', 'four': 4}
+chain = collections.ChainMap(dict1, dict2)
+
+print(chain)
+print(chain['two'])
+chain['five'] = 5
+print(chain)
+#+end_src
+
+#+RESULTS:
+: ChainMap({'one': 1, 'two': 2}, {'two': '貳', 'three': 'III', 'four': 4})
+: 2
+: ChainMap({'one': 1, 'two': 2, 'five': 5}, {'two': '貳', 'three': 'III', 'four': 4})
+要留意的是：若對ChainMap做新增、修改、刪除，則只會影響裡面的第一個dict。
+** types.MappingProxyType
+透過MappingProxyType class可以把dict變為唯讀。
+#+begin_src python -r -n :results output :exports both
+from types import MappingProxyType
+
+writable = {'one': 1, 'two': 2}
+writable['three'] = 3
+readOnly = MappingProxyType(writable)
+readOnly['three'] = 4 #TypeError: 'mappingproxy' object does not support item assignment
+readOnly['four'] = 4 #TypeError: 'mappingproxy' object does not support item assignment
+#+end_src
+** array.array
+若要和C語言程式交換資料，或是只需要一個儲存數值型態資料的空間，則可用array.array，優點是比list或tuple省空間。array.array的method與list大致相同，許多情況下甚至可直接交換二者的資料型別而無需修改相關程式碼。
+#+begin_src python -r -n :results output :exports both
+import array
+arr = array.array('f', (1.0, 3.5, 2.0, 6.1))
+print(arr)
+print(arr[1])
+arr.append(2.1)
+del arr[1]
+print(arr)
+#+end_src
+
+#+RESULTS:
+: array('f', [1.0, 3.5, 2.0, 6.099999904632568])
+: 3.5
+: array('f', [1.0, 2.0, 6.099999904632568, 2.0999999046325684])
+** Record
+同樣以儲存car record(color, mileage, automatic)來比較
+*** list/tuple
+- 建立速度快、執行效率高，
+- 但沒有欄位名稱，建立資料時可能弄錯順序
+- 很難檢查兩個資料物件是否有一致的欄位
+#+begin_src python -r -n :results output :exports both
+car1 = ['red', 3812, True] #list, 可變
+car2 = ('blue', 3123, False) #tuple, 不可變
+car3 = (343, 'black', True, 'James') #順序錯誤、欄位也不一致
+#+end_src
+*** dict
+- 可透過key/value來當成欄位名稱
+- 仍缺乏欄位監控機制，防止使用者在建立object時打錯或漏打欄位
+#+begin_src python -r -n :results output :exports both
+Car = {
+    'color': 'red',
+    'mileage': 3213,
+    'automatic': True
+}
+print(Car)
+print(Car['color'])
+Car['windshield'] = 'broken'
+print(Car)
+#+end_src
+
+#+RESULTS:
+: {'color': 'red', 'mileage': 3213, 'automatic': True}
+: red
+: {'color': 'red', 'mileage': 3213, 'automatic': True, 'windshield': 'broken'}
+*** 自訂類別
+- 麻煩，在要__init__建構子內設定每個欄位，還要自己寫__repr__ method
+#+begin_src python -r -n :results output :exports both
+class Car:
+    def __init__(self, color, mileage):
+        self.color = color
+        self.mileage = mileage
+
+car = Car('red', 1234)
+car.mileage = 4343 #可修改欄位內容
+car.automatic = True #可新增欄位
+#+end_src
+*** typing.NamedTuple
+- readonly
+- 欄位型別無強制性
+#+begin_src python -r -n :results output :exports both
+from typing import NamedTuple
+
+class Car(NamedTuple):
+    color: str
+    mileage: float
+    automatic: bool
+
+car = Car('red', 3123, True)
+print(car)
+#car.mileage = 3123 # 不能變更欄位內容
+#car.windshield = 'broken' #不能新增欄位
+car2 = Car('blue', 'test', 1234)
+print(car2)
+#+end_src
+
+#+RESULTS:
+: Car(color='red', mileage=3123, automatic=True)
+: Car(color='blue', mileage='test', automatic=1234)
+*** types.SimpleNamespace
+- 本質上是dict,把dict的key變成class attribute
+- 可以新增、修改、刪除attribute
+- 不若想動用到class，此為簡易替代品
+- 仍缺乏結構
+#+begin_src python -r -n :results output :exports both
+from types import SimpleNamespace
+
+car = SimpleNamespace(color = 'red',
+                      mileage = 1341,
+                      automatic = True)
+
+car.color = 'blue'
+print(car)
+#+end_src
+
+#+RESULTS:
+: namespace(automatic=True, color='blue', mileage=1341)
+*** dataclass (Python 3.7+)
+- 能自動建立__init__、__repr__等method
+- 可加入自訂method
+- 可繼承
+- 可設為read only(在@dataclass後加入參數 frozen=True)
+#+begin_src python -r -n :results output :exports both
+from dataclasses import dataclass
+
+@dataclass
+class Car:
+    color: str
+    mileage: float
+    automatic: bool
+
+    def mileage_km(self): #可自訂method
+        return self.mileage * 1.609
+
+car = Car('red', 3123, True)
+print(dir(car))
+print(car.mileage_km)
+print(car.__repr__)
+
+@dataclass
+class ElectronicCar(Car): #繼承
+    charge: float = 0.0
+
+car2 = ElectronicCar('white', 3123, True, 1000)
+print(car2)
+
+#+end_src
+
+#+RESULTS:
+: ['__annotations__', '__class__', '__dataclass_fields__', '__dataclass_params__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'automatic', 'color', 'mileage', 'mileage_km']
+: <bound method Car.mileage_km of Car(color='red', mileage=3123, automatic=True)>
+: <bound method __repr__ of Car(color='red', mileage=3123, automatic=True)>
+: ElectronicCar(color='white', mileage=3123, automatic=True, charge=1000)
+**** __slots__
+如果你的程式會建立同一類別的大量object，但不會增刪object attribute，則可以考慮使用__slots__來節省object占用的記憶體，同時加快存取速度。
+#+begin_src python -r -n :results output :exports both
+from dataclasses import dataclass
+
+@dataclass
+class Car:
+
+    __slots__ = ['color', 'mileage', 'automatic']
+
+    color: str
+    mileage: float
+    automatic: bool
+#+end_src
+
+#+RESULTS:
+__slots__不限於dataclass，在任何class均可使用
+*** struct.struct
+- 與C的struct交換資料的管道
+#+begin_src python -r -n :results output :exports both
+from struct import Struct
+
+MyStruct = struct('1?f') #指定資料格式
+data = MyStruct.pack(23, False, 42.0) #資料打包成二進位資料
+print(data)
+x = MyStruct.unpack(data)
+print(x)
+#+end_src
+** Set
+- Python建立set，除了用{}、也可以用set comprehension
+- 若要建立empty set，一定要call set()建構子，因為空的{}會被當成dict
+#+begin_src python -r -n :results output :exports both
+vowels = {'a', 'e', 'i', 'o', 'u'}
+squares = { x ** 2 for x in range(10) }
+empty = set()
+
+print(vowels)
+print(squares)
+print(empty)
+#+end_src
+
+#+RESULTS:
+: {'u', 'o', 'e', 'a', 'i'}
+: {0, 1, 64, 4, 36, 9, 16, 49, 81, 25}
+: set()
+*** frozenset
+- frozenset class為set的不可變版本，一旦建立就無法增刪修，只能查詢
+- 但frozenset為靜態iterable object,故為hashable object,能當成dict object的key或其他set的element，這是一般set無法做到的事
+#+begin_src python -r -n :results output :exports both
+vowels = frozenset({'a', 'e', 'i', 'o', 'u'})
+d = {vowels: 'hello'} # set變為dict的key
+print(d)
+
+#+end_src
+
+#+RESULTS:
+: {frozenset({'u', 'o', 'e', 'i', 'a'}): 'hello'}
+*** collections.Counter
+- collections module底下的Counter實作了「多重集合」(multisets)，能輸入多個iterable object(set, dict, string)並統整各元素的出現次數
+- Counter實際為dict的subclass，當我們把新的iterable object輸入Counter object時，該iterable object的element會新增為dict的key，而該element出現次數則為dict的value
+#+begin_src python -r -n :results output :exports both
+from collections import Counter
+
+inventory = Counter()
+loot = {'sward': 1, 'bread': 3}  #裝備品名及數量
+inventory.update(loot)
+print(inventory)
+
+more_loot = ['sward', 'coins']
+inventory.update(more_loot)
+
+yet_more_loot = ['sward', 'bread', 'drink']
+inventory.update(yet_more_loot)
+print(inventory)
+#+end_src
+
+#+RESULTS:
+: Counter({'bread': 3, 'sward': 1})
+: Counter({'bread': 4, 'sward': 3, 'coins': 1, 'drink': 1})
+** Stack
+幾種實作Stack的結構
+*** list
+- python內部以動態陣列來實作list，所以會配置比element所需更大的空間，視需要增減。故push與pop不見會需要調整大小，平均效率可達O(1)
+- 但為了達到這種效率，element必須從tail做push, pop
+- 若改由list的head做push,pop，則list內所有element均需位移，效率會降為O(n)
+#+begin_src python -r -n :results output :exports both
+a = []
+a.append('eating')
+a.append('sleeping')
+a.append('coding')
+print(a)
+a.pop()
+print(a)
+
+#自head做push, pop
+a.insert(0, 'drinking')
+a.insert(0, 'playing')
+a.pop(0)
+print(a)
+#+end_src
+
+#+RESULTS:
+: ['eating', 'sleeping', 'coding']
+: ['eating', 'sleeping']
+: ['drinking', 'eating', 'sleeping']
+*** collections.deque
+- 快速穩定的stack
+- 支援從head,tail做push,pop，效率均為O(1)
+- 若要取出中間element，效率為O(n)
+#+begin_src python -r -n :results output :exports both
+from collections import deque
+
+a = deque()
+
+a.append('eating')
+a.append('sleeping')
+a.append('coding')
+print(a)
+a.pop()
+print(a)
+
+#自中間取值，效能差
+print(a[1])
+
+#+end_src
+
+#+RESULTS:
+: deque(['eating', 'sleeping', 'coding'])
+: deque(['eating', 'sleeping'])
+: sleeping
+*** queue.LifoQueue
+- 可用於multithreadin進行parallelism平行運算時的共享資料
+- 這些資料結構還提供了上鎖機制，好讓同一時間只有一個thread能從queue取出資料
+- queue module裡的LifoQueue class雖名為queue,但採Last In, First Out(LIFO)，運作上與Stack相同
+#+begin_src python -r -n :results output :exports both
+from queue import LifoQueue
+s = LifoQueue()
+s.put('eating')
+s.put('sleeping')
+s.put('coding')
+print(s.get())
+print(s.get())
+#+end_src
+#+RESULTS:
+: coding
+: sleeping
+** Queue
+幾種實作queue的資料結構
+*** list
+- 非常慢，沒有效率
+*** collections.deque
+- 快速穩定
+#+begin_src python -r -n :results output :exports both
+from collections import deque
+q = deque()
+q.append('eating')
+q.append('sleeping')
+q.append('coding')
+q.append('writing')
+print(q)
+print(q.popleft())
+print(q.popleft())
+print(q)
+
+#+end_src
+
+#+RESULTS:
+: deque(['eating', 'sleeping', 'coding', 'writing'])
+: eating
+: sleeping
+: deque(['coding', 'writing'])
+*** queue.Queue
+- 和queue.LifoQueue一樣，內建上鎖機制，可以用來讓multithreading共享資料或任務
+*** multiprocessing.Queue
+- multi-thread在python中其實不算真正的平行運算，各thread實際上是在同一個interpreter下執行，只用到一個core，藉由不斷切換的方式來達到平行運算的效果。
+*** priority queue
+- 不遵循FIFO原則，而是以priority為順序考量
+- priority由totally-ordered key來決定
+*** heapq
+- 借用list實作的binary tree(heap)結構
+- 可實作priority
+- 可於O(log n)的時間完成插入元素或取出最小元素
+- heapq的各note實際上是存在一個list中；node在list中是依binary tree的順序儲存
+- 借由binary tree所依據的sort key即可實作出priority queue
+- 限制之一是預設為由小到大排序
+#+CAPTION: heapq
+#+LABEL: fig:heapq
+#+name: fig:heapq
+#+ATTR_LATEX: :width 300
+#+ATTR_HTML: :width 300
+#+ATTR_ORG: :width 300
+[[file:images/heapq.png]]
+#+begin_src python -r -n :results output :exports both
+import heapq
+
+q = []
+heapq.heappush(q, (2, 'coding'))
+heapq.heappush(q, (1, 'eating'))
+heapq.heappush(q, (3, 'sleeping'))
+while q:
+    next_item = heapq.heappop(q)
+    print(next_item)
+#+end_src
+
+#+RESULTS:
+: (1, 'eating')
+: (2, 'coding')
+: (3, 'sleeping')
+*** queue.PriorityQueue
+- 可用於multi-thread的heapq
+  **
+* LOOP
+** enumerate()
+- 如果想保留for-each的寫法，但同時又希望能取得每個element的index
+#+begin_src python -r -n :results output :exports both
+my_items = ['a', 'b', 'c']
+print(list(enumerate(my_items)))
+for i, item in enumerate(my_items):
+    print(f'{i}: {item}')
+#+end_src
+
+#+RESULTS:
+: [(0, 'a'), (1, 'b'), (2, 'c')]
+: 0: a
+: 1: b
+: 2: c
+** zip()
+- 可用來同時走訪多個container
+- 可用來旋轉二維list
+#+begin_src python -r -n :results output :exports both
+my_items = ['a', 'b', 'c']
+my_no = [1, 2, 3]
+print(list(zip(my_no, my_items)))
+
+for no, item in zip(my_no, my_items):
+    print(f'{no}: {item}')
+#+end_src
+
+#+RESULTS:
+: [(1, 'a'), (2, 'b'), (3, 'c')]
+: 1: a
+: 2: b
+: 3: c
+*** 旋轉list
+#+begin_src python -r -n :results output :exports both
+a = [1, 2, 3]
+b = [4, 5, 6]
+c = [7, 8, 9]
+matrix = [a, b, c]
+print(matrix)
+print(list(zip(*matrix)))
+print(list(zip(*reversed(matrix))))
+#+end_src
+
+#+RESULTS:
+: [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+: [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+: [(7, 4, 1), (8, 5, 2), (9, 6, 3)]
+** comprehension
+- 即簡單的單行for-loop
+- 可以讓我們用單行程式產生出包含特定元素的list, set, dict
+*** 語法
+#+begin_src python -r -n :results output :exports both
+list = [運算式 for 變數 in iterable object]
+#+end_src
+*** list comprehension
+#+begin_src python -r -n :results output :exports both
+squares = [x ** 2 for x in range(10)]
+print(squares)
+#+end_src
+
+#+RESULTS:
+: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+*** comprehension過濾條件
+#+begin_src python -r -n :results output :exports both
+list = [x ** 2 for x in range(10) if x % 2 == 0]
+print(list)
+#+end_src
+
+#+RESULTS:
+: [0, 4, 16, 36, 64]
+*** set與dict comprehension
+#+begin_src python -r -n :results output :exports both
+setA = [x ** 2 for x in range(10)]
+print(setA)
+dicA = {x: x ** 2 for x in range(10)}
+print(dicA)
+#+end_src
+
+#+RESULTS:
+: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
+** list
+*** slice
+語法
+#+begin_src python -r -n :results output :exports both
+list[index start: index end: step]
+#+end_src
+#+begin_src python -r -n :results output :exports both
+nums = [1, 2, 3, 4, 5, 6, 7, 8]
+print(nums[::])
+print(nums[1:6:2])
+nums[1:6:2] = [10, 20, 30]
+print(nums)
+
+#+end_src
+
+#+RESULTS:
+: [1, 2, 3, 4, 5, 6, 7, 8]
+: [2, 4, 6]
+: [1, 10, 3, 20, 5, 30, 7, 8]
+*** copy
+#+begin_src python -r -n :results output :exports both
+l = list(range(6))
+print(l)
+cl = l # 指向同一list
+dl = l[::] # shallow copy
+l[3] = 10
+print(cl)
+print(dl)
+#+end_src
+
+#+RESULTS:
+: [0, 1, 2, 3, 4, 5]
+: [0, 1, 2, 10, 4, 5]
+: [0, 1, 2, 3, 4, 5]
+* Multiprocessing
+** Futher Reading
+#+CAPTION: Multiprocessing v.s. Multithreading
+#+LABEL: fig:multi
+#+name: fig:multi
+#+ATTR_LATEX: :width 400
+#+ATTR_HTML: :width 400
+#+ATTR_ORG: :width 400
+[[file:images/multi.png]]
+- [[https://www.youtube.com/watch?v=fKl2JW_qrso][Python Multiprocessing Tutorial: Run Code in Parallel Using the Multiprocessing Module]]
+- [[https://levelup.gitconnected.com/diy-multithreading-vs-multiprocessing-in-python-fb93698ca7f3][DIY: Multithreading vs Multiprocessing in Python]]
+- [[https://medium.com/erens-tech-book/%E7%90%86%E8%A7%A3-process-thread-94a40721b492][【恐龍】理解 Process & Thread]]
+- [[https://qing-yao.blogspot.com/2016/08/writeByMind-2.html][多執行緒 vs 多進程]]
 * Python 套件管理
 ** pip v.s. conda
 *** pip or conda
@@ -282,7 +1316,6 @@ python -m ipykernel install --user --name 虛擬環境名稱 --display-name "在
 #+end_src
 - 啟動 jupyter
 #+latex:\newpage
-
 * Numpy
 :PROPERTIES:
 :CUSTOM_ID: Numpy
@@ -1928,7 +2961,6 @@ $$Z = \frac{X-\mu}{\delta} \sim N(0, 1)$$
 在實務操作時，我們可先分別計算資料的平均值及標準差，再代入上述公式完成標準化，另一種方法，我們可使用Scikit-learn 套件的preprocessing 模組來執行資料標準化。
 
   #+latex:\newpage
-
 * Matplotlib
 :PROPERTIES:
 :CUSTOM_ID: Matplotlib
@@ -2018,7 +3050,7 @@ plt.savefig('SimpleSin2.png', dpi=300)
 #+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
-[[file:simpleSin2.png]]
+[[file:images/simpleSin2.png]]
 *** Demo #2
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
@@ -2041,7 +3073,7 @@ plt.savefig('SimpleCos.png', dpi=300)
 #+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
-[[file:simpleCos.png]]
+[[file:images/simpleCos.png]]
 *** Demo: 多組資料
 #+begin_src python -r -n :results output :exports both
 import matplotlib.pyplot as plt
@@ -2063,7 +3095,7 @@ plt.savefig('mline.png', dpi=300)
 #+ATTR_LATEX: :width 300
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 300
-[[file:mline.png]]
+[[file:images/mline.png]]
 ** kwgarg 參數
 *** kwarg 為 Line2D 屬性：[[https://matplotlib.org/3.1.0/gallery/color/named_colors.html][color]], linestyle, marker, label, linewidth, ….
 - kwargs 用於指定諸如線條標籤 (用於自動圖例)、線寬、抗鋸齒、標記面顏色等屬性
@@ -2187,7 +3219,7 @@ plt.savefig('line2.png', dpi=300)
 #+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
-[[file:line2.png]]
+[[file:images/line2.png]]
 *** <<P#1>>練習1: 繪製折線圖
 1. 利用 list 繪製 
   + x1 = [1, 2, 3, 4, 5, 6] 
@@ -2317,7 +3349,7 @@ plt.savefig('simplePie.png', dpi=300)
 #+ATTR_LATEX: :width 300
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 300
-[[file:simplePie.png]]
+[[file:images/simplePie.png]]
 ** 其它圖表
 - 直方圖(Histogram)：用來呈現各資料統計結果([[https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html][參考資料]])
 - 散佈圖(Scatter)：用來呈現群聚關係([[https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html][參考資料]])
@@ -2347,7 +3379,7 @@ plt.savefig('simpleText.png', dpi = 300)
 #+ATTR_LATEX: :width 300
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 300
-[[file:simpleText.png]]
+[[file:images/simpleText.png]]
 ** 子圖表: plt.subplot()
 matplotlib下, 一個 Figure 對象可以包含多個子圖(Axes), 可以使用 subplot() 快速繪製, 其調用形式如下 :
 *** subplot語法
@@ -2430,7 +3462,7 @@ plt.savefig('simpleSubplot.png', dpi = 300)
 #+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 400
 #+ATTR_ORG: :width 400
-[[file:simpleSubplot.png]]
+[[file:images/simpleSubplot.png]]
 *** 進階設定
 - [[https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplot.html][官網]]
 - [[https://ithelp.ithome.com.tw/articles/10201670][視覺化資料 - Matplotlib - legend、subplot、GridSpec、annotate]]
@@ -2565,7 +3597,6 @@ plt.savefig('images/scosct.png')
 #+ATTR_ORG: :width 400
 [[file:images/scosct.png]]
 #+latex:\newpage
-
 * Pandas
 ** Excel/CSV: Pandas 模組
 *** CSV
@@ -3517,7 +4548,6 @@ resfig.savefig("images/task8.png")
 [[file:images/task8.png]]
 
 #+latex:\newpage
-
 * 網路資料解析與爬蟲
 ** 網路資料分析的兩種類型
 - 可直接下載的靜態結構化資料，如 CSV、JSON、XML
@@ -4217,7 +5247,6 @@ for pub, title in zip(pubs[:5], titles[:5]):
 #+END_COMMENT
 
 #+latex:\newpage
-
 * Python to web
 ** Flask
 #+begin_src python -r -n :eval no
@@ -4245,8 +5274,9 @@ if __name__ == "__main__":
 [[file:images/FlashSite.jpg]]
 
 #+latex:\newpage
-
 * Footnotes
+
+[fn:44] [[https://ithelp.ithome.com.tw/articles/10221255][ Python - 淺複製(shallow copy)與深複製(deep copy)]]
 
 [fn:1] [[https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025][輕鬆學習 Python：conda 的核心功能]]
 
