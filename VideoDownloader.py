@@ -9,15 +9,15 @@ from googleapiclient.discovery import build
 
 # 申請Youtube Data API key
 # https://hackmd.io/@c36ICNyhQE6-iTXKxoIocg/S1eYdtA1P
-api_key='AIzaSyAldObC55whNHf7Zx3gwj-e0BSDjYIi7Ps'
+api_key='AIzaSyBagf-_AQk4bISDaXIkyD0cGCPZCLHYHuU'
 
 youtube = build('youtube', 'v3', developerKey=api_key)
 
-MAX_COUNT = 1
+MAX_COUNT = 10
 nextPageToken =  None
 
 # 設定搜尋關鍵字
-search_by = 'naked yoga'
+search_by = '【大道朝天】 有声小说'
 
 # 搜尋影片id
 #while True:
