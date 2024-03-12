@@ -1,0 +1,2887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Basic Materials of Python</title>
+<meta name="author" content="yen yung chin"/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/reveal.js/3.0.0/css/theme/moon.css" id="theme"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'https://cdn.jsdelivr.net/reveal.js/3.0.0/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide">
+<h1 class="title">Basic Materials of Python</h1><h2 class="author">yen yung chin</h2><p class="date">Created: 2020-03-11 Wed 14:01</p>
+</section>
+<section id="table-of-contents-section">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-1">1. Python簡介</a></li>
+<li><a href="#/slide-2">2. Python環境建置</a></li>
+<li><a href="#/slide-3">3. 變數、資料型態、輸出輸入</a></li>
+<li><a href="#/slide-4">4. 運算元與運算式</a></li>
+<li><a href="#/slide-5">5. 判斷結構</a></li>
+<li><a href="#/slide-6">6. 迴圈結構</a></li>
+<li><a href="#/slide-7">7. 資料型別</a></li>
+<li><a href="#/slide-8">8. FUNCTION</a></li>
+</ul>
+</div>
+</div>
+</section>
+
+<section>
+<section id="slide-1">
+<h2 id="1"><a id="orge10c587"></a><span class="section-number-2">1</span> Python簡介</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-1-1">1.1. Python的誕生</a>
+<ul>
+<li><a href="#/slide-1-1-1">1.1.1. 科技報導的說法</a></li>
+<li><a href="#/slide-1-1-2">1.1.2. Guido van Rossum自己的說法</a></li>
+</ul>
+</li>
+<li><a href="#/slide-1-2">1.2. Python的優勢與應用</a>
+<ul>
+<li><a href="#/slide-1-2-1">1.2.1. Advantages</a></li>
+<li><a href="#/slide-1-2-2">1.2.2. Applications</a></li>
+<li><a href="#/slide-1-2-3">1.2.3. Organizations using Python</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="slide-1-1">
+<h3 id="1-1"><a id="org200712f"></a><span class="section-number-3">1.1</span> Python的誕生</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+</section>
+<section id="slide-1-1-1">
+<h4 id="1-1-1"><a id="org6825e9a"></a><span class="section-number-4">1.1.1</span> 科技報導的說法<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup></h4>
+<ul>
+<li>1989 年，荷蘭的一位叫Guido van Rossum的宅男工程師覺得其他的程式語言都不好用，於是花三個月創造了一種新的程式語言。<br /></li>
+<li>30年後，每天都有數百萬人使用他創立的這一新語言。系統管理員。<br /></li>
+<li>研究人員於2019年首次將 5500 萬光年之外黑洞的照片拼湊出來，使用的程式語言也是 Python。<br /></li>
+<li><img src="blackhole.jpg" alt="blackhole.jpg" width="560" /><br /></li>
+
+</ul>
+
+</section>
+<section id="slide-1-1-2">
+<h4 id="1-1-2"><a id="org40892bf"></a><span class="section-number-4">1.1.2</span> Guido van Rossum自己的說法<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup></h4>
+<ul>
+<li>在1989年12月，我在尋找一門「課餘」編程項目來打發聖誕節前後的時間。<br /></li>
+<li>我決定為當時我正構思的一個新的腳本語言寫一個解釋器，它是ABC語言的後代，對UNIX/C程式設計師會有吸引力。<br /></li>
+<li>作為一個略微有些無關想法的人，和一個《蒙提‧派森的飛行馬戲團》的狂熱愛好者，我選擇了Python作為項目的標題。<br /></li>
+
+</ul>
+
+</section>
+<section id="slide-1-2">
+<h3 id="1-2"><a id="org8e0c2fd"></a><span class="section-number-3">1.2</span> Python的優勢與應用<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup></h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+</section>
+<section id="slide-1-2-1">
+<h4 id="1-2-1"><a id="orgd45259e"></a><span class="section-number-4">1.2.1</span> Advantages</h4>
+<ol>
+<li>Presence of third-party modules<br /></li>
+<li>Extensive support libraries(NumPy for numerical calculations, Pandas for data analytics etc)<br /></li>
+<li>Open source and community development<br /></li>
+<li>Easy to learn<br /></li>
+<li>User-friendly data structures<br /></li>
+<li>High-level language<br /></li>
+<li>Dynamically typed language(No need to mention data type based on value assigned, it takes data type)<br /></li>
+<li>Object-oriented language<br /></li>
+<li>Portable and Interactive<br /></li>
+<li>Portable across Operating systems<br /></li>
+
+</ol>
+</section>
+<section id="slide-1-2-2">
+<h4 id="1-2-2"><a id="org5b8ff05"></a><span class="section-number-4">1.2.2</span> Applications</h4>
+<ol>
+<li>GUI based desktop applications(Games, Scientific Applications)<br /></li>
+<li>Web frameworks and applications<br /></li>
+<li>Enterprise and Business applications<br /></li>
+<li>Operating Systems<br /></li>
+<li>Language Development<br /></li>
+<li>Prototyping<br /></li>
+
+</ol>
+</section>
+<section id="slide-1-2-3">
+<h4 id="1-2-3"><a id="orgf22fbaf"></a><span class="section-number-4">1.2.3</span> Organizations using Python</h4>
+<ol>
+<li>Google(Components of Google spider and Search Engine)<br /></li>
+<li>Yahoo(Maps)<br /></li>
+<li>YouTube<br /></li>
+<li>Mozilla<br /></li>
+<li>Dropbox<br /></li>
+<li>Microsoft<br /></li>
+<li>Cisco<br /></li>
+<li>Spotify<br /></li>
+<li>Quora<br /></li>
+
+</ol>
+
+</section>
+</section>
+<section>
+<section id="slide-2">
+<h2 id="2"><a id="org371d700"></a><span class="section-number-2">2</span> Python環境建置</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-2-1">2.1. 下載python</a></li>
+<li><a href="#/slide-2-2">2.2. python的幾種編寫環境</a>
+<ul>
+<li><a href="#/slide-2-2-1">2.2.1. 終端機(shell, command line): interpreter</a></li>
+<li><a href="#/slide-2-2-2">2.2.2. IDE(Integrated Development Environment)環境</a></li>
+<li><a href="#/slide-2-2-3">2.2.3. Web-based環境</a></li>
+</ul>
+</li>
+<li><a href="#/slide-2-3">2.3. 兩種執行模式</a>
+<ul>
+<li><a href="#/slide-2-3-1">2.3.1. Interactive mode</a></li>
+<li><a href="#/slide-2-3-2">2.3.2. Script Mode</a></li>
+</ul>
+</li>
+<li><a href="#/slide-2-4">2.4. 安裝Jupyter Notebook</a>
+<ul>
+<li><a href="#/slide-2-4-1">2.4.1. 安裝pip</a></li>
+<li><a href="#/slide-2-4-2">2.4.2. 安裝Jupyter(命令提示字元)</a></li>
+<li><a href="#/slide-2-4-3">2.4.3. Jupyter Notebook基本操作</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="slide-2-1">
+<h3 id="2-1"><a id="org6274a89"></a><span class="section-number-3">2.1</span> 下載python</h3>
+<ul>
+<li>google: python download<br /></li>
+<li>網址: <a href="https://www.python.org/downloads/">https://www.python.org/downloads/</a><br /></li>
+<li>若為Mac系統，則已預載安裝Python 2.7<br /></li>
+<li>若為Linux系統，則多數也預載Python 2.x及3.x<br /></li>
+<li><p>
+查詢目前的python版本，目前官方最新版本為3.8.2<sup><a id="fnr.4" class="footref" href="#fn.4">4</a></sup><br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell">python --version
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="slide-2-2">
+<h3 id="2-2"><a id="org757f3ff"></a><span class="section-number-3">2.2</span> python的幾種編寫環境</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+</section>
+<section id="slide-2-2-1">
+<h4 id="2-2-1"><a id="org89954b4"></a><span class="section-number-4">2.2.1</span> 終端機(shell, command line): interpreter</h4>
+<div class="outline-text-4" id="text-2-2-1">
+</div>
+</section>
+<section id="slide-2-2-1-1">
+<h5 id="2-2-1-1"><a id="org6e83d93"></a><span class="section-number-5">2.2.1.1</span> 執行環境</h5>
+<ul>
+<li>Linux / Mac: terminal<br /></li>
+<li>Windows: 命令提示字元<br /></li>
+
+</ul>
+
+<div class="figure">
+<p><img src="python-terminal-demo.jpg" alt="python-terminal-demo.jpg" width="560" />    <br />
+</p>
+<p><span class="figure-number">Figure 2: </span>命令列下執行Python interpreter</p>
+</div>
+</section>
+<section id="slide-2-2-1-2">
+<h5 id="2-2-1-2"><a id="org49ba773"></a><span class="section-number-5">2.2.1.2</span> 執行方式</h5>
+<ul>
+<li><p>
+啟用Python interpreter<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><span class="linenr">1: </span>python
+</pre>
+</div></li>
+<li>結束/回到terminal<br />
+<ul>
+<li><p>
+指令<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">exit</span><span style="color: #4f97d7;">()</span>
+</pre>
+</div></li>
+<li>快速鍵: Ctrl-D<br /></li>
+
+</ul></li>
+<li>此模式可配合文字編輯器撰寫程式碼，再於終端機下執行<br />
+<ul>
+<li><a href="https://www.sublimetext.com/3">Sublime Text 3</a><br /></li>
+<li><a href="https://notepad-plus-plus.org/downloads/">Notepad++</a><br /></li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-2-2-2">
+<h4 id="2-2-2"><a id="orge5b87a0"></a><span class="section-number-4">2.2.2</span> IDE(Integrated Development Environment)環境</h4>
+<div class="outline-text-4" id="text-2-2-2">
+</div>
+</section>
+<section id="slide-2-2-2-1">
+<h5 id="2-2-2-1"><a id="org536cb55"></a><span class="section-number-5">2.2.2.1</span> <a href="https://www.spyder-ide.org/">Spyder</a></h5>
+
+<div id="org1cf1b08" class="figure">
+<p><img src="Spyder.jpg" alt="Spyder.jpg" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 3: </span>Spyder IDE for Python</p>
+</div>
+</section>
+<section id="slide-2-2-2-2">
+<h5 id="2-2-2-2"><a id="orgb0d1a1c"></a><span class="section-number-5">2.2.2.2</span> <a href="https://code.visualstudio.com/">Visual Studio Code</a></h5>
+
+<div id="orgbfdcbb6" class="figure">
+<p><img src="VisualStudioCode.jpg" alt="VisualStudioCode.jpg" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 4: </span>Visual Studio Code</p>
+</div>
+</section>
+<section id="slide-2-2-2-3">
+<h5 id="2-2-2-3"><a id="org0f25fc0"></a><span class="section-number-5">2.2.2.3</span> <a href="https://www.jetbrains.com/pycharm/">PyCharm</a></h5>
+
+<div id="orgd8523da" class="figure">
+<p><img src="PyCharm.png" alt="PyCharm.png" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 5: </span>PyCharm</p>
+</div>
+</section>
+<section id="slide-2-2-3">
+<h4 id="2-2-3"><a id="org4b5c1d7"></a><span class="section-number-4">2.2.3</span> Web-based環境</h4>
+<div class="outline-text-4" id="text-2-2-3">
+</div>
+</section>
+<section id="slide-2-2-3-1">
+<h5 id="2-2-3-1"><a id="org11e4a37"></a><span class="section-number-5">2.2.3.1</span> <a href="https://ipython.org/notebook.html">The Jupyter Notebook</a></h5>
+
+<div id="org109fa69" class="figure">
+<p><img src="JupyterNotebook.png" alt="JupyterNotebook.png" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 6: </span>The Jupyter Notebook</p>
+</div>
+</section>
+<section id="slide-2-2-3-2">
+<h5 id="2-2-3-2"><a id="org79f8e64"></a><span class="section-number-5">2.2.3.2</span> <a href="https://colab.research.google.com/">Google Colaboratory</a></h5>
+
+<div id="orgb4d8b8e" class="figure">
+<p><img src="GoogleCoLab.jpg" alt="GoogleCoLab.jpg" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 7: </span>The Google Colaboratory</p>
+</div>
+</section>
+<section id="slide-2-2-3-3">
+<h5 id="2-2-3-3"><a id="orgb99c517"></a><span class="section-number-5">2.2.3.3</span> <a href="https://www.programiz.com/python-programming/online-compiler/">Python Online Compiler: repl.it</a></h5>
+
+<div id="org244ae80" class="figure">
+<p><img src="ReplIt-Python.jpg" alt="ReplIt-Python.jpg" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 8: </span>Repl.it</p>
+</div>
+
+</section>
+<section id="slide-2-3">
+<h3 id="2-3"><a id="org3964087"></a><span class="section-number-3">2.3</span> 兩種執行模式<sup><a id="fnr.5" class="footref" href="#fn.5">5</a></sup></h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+</section>
+<section id="slide-2-3-1">
+<h4 id="2-3-1"><a id="orgfe43c91"></a><span class="section-number-4">2.3.1</span> Interactive mode</h4>
+<div class="outline-text-4" id="text-2-3-1">
+</div>
+</section>
+<section id="slide-2-3-1-1">
+<h5 id="2-3-1-1"><a id="org9bed9af"></a><span class="section-number-5">2.3.1.1</span> 啟動方式</h5>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><span class="linenr">1: </span>python -i filename.py
+</pre>
+</div>
+</section>
+<section id="slide-2-3-1-2">
+<h5 id="2-3-1-2"><a id="orgdd1e811"></a><span class="section-number-5">2.3.1.2</span> 優點：</h5>
+<ul>
+<li>Helpful when your script is extremely short and you want immediate results.<br /></li>
+<li>Faster as you only have to type a command and then press the enter key to get the results.<br /></li>
+<li>Good for beginners who need to understand Python basics.<br /></li>
+
+</ul>
+</section>
+<section id="slide-2-3-1-3">
+<h5 id="2-3-1-3"><a id="orgfee3f10"></a><span class="section-number-5">2.3.1.3</span> 缺點:</h5>
+<ul>
+<li>Editing the code in interactive mode is hard as you have to move back to the previous commands or else you have to rewrite the whole command again.<br /></li>
+<li>It's very tedious to run long pieces of code.<br /></li>
+
+</ul>
+</section>
+<section id="slide-2-3-2">
+<h4 id="2-3-2"><a id="org405ba59"></a><span class="section-number-4">2.3.2</span> Script Mode</h4>
+<div class="outline-text-4" id="text-2-3-2">
+</div>
+</section>
+<section id="slide-2-3-2-1">
+<h5 id="2-3-2-1"><a id="org8ad1c50"></a><span class="section-number-5">2.3.2.1</span> 啟動方式</h5>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><span class="linenr">1: </span>python filename.py
+</pre>
+</div>
+</section>
+<section id="slide-2-3-2-2">
+<h5 id="2-3-2-2"><a id="org9d16f5c"></a><span class="section-number-5">2.3.2.2</span> 優點:</h5>
+<ul>
+<li>It is easy to run large pieces of code.<br /></li>
+<li>Editing your script is easier in script mode.<br /></li>
+<li>Good for both beginners and experts.<br /></li>
+
+</ul>
+</section>
+<section id="slide-2-3-2-3">
+<h5 id="2-3-2-3"><a id="org22e0f23"></a><span class="section-number-5">2.3.2.3</span> 缺點:</h5>
+<ul>
+<li>Can be tedious when you need to run only a single or a few lines of cod.<br /></li>
+<li>You must create and save a file before executing your code.<br /></li>
+
+</ul>
+
+</section>
+<section id="slide-2-4">
+<h3 id="2-4"><a id="org2a51d81"></a><span class="section-number-3">2.4</span> 安裝Jupyter Notebook</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+</section>
+<section id="slide-2-4-1">
+<h4 id="2-4-1"><a id="org57a1f73"></a><span class="section-number-4">2.4.1</span> 安裝pip</h4>
+<div class="outline-text-4" id="text-2-4-1">
+</div>
+</section>
+<section id="slide-2-4-1-1">
+<h5 id="2-4-1-1"><a id="orgacee3b1"></a><span class="section-number-5">2.4.1.1</span> 檢查是否已安裝Python套件管理工具(命令提示字元)</h5>
+<div class="org-src-container">
+
+<pre  class="src src-shell">python -m pip --version
+pip --version
+</pre>
+</div>
+</section>
+<section id="slide-2-4-1-2">
+<h5 id="2-4-1-2"><a id="orga83e9d7"></a><span class="section-number-5">2.4.1.2</span> 下載並安裝pip(命令提示字元)</h5>
+<ol>
+<li>下載pip<br />
+<a href="https://bootstrap.pypa.io/get-pip.py"> 點此下載get-pip.py</a><br /></li>
+<li><p>
+執行get-pip.py<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell">python get-pip.py
+</pre>
+</div></li>
+
+</ol>
+</section>
+<section id="slide-2-4-2">
+<h4 id="2-4-2"><a id="orge460ff1"></a><span class="section-number-4">2.4.2</span> 安裝Jupyter(命令提示字元)</h4>
+<ul>
+<li><p>
+安裝<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell">pip install jupyter
+</pre>
+</div></li>
+<li><p>
+啟動<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell">jupyter notebook
+</pre>
+</div></li>
+<li>預設網址: <a href="http://localhost:8888">http://localhost:8888</a><br /></li>
+
+</ul>
+</section>
+<section id="slide-2-4-3">
+<h4 id="2-4-3"><a id="orgcd23267"></a><span class="section-number-4">2.4.3</span> Jupyter Notebook基本操作</h4>
+<ul>
+<li><p>
+變更預設port: XXXX<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-shell"><span class="linenr">1: </span>jupyter notebook --port XXXX
+</pre>
+</div></li>
+<li>登出後重新登入：token<br /></li>
+<li>結束Jupyter: 網頁右上角：Quit<br /></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-3">
+<h2 id="3"><a id="orgb340e95"></a><span class="section-number-2">3</span> 變數、資料型態、輸出輸入</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-3-1">3.1. 變數</a></li>
+<li><a href="#/slide-3-2">3.2. 資料型態</a></li>
+<li><a href="#/slide-3-3">3.3. 輸出: print</a></li>
+<li><a href="#/slide-3-4">3.4. 輸入</a></li>
+<li><a href="#/slide-3-5">3.5. 註解</a></li>
+<li><a href="#/slide-3-6">3.6. 實作練習</a></li>
+</ul>
+</div>
+</section>
+<section id="slide-3-1">
+<h3 id="3-1"><a id="orgbcdf6c3"></a><span class="section-number-3">3.1</span> 變數</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+</section>
+<section id="slide-3-1-1">
+<h4 id="3-1-1"><a id="org61c9e95"></a><span class="section-number-4">3.1.1</span> 命名規則</h4>
+<ul>
+<li>由英文、數字、底線、中文(不建議)組成<br /></li>
+<li>不得以數字開頭<br /></li>
+<li>不能與Python內建的保留字相同<br /></li>
+
+</ul>
+
+</section>
+<section id="slide-3-1-2">
+<h4 id="3-1-2"><a id="org884559d"></a><span class="section-number-4">3.1.2</span> 範例</h4>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Example</th>
+<th scope="col" class="org-left">&check; / &times;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">abc_123</td>
+<td class="org-left">&check;</td>
+</tr>
+
+<tr>
+<td class="org-left">3pigs</td>
+<td class="org-left">&times;</td>
+</tr>
+
+<tr>
+<td class="org-left">Happy New Year</td>
+<td class="org-left">&times;</td>
+</tr>
+
+<tr>
+<td class="org-left">Class</td>
+<td class="org-left">&times;</td>
+</tr>
+
+<tr>
+<td class="org-left">Good!</td>
+<td class="org-left">&times;</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="slide-3-1-3">
+<h4 id="3-1-3"><a id="org2c7b88c"></a><span class="section-number-4">3.1.3</span> 變數的指派(assign)</h4>
+<ul>
+<li>Python變數不需宣告，依指派值自動設定資料型態。<br /></li>
+<li><p>
+語法<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span>    <span style="color: #7590db;">&#35722;&#25976;&#21517;&#31281;</span> = &#25351;&#27966;&#20540;
+</pre>
+</div></li>
+<li>變數不再使用時，可用del指令將其刪除，以節省記憶體。<br /></li>
+<li><p>
+範例：<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">a</span> = <span style="color: #a45bad;">5</span>
+<span class="linenr">2: </span><span style="color: #7590db;">b</span> = <span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">14</span>
+<span class="linenr">3: </span><span style="color: #7590db;">c</span> = <span style="color: #2d9574;">'TNFSH'</span>
+<span class="linenr">4: </span><span style="color: #7590db;">a</span> = <span style="color: #7590db;">b</span> = <span style="color: #7590db;">c</span> = <span style="color: #a45bad;">10</span>
+<span class="linenr">5: </span><span style="color: #7590db;">name</span>, <span style="color: #7590db;">number</span> = <span style="color: #2d9574;">'TNFSH'</span>, <span style="color: #a45bad;">35</span>
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="slide-3-2">
+<h3 id="3-2"><a id="org03aefba"></a><span class="section-number-3">3.2</span> 資料型態</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+</section>
+<section id="slide-3-2-1">
+<h4 id="3-2-1"><a id="org6c7ae30"></a><span class="section-number-4">3.2.1</span> 常用類型</h4>
+<ul>
+<li>整數: int<br /></li>
+<li>浮點數: float<br /></li>
+<li>布林值(True / False): bool, T 與 F要大寫<br /></li>
+<li>字串: str, 以'或"含括,若輸出字串要包含引號，則以另一種引號含括該字串。如:<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">age</span> = <span style="color: #a45bad;">18</span>
+<span class="linenr">2: </span><span style="color: #7590db;">weight</span> = <span style="color: #a45bad;">67</span>.<span style="color: #a45bad;">87</span>
+<span class="linenr">3: </span><span style="color: #7590db;">good_words</span> = <span style="color: #2d9574;">" &#35531;&#24120;&#35498;'&#35531;'&#12289;'&#35613;&#35613;'&#12289;'&#23565;&#19981;&#36215;' "</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-3-2-2">
+<h4 id="3-2-2"><a id="org715069c"></a><span class="section-number-4">3.2.2</span> 型態間的轉換</h4>
+<ul>
+<li>自動轉換<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">score</span> = <span style="color: #a45bad;">60</span> + <span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">5</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#33258;&#21205;&#36681;&#25563;&#28858;&#28014;&#40670;&#25976;&#65292;&#32080;&#26524;&#28858;63.5  </span>
+</pre>
+</div>
+<ul>
+<li>強制轉換<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">score</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">30</span>.<span style="color: #a45bad;">22</span><span style="color: #4f97d7;">)</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23559;&#25324;&#24359;&#20839;&#30340;&#36039;&#26009;&#36681;&#25563;&#28858;&#25972;&#25976;</span>
+<span class="linenr">2: </span><span style="color: #7590db;">score</span> = <span style="color: #4f97d7;">float</span><span style="color: #4f97d7;">(</span>score<span style="color: #4f97d7;">)</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23559;&#25324;&#24359;&#20839;&#30340;&#36039;&#26009;&#36681;&#25563;&#28858;&#28014;&#40670;&#25976;</span>
+<span class="linenr">3: </span><span style="color: #7590db;">test</span> = <span style="color: #4f97d7;">str</span><span style="color: #4f97d7;">(</span>score<span style="color: #4f97d7;">)</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23559;&#25324;&#24359;&#20839;&#30340;&#36039;&#26009;&#36681;&#25563;&#28858;&#23383;&#20018;</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-3-3">
+<h3 id="3-3"><a id="org2bd481f"></a><span class="section-number-3">3.3</span> 輸出: print</h3>
+<div class="outline-text-3" id="text-3-3">
+</div>
+</section>
+<section id="slide-3-3-1">
+<h4 id="3-3-1"><a id="org08c6208"></a><span class="section-number-4">3.3.1</span> 語法</h4>
+<ul>
+<li>print( 項目1, [ 項目2, … , sep = 分隔字元 , end = 結束字元 ] )<br /></li>
+<li>sep (分隔字元) 預設為空白字元<br /></li>
+<li>end (結束字元) 預設為換行字元\n <br /></li>
+
+</ul>
+</section>
+<section id="slide-3-3-2">
+<h4 id="3-3-2"><a id="org828681b"></a><span class="section-number-4">3.3.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span> = <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">10</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a, b<span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a, b, sep =<span style="color: #2d9574;">','</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a, end=<span style="color: #2d9574;">'\t'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a, end=<span style="color: #2d9574;">''</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+5 10
+5,10
+5	5
+
+</pre>
+</section>
+<section id="slide-3-3-3">
+<h4 id="3-3-3"><a id="orga58fde1"></a><span class="section-number-4">3.3.3</span> 跳脫字元</h4>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">跳脫字元</th>
+<th scope="col" class="org-left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">\\</td>
+<td class="org-left">印出 \</td>
+</tr>
+
+<tr>
+<td class="org-left">\'</td>
+<td class="org-left">印出 '</td>
+</tr>
+
+<tr>
+<td class="org-left">\n</td>
+<td class="org-left">換行字元</td>
+</tr>
+
+<tr>
+<td class="org-left">\t</td>
+<td class="org-left">水平跳格字元(Tab)</td>
+</tr>
+
+<tr>
+<td class="org-left">\b</td>
+<td class="org-left">倒退一格字元(Backspace)</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="slide-3-3-4">
+<h4 id="3-3-4"><a id="orge8d1105"></a><span class="section-number-4">3.3.4</span> 格式化輸出</h4>
+<ul>
+<li>語法<br />
+<ul>
+<li>格式化輸出語法：print( 字串  %(參數) ) <br /></li>
+<li>字串裡 %s 代表字串、%d 代表整數、%f 代表浮點數<br /></li>
+
+</ul></li>
+
+<li><p>
+範例<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">name</span> = <span style="color: #2d9574;">'&#21488;&#21271;101'</span>
+<span class="linenr">2: </span><span style="color: #7590db;">height</span> = <span style="color: #a45bad;">508</span>
+<span class="linenr">3: </span><span style="color: #7590db;">fee</span> = <span style="color: #a45bad;">18</span>.<span style="color: #a45bad;">24</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'%s&#30340;&#39640;&#24230;&#28858;%d&#20844;&#23610;&#65292;&#21443;&#35264;&#38272;&#31080;&#28858;%3.2f&#32654;&#37329;.'</span> %<span style="color: #bc6ec5;">(</span>name, height, fee<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span>
+</pre>
+</div>
+
+<pre class="example">
+台北101的高度為508公尺，參觀門票為18.24美金.
+
+</pre></li>
+
+</ul>
+</section>
+<section id="slide-3-3-5">
+<h4 id="3-3-5"><a id="orgada9668"></a><span class="section-number-4">3.3.5</span> format格式化輸出</h4>
+<ul>
+<li>語法<br />
+<ul>
+<li>format格式化輸出語法：print(字串.format (參數) ) <br /></li>
+<li>字串裡以{0}、{1}、&#x2026; 來對應參數列裡的變數<br /></li>
+
+</ul></li>
+
+<li><p>
+範例<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">name</span> = <span style="color: #2d9574;">'Taipei101'</span>
+<span class="linenr">2: </span><span style="color: #7590db;">height</span> = <span style="color: #a45bad;">508</span>.<span style="color: #a45bad;">35</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'{0}&#30340;&#39640;&#24230;&#28858;{1}&#20844;&#23610;'</span>.<span style="color: #4f97d7;">format</span> <span style="color: #bc6ec5;">(</span>name, height<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'{0:15s}&#30340;&#39640;&#24230;&#28858;{1:10.1f}&#20844;&#23610;'</span>.<span style="color: #4f97d7;">format</span> <span style="color: #bc6ec5;">(</span>name, height<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Taipei101的高度為508.35公尺
+Taipei101      的高度為     508.4公尺
+
+</pre></li>
+
+</ul>
+
+</section>
+<section id="slide-3-4">
+<h3 id="3-4"><a id="org18e2d06"></a><span class="section-number-3">3.4</span> 輸入</h3>
+<div class="outline-text-3" id="text-3-4">
+</div>
+</section>
+<section id="slide-3-4-1">
+<h4 id="3-4-1"><a id="org2b65b1d"></a><span class="section-number-4">3.4.1</span> 語法/範例</h4>
+<ul>
+<li><p>
+語法<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">variable</span> = intpu<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>&#25552;&#31034;&#23383;&#20803;<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div></li>
+<li>PS: 經由input( )函式讀入的資料，其資料型態皆為字串<br /></li>
+
+<li><p>
+範例<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">a</span> = <span style="color: #4f97d7;">input</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'&#36664;&#20837;&#22283;&#25991;&#25104;&#32318;:'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">2: </span><span style="color: #7590db;">b</span> = <span style="color: #4f97d7;">input</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'&#36664;&#20837;&#25976;&#23416;&#25104;&#32318;:'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #7590db;">c</span> = <span style="color: #4f97d7;">input</span><span style="color: #4f97d7;">()</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'&#19977;&#31185;&#25104;&#32318;&#20998;&#21029;&#28858;%5s %5s %5s'</span> %<span style="color: #bc6ec5;">(</span>a, b, c<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="slide-3-4-2">
+<h4 id="3-4-2"><a id="org1f72b79"></a><span class="section-number-4">3.4.2</span> 輸入搭配型別轉換</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">a</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'&#36664;&#20837;&#22283;&#25991;&#25104;&#32318;:'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">2: </span><span style="color: #7590db;">b</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'&#36664;&#20837;&#25976;&#23416;&#25104;&#32318;:'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #7590db;">c</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'&#32317;&#20998;&#28858;%5d'</span> %<span style="color: #bc6ec5;">(</span>a+b+c<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-3-4-3">
+<h4 id="3-4-3"><a id="org223aabb"></a><span class="section-number-4">3.4.3</span> input注意事項</h4>
+<ul>
+<li>input 每筆輸入讀至換行符號為止<br /></li>
+<li>若測試資料輸入以空白間隔，則讀入整行字串後， 再以字串分割處理<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">inp</span> = <span style="color: #4f97d7;">input</span><span style="color: #4f97d7;">()</span>
+<span class="linenr">2: </span><span style="color: #7590db;">inpstr</span> = inp.split<span style="color: #4f97d7;">()</span>
+<span class="linenr">3: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20381;&#27492;&#39006;&#25512;&#36880;&#19968;&#21462;&#24471;&#36664;&#20837;&#20540;</span>
+<span class="linenr">4: </span><span style="color: #7590db;">a</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span>inpstr<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">0</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #7590db;">b</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span>inpstr<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #7590db;">c</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span>inpstr<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-3-5">
+<h3 id="3-5"><a id="org324ed31"></a><span class="section-number-3">3.5</span> 註解</h3>
+<ul>
+<li>語法<br />
+<ul>
+<li>單行註解：以 # 開頭<br /></li>
+<li>多行註解：前後以 ''' 或 """ 含括<br /></li>
+
+</ul></li>
+<li><p>
+範例<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;">## </span><span style="color: #2aa1ae; background-color: #292e34;">&#36889;&#26159;&#21934;&#34892;&#35387;&#35299;</span>
+<span class="linenr"> 2: </span><span style="color: #4f97d7;">int</span> <span style="color: #7590db;">a</span> = <span style="color: #a45bad;">3</span>
+<span class="linenr"> 3: </span><span style="color: #9f8766;">'''</span>
+<span class="linenr"> 4: </span><span style="color: #9f8766;">&#36889;&#26159;&#22810;&#34892;&#35387;&#35299;</span>
+<span class="linenr"> 5: </span><span style="color: #9f8766;">LALALA</span>
+<span class="linenr"> 6: </span><span style="color: #9f8766;">'''</span>
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 8: </span><span style="color: #2d9574;">"""</span>
+<span class="linenr"> 9: </span><span style="color: #2d9574;">&#36889;&#20063;&#26159;</span>
+<span class="linenr">10: </span><span style="color: #2d9574;">"""</span>
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="slide-3-6">
+<h3 id="3-6"><a id="org1cbf3ae"></a><span class="section-number-3">3.6</span> 實作練習</h3>
+<ul>
+<li><a href="http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/161/">skyoj #161華氏溫度轉攝氏溫度</a><br /></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-4">
+<h2 id="4"><a id="org80f1110"></a><span class="section-number-2">4</span> 運算元與運算式</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-4-1">4.1. 算術運算</a>
+<ul>
+<li><a href="#/slide-4-1-1">4.1.1. 算術運算範例#1</a></li>
+<li><a href="#/slide-4-1-2">4.1.2. 算術運算範例#2</a></li>
+</ul>
+</li>
+<li><a href="#/slide-4-2">4.2. 關係運算子</a></li>
+<li><a href="#/slide-4-3">4.3. 邏輯運算子</a></li>
+<li><a href="#/slide-4-4">4.4. 複合指定運算子</a></li>
+</ul>
+</div>
+</section>
+<section id="slide-4-1">
+<h3 id="4-1"><a id="orgeebf5c4"></a><span class="section-number-3">4.1</span> 算術運算</h3>
+<ul>
+<li>+: 加<br /></li>
+<li>-: 減<br /></li>
+<li>*: 乘<br /></li>
+<li>/: 除<br /></li>
+<li>%: 取餘數<br /></li>
+<li>//: 求商<br /></li>
+<li>**: 指數<br /></li>
+
+</ul>
+</section>
+<section id="slide-4-1-1">
+<h4 id="4-1-1"><a id="org7f10cd2"></a><span class="section-number-4">4.1.1</span> 算術運算範例#1</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">python code for arithematic opearation</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>+<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>-<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>*<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>/<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>%<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>//<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>**<span style="color: #a45bad;">3</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+8
+2
+15
+1.6666666666666667
+2
+1
+125
+
+</pre>
+
+</section>
+<section id="slide-4-1-2">
+<h4 id="4-1-2"><a id="orgfaebb02"></a><span class="section-number-4">4.1.2</span> 算術運算範例#2</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python" id="計算機"><span class="linenr"> 1: </span><span style="color: #7590db;">a</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"input a: "</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 2: </span><span style="color: #7590db;">op</span> = <span style="color: #4f97d7;">input</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"input op: "</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 3: </span><span style="color: #7590db;">b</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"input b: "</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #4f97d7; font-weight: bold;">if</span> op == <span style="color: #2d9574;">'+'</span>:
+<span class="linenr"> 6: </span>    <span style="color: #7590db;">ans</span> = a + b;
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> op == <span style="color: #2d9574;">'-'</span>:
+<span class="linenr"> 8: </span>    <span style="color: #7590db;">ans</span> = a - b;
+<span class="linenr"> 9: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> op == <span style="color: #2d9574;">'*'</span>:
+<span class="linenr">10: </span>    <span style="color: #7590db;">ans</span> = a * b;
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> op == <span style="color: #2d9574;">'/'</span>:
+<span class="linenr">12: </span>    <span style="color: #7590db;">ans</span> = a / b;
+<span class="linenr">13: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> op == <span style="color: #2d9574;">'%'</span>:
+<span class="linenr">14: </span>    <span style="color: #7590db;">ans</span> = a % b;
+<span class="linenr">15: </span>
+<span class="linenr">16: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">str</span><span style="color: #bc6ec5;">(</span>a<span style="color: #bc6ec5;">)</span> + op + <span style="color: #4f97d7;">str</span><span style="color: #bc6ec5;">(</span>b<span style="color: #bc6ec5;">)</span> + <span style="color: #2d9574;">"="</span> + <span style="color: #4f97d7;">str</span><span style="color: #bc6ec5;">(</span>ans<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-4-2">
+<h3 id="4-2"><a id="org8b92e26"></a><span class="section-number-3">4.2</span> 關係運算子</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&gt;</th>
+<th scope="col" class="org-left">&lt;</th>
+<th scope="col" class="org-left">&gt;=</th>
+<th scope="col" class="org-left">&lt;=</th>
+<th scope="col" class="org-left">==</th>
+<th scope="col" class="org-left">!=</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">大於</td>
+<td class="org-left">小於</td>
+<td class="org-left">大於等於</td>
+<td class="org-left">小於等於</td>
+<td class="org-left">等於</td>
+<td class="org-left">不等於</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="slide-4-3">
+<h3 id="4-3"><a id="orgb993ff7"></a><span class="section-number-3">4.3</span> 邏輯運算子</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">and</th>
+<th scope="col" class="org-left">or</th>
+<th scope="col" class="org-left">not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">(a&gt;b)and(a&lt;c)</td>
+<td class="org-left">(a&gt;b)or&lt;(a==b)</td>
+<td class="org-left">not(a&gt;b)</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+<section id="slide-4-4">
+<h3 id="4-4"><a id="org695d676"></a><span class="section-number-3">4.4</span> 複合指定運算子</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">+=</td>
+<td class="org-left">-=</td>
+<td class="org-left">*=</td>
+<td class="org-left">/=</td>
+<td class="org-left">%=</td>
+<td class="org-left">//=</td>
+<td class="org-left">**=</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+</section>
+<section>
+<section id="slide-5">
+<h2 id="5"><a id="org903bdf4"></a><span class="section-number-2">5</span> 判斷結構</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-5-1">5.1. if</a></li>
+<li><a href="#/slide-5-2">5.2. if &#x2026; else &#x2026;</a></li>
+<li><a href="#/slide-5-3">5.3. if &#x2026; elif &#x2026; else &#x2026;</a></li>
+<li><a href="#/slide-5-4">5.4. 巢狀if</a></li>
+</ul>
+</div>
+</section>
+<section id="slide-5-1">
+<h3 id="5-1"><a id="org8c4e4e9"></a><span class="section-number-3">5.1</span> if</h3>
+<div class="outline-text-3" id="text-5-1">
+</div>
+</section>
+<section id="slide-5-1-1">
+<h4 id="5-1-1"><a id="org857a570"></a><span class="section-number-4">5.1.1</span> 語法</h4>
+<ul>
+<li>條件式可不用括號( )含括，條件式後需搭配冒號：<br /></li>
+<li>程式區塊以縮排方式處理，同一層縮排視為同一程式區塊<br /></li>
+
+</ul>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">if</span> condition:
+<span class="linenr">2: </span>    statement <span style="color: #a45bad;">1</span>
+<span class="linenr">3: </span>    ...
+</pre>
+</div>
+
+</section>
+<section id="slide-5-1-2">
+<h4 id="5-1-2"><a id="org248d7c9"></a><span class="section-number-4">5.1.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">num</span> = <span style="color: #a45bad;">31</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">if</span> num % <span style="color: #a45bad;">2</span> == <span style="color: #a45bad;">0</span>:
+<span class="linenr">3: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'%d is even'</span> %<span style="color: #bc6ec5;">(</span>num<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">if</span> num % <span style="color: #a45bad;">2</span> == <span style="color: #a45bad;">1</span>:
+<span class="linenr">5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'%d is odd'</span> %<span style="color: #bc6ec5;">(</span>num<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+31 is odd
+
+</pre>
+
+</section>
+<section id="slide-5-2">
+<h3 id="5-2"><a id="org5ad1771"></a><span class="section-number-3">5.2</span> if &#x2026; else &#x2026;</h3>
+<div class="outline-text-3" id="text-5-2">
+</div>
+</section>
+<section id="slide-5-2-1">
+<h4 id="5-2-1"><a id="orgcdc23f7"></a><span class="section-number-4">5.2.1</span> 語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">if</span> condition:
+<span class="linenr">2: </span>    statement <span style="color: #a45bad;">1</span>
+<span class="linenr">3: </span>    ...
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">5: </span>    statement <span style="color: #a45bad;">3</span>
+<span class="linenr">6: </span>    ...
+</pre>
+</div>
+
+</section>
+<section id="slide-5-2-2">
+<h4 id="5-2-2"><a id="org301f40b"></a><span class="section-number-4">5.2.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">num</span> = <span style="color: #a45bad;">32</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">if</span> num % <span style="color: #a45bad;">2</span> == <span style="color: #a45bad;">0</span>:
+<span class="linenr">3: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'%d is even'</span> %<span style="color: #bc6ec5;">(</span>num<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'%d is odd'</span> %<span style="color: #bc6ec5;">(</span>num<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-5-3">
+<h3 id="5-3"><a id="org4212c55"></a><span class="section-number-3">5.3</span> if &#x2026; elif &#x2026; else &#x2026;</h3>
+<div class="outline-text-3" id="text-5-3">
+</div>
+</section>
+<section id="slide-5-3-1">
+<h4 id="5-3-1"><a id="org49497d0"></a><span class="section-number-4">5.3.1</span> 語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">if</span> condition <span style="color: #a45bad;">1</span>:
+<span class="linenr"> 2: </span>    statement <span style="color: #a45bad;">1</span>
+<span class="linenr"> 3: </span>    ...
+<span class="linenr"> 4: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> condition <span style="color: #a45bad;">2</span>:
+<span class="linenr"> 5: </span>    statement <span style="color: #a45bad;">3</span>
+<span class="linenr"> 6: </span>    ...
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> condition <span style="color: #a45bad;">3</span>:
+<span class="linenr"> 8: </span>    statement <span style="color: #a45bad;">5</span>
+<span class="linenr"> 9: </span>    ...
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">11: </span>    statement N
+</pre>
+</div>
+
+</section>
+<section id="slide-5-3-2">
+<h4 id="5-3-2"><a id="orgace389d"></a><span class="section-number-4">5.3.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #7590db;">score</span> = <span style="color: #a45bad;">87</span>
+<span class="linenr"> 2: </span><span style="color: #4f97d7; font-weight: bold;">if</span> score &gt;= <span style="color: #a45bad;">90</span>:
+<span class="linenr"> 3: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'A'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 4: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> score &gt;= <span style="color: #a45bad;">80</span>:
+<span class="linenr"> 5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'B'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 6: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> score &gt;= <span style="color: #a45bad;">70</span>:
+<span class="linenr"> 7: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'C'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> score &gt;= <span style="color: #a45bad;">60</span>:
+<span class="linenr"> 9: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'D'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">11: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'F'</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-5-4">
+<h3 id="5-4"><a id="org87bd2f1"></a><span class="section-number-3">5.4</span> 巢狀if</h3>
+<div class="outline-text-3" id="text-5-4">
+</div>
+</section>
+<section id="slide-5-4-1">
+<h4 id="5-4-1"><a id="org894422e"></a><span class="section-number-4">5.4.1</span> 語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">if</span> condition <span style="color: #a45bad;">1</span>:
+<span class="linenr"> 2: </span>    statement <span style="color: #a45bad;">1</span>
+<span class="linenr"> 3: </span>    ...
+<span class="linenr"> 4: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> condition <span style="color: #a45bad;">2</span>:
+<span class="linenr"> 5: </span>        statement <span style="color: #a45bad;">3</span>
+<span class="linenr"> 6: </span>        ...
+<span class="linenr"> 7: </span>    <span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr"> 8: </span>        statement <span style="color: #a45bad;">5</span>
+<span class="linenr"> 9: </span>        ...
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">11: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> condition <span style="color: #a45bad;">3</span>:
+<span class="linenr">12: </span>        statement <span style="color: #a45bad;">7</span>
+<span class="linenr">13: </span>        ...
+<span class="linenr">14: </span>    <span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">15: </span>        statement N
+<span class="linenr">16: </span>        ...
+</pre>
+</div>
+
+</section>
+<section id="slide-5-4-2">
+<h4 id="5-4-2"><a id="org0d60c69"></a><span class="section-number-4">5.4.2</span> 範例: 某年份是否為閏年</h4>
+
+<div id="org6212155" class="figure">
+<p><img src="./YearJudge.png" alt="YearJudge.png" width="560" /> <br />
+</p>
+<p><span class="figure-number">Figure 9: </span>閏年判斷流程</p>
+</div>
+
+</section>
+<section id="slide-5-4-3">
+<h4 id="5-4-3"><a id="orgd73b0d7"></a><span class="section-number-4">5.4.3</span> code #1</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #7590db;">year</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"&#35531;&#36664;&#20837;&#19968;&#20491;&#24180;&#20221;:"</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">(</span>year % <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span> == <span style="color: #a45bad;">0</span>:
+    <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">(</span>year % <span style="color: #a45bad;">100</span><span style="color: #4f97d7;">)</span> == <span style="color: #a45bad;">0</span>:
+        <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">(</span>year % <span style="color: #a45bad;">400</span><span style="color: #4f97d7;">)</span> == <span style="color: #a45bad;">0</span>:
+            <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"%s&#24180;&#26159;&#19990;&#32000;&#38287;&#24180;"</span> % year<span style="color: #4f97d7;">)</span>
+        <span style="color: #4f97d7; font-weight: bold;">else</span>:
+            <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"%s&#24180;&#28858;&#24179;&#24180;"</span> % year<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">else</span>:
+        <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"%s&#24180;&#26159;&#26222;&#36890;&#38287;&#24180;"</span> % year<span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">else</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"%s&#24180;&#28858;&#24179;&#24180;"</span> % year<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-5-4-4">
+<h4 id="5-4-4"><a id="org98527de"></a><span class="section-number-4">5.4.4</span> code #2</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #7590db;">year</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"&#35531;&#36664;&#20837;&#19968;&#20491;&#24180;&#20221;:"</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">(</span>year % <span style="color: #a45bad;">4</span><span style="color: #4f97d7;">)</span> == <span style="color: #a45bad;">0</span> <span style="color: #4f97d7; font-weight: bold;">and</span> <span style="color: #4f97d7;">(</span>year % <span style="color: #a45bad;">100</span><span style="color: #4f97d7;">)</span> !=<span style="color: #a45bad;">0</span> <span style="color: #4f97d7; font-weight: bold;">or</span> <span style="color: #4f97d7;">(</span>year % <span style="color: #a45bad;">400</span><span style="color: #4f97d7;">)</span> == <span style="color: #a45bad;">0</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"%s&#24180;&#26159;&#38287;&#24180;"</span> % year<span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">else</span>:
+    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"%s&#24180;&#28858;&#24179;&#24180;"</span> % year<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-5-4-5">
+<h4 id="5-4-5"><a id="org1cd16f5"></a><span class="section-number-4">5.4.5</span> 練習題</h4>
+<ul>
+<li><a href="http://skyoj.tnfsh.tn.edu.tw/sky/index.php/problem/view/162/">skyoj #162 成績等第判別</a><br /></li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-6">
+<h2 id="6"><a id="orgab29e63"></a><span class="section-number-2">6</span> 迴圈結構</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-6-1">6.1. for</a></li>
+<li><a href="#/slide-6-2">6.2. while</a></li>
+<li><a href="#/slide-6-3">6.3. while + else</a></li>
+<li><a href="#/slide-6-4">6.4. break</a></li>
+<li><a href="#/slide-6-5">6.5. continue</a></li>
+<li><a href="#/slide-6-6">6.6. 巢狀迴圈</a></li>
+</ul>
+</div>
+</section>
+<section id="slide-6-1">
+<h3 id="6-1"><a id="orgab16708"></a><span class="section-number-3">6.1</span> for</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+</section>
+<section id="slide-6-1-1">
+<h4 id="6-1-1"><a id="org5b8be2c"></a><span class="section-number-4">6.1.1</span> 語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">for</span> variable <span style="color: #4f97d7; font-weight: bold;">in</span> sequence:
+<span class="linenr">2: </span>    statement <span style="color: #a45bad;">1</span>
+<span class="linenr">3: </span>    ...
+</pre>
+</div>
+<ul>
+<li>for迴圈的變數會依序走訪sequence中的元素<br /></li>
+<li>sequence<sup><a id="fnr.6" class="footref" href="#fn.6">6</a></sup>可為range函式、字串(string)、表列(list)、元組(tuple)、字典(dict)、集合(set)<br /></li>
+
+</ul>
+
+</section>
+<section id="slide-6-1-2">
+<h4 id="6-1-2"><a id="org7d538fe"></a><span class="section-number-4">6.1.2</span> List為range() function語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #4f97d7; font-weight: bold;">for</span> variable <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span>&#36215;&#22987;&#20540;,<span style="color: #bc6ec5;">]</span> &#32066;&#27490;&#20540; <span style="color: #bc6ec5;">[</span>,&#36958;&#22686;&#20540;<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>:
+    statement <span style="color: #a45bad;">1</span>
+    ...
+</pre>
+</div>
+<ul>
+<li>起始值預設為0，遞增值預設為1<br /></li>
+<li>起始值 ≤ range( )的範圍 &lt; 終止值<br /></li>
+
+</ul>
+
+</section>
+<section id="slide-6-1-3">
+<h4 id="6-1-3"><a id="orgfefce30"></a><span class="section-number-4">6.1.3</span> List為range() function語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">6</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>x, end=<span style="color: #2d9574;">' '</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'\n===='</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">10</span>, <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>x, <span style="color: #2d9574;">' '</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'\n===='</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">8: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>x, end=<span style="color: #2d9574;">', '</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+0 1 2 3 4 5 
+====
+3  
+5  
+7  
+9  
+
+====
+3 4 5 6 7 8 9 
+
+</pre>
+
+</section>
+<section id="slide-6-1-4">
+<h4 id="6-1-4"><a id="org420c7ca"></a><span class="section-number-4">6.1.4</span> List為String</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">school</span> = <span style="color: #2d9574;">'TNFSH'</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> school:
+<span class="linenr">3: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>x, end=<span style="color: #2d9574;">' '</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'\n========='</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> school:
+<span class="linenr">6: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">chr</span><span style="color: #bc6ec5;">(</span><span style="color: #4f97d7;">ord</span><span style="color: #2d9574;">(</span>x<span style="color: #2d9574;">)</span>+<span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">)</span>, end=<span style="color: #2d9574;">' '</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+T N F S H 
+=========
+U O G T I 
+
+</pre>
+
+<ul>
+<li>ord( ) -&gt; 將字元轉為ASCII編碼(整數)<br /></li>
+<li>chr( ) -&gt; 將ASCII編碼(整數)轉為字元<br /></li>
+
+</ul>
+
+</section>
+<section id="slide-6-2">
+<h3 id="6-2"><a id="org75ce396"></a><span class="section-number-3">6.2</span> while</h3>
+<div class="outline-text-3" id="text-6-2">
+</div>
+</section>
+<section id="slide-6-2-1">
+<h4 id="6-2-1"><a id="orgc3c938c"></a><span class="section-number-4">6.2.1</span> 語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #4f97d7; font-weight: bold;">while</span> <span style="color: #4f97d7;">(</span>condition<span style="color: #4f97d7;">)</span>:
+    statement <span style="color: #a45bad;">1</span>
+    ...
+</pre>
+</div>
+
+</section>
+<section id="slide-6-2-2">
+<h4 id="6-2-2"><a id="org62466d2"></a><span class="section-number-4">6.2.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">n</span> = <span style="color: #a45bad;">12345</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">while</span> <span style="color: #4f97d7;">(</span>n &gt; <span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">3: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>n%<span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>    <span style="color: #7590db;">n</span> //= <span style="color: #a45bad;">10</span>
+</pre>
+</div>
+
+<pre class="example">
+5 
+4
+3
+2
+1
+
+</pre>
+
+<div class="org-src-container">
+
+<pre  class="src src-python" id="最大公因數"><span class="linenr">1: </span><span style="color: #7590db;">m</span>, <span style="color: #7590db;">n</span> = <span style="color: #a45bad;">42</span>, <span style="color: #a45bad;">75</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">while</span> <span style="color: #4f97d7;">(</span>n &gt; <span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">3: </span>    <span style="color: #7590db;">m</span>, <span style="color: #7590db;">n</span> = n, m % n
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>m<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+3
+
+</pre>
+
+</section>
+<section id="slide-6-3">
+<h3 id="6-3"><a id="org2140816"></a><span class="section-number-3">6.3</span> while + else</h3>
+<div class="outline-text-3" id="text-6-3">
+</div>
+</section>
+<section id="slide-6-3-1">
+<h4 id="6-3-1"><a id="org3cce611"></a><span class="section-number-4">6.3.1</span> 語法</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #4f97d7; font-weight: bold;">while</span> <span style="color: #4f97d7;">(</span>condition<span style="color: #4f97d7;">)</span>:
+    statement <span style="color: #a45bad;">1</span>
+    ...
+<span style="color: #4f97d7; font-weight: bold;">else</span>:
+    statement <span style="color: #a45bad;">3</span>
+    ...
+</pre>
+</div>
+
+</section>
+<section id="slide-6-3-2">
+<h4 id="6-3-2"><a id="org9e594c6"></a><span class="section-number-4">6.3.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">n</span> = <span style="color: #a45bad;">56</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">while</span> <span style="color: #4f97d7;">(</span>n%<span style="color: #a45bad;">2</span> == <span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">3: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>n, end=<span style="color: #2d9574;">' '</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>    <span style="color: #7590db;">n</span> //= <span style="color: #a45bad;">2</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">6: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'end with %d'</span> %n<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+56 28 14 end with 7
+
+</pre>
+
+</section>
+<section id="slide-6-4">
+<h3 id="6-4"><a id="orgdfa633b"></a><span class="section-number-3">6.4</span> break</h3>
+<p>
+跳出整個loop<br />
+</p>
+</section>
+<section id="slide-6-4-1">
+<h4 id="6-4-1"><a id="orged2ce50"></a><span class="section-number-4">6.4.1</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">for</span> letter <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">'Python'</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> letter == <span style="color: #2d9574;">'h'</span>:
+<span class="linenr">3: </span>        <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Now stop...'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>        <span style="color: #4f97d7; font-weight: bold;">break</span>
+<span class="linenr">5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Processing Letrer:'</span>, letter<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Processing Letrer: P
+Processing Letrer: y
+Processing Letrer: t
+Now stop...
+
+</pre>
+
+</section>
+<section id="slide-6-5">
+<h3 id="6-5"><a id="org21ffdc6"></a><span class="section-number-3">6.5</span> continue</h3>
+<p>
+跳出單次loop<br />
+</p>
+</section>
+<section id="slide-6-5-1">
+<h4 id="6-5-1"><a id="orgb33d68a"></a><span class="section-number-4">6.5.1</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">for</span> letter <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #2d9574;">'Python'</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> letter == <span style="color: #2d9574;">'h'</span>:
+<span class="linenr">3: </span>        <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Now skip...'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>        <span style="color: #4f97d7; font-weight: bold;">continue</span>
+<span class="linenr">5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Processing Letrer:'</span>, letter<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+Processing Letrer: P
+Processing Letrer: y
+Processing Letrer: t
+Now skip...
+Processing Letrer: o
+Processing Letrer: n
+
+</pre>
+
+</section>
+<section id="slide-6-6">
+<h3 id="6-6"><a id="org54daff8"></a><span class="section-number-3">6.6</span> 巢狀迴圈</h3>
+<div class="outline-text-3" id="text-6-6">
+</div>
+</section>
+<section id="slide-6-6-1">
+<h4 id="6-6-1"><a id="org965f5e1"></a><span class="section-number-4">6.6.1</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">for</span> j <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">3: </span>        <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'%d*%d=%2d'</span> %<span style="color: #bc6ec5;">(</span>i, j, i*j<span style="color: #bc6ec5;">)</span>, end=<span style="color: #2d9574;">' '</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">()</span>
+</pre>
+</div>
+
+<pre class="example">
+1*1= 1 1*2= 2 1*3= 3 1*4= 4 1*5= 5 1*6= 6 1*7= 7 1*8= 8 1*9= 9 
+2*1= 2 2*2= 4 2*3= 6 2*4= 8 2*5=10 2*6=12 2*7=14 2*8=16 2*9=18 
+3*1= 3 3*2= 6 3*3= 9 3*4=12 3*5=15 3*6=18 3*7=21 3*8=24 3*9=27 
+4*1= 4 4*2= 8 4*3=12 4*4=16 4*5=20 4*6=24 4*7=28 4*8=32 4*9=36 
+5*1= 5 5*2=10 5*3=15 5*4=20 5*5=25 5*6=30 5*7=35 5*8=40 5*9=45 
+6*1= 6 6*2=12 6*3=18 6*4=24 6*5=30 6*6=36 6*7=42 6*8=48 6*9=54 
+7*1= 7 7*2=14 7*3=21 7*4=28 7*5=35 7*6=42 7*7=49 7*8=56 7*9=63 
+8*1= 8 8*2=16 8*3=24 8*4=32 8*5=40 8*6=48 8*7=56 8*8=64 8*9=72 
+9*1= 9 9*2=18 9*3=27 9*4=36 9*5=45 9*6=54 9*7=63 9*8=72 9*9=81 
+
+</pre>
+
+</section>
+</section>
+<section>
+<section id="slide-7">
+<h2 id="7"><a id="org21fb1cc"></a><span class="section-number-2">7</span> 資料型別</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-7-1">7.1. 字串string</a></li>
+<li><a href="#/slide-7-2">7.2. 列表list</a></li>
+<li><a href="#/slide-7-3">7.3. 元組tuple</a></li>
+<li><a href="#/slide-7-4">7.4. 字典dict</a></li>
+<li><a href="#/slide-7-5">7.5. List v.s. Tuple</a></li>
+<li><a href="#/slide-7-6">7.6. 集合set</a></li>
+<li><a href="#/slide-7-7">7.7. 資料型別整理</a></li>
+</ul>
+</div>
+</section>
+<section id="slide-7-1">
+<h3 id="7-1"><a id="org9c1d739"></a><span class="section-number-3">7.1</span> 字串string</h3>
+<div class="outline-text-3" id="text-7-1">
+</div>
+</section>
+<section id="slide-7-1-1">
+<h4 id="7-1-1"><a id="org57a9146"></a><span class="section-number-4">7.1.1</span> 資料格式</h4>
+<p>
+以單引號(')或雙引號(")將資料含括起來<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span style="color: #7590db;">stringA</span> = <span style="color: #2d9574;">'Hello Python'</span>
+<span style="color: #7590db;">stringB</span> = <span style="color: #2d9574;">"Hello Python"</span>
+</pre>
+</div>
+</section>
+<section id="slide-7-1-2">
+<h4 id="7-1-2"><a id="orga2244e9"></a><span class="section-number-4">7.1.2</span> 範例1</h4>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">index</th>
+<th scope="col" class="org-right">0</th>
+<th scope="col" class="org-right">1</th>
+<th scope="col" class="org-right">2</th>
+<th scope="col" class="org-right">3</th>
+<th scope="col" class="org-right">4</th>
+<th scope="col" class="org-right">5</th>
+<th scope="col" class="org-right">6</th>
+<th scope="col" class="org-right">7</th>
+<th scope="col" class="org-right">8</th>
+<th scope="col" class="org-right">9</th>
+<th scope="col" class="org-right">10</th>
+<th scope="col" class="org-right">11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">字串</td>
+<td class="org-right">H</td>
+<td class="org-right">e</td>
+<td class="org-right">l</td>
+<td class="org-right">l</td>
+<td class="org-right">o</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">P</td>
+<td class="org-right">y</td>
+<td class="org-right">t</td>
+<td class="org-right">h</td>
+<td class="org-right">o</td>
+<td class="org-right">n</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">index</td>
+<td class="org-right">-12</td>
+<td class="org-right">-11</td>
+<td class="org-right">-10</td>
+<td class="org-right">-9</td>
+<td class="org-right">-8</td>
+<td class="org-right">-7</td>
+<td class="org-right">-6</td>
+<td class="org-right">-5</td>
+<td class="org-right">-4</td>
+<td class="org-right">-3</td>
+<td class="org-right">-2</td>
+<td class="org-right">-1</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="slide-7-1-3">
+<h4 id="7-1-3"><a id="orgba19962"></a><span class="section-number-4">7.1.3</span> 字串運算子</h4>
+<ul>
+<li>+: 連接字串<br /></li>
+<li>*: 重複字串<br /></li>
+<li>[index]: 字串中index所在字元<br /></li>
+<li>[start:end:increment]: 截取部份字串<br /></li>
+<li>in: 判斷是否為子字串<br /></li>
+
+</ul>
+</section>
+<section id="slide-7-1-4">
+<h4 id="7-1-4"><a id="org4d8d146"></a><span class="section-number-4">7.1.4</span> 範例2</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #7590db;">tel</span> = <span style="color: #2d9574;">'06-2371206'</span>
+<span class="linenr"> 2: </span><span style="color: #7590db;">ext</span> = <span style="color: #2d9574;">'#600'</span>
+<span class="linenr"> 3: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">+</span>
+<span class="linenr"> 4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'tel+ext:'</span>,tel+ext<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">*</span>
+<span class="linenr"> 6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'ext*2:'</span>, ext*<span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">[index]</span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'tel[5]:'</span>, tel<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">5</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 9: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">[start:end:increment]</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'tel[1:4]:'</span>,tel<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>:<span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'tel[6: ]:'</span>,tel<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">6</span>: <span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">12: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'tel[ :6]:'</span>,tel<span style="color: #bc6ec5;">[</span> :<span style="color: #a45bad;">6</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">13: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'tel[::-1]:'</span>,tel<span style="color: #bc6ec5;">[</span>::-<span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">14: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">in</span>
+<span class="linenr">15: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"'9' in tel:"</span>, <span style="color: #2d9574;">'9'</span> <span style="color: #4f97d7; font-weight: bold;">in</span> tel<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+tel+ext: 06-2371206#600
+ext*2: #600#600
+tel[5]: 7
+tel[1:4]: 6-2
+tel[6: ]: 1206
+tel[ :6]: 06-237
+tel[::-1]: 6021732-60
+'9' in tel: False
+
+</pre>
+</section>
+<section id="slide-7-1-5">
+<h4 id="7-1-5"><a id="org6b6b36f"></a><span class="section-number-4">7.1.5</span> 字串function與method</h4>
+<ul>
+<li>len(&lt;str&gt;):	計算字串長度<br /></li>
+<li>&lt;str&gt;.lower(): 字串轉小寫<br /></li>
+<li>&lt;str&gt;.upper(): 字串轉大寫<br /></li>
+<li>&lt;str&gt;.islower(): 字串中英文全大寫<br /></li>
+<li>&lt;str&gt;.isupper(): 字串中英文全小寫<br /></li>
+<li>&lt;str&gt;.find(&lt;str1&gt;): 在&lt;str&gt;尋找&lt;str1&gt;，回傳索引值； 若未找到，回傳-1<br /></li>
+<li>&lt;str&gt;.replace(&lt;str1&gt;, &lt;str2&gt;): 將&lt;str&gt;中的&lt;str1&gt;以&lt;str2&gt;取代<br /></li>
+<li>&lt;str&gt;.split([sep]): 字串以sep分割, sep預設值為空白<br /></li>
+
+</ul>
+</section>
+<section id="slide-7-1-6">
+<h4 id="7-1-6"><a id="org313aa34"></a><span class="section-number-4">7.1.6</span> 範例3</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">school</span> = <span style="color: #2d9574;">'Tnfsh'</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'school:'</span>, school<span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'len(school):'</span>, <span style="color: #4f97d7;">len</span><span style="color: #bc6ec5;">(</span>school<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'school.lower():'</span>, school.lower<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'school.isupper():'</span>, school.isupper<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"school.find('fsh'):"</span>, school.find<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'fsh'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"school.replace('fsh', ssh'):"</span>, school.replace<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'fsh'</span>, <span style="color: #2d9574;">'ssh'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">8: </span><span style="color: #7590db;">school</span> = school.replace<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'fsh'</span>, <span style="color: #2d9574;">'ssh'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"school.split('f'):"</span>, school.split<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'n'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+school: Tnfsh
+len(school): 5
+school.lower(): tnfsh
+school.isupper(): False
+school.find('fsh'): 2
+school.replace('fsh', ssh'): Tnssh
+school.split('f'): ['T', 'ssh']
+
+</pre>
+
+</section>
+<section id="slide-7-2">
+<h3 id="7-2"><a id="org11412df"></a><span class="section-number-3">7.2</span> 列表list</h3>
+<div class="outline-text-3" id="text-7-2">
+</div>
+</section>
+<section id="slide-7-2-1">
+<h4 id="7-2-1"><a id="org23959a5"></a><span class="section-number-4">7.2.1</span> 資料格式</h4>
+<ul>
+<li>以[ ]將不同型態的資料含括起來，以 , 分隔<br /></li>
+<li>表列中的資料是有序排列，從0開始編號<br /></li>
+<li>格式：表列名稱 = [元素1, 元素2, … ]<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">[</span><span style="color: #2d9574;">'John'</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">95</span>, <span style="color: #a45bad;">118</span><span style="color: #bc6ec5;">]</span>, <span style="color: #2d9574;">'May'</span>, <span style="color: #a45bad;">100</span><span style="color: #4f97d7;">]</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[95, 118]
+
+</pre>
+
+</section>
+<section id="slide-7-2-2">
+<h4 id="7-2-2"><a id="org49b0603"></a><span class="section-number-4">7.2.2</span> 表列函式與方法</h4>
+<ul>
+<li>len(&lt;list&gt;): 計算表列元素個數<br /></li>
+<li>list(&lt;str&gt;): 將&lt;str&gt;轉成表列<br /></li>
+<li>&lt;list&gt;.clear():	清除表列中所有元素<br /></li>
+<li>&lt;list&gt;.append(&lt;obj&gt;): 將&lt;obj&gt;加到&lt;list&gt;尾端<br /></li>
+<li>&lt;list&gt;.extend(&lt;list1&gt;): 將&lt;list1&gt;合併至&lt;list&gt;尾端<br /></li>
+<li>&lt;list&gt;.remove(&lt;obj&gt;): 移除&lt;list&gt;中&lt;obj&gt;元素<br /></li>
+<li>&lt;list&gt;.insert(&lt;i&gt;,&lt;obj&gt;): 將&lt;obj&gt;加到&lt;list&gt;的索引值&lt;i&gt;位置<br /></li>
+<li>&lt;list&gt;.pop([index]): 從&lt;list&gt;取出指定元素 若[index]未指定，則取出尾端元素<br /></li>
+<li>&lt;list&gt;.reverse():	反轉表列元素<br /></li>
+<li>sum(&lt;list&gt;): 將表列中所有元素加總(註：僅限表列元素皆為數字)<br /></li>
+<li>&lt;list&gt;.sort(): 將表列中所有元素排序<br /></li>
+<li>'[sep]'.join( &lt;list&gt;): 用[sep]來連結表列元素，若未指定[sep]，則無間隔(僅限表列元素皆為字串)<br /></li>
+
+</ul>
+</section>
+<section id="slide-7-2-3">
+<h4 id="7-2-3"><a id="org1bdcf12"></a><span class="section-number-4">7.2.3</span> list範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">[</span><span style="color: #2d9574;">'John'</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">95</span>, <span style="color: #a45bad;">118</span><span style="color: #bc6ec5;">]</span>, <span style="color: #2d9574;">'May'</span>, <span style="color: #a45bad;">100</span><span style="color: #4f97d7;">]</span>
+<span class="linenr"> 2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">len</span><span style="color: #bc6ec5;">(</span>data<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">len</span><span style="color: #bc6ec5;">(</span>data<span style="color: #2d9574;">[</span><span style="color: #a45bad;">1</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">list</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'TNFSH'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span>data.clear<span style="color: #4f97d7;">()</span>  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#28165;&#31354;list</span>
+<span class="linenr"> 6: </span>data.append<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">35</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 8: </span><span style="color: #7590db;">data1</span> = <span style="color: #4f97d7;">[</span><span style="color: #a45bad;">89</span>, <span style="color: #2d9574;">'James'</span>, <span style="color: #a45bad;">100</span><span style="color: #4f97d7;">]</span>
+<span class="linenr"> 9: </span>data.extend<span style="color: #4f97d7;">(</span>data1<span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span>data.remove<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'James'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">12: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+<span class="linenr">13: </span>data.insert<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">200</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">14: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+<span class="linenr">15: </span>data.pop<span style="color: #4f97d7;">()</span>
+<span class="linenr">16: </span>data.reverse<span style="color: #4f97d7;">()</span>
+<span class="linenr">17: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+<span class="linenr">18: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">sum</span><span style="color: #bc6ec5;">(</span>data<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">19: </span>data.sort<span style="color: #4f97d7;">()</span>
+<span class="linenr">20: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+<span class="linenr">21: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">string</span>
+<span class="linenr">22: </span><span style="color: #7590db;">data_s</span> = <span style="color: #4f97d7;">[</span><span style="color: #2d9574;">"a"</span>, <span style="color: #2d9574;">"b"</span>, <span style="color: #2d9574;">"c"</span><span style="color: #4f97d7;">]</span>
+<span class="linenr">23: </span><span style="color: #7590db;">sep</span> = <span style="color: #2d9574;">"-"</span>
+<span class="linenr">24: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>sep.join<span style="color: #bc6ec5;">(</span>data_s<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+4
+2
+['T', 'N', 'F', 'S', 'H']
+[]
+[35]
+[35, 89, 'James', 100]
+[35, 89, 100]
+[35, 200, 89, 100]
+[89, 200, 35]
+324
+[35, 89, 200]
+a-b-c
+</pre>
+
+</section>
+<section id="slide-7-2-4">
+<h4 id="7-2-4"><a id="orgfc9a6af"></a><span class="section-number-4">7.2.4</span> list練習</h4>
+<ul>
+<li>連續輸入成績(輸入-1結束)，將成績由高至低排序輸出，並輸出總分、平均<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python" id="分數排序"><span class="linenr">1: </span><span style="color: #7590db;">score</span> = <span style="color: #4f97d7;">[]</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">while</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">True</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">3: </span>    <span style="color: #7590db;">sc</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">(</span>sc != -<span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">5: </span>        score.append<span style="color: #4f97d7;">(</span>sc<span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span>    <span style="color: #4f97d7; font-weight: bold;">else</span>: 
+<span class="linenr">7: </span>        <span style="color: #4f97d7; font-weight: bold;">break</span>
+<span class="linenr">8: </span>score.sort<span style="color: #4f97d7;">(</span>reverse=<span style="color: #a45bad;">True</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>score<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-python" id="計算機"><span class="linenr">1: </span><span style="color: #4f97d7;">sum</span> = <span style="color: #a45bad;">0</span>
+<span class="linenr">2: </span><span style="color: #7590db;">grades</span> = <span style="color: #4f97d7;">[]</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">5</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">4: </span>    <span style="color: #7590db;">x</span> = <span style="color: #4f97d7;">int</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">input</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"&#35531;&#36664;&#20837;&#31532;"</span> + <span style="color: #4f97d7;">str</span><span style="color: #2d9574;">(</span>i + <span style="color: #a45bad;">1</span><span style="color: #2d9574;">)</span> + <span style="color: #2d9574;">"&#20491;&#25104;&#32318;: "</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span>    grades.append<span style="color: #4f97d7;">(</span>x<span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span>    <span style="color: #4f97d7;">sum</span> += x
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">sum</span>/<span style="color: #a45bad;">5</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>grades<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+</section>
+<section id="slide-7-3">
+<h3 id="7-3"><a id="org893852c"></a><span class="section-number-3">7.3</span> 元組tuple</h3>
+<div class="outline-text-3" id="text-7-3">
+</div>
+</section>
+<section id="slide-7-3-1">
+<h4 id="7-3-1"><a id="orgf997ec6"></a><span class="section-number-4">7.3.1</span> 資料格式</h4>
+<ul>
+<li>資料格式：以( )將不同型態的資料含括起來，以 , 分隔<br /></li>
+<li>元組中的資料是有序排列，從0開始編號<br /></li>
+<li>格式：元組名稱 = (元素1, 元素2, … )<br /></li>
+<li>與表列list類似，但元組tuple內的元素不能修改<br /></li>
+
+</ul>
+</section>
+<section id="slide-7-3-2">
+<h4 id="7-3-2"><a id="org9b6ec0a"></a><span class="section-number-4">7.3.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">(</span> <span style="color: #2d9574;">'John'</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">95</span>, <span style="color: #a45bad;">118</span><span style="color: #bc6ec5;">]</span>, <span style="color: #2d9574;">'May'</span>, <span style="color: #a45bad;">100</span> <span style="color: #4f97d7;">)</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #7590db;">tup1</span> = <span style="color: #4f97d7;">(</span><span style="color: #a45bad;">53</span>, <span style="color: #4f97d7;">)</span>    <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#21482;&#26377;&#19968;&#20491;&#20803;&#32032;&#26178;&#65292;&#20854;&#24460;&#35201;&#21152;&#36887;&#34399;</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>tup1<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+[95, 118]
+(53,)
+
+</pre>
+
+</section>
+<section id="slide-7-3-3">
+<h4 id="7-3-3"><a id="orgb9fc1d9"></a><span class="section-number-4">7.3.3</span> 練習: 史上最強掌法</h4>
+<p>
+自從鐵掌無敵馬掌門出任武林盟主後，綠林豪傑一片哀鴻，民不聊生，痛苦指數破表，眾家名門弟子甚至遠避異鄉以求溫飽。近來馬掌門更獨創「油電雙掌」，以圖鞏固武林領導地位，此套掌法高深莫測，武林中人聞風喪膽，少林、武當各派高手不得不拋開門戶之見，齊聚「竹園崗」合作商議對策。目前僅由歴來幾次掌下逃生者的對戰經驗分析出以下數據<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">與馬掌門對戰時間(秒)</th>
+<th scope="col" class="org-right">對戰者每秒接受之傷害值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">120以下</td>
+<td class="org-right">2.10</td>
+</tr>
+
+<tr>
+<td class="org-left">121~330</td>
+<td class="org-right">3.02</td>
+</tr>
+
+<tr>
+<td class="org-left">331~500</td>
+<td class="org-right">4.39</td>
+</tr>
+
+<tr>
+<td class="org-left">501~700</td>
+<td class="org-right">4.97</td>
+</tr>
+
+<tr>
+<td class="org-left">701以上</td>
+<td class="org-right">5.63</td>
+</tr>
+</tbody>
+</table>
+<p>
+請你幫這些可憐的高手寫一個程式分析對戰時間與受傷指數間的關係。<br />
+輸入：0 ~ 10000秒之間任意值<br />
+輸出：受傷指數<br />
+</p>
+</section>
+<section id="slide-7-3-4">
+<h4 id="7-3-4"><a id="org52c4fed"></a><span class="section-number-4">7.3.4</span> 解1</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">sec = input()</span>
+<span class="linenr"> 2: </span><span style="color: #7590db;">sec</span> = <span style="color: #a45bad;">800</span>
+<span class="linenr"> 3: </span><span style="color: #4f97d7; font-weight: bold;">if</span> sec &lt;= <span style="color: #a45bad;">120</span>:
+<span class="linenr"> 4: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>sec*<span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> sec &gt; <span style="color: #a45bad;">120</span> <span style="color: #4f97d7; font-weight: bold;">and</span> sec &lt;= <span style="color: #a45bad;">330</span>:
+<span class="linenr"> 6: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">120</span>*<span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">10</span>+<span style="color: #bc6ec5;">(</span>sec-<span style="color: #a45bad;">120</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">02</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> sec &gt; <span style="color: #a45bad;">330</span> <span style="color: #4f97d7; font-weight: bold;">and</span> sec &lt;= <span style="color: #a45bad;">500</span>:
+<span class="linenr"> 8: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">120</span>*<span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">10</span>+<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">330</span>-<span style="color: #a45bad;">120</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">02</span>+<span style="color: #bc6ec5;">(</span>sec-<span style="color: #a45bad;">300</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">4</span>.<span style="color: #a45bad;">39</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 9: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> sec &gt; <span style="color: #a45bad;">500</span> <span style="color: #4f97d7; font-weight: bold;">and</span> sec &lt;= <span style="color: #a45bad;">700</span>:
+<span class="linenr">10: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">120</span>*<span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">10</span>+<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">330</span>-<span style="color: #a45bad;">120</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">02</span>+<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">500</span>-<span style="color: #a45bad;">330</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">4</span>.<span style="color: #a45bad;">39</span>+<span style="color: #bc6ec5;">(</span>sec-<span style="color: #a45bad;">500</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">4</span>.<span style="color: #a45bad;">97</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">elif</span> sec &gt; <span style="color: #a45bad;">700</span>:
+<span class="linenr">12: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">120</span>*<span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">10</span>+<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">330</span>-<span style="color: #a45bad;">120</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">02</span>+<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">500</span>-<span style="color: #a45bad;">330</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">4</span>.<span style="color: #a45bad;">39</span>+<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">700</span>-<span style="color: #a45bad;">500</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">4</span>.<span style="color: #a45bad;">97</span>+<span style="color: #bc6ec5;">(</span>sec-<span style="color: #a45bad;">700</span><span style="color: #bc6ec5;">)</span>*<span style="color: #a45bad;">5</span>.<span style="color: #a45bad;">63</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+3189.5
+
+</pre>
+
+</section>
+<section id="slide-7-3-5">
+<h4 id="7-3-5"><a id="org1318470"></a><span class="section-number-4">7.3.5</span> 解2</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">sec = input()</span>
+<span class="linenr"> 2: </span><span style="color: #7590db;">sec</span> = <span style="color: #a45bad;">800</span>
+<span class="linenr"> 3: </span><span style="color: #7590db;">hurt</span> = <span style="color: #a45bad;">0</span>
+<span class="linenr"> 4: </span><span style="color: #7590db;">gap</span> = <span style="color: #4f97d7;">(</span><span style="color: #a45bad;">700</span>, <span style="color: #a45bad;">500</span>, <span style="color: #a45bad;">330</span>, <span style="color: #a45bad;">120</span>, <span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span><span style="color: #7590db;">rate</span> = <span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>.<span style="color: #a45bad;">63</span>, <span style="color: #a45bad;">4</span>.<span style="color: #a45bad;">97</span>, <span style="color: #a45bad;">4</span>.<span style="color: #a45bad;">39</span>, <span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">02</span>, <span style="color: #a45bad;">2</span>.<span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 6: </span><span style="color: #4f97d7; font-weight: bold;">for</span> i <span style="color: #4f97d7; font-weight: bold;">in</span> <span style="color: #4f97d7;">range</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr"> 7: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> sec &gt; gap<span style="color: #4f97d7;">[</span>i<span style="color: #4f97d7;">]</span>:
+<span class="linenr"> 8: </span>        <span style="color: #7590db;">hurt</span> += <span style="color: #4f97d7;">(</span>sec-gap<span style="color: #bc6ec5;">[</span>i<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>*rate<span style="color: #4f97d7;">[</span>i<span style="color: #4f97d7;">]</span>
+<span class="linenr"> 9: </span>        <span style="color: #7590db;">sec</span> = gap<span style="color: #4f97d7;">[</span>i<span style="color: #4f97d7;">]</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>hurt<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+3189.5
+
+</pre>
+
+</section>
+<section id="slide-7-4">
+<h3 id="7-4"><a id="org9e0f93b"></a><span class="section-number-3">7.4</span> 字典dict</h3>
+<div class="outline-text-3" id="text-7-4">
+</div>
+</section>
+<section id="slide-7-4-1">
+<h4 id="7-4-1"><a id="orgda44199"></a><span class="section-number-4">7.4.1</span> 資料格式</h4>
+<ul>
+<li>以{ }將各組鍵:值對應資料含括起來，以 , 分隔<br /></li>
+<li>字典中的資料是無序的<br /></li>
+<li>格式：字典名稱 = {k1:v1, k2:v2,  … }<br /></li>
+<li>範例：<br /></li>
+<li>註：若字典中有相同的key，則會取出最後的value<br /></li>
+
+</ul>
+</section>
+<section id="slide-7-4-2">
+<h4 id="7-4-2"><a id="org6d0ac87"></a><span class="section-number-4">7.4.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">{</span> <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">95</span>,  <span style="color: #2d9574;">'May'</span>: <span style="color: #a45bad;">100</span> <span style="color: #4f97d7;">}</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">'May'</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+100
+
+</pre>
+</section>
+<section id="slide-7-4-3">
+<h4 id="7-4-3"><a id="orge2ec437"></a><span class="section-number-4">7.4.3</span> dic操作</h4>
+<ul>
+<li>新增、修改、刪除<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">{</span> <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">95</span>,  <span style="color: #2d9574;">'May'</span>: <span style="color: #a45bad;">100</span> <span style="color: #4f97d7;">}</span>
+<span class="linenr"> 2: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26032;&#22686;</span>
+<span class="linenr"> 3: </span><span style="color: #7590db;">data</span><span style="color: #4f97d7;">[</span><span style="color: #2d9574;">'Harrison'</span><span style="color: #4f97d7;">]</span> = <span style="color: #a45bad;">88</span>
+<span class="linenr"> 4: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913;</span>
+<span class="linenr"> 5: </span><span style="color: #7590db;">data</span><span style="color: #4f97d7;">[</span><span style="color: #2d9574;">'John'</span><span style="color: #4f97d7;">]</span> = <span style="color: #a45bad;">99</span>
+<span class="linenr"> 6: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21034;&#38500;&#37749;&#20540;&#23565;</span>
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">del</span> data<span style="color: #4f97d7;">[</span><span style="color: #2d9574;">'John'</span><span style="color: #4f97d7;">]</span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 9: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21034;&#38500;dic</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">del</span> data
+<span class="linenr">11: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">print(data) --&gt; NameError: name 'data' is not defined</span>
+</pre>
+</div>
+
+<pre class="example">
+{'May': 100, 'Harrison': 88}
+
+</pre>
+</section>
+<section id="slide-7-4-4">
+<h4 id="7-4-4"><a id="org08b7568"></a><span class="section-number-4">7.4.4</span> dic method</h4>
+<div class="outline-text-4" id="text-7-4-4">
+</div>
+</section>
+<section id="slide-7-4-4-1">
+<h5 id="7-4-4-1"><a id="org2458f57"></a><span class="section-number-5">7.4.4.1</span> 增/剛</h5>
+<ul>
+<li>&lt;dict&gt;.clear()<br /></li>
+<li>&lt;dict&gt;.popitem()<br /></li>
+<li>&lt;dict&gt;.copy()<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">{</span> <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">95</span>,  <span style="color: #2d9574;">'May'</span>: <span style="color: #a45bad;">100</span>, <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">105</span> <span style="color: #4f97d7;">}</span>
+<span class="linenr">2: </span><span style="color: #7590db;">data1</span> = data.copy<span style="color: #4f97d7;">()</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"data1 = data.copy():"</span>,data1.copy<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"data:"</span>,data<span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"data.clear():"</span>,data.clear<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #7590db;">pop1</span> = data1.popitem<span style="color: #4f97d7;">()</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>pop1<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+data1 = data.copy(): {'John': 105, 'May': 100}
+data: {'John': 105, 'May': 100}
+data.clear(): None
+('May', 100)
+
+</pre>
+
+</section>
+<section id="slide-7-4-4-2">
+<h5 id="7-4-4-2"><a id="org9b9dc28"></a><span class="section-number-5">7.4.4.2</span> 取值</h5>
+<ul>
+<li>&lt;dict&gt;.get(key, default=None)<br /></li>
+<li>&lt;dict&gt;.items()<br /></li>
+<li>&lt;dict&gt;.keys()<br /></li>
+<li>&lt;dict&gt;.values()<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">{</span> <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">95</span>,  <span style="color: #2d9574;">'May'</span>: <span style="color: #a45bad;">100</span>, <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">105</span> <span style="color: #4f97d7;">}</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"data.get('John'):"</span>,data.get<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'John'</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"data.items():"</span>,data.items<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"data.keys():"</span>,data.keys<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"data.values()"</span>,data.values<span style="color: #bc6ec5;">()</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+data.get('John'): 105
+data.items(): dict_items([('John', 105), ('May', 100)])
+data.keys(): dict_keys(['John', 'May'])
+data.values() dict_values([105, 100])
+
+</pre>
+
+</section>
+<section id="slide-7-4-4-3">
+<h5 id="7-4-4-3"><a id="orgef22fd4"></a><span class="section-number-5">7.4.4.3</span> fromkes</h5>
+<ul>
+<li>&lt;dict&gt;.fromkes(&lt;seq&gt;[, val]): Python 字典 fromkeys() 函數用於創建一個新字典，以序列 seq 中元素做字典的鍵，value為字典所有鍵對應的初始值。<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">data</span> = <span style="color: #4f97d7;">{</span> <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">95</span>,  <span style="color: #2d9574;">'May'</span>: <span style="color: #a45bad;">100</span>, <span style="color: #2d9574;">'John'</span>: <span style="color: #a45bad;">105</span> <span style="color: #4f97d7;">}</span>
+<span class="linenr">2: </span><span style="color: #7590db;">name</span> = <span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'Vanissa'</span>, <span style="color: #2d9574;">'May'</span>, <span style="color: #2d9574;">'John'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #7590db;">data2</span> = data.fromkeys<span style="color: #4f97d7;">(</span>name<span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data2<span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #7590db;">data2</span> = data.fromkeys<span style="color: #4f97d7;">(</span>name, <span style="color: #a45bad;">100</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>data2<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+{'Vanissa': None, 'May': None, 'John': None}
+{'Vanissa': 100, 'May': 100, 'John': 100}
+
+</pre>
+
+</section>
+<section id="slide-7-5">
+<h3 id="7-5"><a id="org1137b29"></a><span class="section-number-3">7.5</span> List v.s. Tuple</h3>
+<p>
+二者的差異與適用時機<sup><a id="fnr.7" class="footref" href="#fn.7">7</a></sup>：<br />
+</p>
+</section>
+<section id="slide-7-5-1">
+<h4 id="7-5-1"><a id="org95329b7"></a><span class="section-number-4">7.5.1</span> 能否改變內容</h4>
+<ul>
+<li>Using a tuple instead of a list can give the programmer and the interpreter a hint that the data should not be changed.<br /></li>
+
+</ul>
+</section>
+<section id="slide-7-5-2">
+<h4 id="7-5-2"><a id="org7091c26"></a><span class="section-number-4">7.5.2</span> 可讀性</h4>
+<ul>
+<li><p>
+Reading data is simpler when tuples are stored inside a list. For example,<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7;">[</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">2</span>,<span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">)</span>, <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">5</span>,<span style="color: #a45bad;">7</span><span style="color: #bc6ec5;">)</span>, <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">8</span><span style="color: #bc6ec5;">)</span>, <span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">5</span>,<span style="color: #a45bad;">9</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">]</span>
+</pre>
+</div>
+<p>
+is easier to read than<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7;">[</span><span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">2</span>,<span style="color: #a45bad;">4</span><span style="color: #bc6ec5;">]</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">5</span>,<span style="color: #a45bad;">7</span><span style="color: #bc6ec5;">]</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">8</span><span style="color: #bc6ec5;">]</span>, <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">5</span>,<span style="color: #a45bad;">9</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span>
+</pre>
+</div></li>
+
+</ul>
+</section>
+<section id="slide-7-5-3">
+<h4 id="7-5-3"><a id="org55b8164"></a><span class="section-number-4">7.5.3</span> 與dictionary的相似性</h4>
+<ul>
+<li><p>
+Tuples are commonly used as the equivalent of a dictionary without keys to store data. For Example,<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7;">[</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'Swordfish'</span>, <span style="color: #2d9574;">'Dominic Sena'</span>, <span style="color: #a45bad;">2001</span><span style="color: #bc6ec5;">)</span>, <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'Snowden'</span>, <span style="color: #2d9574;">' Oliver Stone'</span>, <span style="color: #a45bad;">2016</span><span style="color: #bc6ec5;">)</span>, <span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'Taxi Driver'</span>, <span style="color: #2d9574;">'Martin Scorsese'</span>, <span style="color: #a45bad;">1976</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">]</span>
+</pre>
+</div></li>
+<li>Above example contains tuples inside list which has a list of movies.<br /></li>
+<li><p>
+Tuple can also be used as key in dictionary due to their hashable and immutable nature whereas Lists are not used as key in a dictionary because list can't handle _<sub>hash</sub>_<sub>()</sub> and have mutable nature.<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">key_val</span>= <span style="color: #4f97d7;">{</span><span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'alpha'</span>,<span style="color: #2d9574;">'bravo'</span><span style="color: #bc6ec5;">)</span>:<span style="color: #a45bad;">123</span><span style="color: #4f97d7;">}</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Valid</span>
+<span class="linenr">2: </span><span style="color: #7590db;">key_val</span> = <span style="color: #4f97d7;">{</span><span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">'alpha'</span>,<span style="color: #2d9574;">'bravo'</span><span style="color: #bc6ec5;">]</span>:<span style="color: #a45bad;">123</span><span style="color: #4f97d7;">}</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Invalid</span>
+</pre>
+</div></li>
+
+</ul>
+
+</section>
+<section id="slide-7-6">
+<h3 id="7-6"><a id="org15d7070"></a><span class="section-number-3">7.6</span> 集合set</h3>
+<div class="outline-text-3" id="text-7-6">
+</div>
+</section>
+<section id="slide-7-6-1">
+<h4 id="7-6-1"><a id="org5ae1258"></a><span class="section-number-4">7.6.1</span> 資料格式</h4>
+<ul>
+<li>資料格式：以{}將各組資料含括起來，以','分隔,或以set()建立<br /></li>
+<li>集合中的資料是無序的，會自動刪除重複元素<br /></li>
+<li><p>
+格式<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span>      <span style="color: #7590db;">&#38598;&#21512;&#21517;&#31281;</span> = <span style="color: #4f97d7;">{</span>&#20803;&#32032;1, &#20803;&#32032;2, &#8230; <span style="color: #4f97d7;">}</span>
+</pre>
+</div></li>
+<li>註：set(&lt;seq&gt;)函式的參數&lt;seq&gt;可為字串、表列、元組、字典<br /></li>
+
+</ul>
+</section>
+<section id="slide-7-6-2">
+<h4 id="7-6-2"><a id="org6d6962d"></a><span class="section-number-4">7.6.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">S1</span> = <span style="color: #4f97d7;">{</span> <span style="color: #2d9574;">'John'</span>, <span style="color: #a45bad;">95</span>, <span style="color: #2d9574;">'May'</span>, <span style="color: #a45bad;">100</span>, <span style="color: #2d9574;">'John'</span> <span style="color: #4f97d7;">}</span>&#8232;        
+<span class="linenr">2: </span><span style="color: #7590db;">S2</span> = <span style="color: #4f97d7;">set</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'apple'</span><span style="color: #4f97d7;">)</span>  &#8658; <span style="color: #4f97d7;">{</span><span style="color: #2d9574;">'l'</span>, <span style="color: #2d9574;">'a'</span>, <span style="color: #2d9574;">'e'</span>, <span style="color: #2d9574;">'p'</span><span style="color: #4f97d7;">}</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#38598;&#21512;&#30340;&#36039;&#26009;&#26159;&#28961;&#24207;&#30340;</span>
+</pre>
+</div>
+</section>
+<section id="slide-7-6-3">
+<h4 id="7-6-3"><a id="org7aa9298"></a><span class="section-number-4">7.6.3</span> 元素新增刪除</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span>&lt;<span style="color: #4f97d7;">set</span>&gt;.add<span style="color: #4f97d7;">(</span>&lt;item&gt;<span style="color: #4f97d7;">)</span>
+<span class="linenr">2: </span>&lt;<span style="color: #4f97d7;">set</span>&gt;.remove<span style="color: #4f97d7;">(</span>&lt;item&gt;<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<ul>
+<li>remove()若無此item會發生錯誤<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">s</span> = <span style="color: #4f97d7;">set</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'apple'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">2: </span>s.add<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'x'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>s<span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span>s.remove<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'p'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>s<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+{'e', 'p', 'x', 'l', 'a'}
+{'e', 'x', 'l', 'a'}
+
+</pre>
+</section>
+<section id="slide-7-6-4">
+<h4 id="7-6-4"><a id="org4aa95c9"></a><span class="section-number-4">7.6.4</span> 集合運算</h4>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">運算</th>
+<th scope="col" class="org-left">符號</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">聯集</td>
+<td class="org-left">&vert;</td>
+</tr>
+
+<tr>
+<td class="org-left">交集</td>
+<td class="org-left">&amp;</td>
+</tr>
+
+<tr>
+<td class="org-left">差集</td>
+<td class="org-left">-</td>
+</tr>
+
+<tr>
+<td class="org-left">互斥</td>
+<td class="org-left">^</td>
+</tr>
+
+<tr>
+<td class="org-left">屬於</td>
+<td class="org-left">in</td>
+</tr>
+</tbody>
+</table>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #7590db;">c</span> = <span style="color: #4f97d7;">{</span><span style="color: #2d9574;">'1234'</span>, <span style="color: #2d9574;">'TNFSH'</span>, <span style="color: #2d9574;">'qq'</span>, <span style="color: #2d9574;">'434'</span><span style="color: #4f97d7;">}</span>
+<span class="linenr"> 2: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>c<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 3: </span><span style="color: #7590db;">a</span> = <span style="color: #4f97d7;">set</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'1234'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 4: </span><span style="color: #7590db;">b</span> = <span style="color: #4f97d7;">set</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'357'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"a | b:"</span>, a | b<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 6: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"a &amp; b:"</span>, a &amp; b<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"a - b:"</span>, a - b<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 8: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"b | a:"</span>, b | a<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"a ^ b:"</span>, a ^ b<span style="color: #4f97d7;">)</span>
+<span class="linenr">10: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"'5' in a:"</span>, <span style="color: #2d9574;">'5'</span> <span style="color: #4f97d7; font-weight: bold;">in</span> a<span style="color: #4f97d7;">)</span>
+<span class="linenr">11: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"'5' in b:"</span>, <span style="color: #2d9574;">'5'</span> <span style="color: #4f97d7; font-weight: bold;">in</span> b<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+{'1234', 'TNFSH', '434', 'qq'}
+a | b: {'4', '2', '1', '5', '7', '3'}
+a &amp; b: {'3'}
+a - b: {'4', '2', '1'}
+b | a: {'4', '5', '2', '1', '7', '3'}
+a ^ b: {'4', '2', '7', '5', '1'}
+'5' in a: False
+'5' in b: True
+
+</pre>
+</section>
+<section id="slide-7-6-5">
+<h4 id="7-6-5"><a id="org718c724"></a><span class="section-number-4">7.6.5</span> 詳細語法</h4>
+<ul>
+<li><a href="https://www.runoob.com/python3/python3-set.html">Python3 集合 </a><br /></li>
+
+</ul>
+</section>
+<section id="slide-7-6-6">
+<h4 id="7-6-6"><a id="orgc8480fa"></a><span class="section-number-4">7.6.6</span> 練習：<a href="http://skyoj.tnfsh.tn.edu.tw/sky/index.php">skyoj ⇒ Contest ⇒ Python練習題(資料型別)</a></h4>
+
+</section>
+<section id="slide-7-7">
+<h3 id="7-7"><a id="org19e2c62"></a><span class="section-number-3">7.7</span> 資料型別整理</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">資料型別</th>
+<th scope="col" class="org-left">符號</th>
+<th scope="col" class="org-left">資料可改?</th>
+<th scope="col" class="org-left">資料有序?</th>
+<th scope="col" class="org-left">資料類型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">字串string</td>
+<td class="org-left">' ' 或 " "</td>
+<td class="org-left">✖️</td>
+<td class="org-left">✔️</td>
+<td class="org-left">相同(字元)</td>
+</tr>
+
+<tr>
+<td class="org-left">表列list</td>
+<td class="org-left">[ ]</td>
+<td class="org-left">✔️</td>
+<td class="org-left">✔️</td>
+<td class="org-left">可不同</td>
+</tr>
+
+<tr>
+<td class="org-left">元組tuple</td>
+<td class="org-left">( )</td>
+<td class="org-left">✖</td>
+<td class="org-left">️✔</td>
+<td class="org-left">️可不同</td>
+</tr>
+
+<tr>
+<td class="org-left">字典dict</td>
+<td class="org-left">{ }</td>
+<td class="org-left">✔️</td>
+<td class="org-left">✖️</td>
+<td class="org-left">相同(鍵:值)</td>
+</tr>
+
+<tr>
+<td class="org-left">集合set</td>
+<td class="org-left">{ }</td>
+<td class="org-left">✔️</td>
+<td class="org-left">✖️</td>
+<td class="org-left">可不同</td>
+</tr>
+</tbody>
+</table>
+
+</section>
+</section>
+<section>
+<section id="slide-8">
+<h2 id="8"><a id="org4e4d178"></a><span class="section-number-2">8</span> FUNCTION</h2>
+</section>
+<section id="table-of-contents-section">
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#/slide-8-1">8.1. 函式(function)基本操作</a></li>
+<li><a href="#/slide-8-2">8.2. 引數(argument)的傳遞</a></li>
+<li><a href="#/slide-8-3">8.3. 模組(module)</a></li>
+<li><a href="#/slide-8-4">8.4. 遞迴(recursive)</a></li>
+</ul>
+</div>
+</section>
+<section id="slide-8-1">
+<h3 id="8-1"><a id="org2405c64"></a><span class="section-number-3">8.1</span> 函式(function)基本操作</h3>
+<div class="outline-text-3" id="text-8-1">
+</div>
+</section>
+<section id="slide-8-1-1">
+<h4 id="8-1-1"><a id="org7fd1e67"></a><span class="section-number-4">8.1.1</span> 函式(function)的重要性</h4>
+<ul>
+<li>function為一段程式的集合，可視為一個獨立的區段。<br /></li>
+<li>function可重覆使用，因此為結構化程式語言的重要元素。 可將龐大複雜的程式分解為小問題，由多人分別以function解決，縮短開發時間。<br /></li>
+<li>function可區分為以下三類：<br />
+<ul>
+<li>Python內建function，如: print()、len()、int()、str()&#x2026;。<br /></li>
+<li>第三方公司所開發的模組module(多個function組合)。<br /></li>
+<li>自定義function。<br /></li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-8-1-2">
+<h4 id="8-1-2"><a id="org6bd5cb3"></a><span class="section-number-4">8.1.2</span> 自定義函式</h4>
+<ul>
+<li><p>
+宣告語法<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">&#20989;&#24335;&#21517;&#31281;</span> <span style="color: #4f97d7;">(</span> <span style="color: #bc6ec5;">[</span>&#21443;&#25976;1, &#21443;&#25976;2, ...<span style="color: #bc6ec5;">]</span> <span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    &#31243;&#24335;&#21312;&#22602;&#8232;
+<span class="linenr">3: </span>    <span style="color: #4f97d7;">[</span> <span style="color: #4f97d7; font-weight: bold;">return</span> &#20540; <span style="color: #4f97d7;">]</span>
+</pre>
+</div></li>
+<li>說明 :<br />
+<ul>
+<li>參數可省略，亦即呼叫function不需傳入任何資料(引數)。<br /></li>
+<li>若無回傳值，則無需return。<br /></li>
+<li>若多個回傳值可用逗號隔開。<br /></li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-8-1-3">
+<h4 id="8-1-3"><a id="orgb68f027"></a><span class="section-number-4">8.1.3</span> 自定義函式的呼叫</h4>
+<ul>
+<li><p>
+呼叫函式語法：<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7;">[</span> &#35722;&#25976; <span style="color: #4f97d7;">]</span> = &#20989;&#24335;&#21517;&#31281;<span style="color: #4f97d7;">(</span> <span style="color: #bc6ec5;">[</span>&#24341;&#25976;1, &#24341;&#25976;2, ... <span style="color: #bc6ec5;">]</span> <span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">circle</span><span style="color: #4f97d7;">(</span>r<span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">return</span> r*r*<span style="color: #a45bad;">3</span>.<span style="color: #a45bad;">14</span>;
+<span class="linenr">3: </span>
+<span class="linenr">4: </span><span style="color: #7590db;">r</span> = <span style="color: #a45bad;">10</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'&#21322;&#24465;%d&#30340;&#22291;&#38754;&#31309;&#65306;%d'</span> %<span style="color: #bc6ec5;">(</span>r, circle<span style="color: #2d9574;">(</span>r<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+半徑10的圓面積：314
+
+</pre></li>
+
+</ul>
+
+</section>
+<section id="slide-8-1-4">
+<h4 id="8-1-4"><a id="org5729a1f"></a><span class="section-number-4">8.1.4</span> 多參數函式</h4>
+<ul>
+<li>呼叫函式時引數(arugment)個數<br /></li>
+<li>自定義函式的參數(parameter)個數<br /></li>
+<li><p>
+設定參數初始值。 若呼叫時無引數傳入， 則使用其初始值。<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">printInfo</span><span style="color: #4f97d7;">(</span>name, school=<span style="color: #2d9574;">'TNFSH'</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'&#23416;&#29983;:'</span>,name,<span style="color: #2d9574;">'&#23601;&#35712;:'</span>,school<span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span>    <span style="color: #4f97d7; font-weight: bold;">return</span>
+<span class="linenr">4: </span>
+<span class="linenr">5: </span>printInfo<span style="color: #4f97d7;">(</span>name=<span style="color: #2d9574;">'James'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span>printInfo<span style="color: #4f97d7;">(</span>name=<span style="color: #2d9574;">'Harrison'</span>,school=<span style="color: #2d9574;">'TNSSH'</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+學生: James 就讀: TNFSH
+學生: Harrison 就讀: TNSSH
+
+</pre></li>
+
+</ul>
+
+</section>
+<section id="slide-8-1-5">
+<h4 id="8-1-5"><a id="org5857442"></a><span class="section-number-4">8.1.5</span> 多回傳值函式</h4>
+<ul>
+<li><p>
+呼叫函式多個回傳值語法<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7;">[</span> &#35722;&#25976;1, &#35722;&#25976;2, ... <span style="color: #4f97d7;">]</span> = &#20989;&#24335;&#21517;&#31281;<span style="color: #4f97d7;">(</span> <span style="color: #bc6ec5;">[</span>&#24341;&#25976;1, &#24341;&#25976;2, ... <span style="color: #bc6ec5;">]</span> <span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">scoreProcessor</span><span style="color: #4f97d7;">(</span>score<span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7;">sum</span> = <span style="color: #a45bad;">0</span>
+<span class="linenr">3: </span>    <span style="color: #4f97d7; font-weight: bold;">for</span> x <span style="color: #4f97d7; font-weight: bold;">in</span> score:
+<span class="linenr">4: </span>        <span style="color: #4f97d7;">sum</span> += x
+<span class="linenr">5: </span>    <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7;">sum</span>, <span style="color: #4f97d7;">sum</span>/<span style="color: #4f97d7;">len</span><span style="color: #4f97d7;">(</span>score<span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span>
+<span class="linenr">7: </span><span style="color: #7590db;">scores</span> = <span style="color: #4f97d7;">(</span><span style="color: #a45bad;">21</span>, <span style="color: #a45bad;">33</span>, <span style="color: #a45bad;">83</span>, <span style="color: #a45bad;">100</span>, <span style="color: #a45bad;">75</span>, <span style="color: #a45bad;">60</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">8: </span><span style="color: #4f97d7;">sum</span>, <span style="color: #7590db;">avg</span> = scoreProcessor<span style="color: #4f97d7;">(</span>scores<span style="color: #4f97d7;">)</span>
+<span class="linenr">9: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'sum='</span>,<span style="color: #4f97d7;">sum</span>,<span style="color: #2d9574;">',average='</span>,avg<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+sum= 372 ,average= 62.0
+
+</pre></li>
+
+</ul>
+
+</section>
+<section id="slide-8-2">
+<h3 id="8-2"><a id="org1ddbc1c"></a><span class="section-number-3">8.2</span> 引數(argument)的傳遞</h3>
+<ul>
+<li>每一個函式都是獨立的，所以函式只知道自己程式區域內的變數，不認識函式外的變數。<br /></li>
+<li>變數因其所宣告位置，可區分為全域變數(Global variable)、區域變數(Local variable)。<br />
+<ul>
+<li>全域變數：宣告在任何函式外，所有函式皆可存取。<br /></li>
+<li>區域變數：宣告在函式內，僅函式內可存取。c<br /></li>
+
+</ul></li>
+<li><p>
+全域變數與區域變數範例<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">printGlobal</span><span style="color: #4f97d7;">(</span>x, y<span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a+b<span style="color: #4f97d7;">)</span>
+<span class="linenr">3: </span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">printLocal</span><span style="color: #4f97d7;">(</span>a, b<span style="color: #4f97d7;">)</span>:
+<span class="linenr">5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>a+b<span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span>
+<span class="linenr">7: </span><span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span> = <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">10</span>
+<span class="linenr">8: </span>printGlobal<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">10</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">9: </span>printLocal<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">10</span>,<span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+15
+20
+
+</pre></li>
+
+</ul>
+
+</section>
+<section id="slide-8-2-1">
+<h4 id="8-2-1"><a id="org710d8d3"></a><span class="section-number-4">8.2.1</span> 傳值與傳址</h4>
+<ul>
+<li>引數(argument)的傳遞分為兩種方式，由Python自動判別：<br />
+<ul>
+<li>傳值呼叫(Call-by-Value)<br /></li>
+<li>傳址呼叫(Call-by-Reference)<br /></li>
+
+</ul></li>
+
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">引數傳遞</th>
+<th scope="col" class="org-left">傳遞內容</th>
+<th scope="col" class="org-left">參數改變</th>
+<th scope="col" class="org-left">資料型別</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">傳值呼叫 call-by-value</td>
+<td class="org-left">引數值</td>
+<td class="org-left">否</td>
+<td class="org-left">bool, int, float, str, tuple, chr</td>
+</tr>
+
+<tr>
+<td class="org-left">傳址呼叫call-by-reference</td>
+<td class="org-left">引數記憶體位址</td>
+<td class="org-left">是</td>
+<td class="org-left">list, dict, set</td>
+</tr>
+</tbody>
+</table>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">str&#20659;&#20540;&#12289;list&#20659;&#22336;</span>
+<span class="linenr"> 2: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">ccc</span><span style="color: #4f97d7;">(</span>name, score<span style="color: #4f97d7;">)</span>:
+<span class="linenr"> 3: </span>    <span style="color: #7590db;">name</span> = <span style="color: #2d9574;">'Amy'</span>
+<span class="linenr"> 4: </span>    score.append<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">99</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 5: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'--&#20989;&#24335;&#20839;&#36664;&#20986;---'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr"> 6: </span>    <span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'name:'</span>, name,<span style="color: #2d9574;">'\tscore:'</span>,score<span style="color: #4f97d7;">)</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #7590db;">name</span> = <span style="color: #2d9574;">'Josh'</span>
+<span class="linenr"> 9: </span><span style="color: #7590db;">score</span> = <span style="color: #4f97d7;">[</span><span style="color: #a45bad;">77</span>, <span style="color: #a45bad;">88</span><span style="color: #4f97d7;">]</span>
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>ccc<span style="color: #4f97d7;">(</span>name, score<span style="color: #4f97d7;">)</span>
+<span class="linenr">12: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'--&#20027;&#31243;&#24335;&#36664;&#20986;--'</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">13: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'name:'</span>, name,<span style="color: #2d9574;">'\tscore:'</span>,score<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+--函式內輸出---
+name: Amy 	score: [77, 88, 99]
+--主程式輸出--
+name: Josh 	score: [77, 88, 99]
+
+</pre>
+
+</section>
+<section id="slide-8-3">
+<h3 id="8-3"><a id="org32cc3bc"></a><span class="section-number-3">8.3</span> 模組(module)</h3>
+<div class="outline-text-3" id="text-8-3">
+</div>
+</section>
+<section id="slide-8-3-1">
+<h4 id="8-3-1"><a id="org6edac0f"></a><span class="section-number-4">8.3.1</span> 匯入模組語法：</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> &#27169;&#32068;1 <span style="color: #4f97d7;">[</span>, &#27169;&#32068;2, ... <span style="color: #4f97d7;">]</span> 
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">from</span> &#27169;&#32068; <span style="color: #4f97d7; font-weight: bold;">import</span> &#20989;&#24335;
+</pre>
+</div>
+</section>
+<section id="slide-8-3-2">
+<h4 id="8-3-2"><a id="org55c2941"></a><span class="section-number-4">8.3.2</span> 範例</h4>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">import</span> random <span style="color: #4f97d7; font-weight: bold;">as</span> ran
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>ran.randint<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">100</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>ran.randint<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">100</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>ran.randint<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">100</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+50
+78
+16
+
+</pre>
+</section>
+<section id="slide-8-4">
+<h3 id="8-4"><a id="orgbce3a98"></a><span class="section-number-3">8.4</span> 遞迴(recursive)</h3>
+<div class="outline-text-3" id="text-8-4">
+</div>
+</section>
+<section id="slide-8-4-1">
+<h4 id="8-4-1"><a id="orgc75d71b"></a><span class="section-number-4">8.4.1</span> 語法</h4>
+<ul>
+<li>遞迴(recursive)：一個函式直接呼叫函式本身<br /></li>
+
+</ul>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">fib</span><span style="color: #4f97d7;">(</span>n<span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> n == <span style="color: #a45bad;">1</span> <span style="color: #4f97d7; font-weight: bold;">or</span> n == <span style="color: #a45bad;">2</span>:
+<span class="linenr">3: </span>        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">1</span>
+<span class="linenr">4: </span>    <span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr">5: </span>        <span style="color: #4f97d7; font-weight: bold;">return</span> fib<span style="color: #4f97d7;">(</span>n-<span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span> + fib<span style="color: #4f97d7;">(</span>n-<span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">6: </span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'The %d-th Fibonacci number = %d'</span> %<span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">10</span>, fib<span style="color: #2d9574;">(</span><span style="color: #a45bad;">10</span><span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+The 10-th Fibonacci number = 55
+
+</pre>
+
+</section>
+<section id="slide-8-4-2">
+<h4 id="8-4-2"><a id="org999cd28"></a><span class="section-number-4">8.4.2</span> 基本條件</h4>
+<ul>
+<li>遞迴程式設計要滿足兩條件:<br />
+<ol>
+<li><p>
+遞迴關係式，如<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span>fib<span style="color: #4f97d7;">(</span>n<span style="color: #4f97d7;">)</span> = fib<span style="color: #4f97d7;">(</span>n-<span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span> + fib<span style="color: #4f97d7;">(</span>n-<span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">2: </span><span style="color: #4f97d7;">sum</span><span style="color: #4f97d7;">(</span>n<span style="color: #4f97d7;">)</span> = n + <span style="color: #4f97d7;">sum</span><span style="color: #4f97d7;">(</span>n-<span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>&#8232;
+</pre>
+</div></li>
+<li><p>
+遞迴終止式，如<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span>f<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span> = f<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span> = <span style="color: #a45bad;">1</span>
+<span class="linenr">2: </span><span style="color: #4f97d7;">sum</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span> = <span style="color: #a45bad;">0</span>
+</pre>
+</div></li>
+
+</ol></li>
+<li><p>
+範例:GCD-while<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #7590db;">m</span>, <span style="color: #7590db;">n</span> = <span style="color: #a45bad;">20</span>, <span style="color: #a45bad;">50</span>
+<span class="linenr">2: </span><span style="color: #4f97d7; font-weight: bold;">while</span> <span style="color: #4f97d7;">(</span>n&gt;<span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr">3: </span>    <span style="color: #7590db;">m</span>, <span style="color: #7590db;">n</span> = n, m % n
+<span class="linenr">4: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>m<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+10
+
+</pre></li>
+
+</ul>
+
+</section>
+<section id="slide-8-4-3">
+<h4 id="8-4-3"><a id="org9cec0ef"></a><span class="section-number-4">8.4.3</span> 範例</h4>
+<ul>
+<li><p>
+範例:GCD-recursive<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr">1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">gcd</span><span style="color: #4f97d7;">(</span>a, b<span style="color: #4f97d7;">)</span>:
+<span class="linenr">2: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> b == <span style="color: #a45bad;">0</span>:
+<span class="linenr">3: </span>        <span style="color: #4f97d7; font-weight: bold;">return</span> a
+<span class="linenr">4: </span>    <span style="color: #4f97d7; font-weight: bold;">return</span> gcd<span style="color: #4f97d7;">(</span>b, a % b<span style="color: #4f97d7;">)</span>
+<span class="linenr">5: </span>
+<span class="linenr">6: </span><span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span> = <span style="color: #a45bad;">10</span>, <span style="color: #a45bad;">50</span>
+<span class="linenr">7: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span>gcd<span style="color: #bc6ec5;">(</span>a, b<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+10
+
+</pre></li>
+
+</ul>
+
+</section>
+<section id="slide-8-4-4">
+<h4 id="8-4-4"><a id="org4ecc303"></a><span class="section-number-4">8.4.4</span> 練習</h4>
+<ul>
+<li>計算 n! 值。 輸入 n，輸出 n! = XXXXX。如輸入5，輸出5! = 120。<br /></li>
+<li>計算C(n, r)組合數。 輸入 n, r，輸出C(n, r) = XX。如輸入9, 4，輸出C(9, 4) = 126。<br /></li>
+<li><p>
+計算擴展歐幾里德。 輸入 a, b，輸出a*x + b*y = gcd。如輸入3, 5，輸出3*2 + 5*-1 = 1<br />
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"><span class="linenr"> 1: </span><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">ext_euclid</span><span style="color: #4f97d7;">(</span>a, b<span style="color: #4f97d7;">)</span>:
+<span class="linenr"> 2: </span>    <span style="color: #7590db;">old_s</span>,<span style="color: #7590db;">s</span>=<span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">0</span>
+<span class="linenr"> 3: </span>    <span style="color: #7590db;">old_t</span>,<span style="color: #7590db;">t</span>=<span style="color: #a45bad;">0</span>,<span style="color: #a45bad;">1</span>
+<span class="linenr"> 4: </span>    <span style="color: #7590db;">old_r</span>,<span style="color: #7590db;">r</span>=a,b
+<span class="linenr"> 5: </span>    <span style="color: #4f97d7; font-weight: bold;">if</span> b == <span style="color: #a45bad;">0</span>:
+<span class="linenr"> 6: </span>        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">0</span>, a
+<span class="linenr"> 7: </span>    <span style="color: #4f97d7; font-weight: bold;">else</span>:
+<span class="linenr"> 8: </span>        <span style="color: #4f97d7; font-weight: bold;">while</span><span style="color: #4f97d7;">(</span>r!=<span style="color: #a45bad;">0</span><span style="color: #4f97d7;">)</span>:
+<span class="linenr"> 9: </span>            <span style="color: #7590db;">q</span>=old_r//r
+<span class="linenr">10: </span>            <span style="color: #7590db;">old_r</span>,<span style="color: #7590db;">r</span>=r,old_r-q*r
+<span class="linenr">11: </span>            <span style="color: #7590db;">old_s</span>,<span style="color: #7590db;">s</span>=s,old_s-q*s
+<span class="linenr">12: </span>            <span style="color: #7590db;">old_t</span>,<span style="color: #7590db;">t</span>=t,old_t-q*t
+<span class="linenr">13: </span>    <span style="color: #4f97d7; font-weight: bold;">return</span> old_s, old_t, old_r
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #7590db;">a</span>, <span style="color: #7590db;">b</span>, <span style="color: #7590db;">c</span> = ext_euclid<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">240</span>, <span style="color: #a45bad;">33</span><span style="color: #4f97d7;">)</span>
+<span class="linenr">16: </span><span style="color: #4f97d7; font-weight: bold;">print</span><span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'%dx + %dy = %d'</span> %<span style="color: #bc6ec5;">(</span>a, b, c<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<pre class="example">
+4x + -29y = 3
+
+</pre></li>
+
+</ul>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/lib/js/head.min.js"></script>
+<script src="https://cdn.jsdelivr.net/reveal.js/3.0.0/js/reveal.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: false,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+
+overview: true,
+width: 1400,
+height: 960,
+margin: 0.10,
+minScale: 2.00,
+maxScale: 3.50,
+
+theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+transition: Reveal.getQueryHash().transition || 'convex', // see README of reveal.js for options
+transitionSpeed: 'default',
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } },
+ { src: 'https://cdn.jsdelivr.net/reveal.js/3.0.0/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }]
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,1649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-12 Tue 21:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pandas</title>
+<meta name="author" content="Yung-Chin Yen" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/muse.css" />
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Pandas</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org1db92ca">1. 簡介</a>
+<ul>
+<li><a href="#orgafd0f38">1.1. Pandas</a></li>
+<li><a href="#org2f08f12">1.2. CSV</a></li>
+<li><a href="#org6f86266">1.3. Pandas 資料結構</a></li>
+</ul>
+</li>
+<li><a href="#orgc1202f9">2. Series</a>
+<ul>
+<li><a href="#orgbae40cb">2.1. 建立: 資料類型可為 array, dictionary</a></li>
+<li><a href="#org399e905">2.2. 資料篩選</a></li>
+</ul>
+</li>
+<li><a href="#org3c2341d">3. DataFrame</a>
+<ul>
+<li><a href="#org9e9b56f">3.1. DataFrame 建立</a></li>
+<li><a href="#org45607e6">3.2. 由 Dictionary 建立</a></li>
+<li><a href="#orgb7eaa48">3.3. 由 Array 建立</a></li>
+<li><a href="#org0764b69">3.4. 讀入外部資料檔來建立 Dataframe</a></li>
+</ul>
+</li>
+<li><a href="#org6a4dc75">4. DataFrame 的資料瀏覽</a>
+<ul>
+<li><a href="#org0c68e66">4.1. 基本函數</a></li>
+<li><a href="#orga5a4409">4.2. DataFrame 資料排序</a></li>
+<li><a href="#org972ec6b">4.3. DataFrame 處理遺漏值</a></li>
+</ul>
+</li>
+<li><a href="#org4e3042d">5. Dataframe 的選取與過濾</a>
+<ul>
+<li><a href="#org6b08428">5.1. 資料選取: Select column(s) </a></li>
+<li><a href="#org2d6adb4">5.2. 資料選取: Select using index (row)</a></li>
+<li><a href="#org1ab79ff">5.3. 條件式選取資料</a></li>
+<li><a href="#org7a0cc16">5.4. 進階條件過濾[loc/iloc]</a></li>
+</ul>
+</li>
+<li><a href="#org1934d40">6. 進階分析</a>
+<ul>
+<li><a href="#org3992ebb">6.1. 由其他 column 產生新的 column(重要、實用)</a></li>
+<li><a href="#org642ecb7">6.2. 資料分組: groupby</a></li>
+<li><a href="#orgd00c151">6.3. 交叉分析</a></li>
+<li><a href="#orgad717e6">6.4. 資料檔下載: file:scores.csv</a></li>
+</ul>
+</li>
+<li><a href="#org826762c">7. 資料視覺化</a>
+<ul>
+<li><a href="#orge6e1de2">7.1. Bar chart</a></li>
+<li><a href="#org355a3a0">7.2. Regression line chart</a></li>
+<li><a href="#org4ecf226">7.3. Pie chart</a></li>
+<li><a href="#org6d7179e">7.4. Scatter chart</a></li>
+<li><a href="#orgc92db7f">7.5. Haxbin chart</a></li>
+</ul>
+</li>
+<li><a href="#org4cd86c5">8. [課堂練習]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a>
+<ul>
+<li><a href="#org86f4ae8">8.1. 403期中考得分統計</a></li>
+<li><a href="#org00f07be">8.2. 進階練習</a></li>
+</ul>
+</li>
+<li><a href="#org143e659">9. 教學影片</a></li>
+</ul>
+</div>
+</div>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/Pandas.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Pandas.html.svg"/></a>
+<div id="outline-container-org1db92ca" class="outline-2">
+<h2 id="org1db92ca"><span class="section-number-2">1.</span> 簡介</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgafd0f38" class="outline-3">
+<h3 id="orgafd0f38"><span class="section-number-3">1.1.</span> Pandas</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Pandas 為建構於 NumPy 之上的套件，為 python 的一個數據分析模組，適合處理表格資料或異質資料。<br /></li>
+<li>於 2009 年底開源出來，提供高效能、簡易使用的資料格式(Data Frame，為 R 語言主要資料格式)，可以讓使用者可以快速操作及分析資料。<br /></li>
+<li>Pandas 強化了資料處理的方便性也能與處理網頁資料與資料庫資料等，有點類似於Office 的 Excel，能更加方便的進行運算、分析等<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>。<br /></li>
+<li>Pandas 主要特色有<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>：<br />
+<ol class="org-ol">
+<li>在異質數據的讀取、轉換和處理上，都讓分析人員更容易處理，例如：從列欄試算表中找到想要的值。<br /></li>
+<li>Pandas 提供兩種主要的資料結構，Series 與 DataFrame。Series 顧名思義就是用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。DataFrame 則是用來處理結構化(Table like)的資料，有列索引與欄標籤的二維資料集，例如關聯式資料庫、CSV 等等。<br /></li>
+<li>透過載入至 Pandas 的資料結構物件後，可以透過結構化物件所提供的方法，來快速地進行資料的前處理，如資料補值，空值去除或取代等。<br /></li>
+<li>更多的輸入來源及輸出整合性，例如：可以從資料庫讀取資料進入 Dataframe，也可將處理完的資料存回資料庫。<br /></li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f08f12" class="outline-3">
+<h3 id="org2f08f12"><span class="section-number-3">1.2.</span> CSV</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>為純文字檔，以逗號分隔值（Comma-Separated Values，CSV，有時也稱為字元分隔值，因為分隔字元也可以不是逗號）。<br /></li>
+<li>純文字意味著該檔案是一個字元序列，不含必須像二進位制數字那樣被解讀的資料。<br /></li>
+<li>CSV 檔案由任意數目的記錄組成，記錄間以某種換行符分隔；每條記錄由欄位組成，欄位間的分隔符是其它字元或字串，最常見的是逗號。<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org6f86266" class="outline-3">
+<h3 id="org6f86266"><span class="section-number-3">1.3.</span> Pandas 資料結構</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Pandas 兩類資料結構<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup><sup>, </sup><sup><a id="fnr.2.100" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>:<br />
+</p>
+<ol class="org-ol">
+<li>Series: 用來處理時間序列相關的資料(如感測器資料等)，主要為建立索引的一維陣列。<br /></li>
+<li>DataFrame: 是一個二維標籤資料結構，可以具有不同類型的行（column），類似 Excel的資料表，對於有使用過統計軟體的分析人員應該不陌生。簡單來說，Series 可以想像為一行多列（row）的資料，而 DataFrame 是多行多列的資料，藉由選擇索引（列標籤）和行（行標籤）的參數來操作資料，就像使用統計軟體透過樣本編號或變項名稱來操作資料。<br /></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc1202f9" class="outline-2">
+<h2 id="orgc1202f9"><span class="section-number-2">2.</span> Series</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgbae40cb" class="outline-3">
+<h3 id="orgbae40cb"><span class="section-number-3">2.1.</span> 建立: 資料類型可為 array, dictionary</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org9c842ec" class="outline-4">
+<h4 id="org9c842ec"><span class="section-number-4">2.1.1.</span> 由 array 建立 Series</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #dcaeea;">cars</span> = [<span style="color: #98be65;">"SAAB"</span>, <span style="color: #98be65;">"Audi"</span>, <span style="color: #98be65;">"BMW"</span>, <span style="color: #98be65;">"BENZ"</span>, <span style="color: #98be65;">"Toyota"</span>, <span style="color: #98be65;">"Nissan"</span>, <span style="color: #98be65;">"Lexus"</span>]
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#36039;&#26009;&#22411;&#21029;:"</span>, <span style="color: #c678dd;">type</span>(cars))
+<span class="linenr">5: </span><span style="color: #dcaeea;">carsToSeries</span> = pd.Series(cars)
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#36039;&#26009;&#22411;&#21029;:"</span>, <span style="color: #c678dd;">type</span>(carsToSeries))
+<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(carsToSeries.shape)
+<span class="linenr">8: </span><span style="color: #c678dd;">print</span>(carsToSeries)
+<span class="linenr">9: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"carsToSeries[1]: "</span>, carsToSeries[<span style="color: #da8548; font-weight: bold;">1</span>])
+</pre>
+</div>
+
+<pre class="example" id="org65a9bd8">
+資料型別: &lt;class 'list'&gt;
+資料型別: &lt;class 'pandas.core.series.Series'&gt;
+(7,)
+0      SAAB
+1      Audi
+2       BMW
+3      BENZ
+4    Toyota
+5    Nissan
+6     Lexus
+dtype: object
+Audi
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org399e905" class="outline-3">
+<h3 id="org399e905"><span class="section-number-3">2.2.</span> 資料篩選</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org4f1dc3a" class="outline-4">
+<h4 id="org4f1dc3a"><span class="section-number-4">2.2.1.</span> 由dict來建立pandas.Series()</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+就是把dict的key當成index<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #c678dd;">dict</span> = {
+<span class="linenr"> 4: </span>    <span style="color: #98be65;">"city"</span>: <span style="color: #98be65;">"Kaohsiung"</span>,
+<span class="linenr"> 5: </span>    <span style="color: #98be65;">"speedCamera1"</span>: <span style="color: #98be65;">"13213"</span>,
+<span class="linenr"> 6: </span>    <span style="color: #98be65;">"speedCamera2"</span>: <span style="color: #98be65;">"3242"</span>,
+<span class="linenr"> 7: </span>    <span style="color: #98be65;">"speedCamera3"</span>: <span style="color: #98be65;">"134343"</span>,
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">"speedCamera4"</span>: <span style="color: #98be65;">"4312"</span>,
+<span class="linenr"> 9: </span>    <span style="color: #98be65;">"speedCamera5"</span>: <span style="color: #98be65;">"533"</span>
+<span class="linenr">10: </span>}
+<span class="linenr">11: </span>
+<span class="linenr">12: </span><span style="color: #dcaeea;">dictToSeries</span> = pd.Series(<span style="color: #c678dd;">dict</span>, index = <span style="color: #c678dd;">dict</span>.keys()) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25490;&#24207;&#33287;&#21407; dict &#30456;&#21516;</span>
+<span class="linenr">13: </span><span style="color: #c678dd;">print</span>(dictToSeries[<span style="color: #da8548; font-weight: bold;">0</span>])
+<span class="linenr">14: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====="</span>)
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(dictToSeries[<span style="color: #98be65;">'speedCamera1'</span>])
+<span class="linenr">16: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====="</span>)
+<span class="linenr">17: </span><span style="color: #c678dd;">print</span>(dictToSeries[[<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>]])
+<span class="linenr">18: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====="</span>)
+<span class="linenr">19: </span><span style="color: #c678dd;">print</span>(dictToSeries[[<span style="color: #98be65;">'city'</span>, <span style="color: #98be65;">'speedCamera1'</span>, <span style="color: #98be65;">'speedCamera3'</span>]])
+<span class="linenr">20: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====="</span>)
+<span class="linenr">21: </span><span style="color: #c678dd;">print</span>(dictToSeries[:<span style="color: #da8548; font-weight: bold;">2</span>])
+<span class="linenr">22: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====="</span>)
+<span class="linenr">23: </span><span style="color: #c678dd;">print</span>(dictToSeries[<span style="color: #da8548; font-weight: bold;">4</span>:])
+<span class="linenr">24: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#35426;</span>
+<span class="linenr">25: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====&#26371;&#30332;&#29694;&#26377;&#19968;&#20491;NaN====="</span>)
+<span class="linenr">26: </span><span style="color: #dcaeea;">search</span>=[<span style="color: #98be65;">'speedCamera1'</span>, <span style="color: #98be65;">'speedCamera6'</span>]
+<span class="linenr">27: </span><span style="color: #c678dd;">print</span>(pd.Series(dictToSeries, index=search))
+</pre>
+</div>
+
+<pre class="example" id="org34c62a0">
+Kaohsiung
+=====
+13213
+=====
+city            Kaohsiung
+speedCamera2         3242
+speedCamera4         4312
+dtype: object
+=====
+city            Kaohsiung
+speedCamera1        13213
+speedCamera3       134343
+dtype: object
+=====
+city            Kaohsiung
+speedCamera1        13213
+dtype: object
+=====
+speedCamera4    4312
+speedCamera5     533
+dtype: object
+====會發現有一個NaN=====
+speedCamera1    13213
+speedCamera6      NaN
+dtype: object
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org3c2341d" class="outline-2">
+<h2 id="org3c2341d"><span class="section-number-2">3.</span> DataFrame</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org9e9b56f" class="outline-3">
+<h3 id="org9e9b56f"><span class="section-number-3">3.1.</span> DataFrame 建立</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+可利用 Dictionary 或是 Array 來建立，並使用 DataFrame 的方法來操作資料查看、資料篩選、資料切片、資料排序等運算。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org45607e6" class="outline-3">
+<h3 id="org45607e6"><span class="section-number-3">3.2.</span> 由 Dictionary 建立</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">hobby</span> = [<span style="color: #98be65;">"Movies"</span>, <span style="color: #98be65;">"Sports"</span>, <span style="color: #98be65;">"Coding"</span>, <span style="color: #98be65;">"Fishing"</span>, <span style="color: #98be65;">"Dancing"</span>, <span style="color: #98be65;">"cooking"</span>]
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">count</span> = [<span style="color: #da8548; font-weight: bold;">46</span>, <span style="color: #da8548; font-weight: bold;">8</span>, <span style="color: #da8548; font-weight: bold;">12</span>, <span style="color: #da8548; font-weight: bold;">12</span>, <span style="color: #da8548; font-weight: bold;">6</span>, <span style="color: #da8548; font-weight: bold;">58</span>]
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #c678dd;">dict</span> = {<span style="color: #98be65;">"hobby"</span>: hobby,
+<span class="linenr"> 7: </span>        <span style="color: #98be65;">"count"</span>: count
+<span class="linenr"> 8: </span>       }
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">dict</span>)
+<span class="linenr">10: </span><span style="color: #dcaeea;">df</span> = pd.DataFrame(<span style="color: #c678dd;">dict</span>)
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(df)
+</pre>
+</div>
+
+<pre class="example">
+{'hobby': ['Movies', 'Sports', 'Coding', 'Fishing', 'Dancing', 'cooking'], 'count': [46, 8, 12, 12, 6, 58]}
+     hobby  count
+0   Movies     46
+1   Sports      8
+2   Coding     12
+3  Fishing     12
+4  Dancing      6
+5  cooking     58
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb7eaa48" class="outline-3">
+<h3 id="orgb7eaa48"><span class="section-number-3">3.3.</span> 由 Array 建立</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #dcaeea;">ary</span> = [[<span style="color: #98be65;">"Movies"</span>, <span style="color: #da8548; font-weight: bold;">46</span>],[<span style="color: #98be65;">"Sports"</span>, <span style="color: #da8548; font-weight: bold;">8</span>], [<span style="color: #98be65;">"Coding"</span>, <span style="color: #da8548; font-weight: bold;">12</span>], [<span style="color: #98be65;">"Fishing"</span>,<span style="color: #da8548; font-weight: bold;">12</span>], [<span style="color: #98be65;">"Dancing"</span>,<span style="color: #da8548; font-weight: bold;">6</span>], [<span style="color: #98be65;">"cooking"</span>,<span style="color: #da8548; font-weight: bold;">8</span>]]
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(ary)
+<span class="linenr">5: </span><span style="color: #dcaeea;">ary2df</span> = pd.DataFrame(ary, columns = [<span style="color: #98be65;">"hobby"</span>, <span style="color: #98be65;">"count"</span>]) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21934;&#32020;&#30340;&#20108;&#32173;&#30697;&#38499;&#27794;&#26377;&#27396;&#20301;&#21517;&#31281;&#65292;&#35201;&#22806;&#21152;&#25351;&#23450;&#27396;&#27161;&#31844;&#21517;&#31281;</span>
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(ary2df)
+<span class="linenr">7: </span>
+</pre>
+</div>
+
+<pre class="example">
+[['Movies', 46], ['Sports', 8], ['Coding', 12], ['Fishing', 12], ['Dancing', 6], ['cooking', 8]]
+     hobby  count
+0   Movies     46
+1   Sports      8
+2   Coding     12
+3  Fishing     12
+4  Dancing      6
+5  cooking      8
+</pre>
+</div>
+</div>
+<div id="outline-container-org0764b69" class="outline-3">
+<h3 id="org0764b69"><span class="section-number-3">3.4.</span> 讀入外部資料檔來建立 Dataframe</h3>
+<div class="outline-text-3" id="text-3-4">
+</div>
+<div id="outline-container-org9b0bf28" class="outline-4">
+<h4 id="org9b0bf28"><span class="section-number-4">3.4.1.</span> 本機CSV(由本機端的PyCharm執行，不能在Google colab上跑)</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li>可以從異質資料來源讀取檔案(如 CSV 檔)內容，並將資料放入 DataFrame 中，進行資料查看、資料篩選、資料切片等運算。<br /></li>
+<li>如果資料檔和程式放在同一目錄(資料夾)<br /></li>
+<li>如果資料檔放在本機在其他地方<br />
+<ul class="org-ul">
+<li>絕對路徑<br /></li>
+<li>相對路徑<br /></li>
+</ul></li>
+<li><a href="./scores.csv">下載範例檔:scores.csv</a><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr">4: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(<span style="color: #98be65;">"/Users/student/Downloads/scores.csv"</span>) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#36889;&#35041;&#30340;&#36335;&#24465;&#35201;&#33258;&#34892;&#26356;&#25913;</span>
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"===&#20840;&#37096;&#36039;&#26009;==="</span>)
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(df)
+<span class="linenr">7: </span>
+</pre>
+</div>
+
+<pre class="example" id="org3acca35">
+===全部資料===
+            id  classparti  typing  homework  midexam  finalexam
+0    201910901         100      72     92.11     48.0       16.0
+1    201910902          96      56     93.42     60.0       40.0
+2    201910903          96      76    102.63     45.0       28.0
+3    201910904          93      64     86.84     44.0       25.0
+4    201910905          93      56     42.11      0.0       20.0
+..         ...         ...     ...       ...      ...        ...
+207  201911726         106      80    102.63     96.5      103.0
+208  201911727          82      60    102.63     84.0      100.0
+209  201911728          83      48    102.63     83.0       75.0
+210  201911729          87      84    105.26    112.3      103.0
+211  201911730          96      72    102.63     91.0      100.0
+
+[212 rows x 6 columns]
+</pre>
+</div>
+</div>
+<div id="outline-container-org8633bdb" class="outline-4">
+<h4 id="org8633bdb"><span class="section-number-4">3.4.2.</span> Google Colab的檔案下載處理</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+import google.colab後，使用files.upload() 就能夠產生上傳檔案，此時cell會進入等待狀態，選取你本機的檔案即可上傳。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">from</span> google.colab <span style="color: #51afef;">import</span> files
+<span class="linenr">2: </span><span style="color: #dcaeea;">uploaded</span> = files.upload()
+</pre>
+</div>
+<p>
+執行後會出現以下畫面:<br />
+</p>
+
+<p width="500">
+<img src="images/DataFrame/2023-12-22_09-37-23_2023-12-22_09-36-51.png" alt="2023-12-22_09-37-23_2023-12-22_09-36-51.png" width="500" /><br />
+點選「瀏覽」選取檔案後即可將檔案上傳至Colab<br />
+</p>
+</div>
+<div id="outline-container-orgb0c0f24" class="outline-5">
+<h5 id="orgb0c0f24"><span class="section-number-5">3.4.2.1.</span> 檔案上傳到哪裡?</h5>
+<div class="outline-text-5" id="text-3-4-2-1">
+<p>
+可以執行!ls查看現在所在的目錄(資料夾)的內容<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>!ls
+</pre>
+</div>
+<p>
+也可以執行!pwd查看現在在哪一個目錄(資料夾)<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>!pwd
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc62bafb" class="outline-5">
+<h5 id="orgc62bafb"><span class="section-number-5">3.4.2.2.</span> 在Google Colab以Pandas查看csv檔</h5>
+<div class="outline-text-5" id="text-3-4-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr">4: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(<span style="color: #98be65;">"/content/scores.csv"</span>) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#36889;&#35041;&#30340;&#36335;&#24465;&#35201;&#33258;&#34892;&#26356;&#25913;</span>
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"===&#20840;&#37096;&#36039;&#26009;==="</span>)
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(df)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org8549187" class="outline-4">
+<h4 id="org8549187"><span class="section-number-4">3.4.3.</span> 由Pandas直接讀取線上CSV檔</h4>
+<div class="outline-text-4" id="text-3-4-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr">2: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span> <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#30452;&#25509;&#25351;&#23450;&#27284;&#26696;&#30340;URL</span>
+<span class="linenr">3: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'=====dataFrame&#30340;&#32173;&#24230;'</span>)
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(df.shape)
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'=====dataFrame&#30340;&#25976;&#20540;&#20998;&#20296;&#27010;&#27841;'</span>)
+<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(df.describe())
+<span class="linenr">8: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'=====dataFrame&#30340;&#21069;5&#31558;&#35352;&#37636;'</span>)
+<span class="linenr">9: </span><span style="color: #c678dd;">print</span>(df.head(<span style="color: #da8548; font-weight: bold;">5</span>))
+</pre>
+</div>
+
+<pre class="example" id="orga0030b3">
+=====dataFrame的維度
+(212, 6)
+=====dataFrame的數值分佈概況
+                 id  classparti     typing    homework     midexam   finalexam
+count  2.120000e+02  212.000000  212.00000  212.000000  211.000000  212.000000
+mean   2.019113e+08   92.386792   82.09434   89.394764   62.863033   49.458491
+std    2.933047e+02   13.798874   23.06041   19.471763   34.104173   34.831187
+min    2.019109e+08   14.000000    0.00000   10.750000    0.000000    0.000000
+25%    2.019110e+08   87.000000   68.00000   83.880000   35.000000   20.000000
+50%    2.019111e+08   94.000000   80.00000   97.370000   67.000000   45.000000
+75%    2.019116e+08  101.000000   96.00000  102.630000   95.000000   76.000000
+max    2.019117e+08  120.000000  120.00000  107.890000  113.500000  115.000000
+=====dataFrame的前5筆記錄
+          id  classparti  typing  homework  midexam  finalexam
+0  201910901         100      72     92.11     48.0       16.0
+1  201910902          96      56     93.42     60.0       40.0
+2  201910903          96      76    102.63     45.0       28.0
+3  201910904          93      64     86.84     44.0       25.0
+4  201910905          93      56     42.11      0.0       20.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org6a4dc75" class="outline-2">
+<h2 id="org6a4dc75"><span class="section-number-2">4.</span> DataFrame 的資料瀏覽</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org0c68e66" class="outline-3">
+<h3 id="org0c68e66"><span class="section-number-3">4.1.</span> 基本函數</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>shape<br /></li>
+<li>describe()<br /></li>
+<li>head()<br /></li>
+<li>tail()<br /></li>
+<li>columns<br /></li>
+<li>index<br /></li>
+<li>info()<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====df.shape===="</span>)
+<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(df.shape) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#21015;&#25976;&#33287;&#27396;&#25976;</span>
+<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====df.describe()===="</span>)
+<span class="linenr"> 8: </span><span style="color: #c678dd;">print</span>(df.describe()) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#25551;&#36848;&#24615;&#32113;&#35336;</span>
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====df.head(3)===="</span>)
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(df.head(<span style="color: #da8548; font-weight: bold;">3</span>)) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#21069;&#19977;&#31558;&#35264;&#28204;&#20540;</span>
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====df.tail(3)===="</span>)
+<span class="linenr">12: </span><span style="color: #c678dd;">print</span>(df.tail(<span style="color: #da8548; font-weight: bold;">3</span>)) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#24460;&#19977;&#31558;&#35264;&#28204;&#20540;</span>
+<span class="linenr">13: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====df.columns===="</span>)
+<span class="linenr">14: </span><span style="color: #c678dd;">print</span>(df.columns) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#27396;&#20301;&#21517;&#31281;</span>
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====df.columns===="</span>)
+<span class="linenr">16: </span><span style="color: #c678dd;">print</span>(df.index) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659; index</span>
+<span class="linenr">17: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====df.info===="</span>)
+<span class="linenr">18: </span><span style="color: #c678dd;">print</span>(df.info) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#36039;&#26009;&#20839;&#23481;</span>
+</pre>
+</div>
+
+<pre class="example" id="org5662f44">
+====df.shape====
+(212, 6)
+====df.describe()====
+                 id  classparti     typing    homework     midexam   finalexam
+count  2.120000e+02  212.000000  212.00000  212.000000  211.000000  212.000000
+mean   2.019113e+08   92.386792   82.09434   89.394764   62.863033   49.458491
+std    2.933047e+02   13.798874   23.06041   19.471763   34.104173   34.831187
+min    2.019109e+08   14.000000    0.00000   10.750000    0.000000    0.000000
+25%    2.019110e+08   87.000000   68.00000   83.880000   35.000000   20.000000
+50%    2.019111e+08   94.000000   80.00000   97.370000   67.000000   45.000000
+75%    2.019116e+08  101.000000   96.00000  102.630000   95.000000   76.000000
+max    2.019117e+08  120.000000  120.00000  107.890000  113.500000  115.000000
+====df.head(3)====
+          id  classparti  typing  homework  midexam  finalexam
+0  201910901         100      72     92.11     48.0       16.0
+1  201910902          96      56     93.42     60.0       40.0
+2  201910903          96      76    102.63     45.0       28.0
+====df.tail(3)====
+            id  classparti  typing  homework  midexam  finalexam
+209  201911728          83      48    102.63     83.0       75.0
+210  201911729          87      84    105.26    112.3      103.0
+211  201911730          96      72    102.63     91.0      100.0
+====df.columns====
+Index(['id', 'classparti', 'typing', 'homework', 'midexam', 'finalexam'], dtype='object')
+====df.columns====
+RangeIndex(start=0, stop=212, step=1)
+====df.info====
+&lt;bound method DataFrame.info of             id  classparti  typing  homework  midexam  finalexam
+0    201910901         100      72     92.11     48.0       16.0
+1    201910902          96      56     93.42     60.0       40.0
+2    201910903          96      76    102.63     45.0       28.0
+3    201910904          93      64     86.84     44.0       25.0
+4    201910905          93      56     42.11      0.0       20.0
+..         ...         ...     ...       ...      ...        ...
+207  201911726         106      80    102.63     96.5      103.0
+208  201911727          82      60    102.63     84.0      100.0
+209  201911728          83      48    102.63     83.0       75.0
+210  201911729          87      84    105.26    112.3      103.0
+211  201911730          96      72    102.63     91.0      100.0
+
+[212 rows x 6 columns]&gt;
+</pre>
+</div>
+</div>
+<div id="outline-container-orga5a4409" class="outline-3">
+<h3 id="orga5a4409"><span class="section-number-3">4.2.</span> DataFrame 資料排序</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>sort_values(): 依欄位的值來排序(較常用)<br /></li>
+<li>sort_index(): 依欄位名稱或index值來排。The axis along which to sort. The value 0 identifies the rows, and 1 identifies the columns.<br /></li>
+<li>sort 後的結果為 <b>複本</b> ，不改變原本的資料<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====Original===="</span>)
+<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(df.head())
+<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"===.sort_values()===="</span>)
+<span class="linenr"> 8: </span><span style="color: #c678dd;">print</span>(df.sort_values(by = <span style="color: #98be65;">'finalexam'</span>)[:<span style="color: #da8548; font-weight: bold;">10</span>])
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(df.sort_values(by = [<span style="color: #98be65;">'typing'</span>, <span style="color: #98be65;">'homework'</span>], ascending=<span style="color: #a9a1e1;">False</span>)[:<span style="color: #da8548; font-weight: bold;">10</span>])
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"===.sort_index()===="</span>)
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(df.sort_index(axis = <span style="color: #da8548; font-weight: bold;">1</span>, ascending = <span style="color: #a9a1e1;">True</span>))
+<span class="linenr">12: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"===.sort_index()===="</span>)
+<span class="linenr">13: </span><span style="color: #c678dd;">print</span>(df.sort_index(axis = <span style="color: #da8548; font-weight: bold;">0</span>, ascending = <span style="color: #a9a1e1;">False</span>))
+</pre>
+</div>
+
+<pre class="example" id="org22be71a">
+====Original====
+          id  classparti  typing  homework  midexam  finalexam
+0  201910901         100      72     92.11     48.0       16.0
+1  201910902          96      56     93.42     60.0       40.0
+2  201910903          96      76    102.63     45.0       28.0
+3  201910904          93      64     86.84     44.0       25.0
+4  201910905          93      56     42.11      0.0       20.0
+===.sort_values()====
+            id  classparti  typing  homework  midexam  finalexam
+81   201911108          95     100     66.89      0.0        0.0
+36   201910937          89      84     97.37      4.0        0.0
+139  201911330          95      72     51.32     30.0        0.0
+45   201911009          71      64     99.78     36.2        0.0
+49   201911013          88      76     70.61     15.0        0.0
+55   201911019          74      64     81.58      5.0        0.0
+25   201910926          67      60     88.16      0.0        0.0
+23   201910924          75      48     10.75      0.0        0.0
+124  201911315          71     120     15.35      0.0        0.0
+119  201911310          82      56     46.71     17.0        0.0
+            id  classparti  typing  homework  midexam  finalexam
+196  201911715         106     120    107.89   102.40     105.00
+198  201911717          80     120    107.89   106.00     100.00
+103  201911130         120     120    106.84    70.00      80.00
+118  201911309          87     120    105.26    98.96     103.75
+73   201911037          93     120    102.63    49.00      56.00
+158  201911613          88     120    102.63   107.50      72.00
+188  201911707          80     120    102.63   100.00      56.00
+203  201911722         105     120    102.63   101.50     105.00
+28   201910929          88     120    100.00    40.00      20.00
+200  201911720         110     120    100.00   100.00      80.00
+===.sort_index()====
+     classparti  finalexam  homework         id  midexam  typing
+0           100       16.0     92.11  201910901     48.0      72
+1            96       40.0     93.42  201910902     60.0      56
+2            96       28.0    102.63  201910903     45.0      76
+3            93       25.0     86.84  201910904     44.0      64
+4            93       20.0     42.11  201910905      0.0      56
+..          ...        ...       ...        ...      ...     ...
+207         106      103.0    102.63  201911726     96.5      80
+208          82      100.0    102.63  201911727     84.0      60
+209          83       75.0    102.63  201911728     83.0      48
+210          87      103.0    105.26  201911729    112.3      84
+211          96      100.0    102.63  201911730     91.0      72
+
+[212 rows x 6 columns]
+===.sort_index()====
+            id  classparti  typing  homework  midexam  finalexam
+211  201911730          96      72    102.63     91.0      100.0
+210  201911729          87      84    105.26    112.3      103.0
+209  201911728          83      48    102.63     83.0       75.0
+208  201911727          82      60    102.63     84.0      100.0
+207  201911726         106      80    102.63     96.5      103.0
+..         ...         ...     ...       ...      ...        ...
+4    201910905          93      56     42.11      0.0       20.0
+3    201910904          93      64     86.84     44.0       25.0
+2    201910903          96      76    102.63     45.0       28.0
+1    201910902          96      56     93.42     60.0       40.0
+0    201910901         100      72     92.11     48.0       16.0
+
+[212 rows x 6 columns]
+</pre>
+</div>
+</div>
+<div id="outline-container-org972ec6b" class="outline-3">
+<h3 id="org972ec6b"><span class="section-number-3">4.3.</span> DataFrame 處理遺漏值</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>dropna()<br /></li>
+<li>fillna()<br /></li>
+<li>isnull()<br /></li>
+<li>notnull()<br /></li>
+<li>下載<a href="scores-null.csv">scores-null.csv</a><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores-null.csv'</span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">df = pd.read_csv('scores-null.csv')</span>
+<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====&#21407;&#22987;&#36039;&#26009;===="</span>)
+<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(df)
+<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#35426;&#36986;&#22833;&#20540;&#29376;&#27841;</span>
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'====&#36986;&#22833;&#20540;===='</span>)
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(df.isnull())
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(df.isnull().<span style="color: #c678dd;">sum</span>())
+<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21034;&#38500;&#26377;&#36986;&#22833;&#20540;&#30340;&#35352;&#37636;</span>
+<span class="linenr">13: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====&#21034;&#38500;&#26377;&#36986;&#22833;&#20540;&#30340;&#35352;&#37636;===="</span>)
+<span class="linenr">14: </span><span style="color: #dcaeea;">dropValue</span> = df.dropna()
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(dropValue)
+<span class="linenr">16: </span><span style="color: #dcaeea;">fill0</span> = df.fillna(<span style="color: #da8548; font-weight: bold;">0</span>)
+<span class="linenr">17: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====&#36986;&#22833;&#20540;&#22635;&#38646;===="</span>)
+<span class="linenr">18: </span><span style="color: #c678dd;">print</span>(fill0)
+<span class="linenr">19: </span><span style="color: #dcaeea;">fillv</span> = df.fillna({<span style="color: #98be65;">"classparti"</span>:<span style="color: #da8548; font-weight: bold;">999</span>, <span style="color: #98be65;">"typing"</span>:<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #98be65;">"finalExam"</span>:<span style="color: #98be65;">"NULL"</span>})
+<span class="linenr">20: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"====&#36986;&#22833;&#20540;&#22635;&#29305;&#23450;&#20540;===="</span>)
+<span class="linenr">21: </span><span style="color: #c678dd;">print</span>(fillv)
+</pre>
+</div>
+
+<pre class="example" id="orgdd76e38">
+====原始資料====
+          id  classparti  typing  homework  finalExam
+0  201910901       100.0    72.0     92.11       48.0
+1  201910902        96.0    56.0     93.42       60.0
+2  201910903        96.0    76.0    102.63        NaN
+3  201910904         NaN    64.0     86.84       44.0
+4  201910905        93.0    56.0     42.11        0.0
+5  201910906       101.0   108.0    100.00        NaN
+6  201910907       101.0     NaN     92.11       55.0
+7  201910908        94.0    68.0    105.26       61.0
+8  201910909         NaN    64.0     44.74       20.0
+9  201910910        93.0   120.0     97.37       16.0
+====遺失值====
+      id  classparti  typing  homework  finalExam
+0  False       False   False     False      False
+1  False       False   False     False      False
+2  False       False   False     False       True
+3  False        True   False     False      False
+4  False       False   False     False      False
+5  False       False   False     False       True
+6  False       False    True     False      False
+7  False       False   False     False      False
+8  False        True   False     False      False
+9  False       False   False     False      False
+id            0
+classparti    2
+typing        1
+homework      0
+finalExam     2
+dtype: int64
+====刪除有遺失值的記錄====
+          id  classparti  typing  homework  finalExam
+0  201910901       100.0    72.0     92.11       48.0
+1  201910902        96.0    56.0     93.42       60.0
+4  201910905        93.0    56.0     42.11        0.0
+7  201910908        94.0    68.0    105.26       61.0
+9  201910910        93.0   120.0     97.37       16.0
+====遺失值填零====
+          id  classparti  typing  homework  finalExam
+0  201910901       100.0    72.0     92.11       48.0
+1  201910902        96.0    56.0     93.42       60.0
+2  201910903        96.0    76.0    102.63        0.0
+3  201910904         0.0    64.0     86.84       44.0
+4  201910905        93.0    56.0     42.11        0.0
+5  201910906       101.0   108.0    100.00        0.0
+6  201910907       101.0     0.0     92.11       55.0
+7  201910908        94.0    68.0    105.26       61.0
+8  201910909         0.0    64.0     44.74       20.0
+9  201910910        93.0   120.0     97.37       16.0
+====遺失值填特定值====
+          id  classparti  typing  homework finalExam
+0  201910901       100.0    72.0     92.11      48.0
+1  201910902        96.0    56.0     93.42      60.0
+2  201910903        96.0    76.0    102.63      NULL
+3  201910904       999.0    64.0     86.84      44.0
+4  201910905        93.0    56.0     42.11       0.0
+5  201910906       101.0   108.0    100.00      NULL
+6  201910907       101.0     0.0     92.11      55.0
+7  201910908        94.0    68.0    105.26      61.0
+8  201910909       999.0    64.0     44.74      20.0
+9  201910910        93.0   120.0     97.37      16.0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4e3042d" class="outline-2">
+<h2 id="org4e3042d"><span class="section-number-2">5.</span> Dataframe 的選取與過濾</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org6b08428" class="outline-3">
+<h3 id="org6b08428"><span class="section-number-3">5.1.</span> 資料選取: Select column(s) <sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup></h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li><code class="src src-python"> df[[<span style="color: #98be65;">'col1'</span>, <span style="color: #98be65;">'col2'</span>]] </code><br /></li>
+<li><code class="src src-python"> df.col1 </code><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #c678dd;">print</span>(df.head(<span style="color: #da8548; font-weight: bold;">3</span>))
+<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20197; df[['column']]  &#20358;&#36984;&#27396;&#20301;</span>
+<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(df[[<span style="color: #98be65;">'id'</span>, <span style="color: #98be65;">'typing'</span>]])
+<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">df[['id', 'typing']]&#30340;&#32080;&#26524;&#20173;&#26159;dataframe&#65292;&#24460;&#38754;&#21487;&#20197;&#20877;&#21152;&#19978;dataframe&#30340;function</span>
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(df[[<span style="color: #98be65;">'id'</span>, <span style="color: #98be65;">'typing'</span>]].head(<span style="color: #da8548; font-weight: bold;">3</span>))
+<span class="linenr">10: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20197; df.column &#20358;&#36984;&#27396;&#20301;</span>
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(df.<span style="color: #c678dd;">id</span>, df.homework)
+</pre>
+</div>
+
+<pre class="example" id="org5947580">
+          id  classparti  typing  homework  midexam  finalexam
+0  201910901         100      72     92.11     48.0       16.0
+1  201910902          96      56     93.42     60.0       40.0
+2  201910903          96      76    102.63     45.0       28.0
+            id  typing
+0    201910901      72
+1    201910902      56
+2    201910903      76
+3    201910904      64
+4    201910905      56
+..         ...     ...
+207  201911726      80
+208  201911727      60
+209  201911728      48
+210  201911729      84
+211  201911730      72
+
+[212 rows x 2 columns]
+          id  typing
+0  201910901      72
+1  201910902      56
+2  201910903      76
+0      201910901
+1      201910902
+2      201910903
+3      201910904
+4      201910905
+         ...
+207    201911726
+208    201911727
+209    201911728
+210    201911729
+211    201911730
+Name: id, Length: 212, dtype: int64 0       92.11
+1       93.42
+2      102.63
+3       86.84
+4       42.11
+        ...
+207    102.63
+208    102.63
+209    102.63
+210    105.26
+211    102.63
+Name: homework, Length: 212, dtype: float64
+</pre>
+</div>
+</div>
+<div id="outline-container-org2d6adb4" class="outline-3">
+<h3 id="org2d6adb4"><span class="section-number-3">5.2.</span> 資料選取: Select using index (row)</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li><code class="src src-python"> df[<span style="color: #da8548; font-weight: bold;">1</span>:<span style="color: #da8548; font-weight: bold;">20</span>] </code><br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20197;row index&#20358;&#36984;&#21462;&#36039;&#26009;</span>
+<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(df[<span style="color: #da8548; font-weight: bold;">1</span>:<span style="color: #da8548; font-weight: bold;">3</span>])
+<span class="linenr"> 7: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20197;&#26781;&#20214;&#20358;&#36984;&#21462;&#36039;&#26009;</span>
+<span class="linenr"> 8: </span><span style="color: #c678dd;">print</span>(df[df.homework&lt;<span style="color: #da8548; font-weight: bold;">30</span>])
+<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21512;&#20341;row and column&#20841;&#38917;&#26781;&#20214;</span>
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(df.<span style="color: #c678dd;">id</span>[df.homework&lt;<span style="color: #da8548; font-weight: bold;">30</span>])
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(df[[<span style="color: #98be65;">'id'</span>, <span style="color: #98be65;">'homework'</span>]][<span style="color: #da8548; font-weight: bold;">1</span>:<span style="color: #da8548; font-weight: bold;">3</span>])
+</pre>
+</div>
+
+<pre class="example" id="orgc212e13">
+          id  classparti  typing  homework  midexam  finalexam
+1  201910902          96      56     93.42     60.0       40.0
+2  201910903          96      76    102.63     45.0       28.0
+            id  classparti  typing  homework  midexam  finalexam
+10   201910911          62      44     20.39      4.0        0.0
+18   201910919          14      56     25.92      0.0        0.0
+23   201910924          75      48     10.75      0.0        0.0
+124  201911315          71     120     15.35      0.0        0.0
+140  201911331          93     120     25.88      0.0       16.0
+10     201910911
+18     201910919
+23     201910924
+124    201911315
+140    201911331
+Name: id, dtype: int64
+          id  homework
+1  201910902     93.42
+2  201910903    102.63
+</pre>
+</div>
+</div>
+<div id="outline-container-org1ab79ff" class="outline-3">
+<h3 id="org1ab79ff"><span class="section-number-3">5.3.</span> 條件式選取資料</h3>
+<div class="outline-text-3" id="text-5-3">
+</div>
+<div id="outline-container-org0451c7b" class="outline-4">
+<h4 id="org0451c7b"><span class="section-number-4">5.3.1.</span> 語法</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<ul class="org-ul">
+<li><code class="src src-python"> df[(condition)] </code><br /></li>
+<li><code class="src src-python"> df[(condition <span style="color: #da8548; font-weight: bold;">1</span>) &amp; (condition <span style="color: #da8548; font-weight: bold;">2</span>) ] </code><br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8b86ab3" class="outline-4">
+<h4 id="org8b86ab3"><span class="section-number-4">5.3.2.</span> 範例</h4>
+<div class="outline-text-4" id="text-5-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr">4: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr">5: </span>
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(df[(df.midexam &gt;= <span style="color: #da8548; font-weight: bold;">100</span>) &amp; (df.finalexam &gt;= <span style="color: #da8548; font-weight: bold;">100</span>)])
+</pre>
+</div>
+
+<pre class="example" id="orgf84cff1">
+            id  classparti  typing  homework  midexam  finalexam
+11   201910912          87      92     92.11    110.8     103.75
+70   201911034         104      92    102.63    100.8     101.00
+88   201911115         120      88    105.26    113.5     111.00
+98   201911125         119      80    107.89    113.2     115.00
+102  201911129         106      52    102.63    103.6     100.00
+127  201911318         108      80    102.63    104.8     100.00
+138  201911329         105      48    107.89    100.0     100.00
+143  201911334         100     120     81.58    104.8     113.00
+153  201911608          88       0    102.63    100.0     100.00
+169  201911624          82     100    102.63    101.5     105.00
+182  201911701         103     108     92.63    100.0     100.00
+189  201911708         106     108    102.63    107.2     101.00
+190  201911709         108      88    107.89    104.8     105.00
+191  201911710         102     100    102.63    100.0     105.00
+193  201911712         105      96    101.58    107.5     100.00
+195  201911714         102      44    107.89    110.0     110.00
+196  201911715         106     120    107.89    102.4     105.00
+198  201911717          80     120    107.89    106.0     100.00
+201  201911721         109      76    100.00    100.0     100.00
+203  201911722         105     120    102.63    101.5     105.00
+210  201911729          87      84    105.26    112.3     103.00
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7a0cc16" class="outline-3">
+<h3 id="org7a0cc16"><span class="section-number-3">5.4.</span> 進階條件過濾[loc/iloc]</h3>
+<div class="outline-text-3" id="text-5-4">
+</div>
+<div id="outline-container-orgd1d1dd0" class="outline-4">
+<h4 id="orgd1d1dd0"><span class="section-number-4">5.4.1.</span> loc, iloc, between <sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup></h4>
+<div class="outline-text-4" id="text-5-4-1">
+<ul class="org-ul">
+<li>loc: 基於行標籤和列標籤（x_label、y_label）進行索引，以 column 名做為 index<br /></li>
+<li>iloc: 基於行索引和列索引（index，columns） 都是從 0 開始，以數字做為 index<br /></li>
+<li>between: 檢查區間值, <code class="src src-python"> Series.between(<span style="color: #51afef;">self</span>, left, right, inclusive=<span style="color: #a9a1e1;">True</span>) </code><br /></li>
+</ul>
+</div>
+<div id="outline-container-org9f430de" class="outline-5">
+<h5 id="org9f430de"><span class="section-number-5">5.4.1.1.</span> 範例 1</h5>
+<div class="outline-text-5" id="text-5-4-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(df.head(<span style="color: #da8548; font-weight: bold;">3</span>))
+<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"========"</span>)
+<span class="linenr"> 8: </span><span style="color: #c678dd;">print</span>(df.loc[df.homework&lt;<span style="color: #da8548; font-weight: bold;">25</span>, [<span style="color: #98be65;">'id'</span>, <span style="color: #98be65;">'homework'</span>]])
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"========"</span>)
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(df.loc[<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #98be65;">'homework'</span>])
+</pre>
+</div>
+
+<pre class="example" id="org0ed741b">
+          id  classparti  typing  homework  midexam  finalexam
+0  201910901         100      72     92.11     48.0       16.0
+1  201910902          96      56     93.42     60.0       40.0
+2  201910903          96      76    102.63     45.0       28.0
+========
+            id  homework
+10   201910911     20.39
+23   201910924     10.75
+124  201911315     15.35
+========
+102.63
+</pre>
+</div>
+</div>
+<div id="outline-container-org73e0fca" class="outline-5">
+<h5 id="org73e0fca"><span class="section-number-5">5.4.1.2.</span> 範例 2</h5>
+<div class="outline-text-5" id="text-5-4-1-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36664;&#20986;&#21069;3&#31558;</span>
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(df.iloc[:<span style="color: #da8548; font-weight: bold;">3</span>])
+<span class="linenr">10: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36664;&#20986;&#21069;3&#31558;&#30340;&#31532;2,3&#27396;</span>
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(df.iloc[:<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">1</span>:<span style="color: #da8548; font-weight: bold;">3</span>])
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span style="color: #c678dd;">print</span>(df[<span style="color: #98be65;">'midexam'</span>].between(<span style="color: #da8548; font-weight: bold;">50</span>, <span style="color: #da8548; font-weight: bold;">60</span>))
+<span class="linenr">14: </span><span style="color: #dcaeea;">midFilter</span> = df[<span style="color: #98be65;">'midexam'</span>].between(<span style="color: #da8548; font-weight: bold;">50</span>, <span style="color: #da8548; font-weight: bold;">55</span>)
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(df[midFilter]) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#20063;&#21487;&#20197;&#30452;&#25509;&#23531;&#25104; df[ df['midexam'].between(50, 55)], &#21644;NumPy&#30340;&#35486;&#27861;&#39006;&#20284;</span>
+</pre>
+</div>
+
+<pre class="example" id="org386f671">
+Pandas version: 0.25.1
+          id  classparti  typing  homework  midexam  finalexam
+0  201910901         100      72     92.11     48.0       16.0
+1  201910902          96      56     93.42     60.0       40.0
+2  201910903          96      76    102.63     45.0       28.0
+   classparti  typing
+0         100      72
+1          96      56
+102.63
+0      False
+1       True
+2      False
+3      False
+4      False
+       ...
+207    False
+208    False
+209    False
+210    False
+211    False
+Name: midexam, Length: 212, dtype: bool
+            id  classparti  typing  homework  midexam  finalexam
+6    201910907         101     120     92.11     55.0       20.0
+65   201911029          93      60     82.00     50.0       16.0
+72   201911036          88      80    102.63     53.0       76.0
+92   201911119          82     104     89.47     50.0       20.0
+94   201911121          95     100     88.51     52.0       72.0
+109  201911136          91     100     81.58     51.0        4.0
+171  201911626          98      72     97.37     50.0       75.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1934d40" class="outline-2">
+<h2 id="org1934d40"><span class="section-number-2">6.</span> 進階分析</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org3992ebb" class="outline-3">
+<h3 id="org3992ebb"><span class="section-number-3">6.1.</span> 由其他 column 產生新的 column(重要、實用)</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>全部指定<br /></li>
+<li>條件指定<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr">4: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr">5: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr">6: </span>
+<span class="linenr">7: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35336;&#31639;&#32317;&#20998;'</span>
+<span class="linenr">8: </span><span style="color: #dcaeea;">df</span>[<span style="color: #98be65;">'Final'</span>] = df.classparti*.<span style="color: #da8548; font-weight: bold;">1</span> + df.typing*.<span style="color: #da8548; font-weight: bold;">1</span> + df.homework*.<span style="color: #da8548; font-weight: bold;">2</span> + df.midexam*.<span style="color: #da8548; font-weight: bold;">3</span> + df.finalexam*.<span style="color: #da8548; font-weight: bold;">3</span>
+<span class="linenr">9: </span><span style="color: #c678dd;">print</span>(df.head())
+</pre>
+</div>
+
+<pre class="example">
+          id  classparti  typing  homework  midexam  finalexam   Final
+0  201910901         100      72     92.11     48.0       16.0  54.822
+1  201910902          96      56     93.42     60.0       40.0  63.884
+2  201910903          96      76    102.63     45.0       28.0  59.626
+3  201910904          93      64     86.84     44.0       25.0  53.768
+4  201910905          93      56     42.11      0.0       20.0  29.322
+</pre>
+</div>
+</div>
+<div id="outline-container-org642ecb7" class="outline-3">
+<h3 id="org642ecb7"><span class="section-number-3">6.2.</span> 資料分組: groupby</h3>
+<div class="outline-text-3" id="text-6-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">PASS/FAIL</span>
+<span class="linenr"> 2: </span>df.<span style="color: #dcaeea;">loc</span>[df.Final &lt; <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #98be65;">'PASS'</span>] = <span style="color: #a9a1e1;">False</span>
+<span class="linenr"> 3: </span>df.<span style="color: #dcaeea;">loc</span>[df.Final &gt;= <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #98be65;">'PASS'</span>] = <span style="color: #a9a1e1;">True</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26032;&#22686;&#19968;&#20491;&#25171;&#23383;&#36895;&#24230;&#30340;&#27396;&#20301;</span>
+<span class="linenr"> 6: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing &lt; <span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'LOW'</span>
+<span class="linenr"> 7: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing.between(<span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">60</span>), <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'MID'</span>
+<span class="linenr"> 8: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing &gt; <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'HIGH'</span>
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(df.head(<span style="color: #da8548; font-weight: bold;">3</span>))
+</pre>
+</div>
+
+<pre class="example">
+          id  classparti  typing  homework  midexam  finalexam   Final   PASS TypingSpeed
+0  201910901         100      72     92.11     48.0       16.0  54.822  False        HIGH
+1  201910902          96      56     93.42     60.0       40.0  63.884   True         MID
+2  201910903          96      76    102.63     45.0       28.0  59.626  False        HIGH
+</pre>
+</div>
+</div>
+<div id="outline-container-orgd00c151" class="outline-3">
+<h3 id="orgd00c151"><span class="section-number-3">6.3.</span> 交叉分析</h3>
+<div class="outline-text-3" id="text-6-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20381;&#25171;&#23383;&#36895;&#24230;&#20998;&#32068;&#65292;&#30475;&#19981;&#21516;&#32068;&#21029;&#30340;&#23416;&#26399;&#32317;&#25104;&#32318;&#20998;&#20296;</span>
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'---&#20381;&#25171;&#23383;&#36895;&#24230;&#20998;&#32068;---'</span>)
+<span class="linenr">3: </span><span style="color: #c678dd;">print</span>(df.groupby(<span style="color: #98be65;">'TypingSpeed'</span>)[<span style="color: #98be65;">'Final'</span>].mean())
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(df.groupby(<span style="color: #98be65;">'PASS'</span>)[[<span style="color: #98be65;">'typing'</span> ,<span style="color: #98be65;">'homework'</span>]].mean())
+<span class="linenr">5: </span>
+<span class="linenr">6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32605;&#25563;row/column</span>
+<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'---&#32622;&#25563;row/column(&#36681;90&#24230;)---'</span>)
+<span class="linenr">8: </span><span style="color: #c678dd;">print</span>(df.groupby(<span style="color: #98be65;">'PASS'</span>)[[<span style="color: #98be65;">'typing'</span> ,<span style="color: #98be65;">'homework'</span>]].mean().T)
+<span class="linenr">9: </span>
+</pre>
+</div>
+
+<pre class="example" id="org9e8b2c2">
+---依打字速度分組---
+TypingSpeed
+HIGH    69.977451
+LOW     68.517333
+MID     64.086303
+Name: Final, dtype: float64
+          typing   homework
+PASS
+False  77.567568  76.409054
+True   84.525547  96.350730
+---置換row/column(轉90度)---
+PASS          False      True
+typing    77.567568  84.525547
+homework  76.409054  96.350730
+</pre>
+</div>
+</div>
+<div id="outline-container-orgad717e6" class="outline-3">
+<h3 id="orgad717e6"><span class="section-number-3">6.4.</span> 資料檔下載: <a href="scores.csv">scores.csv</a></h3>
+</div>
+</div>
+<div id="outline-container-org826762c" class="outline-2">
+<h2 id="org826762c"><span class="section-number-2">7.</span> 資料視覺化</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-orge6e1de2" class="outline-3">
+<h3 id="orge6e1de2"><span class="section-number-3">7.1.</span> Bar chart</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 7: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35336;&#31639;&#32317;&#20998;'</span>
+<span class="linenr">10: </span><span style="color: #dcaeea;">df</span>[<span style="color: #98be65;">'Final'</span>] = df.classparti*.<span style="color: #da8548; font-weight: bold;">1</span> + df.typing*.<span style="color: #da8548; font-weight: bold;">1</span> + df.homework*.<span style="color: #da8548; font-weight: bold;">2</span> + df.midexam*.<span style="color: #da8548; font-weight: bold;">3</span> + df.finalexam*.<span style="color: #da8548; font-weight: bold;">3</span>
+<span class="linenr">11: </span>
+<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">create new column according to typing speed</span>
+<span class="linenr">13: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing &lt; <span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'Level-1'</span>
+<span class="linenr">14: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing.between(<span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">60</span>), <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'Level-2'</span>
+<span class="linenr">15: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing &gt; <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'Level-3'</span>
+<span class="linenr">16: </span>
+<span class="linenr">17: </span><span style="color: #dcaeea;">x</span> = df.groupby(<span style="color: #98be65;">'TypingSpeed'</span>)[[<span style="color: #98be65;">'homework'</span>,<span style="color: #98be65;">'classparti'</span>]].mean()
+<span class="linenr">18: </span><span style="color: #c678dd;">print</span>(x)
+<span class="linenr">19: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#38364;&#26044;&#22294;&#34920;&#30340;&#23660;&#24615;&#35373;&#23450;&#26041;&#24335;</span>
+<span class="linenr">20: </span><span style="color: #dcaeea;">fig</span> = df.groupby(<span style="color: #98be65;">'TypingSpeed'</span>)[[<span style="color: #98be65;">'homework'</span>,<span style="color: #98be65;">'classparti'</span>]].mean().plot(kind=<span style="color: #98be65;">'bar'</span>, title=<span style="color: #98be65;">"</span><span style="color: #a9a1e1; font-weight: bold;">XXX</span><span style="color: #98be65;">"</span>, rot=<span style="color: #da8548; font-weight: bold;">0</span>, legend=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">21: </span>fig.set_xlabel(<span style="color: #98be65;">"Typing Speed"</span>)
+<span class="linenr">22: </span>fig.set_ylabel(<span style="color: #98be65;">"score"</span>)
+<span class="linenr">23: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig = fig.get_figure() # &#22914;&#26524;&#19981;&#23384;&#22294;&#27284;&#23601;&#19981;&#29992;&#35373;&#23450;&#36889;&#34892;</span>
+<span class="linenr">24: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#38364;&#26044;&#22294;&#34920;&#30340;&#23660;&#24615;&#35373;&#23450;&#26041;&#24335;</span>
+<span class="linenr">25: </span><span style="color: #dcaeea;">fig1</span> = df.groupby(<span style="color: #98be65;">'TypingSpeed'</span>)[[<span style="color: #98be65;">'homework'</span>,<span style="color: #98be65;">'classparti'</span>]].mean().T.plot(kind=<span style="color: #98be65;">'bar'</span>, title=<span style="color: #98be65;">"</span><span style="color: #a9a1e1; font-weight: bold;">XXX</span><span style="color: #98be65;">"</span>, rot=<span style="color: #da8548; font-weight: bold;">0</span>, legend=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">26: </span>fig1.set_xlabel(<span style="color: #98be65;">"Subject"</span>)
+<span class="linenr">27: </span>fig1.set_ylabel(<span style="color: #98be65;">"score"</span>)
+<span class="linenr">28: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig1 = fig1.get_figure()# &#22914;&#26524;&#19981;&#23384;&#22294;&#27284;&#23601;&#19981;&#29992;&#35373;&#23450;&#36889;&#34892;</span>
+<span class="linenr">29: </span>
+<span class="linenr">30: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22914;&#26524;&#19981;&#23384;&#22294;&#27284;&#23601;&#19981;&#29992;&#22519;&#34892;&#20197;&#19979;&#31243;&#24335;</span>
+<span class="linenr">31: </span>savefig.savefig(<span style="color: #98be65;">'images/pandasPlot1.png'</span>, bbox_inches=<span style="color: #98be65;">'tight'</span>)
+<span class="linenr">32: </span>savefig1.savefig(<span style="color: #98be65;">'images/pandasPlot10.png'</span>, bbox_inches=<span style="color: #98be65;">'tight'</span>)
+</pre>
+</div>
+
+<pre class="example">
+              homework  classparti
+TypingSpeed
+Level-1      96.053333   87.666667
+Level-2      85.273939   88.696970
+Level-3      90.053920   93.159091
+</pre>
+
+
+<div id="orgad753b7" class="figure">
+<p><img src="images/pandasPlot1.png" alt="pandasPlot1.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 1: </span>Pandas plot bar chart</p>
+</div>
+
+<div id="org5e409fc" class="figure">
+<p><img src="images/pandasPlot10.png" alt="pandasPlot10.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 2: </span>Pandas plot bar chart</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org355a3a0" class="outline-3">
+<h3 id="org355a3a0"><span class="section-number-3">7.2.</span> Regression line chart</h3>
+<div class="outline-text-3" id="text-7-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> seaborn <span style="color: #51afef;">as</span> sns
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 7: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>sns.regplot(x=<span style="color: #98be65;">"midexam"</span>, y=<span style="color: #98be65;">'finalexam'</span>, data=df);
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">fig = sns.regplot(x="midexam", y='finalexam', data=df);</span>
+<span class="linenr">12: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig = fig.get_figure()</span>
+<span class="linenr">13: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig.savefig('images/PandasPlot4.png')</span>
+<span class="linenr">14: </span>
+</pre>
+</div>
+
+
+<div id="orgf4d7684" class="figure">
+<p><img src="images/PandasPlot4.png" alt="PandasPlot4.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 3: </span>Pandas plot scatter chart</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4ecf226" class="outline-3">
+<h3 id="org4ecf226"><span class="section-number-3">7.3.</span> Pie chart</h3>
+<div class="outline-text-3" id="text-7-3">
+</div>
+<div id="outline-container-orgefd1862" class="outline-4">
+<h4 id="orgefd1862"><span class="section-number-4">7.3.1.</span> DEMO</h4>
+<div class="outline-text-4" id="text-7-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35336;&#31639;&#32317;&#20998;'</span>
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">df</span>[<span style="color: #98be65;">'Final'</span>] = df.classparti*.<span style="color: #da8548; font-weight: bold;">1</span> + df.typing*.<span style="color: #da8548; font-weight: bold;">1</span> + df.homework*.<span style="color: #da8548; font-weight: bold;">2</span> + df.midexam*.<span style="color: #da8548; font-weight: bold;">3</span> + df.finalexam*.<span style="color: #da8548; font-weight: bold;">3</span>
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">create new column according to typing speed</span>
+<span class="linenr">12: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing &lt; <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'Level-1'</span>
+<span class="linenr">13: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing.between(<span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #da8548; font-weight: bold;">80</span>), <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'Level-2'</span>
+<span class="linenr">14: </span>df.<span style="color: #dcaeea;">loc</span>[df.typing &gt; <span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #98be65;">'TypingSpeed'</span> ] = <span style="color: #98be65;">'Level-3'</span>
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(df.groupby(<span style="color: #98be65;">'TypingSpeed'</span>).count())
+<span class="linenr">16: </span>df.groupby(<span style="color: #98be65;">'TypingSpeed'</span>)[<span style="color: #98be65;">'TypingSpeed'</span>].count().plot(kind=<span style="color: #98be65;">'pie'</span>, title=<span style="color: #98be65;">"</span><span style="color: #a9a1e1; font-weight: bold;">XXX</span><span style="color: #98be65;">"</span>, rot=<span style="color: #da8548; font-weight: bold;">0</span>, legend=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22914;&#26524;&#19981;&#23384;&#22294;&#27284;&#23601;&#19981;&#29992;&#22519;&#34892;&#20197;&#19979;&#31243;&#24335;</span>
+<span class="linenr">18: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">fig = df.groupby('TypingSpeed')['TypingSpeed'].count().plot(kind='pie', title="</span><span style="color: #a9a1e1; font-weight: bold;">XXX</span><span style="color: #5B6268;">", rot=0, legend=True)</span>
+<span class="linenr">19: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig = fig.get_figure()</span>
+<span class="linenr">20: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig.savefig('images/pandasPlot2.png', bbox_inches='tight')</span>
+</pre>
+</div>
+
+<div class="results" id="org0d9087e">
+<p>
+              id  classparti  typing  homework  midexam  finalexam  Final<br />
+TypingSpeed<br />
+Level-1       25          25      25        25       25         25     25<br />
+Level-2       86          86      86        86       86         86     86<br />
+Level-3      101         101     101       101      100        101    100<br />
+</p>
+
+</div>
+
+
+<div id="org0bae90b" class="figure">
+<p><img src="images/pandasPlot2.png" alt="pandasPlot2.png" width="300" /><br />
+</p>
+<p><span class="figure-number">Figure 4: </span>Pandas plot pie chart</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org9226d53" class="outline-4">
+<h4 id="org9226d53"><span class="section-number-4">7.3.2.</span> 如何避免圖例擋住圖表</h4>
+<div class="outline-text-4" id="text-7-3-2">
+<ul class="org-ul">
+<li><a href="https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot">How to put the legend out of the plot</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6d7179e" class="outline-3">
+<h3 id="org6d7179e"><span class="section-number-3">7.4.</span> Scatter chart</h3>
+<div class="outline-text-3" id="text-7-4">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>df[[<span style="color: #98be65;">'midexam'</span>,<span style="color: #98be65;">'finalexam'</span>]].plot(kind=<span style="color: #98be65;">'scatter'</span>, x=<span style="color: #da8548; font-weight: bold;">1</span>, y=<span style="color: #da8548; font-weight: bold;">0</span>)
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">fig</span> = df[[<span style="color: #98be65;">'midexam'</span>,<span style="color: #98be65;">'finalexam'</span>]].plot(kind=<span style="color: #98be65;">'scatter'</span>, x=<span style="color: #da8548; font-weight: bold;">1</span>, y=<span style="color: #da8548; font-weight: bold;">0</span>)
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22914;&#26524;&#19981;&#23384;&#22294;&#27284;&#23601;&#19981;&#29992;&#22519;&#34892;&#20197;&#19979;&#31243;&#24335;</span>
+<span class="linenr">12: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig = fig.get_figure()</span>
+<span class="linenr">13: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig.savefig('images/PandasPlot3.png')</span>
+</pre>
+</div>
+
+
+<div id="orgb8bc1a3" class="figure">
+<p><img src="images/PandasPlot3.png" alt="PandasPlot3.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 5: </span>Pandas plot scatter chart</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc92db7f" class="outline-3">
+<h3 id="orgc92db7f"><span class="section-number-3">7.5.</span> Haxbin chart</h3>
+<div class="outline-text-3" id="text-7-5">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;csv</span>
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> = pd.read_csv(docURL)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>df[[<span style="color: #98be65;">'midexam'</span>,<span style="color: #98be65;">'finalexam'</span>]].plot(kind=<span style="color: #98be65;">'hexbin'</span>, x=<span style="color: #da8548; font-weight: bold;">1</span>, y=<span style="color: #da8548; font-weight: bold;">0</span>, gridsize=<span style="color: #da8548; font-weight: bold;">25</span>)
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span><span style="color: #dcaeea;">fig</span> = df[[<span style="color: #98be65;">'midexam'</span>,<span style="color: #98be65;">'finalexam'</span>]].plot(kind=<span style="color: #98be65;">'hexbin'</span>, x=<span style="color: #da8548; font-weight: bold;">1</span>, y=<span style="color: #da8548; font-weight: bold;">0</span>, gridsize=<span style="color: #da8548; font-weight: bold;">25</span>)
+<span class="linenr">11: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig = fig.get_figure()</span>
+<span class="linenr">12: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">savefig.savefig('images/PandasPlot6.png')</span>
+</pre>
+</div>
+
+
+<div id="org897677c" class="figure">
+<p><img src="images/PandasPlot6.png" alt="PandasPlot6.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 6: </span>Pandas plot hexbin chart</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org4cd86c5" class="outline-2">
+<h2 id="org4cd86c5"><span class="section-number-2">8.</span> [課堂練習]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org86f4ae8" class="outline-3">
+<h3 id="org86f4ae8"><span class="section-number-3">8.1.</span> 403期中考得分統計</h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>原始數據<br /></li>
+</ul>
+
+<div id="org4e97729" class="figure">
+<p><img src="images/csv.jpg" alt="csv.jpg" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 7: </span>CSV 內容</p>
+</div>
+<ul class="org-ul">
+<li><a href="cs109score.csv">cs109score.csv</a>為 T 市某校的資訊科線上期中考系統所匯出的成績檔，該次考試共計 10 題，其中<br />
+<ul class="org-ul">
+<li>前 5 題(A,B,C,D,E)為基本題，每題 100 分，<br /></li>
+<li>後 4 題為加分題(Bonus1~Bonus4)，每題 25 分<br /></li>
+<li>本份考卷總分：600；<br /></li>
+<li>總得分除以 5 即為期中考得分<br /></li>
+<li>此次期中考總分 120分。<br /></li>
+</ul></li>
+</ul>
+</div>
+<div id="outline-container-org9219994" class="outline-4">
+<h4 id="org9219994"><span class="section-number-4">8.1.1.</span> 任務 1 (10%):</h4>
+<div class="outline-text-4" id="text-8-1-1">
+<ul class="org-ul">
+<li>將有缺失值的部份以 0 分取代。<br /></li>
+<li>直接輸出前10筆資料<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5d78228" class="outline-4">
+<h4 id="org5d78228"><span class="section-number-4">8.1.2.</span> 任務 2 (20%):</h4>
+<div class="outline-text-4" id="text-8-1-2">
+<ul class="org-ul">
+<li>求出每個人的原始總分(即所有分數)，新增的欄位名稱為TOTAL<br /></li>
+<li>新增欄位SCORE, 其值為每個人的實際得分(原始總分TOTAL除以 5)<br /></li>
+<li>直接輸出前10筆資料<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org088047f" class="outline-4">
+<h4 id="org088047f"><span class="section-number-4">8.1.3.</span> 任務 3 (20%):</h4>
+<div class="outline-text-4" id="text-8-1-3">
+<p>
+求所有受試者第 B 及 B1 兩題的 scatter plot 以及 regression line。如下圖:<br />
+</p>
+
+<div id="org4cb29be" class="figure">
+<p><img src="images/task8.png" alt="task8.png" width="560" /><br />
+</p>
+<p><span class="figure-number">Figure 8: </span>任務3</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org58e9370" class="outline-4">
+<h4 id="org58e9370"><span class="section-number-4">8.1.4.</span> 任務 4 (30%):</h4>
+<div class="outline-text-4" id="text-8-1-4">
+<ul class="org-ul">
+<li>新增ABILITY欄位，依以下條件填入類別<br />
+<ul class="org-ul">
+<li>SCORE &lt;= 50, ABILITY: &rsquo;LEVEL-1&rsquo;<br /></li>
+<li>50 &lt; SCORE &lt; 80, ABILITY: &rsquo;LEVEL-2&rsquo;<br /></li>
+<li>SCORE &gt;= 80, ABILITY: &rsquo;LEVEL-3&rsquo;<br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org27d5d48" class="outline-4">
+<h4 id="org27d5d48"><span class="section-number-4">8.1.5.</span> 任務 5 (20%):</h4>
+<div class="outline-text-4" id="text-8-1-5">
+<p>
+交叉分析，依ABILITY分組，查看此三組學生的前三題(A, B, C)得分情況，並繪製圖表<br />
+</p>
+
+<div id="org1967359" class="figure">
+<p><img src="images/pandastask5.png" alt="pandastask5.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 9: </span>任務5</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org00f07be" class="outline-3">
+<h3 id="org00f07be"><span class="section-number-3">8.2.</span> 進階練習</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+一dataframe如下<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span style="color: #dcaeea;">scores</span> = {<span style="color: #98be65;">'Math'</span>: [<span style="color: #da8548; font-weight: bold;">900</span>, <span style="color: #da8548; font-weight: bold;">50</span>, <span style="color: #da8548; font-weight: bold;">70</span>, <span style="color: #da8548; font-weight: bold;">80</span>],
+          <span style="color: #98be65;">'English'</span>: [<span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">90</span>, <span style="color: #da8548; font-weight: bold;">50</span>],
+          <span style="color: #98be65;">'History'</span>: [<span style="color: #da8548; font-weight: bold;">33</span>, <span style="color: #da8548; font-weight: bold;">75</span>, np.NaN, np.NaN]}
+<span style="color: #dcaeea;">df</span> = pd.DataFrame(scores, index=[<span style="color: #98be65;">'Simon'</span>, <span style="color: #98be65;">'Allen'</span>, <span style="color: #98be65;">'Jimmy'</span>, <span style="color: #98be65;">'Vanessa'</span>])
+</pre>
+</div>
+<p>
+試解決以下問題：<br />
+</p>
+<ol class="org-ol">
+<li>列出Math分數&gt;100資料<br /></li>
+<li>將Siman之Math改為90分<br /></li>
+<li>計算History遺漏值筆數<br /></li>
+<li>以History平均值取代History中遺漏值<br /></li>
+<li>新增&ldquo;平均&rdquo;欄位，計算四人各科平均<br /></li>
+<li>新增&ldquo;名次&rdquo;欄位，以四人平均分數為排序依據<br /></li>
+<li>列出平均不及格者<br /></li>
+<li>列出數學最高分者姓名<br /></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-org143e659" class="outline-2">
+<h2 id="org143e659"><span class="section-number-2">9.</span> 教學影片</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=GClDLt2TCQA">4-4 假的成績真的算</a><br /></li>
+<li><a href="https://www.youtube.com/watch?v=GGxahUW6nF4">4-3 拿真的資料出來玩</a><br /></li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://blog.csdn.net/qq_18668137/article/details/80807829">conda、miniconda、anaconda的區別以及在pycharm中選擇conda的虛擬環境</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://oranwind.org/python-pandas-ji-chu-jiao-xue/">[Python] Pandas 基礎教學</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+DEFINITION NOT FOUND.<br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://www.itread01.com/content/1547569271.html">Python讀寫csv檔案的幾種方法 及 pandas.read_csv 引數全解</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://ithelp.ithome.com.tw/articles/10208412">Day23- 資料處理模組-Pandas 介紹</a><br />
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Yung-Chin Yen</p>
+<p class="date">Created: 2024-03-12 Tue 21:02</p>
+</div>
+</body>
+</html>

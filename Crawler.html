@@ -1,0 +1,1895 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-12 Tue 21:02 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Crawler: 網路資料解析與爬蟲</title>
+<meta name="author" content="Yung-Chin Yen" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/muse.css" />
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Crawler: 網路資料解析與爬蟲</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org413e0a6">1. JSON</a>
+<ul>
+<li><a href="#org84c153a">1.1. 網路資料分析的兩種類型</a></li>
+<li><a href="#orgcbbb0ed">1.2. JSON</a></li>
+<li><a href="#org0680165">1.3. JSON 實作範例</a></li>
+<li><a href="#org855110a">1.4. [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgf8ff0e6">1.5. JSON 進階閱讀</a></li>
+</ul>
+</li>
+<li><a href="#orgcecb02f">2. HTML</a>
+<ul>
+<li><a href="#org9cd97cd">2.1. What is HTML</a></li>
+<li><a href="#orge06900a">2.2. HTML 範例</a></li>
+</ul>
+</li>
+<li><a href="#orge523c7f">3. 網路爬蟲</a>
+<ul>
+<li><a href="#orgad38a0b">3.1. 爬蟲精神：將程式模仿成一般 user</a></li>
+<li><a href="#org84ff4be">3.2. BeautifulSoup</a></li>
+<li><a href="#org01c1c27">3.3. Beautifulsoup 解析器</a></li>
+<li><a href="#org2fb409b">3.4. BeautifulSoup 的方法</a></li>
+</ul>
+</li>
+<li><a href="#orge830384">4. BS4:開始爬</a>
+<ul>
+<li><a href="#orgfed654b">4.1. bs4.tag</a></li>
+<li><a href="#org84a3aaf">4.2. find</a></li>
+<li><a href="#org321edee">4.3. find_all</a></li>
+<li><a href="#org37e0893">4.4. 第四版：擷取所有主題</a></li>
+<li><a href="#org8837e75">4.5. [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgb2bf18f">4.6. 爬蟲進階閱讀</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/Crawler.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Crawler.html.svg"/></a>
+<div id="outline-container-org413e0a6" class="outline-2">
+<h2 id="org413e0a6"><span class="section-number-2">1.</span> JSON</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org84c153a" class="outline-3">
+<h3 id="org84c153a"><span class="section-number-3">1.1.</span> 網路資料分析的兩種類型</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>可直接下載的靜態結構化資料，如 CSV、JSON、XML<br /></li>
+<li>直接分析網站的線上內容(HTML): 爬蟲(Web Crawler)<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgcbbb0ed" class="outline-3">
+<h3 id="orgcbbb0ed"><span class="section-number-3">1.2.</span> JSON</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org5b4ad94" class="outline-4">
+<h4 id="org5b4ad94"><span class="section-number-4">1.2.1.</span> What is JSON?</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>JSON(JavaScript Object Notation，JavaScript 物件表示法)是個以純文字來描述資料的簡單結構，在 JSON 中可以透過特定的格式去儲存任何資料(字串,數字,陣列,物件)，也可以透過物件或陣列來傳送較複雜的資料。<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup><br /></li>
+<li>JSON 常用於網站上的資料呈現、傳輸 (例如將資料從伺服器送至用戶端，以利顯示網頁)。<br /></li>
+<li>一旦建立了 JSON 資料，就可以非常簡單的跟其他程式溝通或交換資料，因為 JSON 就只是純文字格式。<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfc3ed5a" class="outline-4">
+<h4 id="orgfc3ed5a"><span class="section-number-4">1.2.2.</span> JSON 的優點</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li>相容性高<br /></li>
+<li>格式容易瞭解，閱讀及修改方便<br /></li>
+<li>支援許多資料格式 (number,string,booleans,nulls,array,associative array)<br /></li>
+<li>許多程式都支援函式庫讀取或修改 JSON 資料<br /></li>
+<li>NoSQL Database<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga50a646" class="outline-4">
+<h4 id="orga50a646"><span class="section-number-4">1.2.3.</span> JSON 結構</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>物件: {}<br /></li>
+<li>陣列: []<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org71e3d14" class="outline-4">
+<h4 id="org71e3d14"><span class="section-number-4">1.2.4.</span> JSON 支援的資料格式</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>字串 (string)，要以雙引號括起來:<br />
+<ul class="org-ul">
+<li>{&ldquo;name&rdquo;: &ldquo;Mike&rdquo;}<br /></li>
+</ul></li>
+<li>數值 (number)<br />
+<ul class="org-ul">
+<li>{&ldquo;age&rdquo;: 25}<br /></li>
+</ul></li>
+<li>布林值 (boolean)<br />
+<ul class="org-ul">
+<li>{&ldquo;pass&rdquo;: True}<br /></li>
+</ul></li>
+<li>空值 (null)<br />
+<ul class="org-ul">
+<li>{&ldquo;middlename&rdquo;: null}<br /></li>
+</ul></li>
+<li>物件 (object)<br /></li>
+<li>陣列 (array)<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgbe479b5" class="outline-4">
+<h4 id="orgbe479b5"><span class="section-number-4">1.2.5.</span> JSON 物件</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<ul class="org-ul">
+<li>格式<br /></li>
+<li>key 只能是字串，也一定要加上雙引號<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>{
+<span class="linenr">2: </span>    <span style="color: #98be65;">"key1"</span>: value1,
+<span class="linenr">3: </span>    <span style="color: #98be65;">"key2"</span>: value2,
+<span class="linenr">4: </span>    ......
+<span class="linenr">5: </span>    <span style="color: #98be65;">"keyN"</span>: valueN
+<span class="linenr">6: </span>}
+</pre>
+</div>
+<ul class="org-ul">
+<li>範例 1<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>{
+<span class="linenr">2: </span>    <span style="color: #98be65;">"id"</span>: <span style="color: #da8548; font-weight: bold;">1</span>,
+<span class="linenr">3: </span>    <span style="color: #98be65;">"name"</span>: <span style="color: #98be65;">"Jamees, Yen"</span>,
+<span class="linenr">4: </span>    <span style="color: #98be65;">"age"</span>: <span style="color: #da8548; font-weight: bold;">19</span>,
+<span class="linenr">5: </span>    <span style="color: #98be65;">"gender"</span>: <span style="color: #98be65;">"M"</span>,
+<span class="linenr">6: </span>    <span style="color: #98be65;">"hobby"</span>: [<span style="color: #98be65;">"music"</span>, <span style="color: #98be65;">"programming"</span>]
+<span class="linenr">7: </span>}
+</pre>
+</div>
+<ul class="org-ul">
+<li>範例 2<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>{
+<span class="linenr"> 2: </span>    <span style="color: #98be65;">"id"</span>: <span style="color: #da8548; font-weight: bold;">382192</span>
+<span class="linenr"> 3: </span>    <span style="color: #98be65;">"name"</span>: <span style="color: #98be65;">"Jamees, Yen"</span>,
+<span class="linenr"> 4: </span>    <span style="color: #98be65;">"age"</span>: <span style="color: #da8548; font-weight: bold;">19</span>,
+<span class="linenr"> 5: </span>    <span style="color: #98be65;">"gender"</span>: <span style="color: #98be65;">"M"</span>,
+<span class="linenr"> 6: </span>    <span style="color: #98be65;">"exams"</span>: [
+<span class="linenr"> 7: </span>        { <span style="color: #98be65;">"title"</span>: <span style="color: #98be65;">"&#26399;&#20013;&#32771;"</span>,
+<span class="linenr"> 8: </span>          <span style="color: #98be65;">"chinese"</span>: <span style="color: #da8548; font-weight: bold;">85</span>,
+<span class="linenr"> 9: </span>          <span style="color: #98be65;">"math"</span>: <span style="color: #da8548; font-weight: bold;">98</span>,
+<span class="linenr">10: </span>          <span style="color: #98be65;">"englihs"</span>: <span style="color: #da8548; font-weight: bold;">92</span>
+<span class="linenr">11: </span>        },
+<span class="linenr">12: </span>        { <span style="color: #98be65;">"title"</span>: <span style="color: #98be65;">"&#26399;&#26411;&#32771;"</span>,
+<span class="linenr">13: </span>          <span style="color: #98be65;">"chinese"</span>: <span style="color: #da8548; font-weight: bold;">81</span>,
+<span class="linenr">14: </span>          <span style="color: #98be65;">"math"</span>: <span style="color: #da8548; font-weight: bold;">92</span>,
+<span class="linenr">15: </span>          <span style="color: #98be65;">"englihs"</span>: <span style="color: #da8548; font-weight: bold;">97</span>
+<span class="linenr">16: </span>        }
+<span class="linenr">17: </span>    ],
+<span class="linenr">18: </span>    <span style="color: #98be65;">"hobby"</span>: [<span style="color: #98be65;">"music"</span>, <span style="color: #98be65;">"programming"</span>]
+<span class="linenr">19: </span>}
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb93850" class="outline-4">
+<h4 id="orgbb93850"><span class="section-number-4">1.2.6.</span> JSON 轉 PANDAS dataFrame</h4>
+<div class="outline-text-4" id="text-1-2-6">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">from</span> pandas.io.json <span style="color: #51afef;">import</span> json_normalize
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #dcaeea;">df</span> = json_normalize( <span style="color: #c678dd;">list</span> of <span style="color: #c678dd;">dict</span> )
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(df.head(<span style="color: #da8548; font-weight: bold;">3</span>))
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org0680165" class="outline-3">
+<h3 id="org0680165"><span class="section-number-3">1.3.</span> JSON 實作範例</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org4f5cebc" class="outline-4">
+<h4 id="org4f5cebc"><span class="section-number-4">1.3.1.</span> 實作 1: <a href="https://data.gov.tw/dataset/31897">國際主要國家貨幣每月匯率概況</a></h4>
+<div class="outline-text-4" id="text-1-3-1">
+</div>
+<div id="outline-container-orgb320d1b" class="outline-5">
+<h5 id="orgb320d1b"><span class="section-number-5">1.3.1.1.</span> 下載 JSON</h5>
+<div class="outline-text-5" id="text-1-3-1-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> requests
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">json_url</span> = <span style="color: #98be65;">'https://quality.data.gov.tw/dq_download_json.php?nid=11339&amp;md5_url=f2fdbc21603c55b11aead08c84184b8f'</span>
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">response</span> = requests.get(json_url)
+<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(response)
+<span class="linenr"> 7: </span><span style="color: #dcaeea;">jsonRes</span> = response.json()
+<span class="linenr"> 8: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(jsonRes))
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span><span style="color: #51afef;">import</span> json
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(jsonRes[:<span style="color: #da8548; font-weight: bold;">1</span>])
+<span class="linenr">12: </span><span style="color: #c678dd;">print</span>(json.dumps(jsonRes[:<span style="color: #da8548; font-weight: bold;">2</span>], indent = <span style="color: #da8548; font-weight: bold;">4</span>, ensure_ascii=<span style="color: #a9a1e1;">False</span>))
+</pre>
+</div>
+
+<pre class="example" id="org99d04a1">
+/Users/letranger/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:34: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+&lt;Response [200]&gt;
+&lt;class 'list'&gt;
+[{'日期': '20201005', '美元／新台幣': '29.02', '人民幣／新台幣': '4.29882', '歐元／美元': '1.17405', '美元／日幣': '105.645', '英鎊／美元': '1.2947', '澳幣／美元': '0.71775', '美元／港幣': '7.75005', '美元／人民幣': '6.7507', '美元／南非幣': '16.4019', '紐幣／美元': '0.66435'}]
+[
+    {
+        "日期": "20201005",
+        "美元／新台幣": "29.02",
+        "人民幣／新台幣": "4.29882",
+        "歐元／美元": "1.17405",
+        "美元／日幣": "105.645",
+        "英鎊／美元": "1.2947",
+        "澳幣／美元": "0.71775",
+        "美元／港幣": "7.75005",
+        "美元／人民幣": "6.7507",
+        "美元／南非幣": "16.4019",
+        "紐幣／美元": "0.66435"
+    },
+    {
+        "日期": "20201006",
+        "美元／新台幣": "28.96",
+        "人民幣／新台幣": "4.300705",
+        "歐元／美元": "1.17735",
+        "美元／日幣": "105.555",
+        "英鎊／美元": "1.297",
+        "澳幣／美元": "0.7156",
+        "美元／港幣": "7.75005",
+        "美元／人民幣": "6.7338",
+        "美元／南非幣": "16.63735",
+        "紐幣／美元": "0.66365"
+    }
+]
+</pre>
+</div>
+</div>
+<div id="outline-container-org9d24ce5" class="outline-5">
+<h5 id="org9d24ce5"><span class="section-number-5">1.3.1.2.</span> 輸出日期與匯率</h5>
+<div class="outline-text-5" id="text-1-3-1-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#26085;&#26399;'</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t\t</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">'&#32654;&#20803;/&#26032;&#21488;&#24163;'</span>)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'===='</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t\t</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">'==========='</span>)
+<span class="linenr">3: </span><span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes[:<span style="color: #da8548; font-weight: bold;">10</span>]:
+<span class="linenr">4: </span>    <span style="color: #c678dd;">print</span>(item[<span style="color: #98be65;">'&#26085;&#26399;'</span>], <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t</span><span style="color: #98be65;">"</span>, item[<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;'</span>])
+</pre>
+</div>
+
+<pre class="example" id="org3744430">
+日期 		 美元/新台幣
+==== 		 ===========
+20201005 	 29.02
+20201006 	 28.96
+20201007 	 28.965
+20201008 	 28.966
+20201012 	 28.909
+20201013 	 28.92
+20201014 	 28.952
+20201015 	 28.96
+20201016 	 28.979
+20201019 	 28.95
+</pre>
+</div>
+</div>
+<div id="outline-container-org11eba2f" class="outline-5">
+<h5 id="org11eba2f"><span class="section-number-5">1.3.1.3.</span> 製圖</h5>
+<div class="outline-text-5" id="text-1-3-1-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>plt.figure(figsize=(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">6</span>))
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] = [<span style="color: #98be65;">'Arial Unicode MS'</span>] <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#19968;&#65288;&#26367;&#25563;&#31995;&#32113;&#20013;&#30340;&#23383;&#22411;&#65292;&#36889;&#35041;&#29992;&#30340;&#26159;Mac OSX&#31995;&#32113;&#65289;</span>
+<span class="linenr"> 7: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25552;&#21462;&#26085;&#26399;&#21644;&#32654;&#20803;/&#26032;&#21488;&#24163;&#30340;&#25976;&#25818;</span>
+<span class="linenr">10: </span><span style="color: #dcaeea;">dates</span> = [item[<span style="color: #98be65;">'&#26085;&#26399;'</span>] <span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes]
+<span class="linenr">11: </span><span style="color: #dcaeea;">exchange_rates</span> = [<span style="color: #c678dd;">float</span>(item[<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;'</span>]) <span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes]
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32362;&#35069;&#25240;&#32218;&#22294;</span>
+<span class="linenr">14: </span>plt.figure(figsize=(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">6</span>))
+<span class="linenr">15: </span>plt.plot(dates, exchange_rates, marker=<span style="color: #98be65;">'o'</span>, linestyle=<span style="color: #98be65;">'-'</span>)
+<span class="linenr">16: </span>
+<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35373;&#32622;&#22294;&#24418;&#27161;&#31844;&#21644;&#27161;&#38988;</span>
+<span class="linenr">18: </span>plt.xlabel(<span style="color: #98be65;">'&#26085;&#26399;'</span>)
+<span class="linenr">19: </span>plt.ylabel(<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;'</span>)
+<span class="linenr">20: </span>plt.title(<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;&#21295;&#29575;&#36208;&#21218;'</span>)
+<span class="linenr">21: </span>
+<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26059;&#36681;x&#36600;&#19978;&#30340;&#26085;&#26399;&#27161;&#31844;&#65292;&#20197;&#36991;&#20813;&#37325;&#30090;</span>
+<span class="linenr">23: </span>plt.xticks(rotation=<span style="color: #da8548; font-weight: bold;">45</span>, ha=<span style="color: #98be65;">'right'</span>)
+<span class="linenr">24: </span>
+<span class="linenr">25: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39023;&#31034;&#22294;&#24418;</span>
+<span class="linenr">26: </span>plt.tight_layout()
+<span class="linenr">27: </span>plt.savefig(<span style="color: #98be65;">'images/json-plot.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+</pre>
+</div>
+
+
+<div id="org8ef0db7" class="figure">
+<p><img src="images/json-plot.png" alt="json-plot.png" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 1: </span>美元／新台幣匯率走勢</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org39032ea" class="outline-4">
+<h4 id="org39032ea"><span class="section-number-4">1.3.2.</span> 實作 2: <a href="https://data.gov.tw/dataset/113063">澎湖生活博物館每月參觀人次統計資料</a></h4>
+<div class="outline-text-4" id="text-1-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">coding:utf-8</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> requests
+<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 4: </span><span style="color: #51afef;">from</span> datetime <span style="color: #51afef;">import</span> datetime
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">json_url</span> = <span style="color: #98be65;">'http://opendataap2.penghu.gov.tw/resource/files/2020-01-12/eaa641fc3af66277e60b13201ca11232.json'</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #dcaeea;">response</span> = requests.get(json_url)
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">jsonRes</span> = response.json()
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #dcaeea;">year</span> = [<span style="color: #c678dd;">str</span>(<span style="color: #c678dd;">int</span>(i[<span style="color: #98be65;">'&#24180;&#24230;'</span>])+<span style="color: #da8548; font-weight: bold;">1911</span>) <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> jsonRes]
+<span class="linenr">12: </span><span style="color: #dcaeea;">month</span> = [i[<span style="color: #98be65;">'&#26376;&#20221;'</span>] <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> jsonRes]
+<span class="linenr">13: </span><span style="color: #dcaeea;">visitor</span> = [<span style="color: #c678dd;">int</span>(i[<span style="color: #98be65;">'&#20154;&#25976;'</span>]) <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> jsonRes]
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #dcaeea;">dates</span> = [x+<span style="color: #98be65;">'/'</span>+y <span style="color: #51afef;">for</span> x, y <span style="color: #51afef;">in</span> <span style="color: #c678dd;">zip</span>(year, month)]
+<span class="linenr">16: </span>
+<span class="linenr">17: </span><span style="color: #51afef;">from</span> datetime <span style="color: #51afef;">import</span> datetime
+<span class="linenr">18: </span><span style="color: #dcaeea;">dates</span> = [datetime.strptime(x, <span style="color: #98be65;">'%Y/%m'</span>).date() <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> dates]
+<span class="linenr">19: </span>
+<span class="linenr">20: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span class="linenr">21: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] = [<span style="color: #98be65;">'Arial Unicode MS'</span>] <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#19968;&#65288;&#26367;&#25563;&#31995;&#32113;&#20013;&#30340;&#23383;&#22411;&#65292;&#36889;&#35041;&#29992;&#30340;&#26159;Mac OSX&#31995;&#32113;&#65289;</span>
+<span class="linenr">22: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
+<span class="linenr">23: </span>
+<span class="linenr">24: </span>plt.clf()
+<span class="linenr">25: </span>plt.barh(dates, visitor, height=<span style="color: #da8548; font-weight: bold;">0.5</span>)
+<span class="linenr">26: </span>plt.xticks(rotation=<span style="color: #da8548; font-weight: bold;">0</span>, fontsize=<span style="color: #da8548; font-weight: bold;">10</span>)
+<span class="linenr">27: </span>plt.yticks(rotation=<span style="color: #da8548; font-weight: bold;">0</span>, fontsize=<span style="color: #da8548; font-weight: bold;">10</span>)
+<span class="linenr">28: </span>plt.xlabel(<span style="color: #98be65;">'&#20154;&#25976;'</span>)
+<span class="linenr">29: </span>plt.ylabel(<span style="color: #98be65;">'&#26085;&#26399;'</span>)
+<span class="linenr">30: </span>plt.title(<span style="color: #98be65;">'&#28558;&#28246;&#29983;&#27963;&#21338;&#29289;&#39208;&#27599;&#26376;&#21443;&#35264;&#20154;&#27425;'</span>)
+<span class="linenr">31: </span>plt.savefig(<span style="color: #98be65;">'images/jsonBar.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>, bbox_inches=<span style="color: #98be65;">'tight'</span>)
+</pre>
+</div>
+
+<div id="org49500a5" class="figure">
+<p><img src="images/jsonBar.png" alt="jsonBar.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 2: </span>參觀人數</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org855110a" class="outline-3">
+<h3 id="org855110a"><span class="section-number-3">1.4.</span> [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>[注意]如果 JSON 的資料下載發生錯誤，可以試著將 URL 由&rsquo;https://&rsquo;改為&rsquo;http://&rsquo;<br /></li>
+<li><p>
+請上網查詢台南市各區 WIFI 熱點數量，依行政區統計，繪製類似以下圖形，儘可能加上統計圖表所需元素並加以美化<br />
+</p>
+
+<div id="org5d8906b" class="figure">
+<p><img src="images/wifis.png" alt="wifis.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 3: </span>台南市各區熱點分佈</p>
+</div></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf8ff0e6" class="outline-3">
+<h3 id="orgf8ff0e6"><span class="section-number-3">1.5.</span> JSON 進階閱讀</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li><a href="https://officeguide.cc/python-read-write-json-encode-decode-tutorial-examples/">Python 讀取、產生 JSON 格式資料教學與範例</a><br /></li>
+<li><a href="https://vocus.cc/article/62972154fd89780001ac4f01">不間斷 Python 挑戰 Day 34 - JSON </a><br /></li>
+<li><a href="https://steam.oxxostudio.tw/category/python/library/json.html">JSON 檔案操作</a><br /></li>
+<li><a href="https://chwang12341.medium.com/%E5%AF%AB%E7%B5%A6%E8%87%AA%E5%B7%B1%E7%9A%84%E6%8A%80%E8%A1%93%E7%AD%86%E8%A8%98-%E4%BD%9C%E7%82%BA%E7%A8%8B%E5%BC%8F%E9%96%8B%E7%99%BC%E8%80%85%E6%88%91%E5%80%91%E7%B5%95%E5%B0%8D%E4%B8%8D%E8%83%BD%E5%BF%BD%E7%95%A5%E7%9A%84json-python-%E5%A6%82%E4%BD%95%E8%99%95%E7%90%86json%E6%96%87%E4%BB%B6-b227b7e610a8">寫給自己的技術筆記 — 作為程式開發者我們絕對不能忽略的JSON — Python 如何處理JSON文件</a><br /></li>
+<li><a href="https://book.whsh.tc.edu.tw/books/python%E6%95%99%E5%AD%B8/page/pythonjson-2-youbike-20">用Python來抓取政府公開資料(JSON) -2 ：YouBike 2.0</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcecb02f" class="outline-2">
+<h2 id="orgcecb02f"><span class="section-number-2">2.</span> HTML</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9cd97cd" class="outline-3">
+<h3 id="org9cd97cd"><span class="section-number-3">2.1.</span> What is HTML</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><a href="https://data.gov.tw/datasets/search?qs=tid%3A6410">政府資料開放平台</a><br /></li>
+<li>超文本標記語言（HyperText Markup Language）是一種用於建立網頁的標準標記語言。HTML 是一種基礎技術，常與 CSS、JavaScript 一起被眾多網站用於設計網頁、網頁應用程式以及行動應用程式的使用者介面。<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup><br /></li>
+<li>HTML 元素是構建網站的基石。HTML 允許嵌入圖像與物件，並且可以用於建立互動式表單，它被用來結構化資訊——例如標題、段落和列表等等，也可用來在一定程度上描述文件的外觀和語意。<sup><a id="fnr.2.100" class="footref" href="#fn.2" role="doc-backlink">2</a></sup><br /></li>
+<li>HTML 的語言形式為&lt;&gt;包圍的 HTML 元素（如&lt;html&gt;），瀏覽器使用 HTML 標籤和指<br />
+令碼來詮釋網頁內容，但不會將它們顯示在頁面上。 <sup><a id="fnr.2.100" class="footref" href="#fn.2" role="doc-backlink">2</a></sup><br /></li>
+<li>網頁就是由各式標籤 (tag) 所組成的階層式文件，例如:<br />
+<ul class="org-ul">
+<li>&lt;title&gt;我是網頁標題&lt;/title&gt;<br /></li>
+<li>&lt;h1 class=&ldquo;large&rdquo;&gt;我是變色且置中的抬頭&lt;/h1&gt;<br /></li>
+<li>&lt;p id=&ldquo;p1&rdquo;&gt;我是段落一&lt;/p&gt;<br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge06900a" class="outline-3">
+<h3 id="orge06900a"><span class="section-number-3">2.2.</span> HTML 範例</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org7f3aba3" class="outline-4">
+<h4 id="org7f3aba3"><span class="section-number-4">2.2.1.</span> HTML code</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-html"><span class="linenr"> 1: </span>&lt;<span style="color: #c678dd;">html</span>&gt;
+<span class="linenr"> 2: </span>  &lt;<span style="color: #c678dd;">head</span>&gt;
+<span class="linenr"> 3: </span>    &lt;<span style="color: #c678dd;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">&#25105;&#26159;&#32178;&#38913;&#27161;&#38988;</span>&lt;/<span style="color: #c678dd;">title</span>&gt;
+<span class="linenr"> 4: </span>    &lt;<span style="color: #c678dd;">style</span>&gt;
+<span class="linenr"> 5: </span>    .large {
+<span class="linenr"> 6: </span>      color:blue;
+<span class="linenr"> 7: </span>      text-align: center;
+<span class="linenr"> 8: </span>    }
+<span class="linenr"> 9: </span>    &lt;/<span style="color: #c678dd;">style</span>&gt;
+<span class="linenr">10: </span>  &lt;/<span style="color: #c678dd;">head</span>&gt;
+<span class="linenr">11: </span>  &lt;<span style="color: #c678dd;">body</span>&gt;
+<span class="linenr">12: </span>    &lt;<span style="color: #c678dd;">h1</span> <span style="color: #dcaeea;">class</span>=<span style="color: #98be65;">"large"</span>&gt;<span style="font-weight: bold; text-decoration: underline;">&#25105;&#26159;&#35722;&#33394;&#19988;&#32622;&#20013;&#30340;&#25260;&#38957;</span>&lt;/<span style="color: #c678dd;">h1</span>&gt;
+<span class="linenr">13: </span>    &lt;<span style="color: #c678dd;">p</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">"p1"</span>&gt;&#25105;&#26159;&#27573;&#33853;&#19968;&lt;/<span style="color: #c678dd;">p</span>&gt;
+<span class="linenr">14: </span>    &lt;<span style="color: #c678dd;">p</span> <span style="color: #dcaeea;">id</span>=<span style="color: #98be65;">"p2"</span> <span style="color: #dcaeea;">style</span>=<span style="color: #98be65;">""</span>&gt;&#25105;&#26159;&#27573;&#33853;&#20108;&lt;/<span style="color: #c678dd;">p</span>&gt;
+<span class="linenr">15: </span>    &lt;<span style="color: #c678dd;">div</span>&gt;&lt;<span style="color: #c678dd;">a</span> <span style="color: #dcaeea;">href</span>=<span style="color: #98be65;">'http://blog.castman.net'</span> <span style="color: #dcaeea;">style</span>=<span style="color: #98be65;">"font-size:200%;"</span>&gt;&#25105;&#26159;&#25918;&#22823;&#30340;&#36229;&#36899;&#32080;&lt;/<span style="color: #c678dd;">a</span>&gt;&lt;/<span style="color: #c678dd;">div</span>&gt;
+<span class="linenr">16: </span>  &lt;/<span style="color: #c678dd;">body</span>&gt;
+<span class="linenr">17: </span>&lt;/<span style="color: #c678dd;">html</span>&gt;
+</pre>
+</div>
+</div>
+<div id="outline-container-org38ed660" class="outline-5">
+<h5 id="org38ed660"><span class="section-number-5">2.2.1.1.</span> 執行結果</h5>
+<div class="outline-text-5" id="text-2-2-1-1">
+<p>
+上述 html code 的執行結果如下<br />
+</p>
+<html>
+  <head>
+    <title>我是網頁標題</title>
+    <style>
+    .large {
+      color:blue;
+      text-align: center;
+    }
+    </style>
+  </head>
+  <body>
+    <h1 class="large">我是變色且置中的抬頭</h1>
+    <p id="p1">我是段落一</p>
+    <p id="p2" style="">我是段落二</p>
+    <div><a href='http://blog.castman.net' style="font-size:200%;">我是放大的超連結</a></div>
+  </body>
+</html>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc05b96b" class="outline-4">
+<h4 id="orgc05b96b"><span class="section-number-4">2.2.2.</span> HTML tree</h4>
+<div class="outline-text-4" id="text-2-2-2">
+
+<div id="org3e528c3" class="figure">
+<p><img src="images/html-tree.png" alt="html-tree.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 4: </span>HTML tree</p>
+</div>
+<ul class="org-ul">
+<li>HTML 文件內不同的標籤 (例如 &lt;title&gt;, &lt;h1&gt;, &lt;p&gt;, &lt;a&gt;, &lt;div&gt;)<br /></li>
+<li>不同的標籤有著不同的語義，表示建構網頁用的不同元件，且標籤可以有各種屬性 (例如 id, class, style 等通用屬性, 或 href 等專屬屬性)，<br /></li>
+<li>&lt;div&gt;是 division 這個單字取前面三個字母來表示，division 是區分的意思，div 標籤主要的功能就是在形成一個個的區塊，方便網頁排版美化<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup>。例如:<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-html"><span class="linenr">1: </span>&lt;<span style="color: #c678dd;">div</span> <span style="color: #dcaeea;">style</span>=<span style="color: #98be65;">"background-color:grey;"</span>&gt;
+<span class="linenr">2: </span>    &lt;<span style="color: #c678dd;">p</span>&gt;&#20170;&#22825;&#26159;&#31532;7&#22825;&#30340;&#20171;&#32057;&#65292;div&#31684;&#20363;&#31243;&#24335;&lt;/<span style="color: #c678dd;">p</span>&gt;
+<span class="linenr">3: </span>    &lt;<span style="color: #c678dd;">p</span>&gt;&#20170;&#22825;&#26159;&#31532;7&#22825;&#30340;&#20171;&#32057;&#65292;div&#31684;&#20363;&#31243;&#24335;&lt;/<span style="color: #c678dd;">p</span>&gt;
+<span class="linenr">4: </span>&lt;/<span style="color: #c678dd;">div</span>&gt;
+</pre>
+</div>
+<p>
+其結果為:<br />
+</p>
+<div style="background-color:grey;">
+    <p>今天是第7天的介紹，div範例程式</p>
+    <p>今天是第7天的介紹，div範例程式</p>
+</div>
+<ul class="org-ul">
+<li>我們可以用標籤 + 屬性去定位資料所在的區塊並取得資料。<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup><br /></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge523c7f" class="outline-2">
+<h2 id="orge523c7f"><span class="section-number-2">3.</span> 網路爬蟲</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+上述的 html 程式碼只能透過瀏覽器來解析並呈現結果，如果我們想跳過瀏覽器，直接以程式來抓取網頁上的資訊，就要透過爬蟲程式。<br />
+</p>
+</div>
+<div id="outline-container-orgad38a0b" class="outline-3">
+<h3 id="orgad38a0b"><span class="section-number-3">3.1.</span> 爬蟲精神：將程式模仿成一般 user</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org322fe24" class="outline-4">
+<h4 id="org322fe24"><span class="section-number-4">3.1.1.</span> 原則</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ol class="org-ol">
+<li>要抓網路資料，就要先仔細觀察網頁內容<br /></li>
+<li>要儘量欺騙網站自己是 browser<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org2369aec" class="outline-4">
+<h4 id="org2369aec"><span class="section-number-4">3.1.2.</span> 實作範例: 取得 HTML 資料</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<p>
+網頁: <a href="https://www.ptt.cc/bbs/Japan_Travel/index.html">.html][批踢踢實業坊›看板 Japan_Travel</a><br />
+</p>
+</div>
+<div id="outline-container-orgb91fcad" class="outline-5">
+<h5 id="orgb91fcad"><span class="section-number-5">3.1.2.1.</span> 第一版: 以 urllib 模組來抓取 HTML 資料</h5>
+<div class="outline-text-5" id="text-3-1-2-1">
+<p>
+urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料的 Python 模組。它提供一個了非常簡單的介面能接受多種不同的協議(protocol, 如 http, ftp)， urlopen 函數。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25235;&#21462;PTT&#38651;&#24433;&#29256;header</span>
+<span class="linenr">2: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
+<span class="linenr">3: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/Movie/index.html"</span>
+<span class="linenr">4: </span>
+<span class="linenr">5: </span><span style="color: #51afef;">with</span> req.urlopen(url) <span style="color: #51afef;">as</span> response:
+<span class="linenr">6: </span>    <span style="color: #dcaeea;">data</span> = response.read().decode(<span style="color: #98be65;">"utf-8"</span>)
+<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(data)
+</pre>
+</div>
+
+<p>
+結果得到如下錯誤訊息:<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>urllib.error.HTTPError: HTTP Error 403: Forbidden
+</pre>
+</div>
+<p>
+被拒絕原因：這隻程式的行為不像一般使用者，被網站伺服器拒絕。403 Forbidden 是 HTTP 協議中的一個 <a href="https://zh.wikipedia.org/zh-tw/HTTP%E7%8A%B6%E6%80%81%E7%A0%81">HTTP 狀態碼（Status Code）</a>。可以簡單的理解為沒有權限訪問此站，服務器收到請求但拒絕提供服務<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup>。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org28dbb11" class="outline-5">
+<h5 id="org28dbb11"><span class="section-number-5">3.1.2.2.</span> 第二版:加入 headers(純文字)</h5>
+<div class="outline-text-5" id="text-3-1-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/Movie/index.html"</span>
+<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">request</span> = req.Request(url, headers = {
+<span class="linenr"> 5: </span>    <span style="color: #98be65;">"User-Agent"</span>:<span style="color: #98be65;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
+<span class="linenr"> 6: </span>})
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #51afef;">with</span> req.urlopen(request) <span style="color: #51afef;">as</span> response:
+<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">data</span> = response.read().decode(<span style="color: #98be65;">"utf-8"</span>)
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#25152;&#21462;&#24471;&#30340;&#36039;&#26009;&#22411;&#24907;&#65306;'</span>,<span style="color: #c678dd;">type</span>(data))
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'===&#24471;&#21040;&#30340;&#37096;&#20221;HTML&#20839;&#23481;===</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>, data[<span style="color: #da8548; font-weight: bold;">2651</span>:<span style="color: #da8548; font-weight: bold;">3500</span>])
+</pre>
+</div>
+
+<pre class="example" id="org75f487f">
+所取得的資料型態： &lt;class 'str'&gt;
+===得到的部份HTML內容===
+
+				&lt;div class="mark"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+
+
+
+
+
+		&lt;div class="r-ent"&gt;
+			&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;5&lt;/span&gt;&lt;/div&gt;
+			&lt;div class="title"&gt;
+
+				&lt;a href="/bbs/movie/M.1709626126.A.AAB.html"&gt;[  好雷] 時空永恆的愛戀&lt;/a&gt;
+
+			&lt;/div&gt;
+			&lt;div class="meta"&gt;
+				&lt;div class="author"&gt;tilwemeet&lt;/div&gt;
+				&lt;div class="article-menu"&gt;
+
+					&lt;div class="trigger"&gt;&amp;#x22ef;&lt;/div&gt;
+					&lt;div class="dropdown"&gt;
+						&lt;div class="item"&gt;&lt;a href="/bbs/movie/search?q=thread%3A%5B&amp;#43;&amp;#43;%E5%A5%BD%E9%9B%B7%5D&amp;#43;%E6%99%82%E7%A9%BA%E6%B0%B8%E6%81%86%E7%9A%84%E6%84%9B%E6%88%80"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+
+						&lt;div class="item"&gt;&lt;a href="/bbs/movie/search?q=author%3Atilwemeet"&gt;搜尋看板內 tilwemeet 的文章&lt;/a&gt;&lt;/div&gt;
+
+					&lt;/div&gt;
+
+				&lt;/div&gt;
+				&lt;div class="date"&gt; 3/05&lt;/div&gt;
+				&lt;div class="mark"&gt;&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div
+</pre>
+<p>
+可以發現抓取下來的結果都是字串型態，不太容易進一步擷取所需資訊。例如，當我們想抓取所有看板中的標題，只使用字串所提供的一些函式就很難完成工作。<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org84ff4be" class="outline-3">
+<h3 id="org84ff4be"><span class="section-number-3">3.2.</span> BeautifulSoup</h3>
+<div class="outline-text-3" id="text-3-2">
+</div>
+<div id="outline-container-org40bbcbe" class="outline-4">
+<h4 id="org40bbcbe"><span class="section-number-4">3.2.1.</span> BeautifulSoup4 簡介</h4>
+<div class="outline-text-4" id="text-3-2-1">
+<ul class="org-ul">
+<li>BeautifulSoup4 和 lxml 一樣，Beautiful Soup 也是一個 HTML/XML 的解析器，<br /></li>
+<li>主要的功能是解析和提取 HTML/XML 資料。<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaf78900" class="outline-4">
+<h4 id="orgaf78900"><span class="section-number-4">3.2.2.</span> 實作：解析 HTML 資料內容</h4>
+<div class="outline-text-4" id="text-3-2-2">
+</div>
+<div id="outline-container-org1c366ec" class="outline-5">
+<h5 id="org1c366ec"><span class="section-number-5">3.2.2.1.</span> 安裝解析 HTML 所需套件(安裝套件名稱後面有 4)</h5>
+<div class="outline-text-5" id="text-3-2-2-1">
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>pip install beautifulsoup4
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcd70c1c" class="outline-5">
+<h5 id="orgcd70c1c"><span class="section-number-5">3.2.2.2.</span> 第三版: 以 BS4 解析 HTML</h5>
+<div class="outline-text-5" id="text-3-2-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/Japan_Travel/index.html"</span>
+<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">request</span> = req.Request(url, headers = {
+<span class="linenr"> 5: </span>    <span style="color: #98be65;">"User-Agent"</span>:<span style="color: #98be65;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
+<span class="linenr"> 6: </span>})
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #51afef;">with</span> req.urlopen(request) <span style="color: #51afef;">as</span> response:
+<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">data</span> = response.read()
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #51afef;">import</span> bs4
+<span class="linenr">12: </span><span style="color: #dcaeea;">doc</span> = bs4.BeautifulSoup(data,<span style="color: #98be65;">"html.parser"</span>)
+<span class="linenr">13: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(doc))
+<span class="linenr">14: </span><span style="color: #c678dd;">print</span>(doc.prettify()[:<span style="color: #da8548; font-weight: bold;">4000</span>])
+<span class="linenr">15: </span>
+</pre>
+</div>
+
+<pre class="example" id="org87b7cec">
+&lt;class 'bs4.BeautifulSoup'&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;meta charset="utf-8"/&gt;
+  &lt;meta content="width=device-width, initial-scale=1" name="viewport"/&gt;
+  &lt;title&gt;
+   看板 Japan_Travel 文章列表 - 批踢踢實業坊
+  &lt;/title&gt;
+  &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-common.css" rel="stylesheet" type
+  ="text/css"/&gt;
+  &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-base.css" media="screen" rel="stylesheet" type="text/css"/&gt;
+  &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-custom.css" rel="stylesheet" type="text/css"/&gt;
+  &lt;link href="//images.ptt.cc/bbs/v2.27/pushstream.css" media="screen" rel="stylesheet" type="text/css"/&gt;
+  &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-print.css" media="print" rel="stylesheet" type="text/css"/&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;div id="topbar-container"&gt;
+   &lt;div class="bbs-content" id="topbar"&gt;
+    &lt;a href="/bbs/" id="logo"&gt;
+     批踢踢實業坊
+    &lt;/a&gt;
+    &lt;span&gt;
+     ›
+    &lt;/span&gt;
+    &lt;a class="board" href="/bbs/Japan_Travel/index.html"&gt;
+     &lt;span class="board-label"&gt;
+      看板
+     &lt;/span&gt;
+     Japan_Travel
+    &lt;/a&gt;
+    &lt;a class="right small" href="/about.html"&gt;
+     關於我們
+    &lt;/a&gt;
+    &lt;a class="right small" href="/contact.html"&gt;
+     聯絡資訊
+    &lt;/a&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div id="main-container"&gt;
+   &lt;div id="action-bar-container"&gt;
+    &lt;div class="action-bar"&gt;
+     &lt;div class="btn-group btn-group-dir"&gt;
+      &lt;a class="btn selected" href="/bbs/Japan_Travel/index.html"&gt;
+       看板
+      &lt;/a&gt;
+      &lt;a class="btn" href="/man/Japan_Travel/index.html"&gt;
+       精華區
+      &lt;/a&gt;
+     &lt;/div&gt;
+     &lt;div class="btn-group btn-group-paging"&gt;
+      &lt;a class="btn wide" href="/bbs/Japan_Travel/index1.html"&gt;
+       最舊
+      &lt;/a&gt;
+      &lt;a class="btn wide" href="/bbs/Japan_Travel/index7965.html"&gt;
+       ‹ 上頁
+      &lt;/a&gt;
+      &lt;a class="btn wide disabled"&gt;
+       下頁 ›
+      &lt;/a&gt;
+      &lt;a class="btn wide" href="/bbs/Japan_Travel/index.html"&gt;
+       最新
+      &lt;/a&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div class="r-list-container action-bar-margin bbs-screen"&gt;
+    &lt;div class="search-bar"&gt;
+     &lt;form action="search" id="search-bar" type="get"&gt;
+      &lt;input class="query" name="q" placeholder="搜尋文章⋯" type="text" value=""/&gt;
+     &lt;/form&gt;
+    &lt;/div&gt;
+    &lt;div class="r-ent"&gt;
+     &lt;div class="nrec"&gt;
+      &lt;span class="hl f2"&gt;
+       9
+      &lt;/span&gt;
+     &lt;/div&gt;
+     &lt;div class="title"&gt;
+      &lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;
+       [問題] 京都住宿請益
+      &lt;/a&gt;
+     &lt;/div&gt;
+     &lt;div class="meta"&gt;
+      &lt;div class="author"&gt;
+       poi9430
+      &lt;/div&gt;
+      &lt;div class="article-menu"&gt;
+       &lt;div class="trigger"&gt;
+        ⋯
+       &lt;/div&gt;
+       &lt;div class="dropdown"&gt;
+        &lt;div class="item"&gt;
+         &lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E4%BA%AC%E9%83%BD%E4%BD%8F%E5%AE%BF%E8%AB%8B%E7%9B%8A"&gt;
+          搜尋同標題文章
+         &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="item"&gt;
+         &lt;a href="/bbs/Japan_Travel/search?q=author%3Apoi9430"&gt;
+          搜尋看板內 poi9430 的文章
+         &lt;/a&gt;
+        &lt;/div&gt;
+       &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="date"&gt;
+       3/06
+      &lt;/div&gt;
+      &lt;div class="mark"&gt;
+      &lt;/div&gt;
+     &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="r-ent"&gt;
+     &lt;div class="nrec"&gt;
+      &lt;span class="hl f3"&gt;
+       17
+      &lt;/span&gt;
+     &lt;/div&gt;
+     &lt;div class="title"&gt;
+      &lt;a href="/bbs/Japan_Travel/M.1709718584.A.E96.html"&gt;
+       [問題] 沖繩親子遊首衝安排請益
+      &lt;/a&gt;
+     &lt;/div&gt;
+     &lt;div class="meta"&gt;
+      &lt;div class="author"&gt;
+       newsnotti
+      &lt;/div&gt;
+      &lt;div class="article-menu"&gt;
+       &lt;div class="trigger"&gt;
+        ⋯
+       &lt;/div&gt;
+       &lt;div class="dropdown"&gt;
+        &lt;div class="item"&gt;
+         &lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E6%B2%96%E7%B9%A9%E8%A6%AA%E5%AD%90%E9%81%8A%E9%A6%96%E8%A1%9D%E5%AE%89%E6%8E%92%E8%AB%8B%E7%9B%8A"&gt;
+          搜尋同標題文章
+         &lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="item"&gt;
+         &lt;a href="/bbs/Japan_Travel/search?q=author%3Anewsnotti"&gt;
+          搜尋看板內 newsnotti 的文章
+         &lt;/a&gt;
+        &lt;/div&gt;
+       &lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class="date"&gt;
+       3/06
+      &lt;/div&gt;
+      &lt;div class="mark"&gt;
+      &lt;/div&gt;
+     &lt;/di
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org01c1c27" class="outline-3">
+<h3 id="org01c1c27"><span class="section-number-3">3.3.</span> Beautifulsoup 解析器</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+現在我們可以進一步來研究 bs4 的玩法<br />
+</p>
+<ul class="org-ul">
+<li><p>
+在上面的語句中，我們使用了一個 html.parser。 這是一個解析器，在構造 BeautifulSoup 物件的時候，需要用到解析器。BeautifulSoup 支援 python 內建的解析器和少數第三方解析器。<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>:<br />
+</p>
+
+<div id="orgd79f6df" class="figure">
+<p><img src="images/parsers.jpg" alt="parsers.jpg" width="600" /><br />
+</p>
+<p><span class="figure-number">Figure 5: </span>Parsers 比較</p>
+</div></li>
+<li>一般來說，對於速度或效能要求不太高的話，也可以使用 html5lib 來進行解析；如果較在乎效能則建議使用 lxml 來進行解析。<br /></li>
+</ul>
+
+<p>
+如果要換用 html5lib，則要先安裝:<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>pip install html5lib
+</pre>
+</div>
+
+<p>
+接下來更換 parser:<br />
+<a href="https://www.ptt.cc/bbs/PC_Shopping/index.html">批踢踢實業坊›看板 PC_Shopping</a><br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/PC_Shopping/index.html"</span>
+<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">request</span> = req.Request(url, headers = {
+<span class="linenr"> 5: </span>    <span style="color: #98be65;">"User-Agent"</span>:<span style="color: #98be65;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
+<span class="linenr"> 6: </span>})
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #51afef;">with</span> req.urlopen(request) <span style="color: #51afef;">as</span> response:
+<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">data</span> = response.read().decode(<span style="color: #98be65;">"utf-8"</span>)
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #51afef;">import</span> bs4
+<span class="linenr">12: </span><span style="color: #dcaeea;">root</span> = bs4.BeautifulSoup(data,<span style="color: #98be65;">"html5lib"</span>)
+<span class="linenr">13: </span>
+<span class="linenr">14: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20381;&#24207;&#22519;&#34892;&#19969;&#21015;&#31243;&#24335;</span>
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(root)) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#21462;&#24471;&#30340;&#36039;&#26009;&#22411;&#24907;&#35722;&#25104;&#26159;bs4&#30340;&#29289;&#20214;&#65292;&#32780;&#38750;&#23383;&#20018;</span>
+<span class="linenr">16: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(root.prettify())) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#21487;&#20197;&#20808;&#32654;&#21270;&#36664;&#20986;&#65292;&#26041;&#20415;&#26597;&#30475;HTML&#32080;&#27083;</span>
+<span class="linenr">17: </span><span style="color: #c678dd;">print</span>(root.prettify()[<span style="color: #da8548; font-weight: bold;">3000</span>:])
+</pre>
+</div>
+<p>
+請自行執行、比對解析後的結果<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org2fb409b" class="outline-3">
+<h3 id="org2fb409b"><span class="section-number-3">3.4.</span> BeautifulSoup 的方法<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></h3>
+<div class="outline-text-3" id="text-3-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">方法</th>
+<th scope="col" class="org-left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">select()</td>
+<td class="org-left">以 CSS 選擇器的方式尋找指定的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find_all()</td>
+<td class="org-left">以所在的 tag 位置，尋找內容裡所有指定的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find()</td>
+<td class="org-left">以所在的 tag 位置，尋找第一個找到的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find_parents()</td>
+<td class="org-left">以所在的 tag 位置，尋找父層所有指定的 tag 或第一個找到的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find_parent()</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">find_next_siblings()</td>
+<td class="org-left">以所在的 tag 位置，尋找同一層後方所有指定的 tag 或第一個找到的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find_next_sibling()</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">find_previous_siblings()</td>
+<td class="org-left">以所在的 tag 位置，尋找同一層前方所有指定的 tag 或第一個找到的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find_previous_sibling()</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">find_all_next()</td>
+<td class="org-left">以所在的 tag 位置，尋找後方內容裡所有指定的 tag 或第一個找到的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find_next()</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">find_all_previous()</td>
+<td class="org-left">所在的 tag 位置，尋找前方內容裡所有指定的 tag 或第一個找到的 tag。</td>
+</tr>
+
+<tr>
+<td class="org-left">find_previous()</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-orge830384" class="outline-2">
+<h2 id="orge830384"><span class="section-number-2">4.</span> BS4:開始爬</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+在[第三版: 以 BS4 解析 HTML]中，我們以 bs4.BeautifulSoup()將下載的 html 解析成 BS4 的物件，現在開始我們可以利用 BS4 來探索、抓取 html 的內容。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #dcaeea;">doc</span> = bs4.BeautifulSoup(data,<span style="color: #98be65;">"html.parser"</span>)
+</pre>
+</div>
+</div>
+<div id="outline-container-orgfed654b" class="outline-3">
+<h3 id="orgfed654b"><span class="section-number-3">4.1.</span> bs4.tag</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+最簡單的方式是利用如下的格式取得 bs4 物件中的 tag<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python">bs4.tag
+</pre>
+</div>
+</div>
+<div id="outline-container-org64dface" class="outline-4">
+<h4 id="org64dface"><span class="section-number-4">4.1.1.</span> &lt;title&gt;</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<p>
+例如，下例為取出 html 程式碼中的標題 tag<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.title)
+</pre>
+</div>
+
+<pre class="example">
+&lt;title&gt;看板 Japan_Travel 文章列表 - 批踢踢實業坊&lt;/title&gt;
+</pre>
+
+<p>
+看的出這是個文字屬性的 tag，所以我們可以進一步以 text 或 string 取得其中的字串<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.title.text)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(doc.title.string)
+</pre>
+</div>
+
+<pre class="example">
+看板 Japan_Travel 文章列表 - 批踢踢實業坊
+看板 Japan_Travel 文章列表 - 批踢踢實業坊
+</pre>
+</div>
+</div>
+<div id="outline-container-org83a3b3a" class="outline-4">
+<h4 id="org83a3b3a"><span class="section-number-4">4.1.2.</span> &lt;div&gt;</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<p>
+繼續取出 html 中的&lt;div&gt;tag，結果如下<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.div)
+</pre>
+</div>
+
+<pre class="example">
+&lt;div id="topbar-container"&gt;
+&lt;div class="bbs-content" id="topbar"&gt;
+&lt;a href="/bbs/" id="logo"&gt;批踢踢實業坊&lt;/a&gt;
+&lt;span&gt;›&lt;/span&gt;
+&lt;a class="board" href="/bbs/Japan_Travel/index.html"&gt;&lt;span class="board-label"&gt;看板 &lt;/span&gt;Japan_Travel&lt;/a&gt;
+&lt;a class="right small" href="/about.html"&gt;關於我們&lt;/a&gt;
+&lt;a class="right small" href="/contact.html"&gt;聯絡資訊&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+聰明的你應該已經發現，雖然 html 中的非常多組的&lt;div&gt;，但是目前我們就只抓取到其中的 <b>第一組</b> &lt;div&gt;。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org12dc609" class="outline-4">
+<h4 id="org12dc609"><span class="section-number-4">4.1.3.</span> &lt;a&gt;</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<p>
+依此類推，我們還能由取得的 doc.div 繼續抓到裡面的第一組&lt;a&gt; tag<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.div.a)
+</pre>
+</div>
+
+<pre class="example">
+&lt;a href="/bbs/" id="logo"&gt;批踢踢實業坊&lt;/a&gt;
+</pre>
+
+<p>
+tag &lt;a&gt;是一個超連結(hyperlink)，除了&rsquo;href&rsquo;和&rsquo;id&rsquo;，還有&rsquo;target&rsquo;, &rsquo;download&rsquo;, &rsquo;ref&rsquo;&#x2026;等屬性<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup>。我們可以透過以下的方式取得 tag 中的相關內容<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.div.a.text)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(doc.div.a[<span style="color: #98be65;">'id'</span>])
+<span class="linenr">3: </span><span style="color: #c678dd;">print</span>(doc.div.a[<span style="color: #98be65;">'href'</span>])
+</pre>
+</div>
+
+<pre class="example">
+批踢踢實業坊
+logo
+/bbs/
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org84a3aaf" class="outline-3">
+<h3 id="org84a3aaf"><span class="section-number-3">4.2.</span> find</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find 有兩個常用的用法<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup>：<br />
+</p>
+</div>
+<div id="outline-container-orgb71a433" class="outline-4">
+<h4 id="orgb71a433"><span class="section-number-4">4.2.1.</span> 直接接標籤名稱</h4>
+<div class="outline-text-4" id="text-4-2-1">
+</div>
+<div id="outline-container-org4114975" class="outline-5">
+<h5 id="org4114975"><span class="section-number-5">4.2.1.1.</span> Soup.find(‘tag’)</h5>
+<div class="outline-text-5" id="text-4-2-1-1">
+<p>
+可以直接找到第一個 a 標籤的元素，例如<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.find(<span style="color: #98be65;">'a'</span>))
+</pre>
+</div>
+
+<pre class="example">
+&lt;a href="/bbs/" id="logo"&gt;批踢踢實業坊&lt;/a&gt;
+</pre>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.find(<span style="color: #98be65;">'div'</span>))
+</pre>
+</div>
+
+<pre class="example">
+&lt;div id="topbar-container"&gt;
+&lt;div class="bbs-content" id="topbar"&gt;
+&lt;a href="/bbs/" id="logo"&gt;批踢踢實業坊&lt;/a&gt;
+&lt;span&gt;›&lt;/span&gt;
+&lt;a class="board" href="/bbs/Japan_Travel/index.html"&gt;&lt;span class="board-label"&gt;看板 &lt;/span&gt;Japan_Travel&lt;/a&gt;
+&lt;a class="right small" href="/about.html"&gt;關於我們&lt;/a&gt;
+&lt;a class="right small" href="/contact.html"&gt;聯絡資訊&lt;/a&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2001d02" class="outline-4">
+<h4 id="org2001d02"><span class="section-number-4">4.2.2.</span> 指定屬性名稱用鍵值方式對應</h4>
+<div class="outline-text-4" id="text-4-2-2">
+</div>
+<div id="outline-container-org0266107" class="outline-5">
+<h5 id="org0266107"><span class="section-number-5">4.2.2.1.</span> Soup.find(class_=’類別名稱’)</h5>
+<div class="outline-text-5" id="text-4-2-2-1">
+<p>
+可以找到第一個 class 為’abc’的元素，要注意的是因為 python 中 class 是保留字，所以要用 class_才能表達<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">qq</span> = doc.find(class_=<span style="color: #98be65;">'r-ent'</span>)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(qq)
+</pre>
+</div>
+
+<pre class="example" id="org3cd0039">
+&lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;[問題] 京都住宿請益&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;poi9430&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E4%BA%AC%E9%83%BD%E4%BD%8F%E5%AE%BF%E8%AB%8B%E7%9B%8A"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Apoi9430"&gt;搜尋看板內 poi9430 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+<div id="outline-container-org973bbd0" class="outline-5">
+<h5 id="org973bbd0"><span class="section-number-5">4.2.2.2.</span> Soup.find(id=’id 名稱’)</h5>
+<div class="outline-text-5" id="text-4-2-2-2">
+<p>
+可以找到第一個 id 為’id 名稱’的元素<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">qq</span> = doc.find(<span style="color: #c678dd;">id</span>=<span style="color: #98be65;">'topbar'</span>)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(qq)
+</pre>
+</div>
+
+<pre class="example">
+&lt;div class="bbs-content" id="topbar"&gt;
+&lt;a href="/bbs/" id="logo"&gt;批踢踢實業坊&lt;/a&gt;
+&lt;span&gt;›&lt;/span&gt;
+&lt;a class="board" href="/bbs/Japan_Travel/index.html"&gt;&lt;span class="board-label"&gt;看板 &lt;/span&gt;Japan_Travel&lt;/a&gt;
+&lt;a class="right small" href="/about.html"&gt;關於我們&lt;/a&gt;
+&lt;a class="right small" href="/contact.html"&gt;聯絡資訊&lt;/a&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+<div id="outline-container-orgbe7e2bf" class="outline-5">
+<h5 id="orgbe7e2bf"><span class="section-number-5">4.2.2.3.</span> Soup.find(type=’類型名稱’)</h5>
+<div class="outline-text-5" id="text-4-2-2-3">
+<p>
+可以找到第一個 type 為’類型名稱’的元素<br />
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">qq</span> = doc.find(<span style="color: #c678dd;">type</span>=<span style="color: #98be65;">'get'</span>)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(qq)
+</pre>
+</div>
+
+<pre class="example">
+&lt;form action="search" id="search-bar" type="get"&gt;
+&lt;input class="query" name="q" placeholder="搜尋文章⋯" type="text" value=""/&gt;
+&lt;/form&gt;
+</pre>
+</div>
+</div>
+<div id="outline-container-orgee02272" class="outline-5">
+<h5 id="orgee02272"><span class="section-number-5">4.2.2.4.</span> 複合搜尋</h5>
+<div class="outline-text-5" id="text-4-2-2-4">
+<p>
+上述的 doc.find(class_=&rsquo;r-ent&rsquo;)找出了以下的一整個&ldquo;r-ent&rdquo;tag<br />
+</p>
+<pre class="example" id="org1601292">
+&lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;[問題] 京都住宿請益&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;poi9430&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E4%BA%AC%E9%83%BD%E4%BD%8F%E5%AE%BF%E8%AB%8B%E7%9B%8A"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Apoi9430"&gt;搜尋看板內 poi9430 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+<p>
+這個&rsquo;r-ent&rsquo;&lt;div&gt;的結構大致如下:<br />
+</p>
+
+<div id="orgdae4e1d" class="figure">
+<p><img src="images/e-rent.png" alt="e-rent.png" /><br />
+</p>
+</div>
+
+<p>
+透過串接的 find()，我們可以進一步搜尋&rsquo;r-ent&rsquo;下的其他 tag，如<br />
+</p>
+<ul class="org-ul">
+<li><p>
+例 1<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>  <span style="color: #c678dd;">print</span>(doc.find(class_=<span style="color: #98be65;">'r-ent'</span>).find(class_=<span style="color: #98be65;">'title'</span>))
+</pre>
+</div>
+<pre class="example">
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;[問題] 京都住宿請益&lt;/a&gt;
+&lt;/div&gt;
+</pre></li>
+<li><p>
+例 2<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>  <span style="color: #c678dd;">print</span>(doc.find(class_=<span style="color: #98be65;">'r-ent'</span>).find(class_=<span style="color: #98be65;">'title'</span>).find(<span style="color: #98be65;">'a'</span>))
+</pre>
+</div>
+<pre class="example">
+&lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;[問題] 京都住宿請益&lt;/a&gt;
+</pre></li>
+<li><p>
+例 3<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>  <span style="color: #c678dd;">print</span>(doc.find(class_=<span style="color: #98be65;">'r-ent'</span>).find(class_=<span style="color: #98be65;">'title'</span>).find(<span style="color: #98be65;">'a'</span>).text)
+</pre>
+</div>
+<pre class="example">
+[問題] 京都住宿請益
+</pre></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org321edee" class="outline-3">
+<h3 id="org321edee"><span class="section-number-3">4.3.</span> find_all</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+find()只會傳回第一個符合條件的資料，我們可以使用 find_all 找出所有特定的 HTML 標籤節點，再以 Python 的迴圈來依序輸出每個超連結的文字<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup>：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">QQ</span> = doc.find_all(class_=<span style="color: #98be65;">'r-ent'</span>)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(QQ)
+</pre>
+</div>
+
+<pre class="example" id="orgf9a0417">
+[&lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;[問題] 京都住宿請益&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;poi9430&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E4%BA%AC%E9%83%BD%E4%BD%8F%E5%AE%BF%E8%AB%8B%E7%9B%8A"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Apoi9430"&gt;搜尋看板內 poi9430 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f3"&gt;17&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709718584.A.E96.html"&gt;[問題] 沖繩親子遊首衝安排請益&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;newsnotti&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E6%B2%96%E7%B9%A9%E8%A6%AA%E5%AD%90%E9%81%8A%E9%A6%96%E8%A1%9D%E5%AE%89%E6%8E%92%E8%AB%8B%E7%9B%8A"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Anewsnotti"&gt;搜尋看板內 newsnotti 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;7&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709719948.A.882.html"&gt;Re: [問題] 請問最近札幌帝王蟹價格？&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;grlie8027&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E8%AB%8B%E5%95%8F%E6%9C%80%E8%BF%91%E6%9C%AD%E5%B9%8C%E5%B8%9D%E7%8E%8B%E8%9F%B9%E5%83%B9%E6%A0%BC%EF%BC%9F"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Agrlie8027"&gt;搜尋看板內 grlie8027 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f3"&gt;16&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709724598.A.77E.html"&gt;[問題] IT216飛羽田的疑問&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;Yijhen0525&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+IT216%E9%A3%9B%E7%BE%BD%E7%94%B0%E7%9A%84%E7%96%91%E5%95%8F"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3AYijhen0525"&gt;搜尋看板內 Yijhen0525 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;3&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709725167.A.3DC.html"&gt;[問題] 小豆島高松-土庄3/10-24航班時間變更&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;chiao650617&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E5%B0%8F%E8%B1%86%E5%B3%B6%E9%AB%98%E6%9D%BE-%E5%9C%9F%E5%BA%843%2F10-24%E8%88%AA%E7%8F%AD%E6%99%82%E9%96%93%E8%AE%8A%E6%9B%B4"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Achiao650617"&gt;搜尋看板內 chiao650617 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709725566.A.401.html"&gt;[住宿] 佐賀太良町・有明海旁美食海鮮滿滿平浜荘&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;peikie&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E4%BD%8F%E5%AE%BF%5D+%E4%BD%90%E8%B3%80%E5%A4%AA%E8%89%AF%E7%94%BA%E3%83%BB%E6%9C%89%E6%98%8E%E6%B5%B7%E6%97%81%E7%BE%8E%E9%A3%9F%E6%B5%B7%E9%AE%AE%E6%BB%BF%E6%BB%BF%E5%B9%B3%E6%B5%9C%E8%8D%98"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Apeikie"&gt;搜尋看板內 peikie 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f3"&gt;16&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709725647.A.9A6.html"&gt;[資訊] 台灣虎航 tigerclub會員限定優惠活動&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;yhls&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E8%B3%87%E8%A8%8A%5D+%E5%8F%B0%E7%81%A3%E8%99%8E%E8%88%AA+tigerclub%E6%9C%83%E5%93%A1%E9%99%90%E5%AE%9A%E5%84%AA%E6%83%A0%E6%B4%BB%E5%8B%95"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Ayhls"&gt;搜尋看板內 yhls 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;1&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+
+				(本文已被刪除) [gragragra]
+
+			&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;-&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/06&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;4&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1694279303.A.1CE.html"&gt;[公告] 日本旅遊板板規 112.09.17 &lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;mithralin&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%85%AC%E5%91%8A%5D+%E6%97%A5%E6%9C%AC%E6%97%85%E9%81%8A%E6%9D%BF%E6%9D%BF%E8%A6%8F+112.09.17+"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Amithralin"&gt;搜尋看板內 mithralin 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 9/10&lt;/div&gt;
+&lt;div class="mark"&gt;M&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;, &lt;div class="r-ent"&gt;
+&lt;div class="nrec"&gt;&lt;span class="hl f3"&gt;31&lt;/span&gt;&lt;/div&gt;
+&lt;div class="title"&gt;
+&lt;a href="/bbs/Japan_Travel/M.1709486877.A.7AF.html"&gt;[公告] 113.03 實況回報 (含天氣/物候/穿著詢問)&lt;/a&gt;
+&lt;/div&gt;
+&lt;div class="meta"&gt;
+&lt;div class="author"&gt;sinohara&lt;/div&gt;
+&lt;div class="article-menu"&gt;
+&lt;div class="trigger"&gt;⋯&lt;/div&gt;
+&lt;div class="dropdown"&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%85%AC%E5%91%8A%5D+113.03+%E5%AF%A6%E6%B3%81%E5%9B%9E%E5%A0%B1+%28%E5%90%AB%E5%A4%A9%E6%B0%A3%2F%E7%89%A9%E5%80%99%2F%E7%A9%BF%E8%91%97%E8%A9%A2%E5%95%8F%29"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+&lt;div class="item"&gt;&lt;a href="/bbs/Japan_Travel/search?q=author%3Asinohara"&gt;搜尋看板內 sinohara 的文章&lt;/a&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="date"&gt; 3/04&lt;/div&gt;
+&lt;div class="mark"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;]
+</pre>
+<p>
+現在已經抓到所有 class 為&rsquo;r-ent&rsquo;的 tag，我們可以再繼續找出裡面的 title<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> doc.find_all(class_=<span style="color: #98be65;">'r-ent'</span>):
+<span class="linenr">2: </span>    <span style="color: #dcaeea;">t</span> = i.find(class_=<span style="color: #98be65;">'title'</span>)
+<span class="linenr">3: </span>    <span style="color: #c678dd;">print</span>(t.prettify())
+</pre>
+</div>
+
+<pre class="example" id="orgc45aac8">
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;
+  [問題] 京都住宿請益
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709718584.A.E96.html"&gt;
+  [問題] 沖繩親子遊首衝安排請益
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709719948.A.882.html"&gt;
+  Re: [問題] 請問最近札幌帝王蟹價格？
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709724598.A.77E.html"&gt;
+  [問題] IT216飛羽田的疑問
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709725167.A.3DC.html"&gt;
+  [問題] 小豆島高松-土庄3/10-24航班時間變更
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709725566.A.401.html"&gt;
+  [住宿] 佐賀太良町・有明海旁美食海鮮滿滿平浜荘
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709725647.A.9A6.html"&gt;
+  [資訊] 台灣虎航 tigerclub會員限定優惠活動
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ (本文已被刪除) [gragragra]
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1694279303.A.1CE.html"&gt;
+  [公告] 日本旅遊板板規 112.09.17
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="title"&gt;
+ &lt;a href="/bbs/Japan_Travel/M.1709486877.A.7AF.html"&gt;
+  [公告] 113.03 實況回報 (含天氣/物候/穿著詢問)
+ &lt;/a&gt;
+&lt;/div&gt;
+</pre>
+<p>
+再找出&lt;a&gt;裡的 text<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> doc.find_all(class_=<span style="color: #98be65;">'r-ent'</span>):
+<span class="linenr">2: </span>    <span style="color: #dcaeea;">t</span> = i.find(class_=<span style="color: #98be65;">'title'</span>).a.text
+<span class="linenr">3: </span>    <span style="color: #c678dd;">print</span>(t)
+</pre>
+</div>
+
+<pre class="example">
+[問題] 京都住宿請益
+[問題] 沖繩親子遊首衝安排請益
+Re: [問題] 請問最近札幌帝王蟹價格？
+[問題] IT216 飛羽田的疑問
+[問題] 小豆島高松-土庄 3/10-24 航班時間變更
+[住宿] 佐賀太良町・有明海旁美食海鮮滿滿平浜荘
+[資訊] 台灣虎航 tigerclub 會員限定優惠活動
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 17, in __PYTHON_EL_eval
+  File "&lt;string&gt;", line 3, in &lt;module&gt;
+AttributeError: 'NoneType' object has no attribute 'text'
+</pre>
+
+<p>
+因為有些主題被刪除，找不到&lt;a&gt;，此時可以善用 try&#x2026;except&#x2026;來避免錯誤<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org37e0893" class="outline-3">
+<h3 id="org37e0893"><span class="section-number-3">4.4.</span> 第四版：擷取所有主題</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/Food/index.html"</span>
+<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">request</span> = req.Request(url, headers = {
+<span class="linenr"> 5: </span>    <span style="color: #98be65;">"User-Agent"</span>:<span style="color: #98be65;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
+<span class="linenr"> 6: </span>})
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #51afef;">with</span> req.urlopen(request) <span style="color: #51afef;">as</span> response:
+<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">data</span> = response.read().decode(<span style="color: #98be65;">"utf-8"</span>)
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #51afef;">import</span> bs4
+<span class="linenr">12: </span><span style="color: #dcaeea;">doc</span> = bs4.BeautifulSoup(data,<span style="color: #98be65;">"html.parser"</span>)
+<span class="linenr">13: </span>
+<span class="linenr">14: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#30452;&#25509;&#25214;&#21040;&#25152;&#26377;class&#28858;title&#30340;div</span>
+<span class="linenr">15: </span><span style="color: #dcaeea;">titles</span> = doc.find_all(<span style="color: #98be65;">"div"</span>, class_=<span style="color: #98be65;">"title"</span>)
+<span class="linenr">16: </span><span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> titles:
+<span class="linenr">17: </span>    <span style="color: #51afef;">try</span>:
+<span class="linenr">18: </span>        <span style="color: #dcaeea;">t</span> = i.a
+<span class="linenr">19: </span>        <span style="color: #c678dd;">print</span>(t.text)
+<span class="linenr">20: </span>    <span style="color: #51afef;">except</span>:
+<span class="linenr">21: </span>        <span style="color: #51afef;">pass</span>
+</pre>
+</div>
+
+<pre class="example" id="org9fff7e5">
+[食記] 台北車站 倪記鍋貼 歷史悠久的平價美食
+[食記] 四川蜀渝小吃 台北大安 麻辣下飯麻婆豆腐
+[轉讓] 饗 A Joy 3/30 六位
+[食記] 桃園中壢區。豐園祖傳客家大湯圓
+[食記] 台中 網美餐廳近中國醫分店，KOI PLUS
+[食記] 台中 打盹 Nap &amp; Knife - 義大利麵專賣
+[食記] 台中大墩燒肉中山 最難預訂精緻和牛燒肉
+[食記] 新北市新店區-新馬辣經典麻辣鍋
+[食記] 基隆 義美石頭火鍋 二訪
+[食記] 釜山 No Brand Burger
+[食記] 台北大安 韓庭州韓國料理 公館老字號
+[食記] 新北新店 山東水餃王 多種小菜與麵食
+[食記] 台北福華大飯店-彩虹座-台北老字號buffet
+[廣宣] 桃園 高級日本A5和牛有專人代烤-純水燒肉
+[食記]台南美食｜米亞漢堡｜蔬菜量豐富早餐店
+[食記] 台北天母 家傳美味小館- 好吃的麻醬麵
+[食記] 台中中區—久流麵攤｜全臺最狂什錦麵 大胃王版海陸齊聚銅板
+[公告] Food板 板規 V3.91
+[公告] 發文請在標題加上地區及提供地址電話。^^
+[公告] 文章被刪除者請洽精華區的資源回收桶
+[公告] 新增板規22：發文禁附延伸閱讀連結
+</pre>
+</div>
+</div>
+<div id="outline-container-org8837e75" class="outline-3">
+<h3 id="org8837e75"><span class="section-number-3">4.5.</span> [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇文章的標題以及文章發表日期。<br />
+</p>
+<pre class="example">
+2024.03.10 / 台北美食【SEASON Artisan Pâtissier 敦南旗艦店】超好吃的法式草莓千層酥／精緻歐式早午餐 黃教練／大安區甜點店／下午茶／SEASON Cuisine Pâtissiartism((附菜單
+2024.03.07 / 高雄美食【津筵燒肉酒館】一個人的深夜，也可以好好享受的平價燒肉／好吃又不貴的日式燒肉／美麗島捷運站／高 CP 值((附菜單
+2024.03.06 / 高雄美食【光井咖啡 Wellight Coffee】岡山國小後面／簡約風的咖啡外帶小店／肯亞 Tegu 處理廠 AA 水洗((附菜單
+2024.03.03 / 台北美食【NOBUO】絕美的羊里肌 羊五花 小羊胸腺／一點都不遜於肉類主餐的鹽漬風乾鰆魚／溫暖又好喝的香菇茶湯((附菜單
+2024.03.02 / 台北食記【ä couple coffee】小巷弄裏頭的三角窗咖啡小店／楓糖核桃司康／限量的肉桂捲／美式咖啡／聽說商業午餐不錯吃((附菜單
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb2bf18f" class="outline-3">
+<h3 id="orgb2bf18f"><span class="section-number-3">4.6.</span> 爬蟲進階閱讀</h3>
+<div class="outline-text-3" id="text-4-6">
+<ul class="org-ul">
+<li><a href="https://liangyuh.neocities.org/python/2_Python_BS4">網路爬蟲：數據資料的爬取</a><br /></li>
+<li><a href="https://steam.oxxostudio.tw/category/python/spider/beautiful-soup.html">Beautiful Soup 函式庫</a><br /></li>
+<li><a href="https://ithelp.ithome.com.tw/articles/10271319"> 【Day 09】- 大家都愛的 BeautifulSoup</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://blog.wu-boy.com/2011/04/%E4%BD%A0%E4%B8%8D%E5%8F%AF%E4%B8%8D%E7%9F%A5%E7%9A%84-json-%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9/">你不可不知的 JSON 基本介紹</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://zh.wikipedia.org/zh-tw/HTML">HTML</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://ithelp.ithome.com.tw/articles/10269172">Day7 HTML 區塊標籤：div、span </a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="http://blog.castman.net/%E6%95%99%E5%AD%B8/2016/12/22/python-data-science-tutorial-3.html">給初學者的 Python 網頁爬蟲與資料分析 (3) 解構並擷取網頁資料</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://medium.com/ai%E5%8F%8D%E6%96%97%E5%9F%8E/anaconda-miniconda-conda-pip%E7%9A%84%E7%9B%B8%E4%BA%92%E9%97%9C%E4%BF%82-%E8%BD%89%E8%BC%89-a0536f3a257">Anaconda、Miniconda、Conda、pip的相互關係 (轉載)</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://iter01.com/60617.html">Python 爬蟲十六式 - 第五式：BeautifulSoup，美味的湯</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://steam.oxxostudio.tw/category/python/spider/beautiful-soup.html">Beautiful Soup 函式庫</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://www.w3schools.com/tags/tag_a.asp">HTML &lt;a&gt; Tag</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://seanchien0525.medium.com/python-requests-beautifulsoup-%E7%88%AC%E8%9F%B2%E6%95%99%E5%AD%B8-83d146faa9e8">Python 網路爬蟲Web Crawler教學 — Beautiful Soup篇</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10" role="doc-backlink">10</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://blog.gtwang.org/programming/python-beautiful-soup-module-scrape-web-pages-tutorial/">Python 使用 Beautiful Soup 抓取與解析網頁資料</a><br />
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Yung-Chin Yen</p>
+<p class="date">Created: 2024-03-12 Tue 21:02</p>
+</div>
+</body>
+</html>

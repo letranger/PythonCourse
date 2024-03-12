@@ -1,0 +1,889 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2024-03-12 Tue 21:01 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GUI</title>
+<meta name="author" content="Yung-Chin Yen" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/muse.css" />
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">GUI</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org07928ce">1. Gradio</a>
+<ul>
+<li><a href="#org21b7ae3">1.1. 安裝套件</a></li>
+<li><a href="#org62fb277">1.2. Hello world</a></li>
+<li><a href="#org39f44ee">1.3. 數字 I/O</a></li>
+<li><a href="#org43f7c1c">1.4. 文字 I/O</a></li>
+<li><a href="#orgd2c6aad">1.5. 多資料 I/O</a></li>
+<li><a href="#orgbdf7697">1.6. 圖形 I/O</a></li>
+<li><a href="#org2f178d9">1.7. Button</a></li>
+<li><a href="#orgbde9cfb">1.8. Radio</a></li>
+</ul>
+</li>
+<li><a href="#org77c1ad8">2. Flask</a>
+<ul>
+<li><a href="#org5972861">2.1. Button</a></li>
+<li><a href="#orgf89aecf">2.2. Input form</a></li>
+</ul>
+</li>
+<li><a href="#org613c6a0">3. tkinter</a>
+<ul>
+<li><a href="#org8cdd367">3.1. 安裝</a></li>
+<li><a href="#orgd62cc61">3.2. DEMO #1</a></li>
+<li><a href="#orgfae6476">3.3. DEMO #2</a></li>
+</ul>
+</li>
+<li><a href="#orga47085e">4. PyInstaller</a>
+<ul>
+<li><a href="#orgdb547d8">4.1. 安裝pyinstaller</a></li>
+<li><a href="#orgdd6f628">4.2. 準備要打包的檔案</a></li>
+<li><a href="#orge376147">4.3. 打包</a></li>
+</ul>
+</li>
+<li><a href="#orgbd9f161">5. Flet</a></li>
+<li><a href="#org72f2a87">6. <span class="todo TODO">TODO</span> Kivy</a></li>
+<li><a href="#org527a534">7. PyQt</a></li>
+<li><a href="#org0b66f4e">8. Resources</a></li>
+</ul>
+</div>
+</div>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/gui.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/gui.html.svg"/></a>
+<div id="outline-container-org07928ce" class="outline-2">
+<h2 id="org07928ce"><span class="section-number-2">1.</span> Gradio</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+讓只有command line I/O的python程式搖身一變成為web service。<br />
+</p>
+<ul class="org-ul">
+<li><a href="https://gradio.app/">官網</a><br /></li>
+<li><a href="https://gradio.app/docs/">gradio Docs</a><br /></li>
+<li><a href="https://github.com/gradio-app/gradio">Gradio github</a><br /></li>
+</ul>
+</div>
+<div id="outline-container-org21b7ae3" class="outline-3">
+<h3 id="org21b7ae3"><span class="section-number-3">1.1.</span> 安裝套件</h3>
+<div class="outline-text-3" id="text-1-1">
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>pip3 install gradio
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org62fb277" class="outline-3">
+<h3 id="org62fb277"><span class="section-number-3">1.2.</span> Hello world<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>fn ：被 UI 裝飾的函式<br /></li>
+<li>inputs ：輸入元件。如 &ldquo;text&rdquo; 、 &ldquo;image&rdquo; 、 &ldquo;audio&rdquo; 等<br /></li>
+<li>outputs ：輸出元件。如 &ldquo;text&rdquo; 、 &ldquo;image&rdquo; 、 &ldquo;label&rdquo; 等<br /></li>
+</ul>
+<p>
+Gradio 支援 20 多種不同的元件型別，其中大部分都可以作為輸入/輸出元件，詳見官網文件<a href="https://gradio.app/docs/">gradio Docs</a><br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name):
+<span class="linenr">4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> + name + <span style="color: #98be65;">"!!"</span>
+<span class="linenr">5: </span>
+<span class="linenr">6: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(fn=greet, inputs=<span style="color: #98be65;">"text"</span>, outputs=<span style="color: #98be65;">"text"</span>)
+<span class="linenr">7: </span>
+<span class="linenr">8: </span>demo.launch()
+</pre>
+</div>
+
+
+<div id="org84a6d60" class="figure">
+<p><img src="images/Gradio/2024-03-07_16-09-49_2024-03-07_16-09-26.png" alt="2024-03-07_16-09-49_2024-03-07_16-09-26.png" width="800" /><br />
+</p>
+<p><span class="figure-number">Figure 1: </span>執行畫面</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org39f44ee" class="outline-3">
+<h3 id="org39f44ee"><span class="section-number-3">1.3.</span> 數字 I/O</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">BMI</span>(h, w):
+<span class="linenr"> 4: </span>  <span style="color: #dcaeea;">h</span> /= <span style="color: #da8548; font-weight: bold;">100</span>
+<span class="linenr"> 5: </span>  <span style="color: #51afef;">return</span> f<span style="color: #98be65;">'BMI&#20540;: </span>{w/(h*h)}<span style="color: #98be65;">'</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span style="color: #dcaeea;">ui</span> = gr.Interface(
+<span class="linenr"> 8: </span>    fn=BMI, inputs=[gr.Slider(<span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">240</span>, label=<span style="color: #98be65;">"&#36523;&#39640;(cm)"</span>), gr.Slider(<span style="color: #da8548; font-weight: bold;">40</span>, <span style="color: #da8548; font-weight: bold;">200</span>, label=<span style="color: #98be65;">"&#39636;&#37325;(kg)"</span>)],
+<span class="linenr"> 9: </span>    outputs=[<span style="color: #98be65;">"text"</span>]
+<span class="linenr">10: </span>)
+<span class="linenr">11: </span>ui.launch(share=<span style="color: #a9a1e1;">True</span>)
+</pre>
+</div>
+
+<div id="orgb0662e6" class="figure">
+<p><img src="images/Gradio/2024-03-07_16-41-11_2024-03-07_16-40-52.png" alt="2024-03-07_16-41-11_2024-03-07_16-40-52.png" width="700" /><br />
+</p>
+<p><span class="figure-number">Figure 2: </span>執行畫面</p>
+</div>
+</div>
+<div id="outline-container-org7400b26" class="outline-4">
+<h4 id="org7400b26"><span class="section-number-4">1.3.1.</span> [課堂練習]三角形面積&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+輸入三角形三邊長(1..100)，輸出面積、周長<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org43f7c1c" class="outline-3">
+<h3 id="org43f7c1c"><span class="section-number-3">1.4.</span> 文字 I/O</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name):
+<span class="linenr"> 4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(
+<span class="linenr"> 7: </span>    fn=greet,
+<span class="linenr"> 8: </span>    inputs=gr.Textbox(lines=<span style="color: #da8548; font-weight: bold;">2</span>, placeholder=<span style="color: #98be65;">"Name Here..."</span>),
+<span class="linenr"> 9: </span>    outputs=<span style="color: #98be65;">"text"</span>,
+<span class="linenr">10: </span>)
+<span class="linenr">11: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+</pre>
+</div>
+
+
+<div id="orgc81fe5b" class="figure">
+<p><img src="images/Gradio/2024-03-07_16-44-41_2024-03-07_16-44-28.png" alt="2024-03-07_16-44-41_2024-03-07_16-44-28.png" width="600" /><br />
+</p>
+<p><span class="figure-number">Figure 3: </span>執行畫面</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd2c6aad" class="outline-3">
+<h3 id="orgd2c6aad"><span class="section-number-3">1.5.</span> 多資料 I/O</h3>
+<div class="outline-text-3" id="text-1-5">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name, is_morning, temperature):
+<span class="linenr"> 4: </span>    <span style="color: #dcaeea;">salutation</span> = <span style="color: #98be65;">"Good morning"</span> <span style="color: #51afef;">if</span> is_morning <span style="color: #51afef;">else</span> <span style="color: #98be65;">"Good evening"</span>
+<span class="linenr"> 5: </span>    <span style="color: #dcaeea;">greeting</span> = f<span style="color: #98be65;">"</span>{salutation}<span style="color: #98be65;"> </span>{name}<span style="color: #98be65;">. It is </span>{temperature}<span style="color: #98be65;"> degrees today"</span>
+<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">celsius</span> = (temperature - <span style="color: #da8548; font-weight: bold;">32</span>) * <span style="color: #da8548; font-weight: bold;">5</span> / <span style="color: #da8548; font-weight: bold;">9</span>
+<span class="linenr"> 7: </span>    <span style="color: #51afef;">return</span> greeting, <span style="color: #c678dd;">round</span>(celsius, <span style="color: #da8548; font-weight: bold;">2</span>)
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(
+<span class="linenr">10: </span>    fn=greet,
+<span class="linenr">11: </span>    inputs=[<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">"checkbox"</span>, gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">100</span>)],
+<span class="linenr">12: </span>    outputs=[<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">"number"</span>],
+<span class="linenr">13: </span>)
+<span class="linenr">14: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+</pre>
+</div>
+
+<div id="org5055a20" class="figure">
+<p><img src="images/Gradio/2024-03-07_16-46-19_2024-03-07_16-46-06.png" alt="2024-03-07_16-46-19_2024-03-07_16-46-06.png" width="600" /><br />
+</p>
+<p><span class="figure-number">Figure 4: </span>執行畫面</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbdf7697" class="outline-3">
+<h3 id="orgbdf7697"><span class="section-number-3">1.6.</span> 圖形 I/O</h3>
+<div class="outline-text-3" id="text-1-6">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<span class="linenr"> 4: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">curve</span>(a, b, c):
+<span class="linenr"> 5: </span>    <span style="color: #dcaeea;">x</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.3</span>)
+<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">y</span> = a*x**<span style="color: #da8548; font-weight: bold;">2</span> + b*x + c
+<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">fig</span> = plt.figure()
+<span class="linenr"> 8: </span>    plt.plot(x, y)
+<span class="linenr"> 9: </span>    <span style="color: #c678dd;">print</span>(x)
+<span class="linenr">10: </span>    <span style="color: #c678dd;">print</span>(y)
+<span class="linenr">11: </span>    <span style="color: #51afef;">return</span> fig
+<span class="linenr">12: </span><span style="color: #dcaeea;">inputs</span> = [gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">5</span>), gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">5</span>), gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">5</span>)]
+<span class="linenr">13: </span><span style="color: #dcaeea;">outputs</span> = gr.Plot()
+<span class="linenr">14: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(
+<span class="linenr">15: </span>    fn=curve,
+<span class="linenr">16: </span>    inputs=inputs,
+<span class="linenr">17: </span>    outputs=outputs,
+<span class="linenr">18: </span>    cache_examples=<span style="color: #a9a1e1;">True</span>,)
+<span class="linenr">19: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+</pre>
+</div>
+
+<div id="orgdbd0b95" class="figure">
+<p><img src="images/Gradio/2024-03-07_16-51-43_2024-03-07_16-51-32.png" alt="2024-03-07_16-51-43_2024-03-07_16-51-32.png" width="600" /><br />
+</p>
+<p><span class="figure-number">Figure 5: </span>執行畫面</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org2f178d9" class="outline-3">
+<h3 id="org2f178d9"><span class="section-number-3">1.7.</span> Button</h3>
+<div class="outline-text-3" id="text-1-7">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name):
+<span class="linenr"> 4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #51afef;">with</span> gr.Blocks() <span style="color: #51afef;">as</span> demo:
+<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">name</span> = gr.Textbox(label=<span style="color: #98be65;">"Name"</span>)
+<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">output</span> = gr.Textbox(label=<span style="color: #98be65;">"Output Box"</span>)
+<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">greet_btn</span> = gr.Button(<span style="color: #98be65;">"Greet"</span>)
+<span class="linenr">10: </span>    greet_btn.click(fn=greet, inputs=name, outputs=output)
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+</pre>
+</div>
+
+<div id="org885544e" class="figure">
+<p><img src="images/Gradio/2024-03-11_20-11-32_2024-03-11_20-10-15.gif" alt="2024-03-11_20-11-32_2024-03-11_20-10-15.gif" width="600" /><br />
+</p>
+<p><span class="figure-number">Figure 6: </span>執行畫面</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbde9cfb" class="outline-3">
+<h3 id="orgbde9cfb"><span class="section-number-3">1.8.</span> Radio</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(gender, name):
+<span class="linenr"> 4: </span>    <span style="color: #51afef;">if</span> gender == <span style="color: #98be65;">"Male"</span>:
+<span class="linenr"> 5: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello, Mr. "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 6: </span>    <span style="color: #51afef;">else</span>:
+<span class="linenr"> 7: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello, Ms. "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #51afef;">with</span> gr.Blocks() <span style="color: #51afef;">as</span> demo:
+<span class="linenr">10: </span>    <span style="color: #c678dd;">input</span> = [gr.Radio([<span style="color: #98be65;">"Male"</span>, <span style="color: #98be65;">"Female"</span>]), gr.Textbox(label=<span style="color: #98be65;">"Name"</span>)]
+<span class="linenr">11: </span>    <span style="color: #dcaeea;">output</span> = gr.Textbox(label=<span style="color: #98be65;">"Output Box"</span>)
+<span class="linenr">12: </span>    <span style="color: #dcaeea;">greet_btn</span> = gr.Button(<span style="color: #98be65;">"Greet"</span>)
+<span class="linenr">13: </span>    greet_btn.click(fn=greet, inputs=<span style="color: #c678dd;">input</span>, outputs=output)
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+</pre>
+</div>
+
+<div id="org12cb267" class="figure">
+<p><img src="images/Gradio/2024-03-11_20-13-52_2024-03-11_20-13-00.gif" alt="2024-03-11_20-13-52_2024-03-11_20-13-00.gif" width="600" /><br />
+</p>
+<p><span class="figure-number">Figure 7: </span>執行畫面</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org77c1ad8" class="outline-2">
+<h2 id="org77c1ad8"><span class="section-number-2">2.</span> Flask</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org5972861" class="outline-3">
+<h3 id="org5972861"><span class="section-number-3">2.1.</span> Button</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">from</span> flask <span style="color: #51afef;">import</span> Flask
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">app</span> = Flask(<span style="color: #c678dd;">__name__</span>)
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #ECBE7B;">@app.route</span>(<span style="color: #98be65;">"/"</span>)
+<span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">hello</span>():
+<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">title</span> = <span style="color: #98be65;">"&lt;title&gt;Advanced Materials of Python&lt;/title&gt;"</span>
+<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">h1</span> = <span style="color: #98be65;">"&lt;h1&gt;Python based web&lt;/h1&gt;"</span>
+<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">p1</span> = <span style="color: #98be65;">"&lt;p&gt;&#36889;&#26159;&#29992;Python&#38283;&#30332;&#30340;&#32178;&#31449;&lt;/p&gt;"</span>
+<span class="linenr"> 9: </span>    <span style="color: #51afef;">return</span> title+h1+p1
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> == <span style="color: #98be65;">"__main__"</span>:
+<span class="linenr">12: </span>    app.run()
+</pre>
+</div>
+
+
+<div id="org2ce5e05" class="figure">
+<p><img src="images/FlashSite.jpg" alt="FlashSite.jpg" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 8: </span>Flask Web Site</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf89aecf" class="outline-3">
+<h3 id="orgf89aecf"><span class="section-number-3">2.2.</span> Input form<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h3>
+<div class="outline-text-3" id="text-2-2">
+
+<div id="orgeb19e00" class="figure">
+<p><img src="images/Flask/2024-03-11_21-44-56_2024-03-11_21-43-18.gif" alt="2024-03-11_21-44-56_2024-03-11_21-43-18.gif" width="700" /><br />
+</p>
+<p><span class="figure-number">Figure 9: </span>執行畫面</p>
+</div>
+</div>
+<div id="outline-container-org83c1063" class="outline-4">
+<h4 id="org83c1063"><span class="section-number-4">2.2.1.</span> Python</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Flask&#32178;&#31449;&#21069;&#24460;&#31471;&#20114;&#21205; 09 - &#36229;&#36899;&#32080;&#33287;&#22294;&#29255;</span>
+<span class="linenr"> 2: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;Flask&#12289;Request&#12289;render_template</span>
+<span class="linenr"> 3: </span><span style="color: #51afef;">from</span> flask <span style="color: #51afef;">import</span> Flask, request, render_template
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">app</span> = Flask(<span style="color: #c678dd;">__name__</span>, template_folder=<span style="color: #98be65;">'templates'</span>,
+<span class="linenr"> 6: </span>            static_folder=<span style="color: #98be65;">"public"</span>,
+<span class="linenr"> 7: </span>            static_url_path=<span style="color: #98be65;">"/"</span>)
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#34389;&#29702;&#36335;&#24465; / &#30340;&#23565;&#25033;&#20989;&#24066;</span>
+<span class="linenr">10: </span><span style="color: #ECBE7B;">@app.route</span>(<span style="color: #98be65;">"/"</span>)
+<span class="linenr">11: </span>
+<span class="linenr">12: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">main</span>():
+<span class="linenr">13: </span>    <span style="color: #51afef;">return</span> render_template(<span style="color: #98be65;">"index.html"</span>)
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #ECBE7B;">@app.route</span>(<span style="color: #98be65;">"/page"</span>)
+<span class="linenr">16: </span>
+<span class="linenr">17: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">page</span>():
+<span class="linenr">18: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#24478;main.html&#38913;&#38754;&#20013;&#35712;&#21462;&#22995;&#21517;&#65292;&#23384;&#22312;name&#20013;</span>
+<span class="linenr">19: </span>    <span style="color: #dcaeea;">name</span> = request.args.get(<span style="color: #98be65;">"nameis"</span>)
+<span class="linenr">20: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#23559;name&#30340;&#36039;&#26009;&#36681;&#32102;pate.html&#20013;&#30340;&#35722;&#25976;namepage</span>
+<span class="linenr">21: </span>    <span style="color: #51afef;">return</span> render_template(<span style="color: #98be65;">"page.html"</span>, namepage=name)
+<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21855;&#21205;Server</span>
+<span class="linenr">23: </span>
+<span class="linenr">24: </span><span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> == <span style="color: #98be65;">'__main__'</span>:
+<span class="linenr">25: </span>    app.<span style="color: #dcaeea;">debug</span> = <span style="color: #a9a1e1;">True</span>
+<span class="linenr">26: </span>    app.run()
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org7e52f51" class="outline-4">
+<h4 id="org7e52f51"><span class="section-number-4">2.2.2.</span> templates</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<ol class="org-ol">
+<li>建立public資料夾，放入一個head.png圖檔<br /></li>
+<li>建立templates資料夾<br /></li>
+<li>以下兩個html檔要放在templates資料夾中<br /></li>
+</ol>
+</div>
+<div id="outline-container-org772568b" class="outline-5">
+<h5 id="org772568b"><span class="section-number-5">2.2.2.1.</span> index.html</h5>
+<div class="outline-text-5" id="text-2-2-2-1">
+<div class="org-src-container">
+<pre class="src src-html"><span class="linenr"> 1: </span>&lt;<span style="color: #51afef;">!DOCTYPE</span> html&gt;
+<span class="linenr"> 2: </span>&lt;<span style="color: #c678dd;">html</span> <span style="color: #dcaeea;">lang</span>=<span style="color: #98be65;">"en"</span>&gt;
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>&lt;<span style="color: #c678dd;">head</span>&gt;
+<span class="linenr"> 5: </span>    &lt;<span style="color: #c678dd;">meta</span> <span style="color: #dcaeea;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>&gt;
+<span class="linenr"> 6: </span>    &lt;<span style="color: #c678dd;">meta</span> <span style="color: #dcaeea;">http-equiv</span>=<span style="color: #98be65;">"X-UA-Compatible"</span> <span style="color: #dcaeea;">content</span>=<span style="color: #98be65;">"IE=edge"</span>&gt;
+<span class="linenr"> 7: </span>    &lt;<span style="color: #c678dd;">meta</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">"viewport"</span> <span style="color: #dcaeea;">content</span>=<span style="color: #98be65;">"width=device-width, initial-scale=1.0"</span>&gt;
+<span class="linenr"> 8: </span>    &lt;<span style="color: #c678dd;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">&#36889;&#26159;&#27161;&#38988;</span>&lt;/<span style="color: #c678dd;">title</span>&gt;
+<span class="linenr"> 9: </span>&lt;/<span style="color: #c678dd;">head</span>&gt;
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>&lt;<span style="color: #c678dd;">body</span>&gt;
+<span class="linenr">12: </span>    &lt;<span style="color: #c678dd;">h3</span>&gt;<span style="font-style: italic; text-decoration: underline;">&#32178;&#38913;&#30340;&#20027;&#30059;&#38754;</span>&lt;/<span style="color: #c678dd;">h3</span>&gt;
+<span class="linenr">13: </span>    &lt;<span style="color: #c678dd;">form</span> <span style="color: #dcaeea;">action</span>=<span style="color: #98be65;">"/page"</span>&gt;
+<span class="linenr">14: </span>        &#21517;&#23383;:&lt;<span style="color: #c678dd;">input</span> <span style="color: #dcaeea;">type</span>=<span style="color: #98be65;">"text"</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">"nameis"</span>&gt;
+<span class="linenr">15: </span>        &lt;<span style="color: #c678dd;">button</span>&gt;&#40670;&#25802;&#36865;&#20986;&lt;/<span style="color: #c678dd;">button</span>&gt;
+<span class="linenr">16: </span>    &lt;/<span style="color: #c678dd;">form</span>&gt;
+<span class="linenr">17: </span>&lt;/<span style="color: #c678dd;">body</span>&gt;
+<span class="linenr">18: </span>
+<span class="linenr">19: </span>&lt;/<span style="color: #c678dd;">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5dc84a7" class="outline-5">
+<h5 id="org5dc84a7"><span class="section-number-5">2.2.2.2.</span> page.html</h5>
+<div class="outline-text-5" id="text-2-2-2-2">
+<div class="org-src-container">
+<pre class="src src-html"><span class="linenr"> 1: </span>&lt;<span style="color: #51afef;">!DOCTYPE</span> html&gt;
+<span class="linenr"> 2: </span>&lt;<span style="color: #c678dd;">html</span> <span style="color: #dcaeea;">lang</span>=<span style="color: #98be65;">"en"</span>&gt;
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>&lt;<span style="color: #c678dd;">head</span>&gt;
+<span class="linenr"> 5: </span>    &lt;<span style="color: #c678dd;">meta</span> <span style="color: #dcaeea;">charset</span>=<span style="color: #98be65;">"UTF-8"</span>&gt;
+<span class="linenr"> 6: </span>    &lt;<span style="color: #c678dd;">meta</span> <span style="color: #dcaeea;">http-equiv</span>=<span style="color: #98be65;">"X-UA-Compatible"</span> <span style="color: #dcaeea;">content</span>=<span style="color: #98be65;">"IE=edge"</span>&gt;
+<span class="linenr"> 7: </span>    &lt;<span style="color: #c678dd;">meta</span> <span style="color: #dcaeea;">name</span>=<span style="color: #98be65;">"viewport"</span> <span style="color: #dcaeea;">content</span>=<span style="color: #98be65;">"width=device-width, initial-scale=1.0"</span>&gt;
+<span class="linenr"> 8: </span>    &lt;<span style="color: #c678dd;">title</span>&gt;<span style="font-weight: bold; text-decoration: underline;">page1</span>&lt;/<span style="color: #c678dd;">title</span>&gt;
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span>&lt;/<span style="color: #c678dd;">head</span>&gt;
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>&lt;<span style="color: #c678dd;">body</span>&gt;
+<span class="linenr">13: </span>    &lt;<span style="color: #c678dd;">h1</span>&gt;<span style="font-weight: bold; text-decoration: underline;">&#25105;&#30340;&#21517;&#23383;&#21483; {{namepage}}</span>&lt;/<span style="color: #c678dd;">h1</span>&gt;
+<span class="linenr">14: </span>&lt;/<span style="color: #c678dd;">body</span>&gt;
+<span class="linenr">15: </span>
+<span class="linenr">16: </span>&lt;/<span style="color: #c678dd;">html</span>&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org613c6a0" class="outline-2">
+<h2 id="org613c6a0"><span class="section-number-2">3.</span> tkinter</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org8cdd367" class="outline-3">
+<h3 id="org8cdd367"><span class="section-number-3">3.1.</span> 安裝</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org3e5c260" class="outline-4">
+<h4 id="org3e5c260"><span class="section-number-4">3.1.1.</span> MacOS</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<p>
+於PyCharm的terminal下輸入brew install python-tk@Python版本<br />
+如果系統的預設python版本為3.9，則輸入<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>brew install python-tk@<span style="color: #da8548; font-weight: bold;">3.9</span>
+<span class="linenr">2: </span>pip install tk
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd62cc61" class="outline-3">
+<h3 id="orgd62cc61"><span class="section-number-3">3.2.</span> DEMO #1</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
+<span class="linenr"> 3: </span><span style="color: #51afef;">from</span> tkinter <span style="color: #51afef;">import</span> messagebox
+<span class="linenr"> 4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25353;&#23436;button&#35201;&#20570;&#20160;&#40636;</span>
+<span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">test</span>():
+<span class="linenr"> 6: </span>    tk.messagebox.showinfo(<span style="color: #98be65;">'&#28204;&#35430;'</span>, <span style="color: #98be65;">'Hi'</span>)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">main window</span>
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">root</span> = tk.Tk()
+<span class="linenr">10: </span>root.title(<span style="color: #98be65;">'my window'</span>)
+<span class="linenr">11: </span>root.geometry(<span style="color: #98be65;">'200x150'</span>)
+<span class="linenr">12: </span>
+<span class="linenr">13: </span>root.configure(background=<span style="color: #98be65;">'white'</span>)
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #dcaeea;">myentry</span> = tk.Entry(root)
+<span class="linenr">16: </span>myentry.pack()
+<span class="linenr">17: </span>
+<span class="linenr">18: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Button</span>
+<span class="linenr">19: </span><span style="color: #dcaeea;">myButton</span> = tk.Button(root, text=<span style="color: #98be65;">'Button'</span>, command=test)
+<span class="linenr">20: </span>myButton.pack()
+<span class="linenr">21: </span>
+<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Label</span>
+<span class="linenr">23: </span><span style="color: #dcaeea;">resultLabel</span> = tk.Label(root, text=<span style="color: #98be65;">'&#36889;&#26159;Label'</span>)
+<span class="linenr">24: </span>resultLabel.pack()
+<span class="linenr">25: </span>
+<span class="linenr">26: </span>root.mainloop()
+</pre>
+</div>
+
+
+<div id="org4f927e0" class="figure">
+<p><img src="images/tkinter/2024-03-12_10-24-30_2024-03-12_10-24-05.png" alt="2024-03-12_10-24-30_2024-03-12_10-24-05.png" width="200" /><br />
+</p>
+<p><span class="figure-number">Figure 10: </span>執行畫面</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfae6476" class="outline-3">
+<h3 id="orgfae6476"><span class="section-number-3">3.3.</span> DEMO #2</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
+<span class="linenr"> 3: </span><span style="color: #51afef;">from</span> tkinter <span style="color: #51afef;">import</span> messagebox
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">button_event</span>():
+<span class="linenr"> 6: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">print(var.get())</span>
+<span class="linenr"> 7: </span>    <span style="color: #51afef;">if</span> var.get() == <span style="color: #98be65;">''</span>:
+<span class="linenr"> 8: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#26410;&#36664;&#20837;&#31572;&#26696;'</span>)
+<span class="linenr"> 9: </span>    <span style="color: #51afef;">elif</span> var.get() == <span style="color: #98be65;">'2'</span>:
+<span class="linenr">10: </span>        tk.messagebox.showinfo(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#23565;&#20102;&#65281;'</span>)
+<span class="linenr">11: </span>    <span style="color: #51afef;">else</span>:
+<span class="linenr">12: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#37679;'</span>)
+<span class="linenr">13: </span>
+<span class="linenr">14: </span><span style="color: #dcaeea;">root</span> = tk.Tk()
+<span class="linenr">15: </span>root.title(<span style="color: #98be65;">'my window'</span>)
+<span class="linenr">16: </span>
+<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">label</span>
+<span class="linenr">18: </span><span style="color: #dcaeea;">mylabel</span> = tk.Label(root, text=<span style="color: #98be65;">'1+1='</span>)
+<span class="linenr">19: </span>mylabel.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">0</span>)
+<span class="linenr">20: </span>
+<span class="linenr">21: </span><span style="color: #dcaeea;">var</span> = tk.StringVar()
+<span class="linenr">22: </span><span style="color: #dcaeea;">myentry</span> = tk.Entry(root, textvariable=var)
+<span class="linenr">23: </span>myentry.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">24: </span>
+<span class="linenr">25: </span><span style="color: #dcaeea;">mybutton</span> = tk.Button(root, text=<span style="color: #98be65;">'&#23436;&#25104;'</span>, command=button_event)
+<span class="linenr">26: </span>mybutton.grid(row=<span style="color: #da8548; font-weight: bold;">1</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">27: </span>
+<span class="linenr">28: </span>root.mainloop()
+</pre>
+</div>
+
+
+<div id="org1d69819" class="figure">
+<p><img src="images/tkinter/2024-03-12_10-27-00_2024-03-12_10-25-57.gif" alt="2024-03-12_10-27-00_2024-03-12_10-25-57.gif" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 11: </span>執行畫面</p>
+</div>
+
+<ul class="org-ul">
+<li><a href="https://shengyu7697.github.io/python-tkinter-entry/">Python tkinter Entry 文字輸入框用法與範例</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orga47085e" class="outline-2">
+<h2 id="orga47085e"><span class="section-number-2">4.</span> PyInstaller</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orgdb547d8" class="outline-3">
+<h3 id="orgdb547d8"><span class="section-number-3">4.1.</span> 安裝pyinstaller</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>pip3 install pyinstaller
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdd6f628" class="outline-3">
+<h3 id="orgdd6f628"><span class="section-number-3">4.2.</span> 準備要打包的檔案</h3>
+<div class="outline-text-3" id="text-4-2">
+</div>
+<div id="outline-container-org8e855a3" class="outline-4">
+<h4 id="org8e855a3"><span class="section-number-4">4.2.1.</span> 找一個喜歡的icon</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<ul class="org-ul">
+<li><a href="https://www.iconarchive.com">https://www.iconarchive.com</a><br /></li>
+<li>mac: icns<br /></li>
+<li>windows: ico<br /></li>
+</ul>
+<p>
+此處我下載了一個icns，命名為imac.icns，與底下的403qq.py存於同一資料夾裡，如果你懶到不想自己找，也可以<a href="images/PyInstaller/2024-03-12_12-32-48_imac.icns">按這裡下載</a>我的icns圖示檔<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgbf65102" class="outline-4">
+<h4 id="orgbf65102"><span class="section-number-4">4.2.2.</span> 以前述tkinter demo#2為例，將下列程式命名為403qq.py</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
+<span class="linenr"> 2: </span><span style="color: #51afef;">from</span> tkinter <span style="color: #51afef;">import</span> messagebox
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">button_event</span>():
+<span class="linenr"> 5: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">print(var.get())</span>
+<span class="linenr"> 6: </span>    <span style="color: #51afef;">if</span> var.get() == <span style="color: #98be65;">''</span>:
+<span class="linenr"> 7: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#26410;&#36664;&#20837;&#31572;&#26696;'</span>)
+<span class="linenr"> 8: </span>    <span style="color: #51afef;">elif</span> var.get() == <span style="color: #98be65;">'2'</span>:
+<span class="linenr"> 9: </span>        tk.messagebox.showinfo(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#23565;&#20102;&#65281;'</span>)
+<span class="linenr">10: </span>    <span style="color: #51afef;">else</span>:
+<span class="linenr">11: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#37679;'</span>)
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span style="color: #dcaeea;">root</span> = tk.Tk()
+<span class="linenr">14: </span>root.title(<span style="color: #98be65;">'my window'</span>)
+<span class="linenr">15: </span>
+<span class="linenr">16: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">label</span>
+<span class="linenr">17: </span><span style="color: #dcaeea;">mylabel</span> = tk.Label(root, text=<span style="color: #98be65;">'1+1='</span>)
+<span class="linenr">18: </span>mylabel.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">0</span>)
+<span class="linenr">19: </span>
+<span class="linenr">20: </span><span style="color: #dcaeea;">var</span> = tk.StringVar()
+<span class="linenr">21: </span><span style="color: #dcaeea;">myentry</span> = tk.Entry(root, textvariable=var)
+<span class="linenr">22: </span>myentry.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">23: </span>
+<span class="linenr">24: </span><span style="color: #dcaeea;">mybutton</span> = tk.Button(root, text=<span style="color: #98be65;">'&#23436;&#25104;'</span>, command=button_event)
+<span class="linenr">25: </span>mybutton.grid(row=<span style="color: #da8548; font-weight: bold;">1</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">26: </span>
+<span class="linenr">27: </span>root.mainloop()
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orge376147" class="outline-3">
+<h3 id="orge376147"><span class="section-number-3">4.3.</span> 打包</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+<pre class="src src-shell">pyinstaller --icon imac.icns --noconsole -n 403QQ 403qq.py
+</pre>
+</div>
+<p>
+成功執行後，會在同一資料夾中看到一個dist的資料夾，裡面有一支403QQ的應用程式，試著執行看看<br />
+</p>
+
+<div id="org5b9a87c" class="figure">
+<p><img src="images/PySimpleGUI/2024-03-12_12-56-19_2024-03-12_12-55-49.png" alt="2024-03-12_12-56-19_2024-03-12_12-55-49.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 12: </span>編譯後的應用程式: 403QQ</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbd9f161" class="outline-2">
+<h2 id="orgbd9f161"><span class="section-number-2">5.</span> Flet</h2>
+<div class="outline-text-2" id="text-5">
+<ul class="org-ul">
+<li><a href="https://www.youtube.com/watch?v=y75vekE9OqU"> User Interface in Python and Flet | Flutter for Python </a><br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org72f2a87" class="outline-2">
+<h2 id="org72f2a87"><span class="section-number-2">6.</span> <span class="todo TODO">TODO</span> Kivy</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+<a href="https://www.youtube.com/watch?v=YDp73WjNISc">https://www.youtube.com/watch?v=YDp73WjNISc</a><br />
+<a href="https://www.youtube.com/watch?v=UAi3PG-qN2k">https://www.youtube.com/watch?v=UAi3PG-qN2k</a><br />
+<a href="https://www.youtube.com/watch?v=7L37IMVZANI">https://www.youtube.com/watch?v=7L37IMVZANI</a><br />
+<a href="https://kivy.org/doc/stable/gettingstarted/installation.html">https://kivy.org/doc/stable/gettingstarted/installation.html</a><br />
+</p>
+</div>
+</div>
+<div id="outline-container-org527a534" class="outline-2">
+<h2 id="org527a534"><span class="section-number-2">7.</span> PyQt</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>pip3 install PyQt6
+</pre>
+</div>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> sys
+<span class="linenr"> 2: </span><span style="color: #51afef;">from</span> PyQt6.QtWidgets <span style="color: #51afef;">import</span> QApplication, QWidget
+<span class="linenr"> 3: </span><span style="color: #51afef;">from</span> PyQt6.QtGui <span style="color: #51afef;">import</span> QIcon
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Window</span>(QWidget):
+<span class="linenr"> 6: </span>    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">__init__</span>(<span style="color: #51afef;">self</span>):
+<span class="linenr"> 7: </span>        <span style="color: #c678dd;">super</span>().__init__()
+<span class="linenr"> 8: </span>        <span style="color: #51afef;">self</span>.setWindowTitle(<span style="color: #98be65;">"PyQT"</span>)
+<span class="linenr"> 9: </span>        <span style="color: #51afef;">self</span>.setFixedHeight(<span style="color: #da8548; font-weight: bold;">200</span>)
+<span class="linenr">10: </span>        <span style="color: #51afef;">self</span>.setFixedWidth(<span style="color: #da8548; font-weight: bold;">200</span>)
+<span class="linenr">11: </span>        <span style="color: #51afef;">self</span>.setGeometry(<span style="color: #da8548; font-weight: bold;">500</span>, <span style="color: #da8548; font-weight: bold;">300</span>, <span style="color: #da8548; font-weight: bold;">400</span>, <span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">12: </span>        <span style="color: #dcaeea;">stylesheet</span> = <span style="color: #51afef;">self</span>.setStyleSheet(<span style="color: #98be65;">'background-color:Gray'</span>)
+<span class="linenr">13: </span>
+<span class="linenr">14: </span><span style="color: #dcaeea;">app</span> = QApplication([])
+<span class="linenr">15: </span><span style="color: #dcaeea;">window</span> = Window()
+<span class="linenr">16: </span>
+<span class="linenr">17: </span>window.show()
+<span class="linenr">18: </span>sys.<span style="color: #a9a1e1;">exit</span>(app.<span style="color: #c678dd;">exec</span>())
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0b66f4e" class="outline-2">
+<h2 id="org0b66f4e"><span class="section-number-2">8.</span> Resources</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li><a href="https://www.coderbridge.com/series/c471d97bb201460ab137c5e4955987df/posts/e1755ac2099b430291ffb7a8b61f169e">【Day01】用tkinter製作圖形視窗介面(GUI)</a><br /></li>
+<li><a href="https://blog.techbridge.cc/2019/09/21/how-to-use-python-tkinter-to-make-gui-app-tutorial/">如何使用 Python Tkinter 製作 GUI 應用程式入門教學</a><br /></li>
+<li><a href="https://www.youtube.com/watch?v=-_z2RPAH0Qk">Python GUI Development With PySimpleGUI</a><br /></li>
+<li><a href="https://www.rs-online.com/designspark/python-tkinter-cn">為應用程式設計圖形化介面，使用Python Tkinter 模組</a><br /></li>
+<li><a href="https://shengyu7697.github.io/python-tkinter-entry/">Python tkinter Entry 文字輸入框用法與範例</a><br /></li>
+</ul>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://www.gushiciku.cn/pl/a1KE/zh-tw">只需幾分鐘，為機器學習模型生成一個漂亮的互動介面</a><br />
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<a href="https://ithelp.ithome.com.tw/articles/10302605?sc=iThelpR">Day 17 Flask 表單 Form 與連線方法 </a><br />
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="author">Author: Yung-Chin Yen</p>
+<p class="date">Created: 2024-03-12 Tue 21:01</p>
+</div>
+</body>
+</html>
