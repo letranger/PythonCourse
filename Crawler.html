@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-12 Tue 21:02 -->
+<!-- 2024-08-10 Sat 15:54 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Crawler: 網路資料解析與爬蟲</title>
@@ -194,6 +194,7 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="../css/muse.css" />
+<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
@@ -202,49 +203,49 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org413e0a6">1. JSON</a>
+<li><a href="#org07072bd">1. JSON</a>
 <ul>
-<li><a href="#org84c153a">1.1. 網路資料分析的兩種類型</a></li>
-<li><a href="#orgcbbb0ed">1.2. JSON</a></li>
-<li><a href="#org0680165">1.3. JSON 實作範例</a></li>
-<li><a href="#org855110a">1.4. [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#orgf8ff0e6">1.5. JSON 進階閱讀</a></li>
+<li><a href="#orgf667558">1.1. 網路資料分析的兩種類型</a></li>
+<li><a href="#org5655f66">1.2. JSON</a></li>
+<li><a href="#org6b89858">1.3. JSON 實作範例</a></li>
+<li><a href="#orgcd5d5fc">1.4. [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgb1092c4">1.5. JSON 進階閱讀</a></li>
 </ul>
 </li>
-<li><a href="#orgcecb02f">2. HTML</a>
+<li><a href="#orgb601277">2. HTML</a>
 <ul>
-<li><a href="#org9cd97cd">2.1. What is HTML</a></li>
-<li><a href="#orge06900a">2.2. HTML 範例</a></li>
+<li><a href="#org0c4c3e9">2.1. What is HTML</a></li>
+<li><a href="#org5d8afb4">2.2. HTML 範例</a></li>
 </ul>
 </li>
-<li><a href="#orge523c7f">3. 網路爬蟲</a>
+<li><a href="#orge478fdd">3. 網路爬蟲</a>
 <ul>
-<li><a href="#orgad38a0b">3.1. 爬蟲精神：將程式模仿成一般 user</a></li>
-<li><a href="#org84ff4be">3.2. BeautifulSoup</a></li>
-<li><a href="#org01c1c27">3.3. Beautifulsoup 解析器</a></li>
-<li><a href="#org2fb409b">3.4. BeautifulSoup 的方法</a></li>
+<li><a href="#orgb78edd2">3.1. 爬蟲精神：將程式模仿成一般 user</a></li>
+<li><a href="#org0d4ae6e">3.2. BeautifulSoup</a></li>
+<li><a href="#org5135db6">3.3. Beautifulsoup 解析器</a></li>
+<li><a href="#org3041937">3.4. BeautifulSoup 的方法</a></li>
 </ul>
 </li>
-<li><a href="#orge830384">4. BS4:開始爬</a>
+<li><a href="#org6ac6fc7">4. BS4:開始爬</a>
 <ul>
-<li><a href="#orgfed654b">4.1. bs4.tag</a></li>
-<li><a href="#org84a3aaf">4.2. find</a></li>
-<li><a href="#org321edee">4.3. find_all</a></li>
-<li><a href="#org37e0893">4.4. 第四版：擷取所有主題</a></li>
-<li><a href="#org8837e75">4.5. [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#orgb2bf18f">4.6. 爬蟲進階閱讀</a></li>
+<li><a href="#org3779dd3">4.1. bs4.tag</a></li>
+<li><a href="#orgddd2304">4.2. find</a></li>
+<li><a href="#org22f1a4d">4.3. find_all</a></li>
+<li><a href="#org1b64d97">4.4. 第四版：擷取所有主題</a></li>
+<li><a href="#org7a84ad7">4.5. [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgeeaaacb">4.6. 爬蟲進階閱讀</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/Crawler.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Crawler.html.svg"/></a>
-<div id="outline-container-org413e0a6" class="outline-2">
-<h2 id="org413e0a6"><span class="section-number-2">1.</span> JSON</h2>
+<div id="outline-container-org07072bd" class="outline-2">
+<h2 id="org07072bd"><span class="section-number-2">1.</span> JSON</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org84c153a" class="outline-3">
-<h3 id="org84c153a"><span class="section-number-3">1.1.</span> 網路資料分析的兩種類型</h3>
+<div id="outline-container-orgf667558" class="outline-3">
+<h3 id="orgf667558"><span class="section-number-3">1.1.</span> 網路資料分析的兩種類型</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>可直接下載的靜態結構化資料，如 CSV、JSON、XML<br /></li>
@@ -252,12 +253,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcbbb0ed" class="outline-3">
-<h3 id="orgcbbb0ed"><span class="section-number-3">1.2.</span> JSON</h3>
+<div id="outline-container-org5655f66" class="outline-3">
+<h3 id="org5655f66"><span class="section-number-3">1.2.</span> JSON</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org5b4ad94" class="outline-4">
-<h4 id="org5b4ad94"><span class="section-number-4">1.2.1.</span> What is JSON?</h4>
+<div id="outline-container-org1947dba" class="outline-4">
+<h4 id="org1947dba"><span class="section-number-4">1.2.1.</span> What is JSON?</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>JSON(JavaScript Object Notation，JavaScript 物件表示法)是個以純文字來描述資料的簡單結構，在 JSON 中可以透過特定的格式去儲存任何資料(字串,數字,陣列,物件)，也可以透過物件或陣列來傳送較複雜的資料。<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup><br /></li>
@@ -266,8 +267,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfc3ed5a" class="outline-4">
-<h4 id="orgfc3ed5a"><span class="section-number-4">1.2.2.</span> JSON 的優點</h4>
+<div id="outline-container-org9d92a35" class="outline-4">
+<h4 id="org9d92a35"><span class="section-number-4">1.2.2.</span> JSON 的優點</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>相容性高<br /></li>
@@ -278,8 +279,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orga50a646" class="outline-4">
-<h4 id="orga50a646"><span class="section-number-4">1.2.3.</span> JSON 結構</h4>
+<div id="outline-container-org72e5348" class="outline-4">
+<h4 id="org72e5348"><span class="section-number-4">1.2.3.</span> JSON 結構</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
 <li>物件: {}<br /></li>
@@ -287,8 +288,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org71e3d14" class="outline-4">
-<h4 id="org71e3d14"><span class="section-number-4">1.2.4.</span> JSON 支援的資料格式</h4>
+<div id="outline-container-org4e6c1ce" class="outline-4">
+<h4 id="org4e6c1ce"><span class="section-number-4">1.2.4.</span> JSON 支援的資料格式</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <ul class="org-ul">
 <li>字串 (string)，要以雙引號括起來:<br />
@@ -312,8 +313,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbe479b5" class="outline-4">
-<h4 id="orgbe479b5"><span class="section-number-4">1.2.5.</span> JSON 物件</h4>
+<div id="outline-container-org31db355" class="outline-4">
+<h4 id="org31db355"><span class="section-number-4">1.2.5.</span> JSON 物件</h4>
 <div class="outline-text-4" id="text-1-2-5">
 <ul class="org-ul">
 <li>格式<br /></li>
@@ -368,8 +369,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb93850" class="outline-4">
-<h4 id="orgbb93850"><span class="section-number-4">1.2.6.</span> JSON 轉 PANDAS dataFrame</h4>
+<div id="outline-container-org90ee885" class="outline-4">
+<h4 id="org90ee885"><span class="section-number-4">1.2.6.</span> JSON 轉 PANDAS dataFrame</h4>
 <div class="outline-text-4" id="text-1-2-6">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">from</span> pandas.io.json <span style="color: #51afef;">import</span> json_normalize
@@ -381,16 +382,16 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org0680165" class="outline-3">
-<h3 id="org0680165"><span class="section-number-3">1.3.</span> JSON 實作範例</h3>
+<div id="outline-container-org6b89858" class="outline-3">
+<h3 id="org6b89858"><span class="section-number-3">1.3.</span> JSON 實作範例</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org4f5cebc" class="outline-4">
-<h4 id="org4f5cebc"><span class="section-number-4">1.3.1.</span> 實作 1: <a href="https://data.gov.tw/dataset/31897">國際主要國家貨幣每月匯率概況</a></h4>
+<div id="outline-container-orgfc02d8d" class="outline-4">
+<h4 id="orgfc02d8d"><span class="section-number-4">1.3.1.</span> 實作 1: <a href="https://data.gov.tw/dataset/31897">國際主要國家貨幣每月匯率概況</a></h4>
 <div class="outline-text-4" id="text-1-3-1">
 </div>
-<div id="outline-container-orgb320d1b" class="outline-5">
-<h5 id="orgb320d1b"><span class="section-number-5">1.3.1.1.</span> 下載 JSON</h5>
+<div id="outline-container-orgb325d46" class="outline-5">
+<h5 id="orgb325d46"><span class="section-number-5">1.3.1.1.</span> 下載 JSON</h5>
 <div class="outline-text-5" id="text-1-3-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
@@ -408,7 +409,7 @@
 </pre>
 </div>
 
-<pre class="example" id="org99d04a1">
+<pre class="example" id="org3988e94">
 /Users/letranger/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:34: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
   warnings.warn(
 &lt;Response [200]&gt;
@@ -445,8 +446,8 @@
 </pre>
 </div>
 </div>
-<div id="outline-container-org9d24ce5" class="outline-5">
-<h5 id="org9d24ce5"><span class="section-number-5">1.3.1.2.</span> 輸出日期與匯率</h5>
+<div id="outline-container-org268ddc6" class="outline-5">
+<h5 id="org268ddc6"><span class="section-number-5">1.3.1.2.</span> 輸出日期與匯率</h5>
 <div class="outline-text-5" id="text-1-3-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#26085;&#26399;'</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t\t</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">'&#32654;&#20803;/&#26032;&#21488;&#24163;'</span>)
@@ -456,7 +457,7 @@
 </pre>
 </div>
 
-<pre class="example" id="org3744430">
+<pre class="example" id="org79e1d15">
 日期 		 美元/新台幣
 ==== 		 ===========
 20201005 	 29.02
@@ -472,8 +473,8 @@
 </pre>
 </div>
 </div>
-<div id="outline-container-org11eba2f" class="outline-5">
-<h5 id="org11eba2f"><span class="section-number-5">1.3.1.3.</span> 製圖</h5>
+<div id="outline-container-org377975e" class="outline-5">
+<h5 id="org377975e"><span class="section-number-5">1.3.1.3.</span> 製圖</h5>
 <div class="outline-text-5" id="text-1-3-1-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
@@ -507,7 +508,7 @@
 </div>
 
 
-<div id="org8ef0db7" class="figure">
+<div id="orgdef80b8" class="figure">
 <p><img src="images/json-plot.png" alt="json-plot.png" width="800" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>美元／新台幣匯率走勢</p>
@@ -515,8 +516,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org39032ea" class="outline-4">
-<h4 id="org39032ea"><span class="section-number-4">1.3.2.</span> 實作 2: <a href="https://data.gov.tw/dataset/113063">澎湖生活博物館每月參觀人次統計資料</a></h4>
+<div id="outline-container-orgb7ed892" class="outline-4">
+<h4 id="orgb7ed892"><span class="section-number-4">1.3.2.</span> 實作 2: <a href="https://data.gov.tw/dataset/113063">澎湖生活博物館每月參觀人次統計資料</a></h4>
 <div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">coding:utf-8</span>
@@ -553,7 +554,7 @@
 </pre>
 </div>
 
-<div id="org49500a5" class="figure">
+<div id="org5fc2c6d" class="figure">
 <p><img src="images/jsonBar.png" alt="jsonBar.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>參觀人數</p>
@@ -561,8 +562,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org855110a" class="outline-3">
-<h3 id="org855110a"><span class="section-number-3">1.4.</span> [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-orgcd5d5fc" class="outline-3">
+<h3 id="orgcd5d5fc"><span class="section-number-3">1.4.</span> [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>[注意]如果 JSON 的資料下載發生錯誤，可以試著將 URL 由&rsquo;https://&rsquo;改為&rsquo;http://&rsquo;<br /></li>
@@ -570,7 +571,7 @@
 請上網查詢台南市各區 WIFI 熱點數量，依行政區統計，繪製類似以下圖形，儘可能加上統計圖表所需元素並加以美化<br />
 </p>
 
-<div id="org5d8906b" class="figure">
+<div id="org6a9795a" class="figure">
 <p><img src="images/wifis.png" alt="wifis.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>台南市各區熱點分佈</p>
@@ -578,8 +579,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf8ff0e6" class="outline-3">
-<h3 id="orgf8ff0e6"><span class="section-number-3">1.5.</span> JSON 進階閱讀</h3>
+<div id="outline-container-orgb1092c4" class="outline-3">
+<h3 id="orgb1092c4"><span class="section-number-3">1.5.</span> JSON 進階閱讀</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li><a href="https://officeguide.cc/python-read-write-json-encode-decode-tutorial-examples/">Python 讀取、產生 JSON 格式資料教學與範例</a><br /></li>
@@ -591,12 +592,12 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgcecb02f" class="outline-2">
-<h2 id="orgcecb02f"><span class="section-number-2">2.</span> HTML</h2>
+<div id="outline-container-orgb601277" class="outline-2">
+<h2 id="orgb601277"><span class="section-number-2">2.</span> HTML</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org9cd97cd" class="outline-3">
-<h3 id="org9cd97cd"><span class="section-number-3">2.1.</span> What is HTML</h3>
+<div id="outline-container-org0c4c3e9" class="outline-3">
+<h3 id="org0c4c3e9"><span class="section-number-3">2.1.</span> What is HTML</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><a href="https://data.gov.tw/datasets/search?qs=tid%3A6410">政府資料開放平台</a><br /></li>
@@ -613,12 +614,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orge06900a" class="outline-3">
-<h3 id="orge06900a"><span class="section-number-3">2.2.</span> HTML 範例</h3>
+<div id="outline-container-org5d8afb4" class="outline-3">
+<h3 id="org5d8afb4"><span class="section-number-3">2.2.</span> HTML 範例</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org7f3aba3" class="outline-4">
-<h4 id="org7f3aba3"><span class="section-number-4">2.2.1.</span> HTML code</h4>
+<div id="outline-container-orge56b38e" class="outline-4">
+<h4 id="orge56b38e"><span class="section-number-4">2.2.1.</span> HTML code</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-html"><span class="linenr"> 1: </span>&lt;<span style="color: #c678dd;">html</span>&gt;
@@ -641,8 +642,8 @@
 </pre>
 </div>
 </div>
-<div id="outline-container-org38ed660" class="outline-5">
-<h5 id="org38ed660"><span class="section-number-5">2.2.1.1.</span> 執行結果</h5>
+<div id="outline-container-org9046dfd" class="outline-5">
+<h5 id="org9046dfd"><span class="section-number-5">2.2.1.1.</span> 執行結果</h5>
 <div class="outline-text-5" id="text-2-2-1-1">
 <p>
 上述 html code 的執行結果如下<br />
@@ -667,11 +668,11 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgc05b96b" class="outline-4">
-<h4 id="orgc05b96b"><span class="section-number-4">2.2.2.</span> HTML tree</h4>
+<div id="outline-container-orgb95ee0d" class="outline-4">
+<h4 id="orgb95ee0d"><span class="section-number-4">2.2.2.</span> HTML tree</h4>
 <div class="outline-text-4" id="text-2-2-2">
 
-<div id="org3e528c3" class="figure">
+<div id="org52ab461" class="figure">
 <p><img src="images/html-tree.png" alt="html-tree.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 4: </span>HTML tree</p>
@@ -702,19 +703,19 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orge523c7f" class="outline-2">
-<h2 id="orge523c7f"><span class="section-number-2">3.</span> 網路爬蟲</h2>
+<div id="outline-container-orge478fdd" class="outline-2">
+<h2 id="orge478fdd"><span class="section-number-2">3.</span> 網路爬蟲</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 上述的 html 程式碼只能透過瀏覽器來解析並呈現結果，如果我們想跳過瀏覽器，直接以程式來抓取網頁上的資訊，就要透過爬蟲程式。<br />
 </p>
 </div>
-<div id="outline-container-orgad38a0b" class="outline-3">
-<h3 id="orgad38a0b"><span class="section-number-3">3.1.</span> 爬蟲精神：將程式模仿成一般 user</h3>
+<div id="outline-container-orgb78edd2" class="outline-3">
+<h3 id="orgb78edd2"><span class="section-number-3">3.1.</span> 爬蟲精神：將程式模仿成一般 user</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org322fe24" class="outline-4">
-<h4 id="org322fe24"><span class="section-number-4">3.1.1.</span> 原則</h4>
+<div id="outline-container-org7f57fd7" class="outline-4">
+<h4 id="org7f57fd7"><span class="section-number-4">3.1.1.</span> 原則</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ol class="org-ol">
 <li>要抓網路資料，就要先仔細觀察網頁內容<br /></li>
@@ -722,15 +723,15 @@
 </ol>
 </div>
 </div>
-<div id="outline-container-org2369aec" class="outline-4">
-<h4 id="org2369aec"><span class="section-number-4">3.1.2.</span> 實作範例: 取得 HTML 資料</h4>
+<div id="outline-container-org6826187" class="outline-4">
+<h4 id="org6826187"><span class="section-number-4">3.1.2.</span> 實作範例: 取得 HTML 資料</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 網頁: <a href="https://www.ptt.cc/bbs/Japan_Travel/index.html">.html][批踢踢實業坊›看板 Japan_Travel</a><br />
 </p>
 </div>
-<div id="outline-container-orgb91fcad" class="outline-5">
-<h5 id="orgb91fcad"><span class="section-number-5">3.1.2.1.</span> 第一版: 以 urllib 模組來抓取 HTML 資料</h5>
+<div id="outline-container-org673fea6" class="outline-5">
+<h5 id="org673fea6"><span class="section-number-5">3.1.2.1.</span> 第一版: 以 urllib 模組來抓取 HTML 資料</h5>
 <div class="outline-text-5" id="text-3-1-2-1">
 <p>
 urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料的 Python 模組。它提供一個了非常簡單的介面能接受多種不同的協議(protocol, 如 http, ftp)， urlopen 函數。<br />
@@ -758,8 +759,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </p>
 </div>
 </div>
-<div id="outline-container-org28dbb11" class="outline-5">
-<h5 id="org28dbb11"><span class="section-number-5">3.1.2.2.</span> 第二版:加入 headers(純文字)</h5>
+<div id="outline-container-org6709e8c" class="outline-5">
+<h5 id="org6709e8c"><span class="section-number-5">3.1.2.2.</span> 第二版:加入 headers(純文字)</h5>
 <div class="outline-text-5" id="text-3-1-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
@@ -776,7 +777,7 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 
-<pre class="example" id="org75f487f">
+<pre class="example" id="org27b1473">
 所取得的資料型態： &lt;class 'str'&gt;
 ===得到的部份HTML內容===
 
@@ -820,12 +821,12 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </div>
 </div>
 </div>
-<div id="outline-container-org84ff4be" class="outline-3">
-<h3 id="org84ff4be"><span class="section-number-3">3.2.</span> BeautifulSoup</h3>
+<div id="outline-container-org0d4ae6e" class="outline-3">
+<h3 id="org0d4ae6e"><span class="section-number-3">3.2.</span> BeautifulSoup</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org40bbcbe" class="outline-4">
-<h4 id="org40bbcbe"><span class="section-number-4">3.2.1.</span> BeautifulSoup4 簡介</h4>
+<div id="outline-container-org27986b3" class="outline-4">
+<h4 id="org27986b3"><span class="section-number-4">3.2.1.</span> BeautifulSoup4 簡介</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <ul class="org-ul">
 <li>BeautifulSoup4 和 lxml 一樣，Beautiful Soup 也是一個 HTML/XML 的解析器，<br /></li>
@@ -833,12 +834,12 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaf78900" class="outline-4">
-<h4 id="orgaf78900"><span class="section-number-4">3.2.2.</span> 實作：解析 HTML 資料內容</h4>
+<div id="outline-container-org6fa02a7" class="outline-4">
+<h4 id="org6fa02a7"><span class="section-number-4">3.2.2.</span> 實作：解析 HTML 資料內容</h4>
 <div class="outline-text-4" id="text-3-2-2">
 </div>
-<div id="outline-container-org1c366ec" class="outline-5">
-<h5 id="org1c366ec"><span class="section-number-5">3.2.2.1.</span> 安裝解析 HTML 所需套件(安裝套件名稱後面有 4)</h5>
+<div id="outline-container-org655686b" class="outline-5">
+<h5 id="org655686b"><span class="section-number-5">3.2.2.1.</span> 安裝解析 HTML 所需套件(安裝套件名稱後面有 4)</h5>
 <div class="outline-text-5" id="text-3-2-2-1">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip install beautifulsoup4
@@ -846,8 +847,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd70c1c" class="outline-5">
-<h5 id="orgcd70c1c"><span class="section-number-5">3.2.2.2.</span> 第三版: 以 BS4 解析 HTML</h5>
+<div id="outline-container-orga6c1715" class="outline-5">
+<h5 id="orga6c1715"><span class="section-number-5">3.2.2.2.</span> 第三版: 以 BS4 解析 HTML</h5>
 <div class="outline-text-5" id="text-3-2-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
@@ -868,7 +869,7 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 
-<pre class="example" id="org87b7cec">
+<pre class="example" id="orge7c7cc3">
 &lt;class 'bs4.BeautifulSoup'&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -1023,8 +1024,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </div>
 </div>
 </div>
-<div id="outline-container-org01c1c27" class="outline-3">
-<h3 id="org01c1c27"><span class="section-number-3">3.3.</span> Beautifulsoup 解析器</h3>
+<div id="outline-container-org5135db6" class="outline-3">
+<h3 id="org5135db6"><span class="section-number-3">3.3.</span> Beautifulsoup 解析器</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 現在我們可以進一步來研究 bs4 的玩法<br />
@@ -1034,7 +1035,7 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 在上面的語句中，我們使用了一個 html.parser。 這是一個解析器，在構造 BeautifulSoup 物件的時候，需要用到解析器。BeautifulSoup 支援 python 內建的解析器和少數第三方解析器。<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>:<br />
 </p>
 
-<div id="orgd79f6df" class="figure">
+<div id="orgae6964b" class="figure">
 <p><img src="images/parsers.jpg" alt="parsers.jpg" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 5: </span>Parsers 比較</p>
@@ -1079,8 +1080,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </p>
 </div>
 </div>
-<div id="outline-container-org2fb409b" class="outline-3">
-<h3 id="org2fb409b"><span class="section-number-3">3.4.</span> BeautifulSoup 的方法<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></h3>
+<div id="outline-container-org3041937" class="outline-3">
+<h3 id="org3041937"><span class="section-number-3">3.4.</span> BeautifulSoup 的方法<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></h3>
 <div class="outline-text-3" id="text-3-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1166,8 +1167,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </div>
 </div>
 </div>
-<div id="outline-container-orge830384" class="outline-2">
-<h2 id="orge830384"><span class="section-number-2">4.</span> BS4:開始爬</h2>
+<div id="outline-container-org6ac6fc7" class="outline-2">
+<h2 id="org6ac6fc7"><span class="section-number-2">4.</span> BS4:開始爬</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 在[第三版: 以 BS4 解析 HTML]中，我們以 bs4.BeautifulSoup()將下載的 html 解析成 BS4 的物件，現在開始我們可以利用 BS4 來探索、抓取 html 的內容。<br />
@@ -1177,8 +1178,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfed654b" class="outline-3">
-<h3 id="orgfed654b"><span class="section-number-3">4.1.</span> bs4.tag</h3>
+<div id="outline-container-org3779dd3" class="outline-3">
+<h3 id="org3779dd3"><span class="section-number-3">4.1.</span> bs4.tag</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 最簡單的方式是利用如下的格式取得 bs4 物件中的 tag<br />
@@ -1188,8 +1189,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 </div>
-<div id="outline-container-org64dface" class="outline-4">
-<h4 id="org64dface"><span class="section-number-4">4.1.1.</span> &lt;title&gt;</h4>
+<div id="outline-container-org4e48f6f" class="outline-4">
+<h4 id="org4e48f6f"><span class="section-number-4">4.1.1.</span> &lt;title&gt;</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 例如，下例為取出 html 程式碼中的標題 tag<br />
@@ -1218,8 +1219,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 </div>
-<div id="outline-container-org83a3b3a" class="outline-4">
-<h4 id="org83a3b3a"><span class="section-number-4">4.1.2.</span> &lt;div&gt;</h4>
+<div id="outline-container-orge7a542e" class="outline-4">
+<h4 id="orge7a542e"><span class="section-number-4">4.1.2.</span> &lt;div&gt;</h4>
 <div class="outline-text-4" id="text-4-1-2">
 <p>
 繼續取出 html 中的&lt;div&gt;tag，結果如下<br />
@@ -1246,8 +1247,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </p>
 </div>
 </div>
-<div id="outline-container-org12dc609" class="outline-4">
-<h4 id="org12dc609"><span class="section-number-4">4.1.3.</span> &lt;a&gt;</h4>
+<div id="outline-container-org27cac05" class="outline-4">
+<h4 id="org27cac05"><span class="section-number-4">4.1.3.</span> &lt;a&gt;</h4>
 <div class="outline-text-4" id="text-4-1-3">
 <p>
 依此類推，我們還能由取得的 doc.div 繼續抓到裡面的第一組&lt;a&gt; tag<br />
@@ -1279,19 +1280,19 @@ logo
 </div>
 </div>
 </div>
-<div id="outline-container-org84a3aaf" class="outline-3">
-<h3 id="org84a3aaf"><span class="section-number-3">4.2.</span> find</h3>
+<div id="outline-container-orgddd2304" class="outline-3">
+<h3 id="orgddd2304"><span class="section-number-3">4.2.</span> find</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find 有兩個常用的用法<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup>：<br />
 </p>
 </div>
-<div id="outline-container-orgb71a433" class="outline-4">
-<h4 id="orgb71a433"><span class="section-number-4">4.2.1.</span> 直接接標籤名稱</h4>
+<div id="outline-container-org940f63b" class="outline-4">
+<h4 id="org940f63b"><span class="section-number-4">4.2.1.</span> 直接接標籤名稱</h4>
 <div class="outline-text-4" id="text-4-2-1">
 </div>
-<div id="outline-container-org4114975" class="outline-5">
-<h5 id="org4114975"><span class="section-number-5">4.2.1.1.</span> Soup.find(‘tag’)</h5>
+<div id="outline-container-org7f4b91b" class="outline-5">
+<h5 id="org7f4b91b"><span class="section-number-5">4.2.1.1.</span> Soup.find(‘tag’)</h5>
 <div class="outline-text-5" id="text-4-2-1-1">
 <p>
 可以直接找到第一個 a 標籤的元素，例如<br />
@@ -1324,12 +1325,12 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </div>
 </div>
 </div>
-<div id="outline-container-org2001d02" class="outline-4">
-<h4 id="org2001d02"><span class="section-number-4">4.2.2.</span> 指定屬性名稱用鍵值方式對應</h4>
+<div id="outline-container-org1416b72" class="outline-4">
+<h4 id="org1416b72"><span class="section-number-4">4.2.2.</span> 指定屬性名稱用鍵值方式對應</h4>
 <div class="outline-text-4" id="text-4-2-2">
 </div>
-<div id="outline-container-org0266107" class="outline-5">
-<h5 id="org0266107"><span class="section-number-5">4.2.2.1.</span> Soup.find(class_=’類別名稱’)</h5>
+<div id="outline-container-org3a9e037" class="outline-5">
+<h5 id="org3a9e037"><span class="section-number-5">4.2.2.1.</span> Soup.find(class_=’類別名稱’)</h5>
 <div class="outline-text-5" id="text-4-2-2-1">
 <p>
 可以找到第一個 class 為’abc’的元素，要注意的是因為 python 中 class 是保留字，所以要用 class_才能表達<br />
@@ -1340,7 +1341,7 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 
-<pre class="example" id="org3cd0039">
+<pre class="example" id="org0c6c84f">
 &lt;div class="r-ent"&gt;
 &lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
 &lt;div class="title"&gt;
@@ -1362,8 +1363,8 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 </div>
-<div id="outline-container-org973bbd0" class="outline-5">
-<h5 id="org973bbd0"><span class="section-number-5">4.2.2.2.</span> Soup.find(id=’id 名稱’)</h5>
+<div id="outline-container-org5d64bc3" class="outline-5">
+<h5 id="org5d64bc3"><span class="section-number-5">4.2.2.2.</span> Soup.find(id=’id 名稱’)</h5>
 <div class="outline-text-5" id="text-4-2-2-2">
 <p>
 可以找到第一個 id 為’id 名稱’的元素<br />
@@ -1385,8 +1386,8 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 </div>
-<div id="outline-container-orgbe7e2bf" class="outline-5">
-<h5 id="orgbe7e2bf"><span class="section-number-5">4.2.2.3.</span> Soup.find(type=’類型名稱’)</h5>
+<div id="outline-container-orgea02447" class="outline-5">
+<h5 id="orgea02447"><span class="section-number-5">4.2.2.3.</span> Soup.find(type=’類型名稱’)</h5>
 <div class="outline-text-5" id="text-4-2-2-3">
 <p>
 可以找到第一個 type 為’類型名稱’的元素<br />
@@ -1405,13 +1406,13 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 </div>
-<div id="outline-container-orgee02272" class="outline-5">
-<h5 id="orgee02272"><span class="section-number-5">4.2.2.4.</span> 複合搜尋</h5>
+<div id="outline-container-org8da94f9" class="outline-5">
+<h5 id="org8da94f9"><span class="section-number-5">4.2.2.4.</span> 複合搜尋</h5>
 <div class="outline-text-5" id="text-4-2-2-4">
 <p>
 上述的 doc.find(class_=&rsquo;r-ent&rsquo;)找出了以下的一整個&ldquo;r-ent&rdquo;tag<br />
 </p>
-<pre class="example" id="org1601292">
+<pre class="example" id="org687bb71">
 &lt;div class="r-ent"&gt;
 &lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
 &lt;div class="title"&gt;
@@ -1435,7 +1436,7 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 這個&rsquo;r-ent&rsquo;&lt;div&gt;的結構大致如下:<br />
 </p>
 
-<div id="orgdae4e1d" class="figure">
+<div id="org56f8341" class="figure">
 <p><img src="images/e-rent.png" alt="e-rent.png" /><br />
 </p>
 </div>
@@ -1481,8 +1482,8 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </div>
 </div>
 </div>
-<div id="outline-container-org321edee" class="outline-3">
-<h3 id="org321edee"><span class="section-number-3">4.3.</span> find_all</h3>
+<div id="outline-container-org22f1a4d" class="outline-3">
+<h3 id="org22f1a4d"><span class="section-number-3">4.3.</span> find_all</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 find()只會傳回第一個符合條件的資料，我們可以使用 find_all 找出所有特定的 HTML 標籤節點，再以 Python 的迴圈來依序輸出每個超連結的文字<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup>：<br />
@@ -1493,7 +1494,7 @@ find()只會傳回第一個符合條件的資料，我們可以使用 find_all �
 </pre>
 </div>
 
-<pre class="example" id="orgf9a0417">
+<pre class="example" id="org870781b">
 [&lt;div class="r-ent"&gt;
 &lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
 &lt;div class="title"&gt;
@@ -1673,7 +1674,7 @@ find()只會傳回第一個符合條件的資料，我們可以使用 find_all �
 </pre>
 </div>
 
-<pre class="example" id="orgc45aac8">
+<pre class="example" id="orge94a04f">
 &lt;div class="title"&gt;
  &lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;
   [問題] 京都住宿請益
@@ -1761,8 +1762,8 @@ AttributeError: 'NoneType' object has no attribute 'text'
 </p>
 </div>
 </div>
-<div id="outline-container-org37e0893" class="outline-3">
-<h3 id="org37e0893"><span class="section-number-3">4.4.</span> 第四版：擷取所有主題</h3>
+<div id="outline-container-org1b64d97" class="outline-3">
+<h3 id="org1b64d97"><span class="section-number-3">4.4.</span> 第四版：擷取所有主題</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
@@ -1789,7 +1790,7 @@ AttributeError: 'NoneType' object has no attribute 'text'
 </pre>
 </div>
 
-<pre class="example" id="org9fff7e5">
+<pre class="example" id="org7bae7e1">
 [食記] 台北車站 倪記鍋貼 歷史悠久的平價美食
 [食記] 四川蜀渝小吃 台北大安 麻辣下飯麻婆豆腐
 [轉讓] 饗 A Joy 3/30 六位
@@ -1814,8 +1815,8 @@ AttributeError: 'NoneType' object has no attribute 'text'
 </pre>
 </div>
 </div>
-<div id="outline-container-org8837e75" class="outline-3">
-<h3 id="org8837e75"><span class="section-number-3">4.5.</span> [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-org7a84ad7" class="outline-3">
+<h3 id="org7a84ad7"><span class="section-number-3">4.5.</span> [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇文章的標題以及文章發表日期。<br />
@@ -1829,8 +1830,8 @@ Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇�
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb2bf18f" class="outline-3">
-<h3 id="orgb2bf18f"><span class="section-number-3">4.6.</span> 爬蟲進階閱讀</h3>
+<div id="outline-container-orgeeaaacb" class="outline-3">
+<h3 id="orgeeaaacb"><span class="section-number-3">4.6.</span> 爬蟲進階閱讀</h3>
 <div class="outline-text-3" id="text-4-6">
 <ul class="org-ul">
 <li><a href="https://liangyuh.neocities.org/python/2_Python_BS4">網路爬蟲：數據資料的爬取</a><br /></li>
@@ -1889,7 +1890,7 @@ Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇�
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2024-03-12 Tue 21:02</p>
+<p class="date">Created: 2024-08-10 Sat 15:54</p>
 </div>
 </body>
 </html>

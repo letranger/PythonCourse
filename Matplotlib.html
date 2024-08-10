@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-03-12 Tue 21:02 -->
+<!-- 2024-08-10 Sat 15:53 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matplotlib</title>
@@ -194,6 +194,7 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="../css/muse.css" />
+<script src="../css/copy_code.js"></script>
 <script>
   window.MathJax = {
     tex: {
@@ -234,82 +235,82 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9a3b9b5">1. Matplotlib 簡介</a></li>
-<li><a href="#orgd770c2d">2. Matplotlib 基本語法</a>
+<li><a href="#org1198194">1. Matplotlib 簡介</a></li>
+<li><a href="#orgb456563">2. Matplotlib 基本語法</a>
 <ul>
-<li><a href="#org30575ce">2.1. 基本語法</a></li>
-<li><a href="#org4107b96">2.2. 範例:簡單的 sin 圖形</a></li>
-<li><a href="#org3ff7eaa">2.3. plot 官方語法</a></li>
+<li><a href="#orgdaf02c9">2.1. 基本語法</a></li>
+<li><a href="#org421f6bb">2.2. 範例:簡單的 sin 圖形</a></li>
+<li><a href="#org94f3abd">2.3. plot 官方語法</a></li>
 </ul>
 </li>
-<li><a href="#org7018c50">3. 參數控制</a>
+<li><a href="#orgff260af">3. 參數控制</a>
 <ul>
-<li><a href="#org5d2f7a6">3.1. fmt 控制參數</a></li>
-<li><a href="#orgdb61561">3.2. kwgarg 參數</a></li>
+<li><a href="#org8771ab5">3.1. fmt 控制參數</a></li>
+<li><a href="#org8e40451">3.2. kwgarg 參數</a></li>
 </ul>
 </li>
-<li><a href="#orga5e86da">4. 中文問題</a>
+<li><a href="#org8568dc7">4. 中文問題</a>
 <ul>
-<li><a href="#orgcd78ccd">4.1. 在 PyCharm 中使用中文</a></li>
-<li><a href="#org9470832">4.2. 在 colab 中使用中文</a></li>
+<li><a href="#orge99ced9">4.1. 在 PyCharm 中使用中文</a></li>
+<li><a href="#org9f07f4a">4.2. 在 colab 中使用中文</a></li>
 </ul>
 </li>
-<li><a href="#orgf1606d9">5. Legend</a></li>
-<li><a href="#orge692c67">6. Line Chart</a>
+<li><a href="#org5e49b1e">5. Legend</a></li>
+<li><a href="#org0f62ea6">6. Line Chart</a>
 <ul>
-<li><a href="#org27469b9">6.1. Demo #1</a></li>
-<li><a href="#orgc7146a1">6.2. Demo #2</a></li>
-<li><a href="#orgbcdc169">6.3. Demo #3</a></li>
-<li><a href="#orgdeecc85">6.4. Demo #4</a></li>
-<li><a href="#orgcaea292">6.5. Demo #5</a></li>
-<li><a href="#org8f1213c">6.6. [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#orgdbb460c">6.7. [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org86e37ad">6.1. Demo #1</a></li>
+<li><a href="#org446e24e">6.2. Demo #2</a></li>
+<li><a href="#org4697675">6.3. Demo #3</a></li>
+<li><a href="#orgd4075b6">6.4. Demo #4</a></li>
+<li><a href="#org1493397">6.5. Demo #5</a></li>
+<li><a href="#org88f1efb">6.6. [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgbecdabc">6.7. [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org4981ed8">7. Bar chart</a></li>
-<li><a href="#orgd201ff3">8. Pie chart</a>
+<li><a href="#org0a1323b">7. Bar chart</a></li>
+<li><a href="#org09d2e46">8. Pie chart</a>
 <ul>
-<li><a href="#org772432c">8.1. 語法： </a></li>
-<li><a href="#org71a9bb9">8.2. 參數：</a></li>
-<li><a href="#org718b4f5">8.3. 範例</a></li>
+<li><a href="#orgb084b89">8.1. 語法： </a></li>
+<li><a href="#org7168a2e">8.2. 參數：</a></li>
+<li><a href="#org4641960">8.3. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgbba8a7d">9. 其它圖表</a></li>
-<li><a href="#orgd777494">10. 文字註解: plt.text()</a>
+<li><a href="#org8e31563">9. 其它圖表</a></li>
+<li><a href="#org7151ea4">10. 文字註解: plt.text()</a>
 <ul>
-<li><a href="#org556ebba">10.1. 語法</a></li>
-<li><a href="#orgbdeaf47">10.2. 範例</a></li>
+<li><a href="#org6765a2e">10.1. 語法</a></li>
+<li><a href="#org16d7e5f">10.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#org0df02a2">11. 子圖表: plt.subplot()</a>
+<li><a href="#org1d0f2a1">11. 子圖表: plt.subplot()</a>
 <ul>
-<li><a href="#orgae5a899">11.1. subplot 語法</a></li>
-<li><a href="#org364e545">11.2. subplots_adjust 語法</a></li>
-<li><a href="#org187883e">11.3. 範例</a></li>
-<li><a href="#org5f5531c">11.4. 進階設定</a></li>
+<li><a href="#orgc27bb16">11.1. subplot 語法</a></li>
+<li><a href="#org64ca500">11.2. subplots_adjust 語法</a></li>
+<li><a href="#org04a3b6b">11.3. 範例</a></li>
+<li><a href="#org8e5e71c">11.4. 進階設定</a></li>
 </ul>
 </li>
-<li><a href="#org19f7a58">12. [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a>
+<li><a href="#orgbf49309">12. [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a>
 <ul>
-<li><a href="#orgb1f6da7">12.1. 方程式圖形</a></li>
-<li><a href="#orgc1b3624">12.2. 成績處理</a></li>
-<li><a href="#orga977f35">12.3. Boxlplot</a></li>
+<li><a href="#org0556a4a">12.1. 方程式圖形</a></li>
+<li><a href="#orga087e68">12.2. 成績處理</a></li>
+<li><a href="#org8221a69">12.3. Boxlplot</a></li>
 </ul>
 </li>
-<li><a href="#orgaef5ffc">13. 其他視覺化模組</a>
+<li><a href="#org7d0b2f0">13. 其他視覺化模組</a>
 <ul>
-<li><a href="#org80740c9">13.1. pylab</a></li>
-<li><a href="#org301fc68">13.2. Bokeh</a></li>
-<li><a href="#org6821e9f">13.3. seaborn</a></li>
-<li><a href="#org4ce175b">13.4. Altair</a></li>
+<li><a href="#orgc12e6af">13.1. pylab</a></li>
+<li><a href="#orga0c8bc7">13.2. Bokeh</a></li>
+<li><a href="#org614300b">13.3. seaborn</a></li>
+<li><a href="#org6315995">13.4. Altair</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/Matplotlib.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Matplotlib.html.svg"/></a>
-<div id="outline-container-org9a3b9b5" class="outline-2">
-<h2 id="org9a3b9b5"><span class="section-number-2">1.</span> Matplotlib 簡介</h2>
+<div id="outline-container-org1198194" class="outline-2">
+<h2 id="org1198194"><span class="section-number-2">1.</span> Matplotlib 簡介</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li>官網: <a href="https://matplotlib.org/3.2.1/index.html#">https://matplotlib.org/3.2.1/index.html#</a><br /></li>
@@ -323,12 +324,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd770c2d" class="outline-2">
-<h2 id="orgd770c2d"><span class="section-number-2">2.</span> Matplotlib 基本語法</h2>
+<div id="outline-container-orgb456563" class="outline-2">
+<h2 id="orgb456563"><span class="section-number-2">2.</span> Matplotlib 基本語法</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org30575ce" class="outline-3">
-<h3 id="org30575ce"><span class="section-number-3">2.1.</span> 基本語法</h3>
+<div id="outline-container-orgdaf02c9" class="outline-3">
+<h3 id="orgdaf02c9"><span class="section-number-3">2.1.</span> 基本語法</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>import matplotlib.pyplot as plt<br /></li>
@@ -343,8 +344,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org4107b96" class="outline-3">
-<h3 id="org4107b96"><span class="section-number-3">2.2.</span> 範例:簡單的 sin 圖形</h3>
+<div id="outline-container-org421f6bb" class="outline-3">
+<h3 id="org421f6bb"><span class="section-number-3">2.2.</span> 範例:簡單的 sin 圖形</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>np.sin()函式為 Numpy 模組求正弦值<br /></li>
@@ -366,15 +367,15 @@
 </pre>
 </div>
 
-<div id="org1db7a08" class="figure">
+<div id="org20a414a" class="figure">
 <p><img src="images/simpleSin.png" alt="simpleSin.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>簡單的 sin 圖形</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org3ff7eaa" class="outline-3">
-<h3 id="org3ff7eaa"><span class="section-number-3">2.3.</span> plot 官方語法</h3>
+<div id="outline-container-org94f3abd" class="outline-3">
+<h3 id="org94f3abd"><span class="section-number-3">2.3.</span> plot 官方語法</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 plot()函式控制輸出主要有以下兩類參數：<br />
@@ -393,12 +394,12 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org7018c50" class="outline-2">
-<h2 id="org7018c50"><span class="section-number-2">3.</span> 參數控制</h2>
+<div id="outline-container-orgff260af" class="outline-2">
+<h2 id="orgff260af"><span class="section-number-2">3.</span> 參數控制</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org5d2f7a6" class="outline-3">
-<h3 id="org5d2f7a6"><span class="section-number-3">3.1.</span> fmt 控制參數</h3>
+<div id="outline-container-org8771ab5" class="outline-3">
+<h3 id="org8771ab5"><span class="section-number-3">3.1.</span> fmt 控制參數</h3>
 <div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>可選引數 fmt 是定義基本格式 (如顏色、標記和 linestyle) 的簡便方法<br /></li>
@@ -541,8 +542,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </tbody>
 </table>
 </div>
-<div id="outline-container-org7ff74e7" class="outline-4">
-<h4 id="org7ff74e7"><span class="section-number-4">3.1.1.</span> Demo #1</h4>
+<div id="outline-container-orgfb3b62f" class="outline-4">
+<h4 id="orgfb3b62f"><span class="section-number-4">3.1.1.</span> Demo #1</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -559,15 +560,15 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </pre>
 </div>
 
-<div id="org6e8fba8" class="figure">
+<div id="orgc440f1b" class="figure">
 <p><img src="images/SimpleSin2.png" alt="SimpleSin2.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>簡單的 sin 圖形</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgb636650" class="outline-4">
-<h4 id="orgb636650"><span class="section-number-4">3.1.2.</span> Demo #2</h4>
+<div id="outline-container-orgac9b9e3" class="outline-4">
+<h4 id="orgac9b9e3"><span class="section-number-4">3.1.2.</span> Demo #2</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -583,15 +584,15 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </pre>
 </div>
 
-<div id="org49689cc" class="figure">
+<div id="orgd5f6b38" class="figure">
 <p><img src="images/SimpleCos.png" alt="SimpleCos.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>簡單的 cos 圖形</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5eff194" class="outline-4">
-<h4 id="org5eff194"><span class="section-number-4">3.1.3.</span> Demo: 多組資料</h4>
+<div id="outline-container-org3c2ad24" class="outline-4">
+<h4 id="org3c2ad24"><span class="section-number-4">3.1.3.</span> Demo: 多組資料</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -607,7 +608,7 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </pre>
 </div>
 
-<div id="org337c4c2" class="figure">
+<div id="orge1257cf" class="figure">
 <p><img src="images/mline.png" alt="mline.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 4: </span>多組圖形</p>
@@ -615,12 +616,12 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgdb61561" class="outline-3">
-<h3 id="orgdb61561"><span class="section-number-3">3.2.</span> kwgarg 參數</h3>
+<div id="outline-container-org8e40451" class="outline-3">
+<h3 id="org8e40451"><span class="section-number-3">3.2.</span> kwgarg 參數</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-orgb36467a" class="outline-4">
-<h4 id="orgb36467a"><span class="section-number-4">3.2.1.</span> kwarg 為 Line2D 屬性：<a href="https://matplotlib.org/3.1.0/gallery/color/named_colors.html">color</a>, linestyle, marker, label, linewidth, ….</h4>
+<div id="outline-container-orgf034588" class="outline-4">
+<h4 id="orgf034588"><span class="section-number-4">3.2.1.</span> kwarg 為 Line2D 屬性：<a href="https://matplotlib.org/3.1.0/gallery/color/named_colors.html">color</a>, linestyle, marker, label, linewidth, ….</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <ul class="org-ul">
 <li>kwargs 用於指定諸如線條標籤 (用於自動圖例)、線寬、抗鋸齒、標記面顏色等屬性<br /></li>
@@ -628,8 +629,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org68db151" class="outline-4">
-<h4 id="org68db151"><span class="section-number-4">3.2.2.</span> color</h4>
+<div id="outline-container-orgd554687" class="outline-4">
+<h4 id="orgd554687"><span class="section-number-4">3.2.2.</span> color</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <ul class="org-ul">
 <li>單字，如 g：color = &rsquo;lime&rsquo;<br /></li>
@@ -695,8 +696,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </table>
 </div>
 </div>
-<div id="outline-container-org4fe5216" class="outline-4">
-<h4 id="org4fe5216"><span class="section-number-4">3.2.3.</span> marker</h4>
+<div id="outline-container-org7903f1b" class="outline-4">
+<h4 id="org7903f1b"><span class="section-number-4">3.2.3.</span> marker</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -825,8 +826,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </tbody>
 </table>
 </div>
-<div id="outline-container-org3ae2cba" class="outline-5">
-<h5 id="org3ae2cba"><span class="section-number-5">3.2.3.1.</span> linestyle</h5>
+<div id="outline-container-orgae92d5e" class="outline-5">
+<h5 id="orgae92d5e"><span class="section-number-5">3.2.3.1.</span> linestyle</h5>
 <div class="outline-text-5" id="text-3-2-3-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -866,8 +867,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </table>
 </div>
 </div>
-<div id="outline-container-org7ff62a5" class="outline-5">
-<h5 id="org7ff62a5"><span class="section-number-5">3.2.3.2.</span> label</h5>
+<div id="outline-container-org059b6d7" class="outline-5">
+<h5 id="org059b6d7"><span class="section-number-5">3.2.3.2.</span> label</h5>
 <div class="outline-text-5" id="text-3-2-3-2">
 <ul class="org-ul">
 <li>fg 呈現線條標籤，如 label = &rsquo;y = x^2&rsquo;<br /></li>
@@ -876,8 +877,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org1fc90fa" class="outline-4">
-<h4 id="org1fc90fa"><span class="section-number-4">3.2.4.</span> 其他參數</h4>
+<div id="outline-container-orgf75005a" class="outline-4">
+<h4 id="orgf75005a"><span class="section-number-4">3.2.4.</span> 其他參數</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <ul class="org-ul">
 <li>x / y 座標範圍：plt.xlim(起始值, 終止值)  / plt.ylim(起, 止)<br /></li>
@@ -887,8 +888,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org056f353" class="outline-4">
-<h4 id="org056f353"><span class="section-number-4">3.2.5.</span> kwarg 示範</h4>
+<div id="outline-container-org74ce88c" class="outline-4">
+<h4 id="org74ce88c"><span class="section-number-4">3.2.5.</span> kwarg 示範</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -906,7 +907,7 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </pre>
 </div>
 
-<div id="org53edff0" class="figure">
+<div id="orge44d4e9" class="figure">
 <p><img src="images/kwarg.png" alt="kwarg.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 5: </span>kwarg 參數控制</p>
@@ -915,12 +916,12 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orga5e86da" class="outline-2">
-<h2 id="orga5e86da"><span class="section-number-2">4.</span> 中文問題</h2>
+<div id="outline-container-org8568dc7" class="outline-2">
+<h2 id="org8568dc7"><span class="section-number-2">4.</span> 中文問題</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgcd78ccd" class="outline-3">
-<h3 id="orgcd78ccd"><span class="section-number-3">4.1.</span> 在 PyCharm 中使用中文</h3>
+<div id="outline-container-orge99ced9" class="outline-3">
+<h3 id="orge99ced9"><span class="section-number-3">4.1.</span> 在 PyCharm 中使用中文</h3>
 <div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>解決方案<br /></li>
@@ -935,15 +936,15 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 <li>實際示例<br /></li>
 </ul>
 
-<div id="org7a1b731" class="figure">
+<div id="org608f5ce" class="figure">
 <p><img src="images/marriage.png" alt="marriage.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 6: </span>簡單的折線圖及圖例</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org9470832" class="outline-3">
-<h3 id="org9470832"><span class="section-number-3">4.2.</span> 在 colab 中使用中文</h3>
+<div id="outline-container-org9f07f4a" class="outline-3">
+<h3 id="org9f07f4a"><span class="section-number-3">4.2.</span> 在 colab 中使用中文</h3>
 <div class="outline-text-3" id="text-4-2">
 <ol class="org-ol">
 <li>在 ipynb 最上方先加入下列 cell<br /></li>
@@ -964,8 +965,8 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgf1606d9" class="outline-2">
-<h2 id="orgf1606d9"><span class="section-number-2">5.</span> Legend</h2>
+<div id="outline-container-org5e49b1e" class="outline-2">
+<h2 id="org5e49b1e"><span class="section-number-2">5.</span> Legend</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -985,19 +986,19 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 
 
-<div id="org3257b46" class="figure">
+<div id="org027d4e2" class="figure">
 <p><img src="images/sincoslegend.png" alt="sincoslegend.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 7: </span>Caption</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge692c67" class="outline-2">
-<h2 id="orge692c67"><span class="section-number-2">6.</span> Line Chart</h2>
+<div id="outline-container-org0f62ea6" class="outline-2">
+<h2 id="org0f62ea6"><span class="section-number-2">6.</span> Line Chart</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org27469b9" class="outline-3">
-<h3 id="org27469b9"><span class="section-number-3">6.1.</span> Demo #1</h3>
+<div id="outline-container-org86e37ad" class="outline-3">
+<h3 id="org86e37ad"><span class="section-number-3">6.1.</span> Demo #1</h3>
 <div class="outline-text-3" id="text-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -1021,15 +1022,15 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </pre>
 
 
-<div id="org60656b1" class="figure">
+<div id="org2d5f958" class="figure">
 <p><img src="images/line2.png" alt="line2.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 8: </span>簡單的折線圖形 2</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc7146a1" class="outline-3">
-<h3 id="orgc7146a1"><span class="section-number-3">6.2.</span> Demo #2</h3>
+<div id="outline-container-org446e24e" class="outline-3">
+<h3 id="org446e24e"><span class="section-number-3">6.2.</span> Demo #2</h3>
 <div class="outline-text-3" id="text-6-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -1052,15 +1053,15 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 
 
-<div id="org7647fc1" class="figure">
+<div id="org70552b9" class="figure">
 <p><img src="images/angrymam-1.png" alt="angrymam-1.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 9: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbcdc169" class="outline-3">
-<h3 id="orgbcdc169"><span class="section-number-3">6.3.</span> Demo #3</h3>
+<div id="outline-container-org4697675" class="outline-3">
+<h3 id="org4697675"><span class="section-number-3">6.3.</span> Demo #3</h3>
 <div class="outline-text-3" id="text-6-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -1087,15 +1088,15 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 
 
-<div id="org452657a" class="figure">
+<div id="org88ec0b0" class="figure">
 <p><img src="images/angrymam-2.png" alt="angrymam-2.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 10: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdeecc85" class="outline-3">
-<h3 id="orgdeecc85"><span class="section-number-3">6.4.</span> Demo #4</h3>
+<div id="outline-container-orgd4075b6" class="outline-3">
+<h3 id="orgd4075b6"><span class="section-number-3">6.4.</span> Demo #4</h3>
 <div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -1139,15 +1140,15 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 
 
-<div id="org3e5427d" class="figure">
+<div id="org0db33c4" class="figure">
 <p><img src="images/angrymam-3.png" alt="angrymam-3.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 11: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcaea292" class="outline-3">
-<h3 id="orgcaea292"><span class="section-number-3">6.5.</span> Demo #5</h3>
+<div id="outline-container-org1493397" class="outline-3">
+<h3 id="org1493397"><span class="section-number-3">6.5.</span> Demo #5</h3>
 <div class="outline-text-3" id="text-6-5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -1214,15 +1215,15 @@ z: [False False False False  True  True  True False  True  True  True False
 
 
 
-<div id="orgcc99115" class="figure">
+<div id="orgd8693bd" class="figure">
 <p><img src="images/angrymam-4.png" alt="angrymam-4.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 12: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org8f1213c" class="outline-3">
-<h3 id="org8f1213c"><span class="section-number-3">6.6.</span> [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-org88f1efb" class="outline-3">
+<h3 id="org88f1efb"><span class="section-number-3">6.6.</span> [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-6-6">
 <ol class="org-ol">
 <li>利用 list 繪製 <br />
@@ -1240,12 +1241,12 @@ z: [False False False False  True  True  True False  True  True  True False
 </ol>
 </div>
 </div>
-<div id="outline-container-orgdbb460c" class="outline-3">
-<h3 id="orgdbb460c"><span class="section-number-3">6.7.</span> [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-orgbecdabc" class="outline-3">
+<h3 id="orgbecdabc"><span class="section-number-3">6.7.</span> [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-6-7">
 </div>
-<div id="outline-container-org9f19f43" class="outline-4">
-<h4 id="org9f19f43"><span class="section-number-4">6.7.1.</span> 請將下列資料繪成折線圖(男女折線不同顏色、樣式，加標記)</h4>
+<div id="outline-container-org8c83be9" class="outline-4">
+<h4 id="org8c83be9"><span class="section-number-4">6.7.1.</span> 請將下列資料繪成折線圖(男女折線不同顏色、樣式，加標記)</h4>
 <div class="outline-text-4" id="text-6-7-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1300,7 +1301,7 @@ z: [False False False False  True  True  True False  True  True  True False
 <li>結果示例<br /></li>
 </ul>
 
-<div id="org8bbeb91" class="figure">
+<div id="orge2674e7" class="figure">
 <p><img src="images/marriage.png" alt="marriage.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 13: </span>簡單的折線圖及圖例</p>
@@ -1309,8 +1310,8 @@ z: [False False False False  True  True  True False  True  True  True False
 </div>
 </div>
 </div>
-<div id="outline-container-org4981ed8" class="outline-2">
-<h2 id="org4981ed8"><span class="section-number-2">7.</span> Bar chart</h2>
+<div id="outline-container-org0a1323b" class="outline-2">
+<h2 id="org0a1323b"><span class="section-number-2">7.</span> Bar chart</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>語法<br /></li>
@@ -1338,27 +1339,27 @@ plt.barh( x&#24231;&#27161;&#36039;&#26009;, y&#24231;&#27161;&#36039;&#26009; [
 </pre>
 </div>
 
-<div id="org998798a" class="figure">
+<div id="orge2a4ff7" class="figure">
 <p><img src="barChart.png" alt="barChart.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 14: </span>barChart Demo</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd201ff3" class="outline-2">
-<h2 id="orgd201ff3"><span class="section-number-2">8.</span> Pie chart</h2>
+<div id="outline-container-org09d2e46" class="outline-2">
+<h2 id="org09d2e46"><span class="section-number-2">8.</span> Pie chart</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org772432c" class="outline-3">
-<h3 id="org772432c"><span class="section-number-3">8.1.</span> 語法： </h3>
+<div id="outline-container-orgb084b89" class="outline-3">
+<h3 id="orgb084b89"><span class="section-number-3">8.1.</span> 語法： </h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org71a9bb9" class="outline-3">
-<h3 id="org71a9bb9"><span class="section-number-3">8.2.</span> 參數：</h3>
+<div id="outline-container-org7168a2e" class="outline-3">
+<h3 id="org7168a2e"><span class="section-number-3">8.2.</span> 參數：</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
 <li>colors：各子圖顏色，多以 list 表示<br /></li>
@@ -1442,8 +1443,8 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </table>
 </div>
 </div>
-<div id="outline-container-org718b4f5" class="outline-3">
-<h3 id="org718b4f5"><span class="section-number-3">8.3.</span> 範例</h3>
+<div id="outline-container-org4641960" class="outline-3">
+<h3 id="org4641960"><span class="section-number-3">8.3.</span> 範例</h3>
 <div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -1462,7 +1463,7 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </pre>
 </div>
 
-<div id="org4e7158a" class="figure">
+<div id="orgc40e7e7" class="figure">
 <p><img src="images/simplePie.png" alt="simplePie.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 15: </span>簡單的 pie chart</p>
@@ -1470,8 +1471,8 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgbba8a7d" class="outline-2">
-<h2 id="orgbba8a7d"><span class="section-number-2">9.</span> 其它圖表</h2>
+<div id="outline-container-org8e31563" class="outline-2">
+<h2 id="org8e31563"><span class="section-number-2">9.</span> 其它圖表</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li>直方圖(Histogram)：用來呈現各資料統計結果(<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html">參考資料</a>)<br /></li>
@@ -1480,12 +1481,12 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd777494" class="outline-2">
-<h2 id="orgd777494"><span class="section-number-2">10.</span> 文字註解: plt.text()</h2>
+<div id="outline-container-org7151ea4" class="outline-2">
+<h2 id="org7151ea4"><span class="section-number-2">10.</span> 文字註解: plt.text()</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org556ebba" class="outline-3">
-<h3 id="org556ebba"><span class="section-number-3">10.1.</span> 語法</h3>
+<div id="outline-container-org6765a2e" class="outline-3">
+<h3 id="org6765a2e"><span class="section-number-3">10.1.</span> 語法</h3>
 <div class="outline-text-3" id="text-10-1">
 <ul class="org-ul">
 <li><code class="src src-python"> plt.text( x&#30456;&#23565;&#24231;&#27161;, y&#30456;&#23565;&#24231;&#27161; , &#25991;&#23383;&#23383;&#20018; [, &#20854;&#23427;&#21443;&#25976;] ) </code><br /></li>
@@ -1493,8 +1494,8 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-orgbdeaf47" class="outline-3">
-<h3 id="orgbdeaf47"><span class="section-number-3">10.2.</span> 範例</h3>
+<div id="outline-container-org16d7e5f" class="outline-3">
+<h3 id="org16d7e5f"><span class="section-number-3">10.2.</span> 範例</h3>
 <div class="outline-text-3" id="text-10-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -1510,7 +1511,7 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </div>
 
 
-<div id="org28cc833" class="figure">
+<div id="orge69ddae" class="figure">
 <p><img src="images/simpleText.png" alt="simpleText.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 16: </span>簡單的文字註解</p>
@@ -1518,15 +1519,15 @@ plt.pie( 比例列表 [, 參數 1, 參數 2, &#x2026;] )<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org0df02a2" class="outline-2">
-<h2 id="org0df02a2"><span class="section-number-2">11.</span> 子圖表: plt.subplot()</h2>
+<div id="outline-container-org1d0f2a1" class="outline-2">
+<h2 id="org1d0f2a1"><span class="section-number-2">11.</span> 子圖表: plt.subplot()</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 matplotlib 下, 一個 Figure 對象可以包含多個子圖(Axes), 可以使用 subplot() 快速繪製, 其調用形式如下 :<br />
 </p>
 </div>
-<div id="outline-container-orgae5a899" class="outline-3">
-<h3 id="orgae5a899"><span class="section-number-3">11.1.</span> subplot 語法</h3>
+<div id="outline-container-orgc27bb16" class="outline-3">
+<h3 id="orgc27bb16"><span class="section-number-3">11.1.</span> subplot 語法</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 subplot(numRows, numCols, plotNum)<br />
@@ -1539,8 +1540,8 @@ subplot(numRows, numCols, plotNum)<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org364e545" class="outline-3">
-<h3 id="org364e545"><span class="section-number-3">11.2.</span> subplots_adjust 語法</h3>
+<div id="outline-container-org64ca500" class="outline-3">
+<h3 id="org64ca500"><span class="section-number-3">11.2.</span> subplots_adjust 語法</h3>
 <div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)<br /></li>
@@ -1553,8 +1554,8 @@ subplot(numRows, numCols, plotNum)<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org187883e" class="outline-3">
-<h3 id="org187883e"><span class="section-number-3">11.3.</span> 範例<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h3>
+<div id="outline-container-org04a3b6b" class="outline-3">
+<h3 id="org04a3b6b"><span class="section-number-3">11.3.</span> 範例<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h3>
 <div class="outline-text-3" id="text-11-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
@@ -1616,15 +1617,15 @@ subplot(numRows, numCols, plotNum)<br />
 </div>
 
 
-<div id="org7cb28f9" class="figure">
+<div id="orgfcc6905" class="figure">
 <p><img src="images/simpleSubplot.png" alt="simpleSubplot.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 17: </span>簡單的子圖表</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org5f5531c" class="outline-3">
-<h3 id="org5f5531c"><span class="section-number-3">11.4.</span> 進階設定</h3>
+<div id="outline-container-org8e5e71c" class="outline-3">
+<h3 id="org8e5e71c"><span class="section-number-3">11.4.</span> 進階設定</h3>
 <div class="outline-text-3" id="text-11-4">
 <ul class="org-ul">
 <li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplot.html">官網</a><br /></li>
@@ -1635,26 +1636,26 @@ subplot(numRows, numCols, plotNum)<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org19f7a58" class="outline-2">
-<h2 id="org19f7a58"><span class="section-number-2">12.</span> [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h2>
+<div id="outline-container-orgbf49309" class="outline-2">
+<h2 id="orgbf49309"><span class="section-number-2">12.</span> [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-orgb1f6da7" class="outline-3">
-<h3 id="orgb1f6da7"><span class="section-number-3">12.1.</span> 方程式圖形</h3>
+<div id="outline-container-org0556a4a" class="outline-3">
+<h3 id="org0556a4a"><span class="section-number-3">12.1.</span> 方程式圖形</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 輸入 a, b, c，畫出曲線圖：y=\(ax^2+bx+c\)，參考結果如下:<br />
 </p>
 
-<div id="org6e2ea11" class="figure">
+<div id="orgef78763" class="figure">
 <p><img src="images/eqcurve.png" alt="eqcurve.png" width="800" /><br />
 </p>
 <p><span class="figure-number">Figure 18: </span>方程式曲線圖</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc1b3624" class="outline-3">
-<h3 id="orgc1b3624"><span class="section-number-3">12.2.</span> 成績處理</h3>
+<div id="outline-container-orga087e68" class="outline-3">
+<h3 id="orga087e68"><span class="section-number-3">12.2.</span> 成績處理</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 請複製底下的程式碼:<br />
@@ -1690,21 +1691,21 @@ subplot(numRows, numCols, plotNum)<br />
 參考結果如下:<br />
 </p>
 
-<div id="org2494f1b" class="figure">
+<div id="org1610fa1" class="figure">
 <p><img src="images/matplotlibscores.png" alt="matplotlibscores.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 19: </span>解答範例</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orga977f35" class="outline-3">
-<h3 id="orga977f35"><span class="section-number-3">12.3.</span> Boxlplot</h3>
+<div id="outline-container-org8221a69" class="outline-3">
+<h3 id="org8221a69"><span class="section-number-3">12.3.</span> Boxlplot</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 <b>請自行上網搜尋學習資源</b> ，<a href="images/scores.csv">下載這個檔案</a>，畫出以下圖形(提示: Google 關鍵字 matplotlib, boxplot)<br />
 </p>
 
-<div id="org62d2ff3" class="figure">
+<div id="org968a04c" class="figure">
 <p><img src="images/npbox.png" alt="npbox.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 20: </span>Caption</p>
@@ -1712,12 +1713,12 @@ subplot(numRows, numCols, plotNum)<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgaef5ffc" class="outline-2">
-<h2 id="orgaef5ffc"><span class="section-number-2">13.</span> 其他視覺化模組</h2>
+<div id="outline-container-org7d0b2f0" class="outline-2">
+<h2 id="org7d0b2f0"><span class="section-number-2">13.</span> 其他視覺化模組</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org80740c9" class="outline-3">
-<h3 id="org80740c9"><span class="section-number-3">13.1.</span> pylab</h3>
+<div id="outline-container-orgc12e6af" class="outline-3">
+<h3 id="orgc12e6af"><span class="section-number-3">13.1.</span> pylab</h3>
 <div class="outline-text-3" id="text-13-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
@@ -1742,15 +1743,15 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 </pre>
 
 
-<div id="org9c3a50f" class="figure">
+<div id="org24b9843" class="figure">
 <p><img src="images/sinPlot.png" alt="sinPlot.png" /><br />
 </p>
 <p><span class="figure-number">Figure 21: </span>sinPlot</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org301fc68" class="outline-3">
-<h3 id="org301fc68"><span class="section-number-3">13.2.</span> Bokeh</h3>
+<div id="outline-container-orga0c8bc7" class="outline-3">
+<h3 id="orga0c8bc7"><span class="section-number-3">13.2.</span> Bokeh</h3>
 <div class="outline-text-3" id="text-13-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
@@ -1778,8 +1779,8 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 </p>
 </div>
 </div>
-<div id="outline-container-org6821e9f" class="outline-3">
-<h3 id="org6821e9f"><span class="section-number-3">13.3.</span> seaborn</h3>
+<div id="outline-container-org614300b" class="outline-3">
+<h3 id="org614300b"><span class="section-number-3">13.3.</span> seaborn</h3>
 <div class="outline-text-3" id="text-13-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> seaborn <span style="color: #51afef;">as</span> sns
@@ -1798,15 +1799,15 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 </div>
 
 
-<div id="org4e6c23a" class="figure">
+<div id="org551a4c2" class="figure">
 <p><img src="images/seabornPlot.png" alt="seabornPlot.png" /><br />
 </p>
 <p><span class="figure-number">Figure 22: </span>seabornPlot</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org4ce175b" class="outline-3">
-<h3 id="org4ce175b"><span class="section-number-3">13.4.</span> Altair</h3>
+<div id="outline-container-org6315995" class="outline-3">
+<h3 id="org6315995"><span class="section-number-3">13.4.</span> Altair</h3>
 <div class="outline-text-3" id="text-13-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> altair <span style="color: #51afef;">as</span> alt
@@ -1824,7 +1825,7 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 </div>
 
 
-<div id="orgaa6b1cd" class="figure">
+<div id="org4d80c9b" class="figure">
 <p><img src="images/altairPlot.png" alt="altairPlot.png" /><br />
 </p>
 <p><span class="figure-number">Figure 23: </span>altairPlot</p>
@@ -1849,7 +1850,7 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2024-03-12 Tue 21:02</p>
+<p class="date">Created: 2024-08-10 Sat 15:53</p>
 </div>
 </body>
 </html>
