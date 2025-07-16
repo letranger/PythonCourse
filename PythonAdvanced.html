@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-04-28 Mon 16:22 -->
+<!-- 2025-07-16 Wed 17:03 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Advanced Materials of Python</title>
@@ -195,6 +195,38 @@
 </style>
 <link rel="stylesheet" type="text/css" href="../css/muse.css" />
 <script src="../css/copy_code.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -203,81 +235,971 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7f6c9a2">1. Function II</a>
+<li><a href="#py-functions">1. FUNCTION</a>
 <ul>
-<li><a href="#org3e01c97">1.1. Function的特性</a></li>
-<li><a href="#org7048225">1.2. lambda</a></li>
-<li><a href="#orgc1ed05b">1.3. decorator</a></li>
-<li><a href="#orgcfe3a74">1.4. *args and **kwargs</a></li>
-<li><a href="#org62edffe">1.5. Unpack function parameters</a></li>
-<li><a href="#org186925b">1.6. Return or not</a></li>
+<li><a href="#org3a2d1c3">1.1. What for?</a></li>
+<li><a href="#orgbb80d3c">1.2. 函式(function)基本操作</a></li>
+<li><a href="#orgfb39ed8">1.3. 引數(argument)的傳遞</a></li>
+<li><a href="#org5f2b60b">1.4. 模組(module)</a></li>
+<li><a href="#org4ca82aa">1.5. 全域變數(Global variable)</a></li>
 </ul>
 </li>
-<li><a href="#org8e76e6b">2. Class v.s. Object</a>
+<li><a href="#py-recursion">2. 遞迴(Recursion)</a>
 <ul>
-<li><a href="#orga50a328">2.1. <span class="todo TODO">TODO</span> 什麼是class? 什麼是object?</a></li>
-<li><a href="#org889bac4">2.2. 建立自己的class</a></li>
-<li><a href="#orgfa24d13">2.3. == v.s. is</a></li>
-<li><a href="#org7f9680c">2.4. Shallow copy v.s. Deep copy</a></li>
-<li><a href="#orgcf402b0">2.5. ABC: Abstract Base Class</a></li>
-<li><a href="#orge1f973c">2.6. object/class/static method</a></li>
-<li><a href="#org09d7ef6">2.7. class variable v.s. instance variable</a></li>
+<li><a href="#org9b245cf">2.1. Recursion 的必要條件</a></li>
+<li><a href="#org5f5d088">2.2. 練習</a></li>
+<li><a href="#org731023a">2.3. Recursion 能幹嘛?</a></li>
+<li><a href="#org697116e">2.4. 實作練習</a></li>
+<li><a href="#org387a756">2.5. 作業</a></li>
+<li><a href="#org1ea0ade">2.6. 參考題庫</a></li>
 </ul>
 </li>
-<li><a href="#org5cc2e0a">3. 資料型別 II</a>
+<li><a href="#org8696a02">3. yield</a></li>
+<li><a href="#orgc34674a">4. 星號</a></li>
+<li><a href="#orgb9fedf8">5. 函數的參數傳遞</a>
 <ul>
-<li><a href="#org6def7d6">3.1. Dict</a></li>
-<li><a href="#org1944ea6">3.2. types.MappingProxyType</a></li>
-<li><a href="#org3b25ba1">3.3. array.array</a></li>
-<li><a href="#orgffc4e97">3.4. Record</a></li>
-<li><a href="#org0ab623b">3.5. Set</a></li>
-<li><a href="#org10eb216">3.6. Stack</a></li>
-<li><a href="#orga89b2cb">3.7. Queue</a></li>
+<li><a href="#org3b20f3f">5.1. 單星號的用法</a></li>
+<li><a href="#org6c28c58">5.2. 單星號使用情境</a></li>
+<li><a href="#orgedd8e46">5.3. 雙星號的用法</a></li>
+<li><a href="#org80c173f">5.4. 雙星號使用情境</a></li>
 </ul>
 </li>
-<li><a href="#org54f65cf">4. <span class="todo LOOP">LOOP</span> </a>
+<li><a href="#orga693990">6. Function II</a>
 <ul>
-<li><a href="#org98a8df5">4.1. enumerate()</a></li>
-<li><a href="#org829f877">4.2. zip()</a></li>
-<li><a href="#orgd980cdf">4.3. comprehension</a></li>
-<li><a href="#org1d20136">4.4. list</a></li>
+<li><a href="#orgcc40590">6.1. Function的特性</a></li>
+<li><a href="#orge4d570f">6.2. lambda</a></li>
+<li><a href="#org8157595">6.3. decorator</a></li>
+<li><a href="#org1caa42f">6.4. *args and **kwargs</a></li>
+<li><a href="#orgd0be011">6.5. Unpack function parameters</a></li>
+<li><a href="#org73fa015">6.6. Return or not</a></li>
 </ul>
 </li>
-<li><a href="#org0fd135e">5. Python 套件管理</a>
+<li><a href="#orge998af6">7. Class v.s. Object</a>
 <ul>
-<li><a href="#org40ae3e7">5.1. pip v.s. conda</a></li>
-<li><a href="#org5e374d1">5.2. conda 安裝與使用</a></li>
-<li><a href="#org6834bf2">5.3. python package 安裝(conda)</a></li>
-<li><a href="#orga1a0e5a">5.4. Python 常用函式庫</a></li>
-<li><a href="#org9fe5621">5.5. python 執行環境建立與維護</a></li>
-<li><a href="#orgd81d24c">5.6. 將執行環境匯入 jupyter</a></li>
-<li><a href="#orga610651">5.7. poetry</a></li>
+<li><a href="#org8c839bb">7.1. <span class="todo TODO">TODO</span> 什麼是class? 什麼是object?</a></li>
+<li><a href="#org00b635e">7.2. 建立自己的class</a></li>
+<li><a href="#org4c1183c">7.3. == v.s. is</a></li>
+<li><a href="#org0482d68">7.4. Shallow copy v.s. Deep copy</a></li>
+<li><a href="#org1eaac0a">7.5. ABC: Abstract Base Class</a></li>
+<li><a href="#org2a9cbc1">7.6. object/class/static method</a></li>
+<li><a href="#orgcc15741">7.7. class variable v.s. instance variable</a></li>
 </ul>
 </li>
-<li><a href="#orga2e6987">6. <span class="todo TODO">TODO</span> Multiprocessing</a>
+<li><a href="#org290cbb7">8. 資料型別 II</a>
 <ul>
-<li><a href="#orgd70056f">6.1. 執行緒 vs. 程序</a></li>
-<li><a href="#org4be13a3">6.2. 非執行緒的程式</a></li>
-<li><a href="#org8bf6ec6">6.3. 建立及執行執行緒</a></li>
-<li><a href="#org6604e02">6.4. Futher Reading</a></li>
+<li><a href="#org585bb71">8.1. Dict</a></li>
+<li><a href="#org105b524">8.2. types.MappingProxyType</a></li>
+<li><a href="#org8f4dd27">8.3. array.array</a></li>
+<li><a href="#org8b7db98">8.4. Record</a></li>
+<li><a href="#orga9ce538">8.5. Set</a></li>
+<li><a href="#orgf1a8a3c">8.6. Stack</a></li>
+<li><a href="#org5969fc7">8.7. Queue</a></li>
 </ul>
 </li>
-<li><a href="#orgf342f6b">7. <span class="todo TODO">TODO</span> Interactive Plots in Jupyter Notebook</a></li>
+<li><a href="#org3c60aa2">9. <span class="todo LOOP">LOOP</span> </a>
+<ul>
+<li><a href="#org63574e2">9.1. enumerate()</a></li>
+<li><a href="#orgf363a86">9.2. zip()</a></li>
+<li><a href="#org3241b05">9.3. comprehension</a></li>
+<li><a href="#org1fc19cc">9.4. list</a></li>
+</ul>
+</li>
+<li><a href="#org1ed21c5">10. Python 套件管理</a>
+<ul>
+<li><a href="#org6065a25">10.1. pip v.s. conda</a></li>
+<li><a href="#org5c9c83a">10.2. conda 安裝與使用</a></li>
+<li><a href="#orgce76d27">10.3. python package 安裝(conda)</a></li>
+<li><a href="#orgee38af4">10.4. Python 常用函式庫</a></li>
+<li><a href="#org6eb960a">10.5. python 執行環境建立與維護</a></li>
+<li><a href="#orgc97bc8f">10.6. 將執行環境匯入 jupyter</a></li>
+<li><a href="#orge977329">10.7. poetry</a></li>
+</ul>
+</li>
+<li><a href="#orge3adefb">11. <span class="todo TODO">TODO</span> Multiprocessing</a>
+<ul>
+<li><a href="#org9d6e5ac">11.1. 執行緒 vs. 程序</a></li>
+<li><a href="#orgf3d3f3f">11.2. 非執行緒的程式</a></li>
+<li><a href="#orgff99375">11.3. 建立及執行執行緒</a></li>
+<li><a href="#orgb4d4061">11.4. Futher Reading</a></li>
+</ul>
+</li>
+<li><a href="#orgb92549a">12. <span class="todo TODO">TODO</span> Interactive Plots in Jupyter Notebook</a></li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/PythonAdvanced.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/PythonAdvanced.html.svg?style=plastic"/></a>
-<div id="outline-container-org7f6c9a2" class="outline-2">
-<h2 id="org7f6c9a2"><span class="section-number-2">1.</span> Function II</h2>
-<div class="outline-text-2" id="text-1">
+<div id="outline-container-py-functions" class="outline-2">
+<h2 id="py-functions"><span class="section-number-2">1.</span> FUNCTION</h2>
+<div class="outline-text-2" id="text-py-functions">
+<p>
+在 Python 中，function 屬於一級物件(first-class object)，意思是可以被指派給變數、存在資料結構中、做為參數傳給其他 function，甚至可以當作其他 function 的傳回值。<br />
+</p>
 </div>
-<div id="outline-container-org3e01c97" class="outline-3">
-<h3 id="org3e01c97"><span class="section-number-3">1.1.</span> Function的特性</h3>
+<div id="outline-container-org3a2d1c3" class="outline-3">
+<h3 id="org3a2d1c3"><span class="section-number-3">1.1.</span> What for?</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org80976f2" class="outline-4">
-<h4 id="org80976f2"><span class="section-number-4">1.1.1.</span> Fnction為物件</h4>
+<div id="outline-container-orgf37c41d" class="outline-4">
+<h4 id="orgf37c41d"><span class="section-number-4">1.1.1.</span> 2B. 三角形面積求解[基本變數輸入輸出]</h4>
 <div class="outline-text-4" id="text-1-1-1">
+<p>
+在作業 2B 中，我們的任務是根據三角形的三邊長來計算面積<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">a</span>, <span style="color: #dcaeea;">b</span>, <span style="color: #dcaeea;">c</span> = <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>
+<span class="linenr">2: </span><span style="color: #dcaeea;">s</span> = (a + b + c) / <span style="color: #da8548; font-weight: bold;">2</span>
+<span class="linenr">3: </span><span style="color: #dcaeea;">area</span> = (s * (s - a) * (s - b) * (s - c)) ** <span style="color: #da8548; font-weight: bold;">0.5</span>
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(area)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb849bcc" class="outline-4">
+<h4 id="orgb849bcc"><span class="section-number-4">1.1.2.</span> 如果有個 fucntion 叫 triangleArea()，傳給它三個整數、它就會傳回面積，那上面的程式就可以簡化為：</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">a</span>, <span style="color: #dcaeea;">b</span>, <span style="color: #dcaeea;">c</span> = <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(triangleArea(a, b, c))
+</pre>
+</div>
+<p>
+若真能如此，一切就太完美了。但，雖然 python 提供了很多有用的 function，但是總不可能預測到所有人的需求，此時就需要我們自己來設計這個 function 了&#x2026;..<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbb80d3c" class="outline-3">
+<h3 id="orgbb80d3c"><span class="section-number-3">1.2.</span> 函式(function)基本操作</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org13af50f" class="outline-4">
+<h4 id="org13af50f"><span class="section-number-4">1.2.1.</span> 函式(function)的重要性</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<ul class="org-ul">
+<li>function 為一段程式的集合，可視為一個獨立的區段。<br /></li>
+<li>function 可重覆使用，因此為結構化程式語言的重要元素。 可將龐大複雜的程式分解為小問題，由多人分別以 function 解決，縮短開發時間。<br /></li>
+<li>function 可區分為以下三類：<br />
+<ul class="org-ul">
+<li>Python 內建 function，如: print()、len()、int()、str()&#x2026;。<br /></li>
+<li>第三方公司所開發的模組 module(多個 function 組合)。<br /></li>
+<li>自定義 function。<br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf84b2d0" class="outline-4">
+<h4 id="orgf84b2d0"><span class="section-number-4">1.2.2.</span> 自定義函式</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ul class="org-ul">
+<li><p>
+宣告語法<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">&#20989;&#24335;&#21517;&#31281;</span> ( [&#21443;&#25976;1, &#21443;&#25976;2, ...] ):
+<span class="linenr">2: </span>    &#31243;&#24335;&#21312;&#22602;&#8232;
+<span class="linenr">3: </span>    [ <span style="color: #51afef;">return</span> &#20540; ]
+</pre>
+</div></li>
+<li>說明 :<br />
+<ul class="org-ul">
+<li>參數可省略，亦即呼叫 function 不需傳入任何資料(引數)。<br /></li>
+<li>若無回傳值，則無需 return。<br /></li>
+<li>若多個回傳值可用逗號隔開。<br /></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f02b91" class="outline-4">
+<h4 id="org2f02b91"><span class="section-number-4">1.2.3.</span> 自定義函式的呼叫</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<ul class="org-ul">
+<li>呼叫函式語法：<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>  [ <span style="color: #dcaeea;">&#35722;&#25976;</span> ] = &#20989;&#24335;&#21517;&#31281;( [&#24341;&#25976;1, &#24341;&#25976;2, ... ] )
+</pre>
+</div>
+<p>
+範例:<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">circle</span>(r):
+<span class="linenr">2: </span>    <span style="color: #51afef;">return</span> r*r*<span style="color: #da8548; font-weight: bold;">3.14</span>;
+<span class="linenr">3: </span>
+<span class="linenr">4: </span><span style="color: #dcaeea;">r</span> = <span style="color: #da8548; font-weight: bold;">10</span>
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#21322;&#24465;%d&#30340;&#22291;&#38754;&#31309;&#65306;%.2f'</span> %(r, circle(r)))
+</pre>
+</div>
+
+<pre class="example">
+半徑 10 的圓面積：314.00
+</pre>
+</div>
+</div>
+<div id="outline-container-org95d967b" class="outline-4">
+<h4 id="org95d967b"><span class="section-number-4">1.2.4.</span> 多參數函式</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<ul class="org-ul">
+<li>呼叫函式時引數(arugment)個數<br /></li>
+<li>自定義函式的參數(parameter)個數<br /></li>
+<li>設定參數初始值。 若呼叫時無引數傳入， 則使用其初始值。<br /></li>
+</ul>
+
+<p>
+前文中提及的 trialbneArea()需要傳入三個參數(三角形的三邊)，這就是典型的多參數 function。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">triangleArea</span>(a, b, c):
+<span class="linenr">2: </span>    <span style="color: #dcaeea;">s</span> = (a + b + c) / <span style="color: #da8548; font-weight: bold;">2</span>
+<span class="linenr">3: </span>    <span style="color: #dcaeea;">area</span> = (s * (s - a) * (s - b) * (s - c)) ** <span style="color: #da8548; font-weight: bold;">0.5</span>
+<span class="linenr">4: </span>    <span style="color: #51afef;">return</span> area
+<span class="linenr">5: </span>
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(triangleArea(<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>))
+</pre>
+</div>
+
+<pre class="example">
+6.0
+</pre>
+</div>
+</div>
+<div id="outline-container-orga74fadc" class="outline-4">
+<h4 id="orga74fadc"><span class="section-number-4">1.2.5.</span> 多回傳值函式</h4>
+<div class="outline-text-4" id="text-1-2-5">
+<ul class="org-ul">
+<li><p>
+呼叫函式多個回傳值語法<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>[ &#35722;&#25976;1, &#35722;&#25976;2, ... ] = &#20989;&#24335;&#21517;&#31281;( [&#24341;&#25976;1, &#24341;&#25976;2, ... ] )
+</pre>
+</div></li>
+</ul>
+<p>
+範例: 輸入全班分數，傳回全班總分、全班平均<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">scoreProcessor</span>(score):
+<span class="linenr"> 2: </span>     <span style="color: #dcaeea;">sos</span> = <span style="color: #da8548; font-weight: bold;">0</span>
+<span class="linenr"> 3: </span>     <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> score:
+<span class="linenr"> 4: </span>         <span style="color: #dcaeea;">sos</span> += x
+<span class="linenr"> 5: </span>     <span style="color: #5B6268;"># </span><span style="color: #5B6268;">sos = sum(score)</span>
+<span class="linenr"> 6: </span>     <span style="color: #51afef;">return</span> sos, sos/<span style="color: #c678dd;">len</span>(score)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #dcaeea;">scores</span> = (<span style="color: #da8548; font-weight: bold;">21</span>, <span style="color: #da8548; font-weight: bold;">33</span>, <span style="color: #da8548; font-weight: bold;">83</span>, <span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">75</span>, <span style="color: #da8548; font-weight: bold;">60</span>)
+<span class="linenr"> 9: </span><span style="color: #c678dd;">sum</span>, <span style="color: #dcaeea;">avg</span> = scoreProcessor(scores)
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'sum='</span>,<span style="color: #c678dd;">sum</span>,<span style="color: #98be65;">',average='</span>,avg)
+</pre>
+</div>
+
+<pre class="example">
+sum= 372 ,average= 62.0
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfb39ed8" class="outline-3">
+<h3 id="orgfb39ed8"><span class="section-number-3">1.3.</span> 引數(argument)的傳遞</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>每一個函式都是獨立的，所以函式只知道自己程式區域內的變數，不認識函式外的變數。<br /></li>
+<li>變數因其所宣告位置，可區分為全域變數(Global variable)、區域變數(Local variable)。<br />
+<ul class="org-ul">
+<li>全域變數：宣告在任何函式外，所有函式皆可存取。<br /></li>
+<li>區域變數：宣告在函式內，僅函式內可存取。c<br /></li>
+</ul></li>
+<li><p>
+全域變數與區域變數範例<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36889;&#26159;&#20840;&#22495;&#35722;&#25976;&#65292;&#25152;&#26377;&#20989;&#24335;&#37117;&#21487;&#20197;&#35712;&#21462;&#33287;&#20351;&#29992;</span>
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">x</span> = <span style="color: #da8548; font-weight: bold;">5</span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">y</span> = <span style="color: #da8548; font-weight: bold;">10</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">use_global</span>():
+<span class="linenr"> 6: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#20840;&#22495;&#35722;&#25976; x &#21644; y &#20358;&#35336;&#31639;</span>
+<span class="linenr"> 7: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"use_global:"</span>, x + y)
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">use_local</span>():
+<span class="linenr">10: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36889;&#35041;&#23450;&#32681;&#20102;&#21312;&#22495;&#35722;&#25976; x &#21644; y&#65292;&#20677;&#22312;&#36889;&#20491;&#20989;&#24335;&#20013;&#26377;&#25928;</span>
+<span class="linenr">11: </span>    <span style="color: #dcaeea;">x</span> = <span style="color: #da8548; font-weight: bold;">20</span>
+<span class="linenr">12: </span>    <span style="color: #dcaeea;">y</span> = <span style="color: #da8548; font-weight: bold;">30</span>
+<span class="linenr">13: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"use_local:"</span>, x + y)
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>use_global()   <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#20840;&#22495;&#30340; x=5, y=10&#65292;&#36664;&#20986; 15</span>
+<span class="linenr">16: </span>use_local()    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#21312;&#22495;&#30340; x=20, y=30&#65292;&#36664;&#20986; 50</span>
+<span class="linenr">17: </span>
+<span class="linenr">18: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20877;&#27425;&#20351;&#29992;&#20840;&#22495;&#35722;&#25976;&#30906;&#35469;&#26410;&#21463;&#24433;&#38911;</span>
+<span class="linenr">19: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"Global variables remain:"</span>, x, y)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36664;&#20986; 5 10</span>
+</pre>
+</div>
+
+<pre class="example">
+use_global: 15
+use_local: 50
+Global variables remain: 5 10
+</pre></li>
+</ul>
+</div>
+<div id="outline-container-org246be55" class="outline-4">
+<h4 id="org246be55"><span class="section-number-4">1.3.1.</span> 說明重點：</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<ol class="org-ol">
+<li>use_global()：函式內沒有定義 x 或 y，因此會使用函式外的全域變數。<br /></li>
+<li>use_local()：函式內重新定義了 x 和 y，這些是區域變數，只在這個函式中有效，函式外的全域變數不會受到影響。<br /></li>
+<li>最後再次印出全域變數，確認它們仍然是原本的值。<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org1b71eeb" class="outline-4">
+<h4 id="org1b71eeb"><span class="section-number-4">1.3.2.</span> 傳值與傳址</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+這裡要講的概念是：我傳給 function 的參數到底會不會被 function 偷偷改掉?<br />
+舉個例子:如果我在 function circle 裡把主程式傳過來的半徑改掉，那麼，原來主程式的半徑會不會跟著被改掉呢？<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">circle</span>(r):
+<span class="linenr">2: </span>    <span style="color: #dcaeea;">r</span> = <span style="color: #da8548; font-weight: bold;">100</span> <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#25105;&#22312;&#36889;&#35041;&#25226;&#21322;&#24465;&#25913;&#25481;</span>
+<span class="linenr">3: </span>    <span style="color: #51afef;">return</span> r*r*<span style="color: #da8548; font-weight: bold;">3.14</span>
+<span class="linenr">4: </span>
+<span class="linenr">5: </span><span style="color: #dcaeea;">r</span> = <span style="color: #da8548; font-weight: bold;">10</span>
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#21407;&#20358;&#30340;r:'</span>, r)
+<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#31639;&#38754;&#31309;&#65306;'</span>, circle(r))
+<span class="linenr">8: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#24460;&#20358;&#30340;r:'</span>, r)
+</pre>
+</div>
+
+<pre class="example">
+原來的 r: 10
+算面積： 31400.0
+後來的 r: 10
+</pre>
+
+<p>
+有些參數可以在 function 中被修改，有些則不行，這就是傳值/傳址的差異。<br />
+</p>
+<ul class="org-ul">
+<li>引數(argument)的傳遞分為兩種方式，由 Python 自動判別：<br />
+<ul class="org-ul">
+<li>傳值呼叫(Call-by-Value): 參數不會被 function 修正<br /></li>
+<li>傳址呼叫(Call-by-Reference): 參數可以被 function 修改<br /></li>
+</ul></li>
+</ul>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">引數傳遞</th>
+<th scope="col" class="org-left">傳遞內容</th>
+<th scope="col" class="org-left">參數改變</th>
+<th scope="col" class="org-left">資料型別</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">傳值呼叫 call-by-value</td>
+<td class="org-left">引數值</td>
+<td class="org-left">否</td>
+<td class="org-left">bool, int, float, str, tuple, chr</td>
+</tr>
+
+<tr>
+<td class="org-left">傳址呼叫 call-by-reference</td>
+<td class="org-left">引數記憶體位址</td>
+<td class="org-left">是</td>
+<td class="org-left">List, dict, set</td>
+</tr>
+</tbody>
+</table>
+<p>
+也就是說，如果你傳進去的參數是 list，那很有可能就會被修改：<br />
+範例:<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">str&#20659;&#20540;&#12289;List&#20659;&#22336;</span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">ccc</span>(name, score):
+<span class="linenr"> 3: </span>    <span style="color: #dcaeea;">name</span> = <span style="color: #98be65;">'Amy'</span>
+<span class="linenr"> 4: </span>    score.append(<span style="color: #da8548; font-weight: bold;">99</span>)
+<span class="linenr"> 5: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'--&#20989;&#24335;&#20839;&#36664;&#20986;---'</span>)
+<span class="linenr"> 6: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'name:'</span>, name,<span style="color: #98be65;">'</span><span style="color: #a9a1e1;">\t</span><span style="color: #98be65;">score:'</span>,score)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #dcaeea;">name</span> = <span style="color: #98be65;">'Josh'</span>
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">score</span> = [<span style="color: #da8548; font-weight: bold;">77</span>, <span style="color: #da8548; font-weight: bold;">88</span>]
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'--&#21407;&#20358;&#30340;list--'</span>)
+<span class="linenr">12: </span><span style="color: #c678dd;">print</span>(score)
+<span class="linenr">13: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'--&#21628;&#21483;function ccc--'</span>)
+<span class="linenr">14: </span>ccc(name, score)
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'--&#29694;&#22312;&#30340;list--'</span>)
+<span class="linenr">16: </span><span style="color: #c678dd;">print</span>(score)
+</pre>
+</div>
+
+<pre class="example">
+--原來的 list--
+[77, 88]
+--呼叫 function ccc--
+--函式內輸出---
+name: Amy 	score: [77, 88, 99]
+--現在的 list--
+[77, 88, 99]
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org5f2b60b" class="outline-3">
+<h3 id="org5f2b60b"><span class="section-number-3">1.4.</span> 模組(module)</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-orgc3f43ff" class="outline-4">
+<h4 id="orgc3f43ff"><span class="section-number-4">1.4.1.</span> 匯入模組語法：</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+A library in Python is called a module.<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> &#27169;&#32068;1 [, &#27169;&#32068;2, ... ]
+<span class="linenr">2: </span><span style="color: #51afef;">from</span> &#27169;&#32068; <span style="color: #51afef;">import</span> &#20989;&#24335;
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbd1b6bc" class="outline-4">
+<h4 id="orgbd1b6bc"><span class="section-number-4">1.4.2.</span> 範例</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> random <span style="color: #51afef;">as</span> ran
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #c678dd;">print</span>(ran.randint(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">100</span>))
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(ran.randint(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">100</span>))
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(ran.randint(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">100</span>))
+</pre>
+</div>
+
+<pre class="example">
+50
+78
+16
+</pre>
+</div>
+</div>
+<div id="outline-container-orgee13562" class="outline-4">
+<h4 id="orgee13562"><span class="section-number-4">1.4.3.</span> 自訂模組</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<ul class="org-ul">
+<li>定義: myModule.py<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">name: myModule.py</span>
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">pp</span>(n):
+<span class="linenr">4: </span>    <span style="color: #51afef;">return</span> n+<span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">5: </span>
+<span class="linenr">6: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">mm</span>(n):
+<span class="linenr">7: </span>    <span style="color: #51afef;">return</span> n-<span style="color: #da8548; font-weight: bold;">1</span>
+</pre>
+</div>
+<ul class="org-ul">
+<li>使用<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> myModule <span style="color: #51afef;">as</span> my
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #c678dd;">print</span>(my.pp(<span style="color: #da8548; font-weight: bold;">5</span>))
+<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(my.mm(<span style="color: #da8548; font-weight: bold;">5</span>))
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(my.<span style="color: #c678dd;">__name__</span>)
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">dir</span>(my))
+</pre>
+</div>
+
+<pre class="example">
+6
+4
+myModule
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'mm', 'pp']
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org4ca82aa" class="outline-3">
+<h3 id="org4ca82aa"><span class="section-number-3">1.5.</span> 全域變數(Global variable)</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+如何在 function 中取用全域變數<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>
+<span class="linenr"> 2: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">f1</span>(x):
+<span class="linenr"> 3: </span>    <span style="color: #dcaeea;">y</span> = x - <span style="color: #da8548; font-weight: bold;">3</span>
+<span class="linenr"> 4: </span>    <span style="color: #51afef;">if</span> y &lt; <span style="color: #da8548; font-weight: bold;">0</span>:
+<span class="linenr"> 5: </span>        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">2</span>*x+<span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr"> 6: </span>    <span style="color: #51afef;">return</span> x - <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">f2</span>(x):
+<span class="linenr"> 9: </span>    <span style="color: #51afef;">global</span> y
+<span class="linenr">10: </span>    <span style="color: #dcaeea;">y</span> = x - <span style="color: #da8548; font-weight: bold;">3</span>
+<span class="linenr">11: </span>    <span style="color: #51afef;">if</span> y &lt; <span style="color: #da8548; font-weight: bold;">0</span>:
+<span class="linenr">12: </span>        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">2</span>*x+<span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">13: </span>    <span style="color: #51afef;">return</span> x - <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">14: </span><span style="color: #dcaeea;">y</span> = -<span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(f1(<span style="color: #da8548; font-weight: bold;">1</span>), y)
+<span class="linenr">16: </span><span style="color: #c678dd;">print</span>(f2(<span style="color: #da8548; font-weight: bold;">1</span>), y)
+</pre>
+</div>
+
+<pre class="example">
+3 -1
+3 -2
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-py-recursion" class="outline-2">
+<h2 id="py-recursion"><span class="section-number-2">2.</span> 遞迴(Recursion)</h2>
+<div class="outline-text-2" id="text-py-recursion">
+<p class="verse">
+從前有座山，山上有座廟，廟裡有個老和尚和一個小和尚，一天，老和尚給小和尚講了一個故事，故事的內容是「從前有座山，山上有座廟，廟裡有個老和尚和一個小和尚，一天，老和尚給小和尚講了一個故事，是「從前有座山，山上有座廟，廟裡有個老和尚和一個小和尚，故事的內容&#x2026;&#x2026;」」。<br />
+</p>
+<p>
+前節提及我們寫了一支 function 後，可以在其他地方呼叫(call)執行這支程式，像底下這樣：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">storyTeller</span>():
+<span class="linenr">2: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#24478;&#21069;&#26377;&#24231;&#23665;&#65292;&#23665;&#19978;&#26377;&#24231;&#24287;&#65292;&#24287;&#35041;&#26377;&#20491;&#32769;&#21644;&#23578;&#21644;&#19968;&#20491;&#23567;&#21644;&#23578;&#65292;&#19968;&#22825;&#65292;&#32769;&#21644;&#23578;&#32102;&#23567;&#21644;&#23578;&#35611;&#20102;&#19968;&#20491;&#25925;&#20107;'</span>)
+<span class="linenr">3: </span>
+<span class="linenr">4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20027;&#31243;&#24335;</span>
+<span class="linenr">5: </span>storyTeller()
+</pre>
+</div>
+<pre class="example">
+從前有座山，山上有座廟，廟裡有個老和尚和一個小和尚，一天，老和尚給小和尚講了一個故事
+</pre>
+
+
+<p>
+但，如果我們 *在 function 裡又呼叫自己呢?像底下這樣：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">storyTeller</span>():
+<span class="linenr">2: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#24478;&#21069;&#26377;&#24231;&#23665;&#65292;&#23665;&#19978;&#26377;&#24231;&#24287;&#65292;&#24287;&#35041;&#26377;&#20491;&#32769;&#21644;&#23578;&#21644;&#19968;&#20491;&#23567;&#21644;&#23578;&#65292;&#19968;&#22825;&#65292;&#32769;&#21644;&#23578;&#32102;&#23567;&#21644;&#23578;&#35611;&#20102;&#19968;&#20491;&#25925;&#20107;'</span>)
+<span class="linenr">3: </span>    storyTeller() <span style="color: #5B6268;">#</span><span style="color: #5B6268;">storyTeller&#22312;&#32080;&#26463;&#21069;&#21628;&#21483;&#33258;&#24049;</span>
+<span class="linenr">4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20027;&#31243;&#24335;</span>
+<span class="linenr">5: </span>storyTeller()
+</pre>
+</div>
+
+<p>
+上述的概念即是 recursion，明明我們沒寫 for 或 while，但確有重複執行的能力；只是它有個小小但致命的缺點: 停不下來&#x2026;QQ<br />
+</p>
+
+<p>
+再看另一個例子：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">printN</span>(n):
+<span class="linenr">2: </span>    <span style="color: #c678dd;">print</span>(n)
+<span class="linenr">3: </span>    printN(n-<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">4: </span>
+<span class="linenr">5: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#20027;&#31243;&#24335;</span>
+<span class="linenr">6: </span>printN(<span style="color: #da8548; font-weight: bold;">5</span>)
+</pre>
+</div>
+<p>
+猜一下上述程式會得到什麼結果&#x2026;<br />
+</p>
+</div>
+<div id="outline-container-org9b245cf" class="outline-3">
+<h3 id="org9b245cf"><span class="section-number-3">2.1.</span> Recursion 的必要條件</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>自我呼叫<br />
+即，在 function 自己呼叫自己<br /></li>
+<li>停止條件<br />
+顯然，上面的自我呼叫必須有所節制，例如，將之置於 if 裡，只在某些條件成立下才允許呼叫自己<br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org5f5d088" class="outline-3">
+<h3 id="org5f5d088"><span class="section-number-3">2.2.</span> 練習</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+為 printN()加入停止條件，讓它可以傳入一個參數 n，輸出 1 到 n，即，當參數(n)的值小於 1 時就不再呼叫自己<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#20027;&#31243;&#24335;</span>
+<span class="linenr">2: </span>printN(<span style="color: #da8548; font-weight: bold;">5</span>)
+</pre>
+</div>
+<p>
+輸出以下結果<br />
+</p>
+<pre class="example">
+5 4 3 2 1
+</pre>
+</div>
+</div>
+<div id="outline-container-org731023a" class="outline-3">
+<h3 id="org731023a"><span class="section-number-3">2.3.</span> Recursion 能幹嘛?</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+上述這種 function 自己呼叫自己的有趣執行方式，除了能拿來取代重複架構(for, while)之外，還能用來做什麼事?<br />
+</p>
+</div>
+<div id="outline-container-orga5e1e56" class="outline-4">
+<h4 id="orga5e1e56"><span class="section-number-4">2.3.1.</span> 例 1: N!</h4>
+<div class="outline-text-4" id="text-2-3-1">
+</div>
+<div id="outline-container-orgc6d600b" class="outline-5">
+<h5 id="orgc6d600b">for-solution</h5>
+<div class="outline-text-5" id="text-orgc6d600b">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">frac</span>(n):
+<span class="linenr">2: </span>    <span style="color: #dcaeea;">fsum</span> = <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">3: </span>    <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">1</span>, n+<span style="color: #da8548; font-weight: bold;">1</span>):
+<span class="linenr">4: </span>        <span style="color: #dcaeea;">fsum</span> *= i
+<span class="linenr">5: </span>    <span style="color: #51afef;">return</span> fsum
+<span class="linenr">6: </span>
+<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(frac(<span style="color: #da8548; font-weight: bold;">5</span>))
+</pre>
+</div>
+
+<pre class="example">
+120
+</pre>
+</div>
+</div>
+<div id="outline-container-org0b589f8" class="outline-5">
+<h5 id="org0b589f8">Recursion-solution</h5>
+<div class="outline-text-5" id="text-org0b589f8">
+<p>
+\[f(n)=
+\begin{cases}
+1 & n=1\\
+n*f(n-1) & n \geq 2
+\end{cases}\]<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">frac</span>(n):
+<span class="linenr">2: </span>    <span style="color: #51afef;">if</span> n == <span style="color: #da8548; font-weight: bold;">1</span>:
+<span class="linenr">3: </span>        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">4: </span>    <span style="color: #51afef;">return</span> n*frac(n-<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">5: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#20027;&#31243;&#24335;</span>
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(frac(<span style="color: #da8548; font-weight: bold;">5</span>))
+</pre>
+</div>
+
+<pre class="example">
+120
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org447c4e9" class="outline-4">
+<h4 id="org447c4e9"><span class="section-number-4">2.3.2.</span> 例 2: 費氏數列</h4>
+<div class="outline-text-4" id="text-2-3-2">
+</div>
+<div id="outline-container-org8b0d3b4" class="outline-5">
+<h5 id="org8b0d3b4">費氏數列數學表示法</h5>
+<div class="outline-text-5" id="text-org8b0d3b4">
+<p>
+\[f(n)=
+\begin{cases}
+1 & n=1\\
+1 & n=2\\
+f(n-1)+f(n-2) & n > 2
+\end{cases}\]<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org0f6e7ee" class="outline-5">
+<h5 id="org0f6e7ee">for-solution</h5>
+<div class="outline-text-5" id="text-org0f6e7ee">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">fib</span>(n):
+<span class="linenr"> 2: </span>    <span style="color: #51afef;">if</span> n &lt;=<span style="color: #da8548; font-weight: bold;">2</span>:
+<span class="linenr"> 3: </span>        <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr"> 4: </span>    <span style="color: #dcaeea;">a</span> = <span style="color: #dcaeea;">b</span> = <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr"> 5: </span>    <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">2</span>, n):
+<span class="linenr"> 6: </span>        <span style="color: #dcaeea;">c</span> = a + b
+<span class="linenr"> 7: </span>        <span style="color: #dcaeea;">a</span>, <span style="color: #dcaeea;">b</span> = b, c
+<span class="linenr"> 8: </span>    <span style="color: #51afef;">return</span> c
+<span class="linenr"> 9: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#20027;&#31243;&#24335;</span>
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'The %d-th Fibonacci number = %d'</span> %(<span style="color: #da8548; font-weight: bold;">5</span>, fib(<span style="color: #da8548; font-weight: bold;">5</span>)))
+</pre>
+</div>
+
+<pre class="example">
+The 5-th Fibonacci number = 5
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org697116e" class="outline-3">
+<h3 id="org697116e"><span class="section-number-3">2.4.</span> 實作練習</h3>
+<div class="outline-text-3" id="text-2-4">
+</div>
+<div id="outline-container-org70ae0c6" class="outline-4">
+<h4 id="org70ae0c6"><span class="section-number-4">2.4.1.</span> 最大公因數&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Recursion">Recursion</span></span></h4>
+</div>
+<div id="outline-container-orgc2c9ee6" class="outline-4">
+<h4 id="orgc2c9ee6"><span class="section-number-4">2.4.2.</span> 計算 C(n, r)組合數。</h4>
+</div>
+<div id="outline-container-org8d20ca8" class="outline-4">
+<h4 id="org8d20ca8"><span class="section-number-4">2.4.3.</span> Harmonic sum&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Recursion">Recursion</span></span></h4>
+<div class="outline-text-4" id="text-2-4-3">
+<p>
+Write a Python program to calculate the harmonic sum of n-1.<br />
+Note: The harmonic sum is the sum of reciprocals of the positive integers.<br />
+\[ 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ... +  \frac{1}{n-1}    \]<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org02ee6e5" class="outline-4">
+<h4 id="org02ee6e5"><span class="section-number-4">2.4.4.</span> Sum of recursive List&#xa0;&#xa0;&#xa0;<span class="tag"><span class="List">List</span>&#xa0;<span class="recursion">recursion</span></span></h4>
+<div class="outline-text-4" id="text-2-4-4">
+<p>
+Write a Python program of recursion List sum. Go to the editor<br />
+Test Data: [1, 2, [3,4], [5,6]]<br />
+Expected Result: 21<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org387a756" class="outline-3">
+<h3 id="org387a756"><span class="section-number-3">2.5.</span> 作業</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-orga001687" class="outline-4">
+<h4 id="orga001687"><span class="section-number-4">2.5.1.</span> permutation</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<p>
+<a href="https://stackoverflow.com/questions/104420/how-to-generate-all-permutations-of-a-List">How to generate all permutations of a List?</a><br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgecb3d48" class="outline-4">
+<h4 id="orgecb3d48"><span class="section-number-4">2.5.2.</span> Recursive calculation</h4>
+<div class="outline-text-4" id="text-2-5-2">
+</div>
+<div id="outline-container-org53ccdb5" class="outline-5">
+<h5 id="org53ccdb5">說明</h5>
+<div class="outline-text-5" id="text-org53ccdb5">
+<p>
+Write a Python program to calculate the sum of the positive integers of n+(n-2)+(n-4)&#x2026; (until n-x =&lt; 0).<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orge62763a" class="outline-5">
+<h5 id="orge62763a">輸入</h5>
+<div class="outline-text-5" id="text-orge62763a">
+<p>
+6<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgd9cd4d9" class="outline-5">
+<h5 id="orgd9cd4d9">輸出</h5>
+<div class="outline-text-5" id="text-orgd9cd4d9">
+<p>
+12<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1971c60" class="outline-4">
+<h4 id="org1971c60"><span class="section-number-4">2.5.3.</span> 這不是巴斯卡</h4>
+<div class="outline-text-4" id="text-2-5-3">
+</div>
+<div id="outline-container-orga3d3404" class="outline-5">
+<h5 id="orga3d3404">說明</h5>
+<div class="outline-text-5" id="text-orga3d3404">
+<p>
+給你一串數字，請你依序兩兩相加，直到剩下一個數字，並將過程反向輸出<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org222b99d" class="outline-5">
+<h5 id="org222b99d">輸入</h5>
+<div class="outline-text-5" id="text-org222b99d">
+<p>
+1 2 3 4 5<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org35d396e" class="outline-5">
+<h5 id="org35d396e">輸出</h5>
+<div class="outline-text-5" id="text-org35d396e">
+<p>
+48<br />
+28 28<br />
+8 12 16<br />
+3 5 7 9<br />
+1 2 3 4 5<br />
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org1ea0ade" class="outline-3">
+<h3 id="org1ea0ade"><span class="section-number-3">2.6.</span> 參考題庫</h3>
+<div class="outline-text-3" id="text-2-6">
+<ul class="org-ul">
+<li><a href="https://www.geeksforgeeks.org/recursion-practice-problems-solutions/">Recursive Practice Problems with Solutions</a><br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org8696a02" class="outline-2">
+<h2 id="org8696a02"><span class="section-number-2">3.</span> yield</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+<a href="https://chriskang028.medium.com/python-%E8%A3%A1%E7%9A%84-yield-%E8%AE%93%E4%BD%A0%E7%B0%A1%E5%96%AE-%E5%BF%AB%E9%80%9F%E7%9E%AD%E8%A7%A3-yield-%E7%9A%84%E6%A6%82%E5%BF%B5-f660521f3aa7">Python 裡的 yield — 讓你簡單、快速瞭解 yield 的概念</a><br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgc34674a" class="outline-2">
+<h2 id="orgc34674a"><span class="section-number-2">4.</span> 星號</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+在 Python 中，星號除了用於乘法數值運算和冪運算外，還有一種特殊的用法&ldquo;在變量前添加單個星號或兩個星號&rdquo;，實現多參數的傳入或變量的拆解<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgb9fedf8" class="outline-2">
+<h2 id="orgb9fedf8"><span class="section-number-2">5.</span> 函數的參數傳遞</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+最初，星號變量是用在函數的參數傳遞上，其用法如下：<br />
+</p>
+<ul class="org-ul">
+<li>*: 該位置接受任意多個非關鍵字（non-keyword）參數，在函數中將其轉化為元組（1,2,3,4）<br /></li>
+<li>**: 該位置接受任意多個關鍵字（keyword）參數，在函數**位置上轉化為詞典 [key:value, key:value ]<br /></li>
+</ul>
+</div>
+<div id="outline-container-org3b20f3f" class="outline-3">
+<h3 id="org3b20f3f"><span class="section-number-3">5.1.</span> 單星號的用法</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">one</span>(a, *b):
+<span class="linenr">2: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">a&#26159;&#19968;&#20491;&#26222;&#36890;&#30340;&#20659;&#20837;&#21443;&#25976;; *b&#26159;&#19968;&#20491;&#38750;&#38364;&#23383;*&#21443;&#25976;</span>
+<span class="linenr">3: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'a&#30340;type&#28858;:'</span>, <span style="color: #c678dd;">type</span>(a))
+<span class="linenr">4: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'a&#30340;value&#28858;:'</span>, a)
+<span class="linenr">5: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'b&#30340;type&#28858;:'</span>, <span style="color: #c678dd;">type</span>(b))
+<span class="linenr">6: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'b&#30340;value&#28858;:'</span>, b)
+<span class="linenr">7: </span>
+<span class="linenr">8: </span>one(<span style="color: #da8548; font-weight: bold;">11</span>, <span style="color: #da8548; font-weight: bold;">22</span>, <span style="color: #da8548; font-weight: bold;">33</span>, <span style="color: #da8548; font-weight: bold;">44</span>, <span style="color: #da8548; font-weight: bold;">55</span>)
+</pre>
+</div>
+
+<pre class="example">
+a 的 type 為: &lt;class 'int'&gt;
+a 的 value 為: 11
+b 的 type 為: &lt;class 'tuple'&gt;
+b 的 value 為: (22, 33, 44, 55)
+</pre>
+
+
+<p>
+由執行結果可以看出，第 1 個參數(11)對映到 functin one 的第一個引數(a)，至於剩下的 4 個參數(22, 33, 44, 55)則全都被引數(b)接收了，原因就是 b 前面的星號，這個單星號代表這個位置接收任意多個非關鍵字參數，接收後的所有資料會被轉成一個 tuple。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org6c28c58" class="outline-3">
+<h3 id="org6c28c58"><span class="section-number-3">5.2.</span> 單星號使用情境</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+例如，我們想寫個 function 計算某學生成績，這個 function 會傳若干成績，成績數不確定，最後傳回該生總分、平均。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">scoProc</span>(*scores):
+<span class="linenr">2: </span>    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">sum</span>(scores), <span style="color: #c678dd;">sum</span>(scores)/<span style="color: #c678dd;">len</span>(scores)
+<span class="linenr">3: </span>
+<span class="linenr">4: </span><span style="color: #dcaeea;">sctot</span>, <span style="color: #dcaeea;">scavg</span> = scoProc(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">88</span>, <span style="color: #da8548; font-weight: bold;">17</span>, <span style="color: #da8548; font-weight: bold;">96</span>, <span style="color: #da8548; font-weight: bold;">94</span>)
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#32317;&#20998;'</span>, sctot)
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#24179;&#22343;'</span>, scavg)
+<span class="linenr">7: </span>
+</pre>
+</div>
+
+<pre class="example">
+總分 335
+平均 55.833333333333336
+</pre>
+</div>
+</div>
+<div id="outline-container-orgedd8e46" class="outline-3">
+<h3 id="orgedd8e46"><span class="section-number-3">5.3.</span> 雙星號的用法</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">two</span>(a, **b):
+<span class="linenr">2: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">a&#26159;&#19968;&#20491;&#26222;&#36890;&#30340;&#38364;&#37749;&#23383;&#21443;&#25976;&#65292;**b&#26159;&#19968;&#20491;&#38364;&#37749;&#23383;&#38617;&#26143;&#34399;&#21443;&#25976;</span>
+<span class="linenr">3: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'a&#30340;type&#28858;:'</span>, <span style="color: #c678dd;">type</span>(a))
+<span class="linenr">4: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'a&#30340;value&#28858;:'</span>, a)
+<span class="linenr">5: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'b&#30340;type&#28858;:'</span>, <span style="color: #c678dd;">type</span>(b))
+<span class="linenr">6: </span>    <span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'b&#30340;value&#28858;:'</span>, b)
+<span class="linenr">7: </span>two(a=<span style="color: #da8548; font-weight: bold;">3</span>, b=<span style="color: #da8548; font-weight: bold;">2</span>, c=<span style="color: #da8548; font-weight: bold;">3</span>, d=<span style="color: #da8548; font-weight: bold;">4</span>, e=<span style="color: #da8548; font-weight: bold;">5</span>, f=<span style="color: #da8548; font-weight: bold;">6</span>)
+</pre>
+</div>
+
+<pre class="example">
+a 的 type 為: &lt;class 'int'&gt;
+a 的 value 為: 3
+b 的 type 為: &lt;class 'dict'&gt;
+b 的 value 為: {'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}
+</pre>
+
+<p>
+由執行結果可以看出：第 1 個參數(3)的值被 assign 給引數 a，至於其他的 5 個參數(b, c, d, e, f)則都被第 2 個引數(b)接收了，原因是雙星號代表這個位置接收任意多個關鍵字參數，至於接收後的值，其類型變為 dict。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org80c173f" class="outline-3">
+<h3 id="org80c173f"><span class="section-number-3">5.4.</span> 雙星號使用情境</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+例如，我們想寫個 function 計算某學生成績，這個 function 會傳入各科成績，學科數不確定，最後傳回該生總分、平均。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">scoProc</span>(**scores):
+<span class="linenr">2: </span>    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">sum</span>(scores.values()), <span style="color: #c678dd;">sum</span>(scores.values())/<span style="color: #c678dd;">len</span>(scores)
+<span class="linenr">3: </span>
+<span class="linenr">4: </span><span style="color: #dcaeea;">sctot</span>, <span style="color: #dcaeea;">scavg</span> = scoProc(ch=<span style="color: #da8548; font-weight: bold;">10</span>, ma=<span style="color: #da8548; font-weight: bold;">30</span>, en=<span style="color: #da8548; font-weight: bold;">88</span>, ph=<span style="color: #da8548; font-weight: bold;">17</span>, sc=<span style="color: #da8548; font-weight: bold;">96</span>, ar=<span style="color: #da8548; font-weight: bold;">94</span>)
+<span class="linenr">5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#32317;&#20998;'</span>, sctot)
+<span class="linenr">6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#24179;&#22343;'</span>, scavg)
+<span class="linenr">7: </span>
+</pre>
+</div>
+
+<pre class="example">
+總分 335
+平均 55.833333333333336
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orga693990" class="outline-2">
+<h2 id="orga693990"><span class="section-number-2">6.</span> Function II</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgcc40590" class="outline-3">
+<h3 id="orgcc40590"><span class="section-number-3">6.1.</span> Function的特性</h3>
+<div class="outline-text-3" id="text-6-1">
+</div>
+<div id="outline-container-org20b4523" class="outline-4">
+<h4 id="org20b4523"><span class="section-number-4">6.1.1.</span> Fnction為物件</h4>
+<div class="outline-text-4" id="text-6-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">yell</span>(text):
 <span class="linenr">2: </span>    <span style="color: #51afef;">return</span> text.upper() + <span style="color: #98be65;">'!'</span>
@@ -294,9 +1216,9 @@ WOOF!
 </pre>
 </div>
 </div>
-<div id="outline-container-orgb01adb0" class="outline-4">
-<h4 id="orgb01adb0"><span class="section-number-4">1.1.2.</span> Function可被放在資料結構中</h4>
-<div class="outline-text-4" id="text-1-1-2">
+<div id="outline-container-org1249842" class="outline-4">
+<h4 id="org1249842"><span class="section-number-4">6.1.2.</span> Function可被放在資料結構中</h4>
+<div class="outline-text-4" id="text-6-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">yell</span>(text):
 <span class="linenr">2: </span>    <span style="color: #51afef;">return</span> text.upper() + <span style="color: #98be65;">'!'</span>
@@ -317,9 +1239,9 @@ Hey there!
 </pre>
 </div>
 </div>
-<div id="outline-container-org80277b5" class="outline-4">
-<h4 id="org80277b5"><span class="section-number-4">1.1.3.</span> Function可做為參數傳給其他function</h4>
-<div class="outline-text-4" id="text-1-1-3">
+<div id="outline-container-orgebc702c" class="outline-4">
+<h4 id="orgebc702c"><span class="section-number-4">6.1.3.</span> Function可做為參數傳給其他function</h4>
+<div class="outline-text-4" id="text-6-1-3">
 <p>
 Function是物件，所以除了能指定給變數，更可以當成其他function的參數。<br />
 </p>
@@ -364,9 +1286,9 @@ HI, I AM A PYTHON PROGRAM!
 </div>
 </div>
 </div>
-<div id="outline-container-orga6964c1" class="outline-4">
-<h4 id="orga6964c1"><span class="section-number-4">1.1.4.</span> Function可構成巢狀結構</h4>
-<div class="outline-text-4" id="text-1-1-4">
+<div id="outline-container-org68e9817" class="outline-4">
+<h4 id="org68e9817"><span class="section-number-4">6.1.4.</span> Function可構成巢狀結構</h4>
+<div class="outline-text-4" id="text-6-1-4">
 <p>
 在function內定義function，稱之為巢狀function(nested function)或內部function(inner function)<br />
 </p>
@@ -409,9 +1331,9 @@ hello, world...
 </pre>
 </div>
 </div>
-<div id="outline-container-org68536e7" class="outline-4">
-<h4 id="org68536e7"><span class="section-number-4">1.1.5.</span> Inner function可記住父function的參數狀態</h4>
-<div class="outline-text-4" id="text-1-1-5">
+<div id="outline-container-org7d32b83" class="outline-4">
+<h4 id="org7d32b83"><span class="section-number-4">6.1.5.</span> Inner function可記住父function的參數狀態</h4>
+<div class="outline-text-4" id="text-6-1-5">
 <p>
 Function還可「捕捉並保留父function的部份狀態」：<br />
 </p>
@@ -440,9 +1362,9 @@ HELLO, WORLD!
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1f60d5" class="outline-4">
-<h4 id="orgc1f60d5"><span class="section-number-4">1.1.6.</span> 物件也能像function一樣被呼叫</h4>
-<div class="outline-text-4" id="text-1-1-6">
+<div id="outline-container-org3a888e8" class="outline-4">
+<h4 id="org3a888e8"><span class="section-number-4">6.1.6.</span> 物件也能像function一樣被呼叫</h4>
+<div class="outline-text-4" id="text-6-1-6">
 <p>
 在Python中，function皆為object，反之object不見得是function，不過，我們能讓不是function的object變成可呼叫(callable)，許多情況下，甚至可以把callable object當成function，在後面加上小括號來呼叫它，甚至能傳入參數。要使object變為callable，方法是在類別加入__call__：<br />
 </p>
@@ -464,9 +1386,9 @@ HELLO, WORLD!
 </div>
 </div>
 </div>
-<div id="outline-container-org7048225" class="outline-3">
-<h3 id="org7048225"><span class="section-number-3">1.2.</span> lambda</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-orge4d570f" class="outline-3">
+<h3 id="orge4d570f"><span class="section-number-3">6.2.</span> lambda</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 lambda提供了可用來宣告小型匿㢱function的快速宣告方式:<br />
 </p>
@@ -540,9 +1462,9 @@ lambda function使用時機: 任何需要快速用上function object的地方，
 </p>
 </div>
 </div>
-<div id="outline-container-orgc1ed05b" class="outline-3">
-<h3 id="orgc1ed05b"><span class="section-number-3">1.3.</span> decorator</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-org8157595" class="outline-3">
+<h3 id="org8157595"><span class="section-number-3">6.3.</span> decorator</h3>
+<div class="outline-text-3" id="text-6-3">
 <p>
 Python的修飾器(decorator)可用來間接修改callable object(function, method, class)的行為，但不直接改動object本身，其用途包括:<br />
 </p>
@@ -554,9 +1476,9 @@ Python的修飾器(decorator)可用來間接修改callable object(function, meth
 <li>用快取暫存function的執行結果<br /></li>
 </ul>
 </div>
-<div id="outline-container-orgfc52a41" class="outline-4">
-<h4 id="orgfc52a41"><span class="section-number-4">1.3.1.</span> 修飾無參數function</h4>
-<div class="outline-text-4" id="text-1-3-1">
+<div id="outline-container-org672aa77" class="outline-4">
+<h4 id="org672aa77"><span class="section-number-4">6.3.1.</span> 修飾無參數function</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">uppercase</span>(func):
 <span class="linenr"> 2: </span>    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">wrapper</span>():
@@ -578,9 +1500,9 @@ HELLO
 </pre>
 </div>
 </div>
-<div id="outline-container-orga34f9a4" class="outline-4">
-<h4 id="orga34f9a4"><span class="section-number-4">1.3.2.</span> 多重修飾</h4>
-<div class="outline-text-4" id="text-1-3-2">
+<div id="outline-container-orgbe214d5" class="outline-4">
+<h4 id="orgbe214d5"><span class="section-number-4">6.3.2.</span> 多重修飾</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">strong</span>(func):
 <span class="linenr"> 2: </span>    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">wrapper</span>():
@@ -612,9 +1534,9 @@ HELLO
 </p>
 </div>
 </div>
-<div id="outline-container-orgf8843b5" class="outline-4">
-<h4 id="orgf8843b5"><span class="section-number-4">1.3.3.</span> 修飾有傳入參數的function</h4>
-<div class="outline-text-4" id="text-1-3-3">
+<div id="outline-container-org4556ac0" class="outline-4">
+<h4 id="org4556ac0"><span class="section-number-4">6.3.3.</span> 修飾有傳入參數的function</h4>
+<div class="outline-text-4" id="text-6-3-3">
 <p>
 若要修飾的function有帶參數，則wrapper()要改為wrapper(*args, **kwargs),這分別用來收集所有傳入的positional與keyword類參數，以tuple及dict形式儲存在arfs與kwargs變數裡，然後wrapper利用*與**將收集到的參數unpack後傳給原始func，如此就不會限制到參數個數。<br />
 </p>
@@ -674,9 +1596,9 @@ Finished in 5.3 second(s)
 </div>
 </div>
 </div>
-<div id="outline-container-orgcfe3a74" class="outline-3">
-<h3 id="orgcfe3a74"><span class="section-number-3">1.4.</span> *args and **kwargs</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-org1caa42f" class="outline-3">
+<h3 id="org1caa42f"><span class="section-number-3">6.4.</span> *args and **kwargs</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 *與**能讓function接受數量不定的額外參數，讓module與class能提供更有彈性的存取介面：<br />
 </p>
@@ -709,9 +1631,9 @@ kwargs: {'Key1': 'value1', 'key2': 456}
 </ul>
 </div>
 </div>
-<div id="outline-container-org62edffe" class="outline-3">
-<h3 id="org62edffe"><span class="section-number-3">1.5.</span> Unpack function parameters</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-orgd0be011" class="outline-3">
+<h3 id="orgd0be011"><span class="section-number-3">6.5.</span> Unpack function parameters</h3>
+<div class="outline-text-3" id="text-6-5">
 <p>
 *與**也可用來unpack function的args與kwargs，在呼叫function時，若在iterable object前加上*，就會unpack這個物件，將元素當成個別的positional parameters傳入參數;若加上**，則可unpack keyword parameters。<br />
 </p>
@@ -735,9 +1657,9 @@ kwargs: {'Key1': 'value1', 'key2': 456}
 </pre>
 </div>
 </div>
-<div id="outline-container-org186925b" class="outline-3">
-<h3 id="org186925b"><span class="section-number-3">1.6.</span> Return or not</h3>
-<div class="outline-text-3" id="text-1-6">
+<div id="outline-container-org73fa015" class="outline-3">
+<h3 id="org73fa015"><span class="section-number-3">6.6.</span> Return or not</h3>
+<div class="outline-text-3" id="text-6-6">
 <ul class="org-ul">
 <li>return 與return None效果一樣<br /></li>
 <li>如果沒有傳回值，則可省略return，例如，一個只負責print的function並無任值可傳回，寫return會很奇怪。<br /></li>
@@ -745,13 +1667,13 @@ kwargs: {'Key1': 'value1', 'key2': 456}
 </div>
 </div>
 </div>
-<div id="outline-container-org8e76e6b" class="outline-2">
-<h2 id="org8e76e6b"><span class="section-number-2">2.</span> Class v.s. Object</h2>
-<div class="outline-text-2" id="text-2">
+<div id="outline-container-orge998af6" class="outline-2">
+<h2 id="orge998af6"><span class="section-number-2">7.</span> Class v.s. Object</h2>
+<div class="outline-text-2" id="text-7">
 </div>
-<div id="outline-container-orga50a328" class="outline-3">
-<h3 id="orga50a328"><span class="section-number-3">2.1.</span> <span class="todo TODO">TODO</span> 什麼是class? 什麼是object?</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-org8c839bb" class="outline-3">
+<h3 id="org8c839bb"><span class="section-number-3">7.1.</span> <span class="todo TODO">TODO</span> 什麼是class? 什麼是object?</h3>
+<div class="outline-text-3" id="text-7-1">
 <p>
 把這個看完: <a href="https://youtu.be/JeznW_7DlB0">https://youtu.be/JeznW_7DlB0</a>:<br />
 </p>
@@ -834,9 +1756,9 @@ AttributeError: &rsquo;int&rsquo; object has no attribute &rsquo;upper&rsquo;<br
 </p>
 </div>
 </div>
-<div id="outline-container-org889bac4" class="outline-3">
-<h3 id="org889bac4"><span class="section-number-3">2.2.</span> 建立自己的class</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-org00b635e" class="outline-3">
+<h3 id="org00b635e"><span class="section-number-3">7.2.</span> 建立自己的class</h3>
+<div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Dog</span>:
 <span class="linenr">2: </span>    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">bark</span>(<span style="color: #51afef;">self</span>):
@@ -859,9 +1781,9 @@ AttributeError: &rsquo;int&rsquo; object has no attribute &rsquo;upper&rsquo;<br
 </p>
 </div>
 </div>
-<div id="outline-container-orgfa24d13" class="outline-3">
-<h3 id="orgfa24d13"><span class="section-number-3">2.3.</span> == v.s. is</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-org4c1183c" class="outline-3">
+<h3 id="org4c1183c"><span class="section-number-3">7.3.</span> == v.s. is</h3>
+<div class="outline-text-3" id="text-7-3">
 <ul class="org-ul">
 <li>==: equal<br /></li>
 <li>is: identical<br /></li>
@@ -885,20 +1807,20 @@ True
 </pre>
 </div>
 </div>
-<div id="outline-container-org7f9680c" class="outline-3">
-<h3 id="org7f9680c"><span class="section-number-3">2.4.</span> Shallow copy v.s. Deep copy</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-org0482d68" class="outline-3">
+<h3 id="org0482d68"><span class="section-number-3">7.4.</span> Shallow copy v.s. Deep copy</h3>
+<div class="outline-text-3" id="text-7-4">
 <p>
-簡單來說，淺與深的區別<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>：<br />
+簡單來說，淺與深的區別<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>：<br />
 </p>
 <ul class="org-ul">
 <li>淺複製僅複製容器中元素的地址<br /></li>
 <li>深複製完全複製了一份副本，容器與容器中的元素地址都不一樣<br /></li>
 </ul>
 </div>
-<div id="outline-container-org37747d3" class="outline-4">
-<h4 id="org37747d3"><span class="section-number-4">2.4.1.</span> shallow copy</h4>
-<div class="outline-text-4" id="text-2-4-1">
+<div id="outline-container-org1a5160e" class="outline-4">
+<h4 id="org1a5160e"><span class="section-number-4">7.4.1.</span> shallow copy</h4>
+<div class="outline-text-4" id="text-7-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #dcaeea;">xs</span> = [[<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>], [<span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>], [<span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">8</span>, <span style="color: #da8548; font-weight: bold;">9</span>]]
 <span class="linenr"> 2: </span><span style="color: #dcaeea;">ys</span> = <span style="color: #c678dd;">list</span>(xs) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">shallow copy</span>
@@ -930,9 +1852,9 @@ False
 </p>
 </div>
 </div>
-<div id="outline-container-orgcafea2f" class="outline-4">
-<h4 id="orgcafea2f"><span class="section-number-4">2.4.2.</span> deep copy</h4>
-<div class="outline-text-4" id="text-2-4-2">
+<div id="outline-container-orge82a2b2" class="outline-4">
+<h4 id="orge82a2b2"><span class="section-number-4">7.4.2.</span> deep copy</h4>
+<div class="outline-text-4" id="text-7-4-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> copy
 <span class="linenr"> 2: </span><span style="color: #dcaeea;">xs</span> = [[<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>], [<span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>], [<span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">8</span>, <span style="color: #da8548; font-weight: bold;">9</span>]]
@@ -955,9 +1877,9 @@ False
 </pre>
 </div>
 </div>
-<div id="outline-container-org595c7cf" class="outline-4">
-<h4 id="org595c7cf"><span class="section-number-4">2.4.3.</span> copy any object</h4>
-<div class="outline-text-4" id="text-2-4-3">
+<div id="outline-container-orgb701e91" class="outline-4">
+<h4 id="orgb701e91"><span class="section-number-4">7.4.3.</span> copy any object</h4>
+<div class="outline-text-4" id="text-7-4-3">
 <p>
 不管想copy什麼object，包括自訂物件，解決之道亦是用copy module的copy()與deepcopy()。<br />
 </p>
@@ -990,9 +1912,9 @@ False
 </div>
 </div>
 </div>
-<div id="outline-container-orgcf402b0" class="outline-3">
-<h3 id="orgcf402b0"><span class="section-number-3">2.5.</span> ABC: Abstract Base Class</h3>
-<div class="outline-text-3" id="text-2-5">
+<div id="outline-container-org1eaac0a" class="outline-3">
+<h3 id="org1eaac0a"><span class="section-number-3">7.5.</span> ABC: Abstract Base Class</h3>
+<div class="outline-text-3" id="text-7-5">
 <p>
 C++、Java等語言都有「介面」(interface)這種本身無法建立object、卻能當成建立object template的機制。Python則可藉由ABC來實作。藉由ABC來建立class，便是可確保繼承之sub-class均有正確的特定method。<br />
 </p>
@@ -1022,9 +1944,9 @@ True
 </pre>
 </div>
 </div>
-<div id="outline-container-orge1f973c" class="outline-3">
-<h3 id="orge1f973c"><span class="section-number-3">2.6.</span> object/class/static method</h3>
-<div class="outline-text-3" id="text-2-6">
+<div id="outline-container-org2a9cbc1" class="outline-3">
+<h3 id="org2a9cbc1"><span class="section-number-3">7.6.</span> object/class/static method</h3>
+<div class="outline-text-3" id="text-7-6">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">MyClass</span>:
 <span class="linenr"> 2: </span>
@@ -1058,9 +1980,9 @@ True
 <li>stcmethod為static method，沒有參數，無法修改物件或類別狀態，只能處理user傳入的參數<br /></li>
 </ul>
 </div>
-<div id="outline-container-org3b60190" class="outline-4">
-<h4 id="org3b60190"><span class="section-number-4">2.6.1.</span> DEMO</h4>
-<div class="outline-text-4" id="text-2-6-1">
+<div id="outline-container-org1176d01" class="outline-4">
+<h4 id="org1176d01"><span class="section-number-4">7.6.1.</span> DEMO</h4>
+<div class="outline-text-4" id="text-7-6-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Drink</span>:
 <span class="linenr"> 2: </span>    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">__init__</span>(<span style="color: #51afef;">self</span>, name, price, counts):
@@ -1100,17 +2022,17 @@ True
 </div>
 </div>
 </div>
-<div id="outline-container-org09d7ef6" class="outline-3">
-<h3 id="org09d7ef6"><span class="section-number-3">2.7.</span> class variable v.s. instance variable</h3>
-<div class="outline-text-3" id="text-2-7">
+<div id="outline-container-orgcc15741" class="outline-3">
+<h3 id="orgcc15741"><span class="section-number-3">7.7.</span> class variable v.s. instance variable</h3>
+<div class="outline-text-3" id="text-7-7">
 <ul class="org-ul">
 <li>class variable: 宣告在classs定義裡，但宣告位置在所有method之外<br /></li>
 <li>instance variable: 屬於由class所建立的某個instance，其內容並非存在class中，而是由各別instance負責<br /></li>
 </ul>
 </div>
-<div id="outline-container-orgcb5c461" class="outline-4">
-<h4 id="orgcb5c461"><span class="section-number-4">2.7.1.</span> 差異</h4>
-<div class="outline-text-4" id="text-2-7-1">
+<div id="outline-container-orgc7cbb37" class="outline-4">
+<h4 id="orgc7cbb37"><span class="section-number-4">7.7.1.</span> 差異</h4>
+<div class="outline-text-4" id="text-7-7-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Dog</span>:
 <span class="linenr"> 2: </span>    <span style="color: #dcaeea;">num_dogs</span> = <span style="color: #da8548; font-weight: bold;">0</span> <span style="color: #5B6268;">#</span><span style="color: #5B6268;">Demo class variable&#30340;&#36969;&#29992;&#26178;&#27231;</span>
@@ -1143,17 +2065,17 @@ True
 </div>
 </div>
 </div>
-<div id="outline-container-org5cc2e0a" class="outline-2">
-<h2 id="org5cc2e0a"><span class="section-number-2">3.</span> 資料型別 II</h2>
-<div class="outline-text-2" id="text-3">
+<div id="outline-container-org290cbb7" class="outline-2">
+<h2 id="org290cbb7"><span class="section-number-2">8.</span> 資料型別 II</h2>
+<div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org6def7d6" class="outline-3">
-<h3 id="org6def7d6"><span class="section-number-3">3.1.</span> Dict</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-org585bb71" class="outline-3">
+<h3 id="org585bb71"><span class="section-number-3">8.1.</span> Dict</h3>
+<div class="outline-text-3" id="text-8-1">
 </div>
-<div id="outline-container-orgc6d3808" class="outline-4">
-<h4 id="orgc6d3808"><span class="section-number-4">3.1.1.</span> collections.ChainMap</h4>
-<div class="outline-text-4" id="text-3-1-1">
+<div id="outline-container-org6fe6d50" class="outline-4">
+<h4 id="org6fe6d50"><span class="section-number-4">8.1.1.</span> collections.ChainMap</h4>
+<div class="outline-text-4" id="text-8-1-1">
 <p>
 collections.ChainMap可以把多個dict集結串成單一個dict，如<br />
 </p>
@@ -1183,9 +2105,9 @@ ChainMap({'one': 1, 'two': 2, 'five': 5}, {'two': '貳', 'three': 'III', 'four':
 </div>
 </div>
 </div>
-<div id="outline-container-org1944ea6" class="outline-3">
-<h3 id="org1944ea6"><span class="section-number-3">3.2.</span> types.MappingProxyType</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-org105b524" class="outline-3">
+<h3 id="org105b524"><span class="section-number-3">8.2.</span> types.MappingProxyType</h3>
+<div class="outline-text-3" id="text-8-2">
 <p>
 透過MappingProxyType class可以把dict變為唯讀。<br />
 </p>
@@ -1201,9 +2123,9 @@ ChainMap({'one': 1, 'two': 2, 'five': 5}, {'two': '貳', 'three': 'III', 'four':
 </div>
 </div>
 </div>
-<div id="outline-container-org3b25ba1" class="outline-3">
-<h3 id="org3b25ba1"><span class="section-number-3">3.3.</span> array.array</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-org8f4dd27" class="outline-3">
+<h3 id="org8f4dd27"><span class="section-number-3">8.3.</span> array.array</h3>
+<div class="outline-text-3" id="text-8-3">
 <p>
 若要和C語言程式交換資料，或是只需要一個儲存數值型態資料的空間，則可用array.array，優點是比list或tuple省空間。array.array的method與list大致相同，許多情況下甚至可直接交換二者的資料型別而無需修改相關程式碼。<br />
 </p>
@@ -1225,16 +2147,16 @@ array('f', [1.0, 2.0, 6.099999904632568, 2.0999999046325684])
 </pre>
 </div>
 </div>
-<div id="outline-container-orgffc4e97" class="outline-3">
-<h3 id="orgffc4e97"><span class="section-number-3">3.4.</span> Record</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-org8b7db98" class="outline-3">
+<h3 id="org8b7db98"><span class="section-number-3">8.4.</span> Record</h3>
+<div class="outline-text-3" id="text-8-4">
 <p>
 同樣以儲存car record(color, mileage, automatic)來比較<br />
 </p>
 </div>
-<div id="outline-container-orgd8b2f6d" class="outline-4">
-<h4 id="orgd8b2f6d"><span class="section-number-4">3.4.1.</span> list/tuple</h4>
-<div class="outline-text-4" id="text-3-4-1">
+<div id="outline-container-org58f216d" class="outline-4">
+<h4 id="org58f216d"><span class="section-number-4">8.4.1.</span> list/tuple</h4>
+<div class="outline-text-4" id="text-8-4-1">
 <ul class="org-ul">
 <li>建立速度快、執行效率高，<br /></li>
 <li>但沒有欄位名稱，建立資料時可能弄錯順序<br /></li>
@@ -1248,9 +2170,9 @@ array('f', [1.0, 2.0, 6.099999904632568, 2.0999999046325684])
 </div>
 </div>
 </div>
-<div id="outline-container-org53f634a" class="outline-4">
-<h4 id="org53f634a"><span class="section-number-4">3.4.2.</span> dict</h4>
-<div class="outline-text-4" id="text-3-4-2">
+<div id="outline-container-orgc5fba8d" class="outline-4">
+<h4 id="orgc5fba8d"><span class="section-number-4">8.4.2.</span> dict</h4>
+<div class="outline-text-4" id="text-8-4-2">
 <ul class="org-ul">
 <li>可透過key/value來當成欄位名稱<br /></li>
 <li>仍缺乏欄位監控機制，防止使用者在建立object時打錯或漏打欄位<br /></li>
@@ -1275,9 +2197,9 @@ red
 </pre>
 </div>
 </div>
-<div id="outline-container-org47ebf02" class="outline-4">
-<h4 id="org47ebf02"><span class="section-number-4">3.4.3.</span> 自訂類別</h4>
-<div class="outline-text-4" id="text-3-4-3">
+<div id="outline-container-org57513a3" class="outline-4">
+<h4 id="org57513a3"><span class="section-number-4">8.4.3.</span> 自訂類別</h4>
+<div class="outline-text-4" id="text-8-4-3">
 <ul class="org-ul">
 <li>麻煩，在要__init__建構子內設定每個欄位，還要自己寫__repr__ method<br /></li>
 </ul>
@@ -1294,9 +2216,9 @@ red
 </div>
 </div>
 </div>
-<div id="outline-container-orgb69b851" class="outline-4">
-<h4 id="orgb69b851"><span class="section-number-4">3.4.4.</span> typing.NamedTuple</h4>
-<div class="outline-text-4" id="text-3-4-4">
+<div id="outline-container-org4e9c199" class="outline-4">
+<h4 id="org4e9c199"><span class="section-number-4">8.4.4.</span> typing.NamedTuple</h4>
+<div class="outline-text-4" id="text-8-4-4">
 <ul class="org-ul">
 <li>readonly<br /></li>
 <li>欄位型別無強制性<br /></li>
@@ -1324,9 +2246,9 @@ Car(color='blue', mileage='test', automatic=1234)
 </pre>
 </div>
 </div>
-<div id="outline-container-orgec1fe01" class="outline-4">
-<h4 id="orgec1fe01"><span class="section-number-4">3.4.5.</span> types.SimpleNamespace</h4>
-<div class="outline-text-4" id="text-3-4-5">
+<div id="outline-container-org25f0cc6" class="outline-4">
+<h4 id="org25f0cc6"><span class="section-number-4">8.4.5.</span> types.SimpleNamespace</h4>
+<div class="outline-text-4" id="text-8-4-5">
 <ul class="org-ul">
 <li>本質上是dict,把dict的key變成class attribute<br /></li>
 <li>可以新增、修改、刪除attribute<br /></li>
@@ -1350,9 +2272,9 @@ namespace(color='blue', mileage=1341, automatic=True)
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc988354" class="outline-4">
-<h4 id="orgc988354"><span class="section-number-4">3.4.6.</span> dataclass (Python 3.7+)</h4>
-<div class="outline-text-4" id="text-3-4-6">
+<div id="outline-container-org6672754" class="outline-4">
+<h4 id="org6672754"><span class="section-number-4">8.4.6.</span> dataclass (Python 3.7+)</h4>
+<div class="outline-text-4" id="text-8-4-6">
 <ul class="org-ul">
 <li>能自動建立__init__、__repr__等method<br /></li>
 <li>可加入自訂method<br /></li>
@@ -1393,9 +2315,9 @@ namespace(color='blue', mileage=1341, automatic=True)
 ElectronicCar(color='white', mileage=3123, automatic=True, charge=1000)
 </pre>
 </div>
-<div id="outline-container-org6f27f15" class="outline-5">
-<h5 id="org6f27f15"><span class="underline"><span class="underline">slots</span></span></h5>
-<div class="outline-text-5" id="text-org6f27f15">
+<div id="outline-container-org41be4d4" class="outline-5">
+<h5 id="org41be4d4"><span class="underline"><span class="underline">slots</span></span></h5>
+<div class="outline-text-5" id="text-org41be4d4">
 <p>
 如果你的程式會建立同一類別的大量object，但不會增刪object attribute，則可以考慮使用__slots__來節省object占用的記憶體，同時加快存取速度。<br />
 </p>
@@ -1419,9 +2341,9 @@ __slots__不限於dataclass，在任何class均可使用<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org109458f" class="outline-4">
-<h4 id="org109458f"><span class="section-number-4">3.4.7.</span> struct.struct</h4>
-<div class="outline-text-4" id="text-3-4-7">
+<div id="outline-container-org712bec5" class="outline-4">
+<h4 id="org712bec5"><span class="section-number-4">8.4.7.</span> struct.struct</h4>
+<div class="outline-text-4" id="text-8-4-7">
 <ul class="org-ul">
 <li>與C的struct交換資料的管道<br /></li>
 </ul>
@@ -1438,9 +2360,9 @@ __slots__不限於dataclass，在任何class均可使用<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org0ab623b" class="outline-3">
-<h3 id="org0ab623b"><span class="section-number-3">3.5.</span> Set</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-orga9ce538" class="outline-3">
+<h3 id="orga9ce538"><span class="section-number-3">8.5.</span> Set</h3>
+<div class="outline-text-3" id="text-8-5">
 <ul class="org-ul">
 <li>Python建立set，除了用{}、也可以用set comprehension<br /></li>
 <li>若要建立empty set，一定要call set()建構子，因為空的{}會被當成dict<br /></li>
@@ -1462,9 +2384,9 @@ __slots__不限於dataclass，在任何class均可使用<br />
 set()
 </pre>
 </div>
-<div id="outline-container-orgc9ba1b5" class="outline-4">
-<h4 id="orgc9ba1b5"><span class="section-number-4">3.5.1.</span> frozenset</h4>
-<div class="outline-text-4" id="text-3-5-1">
+<div id="outline-container-orgbf079e0" class="outline-4">
+<h4 id="orgbf079e0"><span class="section-number-4">8.5.1.</span> frozenset</h4>
+<div class="outline-text-4" id="text-8-5-1">
 <ul class="org-ul">
 <li>frozenset class為set的不可變版本，一旦建立就無法增刪修，只能查詢<br /></li>
 <li>但frozenset為靜態iterable object,故為hashable object,能當成dict object的key或其他set的element，這是一般set無法做到的事<br /></li>
@@ -1482,9 +2404,9 @@ set()
 </pre>
 </div>
 </div>
-<div id="outline-container-org644e9ba" class="outline-4">
-<h4 id="org644e9ba"><span class="section-number-4">3.5.2.</span> collections.Counter</h4>
-<div class="outline-text-4" id="text-3-5-2">
+<div id="outline-container-org8e563b7" class="outline-4">
+<h4 id="org8e563b7"><span class="section-number-4">8.5.2.</span> collections.Counter</h4>
+<div class="outline-text-4" id="text-8-5-2">
 <ul class="org-ul">
 <li>collections module底下的Counter實作了「多重集合」(multisets)，能輸入多個iterable object(set, dict, string)並統整各元素的出現次數<br /></li>
 <li>Counter實際為dict的subclass，當我們把新的iterable object輸入Counter object時，該iterable object的element會新增為dict的key，而該element出現次數則為dict的value<br /></li>
@@ -1513,16 +2435,16 @@ Counter({'bread': 4, 'sward': 3, 'coins': 1, 'drink': 1})
 </div>
 </div>
 </div>
-<div id="outline-container-org10eb216" class="outline-3">
-<h3 id="org10eb216"><span class="section-number-3">3.6.</span> Stack</h3>
-<div class="outline-text-3" id="text-3-6">
+<div id="outline-container-orgf1a8a3c" class="outline-3">
+<h3 id="orgf1a8a3c"><span class="section-number-3">8.6.</span> Stack</h3>
+<div class="outline-text-3" id="text-8-6">
 <p>
 幾種實作Stack的結構<br />
 </p>
 </div>
-<div id="outline-container-org311a0eb" class="outline-4">
-<h4 id="org311a0eb"><span class="section-number-4">3.6.1.</span> list</h4>
-<div class="outline-text-4" id="text-3-6-1">
+<div id="outline-container-org7985310" class="outline-4">
+<h4 id="org7985310"><span class="section-number-4">8.6.1.</span> list</h4>
+<div class="outline-text-4" id="text-8-6-1">
 <ul class="org-ul">
 <li>python內部以動態陣列來實作list，所以會配置比element所需更大的空間，視需要增減。故push與pop不見會需要調整大小，平均效率可達O(1)<br /></li>
 <li>但為了達到這種效率，element必須從tail做push, pop<br /></li>
@@ -1552,9 +2474,9 @@ Counter({'bread': 4, 'sward': 3, 'coins': 1, 'drink': 1})
 </pre>
 </div>
 </div>
-<div id="outline-container-org54ded34" class="outline-4">
-<h4 id="org54ded34"><span class="section-number-4">3.6.2.</span> collections.deque</h4>
-<div class="outline-text-4" id="text-3-6-2">
+<div id="outline-container-orgac4cfba" class="outline-4">
+<h4 id="orgac4cfba"><span class="section-number-4">8.6.2.</span> collections.deque</h4>
+<div class="outline-text-4" id="text-8-6-2">
 <ul class="org-ul">
 <li>快速穩定的stack<br /></li>
 <li>支援從head,tail做push,pop，效率均為O(1)<br /></li>
@@ -1585,9 +2507,9 @@ sleeping
 </pre>
 </div>
 </div>
-<div id="outline-container-org761d083" class="outline-4">
-<h4 id="org761d083"><span class="section-number-4">3.6.3.</span> queue.LifoQueue</h4>
-<div class="outline-text-4" id="text-3-6-3">
+<div id="outline-container-orga0b2b06" class="outline-4">
+<h4 id="orga0b2b06"><span class="section-number-4">8.6.3.</span> queue.LifoQueue</h4>
+<div class="outline-text-4" id="text-8-6-3">
 <ul class="org-ul">
 <li>可用於multithreadin進行parallelism平行運算時的共享資料<br /></li>
 <li>這些資料結構還提供了上鎖機制，好讓同一時間只有一個thread能從queue取出資料<br /></li>
@@ -1610,24 +2532,24 @@ sleeping
 </div>
 </div>
 </div>
-<div id="outline-container-orga89b2cb" class="outline-3">
-<h3 id="orga89b2cb"><span class="section-number-3">3.7.</span> Queue</h3>
-<div class="outline-text-3" id="text-3-7">
+<div id="outline-container-org5969fc7" class="outline-3">
+<h3 id="org5969fc7"><span class="section-number-3">8.7.</span> Queue</h3>
+<div class="outline-text-3" id="text-8-7">
 <p>
 幾種實作queue的資料結構<br />
 </p>
 </div>
-<div id="outline-container-org71fd76b" class="outline-4">
-<h4 id="org71fd76b"><span class="section-number-4">3.7.1.</span> list</h4>
-<div class="outline-text-4" id="text-3-7-1">
+<div id="outline-container-org30c203a" class="outline-4">
+<h4 id="org30c203a"><span class="section-number-4">8.7.1.</span> list</h4>
+<div class="outline-text-4" id="text-8-7-1">
 <ul class="org-ul">
 <li>非常慢，沒有效率<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcd54f8f" class="outline-4">
-<h4 id="orgcd54f8f"><span class="section-number-4">3.7.2.</span> collections.deque</h4>
-<div class="outline-text-4" id="text-3-7-2">
+<div id="outline-container-org50158a5" class="outline-4">
+<h4 id="org50158a5"><span class="section-number-4">8.7.2.</span> collections.deque</h4>
+<div class="outline-text-4" id="text-8-7-2">
 <ul class="org-ul">
 <li>快速穩定<br /></li>
 </ul>
@@ -1654,34 +2576,34 @@ deque(['coding', 'writing'])
 </pre>
 </div>
 </div>
-<div id="outline-container-orga73a9bc" class="outline-4">
-<h4 id="orga73a9bc"><span class="section-number-4">3.7.3.</span> queue.Queue</h4>
-<div class="outline-text-4" id="text-3-7-3">
+<div id="outline-container-orga3d7b8d" class="outline-4">
+<h4 id="orga3d7b8d"><span class="section-number-4">8.7.3.</span> queue.Queue</h4>
+<div class="outline-text-4" id="text-8-7-3">
 <ul class="org-ul">
 <li>和queue.LifoQueue一樣，內建上鎖機制，可以用來讓multithreading共享資料或任務<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgaf2cf88" class="outline-4">
-<h4 id="orgaf2cf88"><span class="section-number-4">3.7.4.</span> multiprocessing.Queue</h4>
-<div class="outline-text-4" id="text-3-7-4">
+<div id="outline-container-org6be5a75" class="outline-4">
+<h4 id="org6be5a75"><span class="section-number-4">8.7.4.</span> multiprocessing.Queue</h4>
+<div class="outline-text-4" id="text-8-7-4">
 <ul class="org-ul">
 <li>multi-thread在python中其實不算真正的平行運算，各thread實際上是在同一個interpreter下執行，只用到一個core，藉由不斷切換的方式來達到平行運算的效果。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgdb59ee8" class="outline-4">
-<h4 id="orgdb59ee8"><span class="section-number-4">3.7.5.</span> priority queue</h4>
-<div class="outline-text-4" id="text-3-7-5">
+<div id="outline-container-orgc510c1e" class="outline-4">
+<h4 id="orgc510c1e"><span class="section-number-4">8.7.5.</span> priority queue</h4>
+<div class="outline-text-4" id="text-8-7-5">
 <ul class="org-ul">
 <li>不遵循FIFO原則，而是以priority為順序考量<br /></li>
 <li>priority由totally-ordered key來決定<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc672298" class="outline-4">
-<h4 id="orgc672298"><span class="section-number-4">3.7.6.</span> heapq</h4>
-<div class="outline-text-4" id="text-3-7-6">
+<div id="outline-container-orgf0dcfd8" class="outline-4">
+<h4 id="orgf0dcfd8"><span class="section-number-4">8.7.6.</span> heapq</h4>
+<div class="outline-text-4" id="text-8-7-6">
 <ul class="org-ul">
 <li>借用list實作的binary tree(heap)結構<br /></li>
 <li>可實作priority<br /></li>
@@ -1691,7 +2613,7 @@ deque(['coding', 'writing'])
 <li>限制之一是預設為由小到大排序<br /></li>
 </ul>
 
-<div id="org4f6aed8" class="figure">
+<div id="org79f52e7" class="figure">
 <p><img src="images/heapq.png" alt="heapq.png" width="300" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>heapq</p>
@@ -1716,9 +2638,9 @@ deque(['coding', 'writing'])
 </pre>
 </div>
 </div>
-<div id="outline-container-orgec38bd8" class="outline-4">
-<h4 id="orgec38bd8"><span class="section-number-4">3.7.7.</span> queue.PriorityQueue</h4>
-<div class="outline-text-4" id="text-3-7-7">
+<div id="outline-container-org20f8f87" class="outline-4">
+<h4 id="org20f8f87"><span class="section-number-4">8.7.7.</span> queue.PriorityQueue</h4>
+<div class="outline-text-4" id="text-8-7-7">
 <ul class="org-ul">
 <li>可用於multi-thread的heapq<br />
 **<br /></li>
@@ -1727,13 +2649,13 @@ deque(['coding', 'writing'])
 </div>
 </div>
 </div>
-<div id="outline-container-org54f65cf" class="outline-2">
-<h2 id="org54f65cf"><span class="section-number-2">4.</span> <span class="todo LOOP">LOOP</span> </h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org3c60aa2" class="outline-2">
+<h2 id="org3c60aa2"><span class="section-number-2">9.</span> <span class="todo LOOP">LOOP</span> </h2>
+<div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org98a8df5" class="outline-3">
-<h3 id="org98a8df5"><span class="section-number-3">4.1.</span> enumerate()</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org63574e2" class="outline-3">
+<h3 id="org63574e2"><span class="section-number-3">9.1.</span> enumerate()</h3>
+<div class="outline-text-3" id="text-9-1">
 <ul class="org-ul">
 <li>如果想保留for-each的寫法，但同時又希望能取得每個element的index<br /></li>
 </ul>
@@ -1753,9 +2675,9 @@ deque(['coding', 'writing'])
 </pre>
 </div>
 </div>
-<div id="outline-container-org829f877" class="outline-3">
-<h3 id="org829f877"><span class="section-number-3">4.2.</span> zip()</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgf363a86" class="outline-3">
+<h3 id="orgf363a86"><span class="section-number-3">9.2.</span> zip()</h3>
+<div class="outline-text-3" id="text-9-2">
 <ul class="org-ul">
 <li>可用來同時走訪多個container<br /></li>
 <li>可用來旋轉二維list<br /></li>
@@ -1777,9 +2699,9 @@ deque(['coding', 'writing'])
 3: c
 </pre>
 </div>
-<div id="outline-container-org270b4f0" class="outline-4">
-<h4 id="org270b4f0"><span class="section-number-4">4.2.1.</span> 旋轉list</h4>
-<div class="outline-text-4" id="text-4-2-1">
+<div id="outline-container-orgaf93e5b" class="outline-4">
+<h4 id="orgaf93e5b"><span class="section-number-4">9.2.1.</span> 旋轉list</h4>
+<div class="outline-text-4" id="text-9-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">a</span> = [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>]
 <span class="linenr">2: </span><span style="color: #dcaeea;">b</span> = [<span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>]
@@ -1799,26 +2721,26 @@ deque(['coding', 'writing'])
 </div>
 </div>
 </div>
-<div id="outline-container-orgd980cdf" class="outline-3">
-<h3 id="orgd980cdf"><span class="section-number-3">4.3.</span> comprehension</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org3241b05" class="outline-3">
+<h3 id="org3241b05"><span class="section-number-3">9.3.</span> comprehension</h3>
+<div class="outline-text-3" id="text-9-3">
 <ul class="org-ul">
 <li>即簡單的單行for-loop<br /></li>
 <li>可以讓我們用單行程式產生出包含特定元素的list, set, dict<br /></li>
 </ul>
 </div>
-<div id="outline-container-orga43aa1c" class="outline-4">
-<h4 id="orga43aa1c"><span class="section-number-4">4.3.1.</span> 語法</h4>
-<div class="outline-text-4" id="text-4-3-1">
+<div id="outline-container-org45004cb" class="outline-4">
+<h4 id="org45004cb"><span class="section-number-4">9.3.1.</span> 語法</h4>
+<div class="outline-text-4" id="text-9-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">list</span> = [&#36939;&#31639;&#24335; <span style="color: #51afef;">for</span> &#35722;&#25976; <span style="color: #51afef;">in</span> iterable <span style="color: #c678dd;">object</span>]
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org441382b" class="outline-4">
-<h4 id="org441382b"><span class="section-number-4">4.3.2.</span> list comprehension</h4>
-<div class="outline-text-4" id="text-4-3-2">
+<div id="outline-container-org2301528" class="outline-4">
+<h4 id="org2301528"><span class="section-number-4">9.3.2.</span> list comprehension</h4>
+<div class="outline-text-4" id="text-9-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">squares</span> = [x ** <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">10</span>)]
 <span class="linenr">2: </span><span style="color: #c678dd;">print</span>(squares)
@@ -1830,9 +2752,9 @@ deque(['coding', 'writing'])
 </pre>
 </div>
 </div>
-<div id="outline-container-org857f8f8" class="outline-4">
-<h4 id="org857f8f8"><span class="section-number-4">4.3.3.</span> comprehension過濾條件</h4>
-<div class="outline-text-4" id="text-4-3-3">
+<div id="outline-container-org78aca61" class="outline-4">
+<h4 id="org78aca61"><span class="section-number-4">9.3.3.</span> comprehension過濾條件</h4>
+<div class="outline-text-4" id="text-9-3-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">list</span> = [x ** <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">10</span>) <span style="color: #51afef;">if</span> x % <span style="color: #da8548; font-weight: bold;">2</span> == <span style="color: #da8548; font-weight: bold;">0</span>]
 <span class="linenr">2: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">list</span>)
@@ -1844,9 +2766,9 @@ deque(['coding', 'writing'])
 </pre>
 </div>
 </div>
-<div id="outline-container-org80eeefe" class="outline-4">
-<h4 id="org80eeefe"><span class="section-number-4">4.3.4.</span> set與dict comprehension</h4>
-<div class="outline-text-4" id="text-4-3-4">
+<div id="outline-container-org37ffc9d" class="outline-4">
+<h4 id="org37ffc9d"><span class="section-number-4">9.3.4.</span> set與dict comprehension</h4>
+<div class="outline-text-4" id="text-9-3-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">setA</span> = [x ** <span style="color: #da8548; font-weight: bold;">2</span> <span style="color: #51afef;">for</span> x <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">10</span>)]
 <span class="linenr">2: </span><span style="color: #c678dd;">print</span>(setA)
@@ -1862,13 +2784,13 @@ deque(['coding', 'writing'])
 </div>
 </div>
 </div>
-<div id="outline-container-org1d20136" class="outline-3">
-<h3 id="org1d20136"><span class="section-number-3">4.4.</span> list</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-org1fc19cc" class="outline-3">
+<h3 id="org1fc19cc"><span class="section-number-3">9.4.</span> list</h3>
+<div class="outline-text-3" id="text-9-4">
 </div>
-<div id="outline-container-org929a5cf" class="outline-4">
-<h4 id="org929a5cf"><span class="section-number-4">4.4.1.</span> slice</h4>
-<div class="outline-text-4" id="text-4-4-1">
+<div id="outline-container-org2ed0375" class="outline-4">
+<h4 id="org2ed0375"><span class="section-number-4">9.4.1.</span> slice</h4>
+<div class="outline-text-4" id="text-9-4-1">
 <p>
 語法<br />
 </p>
@@ -1894,9 +2816,9 @@ deque(['coding', 'writing'])
 </pre>
 </div>
 </div>
-<div id="outline-container-org3fedab1" class="outline-4">
-<h4 id="org3fedab1"><span class="section-number-4">4.4.2.</span> copy</h4>
-<div class="outline-text-4" id="text-4-4-2">
+<div id="outline-container-orgfc68d8c" class="outline-4">
+<h4 id="orgfc68d8c"><span class="section-number-4">9.4.2.</span> copy</h4>
+<div class="outline-text-4" id="text-9-4-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">l</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">6</span>))
 <span class="linenr">2: </span><span style="color: #c678dd;">print</span>(l)
@@ -1917,26 +2839,26 @@ deque(['coding', 'writing'])
 </div>
 </div>
 </div>
-<div id="outline-container-org0fd135e" class="outline-2">
-<h2 id="org0fd135e"><span class="section-number-2">5.</span> Python 套件管理</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-org1ed21c5" class="outline-2">
+<h2 id="org1ed21c5"><span class="section-number-2">10.</span> Python 套件管理</h2>
+<div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-org40ae3e7" class="outline-3">
-<h3 id="org40ae3e7"><span class="section-number-3">5.1.</span> pip v.s. conda</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-org6065a25" class="outline-3">
+<h3 id="org6065a25"><span class="section-number-3">10.1.</span> pip v.s. conda</h3>
+<div class="outline-text-3" id="text-10-1">
 </div>
-<div id="outline-container-org5f202b4" class="outline-4">
-<h4 id="org5f202b4"><span class="section-number-4">5.1.1.</span> pip or conda</h4>
-<div class="outline-text-4" id="text-5-1-1">
+<div id="outline-container-org0d65fd5" class="outline-4">
+<h4 id="org0d65fd5"><span class="section-number-4">10.1.1.</span> pip or conda</h4>
+<div class="outline-text-4" id="text-10-1-1">
 <ul class="org-ul">
 <li>Python 的一大優勢之一便是龐大的第三方函式庫，讓使用 python 的程式設計師可以方便的呼叫、進行如網路資料下載解析、資料的視覺化、甚或是大數據的複雜分析與人工智慧的相關套件。，<br /></li>
 <li>目前用來管理這些龐大套件的工具主要有二：pip 與 Conda。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orga9e3362" class="outline-4">
-<h4 id="orga9e3362"><span class="section-number-4">5.1.2.</span> pip</h4>
-<div class="outline-text-4" id="text-5-1-2">
+<div id="outline-container-org29c6c89" class="outline-4">
+<h4 id="org29c6c89"><span class="section-number-4">10.1.2.</span> pip</h4>
+<div class="outline-text-4" id="text-10-1-2">
 <ul class="org-ul">
 <li>Pip是<a href="https://www.pypa.io/en/latest/">Python Packaging Authority</a>推薦、用於從<a href="https://pypi.org/">Python Package Index</a>安裝套件的工具，提供了對 Python 套件的搜㝷、下載、安裝、卸載的功能。<br /></li>
 <li>若在 python.org 下載最新版本的 python，則已內建 pip 安裝套件。 Python 3.4+ 以上版本均已包括 pip<br /></li>
@@ -1944,19 +2866,19 @@ deque(['coding', 'writing'])
 </ul>
 </div>
 </div>
-<div id="outline-container-org27caf37" class="outline-4">
-<h4 id="org27caf37"><span class="section-number-4">5.1.3.</span> conda</h4>
-<div class="outline-text-4" id="text-5-1-3">
+<div id="outline-container-orgba5e378" class="outline-4">
+<h4 id="orgba5e378"><span class="section-number-4">10.1.3.</span> conda</h4>
+<div class="outline-text-4" id="text-10-1-3">
 <ul class="org-ul">
 <li>Conda 是一個開源的跨平台工具軟體，它被設計作為 Python、R、Lua、Scala、C/C++、FORTRAN/ 與 Java 等任何程式語言的套件、依賴性以及工作環境管理員，特別受到以 Python 作為主要程式語言的資料科學團隊所喜愛。<br /></li>
 <li>適用平台：Windows, macOS, Linux<br /></li>
-<li>傳統 Python 使用者以 pip 作為套件管理員（package manager）、以 venv 作為工作環境管理員（environment manager），而 conda 則達成了「兩個願望、一次滿足」既可以管理套件亦能夠管理工作環境。<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup><br /></li>
+<li>傳統 Python 使用者以 pip 作為套件管理員（package manager）、以 venv 作為工作環境管理員（environment manager），而 conda 則達成了「兩個願望、一次滿足」既可以管理套件亦能夠管理工作環境。<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org89c0fe5" class="outline-4">
-<h4 id="org89c0fe5"><span class="section-number-4">5.1.4.</span> In both cases:</h4>
-<div class="outline-text-4" id="text-5-1-4">
+<div id="outline-container-orgf45dc15" class="outline-4">
+<h4 id="orgf45dc15"><span class="section-number-4">10.1.4.</span> In both cases:</h4>
+<div class="outline-text-4" id="text-10-1-4">
 <ul class="org-ul">
 <li>Written in Python<br /></li>
 <li>Open source (Conda is BSD and pip is MIT)<br /></li>
@@ -1964,11 +2886,11 @@ deque(['coding', 'writing'])
 </ul>
 </div>
 </div>
-<div id="outline-container-org8b8cf3b" class="outline-4">
-<h4 id="org8b8cf3b"><span class="section-number-4">5.1.5.</span> difference between conda, anaconda, and miniconda</h4>
-<div class="outline-text-4" id="text-5-1-5">
+<div id="outline-container-orgcb3a8a5" class="outline-4">
+<h4 id="orgcb3a8a5"><span class="section-number-4">10.1.5.</span> difference between conda, anaconda, and miniconda</h4>
+<div class="outline-text-4" id="text-10-1-5">
 <ul class="org-ul">
-<li>conda is both a command line tool, and a python package. <sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup><br /></li>
+<li>conda is both a command line tool, and a python package. <sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup><br /></li>
 <li>Anaconda 發行版會預裝很多套件，而 Miniconda 是最小的 conda 安裝環境， 一個乾淨的 conda 環境。<br /></li>
 <li>pip  只是運與安裝 python package，而 conda 用來安裝管理任何語言的包。<br /></li>
 <li><p>
@@ -1982,22 +2904,22 @@ deque(['coding', 'writing'])
 </div>
 </div>
 </div>
-<div id="outline-container-org5e374d1" class="outline-3">
-<h3 id="org5e374d1"><span class="section-number-3">5.2.</span> conda 安裝與使用</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-org5c9c83a" class="outline-3">
+<h3 id="org5c9c83a"><span class="section-number-3">10.2.</span> conda 安裝與使用</h3>
+<div class="outline-text-3" id="text-10-2">
 </div>
-<div id="outline-container-orgf870f4b" class="outline-4">
-<h4 id="orgf870f4b"><span class="section-number-4">5.2.1.</span> 下載 v.s. 安裝</h4>
-<div class="outline-text-4" id="text-5-2-1">
+<div id="outline-container-org3ff9eeb" class="outline-4">
+<h4 id="org3ff9eeb"><span class="section-number-4">10.2.1.</span> 下載 v.s. 安裝</h4>
+<div class="outline-text-4" id="text-10-2-1">
 <ul class="org-ul">
 <li><a href="https://www.anaconda.com/distribution/">Anaconda</a><br /></li>
 <li><a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeb66a23" class="outline-4">
-<h4 id="orgeb66a23"><span class="section-number-4">5.2.2.</span> 安裝conda</h4>
-<div class="outline-text-4" id="text-5-2-2">
+<div id="outline-container-orgcfce06d" class="outline-4">
+<h4 id="orgcfce06d"><span class="section-number-4">10.2.2.</span> 安裝conda</h4>
+<div class="outline-text-4" id="text-10-2-2">
 <p>
 for macOS<br />
 </p>
@@ -2008,9 +2930,9 @@ for macOS<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org71f3342" class="outline-4">
-<h4 id="org71f3342"><span class="section-number-4">5.2.3.</span> 移除</h4>
-<div class="outline-text-4" id="text-5-2-3">
+<div id="outline-container-orgaabb901" class="outline-4">
+<h4 id="orgaabb901"><span class="section-number-4">10.2.3.</span> 移除</h4>
+<div class="outline-text-4" id="text-10-2-3">
 <ul class="org-ul">
 <li>Windows: uninstall<br /></li>
 <li>Linux/macOS:<br />
@@ -2019,9 +2941,9 @@ for macOS<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org6834bf2" class="outline-3">
-<h3 id="org6834bf2"><span class="section-number-3">5.3.</span> python package 安裝(conda)</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-orgce76d27" class="outline-3">
+<h3 id="orgce76d27"><span class="section-number-3">10.3.</span> python package 安裝(conda)</h3>
+<div class="outline-text-3" id="text-10-3">
 <ul class="org-ul">
 <li><p>
 安裝 package:<br />
@@ -2057,75 +2979,75 @@ for macOS<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-orga1a0e5a" class="outline-3">
-<h3 id="orga1a0e5a"><span class="section-number-3">5.4.</span> Python 常用函式庫</h3>
-<div class="outline-text-3" id="text-5-4">
+<div id="outline-container-orgee38af4" class="outline-3">
+<h3 id="orgee38af4"><span class="section-number-3">10.4.</span> Python 常用函式庫</h3>
+<div class="outline-text-3" id="text-10-4">
 </div>
-<div id="outline-container-orgf458367" class="outline-4">
-<h4 id="orgf458367"><span class="section-number-4">5.4.1.</span> 爬蟲</h4>
-<div class="outline-text-4" id="text-5-4-1">
+<div id="outline-container-orga5d9d49" class="outline-4">
+<h4 id="orga5d9d49"><span class="section-number-4">10.4.1.</span> 爬蟲</h4>
+<div class="outline-text-4" id="text-10-4-1">
 </div>
-<div id="outline-container-orged17317" class="outline-5">
-<h5 id="orged17317">Scrapy:</h5>
-<div class="outline-text-5" id="text-orged17317">
+<div id="outline-container-org5edce36" class="outline-5">
+<h5 id="org5edce36">Scrapy:</h5>
+<div class="outline-text-5" id="text-org5edce36">
 
-<div id="orge2e476a" class="figure">
+<div id="orgaee5e67" class="figure">
 <p><img src="images/scrapy.jpg" alt="scrapy.jpg" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
-<li>Scrapy，Python 開發的一個快速、高層次的 web 數據抓取框架，用於抓取 web 站點並從頁面中提取結構化的數據。Scrapy 用途廣泛，可以用於數據挖掘、監測和自動化測試<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>。<br /></li>
+<li>Scrapy，Python 開發的一個快速、高層次的 web 數據抓取框架，用於抓取 web 站點並從頁面中提取結構化的數據。Scrapy 用途廣泛，可以用於數據挖掘、監測和自動化測試<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup>。<br /></li>
 <li>Scrapy 吸引人的地方在於它是一個框架，任何人都可以根據需求方便的修改。它也提供了多種類型爬蟲的基類，如 BaseSpider、sitemap 爬蟲等。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org04ad843" class="outline-5">
-<h5 id="org04ad843">beautifulsoup4:</h5>
-<div class="outline-text-5" id="text-org04ad843">
+<div id="outline-container-orga52a974" class="outline-5">
+<h5 id="orga52a974">beautifulsoup4:</h5>
+<div class="outline-text-5" id="text-orga52a974">
 
-<div id="org87d32fe" class="figure">
+<div id="org305d5c0" class="figure">
 <p><img src="images/bs.png" alt="bs.png" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
 <li>Beautiful Soup 是一個 Python 的函式庫模組，可以讓開發者僅須撰寫非常少量的程式<br />
 碼，就可以快速解析網頁 HTML 碼，從中翠取出使用者有興趣的資料、去蕪存菁，降低網<br />
-路爬蟲程式的開發門檻、加快程式撰寫速度。<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup><br /></li>
-<li>而 Beautiful Soup 是基於 HTML DOM 的，會載入整個文檔，解析整個 DOM 樹，因此時間和內存開銷都會大很多，所以性能要低於 lxml。<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup><br /></li>
+路爬蟲程式的開發門檻、加快程式撰寫速度。<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup><br /></li>
+<li>而 Beautiful Soup 是基於 HTML DOM 的，會載入整個文檔，解析整個 DOM 樹，因此時間和內存開銷都會大很多，所以性能要低於 lxml。<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgebe071f" class="outline-5">
-<h5 id="orgebe071f">Selenium</h5>
-<div class="outline-text-5" id="text-orgebe071f">
+<div id="outline-container-orgb34ac8a" class="outline-5">
+<h5 id="orgb34ac8a">Selenium</h5>
+<div class="outline-text-5" id="text-orgb34ac8a">
 
-<div id="orge0232e3" class="figure">
+<div id="orgc7caec0" class="figure">
 <p><img src="images/selenium.jpg" alt="selenium.jpg" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
 <li>原為網頁測試工具，但由於可以直接以程式碼操控瀏覽器的特性，使其成為網路爬蟲必備<br />
-的工具之一。<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup><br /></li>
-<li>Selenium 執行「真實的瀏覽器」來進行網站操作的自動化，它能夠直接獲取即時的內容，包括被 JavaScript 修改過的 DOM 內容，讓程式可以直接與網頁元素即時互動、執行 JavaScript 程式，因此也適用於前端採用 AJAX 技術的網站。<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup><br /></li>
+的工具之一。<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup><br /></li>
+<li>Selenium 執行「真實的瀏覽器」來進行網站操作的自動化，它能夠直接獲取即時的內容，包括被 JavaScript 修改過的 DOM 內容，讓程式可以直接與網頁元素即時互動、執行 JavaScript 程式，因此也適用於前端採用 AJAX 技術的網站。<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup><br /></li>
 <li>Selenium 是許多 Web Testing 工具的核心，利用 Selenium 操作網頁表單資料、點選按鈕或連結、取得網頁內容並進行檢驗，可以滿足相當多測試的需求。<br /></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org7f0701d" class="outline-4">
-<h4 id="org7f0701d"><span class="section-number-4">5.4.2.</span> 網站</h4>
-<div class="outline-text-4" id="text-5-4-2">
+<div id="outline-container-orgc789f03" class="outline-4">
+<h4 id="orgc789f03"><span class="section-number-4">10.4.2.</span> 網站</h4>
+<div class="outline-text-4" id="text-10-4-2">
 </div>
-<div id="outline-container-orgf44076d" class="outline-5">
-<h5 id="orgf44076d">Django</h5>
-<div class="outline-text-5" id="text-orgf44076d">
+<div id="outline-container-orgcabd111" class="outline-5">
+<h5 id="orgcabd111">Django</h5>
+<div class="outline-text-5" id="text-orgcabd111">
 
-<div id="org5176a0e" class="figure">
+<div id="org8d42672" class="figure">
 <p><img src="images/django.jpg" alt="django.jpg" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
-<li>Django (<i>ˈdʒæŋɡoʊ</i> jang-goh) 可以說是 Python 最著名的 Web Framework，一些知名的網站如 Pinterest, Instagram, Disqus 等等都使用過它來開發。<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup><br /></li>
+<li>Django (<i>ˈdʒæŋɡoʊ</i> jang-goh) 可以說是 Python 最著名的 Web Framework，一些知名的網站如 Pinterest, Instagram, Disqus 等等都使用過它來開發。<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup><br /></li>
 <li>免費開放原始碼<br /></li>
 <li>著重快速開發、高效能<br /></li>
 <li>遵從 DRY ( Don&rsquo;t Repeat Yourself ) 守則，致力於淺顯易懂和優雅的程式碼<br /></li>
@@ -2134,17 +3056,17 @@ for macOS<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org85f5554" class="outline-5">
-<h5 id="org85f5554">Flask</h5>
-<div class="outline-text-5" id="text-org85f5554">
+<div id="outline-container-orga211569" class="outline-5">
+<h5 id="orga211569">Flask</h5>
+<div class="outline-text-5" id="text-orga211569">
 
-<div id="org25c29f2" class="figure">
+<div id="orgc1441c5" class="figure">
 <p><img src="images/flask.png" alt="flask.png" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
 <li>Flask 是一個使用 Python 撰寫的輕量級 Web 應用程式框架，由於其輕量特性，也稱為<br />
-micro-framework（微框架）。<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup><br /></li>
+micro-framework（微框架）。<sup><a id="fnr.11" class="footref" href="#fn.11" role="doc-backlink">11</a></sup><br /></li>
 <li>Flask 和 Django 不同的地方在於 Flask 給予開發者非常大的彈性（當然你也可以說是<br />
 需要思考更多事情），可以選用不同的用的 extension 來增加其功能。<br /></li>
 <li>相比之下，Django 雖然完善但技術選擇相對不彈性，不論是 ORM、表單驗證或是模版引<br />
@@ -2154,44 +3076,44 @@ micro-framework（微框架）。<sup><a id="fnr.10" class="footref" href="#fn.1
 </div>
 </div>
 </div>
-<div id="outline-container-orgd61b2af" class="outline-4">
-<h4 id="orgd61b2af"><span class="section-number-4">5.4.3.</span> 資料處理科學計算</h4>
-<div class="outline-text-4" id="text-5-4-3">
+<div id="outline-container-org3847788" class="outline-4">
+<h4 id="org3847788"><span class="section-number-4">10.4.3.</span> 資料處理科學計算</h4>
+<div class="outline-text-4" id="text-10-4-3">
 </div>
-<div id="outline-container-org0c7734b" class="outline-5">
-<h5 id="org0c7734b">Numpy</h5>
-<div class="outline-text-5" id="text-org0c7734b">
+<div id="outline-container-orgb0e5ed7" class="outline-5">
+<h5 id="orgb0e5ed7">Numpy</h5>
+<div class="outline-text-5" id="text-orgb0e5ed7">
 
-<div id="orgfd98a44" class="figure">
+<div id="orgd6376c0" class="figure">
 <p><img src="images/numpy.jpg" alt="numpy.jpg" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
-<li>Numpy 底層以 C 和 Fortran 語言實作，所以能快速操作多重維度的陣列。<sup><a id="fnr.11" class="footref" href="#fn.11" role="doc-backlink">11</a></sup><br /></li>
+<li>Numpy 底層以 C 和 Fortran 語言實作，所以能快速操作多重維度的陣列。<sup><a id="fnr.12" class="footref" href="#fn.12" role="doc-backlink">12</a></sup><br /></li>
 <li>當 Python 處理龐大資料時，其原生 list 效能表現並不理想（但可以動態存異質資料），而 Numpy 具備平行處理的能力，可以將操作動作一次套用在大型陣列上。<br /></li>
 <li>此外 Python 其餘重量級的資料科學相關套件（例如：Pandas、SciPy、Scikit-learn 等）都幾乎是奠基在 Numpy 的基礎上。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf3fc655" class="outline-5">
-<h5 id="orgf3fc655">Scipy</h5>
-<div class="outline-text-5" id="text-orgf3fc655">
+<div id="outline-container-orgcb48fe4" class="outline-5">
+<h5 id="orgcb48fe4">Scipy</h5>
+<div class="outline-text-5" id="text-orgcb48fe4">
 
-<div id="orgd2246a6" class="figure">
+<div id="org639973e" class="figure">
 <p><img src="images/scipy.png" alt="scipy.png" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
 <li>科學計算神器<br /></li>
-<li>Numpy 是以矩陣基礎做數據的數學運算，SciPy 就是以 Numpy 為基礎做科學、工程的運算處理的 package，包含統計、優化、整合、線性代數、傅立葉轉換圖像等較高階的科學運算。<sup><a id="fnr.12" class="footref" href="#fn.12" role="doc-backlink">12</a></sup><br /></li>
+<li>Numpy 是以矩陣基礎做數據的數學運算，SciPy 就是以 Numpy 為基礎做科學、工程的運算處理的 package，包含統計、優化、整合、線性代數、傅立葉轉換圖像等較高階的科學運算。<sup><a id="fnr.13" class="footref" href="#fn.13" role="doc-backlink">13</a></sup><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc546e22" class="outline-5">
-<h5 id="orgc546e22">Pandas</h5>
-<div class="outline-text-5" id="text-orgc546e22">
+<div id="outline-container-org8d04eaa" class="outline-5">
+<h5 id="org8d04eaa">Pandas</h5>
+<div class="outline-text-5" id="text-org8d04eaa">
 
-<div id="orgd0a3486" class="figure">
+<div id="orgc5de198" class="figure">
 <p><img src="images/pandas.png" alt="pandas.png" width="400" /><br />
 </p>
 </div>
@@ -2202,69 +3124,69 @@ micro-framework（微框架）。<sup><a id="fnr.10" class="footref" href="#fn.1
 </div>
 </div>
 </div>
-<div id="outline-container-orga962b95" class="outline-4">
-<h4 id="orga962b95"><span class="section-number-4">5.4.4.</span> 視覺化</h4>
-<div class="outline-text-4" id="text-5-4-4">
+<div id="outline-container-org60a99bb" class="outline-4">
+<h4 id="org60a99bb"><span class="section-number-4">10.4.4.</span> 視覺化</h4>
+<div class="outline-text-4" id="text-10-4-4">
 </div>
-<div id="outline-container-org3cc0835" class="outline-5">
-<h5 id="org3cc0835">matplotlib</h5>
-<div class="outline-text-5" id="text-org3cc0835">
+<div id="outline-container-orgfab49f7" class="outline-5">
+<h5 id="orgfab49f7">matplotlib</h5>
+<div class="outline-text-5" id="text-orgfab49f7">
 
-<div id="org3a08c27" class="figure">
+<div id="orgd579f78" class="figure">
 <p><img src="images/matplotlib.jpg" alt="matplotlib.jpg" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
 <li>Matplotlib 就是 MATLAB+Plot+Library 的簡稱，因為是模仿 MATLAB 建立的繪圖庫，所以繪<br />
-圖風格會與 MATLAB 有點類似。<sup><a id="fnr.13" class="footref" href="#fn.13" role="doc-backlink">13</a></sup><br /></li>
+圖風格會與 MATLAB 有點類似。<sup><a id="fnr.14" class="footref" href="#fn.14" role="doc-backlink">14</a></sup><br /></li>
 <li>為了提高處理大量資料的性能，Matplotlib 大量使用了 NumPy 和其相關的擴展代碼。 為了方便快速繪圖， Matplotlib 通過 pyplot 模組提供了一套和 MATLAB 類似的繪圖 API，只需要調用 pyplot 模組所提供的函數，就可以實現快速繪圖及設置圖表的各種細節。<br /></li>
 <li>另一方面 Matplotlib 也適合互動式繪製圖表，可以很方便地處理二維和三維的圖表。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org6aef979" class="outline-5">
-<h5 id="org6aef979">seaborn</h5>
-<div class="outline-text-5" id="text-org6aef979">
+<div id="outline-container-org9119c2b" class="outline-5">
+<h5 id="org9119c2b">seaborn</h5>
+<div class="outline-text-5" id="text-org9119c2b">
 
-<div id="org45634c3" class="figure">
+<div id="orgcaa6f59" class="figure">
 <p><img src="images/seaborn.png" alt="seaborn.png" width="400" /><br />
 </p>
 </div>
 
-<div id="orgbe99f74" class="figure">
+<div id="org0a456ed" class="figure">
 <p><img src="images/seabornPlots.jpg" alt="seabornPlots.jpg" width="400" /><br />
 </p>
 </div>
 <ul class="org-ul">
 <li>散點圖矩陣神器<br /></li>
 <li>Seaborn 是 Python 一個著名的數據視覺化的 package, 以 matplotlib 為基底的一個擴<br />
-展包, 它提供了易於理解的統計圖和便利的繪圖指令<sup><a id="fnr.14" class="footref" href="#fn.14" role="doc-backlink">14</a></sup><br /></li>
-<li>seaborn 庫是對 matplotlib 庫更高級別的封裝，相當於提供了各種統計圖的模板<sup><a id="fnr.15" class="footref" href="#fn.15" role="doc-backlink">15</a></sup><br /></li>
+展包, 它提供了易於理解的統計圖和便利的繪圖指令<sup><a id="fnr.15" class="footref" href="#fn.15" role="doc-backlink">15</a></sup><br /></li>
+<li>seaborn 庫是對 matplotlib 庫更高級別的封裝，相當於提供了各種統計圖的模板<sup><a id="fnr.16" class="footref" href="#fn.16" role="doc-backlink">16</a></sup><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org0142dd3" class="outline-5">
-<h5 id="org0142dd3">ggplot</h5>
-<div class="outline-text-5" id="text-org0142dd3">
+<div id="outline-container-orgcba5703" class="outline-5">
+<h5 id="orgcba5703">ggplot</h5>
+<div class="outline-text-5" id="text-orgcba5703">
 
-<div id="orgecef4c5" class="figure">
+<div id="org9466920" class="figure">
 <p><img src="images/ggplot.jpg" alt="ggplot.jpg" width="300" /><br />
 </p>
 </div>
 <ul class="org-ul">
 <li>R 語言視覺化神器的 Python 版本<br /></li>
 <li>ggplot2 是一個十分強大的 R 語言可視化包。它的核心理念是將繪圖與數據分離，數據相關<br />
-的繪圖與數據無關的繪圖分離。<sup><a id="fnr.16" class="footref" href="#fn.16" role="doc-backlink">16</a></sup><br /></li>
+的繪圖與數據無關的繪圖分離。<sup><a id="fnr.1.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup><br /></li>
 <li>它是按圖層作圖的，一個語句做一個僅包含基礎作圖單元的圖層，然後通過不同圖層的疊<br />
 加最後成圖。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org3090c55" class="outline-5">
-<h5 id="org3090c55">plotly</h5>
-<div class="outline-text-5" id="text-org3090c55">
+<div id="outline-container-org3cf1eb6" class="outline-5">
+<h5 id="org3cf1eb6">plotly</h5>
+<div class="outline-text-5" id="text-org3cf1eb6">
 
-<div id="org3753f93" class="figure">
+<div id="org9a8e172" class="figure">
 <p><img src="images/plotly.png" alt="plotly.png" width="400" /><br />
 </p>
 </div>
@@ -2275,15 +3197,15 @@ micro-framework（微框架）。<sup><a id="fnr.10" class="footref" href="#fn.1
 </div>
 </div>
 </div>
-<div id="outline-container-org39279d6" class="outline-4">
-<h4 id="org39279d6"><span class="section-number-4">5.4.5.</span> 機器學習</h4>
-<div class="outline-text-4" id="text-5-4-5">
+<div id="outline-container-org755897a" class="outline-4">
+<h4 id="org755897a"><span class="section-number-4">10.4.5.</span> 機器學習</h4>
+<div class="outline-text-4" id="text-10-4-5">
 </div>
-<div id="outline-container-org80eb90c" class="outline-5">
-<h5 id="org80eb90c">scikit-learn</h5>
-<div class="outline-text-5" id="text-org80eb90c">
+<div id="outline-container-org6606b3d" class="outline-5">
+<h5 id="org6606b3d">scikit-learn</h5>
+<div class="outline-text-5" id="text-org6606b3d">
 
-<div id="orgc12f426" class="figure">
+<div id="org7f5d6e9" class="figure">
 <p><img src="images/scikit-learn.png" alt="scikit-learn.png" width="400" /><br />
 </p>
 </div>
@@ -2294,11 +3216,11 @@ micro-framework（微框架）。<sup><a id="fnr.10" class="footref" href="#fn.1
 </ul>
 </div>
 </div>
-<div id="outline-container-org413d58b" class="outline-5">
-<h5 id="org413d58b">NLTK</h5>
-<div class="outline-text-5" id="text-org413d58b">
+<div id="outline-container-org0a2067c" class="outline-5">
+<h5 id="org0a2067c">NLTK</h5>
+<div class="outline-text-5" id="text-org0a2067c">
 
-<div id="org9e530f2" class="figure">
+<div id="org4bf9322" class="figure">
 <p><img src="images/NLTK.png" alt="NLTK.png" width="300" /><br />
 </p>
 </div>
@@ -2311,11 +3233,11 @@ jieba(結巴)。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2c4cc79" class="outline-5">
-<h5 id="org2c4cc79">TensorFlow</h5>
-<div class="outline-text-5" id="text-org2c4cc79">
+<div id="outline-container-org34b93aa" class="outline-5">
+<h5 id="org34b93aa">TensorFlow</h5>
+<div class="outline-text-5" id="text-org34b93aa">
 
-<div id="orgaa2e2ff" class="figure">
+<div id="orgbf32dcd" class="figure">
 <p><img src="images/tensorflow.jpg" alt="tensorflow.jpg" width="400" /><br />
 </p>
 </div>
@@ -2335,11 +3257,11 @@ device 上運行深度學習 Ex: Tensorflow Lite 、 Tensorflow.js 等等。<br 
 </p>
 </div>
 </div>
-<div id="outline-container-org3855daf" class="outline-5">
-<h5 id="org3855daf">Keras</h5>
-<div class="outline-text-5" id="text-org3855daf">
+<div id="outline-container-orgd66a5c1" class="outline-5">
+<h5 id="orgd66a5c1">Keras</h5>
+<div class="outline-text-5" id="text-orgd66a5c1">
 
-<div id="org4d2fdb6" class="figure">
+<div id="org716468c" class="figure">
 <p><img src="images/keras.png" alt="keras.png" width="400" /><br />
 </p>
 </div>
@@ -2356,11 +3278,11 @@ device 上運行深度學習 Ex: Tensorflow Lite 、 Tensorflow.js 等等。<br 
 </ul>
 </div>
 </div>
-<div id="outline-container-orge082bf2" class="outline-5">
-<h5 id="orge082bf2">PyTorch</h5>
-<div class="outline-text-5" id="text-orge082bf2">
+<div id="outline-container-org11a62cc" class="outline-5">
+<h5 id="org11a62cc">PyTorch</h5>
+<div class="outline-text-5" id="text-org11a62cc">
 
-<div id="org528df5d" class="figure">
+<div id="orgc54f2ce" class="figure">
 <p><img src="images/pytorch.jpg" alt="pytorch.jpg" width="400" /><br />
 </p>
 </div>
@@ -2377,9 +3299,9 @@ device 上運行深度學習 Ex: Tensorflow Lite 、 Tensorflow.js 等等。<br 
 </div>
 </div>
 </div>
-<div id="outline-container-org9fe5621" class="outline-3">
-<h3 id="org9fe5621"><span class="section-number-3">5.5.</span> python 執行環境建立與維護</h3>
-<div class="outline-text-3" id="text-5-5">
+<div id="outline-container-org6eb960a" class="outline-3">
+<h3 id="org6eb960a"><span class="section-number-3">10.5.</span> python 執行環境建立與維護</h3>
+<div class="outline-text-3" id="text-10-5">
 <ul class="org-ul">
 <li><p>
 建立<sup><a id="fnr.24" class="footref" href="#fn.24" role="doc-backlink">24</a></sup><br />
@@ -2419,9 +3341,9 @@ device 上運行深度學習 Ex: Tensorflow Lite 、 Tensorflow.js 等等。<br 
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd81d24c" class="outline-3">
-<h3 id="orgd81d24c"><span class="section-number-3">5.6.</span> 將執行環境匯入 jupyter</h3>
-<div class="outline-text-3" id="text-5-6">
+<div id="outline-container-orgc97bc8f" class="outline-3">
+<h3 id="orgc97bc8f"><span class="section-number-3">10.6.</span> 將執行環境匯入 jupyter</h3>
+<div class="outline-text-3" id="text-10-6">
 <ul class="org-ul">
 <li>於終端機(for windows: Anaconda prompt)下建立、啟用所需虛擬環境<br /></li>
 <li>將環境滙至 jupyter kernel<br /></li>
@@ -2435,9 +3357,9 @@ device 上運行深度學習 Ex: Tensorflow Lite 、 Tensorflow.js 等等。<br 
 </ul>
 </div>
 </div>
-<div id="outline-container-orga610651" class="outline-3">
-<h3 id="orga610651"><span class="section-number-3">5.7.</span> poetry</h3>
-<div class="outline-text-3" id="text-5-7">
+<div id="outline-container-orge977329" class="outline-3">
+<h3 id="orge977329"><span class="section-number-3">10.7.</span> poetry</h3>
+<div class="outline-text-3" id="text-10-7">
 <p>
 pip最主要的缺點在於套件的相依性。pip 在解決套-件之間的版本衝突時很容會遇到困難。它不具備先進的依賴解析算法，這可能導致不穩定的環境和不可預知的錯誤。更重要的是，移除套件時，pip 只會移除一個該套件，而不會移除其他相依的套件。也因此發展出針對套件相依性更好的工具，例poetry<sup><a id="fnr.25" class="footref" href="#fn.25" role="doc-backlink">25</a></sup>。<br />
 </p>
@@ -2446,9 +3368,9 @@ pip最主要的缺點在於套件的相依性。pip 在解決套-件之間的版
 Poetry 是一個現代化的套件管理工具，它不僅可以幫助我們管理套件的依賴，還提供了一個虛擬環境的解決方案。Poetry 使用一個 toml 檔 pyproject.toml 文件來管理專案配置和依賴，這符合 – Specifying Minimum Build System Requirements for Python Projects 所提倡的現代 Python 專案的依賴項管理<sup><a id="fnr.25.25" class="footref" href="#fn.25" role="doc-backlink">25</a></sup>。<br />
 </p>
 </div>
-<div id="outline-container-orgd4547eb" class="outline-4">
-<h4 id="orgd4547eb"><span class="section-number-4">5.7.1.</span> 安裝</h4>
-<div class="outline-text-4" id="text-5-7-1">
+<div id="outline-container-org69cc79f" class="outline-4">
+<h4 id="org69cc79f"><span class="section-number-4">10.7.1.</span> 安裝</h4>
+<div class="outline-text-4" id="text-10-7-1">
 <p>
 for Python 3.8+<br />
 </p>
@@ -2458,18 +3380,18 @@ for Python 3.8+<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgb17a5d7" class="outline-4">
-<h4 id="orgb17a5d7"><span class="section-number-4">5.7.2.</span> 結合虛擬環境與專案</h4>
-<div class="outline-text-4" id="text-5-7-2">
+<div id="outline-container-org91a3ed8" class="outline-4">
+<h4 id="org91a3ed8"><span class="section-number-4">10.7.2.</span> 結合虛擬環境與專案</h4>
+<div class="outline-text-4" id="text-10-7-2">
 <div class="org-src-container">
 <pre class="src src-shell">poetry config virtualenvs.in-project true
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org37da6f5" class="outline-4">
-<h4 id="org37da6f5"><span class="section-number-4">5.7.3.</span> 建立新專案</h4>
-<div class="outline-text-4" id="text-5-7-3">
+<div id="outline-container-org316fb5c" class="outline-4">
+<h4 id="org316fb5c"><span class="section-number-4">10.7.3.</span> 建立新專案</h4>
+<div class="outline-text-4" id="text-10-7-3">
 <p>
 假設專案名稱為 tnfshbot<br />
 </p>
@@ -2481,9 +3403,9 @@ poetry init
 </div>
 </div>
 </div>
-<div id="outline-container-org5e85e58" class="outline-4">
-<h4 id="org5e85e58"><span class="section-number-4">5.7.4.</span> 修改pyproject.toml</h4>
-<div class="outline-text-4" id="text-5-7-4">
+<div id="outline-container-orgeed3a6b" class="outline-4">
+<h4 id="orgeed3a6b"><span class="section-number-4">10.7.4.</span> 修改pyproject.toml</h4>
+<div class="outline-text-4" id="text-10-7-4">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span><span style="color: #51afef;">[</span>tool.poetry.dependencies<span style="color: #51afef;">]</span>
 <span class="linenr">2: </span><span style="color: #dcaeea;">python</span> = <span style="color: #98be65;">"^3.12"</span>
@@ -2491,9 +3413,9 @@ poetry init
 </div>
 </div>
 </div>
-<div id="outline-container-org2e26652" class="outline-4">
-<h4 id="org2e26652"><span class="section-number-4">5.7.5.</span> 安裝</h4>
-<div class="outline-text-4" id="text-5-7-5">
+<div id="outline-container-org9416de8" class="outline-4">
+<h4 id="org9416de8"><span class="section-number-4">10.7.5.</span> 安裝</h4>
+<div class="outline-text-4" id="text-10-7-5">
 <p>
 當你手動添加了新的套件後(poetry add XXX)，使用 poetry install 將會：<br />
 </p>
@@ -2515,9 +3437,9 @@ poetry init
 </div>
 </div>
 </div>
-<div id="outline-container-org1e9bc43" class="outline-4">
-<h4 id="org1e9bc43"><span class="section-number-4">5.7.6.</span> 新增tnfshbot/main.py</h4>
-<div class="outline-text-4" id="text-5-7-6">
+<div id="outline-container-orgbbaba37" class="outline-4">
+<h4 id="orgbbaba37"><span class="section-number-4">10.7.6.</span> 新增tnfshbot/main.py</h4>
+<div class="outline-text-4" id="text-10-7-6">
 <p>
 安裝新套件<br />
 </p>
@@ -2546,10 +3468,10 @@ poetry init
 </div>
 </div>
 </div>
-<div id="outline-container-orgc81b768" class="outline-4">
-<h4 id="orgc81b768"><span class="section-number-4">5.7.7.</span> 整個資料夾架構如下</h4>
-<div class="outline-text-4" id="text-5-7-7">
-<pre class="example" id="org20fd02a">
+<div id="outline-container-orgf4ff4d9" class="outline-4">
+<h4 id="orgf4ff4d9"><span class="section-number-4">10.7.7.</span> 整個資料夾架構如下</h4>
+<div class="outline-text-4" id="text-10-7-7">
+<pre class="example" id="orgdb4d906">
 .
 ├── README.md
 ├── poetry.lock
@@ -2562,13 +3484,13 @@ poetry init
 </pre>
 </div>
 </div>
-<div id="outline-container-org1322612" class="outline-4">
-<h4 id="org1322612"><span class="section-number-4">5.7.8.</span> pyproject.toml</h4>
-<div class="outline-text-4" id="text-5-7-8">
+<div id="outline-container-org9ccb584" class="outline-4">
+<h4 id="org9ccb584"><span class="section-number-4">10.7.8.</span> pyproject.toml</h4>
+<div class="outline-text-4" id="text-10-7-8">
 </div>
-<div id="outline-container-org96573cc" class="outline-5">
-<h5 id="org96573cc">精確版本</h5>
-<div class="outline-text-5" id="text-org96573cc">
+<div id="outline-container-orga4d31ae" class="outline-5">
+<h5 id="orga4d31ae">精確版本</h5>
+<div class="outline-text-5" id="text-orga4d31ae">
 <p>
 指定一個精確的版本，意味著只有該特定版本會被接受。例如:<br />
 </p>
@@ -2579,9 +3501,9 @@ poetry init
 </div>
 </div>
 </div>
-<div id="outline-container-orgd0b5043" class="outline-5">
-<h5 id="orgd0b5043">版本範圍</h5>
-<div class="outline-text-5" id="text-orgd0b5043">
+<div id="outline-container-org5ee3c28" class="outline-5">
+<h5 id="org5ee3c28">版本範圍</h5>
+<div class="outline-text-5" id="text-org5ee3c28">
 <p>
 可以使用比較運算符來指定一個版本範圍：<br />
 </p>
@@ -2595,9 +3517,9 @@ poetry init
 </p>
 </div>
 </div>
-<div id="outline-container-org7a9c579" class="outline-5">
-<h5 id="org7a9c579">星字號</h5>
-<div class="outline-text-5" id="text-org7a9c579">
+<div id="outline-container-org4dd2ef3" class="outline-5">
+<h5 id="org4dd2ef3">星字號</h5>
+<div class="outline-text-5" id="text-org4dd2ef3">
 <p>
 使用星號（*）是允許任何兼容的版本：<br />
 </p>
@@ -2611,9 +3533,9 @@ poetry init
 </p>
 </div>
 </div>
-<div id="outline-container-orgb28b149" class="outline-5">
-<h5 id="orgb28b149">Caret</h5>
-<div class="outline-text-5" id="text-orgb28b149">
+<div id="outline-container-org053abd8" class="outline-5">
+<h5 id="org053abd8">Caret</h5>
+<div class="outline-text-5" id="text-org053abd8">
 <p>
 使用Caret（^）可以指定一個允許任何相容的版本，但不會改變最左邊的非零數字：<br />
 </p>
@@ -2627,9 +3549,9 @@ poetry init
 </p>
 </div>
 </div>
-<div id="outline-container-org613cbf8" class="outline-5">
-<h5 id="org613cbf8">波浪號版本</h5>
-<div class="outline-text-5" id="text-org613cbf8">
+<div id="outline-container-org61ad6d1" class="outline-5">
+<h5 id="org61ad6d1">波浪號版本</h5>
+<div class="outline-text-5" id="text-org61ad6d1">
 <p>
 使用波浪號（~）可以指定一個允許在特定範圍內的版本：<br />
 </p>
@@ -2642,9 +3564,9 @@ poetry init
 </p>
 </div>
 </div>
-<div id="outline-container-orgb9acbf0" class="outline-5">
-<h5 id="orgb9acbf0">多版本指定</h5>
-<div class="outline-text-5" id="text-orgb9acbf0">
+<div id="outline-container-org8b120ba" class="outline-5">
+<h5 id="org8b120ba">多版本指定</h5>
+<div class="outline-text-5" id="text-org8b120ba">
 <p>
 你也可以指定多個版本，並且只要符合其中一個條件就可以：<br />
 </p>
@@ -2656,9 +3578,9 @@ poetry init
 </div>
 </div>
 </div>
-<div id="outline-container-org3091be1" class="outline-4">
-<h4 id="org3091be1"><span class="section-number-4">5.7.9.</span> poetry update</h4>
-<div class="outline-text-4" id="text-5-7-9">
+<div id="outline-container-org48b6e99" class="outline-4">
+<h4 id="org48b6e99"><span class="section-number-4">10.7.9.</span> poetry update</h4>
+<div class="outline-text-4" id="text-10-7-9">
 <p>
 在添加新的依賴後使用 poetry update 將會<sup><a id="fnr.26" class="footref" href="#fn.26" role="doc-backlink">26</a></sup>：<br />
 </p>
@@ -2670,9 +3592,9 @@ poetry init
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd302c59" class="outline-4">
-<h4 id="orgd302c59"><span class="section-number-4">5.7.10.</span> poetry to jupyter kenrel</h4>
-<div class="outline-text-4" id="text-5-7-10">
+<div id="outline-container-orgb557ef0" class="outline-4">
+<h4 id="orgb557ef0"><span class="section-number-4">10.7.10.</span> poetry to jupyter kenrel</h4>
+<div class="outline-text-4" id="text-10-7-10">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>poetry run ipython kernel install --name=tnfshbot --user
 </pre>
@@ -2681,13 +3603,13 @@ poetry init
 </div>
 </div>
 </div>
-<div id="outline-container-orga2e6987" class="outline-2">
-<h2 id="orga2e6987"><span class="section-number-2">6.</span> <span class="todo TODO">TODO</span> Multiprocessing</h2>
-<div class="outline-text-2" id="text-6">
+<div id="outline-container-orge3adefb" class="outline-2">
+<h2 id="orge3adefb"><span class="section-number-2">11.</span> <span class="todo TODO">TODO</span> Multiprocessing</h2>
+<div class="outline-text-2" id="text-11">
 </div>
-<div id="outline-container-orgd70056f" class="outline-3">
-<h3 id="orgd70056f"><span class="section-number-3">6.1.</span> 執行緒 vs. 程序</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-org9d6e5ac" class="outline-3">
+<h3 id="org9d6e5ac"><span class="section-number-3">11.1.</span> 執行緒 vs. 程序</h3>
+<div class="outline-text-3" id="text-11-1">
 <p>
 程序(process)是系統資源分配的最小單位，而一個程序可以有很多個執行緒(thread)。<br />
 </p>
@@ -2697,9 +3619,9 @@ poetry init
 </p>
 </div>
 </div>
-<div id="outline-container-org4be13a3" class="outline-3">
-<h3 id="org4be13a3"><span class="section-number-3">6.2.</span> 非執行緒的程式</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgf3d3f3f" class="outline-3">
+<h3 id="orgf3d3f3f"><span class="section-number-3">11.2.</span> 非執行緒的程式</h3>
+<div class="outline-text-3" id="text-11-2">
 <p>
 為了對照執行緒的程式，我們先來看一個非執行緒的程式，這個程式會依序執行三個函式，並且計算總共花了多少時間來執行這三個函式。<br />
 </p>
@@ -2729,7 +3651,7 @@ poetry init
 </pre>
 </div>
 
-<pre class="example" id="org021c6d9">
+<pre class="example" id="org93fb412">
 Says HELLO!
 Says HELLO!
 Says HELLO!
@@ -2765,9 +3687,9 @@ All done!
 </pre>
 </div>
 </div>
-<div id="outline-container-org8bf6ec6" class="outline-3">
-<h3 id="org8bf6ec6"><span class="section-number-3">6.3.</span> 建立及執行執行緒</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-orgff99375" class="outline-3">
+<h3 id="orgff99375"><span class="section-number-3">11.3.</span> 建立及執行執行緒</h3>
+<div class="outline-text-3" id="text-11-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">from</span> threading <span style="color: #51afef;">import</span> current_thread, Thread <span style="color: #51afef;">as</span> Thread
 <span class="linenr"> 2: </span><span style="color: #51afef;">from</span> time <span style="color: #51afef;">import</span> sleep, perf_counter
@@ -2804,7 +3726,7 @@ All done!
 </pre>
 </div>
 
-<pre class="example" id="org5399245">
+<pre class="example" id="orga1f5da0">
 Thread 1 says HELLO!
 Thread 2 says HELLO!
 Thread 3 says This is Thread 3!
@@ -2861,11 +3783,11 @@ All done!
 </p>
 </div>
 </div>
-<div id="outline-container-org6604e02" class="outline-3">
-<h3 id="org6604e02"><span class="section-number-3">6.4.</span> Futher Reading</h3>
-<div class="outline-text-3" id="text-6-4">
+<div id="outline-container-orgb4d4061" class="outline-3">
+<h3 id="orgb4d4061"><span class="section-number-3">11.4.</span> Futher Reading</h3>
+<div class="outline-text-3" id="text-11-4">
 
-<div id="org60cea41" class="figure">
+<div id="org6adb97b" class="figure">
 <p><img src="images/multi.png" alt="multi.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>Multiprocessing v.s. Multithreading</p>
@@ -2879,9 +3801,9 @@ All done!
 </div>
 </div>
 </div>
-<div id="outline-container-orgf342f6b" class="outline-2">
-<h2 id="orgf342f6b"><span class="section-number-2">7.</span> <span class="todo TODO">TODO</span> Interactive Plots in Jupyter Notebook</h2>
-<div class="outline-text-2" id="text-7">
+<div id="outline-container-orgb92549a" class="outline-2">
+<h2 id="orgb92549a"><span class="section-number-2">12.</span> <span class="todo TODO">TODO</span> Interactive Plots in Jupyter Notebook</h2>
+<div class="outline-text-2" id="text-12">
 <p>
 <a href="https://www.youtube.com/watch?v=rkBPgTL-D3Y">https://www.youtube.com/watch?v=rkBPgTL-D3Y</a><br />
 </p>
@@ -2892,67 +3814,67 @@ All done!
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://ithelp.ithome.com.tw/articles/10221255">Python - 淺複製(shallow copy)與深複製(deep copy)</a><br />
+<a href="https://www.lizenghai.com/archives/65323.html">R語言ggplot2系列1-ggplot2簡介</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2" role="doc-backlink">2</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025">輕鬆學習 Python：conda 的核心功能</a><br />
+<a href="https://ithelp.ithome.com.tw/articles/10221255">Python - 淺複製(shallow copy)與深複製(deep copy)</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.3" class="footnum" href="#fnr.3" role="doc-backlink">3</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://stackoverflow.com/questions/30034840/what-are-the-differences-between-conda-and-anaconda">What are the differences between Conda nd Anaconda?</a><br />
+<a href="https://medium.com/datainpoint/python-essentials-conda-quickstart-1f1e9ecd1025">輕鬆學習 Python：conda 的核心功能</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.4" class="footnum" href="#fnr.4" role="doc-backlink">4</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjoq476trjpAhUKK6YKHZKAAc8QFjAAegQIAxAB&amp;url=https%3A%2F%2Fkknews.cc%2Fzh-tw%2Fcode%2F9j99vnl.html&amp;usg=AOvVaw0eaDh9T-x0LmUEjD4Vq0AX">分分鐘學會用python爬蟲框架Scrapy爬取心目中女神</a><br />
+<a href="https://stackoverflow.com/questions/30034840/what-are-the-differences-between-conda-and-anaconda">What are the differences between Conda nd Anaconda?</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.5" class="footnum" href="#fnr.5" role="doc-backlink">5</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://blog.gtwang.org/programming/python-beautiful-soup-module-scrape-web-pages-tutorial/">Python 使用 Beautiful Soup 抓取與解析網頁資料，開發網路爬蟲教學</a><br />
+<a href="https://www.google.com/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=2ahUKEwjoq476trjpAhUKK6YKHZKAAc8QFjAAegQIAxAB&amp;url=https%3A%2F%2Fkknews.cc%2Fzh-tw%2Fcode%2F9j99vnl.html&amp;usg=AOvVaw0eaDh9T-x0LmUEjD4Vq0AX">分分鐘學會用python爬蟲框架Scrapy爬取心目中女神</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://kknews.cc/zh-tw/code/ba95qx6.html">python爬蟲CSS 選擇器-BeautifulSoup4</a><br />
+<a href="https://blog.gtwang.org/programming/python-beautiful-soup-module-scrape-web-pages-tutorial/">Python 使用 Beautiful Soup 抓取與解析網頁資料，開發網路爬蟲教學</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://freelancerlife.info/zh/blog/python%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2%E6%95%99%E5%AD%B8-selenium%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">python網路爬蟲教學-Selenium基本操作</a><br />
+<a href="https://kknews.cc/zh-tw/code/ba95qx6.html">python爬蟲CSS 選擇器-BeautifulSoup4</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://learngeb-ebook.readbook.tw/intro/selenium.html">[認識 Selenium</a><br />
+<a href="https://freelancerlife.info/zh/blog/python%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2%E6%95%99%E5%AD%B8-selenium%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/">python網路爬蟲教學-Selenium基本操作</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/django/introduction.html">Django 介紹</a><br />
+<a href="https://learngeb-ebook.readbook.tw/intro/selenium.html">[認識 Selenium</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10" role="doc-backlink">10</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://blog.techbridge.cc/2017/06/03/python-web-flask101-tutorial-introduction-and-environment-setup/">Python Web Flask 實戰開發教學</a><br />
+<a href="https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/django/introduction.html">Django 介紹</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.11" class="footnum" href="#fnr.11" role="doc-backlink">11</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://blog.techbridge.cc/2017/07/28/data-science-101-numpy-tutorial/">從零開始學資料科學：Numpy 基礎入門</a><br />
+<a href="https://blog.techbridge.cc/2017/06/03/python-web-flask101-tutorial-introduction-and-environment-setup/">Python Web Flask 實戰開發教學</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.12" class="footnum" href="#fnr.12" role="doc-backlink">12</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://ithelp.ithome.com.tw/articles/10193295">[Day05]聊聊重要的三個package吧！ </a><br />
+<a href="https://blog.techbridge.cc/2017/07/28/data-science-101-numpy-tutorial/">從零開始學資料科學：Numpy 基礎入門</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.13" class="footnum" href="#fnr.13" role="doc-backlink">13</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://medium.com/python-%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96/python-%E5%95%86%E6%A5%AD%E6%95%B8%E6%93%9A%E5%88%86%E6%9E%90%E8%88%87%E5%8F%AF%E8%A6%96%E5%8C%96%E7%B9%AA%E5%9C%96-3-1%E8%AC%9B-matplotlib-%E4%BB%8B%E7%B4%B9-e1928f7dfd35">[Python 商業數據分析之可視化繪圖] 第3.1講：Matplotlib 介紹</a><br />
+<a href="https://ithelp.ithome.com.tw/articles/10193295">[Day05]聊聊重要的三個package吧！ </a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.14" class="footnum" href="#fnr.14" role="doc-backlink">14</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://killer0001.blogspot.com/2018/09/1-seaborn.html"> Seaborn 介紹 </a><br />
+<a href="https://medium.com/python-%E8%B3%87%E6%96%99%E8%A6%96%E8%A6%BA%E5%8C%96/python-%E5%95%86%E6%A5%AD%E6%95%B8%E6%93%9A%E5%88%86%E6%9E%90%E8%88%87%E5%8F%AF%E8%A6%96%E5%8C%96%E7%B9%AA%E5%9C%96-3-1%E8%AC%9B-matplotlib-%E4%BB%8B%E7%B4%B9-e1928f7dfd35">[Python 商業數據分析之可視化繪圖] 第3.1講：Matplotlib 介紹</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.15" class="footnum" href="#fnr.15" role="doc-backlink">15</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://kknews.cc/zh-tw/code/9z88248.html">python數據可視化（一）seaborn介紹及繪圖風格設置</a><br />
+<a href="https://killer0001.blogspot.com/2018/09/1-seaborn.html"> Seaborn 介紹 </a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.16" class="footnum" href="#fnr.16" role="doc-backlink">16</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://www.lizenghai.com/archives/65323.html">R語言ggplot2系列1-ggplot2簡介</a><br />
+<a href="https://kknews.cc/zh-tw/code/9z88248.html">python數據可視化（一）seaborn介紹及繪圖風格設置</a><br />
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.17" class="footnum" href="#fnr.17" role="doc-backlink">17</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
@@ -3001,7 +3923,7 @@ All done!
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2025-04-28 Mon 16:22</p>
+<p class="date">Created: 2025-07-16 Wed 17:03</p>
 </div>
 </body>
 </html>
