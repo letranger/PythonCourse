@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-02-12 Wed 15:10 -->
+<!-- 2025-11-21 Fri 10:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Numpy</title>
@@ -235,71 +235,76 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org31534ce">1. What and How</a>
+<li><a href="#org54525f7">1. What and How</a>
 <ul>
-<li><a href="#org962f6c4">1.1. Numpy 簡介</a></li>
-<li><a href="#orgc414d41">1.2. 使用 Numpy 模組</a></li>
+<li><a href="#org6235c37">1.1. Numpy 簡介</a></li>
+<li><a href="#orge6d97a7">1.2. 使用 Numpy 模組</a></li>
 </ul>
 </li>
-<li><a href="#org7ca70af">2. NumPy 陣列</a>
+<li><a href="#org0c247d8">2. NumPy 陣列</a>
 <ul>
-<li><a href="#org954dd5a">2.1. NDArray</a></li>
-<li><a href="#org73c328e">2.2. 陣列? 矩陣?</a></li>
-<li><a href="#org219ffc0">2.3. 建立 ndarray</a></li>
-<li><a href="#org2c79c4f">2.4. 匯入/匯出</a></li>
-<li><a href="#orgb547258">2.5. 自行研究</a></li>
-<li><a href="#org6584e19">2.6. [課堂練習]陣列生成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgd4b17ac">2.1. NDArray</a></li>
+<li><a href="#org07fffdd">2.2. 陣列? 矩陣?</a></li>
+<li><a href="#orgc94a33e">2.3. 建立 ndarray</a></li>
+<li><a href="#org1061196">2.4. 匯入/匯出</a></li>
+<li><a href="#orge094a53">2.5. 自行研究</a></li>
+<li><a href="#orgaf5aa2a">2.6. [課堂練習]陣列生成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org72090ee">3. 陣列運算</a>
+<li><a href="#orgeb4644d">3. 陣列運算效能比較</a>
 <ul>
-<li><a href="#org29fbc7a">3.1. Numpy 計算時間比較</a></li>
-<li><a href="#org0b60048">3.2. 陣列走訪(traversal)</a></li>
-<li><a href="#org9cc5ab9">3.3. [課堂練習]成績模擬&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#org6a0f76e">3.4. 陣列運算</a></li>
-<li><a href="#orgf33fa58">3.5. [課堂練習]分數修改&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org7f7d3be">3.1. Numpy 計算時間比較</a></li>
 </ul>
 </li>
-<li><a href="#orgb7ed55d">4. 陣列函數</a>
+<li><a href="#orgb7531c6">4. 陣列走訪(traversal)</a>
 <ul>
-<li><a href="#org2bb150f">4.1. numpy.sum()</a></li>
-<li><a href="#orgce5b076">4.2. sum() v.s. np.sum()</a></li>
-<li><a href="#org60d6801">4.3. 其他常用函數</a></li>
-<li><a href="#orgf26bffe">4.4. 差不多? 很重要!: numpy.allclose</a></li>
-<li><a href="#orga7fc367">4.5. [作業 1]成績計算&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#orgb89639e">4.6. [作業 2]Z 分數&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#orgfcac02b">4.7. 解聯立方程式</a></li>
-<li><a href="#org62cbbdf">4.8. numpy 陣列間的運算</a></li>
+<li><a href="#orgb62815a">4.1. vector 走訪</a></li>
+<li><a href="#org5e12f5b">4.2. 二維陣列走訪</a></li>
+<li><a href="#orgf362c82">4.3. [課堂練習]成績模擬&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org95c8910">4.4. 陣列運算</a></li>
+<li><a href="#org9c83802">4.5. [課堂練習]分數修改&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org405c346">5. Numpy 檔案輸出輸入</a>
+<li><a href="#org5ae1ef6">5. 陣列函數</a>
 <ul>
-<li><a href="#orgeb8f729">5.1. Numpy v.s. 外部檔案</a></li>
-<li><a href="#orgfa4d664">5.2. 不同格式</a></li>
-<li><a href="#org097d959">5.3. Bineary Format</a></li>
-<li><a href="#org5712daa">5.4. 讀取混合格式的文字資料</a></li>
-<li><a href="#org7ffd53e">5.5. 讀取一個欄位資料</a></li>
-<li><a href="#org15cb8fb">5.6. Binary Format  </a></li>
-<li><a href="#org8ce5992">5.7. 由網路讀取資料</a></li>
+<li><a href="#orgb70be73">5.1. numpy.sum()</a></li>
+<li><a href="#orgec78329">5.2. sum() v.s. np.sum()</a></li>
+<li><a href="#org63797e4">5.3. 其他常用函數</a></li>
+<li><a href="#org29c5ab9">5.4. 差不多? 很重要!: numpy.allclose</a></li>
+<li><a href="#org51f115e">5.5. [作業 1]成績計算&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org0a4363d">5.6. [作業 2]Z 分數&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org96e6628">5.7. 解聯立方程式</a></li>
+<li><a href="#orgc172b4c">5.8. numpy 陣列間的運算</a></li>
 </ul>
 </li>
-<li><a href="#risktopickles">6. 允許使用 pickles 的潛在風險</a>
+<li><a href="#orgd2c83c9">6. Numpy 檔案輸出輸入</a>
 <ul>
-<li><a href="#org8506263">6.1. 安全範例</a></li>
-<li><a href="#orga52d2ed">6.2. 危險範例(npy)</a></li>
-<li><a href="#orgb2c60c8">6.3. 危險範例(pickle)</a></li>
+<li><a href="#orgeb7c090">6.1. Numpy v.s. 外部檔案</a></li>
+<li><a href="#orgb01997f">6.2. 不同格式</a></li>
+<li><a href="#org61aaf1a">6.3. Bineary Format</a></li>
+<li><a href="#org27e146c">6.4. 讀取混合格式的文字資料</a></li>
+<li><a href="#org1dfd1a1">6.5. 讀取一個欄位資料</a></li>
+<li><a href="#orgeb4ae2e">6.6. Binary Format  </a></li>
+<li><a href="#org54b4c16">6.7. 由網路讀取資料</a></li>
+</ul>
+</li>
+<li><a href="#risktopickles">7. 允許使用 pickles 的潛在風險</a>
+<ul>
+<li><a href="#orgef87028">7.1. 安全範例</a></li>
+<li><a href="#orgc54b8fc">7.2. 危險範例(npy)</a></li>
+<li><a href="#orgeca2921">7.3. 危險範例(pickle)</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <a href="https://letranger.github.io/PythonCourse/Numpy.html"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Numpy.html.svg?style=plastic"/></a>
-<div id="outline-container-org31534ce" class="outline-2">
-<h2 id="org31534ce"><span class="section-number-2">1.</span> What and How</h2>
+<div id="outline-container-org54525f7" class="outline-2">
+<h2 id="org54525f7"><span class="section-number-2">1.</span> What and How</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org962f6c4" class="outline-3">
-<h3 id="org962f6c4"><span class="section-number-3">1.1.</span> Numpy 簡介</h3>
+<div id="outline-container-org6235c37" class="outline-3">
+<h3 id="org6235c37"><span class="section-number-3">1.1.</span> Numpy 簡介</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>NumPy 是 Python 語言的一個擴充程式庫。支援高階大量的維度陣列與矩陣運算，此外也針對陣列運算提供大量的數學函式函式庫。<br /></li>
@@ -315,32 +320,41 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc414d41" class="outline-3">
-<h3 id="orgc414d41"><span class="section-number-3">1.2.</span> 使用 Numpy 模組</h3>
+<div id="outline-container-orge6d97a7" class="outline-3">
+<h3 id="orge6d97a7"><span class="section-number-3">1.2.</span> 使用 Numpy 模組</h3>
 <div class="outline-text-3" id="text-1-2">
+<p>
+和所有其他的第三方模組一樣，使用 Numpy 前需要先安裝並匯入模組<br />
+</p>
 </div>
-<div id="outline-container-orga9669d7" class="outline-4">
-<h4 id="orga9669d7"><span class="section-number-4">1.2.1.</span> 安裝</h4>
+<div id="outline-container-org87e560c" class="outline-4">
+<h4 id="org87e560c"><span class="section-number-4">1.2.1.</span> 安裝</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip install numpy
 </pre>
 </div>
 </div>
-<div id="outline-container-orga2c923d" class="outline-5">
-<h5 id="orga2c923d">PyCharm</h5>
-<div class="outline-text-5" id="text-orga2c923d">
+<div id="outline-container-orgbbbff88" class="outline-5">
+<h5 id="orgbbbff88">PyCharm</h5>
+<div class="outline-text-5" id="text-orgbbbff88">
+<p>
+如果你是使用 PyCharm，可以在 PyCharm 的 Terminal 視窗中執行上述安裝指令<br />
+</p>
 
-<div id="org1512b8e" class="figure">
+<div id="org547da3b" class="figure">
 <p><img src="images/NumPy/2023-02-13_10-26-12_2023-02-13_10-24-46.png" alt="2023-02-13_10-26-12_2023-02-13_10-24-46.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>PyCharm</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org1bb8c79" class="outline-5">
-<h5 id="org1bb8c79">Colab</h5>
-<div class="outline-text-5" id="text-org1bb8c79">
+<div id="outline-container-org28d5c22" class="outline-5">
+<h5 id="org28d5c22">Colab</h5>
+<div class="outline-text-5" id="text-org28d5c22">
+<p>
+如果你是使用 Colab，可以在 Colab 的程式碼區塊中執行安裝指令<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span>!pip install numpy
 </pre>
@@ -348,8 +362,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orga47f3f4" class="outline-4">
-<h4 id="orga47f3f4"><span class="section-number-4">1.2.2.</span> 匯入</h4>
+<div id="outline-container-org043fb3c" class="outline-4">
+<h4 id="org043fb3c"><span class="section-number-4">1.2.2.</span> 匯入</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>使用模組裡的函式要加模組名稱<br /></li>
@@ -369,12 +383,15 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org7ca70af" class="outline-2">
-<h2 id="org7ca70af"><span class="section-number-2">2.</span> NumPy 陣列</h2>
+<div id="outline-container-org0c247d8" class="outline-2">
+<h2 id="org0c247d8"><span class="section-number-2">2.</span> NumPy 陣列</h2>
 <div class="outline-text-2" id="text-2">
+<p>
+NumPy 的核心資料結構是 ndarray (N-dimensional array)，也就是多維陣列。你可以把它當成是Python裡的二維清單(list)或矩陣(matrix)，但它更強大且高效能。<br />
+</p>
 </div>
-<div id="outline-container-org954dd5a" class="outline-3">
-<h3 id="org954dd5a"><span class="section-number-3">2.1.</span> NDArray</h3>
+<div id="outline-container-orgd4b17ac" class="outline-3">
+<h3 id="orgd4b17ac"><span class="section-number-3">2.1.</span> NDArray</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Numpy 中的一維 ndarray 稱為 vector(向量)<br /></li>
@@ -388,7 +405,7 @@ axis 0, axis 1, axis 2:<br />
 <li>二維時 axis 0 為 y 軸<br /></li>
 </ul>
 
-<div id="org1776da1" class="figure">
+<div id="org20fadf8" class="figure">
 <p><img src="images/NumPy/aryaxis.jpg" alt="aryaxis.jpg" width="300" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>Axis in ndarray</p>
@@ -396,15 +413,15 @@ axis 0, axis 1, axis 2:<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org73c328e" class="outline-3">
-<h3 id="org73c328e"><span class="section-number-3">2.2.</span> 陣列? 矩陣?</h3>
+<div id="outline-container-org07fffdd" class="outline-3">
+<h3 id="org07fffdd"><span class="section-number-3">2.2.</span> 陣列? 矩陣?</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 在這裡我把 numpy 的 ndarray 稱為陣列而非矩陣，因為 numpy 裡另有一種 matrix(矩陣)的資料型態，二者的差異如下<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup><br />
 </p>
 </div>
-<div id="outline-container-orgb7efaec" class="outline-4">
-<h4 id="orgb7efaec"><span class="section-number-4">2.2.1.</span> 結構與維度</h4>
+<div id="outline-container-org0654138" class="outline-4">
+<h4 id="org0654138"><span class="section-number-4">2.2.1.</span> 結構與維度</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <ul class="org-ul">
 <li>ndarray：ndarray 是 NumPy 的核心數據結構，它可以是多維數組，不局限於二維。可以是一維、二維、甚至更高維的數據結構。<br /></li>
@@ -412,8 +429,8 @@ axis 0, axis 1, axis 2:<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org595f61d" class="outline-4">
-<h4 id="org595f61d"><span class="section-number-4">2.2.2.</span> 操作符行為差異</h4>
+<div id="outline-container-org60220b8" class="outline-4">
+<h4 id="org60220b8"><span class="section-number-4">2.2.2.</span> 操作符行為差異</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ul class="org-ul">
 <li>ndarray：ndarray 的 * 操作符執行的是元素對應相乘（element-wise multiplication），這適用於所有數組維度。<br /></li>
@@ -421,8 +438,8 @@ axis 0, axis 1, axis 2:<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org46f8999" class="outline-4">
-<h4 id="org46f8999"><span class="section-number-4">2.2.3.</span> 示例</h4>
+<div id="outline-container-org68ba828" class="outline-4">
+<h4 id="org68ba828"><span class="section-number-4">2.2.3.</span> 示例</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
@@ -448,17 +465,20 @@ axis 0, axis 1, axis 2:<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org219ffc0" class="outline-3">
-<h3 id="org219ffc0"><span class="section-number-3">2.3.</span> 建立 ndarray</h3>
+<div id="outline-container-orgc94a33e" class="outline-3">
+<h3 id="orgc94a33e"><span class="section-number-3">2.3.</span> 建立 ndarray</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orgc9171d1" class="outline-4">
-<h4 id="orgc9171d1"><span class="section-number-4">2.3.1.</span> 一維陣列(vector)</h4>
+<div id="outline-container-orgd609964" class="outline-4">
+<h4 id="orgd609964"><span class="section-number-4">2.3.1.</span> 一維陣列(vector)</h4>
 <div class="outline-text-4" id="text-2-3-1">
+<p>
+先來看看最簡單的一維陣列(vector)的建立方式，基本上有兩種方式可以生成 ndarray<br />
+</p>
 </div>
-<div id="outline-container-org0dc0390" class="outline-5">
-<h5 id="org0dc0390">可以將 python 的 list 或 tuple 轉成 numpy ndarray</h5>
-<div class="outline-text-5" id="text-org0dc0390">
+<div id="outline-container-orga50200c" class="outline-5">
+<h5 id="orga50200c">可以將 python 的 list 或 tuple 轉成 numpy ndarray</h5>
+<div class="outline-text-5" id="text-orga50200c">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">np1</span> = np.array( [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>] )
@@ -471,9 +491,9 @@ axis 0, axis 1, axis 2:<br />
 </pre>
 </div>
 </div>
-<div id="outline-container-org02fc63a" class="outline-5">
-<h5 id="org02fc63a">使用 np.arange( ) 方法</h5>
-<div class="outline-text-5" id="text-org02fc63a">
+<div id="outline-container-org52440b4" class="outline-5">
+<h5 id="org52440b4">使用 np.arange( ) 方法</h5>
+<div class="outline-text-5" id="text-org52440b4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -494,11 +514,11 @@ axis 0, axis 1, axis 2:<br />
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfbed185" class="outline-5">
-<h5 id="orgfbed185">np.arange() v.s. range()</h5>
-<div class="outline-text-5" id="text-orgfbed185">
+<div id="outline-container-orgf9f37db" class="outline-5">
+<h5 id="orgf9f37db">np.arange() v.s. range()</h5>
+<div class="outline-text-5" id="text-orgf9f37db">
 <p>
-差異：<br />
+這裡我們來比較一下 np.arange() 與 python 內建的 range() 函數有什麼不同：<br />
 </p>
 <ul class="org-ul">
 <li>range()為 python 內建函數<br /></li>
@@ -507,88 +527,91 @@ axis 0, axis 1, axis 2:<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org455060d" class="outline-5">
-<h5 id="org455060d">簡單的陣列運算</h5>
-<div class="outline-text-5" id="text-org455060d">
+<div id="outline-container-orge2a53b5" class="outline-5">
+<h5 id="orge2a53b5">簡單的陣列運算</h5>
+<div class="outline-text-5" id="text-orge2a53b5">
+<p>
+Numpy陣列最大的優勢在於它可以對整個陣列進行運算，而不需要使用迴圈逐一處理每個元素，這使得程式碼更簡潔且 <b><b>執行效率更高</b></b> 。<br />
+</p>
+
+<p>
+是的，他會快很多！因為 Numpy 在底層是用 C 語言實作的，能夠更有效率地處理大量資料運算。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">np1</span> = np.array([<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>])
 <span class="linenr">3: </span><span style="color: #dcaeea;">np2</span> = np.array([<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>])
 <span class="linenr">4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#38499;&#21015;&#30456;&#21152;</span>
 <span class="linenr">5: </span><span style="color: #c678dd;">print</span>(np1 + np2) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">[4 6 8]</span>
-<span class="linenr">6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39023;&#31034;&#30456;&#38364;&#36039;&#35338;</span>
-<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(np1.ndim, np1.shape, np1.dtype)
 </pre>
 </div>
 
 <pre class="example">
 [4 6 8]
-1 (3,) int64
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org5f1f9c1" class="outline-4">
-<h4 id="org5f1f9c1"><span class="section-number-4">2.3.2.</span> 二維陣列</h4>
+<div id="outline-container-org63269b0" class="outline-4">
+<h4 id="org63269b0"><span class="section-number-4">2.3.2.</span> 二維陣列</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <p>
-於陣列人指定 x 軸或 y 軸:<br />
+接下來我們來看看二維陣列的建立方式，最簡單的方式就是直接把Python的二維清單(list of list)轉成 ndarray<br />
 </p>
-<ul class="org-ul">
-<li>1 維時 axis 0 為 x 軸<br /></li>
-<li>2 維時 axis 0 為 y 軸<br /></li>
-</ul>
+
+<p>
+在面對二維陣列時，我們通常會使用 row(列) 和 column(行) 來描述陣列的結構。在 NumPy 中，二維陣列的第一個維度代表 row，而第二個維度代表 column。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span><span style="color: #dcaeea;">np4</span> = np.array( [[<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>], [<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>]] )
-<span class="linenr"> 4: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"shape:"</span>, np4.shape)
-<span class="linenr"> 5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"np4:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">"</span>, np4)
-<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#21462;&#20986;&#31532;0&#21015;(row):"</span>,np4[<span style="color: #da8548; font-weight: bold;">0</span>])
-<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#21462;&#20986;&#31532;0&#34892;(column):"</span>,np4[:, <span style="color: #da8548; font-weight: bold;">0</span>])
-<span class="linenr"> 8: </span><span style="color: #dcaeea;">np5</span> = np.array([np.arange(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">2</span>), np.arange(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">20</span>, <span style="color: #da8548; font-weight: bold;">2</span>)])
-<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'np5:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>, np5)
-<span class="linenr">10: </span><span style="color: #dcaeea;">np6</span> = np.arange(<span style="color: #da8548; font-weight: bold;">8</span>).reshape(<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
-<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'np6:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>, np6)
-<span class="linenr">12: </span><span style="color: #c678dd;">print</span>(np6.ndim, np6.shape, np6.dtype)
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">np4</span> = np.array( [[<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>], [<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>]] )
+<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#30475;&#25972;&#20491;&#38499;&#21015;</span>
+<span class="linenr"> 4: </span><span style="color: #c678dd;">print</span>(np4)
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26597;&#30475;&#38499;&#21015;&#30340;&#24418;&#29376;(shape)&#33287;&#20839;&#23481;</span>
+<span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"shape:"</span>, np4.shape)
+<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"np4:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">"</span>, np4)
+<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21462;&#20986;&#31532;0&#21015;(row)&#33287;&#31532;0&#34892;(column)</span>
+<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#21462;&#20986;&#31532;0&#21015;(row):"</span>,np4[<span style="color: #da8548; font-weight: bold;">0</span>])
+<span class="linenr">10: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"&#21462;&#20986;&#31532;0&#34892;(column):"</span>,np4[:, <span style="color: #da8548; font-weight: bold;">0</span>])
 </pre>
 </div>
-<pre class="example" id="orga9fe55a">
-  shape: (2, 3)
-  np4:
-   [[1 2 4]
-   [3 4 5]]
-  取出第0列(row): [1 2 4]
-  取出第0行(column): [1 3]
-  np5:
-   [[ 1  3  5  7  9]
-   [10 12 14 16 18]]
-  np6:
-   [[0 1 2 3]
-   [4 5 6 7]]
-  2 (2, 4) int64
+<pre class="example">
+[[1 2 4]
+ [3 4 5]]
+shape: (2, 3)
+np4:
+ [[1 2 4]
+ [3 4 5]]
+取出第0列(row): [1 2 4]
+取出第0行(column): [1 3]
 </pre>
 </div>
 </div>
-<div id="outline-container-org9d166d3" class="outline-4">
-<h4 id="org9d166d3"><span class="section-number-4">2.3.3.</span> 多維陣列</h4>
+<div id="outline-container-org8534b3f" class="outline-4">
+<h4 id="org8534b3f"><span class="section-number-4">2.3.3.</span> 陣列形狀(Shape)的自由轉換</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
-如何自由的轉換陣列形狀: reshape()<br />
+在處理多維陣列時，經常需要改變陣列的形狀以符合不同的運算需求。NumPy 提供了 reshape() 方法來實現這一功能。以下範例展示如何將一個一維陣列轉換為三維陣列：<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr">2: </span>
-<span class="linenr">3: </span><span style="color: #dcaeea;">np7</span> = np.arange(<span style="color: #da8548; font-weight: bold;">24</span>).reshape(<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
-<span class="linenr">4: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'np7:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>,np7)
-<span class="linenr">5: </span>
-<span class="linenr">6: </span><span style="color: #dcaeea;">np8</span> = np.arange(<span style="color: #da8548; font-weight: bold;">13</span>, <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #da8548; font-weight: bold;">2</span>).reshape(<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
-<span class="linenr">7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"np8:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">"</span>, np8)
-<span class="linenr">8: </span><span style="color: #c678dd;">print</span>(np8.ndim, np8.shape, np8.dtype)
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">np7</span> = np.arange(<span style="color: #da8548; font-weight: bold;">24</span>)
+<span class="linenr"> 3: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#21407;&#22987; np7:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>,np7)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#37325;&#22609;&#28858; 2x3x4 &#30340;&#19977;&#32173;&#38499;&#21015;</span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">np7</span> = np.arange(<span style="color: #da8548; font-weight: bold;">24</span>).reshape(<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
+<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'np7:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">'</span>,np7)
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#37325;&#22609;&#28858; 2x3x4 &#30340;&#19977;&#32173;&#38499;&#21015;&#65292;&#20803;&#32032;&#28858;&#22855;&#25976;</span>
+<span class="linenr">10: </span><span style="color: #dcaeea;">np8</span> = np.arange(<span style="color: #da8548; font-weight: bold;">13</span>, <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #da8548; font-weight: bold;">2</span>).reshape(<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"np8:</span><span style="color: #a9a1e1;">\n</span><span style="color: #98be65;">"</span>, np8)
+<span class="linenr">12: </span><span style="color: #c678dd;">print</span>(np8.ndim, np8.shape, np8.dtype)
 </pre>
 </div>
 
-<pre class="example" id="org1f0004a">
+<pre class="example" id="org85231a4">
+  原始 np7:
+   [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23]
   np7:
    [[[ 0  1  2  3]
     [ 4  5  6  7]
@@ -609,21 +632,33 @@ axis 0, axis 1, axis 2:<br />
 </pre>
 </div>
 </div>
-<div id="outline-container-org3f6c285" class="outline-4">
-<h4 id="org3f6c285"><span class="section-number-4">2.3.4.</span> 隨機陣列</h4>
+<div id="outline-container-org6cb65e4" class="outline-4">
+<h4 id="org6cb65e4"><span class="section-number-4">2.3.4.</span> 隨機陣列</h4>
 <div class="outline-text-4" id="text-2-3-4">
-</div>
-<div id="outline-container-org003ef4e" class="outline-5">
-<h5 id="org003ef4e">numpy.random.randint()</h5>
-<div class="outline-text-5" id="text-org003ef4e">
 <p>
-語法：numpy.random.randint(low, high=None, size=None, dtype=&rsquo;l&rsquo;)<br />
+有些時候我們需要產生隨機數據來模擬資料或進行測試，例如：<br />
+</p>
+<ul class="org-ul">
+<li>模擬測試資料<br /></li>
+<li>初始化神經網路的權重(這個在人工智慧的程式實作中很常見)<br /></li>
+<li>隨機抽樣<br /></li>
+</ul>
+<p>
+Numpy 提供了多種方法來生成隨機陣列，以下介紹幾種常用的方法<br />
+</p>
+</div>
+<div id="outline-container-org86fce99" class="outline-5">
+<h5 id="org86fce99">numpy.random.randint()</h5>
+<div class="outline-text-5" id="text-org86fce99">
+<p>
+顧名思義，這個函式是用來產生 <b><b>隨機整數</b></b> 的陣列<br />
 </p>
 
-<p>
-函式的作用是，返回一個隨機整型數，範圍從低（包括）到高（不包括），即[low, high)。<br />
-如果沒有寫引數 high 的值，則返回[0,low)的值。<br />
-</p>
+<ul class="org-ul">
+<li>語法：numpy.random.randint(low, high=None, size=None, dtype=&rsquo;l&rsquo;)<br /></li>
+<li>函式的作用是，傳回一個隨機整型數，範圍從低（包括）到高（不包括），即[low, high)。<br /></li>
+<li>如果沒有寫引數 high 的值，則返回[0,low)的值。<br /></li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>np.random.seed(<span style="color: #da8548; font-weight: bold;">0</span>)
@@ -637,7 +672,7 @@ axis 0, axis 1, axis 2:<br />
 </pre>
 </div>
 
-<pre class="example" id="org5522caf">
+<pre class="example" id="orgbabcaa9">
 [5 0 3 3 7 9]
 [[3 5 2 4]
  [7 6 8 8]
@@ -659,16 +694,16 @@ axis 0, axis 1, axis 2:<br />
 </pre>
 </div>
 </div>
-<div id="outline-container-org6ebb695" class="outline-5">
-<h5 id="org6ebb695">numpy.random.rand()</h5>
-<div class="outline-text-5" id="text-org6ebb695">
+<div id="outline-container-orgba9f3d3" class="outline-5">
+<h5 id="orgba9f3d3">numpy.random.rand()</h5>
+<div class="outline-text-5" id="text-orgba9f3d3">
 <p>
-根據給定維度生成(0,1)間的資料，包含 0，不包含 1<br />
+如果你需要產生 <b><b>隨機浮點數</b></b> 的陣列，可以使用 numpy.random.rand() 函式，它會產生在 [0.0, 1.0) 範圍內的均勻分布隨機浮點數。<br />
 </p>
 </div>
 <ul class="org-ul">
-<li><a id="orga382bcd"></a>範例<br />
-<div class="outline-text-6" id="text-orga382bcd">
+<li><a id="orgc6d6ee3"></a>範例<br />
+<div class="outline-text-6" id="text-orgc6d6ee3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -697,9 +732,12 @@ np9:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6f1ab5a" class="outline-4">
-<h4 id="org6f1ab5a"><span class="section-number-4">2.3.5.</span> 0/1 陣列</h4>
+<div id="outline-container-org2297831" class="outline-4">
+<h4 id="org2297831"><span class="section-number-4">2.3.5.</span> 0/1 陣列</h4>
 <div class="outline-text-4" id="text-2-3-5">
+<p>
+有些時候我們需要建立全為 0 或全為 1 的陣列，Numpy 提供了 np.zeros() 和 np.ones() 兩個函式來達成這個目的<br />
+</p>
 <ul class="org-ul">
 <li><p>
 np.zeros: np.zeros( (陣列各維度大小用逗號區分) )：建立全為 0 的陣列，可以小括號定義陣列的各個維度的大小<br />
@@ -738,13 +776,24 @@ oness=&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org2c79c4f" class="outline-3">
-<h3 id="org2c79c4f"><span class="section-number-3">2.4.</span> 匯入/匯出</h3>
+<div id="outline-container-org1061196" class="outline-3">
+<h3 id="org1061196"><span class="section-number-3">2.4.</span> 匯入/匯出</h3>
 <div class="outline-text-3" id="text-2-4">
+<p>
+程式是用來處理資料的，而資料通常是存放在檔案中，有時我們要從電腦裡讀取原始資料用Numpy來分析運算，在處理完畢後，還要將結果存回檔案中。因此 Numpy 提供了方便的函式來進行資料的匯入與匯出<br />
+</p>
 </div>
-<div id="outline-container-org4f2a689" class="outline-4">
-<h4 id="org4f2a689"><span class="section-number-4">2.4.1.</span> 將 ndarray 內容匯出到檔案</h4>
+<div id="outline-container-org073e62a" class="outline-4">
+<h4 id="org073e62a"><span class="section-number-4">2.4.1.</span> 將 ndarray 內容匯出到檔案</h4>
 <div class="outline-text-4" id="text-2-4-1">
+<ul class="org-ul">
+<li>Numpy支援多種檔案格式的匯出，其中兩種大家比較熟悉的格式是 csv與txt，<br /></li>
+<li>至於.npy是 Numpy 自有的二進位格式，適合用來儲存大型陣列資料，這種檔案格式可以保留陣列的形狀與資料型態，讀取速度也較快。但你只能用 Numpy 來讀取這種格式的檔案，無法用記事本等文字編輯器來查看內容(不信你可以試試看)。<br /></li>
+</ul>
+
+<p>
+以下是把處理後的 ndarray 內容匯出到不同格式檔案的範例<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">ary</span> = np.random.randint(<span style="color: #da8548; font-weight: bold;">10</span>, size=(<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>))
@@ -771,9 +820,12 @@ oness=&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org9b7750e" class="outline-4">
-<h4 id="org9b7750e"><span class="section-number-4">2.4.2.</span> 將資料由檔案匯入 ndarray</h4>
+<div id="outline-container-org88f1577" class="outline-4">
+<h4 id="org88f1577"><span class="section-number-4">2.4.2.</span> 將資料由檔案匯入 ndarray</h4>
 <div class="outline-text-4" id="text-2-4-2">
+<ul class="org-ul">
+<li>將資料由檔案匯入 ndarray 也很簡單，分別使用 np.load() 與 np.loadtxt() 函式來讀取不同格式的檔案<br /></li>
+</ul>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">ary1</span> = np.load(<span style="color: #98be65;">'ndarray.npy'</span>)
@@ -799,8 +851,8 @@ oness=&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-orgb547258" class="outline-3">
-<h3 id="orgb547258"><span class="section-number-3">2.5.</span> 自行研究</h3>
+<div id="outline-container-orge094a53" class="outline-3">
+<h3 id="orge094a53"><span class="section-number-3">2.5.</span> 自行研究</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 請自行 google 以下 numpy 的函數用法<br />
@@ -835,7 +887,7 @@ oness=&gt;
 </pre>
 </div>
 
-<pre class="example" id="orgf559dc7">
+<pre class="example" id="org3f5d811">
 [[1. 0. 0.]
  [0. 1. 0.]
  [0. 0. 1.]]
@@ -858,8 +910,8 @@ oness=&gt;
 </pre>
 </div>
 </div>
-<div id="outline-container-org6584e19" class="outline-3">
-<h3 id="org6584e19"><span class="section-number-3">2.6.</span> [課堂練習]陣列生成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-orgaf5aa2a" class="outline-3">
+<h3 id="orgaf5aa2a"><span class="section-number-3">2.6.</span> [課堂練習]陣列生成&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
 隨機產生一組 10*5 個 0~100 的陣列，模擬成一個班級的某次考試成績(10 人*5 科)。<br />
@@ -867,19 +919,22 @@ oness=&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org72090ee" class="outline-2">
-<h2 id="org72090ee"><span class="section-number-2">3.</span> 陣列運算</h2>
+<div id="outline-container-orgeb4644d" class="outline-2">
+<h2 id="orgeb4644d"><span class="section-number-2">3.</span> 陣列運算效能比較</h2>
 <div class="outline-text-2" id="text-3">
+<p>
+這個例子只是讓大家體會 Numpy 陣列運算的效能優勢，實際上在處理大型資料時，Numpy 的效能優勢會更明顯<br />
+</p>
 </div>
-<div id="outline-container-org29fbc7a" class="outline-3">
-<h3 id="org29fbc7a"><span class="section-number-3">3.1.</span> Numpy 計算時間比較</h3>
+<div id="outline-container-org7f7d3be" class="outline-3">
+<h3 id="org7f7d3be"><span class="section-number-3">3.1.</span> Numpy 計算時間比較</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 自行比較以下兩個版本的執行時間<br />
 </p>
 </div>
-<div id="outline-container-org422abfe" class="outline-4">
-<h4 id="org422abfe"><span class="section-number-4">3.1.1.</span> PyCharm</h4>
+<div id="outline-container-org2cb2211" class="outline-4">
+<h4 id="org2cb2211"><span class="section-number-4">3.1.1.</span> PyCharm</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <p>
 於 PyCharm 環境中計算時間的方式<br />
@@ -898,8 +953,8 @@ oness=&gt;
 </pre>
 </div>
 </div>
-<div id="outline-container-orge0f382d" class="outline-4">
-<h4 id="orge0f382d"><span class="section-number-4">3.1.2.</span> Colab</h4>
+<div id="outline-container-org6ae3e18" class="outline-4">
+<h4 id="org6ae3e18"><span class="section-number-4">3.1.2.</span> Colab</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 於 Colab 環境中計算時間的方式<br />
@@ -918,13 +973,20 @@ oness=&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org0b60048" class="outline-3">
-<h3 id="org0b60048"><span class="section-number-3">3.2.</span> 陣列走訪(traversal)</h3>
-<div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org3f320bf" class="outline-4">
-<h4 id="org3f320bf"><span class="section-number-4">3.2.1.</span> vector 走訪</h4>
-<div class="outline-text-4" id="text-3-2-1">
+<div id="outline-container-orgb7531c6" class="outline-2">
+<h2 id="orgb7531c6"><span class="section-number-2">4.</span> 陣列走訪(traversal)</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+不論你在學習哪一種資料結構，走訪(traversal)都是一個重要的概念。走訪是指依序訪問資料結構中的每一個元素。在 Numpy 中，走訪陣列的方式有很多種，以下介紹幾種常見的方法<br />
+</p>
+</div>
+<div id="outline-container-orgb62815a" class="outline-3">
+<h3 id="orgb62815a"><span class="section-number-3">4.1.</span> vector 走訪</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+這個其實就和我們在Pyhon中走訪 list 差不多<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">arr</span> = np.array([<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">20</span>, <span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">40</span>, <span style="color: #da8548; font-weight: bold;">50</span>])
@@ -944,13 +1006,16 @@ oness=&gt;
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd0f88dd" class="outline-4">
-<h4 id="orgd0f88dd"><span class="section-number-4">3.2.2.</span> 二維陣列走訪</h4>
-<div class="outline-text-4" id="text-3-2-2">
+<div id="outline-container-org5e12f5b" class="outline-3">
+<h3 id="org5e12f5b"><span class="section-number-3">4.2.</span> 二維陣列走訪</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+在走訪二維陣列時，我們可以使用多種方法來達成，以下介紹幾種常見的方法<br />
+</p>
 </div>
-<div id="outline-container-orga65a3ff" class="outline-5">
-<h5 id="orga65a3ff">nested for loop</h5>
-<div class="outline-text-5" id="text-orga65a3ff">
+<div id="outline-container-org435b4e0" class="outline-4">
+<h4 id="org435b4e0"><span class="section-number-4">4.2.1.</span> nested for loop</h4>
+<div class="outline-text-4" id="text-4-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 2: </span>
@@ -966,11 +1031,11 @@ oness=&gt;
 </div>
 </div>
 </div>
-<div id="outline-container-org12ce6bc" class="outline-5">
-<h5 id="org12ce6bc">nditer</h5>
-<div class="outline-text-5" id="text-org12ce6bc">
+<div id="outline-container-org2bd3d3e" class="outline-4">
+<h4 id="org2bd3d3e"><span class="section-number-4">4.2.2.</span> nditer</h4>
+<div class="outline-text-4" id="text-4-2-2">
 <p>
-nditer 是 NumPy 提供的一個高效遍歷多維數組的工具，可以讓我們更簡單地對多維數組進行逐元素的操作。<br />
+這種走訪就是比較 Numpy 風格的寫法，它的好處是可以只用一個迴圈就可以走訪整個陣列，不管這個陣列是幾維的<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
@@ -994,13 +1059,16 @@ nditer 是 NumPy 提供的一個高效遍歷多維數組的工具，可以讓我
 </pre>
 </div>
 </div>
-<div id="outline-container-orgef3278b" class="outline-5">
-<h5 id="orgef3278b">走訪過程中取得 index</h5>
-<div class="outline-text-5" id="text-orgef3278b">
+<div id="outline-container-org7970399" class="outline-4">
+<h4 id="org7970399"><span class="section-number-4">4.2.3.</span> 走訪過程中取得 index</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+在某些情況下，我們在走訪陣列時，除了需要元素的值外，還需要知道該元素在陣列中的位置(index)。以下介紹兩種常見的方法來達成這個目的<br />
+</p>
 </div>
-<ul class="org-ul">
-<li><a id="org63b8fae"></a>常見的做法<br />
-<div class="outline-text-6" id="text-org63b8fae">
+<div id="outline-container-org7540ad2" class="outline-5">
+<h5 id="org7540ad2">常見的做法</h5>
+<div class="outline-text-5" id="text-org7540ad2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -1024,11 +1092,16 @@ Index (2, 1) - Value: 8
 Index (2, 2) - Value: 9
 </pre>
 </div>
-</li>
-<li><a id="org7c2d1ae"></a>使用 ndenumerate 獲取索引<br />
-<div class="outline-text-6" id="text-org7c2d1ae">
+</div>
+<div id="outline-container-org35658d5" class="outline-5">
+<h5 id="org35658d5">使用 ndenumerate 獲取索引</h5>
+<div class="outline-text-5" id="text-org35658d5">
 <p>
-另一種做法:<br />
+這是另一種比較 Numpy 風格的寫法，使用 np.ndenumerate() 函式可以同時獲取元素的索引和值<br />
+</p>
+
+<p>
+這裡的num.ndenumerate() 函式會傳回一個迭代器，該迭代器在每次迭代時會產生一個包含索引和值的元組(tuple)。索引本身也是一個元組，表示元素在多維陣列中的位置<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
@@ -1052,14 +1125,12 @@ Index: (2, 1) - Value: 8
 Index: (2, 2) - Value: 9
 </pre>
 </div>
-</li>
-</ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org9cc5ab9" class="outline-3">
-<h3 id="org9cc5ab9"><span class="section-number-3">3.3.</span> [課堂練習]成績模擬&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-orgf362c82" class="outline-3">
+<h3 id="orgf362c82"><span class="section-number-3">4.3.</span> [課堂練習]成績模擬&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>隨機產生一組 10*5 的成績陣列(20 &lt;= 分數 &lt;= 99)<br /></li>
 <li>以 for 迴圈以如下格式輸出結果，最前面加上學號(從 1 號開始編號)，各成績間以 tab 相隔對齊<br /></li>
@@ -1077,7 +1148,7 @@ Index: (2, 2) - Value: 9
 <p>
 輸出結果範例<br />
 </p>
-<pre class="example" id="org8f3abd1">
+<pre class="example" id="org087d218">
  1: 73 91 28 43 74
  2: 98 36 32 55 89
  3: 52 60 51 25 34
@@ -1091,21 +1162,24 @@ Index: (2, 2) - Value: 9
 </pre>
 </div>
 </div>
-<div id="outline-container-org6a0f76e" class="outline-3">
-<h3 id="org6a0f76e"><span class="section-number-3">3.4.</span> 陣列運算</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-org95c8910" class="outline-3">
+<h3 id="org95c8910"><span class="section-number-3">4.4.</span> 陣列運算</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+當你的程式中已經存在 ndarray 時，Numpy 提供了許多方便的函式來進行陣列運算，這些函式可以讓你輕鬆地對整個陣列進行數學運算，而不需要使用迴圈逐一處理每個元素。以下介紹幾種常見的陣列運算<br />
+</p>
 </div>
-<div id="outline-container-orgcf85d0d" class="outline-4">
-<h4 id="orgcf85d0d"><span class="section-number-4">3.4.1.</span> 陣列變形:reshape()</h4>
-<div class="outline-text-4" id="text-3-4-1">
+<div id="outline-container-orge4160b7" class="outline-4">
+<h4 id="orge4160b7"><span class="section-number-4">4.4.1.</span> 陣列變形:reshape()</h4>
+<div class="outline-text-4" id="text-4-4-1">
 <ol class="org-ol">
 <li>reshape()<br /></li>
 <li>transpose()<br /></li>
 </ol>
 </div>
-<div id="outline-container-org1cff752" class="outline-5">
-<h5 id="org1cff752">reshape</h5>
-<div class="outline-text-5" id="text-org1cff752">
+<div id="outline-container-org19ed98f" class="outline-5">
+<h5 id="org19ed98f">reshape</h5>
+<div class="outline-text-5" id="text-org19ed98f">
 <p>
 reshape() 可以用來改變陣列的形狀，而不改變陣列的元素。這在處理高維數據時非常有用。以下範例將一個一維陣列重新塑造成一個 2x4 的二維陣列：<br />
 </p>
@@ -1122,9 +1196,9 @@ reshape() 可以用來改變陣列的形狀，而不改變陣列的元素。這�
 </pre>
 </div>
 </div>
-<div id="outline-container-org90b6f1e" class="outline-5">
-<h5 id="org90b6f1e">Flattening and Transpose</h5>
-<div class="outline-text-5" id="text-org90b6f1e">
+<div id="outline-container-org8224fca" class="outline-5">
+<h5 id="org8224fca">Flattening and Transpose</h5>
+<div class="outline-text-5" id="text-org8224fca">
 <p>
 在進行多維陣列操作時，常常需要將陣列攤平（即轉換為一維陣列, 常見於 AI 模型輸出層之前）或將陣列的行與列進行互換。NumPy 提供了兩個強大的方法來實現這些操作，分別是 ravel() 和 transpose()。<br />
 </p>
@@ -1140,7 +1214,7 @@ reshape() 可以用來改變陣列的形狀，而不改變陣列的元素。這�
 </pre>
 </div>
 
-<pre class="example" id="org3dca42d">
+<pre class="example" id="org532cfc0">
 [[ 1  2  3  4  5]
  [10 11 12 13 14]]
 [ 1  2  3  4  5 10 11 12 13 14]
@@ -1155,9 +1229,9 @@ reshape() 可以用來改變陣列的形狀，而不改變陣列的元素。這�
 </pre>
 </div>
 </div>
-<div id="outline-container-org56c9ef1" class="outline-5">
-<h5 id="org56c9ef1">Add a dimension</h5>
-<div class="outline-text-5" id="text-org56c9ef1">
+<div id="outline-container-org222b121" class="outline-5">
+<h5 id="org222b121">Add a dimension</h5>
+<div class="outline-text-5" id="text-org222b121">
 <p>
 在將資料丟入 AI 模型訓練前，有時我們需要在陣列中添加新的維度以配合模型的輸入要求。使用 np.newaxis 可以在指定的位置新增一個維度。<br />
 </p>
@@ -1184,16 +1258,20 @@ reshape() 可以用來改變陣列的形狀，而不改變陣列的元素。這�
 </div>
 </div>
 </div>
-<div id="outline-container-org3d45d55" class="outline-4">
-<h4 id="org3d45d55"><span class="section-number-4">3.4.2.</span> 索引(Indexing)、切片(Slicing)</h4>
-<div class="outline-text-4" id="text-3-4-2">
+<div id="outline-container-org24c6ac1" class="outline-4">
+<h4 id="org24c6ac1"><span class="section-number-4">4.4.2.</span> 索引(Indexing)、切片(Slicing)</h4>
+<div class="outline-text-4" id="text-4-4-2">
+<p>
+這部份和Python的 list 索引、切片用法很像，但多了很多功能<br />
+</p>
+
 <p>
 索引(Indexing)的用途不外乎就是為了要從陣列和陣列中取值，但除此之外有很多種功能！可以取出連續區間，還可以間隔取值！<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup><br />
 </p>
 </div>
-<div id="outline-container-org2f4b7f7" class="outline-5">
-<h5 id="org2f4b7f7">基本索引</h5>
-<div class="outline-text-5" id="text-org2f4b7f7">
+<div id="outline-container-org5dfc1cb" class="outline-5">
+<h5 id="org5dfc1cb">基本索引</h5>
+<div class="outline-text-5" id="text-org5dfc1cb">
 <p>
 ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一個一維陣列可以通過下標來獲取元素：<br />
 </p>
@@ -1227,9 +1305,9 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </div>
 </div>
 </div>
-<div id="outline-container-org18cb9b6" class="outline-5">
-<h5 id="org18cb9b6">切片</h5>
-<div class="outline-text-5" id="text-org18cb9b6">
+<div id="outline-container-org42ff2d9" class="outline-5">
+<h5 id="org42ff2d9">切片</h5>
+<div class="outline-text-5" id="text-org42ff2d9">
 <p>
 與 Python 列表類似，ndarray 也可以通過切片來提取數組的子集。切片的語法:<br />
 </p>
@@ -1247,8 +1325,8 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </ul>
 </div>
 <ul class="org-ul">
-<li><a id="orga9effcf"></a>一維切片<br />
-<div class="outline-text-6" id="text-orga9effcf">
+<li><a id="orgd431694"></a>一維切片<br />
+<div class="outline-text-6" id="text-orgd431694">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">arr</span> = np.array([<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">20</span>, <span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">40</span>, <span style="color: #da8548; font-weight: bold;">50</span>])
@@ -1260,8 +1338,8 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </div>
 </div>
 </li>
-<li><a id="org012bad5"></a>二維切片<br />
-<div class="outline-text-6" id="text-org012bad5">
+<li><a id="orgad07f85"></a>二維切片<br />
+<div class="outline-text-6" id="text-orgad07f85">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">arr2d</span> = np.array([[<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>], [<span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>], [<span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">8</span>, <span style="color: #da8548; font-weight: bold;">9</span>]])
@@ -1275,8 +1353,8 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </div>
 </div>
 </li>
-<li><a id="org4038d81"></a>條件切片<br />
-<div class="outline-text-6" id="text-org4038d81">
+<li><a id="org2ed87a7"></a>條件切片<br />
+<div class="outline-text-6" id="text-org2ed87a7">
 <p>
 在篩選符合條件的元素時非常有用<br />
 </p>
@@ -1293,9 +1371,9 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc6c12f8" class="outline-4">
-<h4 id="orgc6c12f8"><span class="section-number-4">3.4.3.</span> 取出特定行列、特定範圍</h4>
-<div class="outline-text-4" id="text-3-4-3">
+<div id="outline-container-org2ed5b0e" class="outline-4">
+<h4 id="org2ed5b0e"><span class="section-number-4">4.4.3.</span> 取出特定行列、特定範圍</h4>
+<div class="outline-text-4" id="text-4-4-3">
 <ul class="org-ul">
 <li>取出第 x 列: Ary[x]<br /></li>
 <li>取出第 x 行: Ary[:,x]<br /></li>
@@ -1322,9 +1400,9 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </pre>
 </div>
 </div>
-<div id="outline-container-org48847c5" class="outline-4">
-<h4 id="org48847c5"><span class="section-number-4">3.4.4.</span> 刪除行/列</h4>
-<div class="outline-text-4" id="text-3-4-4">
+<div id="outline-container-org875a34a" class="outline-4">
+<h4 id="org875a34a"><span class="section-number-4">4.4.4.</span> 刪除行/列</h4>
+<div class="outline-text-4" id="text-4-4-4">
 <ul class="org-ul">
 <li>np.delete(temp,0,axis=1)<br />
 <ul class="org-ul">
@@ -1349,7 +1427,7 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </pre>
 </div>
 
-<pre class="example" id="org87363de">
+<pre class="example" id="org725592d">
 [[ 0  1  2  3]
  [ 4  5  6  7]
  [ 8  9 10 11]]
@@ -1367,16 +1445,13 @@ ndarray 可以通過類似 Python 列表的方式進行索引。例如，對一�
 </pre>
 </div>
 </div>
-<div id="outline-container-org197a4c7" class="outline-4">
-<h4 id="org197a4c7"><span class="section-number-4">3.4.5.</span> 基礎運算</h4>
-<div class="outline-text-4" id="text-3-4-5">
+<div id="outline-container-orgc8822a5" class="outline-4">
+<h4 id="orgc8822a5"><span class="section-number-4">4.4.5.</span> 基礎運算</h4>
+<div class="outline-text-4" id="text-4-4-5">
 </div>
-<div id="outline-container-org6e14142" class="outline-5">
-<h5 id="org6e14142">陣列間的運算</h5>
-</div>
-<div id="outline-container-org1e8b657" class="outline-5">
-<h5 id="org1e8b657">維度相同的陣列相加、減</h5>
-<div class="outline-text-5" id="text-org1e8b657">
+<div id="outline-container-org6168cbd" class="outline-5">
+<h5 id="org6168cbd">維度相同的陣列相加、減</h5>
+<div class="outline-text-5" id="text-org6168cbd">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">a</span> = np.array( [<span style="color: #da8548; font-weight: bold;">6</span>, <span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">8</span>, <span style="color: #da8548; font-weight: bold;">9</span>] )
@@ -1394,9 +1469,12 @@ c=&gt;[6 6 6 6]
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc3a5df4" class="outline-5">
-<h5 id="orgc3a5df4">陣列與常數運算</h5>
-<div class="outline-text-5" id="text-orgc3a5df4">
+<div id="outline-container-org4da3042" class="outline-5">
+<h5 id="org4da3042">陣列與常數運算</h5>
+<div class="outline-text-5" id="text-org4da3042">
+<p>
+這是很有趣的功能，Numpy 允許我們直接對整個陣列進行加、減、乘、除等運算，而不需要使用迴圈逐一處理每個元素。這種操作稱為「廣播」（broadcasting），它使得陣列運算變得非常簡單且高效。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #51afef;">import</span> math
@@ -1421,9 +1499,9 @@ c=&gt;[[2916 4225 4096 9025]
 </div>
 </div>
 </div>
-<div id="outline-container-orgc5e78ae" class="outline-4">
-<h4 id="orgc5e78ae"><span class="section-number-4">3.4.6.</span> 陣列轉置</h4>
-<div class="outline-text-4" id="text-3-4-6">
+<div id="outline-container-orgd3af219" class="outline-4">
+<h4 id="orgd3af219"><span class="section-number-4">4.4.6.</span> 陣列轉置</h4>
+<div class="outline-text-4" id="text-4-4-6">
 <p>
 \[a=\begin{bmatrix}1&0\\2&3\end{bmatrix}, a^T=\begin{bmatrix}1&2\\0&3\end{bmatrix}\]<br />
 </p>
@@ -1446,13 +1524,13 @@ c=&gt;[[2916 4225 4096 9025]
 </pre>
 </div>
 </div>
-<div id="outline-container-orgef06b95" class="outline-4">
-<h4 id="orgef06b95"><span class="section-number-4">3.4.7.</span> 陣列相乘</h4>
-<div class="outline-text-4" id="text-3-4-7">
+<div id="outline-container-org6eaac8a" class="outline-4">
+<h4 id="org6eaac8a"><span class="section-number-4">4.4.7.</span> 陣列相乘</h4>
+<div class="outline-text-4" id="text-4-4-7">
 </div>
-<div id="outline-container-org60ecf37" class="outline-5">
-<h5 id="org60ecf37">陣列乘法(dot)</h5>
-<div class="outline-text-5" id="text-org60ecf37">
+<div id="outline-container-org7683928" class="outline-5">
+<h5 id="org7683928">陣列乘法(dot)</h5>
+<div class="outline-text-5" id="text-org7683928">
 <p>
 \[a=\begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}, b=\begin{bmatrix}b_{11}&b_{12}&b_{13}\\b_{21}&b_{22}&b_{23}\end{bmatrix}\]<br />
 \[a \cdot b=\begin{bmatrix}a_{11}*b_{11}+a_{12}*b_{21}&a_{11}*b_{12}+a_{12}*b_{22}&a_{11}*b_{13}+a_{12}*b_{23}\\a_{21}*b_{11}+a_{22}*b_{21}&a_{21}*b_{12}+a_{22}*b_{22}&a_{21}*b_{13}+a_{22}*b_{23}\end{bmatrix}\]<br />
@@ -1479,9 +1557,9 @@ c=&gt;[[2916 4225 4096 9025]
 </pre>
 </div>
 </div>
-<div id="outline-container-org4682d6a" class="outline-5">
-<h5 id="org4682d6a">相對位置乘法</h5>
-<div class="outline-text-5" id="text-org4682d6a">
+<div id="outline-container-org06ebd47" class="outline-5">
+<h5 id="org06ebd47">相對位置乘法</h5>
+<div class="outline-text-5" id="text-org06ebd47">
 <p>
 \[a=\begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}, b=\begin{bmatrix}b_{11}&b_{12}\\b_{21}&b_{22}\end{bmatrix}\]<br />
 \[a \cdot b=\begin{bmatrix}a_{11}*b_{11}&a_{12}*b_{12}\\a_{21}*b_{21}&a_{22}*b_{22}\end{bmatrix}\]<br />
@@ -1510,9 +1588,9 @@ A*B:
 </div>
 </div>
 </div>
-<div id="outline-container-orgd163d39" class="outline-4">
-<h4 id="orgd163d39"><span class="section-number-4">3.4.8.</span> 取代陣列中元素</h4>
-<div class="outline-text-4" id="text-3-4-8">
+<div id="outline-container-org431fcb6" class="outline-4">
+<h4 id="org431fcb6"><span class="section-number-4">4.4.8.</span> 取代陣列中元素</h4>
+<div class="outline-text-4" id="text-4-4-8">
 <p>
 這裡也可以看出 NumPy 對於選取陣列中元素的極好彈性，可十分方便的完成以下工作:<br />
 </p>
@@ -1538,9 +1616,9 @@ A*B:
 </pre>
 </div>
 </div>
-<div id="outline-container-orgd4c07b1" class="outline-4">
-<h4 id="orgd4c07b1"><span class="section-number-4">3.4.9.</span> 陣列間元素相乘</h4>
-<div class="outline-text-4" id="text-3-4-9">
+<div id="outline-container-org4a62eae" class="outline-4">
+<h4 id="org4a62eae"><span class="section-number-4">4.4.9.</span> 陣列間元素相乘</h4>
+<div class="outline-text-4" id="text-4-4-9">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 2: </span><span style="color: #dcaeea;">ar</span> = np.arange(<span style="color: #da8548; font-weight: bold;">1</span>,<span style="color: #da8548; font-weight: bold;">5</span>)
@@ -1567,9 +1645,9 @@ A*B:
 </pre>
 </div>
 </div>
-<div id="outline-container-org3c62df5" class="outline-4">
-<h4 id="org3c62df5"><span class="section-number-4">3.4.10.</span> 反陣列</h4>
-<div class="outline-text-4" id="text-3-4-10">
+<div id="outline-container-org27ec098" class="outline-4">
+<h4 id="org27ec098"><span class="section-number-4">4.4.10.</span> 反陣列</h4>
+<div class="outline-text-4" id="text-4-4-10">
 <p>
 AB=BA=I, 其中 I 為單位陣列<br />
 </p>
@@ -1597,13 +1675,13 @@ A dot B:
 </pre>
 </div>
 </div>
-<div id="outline-container-org8f0327e" class="outline-4">
-<h4 id="org8f0327e"><span class="section-number-4">3.4.11.</span> 合併陣列</h4>
-<div class="outline-text-4" id="text-3-4-11">
+<div id="outline-container-orgbc12465" class="outline-4">
+<h4 id="orgbc12465"><span class="section-number-4">4.4.11.</span> 合併陣列</h4>
+<div class="outline-text-4" id="text-4-4-11">
 </div>
-<div id="outline-container-orgd36f276" class="outline-5">
-<h5 id="orgd36f276">vstack</h5>
-<div class="outline-text-5" id="text-orgd36f276">
+<div id="outline-container-org8b3e735" class="outline-5">
+<h5 id="org8b3e735">vstack</h5>
+<div class="outline-text-5" id="text-org8b3e735">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">a</span> = np.ones((<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">2</span>))
@@ -1625,9 +1703,9 @@ A dot B:
 </pre>
 </div>
 </div>
-<div id="outline-container-orged77f65" class="outline-5">
-<h5 id="orged77f65">hstack</h5>
-<div class="outline-text-5" id="text-orged77f65">
+<div id="outline-container-org29fc91c" class="outline-5">
+<h5 id="org29fc91c">hstack</h5>
+<div class="outline-text-5" id="text-org29fc91c">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">a</span> = np.ones((<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">2</span>))
@@ -1652,9 +1730,9 @@ A dot B:
 </div>
 </div>
 </div>
-<div id="outline-container-orgf33fa58" class="outline-3">
-<h3 id="orgf33fa58"><span class="section-number-3">3.5.</span> [課堂練習]分數修改&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-org9c83802" class="outline-3">
+<h3 id="org9c83802"><span class="section-number-3">4.5.</span> [課堂練習]分數修改&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li>模擬一個 10 人、5科的全班月考成績(隨機生成, 0~100)<br /></li>
 <li>將所有 55&lt;=分數&lt;60 的成績均改為 60 分<br /></li>
@@ -1663,20 +1741,20 @@ A dot B:
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7ed55d" class="outline-2">
-<h2 id="orgb7ed55d"><span class="section-number-2">4.</span> 陣列函數</h2>
-<div class="outline-text-2" id="text-4">
+<div id="outline-container-org5ae1ef6" class="outline-2">
+<h2 id="org5ae1ef6"><span class="section-number-2">5.</span> 陣列函數</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 NumPy 提供了一系列用於計算陣列內數據的統計值的函數，如 min()、max()、mean()、std()（標準差）、var()（方差）等。更多的 Numpy function 請參閱<a href="https://numpy.org/doc/2.0/reference/routines.math.html">Numpy官方網站</a>。<br />
 </p>
 </div>
-<div id="outline-container-org2bb150f" class="outline-3">
-<h3 id="org2bb150f"><span class="section-number-3">4.1.</span> numpy.sum()</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-orgb70be73" class="outline-3">
+<h3 id="orgb70be73"><span class="section-number-3">5.1.</span> numpy.sum()</h3>
+<div class="outline-text-3" id="text-5-1">
 </div>
-<div id="outline-container-org4d531c0" class="outline-4">
-<h4 id="org4d531c0"><span class="section-number-4">4.1.1.</span> 語法</h4>
-<div class="outline-text-4" id="text-4-1-1">
+<div id="outline-container-orgbdb9cf2" class="outline-4">
+<h4 id="orgbdb9cf2"><span class="section-number-4">5.1.1.</span> 語法</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 <pre class="src src-python">numpy.<span style="color: #c678dd;">sum</span>(a, axis=<span style="color: #a9a1e1;">None</span>, dtype=<span style="color: #a9a1e1;">None</span>, out=<span style="color: #a9a1e1;">None</span>, keepdims=&lt;no value&gt;, initial=&lt;no value&gt;, where=&lt;no value&gt;)
 </pre>
@@ -1686,9 +1764,9 @@ NumPy 提供了一系列用於計算陣列內數據的統計值的函數，如 m
 </p>
 </div>
 </div>
-<div id="outline-container-org9bb142f" class="outline-4">
-<h4 id="org9bb142f"><span class="section-number-4">4.1.2.</span> 範例</h4>
-<div class="outline-text-4" id="text-4-1-2">
+<div id="outline-container-org01ab02d" class="outline-4">
+<h4 id="org01ab02d"><span class="section-number-4">5.1.2.</span> 範例</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 2: </span>
@@ -1707,7 +1785,7 @@ NumPy 提供了一系列用於計算陣列內數據的統計值的函數，如 m
 </pre>
 </div>
 
-<pre class="example" id="org9bac3f9">
+<pre class="example" id="orgf5d812a">
 =====Array=====
 [[0 2 4]
  [1 3 5]]
@@ -1723,9 +1801,9 @@ NumPy 提供了一系列用於計算陣列內數據的統計值的函數，如 m
 </div>
 </div>
 </div>
-<div id="outline-container-orgce5b076" class="outline-3">
-<h3 id="orgce5b076"><span class="section-number-3">4.2.</span> sum() v.s. np.sum()</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-orgec78329" class="outline-3">
+<h3 id="orgec78329"><span class="section-number-3">5.2.</span> sum() v.s. np.sum()</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 sum() 是 Python 的內建函數，而 np.sum() 是 NumPy 的函數。這兩者有些差異，特別是在多維數組中的操作方式不同。<br />
 </p>
@@ -1734,16 +1812,16 @@ sum() 是 Python 的內建函數，而 np.sum() 是 NumPy 的函數。這兩者�
 <li>np.sum() 支援多維陣列，可以指定 axis 來沿著某一維度進行求和。<br /></li>
 </ul>
 
-<div id="org933b9d5" class="figure">
+<div id="org1496664" class="figure">
 <p><img src="images/NumPy/2sum.png" alt="2sum.png" width="400" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>sum() v.s. np.sum()</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org60d6801" class="outline-3">
-<h3 id="org60d6801"><span class="section-number-3">4.3.</span> 其他常用函數</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org63797e4" class="outline-3">
+<h3 id="org63797e4"><span class="section-number-3">5.3.</span> 其他常用函數</h3>
+<div class="outline-text-3" id="text-5-3">
 <ul class="org-ul">
 <li>min()<br /></li>
 <li>max()<br /></li>
@@ -1770,7 +1848,7 @@ sum() 是 Python 的內建函數，而 np.sum() 是 NumPy 的函數。這兩者�
 </pre>
 </div>
 
-<pre class="example" id="org178799b">
+<pre class="example" id="orgdace89e">
 np
  [[3 7]
  [4 1]
@@ -1783,16 +1861,16 @@ max: 8
 mean: 4.833333333333333
 </pre>
 </div>
-<div id="outline-container-orge045b31" class="outline-4">
-<h4 id="orge045b31"><span class="section-number-4">4.3.1.</span> numpy.sum()</h4>
-<div class="outline-text-4" id="text-4-3-1">
+<div id="outline-container-org95e3219" class="outline-4">
+<h4 id="org95e3219"><span class="section-number-4">5.3.1.</span> numpy.sum()</h4>
+<div class="outline-text-4" id="text-5-3-1">
 <p>
 numpy.sum() 用來求出陣列的總和，可以沿著指定的維度（行或列）進行操作。你可以對整個陣列求和，或沿著某個軸方向（行或列）進行求和操作。<br />
 </p>
 </div>
-<div id="outline-container-orga1b3981" class="outline-5">
-<h5 id="orga1b3981">語法</h5>
-<div class="outline-text-5" id="text-orga1b3981">
+<div id="outline-container-org9cdc665" class="outline-5">
+<h5 id="org9cdc665">語法</h5>
+<div class="outline-text-5" id="text-org9cdc665">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span>numpy.<span style="color: #c678dd;">sum</span>(a, axis=<span style="color: #a9a1e1;">None</span>, dtype=<span style="color: #a9a1e1;">None</span>, out=<span style="color: #a9a1e1;">None</span>, keepdims=<span style="color: #a9a1e1;">False</span>, initial=&lt;no value&gt;, where=<span style="color: #a9a1e1;">True</span>)
 </pre>
@@ -1808,9 +1886,9 @@ numpy.sum() 用來求出陣列的總和，可以沿著指定的維度（行或�
 </ul>
 </div>
 </div>
-<div id="outline-container-orge0fd891" class="outline-5">
-<h5 id="orge0fd891">範例</h5>
-<div class="outline-text-5" id="text-orge0fd891">
+<div id="outline-container-org04e88ad" class="outline-5">
+<h5 id="org04e88ad">範例</h5>
+<div class="outline-text-5" id="text-org04e88ad">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 2: </span>
@@ -1846,16 +1924,16 @@ numpy.sum() 用來求出陣列的總和，可以沿著指定的維度（行或�
 </div>
 </div>
 </div>
-<div id="outline-container-orgbc60105" class="outline-4">
-<h4 id="orgbc60105"><span class="section-number-4">4.3.2.</span> numpy.max()</h4>
-<div class="outline-text-4" id="text-4-3-2">
+<div id="outline-container-org8a06937" class="outline-4">
+<h4 id="org8a06937"><span class="section-number-4">5.3.2.</span> numpy.max()</h4>
+<div class="outline-text-4" id="text-5-3-2">
 <p>
 numpy.max() 用來求出陣列的最大值，可以沿著指定的維度（行或列）進行操作。<br />
 </p>
 </div>
-<div id="outline-container-orgb0dcbb0" class="outline-5">
-<h5 id="orgb0dcbb0">語法</h5>
-<div class="outline-text-5" id="text-orgb0dcbb0">
+<div id="outline-container-org4dcf269" class="outline-5">
+<h5 id="org4dcf269">語法</h5>
+<div class="outline-text-5" id="text-org4dcf269">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span>numpy.<span style="color: #c678dd;">max</span>(a, axis=<span style="color: #a9a1e1;">None</span>, out=<span style="color: #a9a1e1;">None</span>, keepdims=<span style="color: #a9a1e1;">False</span>)
 </pre>
@@ -1867,9 +1945,9 @@ numpy.max() 用來求出陣列的最大值，可以沿著指定的維度（行�
 </ul>
 </div>
 </div>
-<div id="outline-container-org03c56c1" class="outline-5">
-<h5 id="org03c56c1">範例</h5>
-<div class="outline-text-5" id="text-org03c56c1">
+<div id="outline-container-org95bc2fa" class="outline-5">
+<h5 id="org95bc2fa">範例</h5>
+<div class="outline-text-5" id="text-org95bc2fa">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 2: </span>
@@ -1899,16 +1977,16 @@ numpy.max() 用來求出陣列的最大值，可以沿著指定的維度（行�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc011b30" class="outline-4">
-<h4 id="orgc011b30"><span class="section-number-4">4.3.3.</span> numpy.maxium()</h4>
-<div class="outline-text-4" id="text-4-3-3">
+<div id="outline-container-org7cfb9d6" class="outline-4">
+<h4 id="org7cfb9d6"><span class="section-number-4">5.3.3.</span> numpy.maxium()</h4>
+<div class="outline-text-4" id="text-5-3-3">
 <p>
 numpy.maximum() 用於比較兩個陣列中逐位元素，並回傳每個位置較大的值。<br />
 </p>
 </div>
-<div id="outline-container-orge21b685" class="outline-5">
-<h5 id="orge21b685">語法</h5>
-<div class="outline-text-5" id="text-orge21b685">
+<div id="outline-container-orgca54c78" class="outline-5">
+<h5 id="orgca54c78">語法</h5>
+<div class="outline-text-5" id="text-orgca54c78">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span>numpy.maximum&#65306;(X, Y, out=<span style="color: #a9a1e1;">None</span>)
 </pre>
@@ -1919,9 +1997,9 @@ numpy.maximum() 用於比較兩個陣列中逐位元素，並回傳每個位置�
 </ul>
 </div>
 </div>
-<div id="outline-container-org25d498a" class="outline-5">
-<h5 id="org25d498a">範例</h5>
-<div class="outline-text-5" id="text-org25d498a">
+<div id="outline-container-orgb9d8447" class="outline-5">
+<h5 id="orgb9d8447">範例</h5>
+<div class="outline-text-5" id="text-orgb9d8447">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">npA1</span> = np.array([[<span style="color: #da8548; font-weight: bold;">9</span>,-<span style="color: #da8548; font-weight: bold;">9</span>,<span style="color: #da8548; font-weight: bold;">8</span>],[<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">7</span>,<span style="color: #da8548; font-weight: bold;">5</span>]])
@@ -1949,16 +2027,16 @@ numpy.maximum() 用於比較兩個陣列中逐位元素，並回傳每個位置�
 </div>
 </div>
 </div>
-<div id="outline-container-orgdd8921b" class="outline-4">
-<h4 id="orgdd8921b"><span class="section-number-4">4.3.4.</span> numpy.argmax()</h4>
-<div class="outline-text-4" id="text-4-3-4">
+<div id="outline-container-orga1bafe7" class="outline-4">
+<h4 id="orga1bafe7"><span class="section-number-4">5.3.4.</span> numpy.argmax()</h4>
+<div class="outline-text-4" id="text-5-3-4">
 <p>
 numpy.argmax() 傳回陣列中最大值的索引。可沿著指定的維度查詢最大值索引。<br />
 </p>
 </div>
-<div id="outline-container-org79f437b" class="outline-5">
-<h5 id="org79f437b">語法</h5>
-<div class="outline-text-5" id="text-org79f437b">
+<div id="outline-container-org1f4ffa7" class="outline-5">
+<h5 id="org1f4ffa7">語法</h5>
+<div class="outline-text-5" id="text-org1f4ffa7">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span>numpy.argmax(a, axis=<span style="color: #a9a1e1;">None</span>, out=<span style="color: #a9a1e1;">None</span>)[source]&#182;
 </pre>
@@ -1970,13 +2048,13 @@ numpy.argmax() 傳回陣列中最大值的索引。可沿著指定的維度查�
 </ul>
 </div>
 </div>
-<div id="outline-container-org30babb4" class="outline-5">
-<h5 id="org30babb4">範例</h5>
-<div class="outline-text-5" id="text-org30babb4">
+<div id="outline-container-org39c3e7c" class="outline-5">
+<h5 id="org39c3e7c">範例</h5>
+<div class="outline-text-5" id="text-org39c3e7c">
 </div>
 <ul class="org-ul">
-<li><a id="orgb0e190e"></a>一維 vector<br />
-<div class="outline-text-6" id="text-orgb0e190e">
+<li><a id="orgbd9499d"></a>一維 vector<br />
+<div class="outline-text-6" id="text-orgbd9499d">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 2: </span>
@@ -1999,8 +2077,8 @@ The largest value in the array: 9
 </pre>
 </div>
 </li>
-<li><a id="org625f7a5"></a>二維陣列<br />
-<div class="outline-text-6" id="text-org625f7a5">
+<li><a id="org46f2716"></a>二維陣列<br />
+<div class="outline-text-6" id="text-org46f2716">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 2: </span>
@@ -2034,7 +2112,7 @@ the largest value: 14
 </pre>
 
 
-<div id="org61f9f2e" class="figure">
+<div id="org24c2e2a" class="figure">
 <p><img src="images/NumPy/argSeq.jpg" alt="argSeq.jpg" width="200" /><br />
 </p>
 <p><span class="figure-number">Figure 4: </span>Sequence of Arg in array</p>
@@ -2044,9 +2122,9 @@ the largest value: 14
 </ul>
 </div>
 </div>
-<div id="outline-container-org3627abc" class="outline-4">
-<h4 id="org3627abc"><span class="section-number-4">4.3.5.</span> tile()</h4>
-<div class="outline-text-4" id="text-4-3-5">
+<div id="outline-container-org6e29e23" class="outline-4">
+<h4 id="org6e29e23"><span class="section-number-4">5.3.5.</span> tile()</h4>
+<div class="outline-text-4" id="text-5-3-5">
 <p>
 numpy.tile() 用來將陣列沿指定的方向複製。這對於創建大規模重複數據非常有用。<br />
 </p>
@@ -2075,9 +2153,9 @@ numpy.tile() 用來將陣列沿指定的方向複製。這對於創建大規模�
 </div>
 </div>
 </div>
-<div id="outline-container-orgf26bffe" class="outline-3">
-<h3 id="orgf26bffe"><span class="section-number-3">4.4.</span> 差不多? 很重要!: numpy.allclose</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-org29c5ab9" class="outline-3">
+<h3 id="org29c5ab9"><span class="section-number-3">5.4.</span> 差不多? 很重要!: numpy.allclose</h3>
+<div class="outline-text-3" id="text-5-4">
 <p>
 numpy.allclose() 用來判斷兩個陣列在給定的容差範圍內是否元素相等。<br />
 </p>
@@ -2088,18 +2166,18 @@ numpy.allclose() 用來判斷兩個陣列在給定的容差範圍內是否元素
 <li>如果 NaN 出現在相同位置且 equal_nan=True，則 NaN 被視為相等；如果兩個陣列在相同位置的無限值（Inf）符號相同，也會視為相等。<br /></li>
 </ul>
 </div>
-<div id="outline-container-orgf18d88d" class="outline-4">
-<h4 id="orgf18d88d"><span class="section-number-4">4.4.1.</span> 語法</h4>
-<div class="outline-text-4" id="text-4-4-1">
+<div id="outline-container-orgd35f5a7" class="outline-4">
+<h4 id="orgd35f5a7"><span class="section-number-4">5.4.1.</span> 語法</h4>
+<div class="outline-text-4" id="text-5-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span>numpy.allclose(a, b, rtol=1e-<span style="color: #da8548; font-weight: bold;">05</span>, atol=1e-<span style="color: #da8548; font-weight: bold;">08</span>, equal_nan=<span style="color: #a9a1e1;">False</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd9351e" class="outline-4">
-<h4 id="orgcd9351e"><span class="section-number-4">4.4.2.</span> Parameters</h4>
-<div class="outline-text-4" id="text-4-4-2">
+<div id="outline-container-orgf798c3a" class="outline-4">
+<h4 id="orgf798c3a"><span class="section-number-4">5.4.2.</span> Parameters</h4>
+<div class="outline-text-4" id="text-5-4-2">
 <ul class="org-ul">
 <li>a, b: 輸入的兩個陣列，用於比較。<br /></li>
 <li>rtol: float. 相對誤差參數（預設值是 1e-05）。<br /></li>
@@ -2108,17 +2186,17 @@ numpy.allclose() 用來判斷兩個陣列在給定的容差範圍內是否元素
 </ul>
 </div>
 </div>
-<div id="outline-container-org35f5ab2" class="outline-4">
-<h4 id="org35f5ab2"><span class="section-number-4">4.4.3.</span> Returns</h4>
-<div class="outline-text-4" id="text-4-4-3">
+<div id="outline-container-orge893676" class="outline-4">
+<h4 id="orge893676"><span class="section-number-4">5.4.3.</span> Returns</h4>
+<div class="outline-text-4" id="text-5-4-3">
 <ul class="org-ul">
 <li>allclose: bool. 如果兩個陣列在給定的容差範圍內逐元素相等，返回 True；否則返回 False。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgcb1b854" class="outline-4">
-<h4 id="orgcb1b854"><span class="section-number-4">4.4.4.</span> See also:</h4>
-<div class="outline-text-4" id="text-4-4-4">
+<div id="outline-container-org7cac692" class="outline-4">
+<h4 id="org7cac692"><span class="section-number-4">5.4.4.</span> See also:</h4>
+<div class="outline-text-4" id="text-5-4-4">
 <ul class="org-ul">
 <li><a href="https://numpy.org/doc/stable/reference/generated/numpy.isclose.html#numpy.isclose">isclose</a><br /></li>
 <li><a href="https://numpy.org/doc/stable/reference/generated/numpy.all.html#numpy.all">all</a><br /></li>
@@ -2127,9 +2205,9 @@ numpy.allclose() 用來判斷兩個陣列在給定的容差範圍內是否元素
 </ul>
 </div>
 </div>
-<div id="outline-container-org3b3b759" class="outline-4">
-<h4 id="org3b3b759"><span class="section-number-4">4.4.5.</span> DEMO</h4>
-<div class="outline-text-4" id="text-4-4-5">
+<div id="outline-container-org6277e54" class="outline-4">
+<h4 id="org6277e54"><span class="section-number-4">5.4.5.</span> DEMO</h4>
+<div class="outline-text-4" id="text-5-4-5">
 <p>
 參考: <a href="https://www.itdaan.com/tw/cc576c8f8162ab7ee9e3d6afdbf454fc">測試兩個numpy數組(接近)是否相等，包括形狀</a><br />
 </p>
@@ -2157,7 +2235,7 @@ numpy.allclose() 用來判斷兩個陣列在給定的容差範圍內是否元素
 </pre>
 </div>
 
-<pre class="example" id="org37df6b7">
+<pre class="example" id="org7a26cc9">
 =====allclose(atol=0.5)=====
 False
 =====allclose(atol=1.0)=====
@@ -2174,9 +2252,9 @@ False
 </div>
 </div>
 </div>
-<div id="outline-container-orga7fc367" class="outline-3">
-<h3 id="orga7fc367"><span class="section-number-3">4.5.</span> [作業 1]成績計算&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-org51f115e" class="outline-3">
+<h3 id="org51f115e"><span class="section-number-3">5.5.</span> [作業 1]成績計算&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-5-5">
 <p>
 說明: 為了確保大家在使用 numpy 隨機生成分數時能產生相同的結果，請在你的程式碼中加入這段程式: 隨機數生成器的種子（seed）<br />
 </p>
@@ -2196,10 +2274,10 @@ False
 <li>輸出全班分數(可以用 f 字串來控制小數位數)<br /></li>
 </ol>
 </div>
-<div id="outline-container-orgb9c255c" class="outline-4">
-<h4 id="orgb9c255c"><span class="section-number-4">4.5.1.</span> 結果範例</h4>
-<div class="outline-text-4" id="text-4-5-1">
-<pre class="example" id="org06e5843">
+<div id="outline-container-orgc2f55a6" class="outline-4">
+<h4 id="orgc2f55a6"><span class="section-number-4">5.5.1.</span> 結果範例</h4>
+<div class="outline-text-4" id="text-5-5-1">
+<pre class="example" id="org9cb0d8b">
 各科總分: [1015  805  868  919 1071]
 各科平均: [33.83 26.83 28.93 30.63 35.7 ]
 各科最高分: [92 94 99 92 97]
@@ -2232,18 +2310,18 @@ False
 </div>
 </div>
 </div>
-<div id="outline-container-orgb89639e" class="outline-3">
-<h3 id="orgb89639e"><span class="section-number-3">4.6.</span> [作業 2]Z 分數&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
-<div class="outline-text-3" id="text-4-6">
+<div id="outline-container-org0a4363d" class="outline-3">
+<h3 id="org0a4363d"><span class="section-number-3">5.6.</span> [作業 2]Z 分數&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-5-6">
 <ul class="org-ul">
 <li>隨機產生一組 20*5 個 0~100 的陣列，模擬成一個班級的某次考試成績(20 人*5 科)。<br /></li>
 <li>將所有原始分數轉換為到小數點第 2 位的<a href="https://zh.wikipedia.org/zh-tw/%E6%A8%99%E6%BA%96%E5%88%86%E6%95%B8">Z分數</a><br /></li>
 </ul>
 </div>
-<div id="outline-container-org125db6f" class="outline-4">
-<h4 id="org125db6f"><span class="section-number-4">4.6.1.</span> 結果範例</h4>
-<div class="outline-text-4" id="text-4-6-1">
-<pre class="example" id="orge5d5422">
+<div id="outline-container-org2fb2583" class="outline-4">
+<h4 id="org2fb2583"><span class="section-number-4">5.6.1.</span> 結果範例</h4>
+<div class="outline-text-4" id="text-5-6-1">
+<pre class="example" id="org65f18b3">
 Z分數:
  [[-0.89  1.11 -0.93 -0.99  0.89]
  [-0.61 -0.87  1.83  0.41 -0.77]
@@ -2269,9 +2347,9 @@ Z分數:
 </div>
 </div>
 </div>
-<div id="outline-container-orgfcac02b" class="outline-3">
-<h3 id="orgfcac02b"><span class="section-number-3">4.7.</span> 解聯立方程式</h3>
-<div class="outline-text-3" id="text-4-7">
+<div id="outline-container-org96e6628" class="outline-3">
+<h3 id="org96e6628"><span class="section-number-3">5.7.</span> 解聯立方程式</h3>
+<div class="outline-text-3" id="text-5-7">
 <p>
 Numpy 的 linalg function 可以用來解線性方程組，若目標方程式為\[Ax=b\]，其中\[x\]為所求之解，求解語法為：<br />
 </p>
@@ -2281,9 +2359,9 @@ Numpy 的 linalg function 可以用來解線性方程組，若目標方程式為
 </pre>
 </div>
 </div>
-<div id="outline-container-orgca34d58" class="outline-4">
-<h4 id="orgca34d58"><span class="section-number-4">4.7.1.</span> 範例 1</h4>
-<div class="outline-text-4" id="text-4-7-1">
+<div id="outline-container-orgf529584" class="outline-4">
+<h4 id="orgf529584"><span class="section-number-4">5.7.1.</span> 範例 1</h4>
+<div class="outline-text-4" id="text-5-7-1">
 <p>
 以如下方程式為例<br />
 \[\begin{cases}2x+y=5\\x+y=3\end{cases}\]<br />
@@ -2291,9 +2369,9 @@ Numpy 的 linalg function 可以用來解線性方程組，若目標方程式為
 \[A=\begin{pmatrix}2&1\\1&1 \end{pmatrix}\], \[b=\begin{pmatrix} 5\\3 \end{pmatrix} \]<br />
 </p>
 </div>
-<div id="outline-container-orgc5d3bcd" class="outline-5">
-<h5 id="orgc5d3bcd">solution</h5>
-<div class="outline-text-5" id="text-orgc5d3bcd">
+<div id="outline-container-orgec8f2a5" class="outline-5">
+<h5 id="orgec8f2a5">solution</h5>
+<div class="outline-text-5" id="text-orgec8f2a5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">A</span> = np.array([[<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">1</span>],
@@ -2314,18 +2392,18 @@ True
 </div>
 </div>
 </div>
-<div id="outline-container-orgd69ed91" class="outline-4">
-<h4 id="orgd69ed91"><span class="section-number-4">4.7.2.</span> 範例 2</h4>
-<div class="outline-text-4" id="text-4-7-2">
+<div id="outline-container-org9332bc4" class="outline-4">
+<h4 id="org9332bc4"><span class="section-number-4">5.7.2.</span> 範例 2</h4>
+<div class="outline-text-4" id="text-5-7-2">
 <p>
 求解下列方程式<br />
 \[\begin{cases}3x_0+2x_1+x_2=11\\2x_0+3x_1+x_2=13\\x_0+x_1+4x_2=12 \end{cases}\], 以\[Ax=b\]表示，則<br />
 \[A=\begin{pmatrix}3&2&1\\2&3&1\\1&1&4\end{pmatrix}, x=\begin{pmatrix}x_0\\x_1\\x_2\end{pmatrix}, b=\begin{pmatrix}11\\13\\12\end{pmatrix}\]<br />
 </p>
 </div>
-<div id="outline-container-org055ab57" class="outline-5">
-<h5 id="org055ab57">solution</h5>
-<div class="outline-text-5" id="text-org055ab57">
+<div id="outline-container-org1673f94" class="outline-5">
+<h5 id="org1673f94">solution</h5>
+<div class="outline-text-5" id="text-org1673f94">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">A</span> = np.array([[<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">1</span>],
@@ -2348,13 +2426,13 @@ True
 </div>
 </div>
 </div>
-<div id="outline-container-org62cbbdf" class="outline-3">
-<h3 id="org62cbbdf"><span class="section-number-3">4.8.</span> numpy 陣列間的運算</h3>
-<div class="outline-text-3" id="text-4-8">
+<div id="outline-container-orgc172b4c" class="outline-3">
+<h3 id="orgc172b4c"><span class="section-number-3">5.8.</span> numpy 陣列間的運算</h3>
+<div class="outline-text-3" id="text-5-8">
 </div>
-<div id="outline-container-org71b1933" class="outline-4">
-<h4 id="org71b1933"><span class="section-number-4">4.8.1.</span> element-wise (逐元素運算)</h4>
-<div class="outline-text-4" id="text-4-8-1">
+<div id="outline-container-org991ee6c" class="outline-4">
+<h4 id="org991ee6c"><span class="section-number-4">5.8.1.</span> element-wise (逐元素運算)</h4>
+<div class="outline-text-4" id="text-5-8-1">
 <p>
 當我們對兩個陣列進行逐元素運算時，NumPy 會自動對應每個元素進行運算。<br />
 </p>
@@ -2371,7 +2449,7 @@ True
 </pre>
 </div>
 
-<pre class="example" id="org4a6dfba">
+<pre class="example" id="org3b7d80b">
 [[1 2 3]
  [4 5 6]
  [2 3 4]]
@@ -2387,9 +2465,9 @@ True
 </pre>
 </div>
 </div>
-<div id="outline-container-org21308cd" class="outline-4">
-<h4 id="org21308cd"><span class="section-number-4">4.8.2.</span> 條件邏輯運算</h4>
-<div class="outline-text-4" id="text-4-8-2">
+<div id="outline-container-org1b76d5d" class="outline-4">
+<h4 id="org1b76d5d"><span class="section-number-4">5.8.2.</span> 條件邏輯運算</h4>
+<div class="outline-text-4" id="text-5-8-2">
 <p>
 使用 np.where() 可以根據條件從兩個陣列中選擇值。<br />
 </p>
@@ -2417,9 +2495,9 @@ True
 </pre>
 </div>
 </div>
-<div id="outline-container-org21f3ea5" class="outline-4">
-<h4 id="org21f3ea5"><span class="section-number-4">4.8.3.</span> Braodcasting</h4>
-<div class="outline-text-4" id="text-4-8-3">
+<div id="outline-container-org863f1dd" class="outline-4">
+<h4 id="org863f1dd"><span class="section-number-4">5.8.3.</span> Braodcasting</h4>
+<div class="outline-text-4" id="text-5-8-3">
 <p>
 NumPy 支援廣播運算，允許對形狀不同的陣列進行運算，NumPy 會自動將較小的陣列擴展以符合較大的陣列形狀。<br />
 </p>
@@ -2445,13 +2523,13 @@ NumPy 支援廣播運算，允許對形狀不同的陣列進行運算，NumPy �
 </pre>
 </div>
 </div>
-<div id="outline-container-org2419e57" class="outline-4">
-<h4 id="org2419e57"><span class="section-number-4">4.8.4.</span> 陣列排序與反轉</h4>
-<div class="outline-text-4" id="text-4-8-4">
+<div id="outline-container-org440bece" class="outline-4">
+<h4 id="org440bece"><span class="section-number-4">5.8.4.</span> 陣列排序與反轉</h4>
+<div class="outline-text-4" id="text-5-8-4">
 </div>
-<div id="outline-container-org31c966b" class="outline-5">
-<h5 id="org31c966b">sort() 函數可以按指定的軸進行排序。</h5>
-<div class="outline-text-5" id="text-org31c966b">
+<div id="outline-container-org7f66263" class="outline-5">
+<h5 id="org7f66263">sort() 函數可以按指定的軸進行排序。</h5>
+<div class="outline-text-5" id="text-org7f66263">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -2464,7 +2542,7 @@ NumPy 支援廣播運算，允許對形狀不同的陣列進行運算，NumPy �
 </pre>
 </div>
 
-<pre class="example" id="orgb50ce7b">
+<pre class="example" id="org88176dd">
 origin:
  [[ 3  2  5]
  [10 -1  9]
@@ -2480,9 +2558,9 @@ axis=1:
 </pre>
 </div>
 </div>
-<div id="outline-container-orga9978f3" class="outline-5">
-<h5 id="orga9978f3">Array reverse</h5>
-<div class="outline-text-5" id="text-orga9978f3">
+<div id="outline-container-org4c01d43" class="outline-5">
+<h5 id="org4c01d43">Array reverse</h5>
+<div class="outline-text-5" id="text-org4c01d43">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -2499,21 +2577,21 @@ axis=1:
 </div>
 </div>
 </div>
-<div id="outline-container-org405c346" class="outline-2">
-<h2 id="org405c346"><span class="section-number-2">5.</span> Numpy 檔案輸出輸入</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-orgd2c83c9" class="outline-2">
+<h2 id="orgd2c83c9"><span class="section-number-2">6.</span> Numpy 檔案輸出輸入</h2>
+<div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgeb8f729" class="outline-3">
-<h3 id="orgeb8f729"><span class="section-number-3">5.1.</span> Numpy v.s. 外部檔案</h3>
-<div class="outline-text-3" id="text-5-1">
+<div id="outline-container-orgeb7c090" class="outline-3">
+<h3 id="orgeb7c090"><span class="section-number-3">6.1.</span> Numpy v.s. 外部檔案</h3>
+<div class="outline-text-3" id="text-6-1">
 </div>
-<div id="outline-container-org41577c4" class="outline-4">
-<h4 id="org41577c4"><span class="section-number-4">5.1.1.</span> save v.s. load</h4>
-<div class="outline-text-4" id="text-5-1-1">
+<div id="outline-container-orgae92bdd" class="outline-4">
+<h4 id="orgae92bdd"><span class="section-number-4">6.1.1.</span> save v.s. load</h4>
+<div class="outline-text-4" id="text-6-1-1">
 </div>
-<div id="outline-container-org310ad17" class="outline-5">
-<h5 id="org310ad17">np.save()</h5>
-<div class="outline-text-5" id="text-org310ad17">
+<div id="outline-container-org4104537" class="outline-5">
+<h5 id="org4104537">np.save()</h5>
+<div class="outline-text-5" id="text-org4104537">
 <p>
 語法<br />
 </p>
@@ -2529,9 +2607,9 @@ axis=1:
 </ul>
 </div>
 </div>
-<div id="outline-container-org6e34cb2" class="outline-5">
-<h5 id="org6e34cb2">np.load()</h5>
-<div class="outline-text-5" id="text-org6e34cb2">
+<div id="outline-container-org77c428f" class="outline-5">
+<h5 id="org77c428f">np.load()</h5>
+<div class="outline-text-5" id="text-org77c428f">
 <p>
 語法<br />
 </p>
@@ -2548,9 +2626,9 @@ axis=1:
 </ul>
 </div>
 </div>
-<div id="outline-container-org72833b7" class="outline-5">
-<h5 id="org72833b7">np.savetxt()</h5>
-<div class="outline-text-5" id="text-org72833b7">
+<div id="outline-container-orgd12b90f" class="outline-5">
+<h5 id="orgd12b90f">np.savetxt()</h5>
+<div class="outline-text-5" id="text-orgd12b90f">
 <p>
 語法<br />
 </p>
@@ -2569,9 +2647,9 @@ axis=1:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgf6172a6" class="outline-5">
-<h5 id="orgf6172a6">np.loadtxt()</h5>
-<div class="outline-text-5" id="text-orgf6172a6">
+<div id="outline-container-orga1726f6" class="outline-5">
+<h5 id="orga1726f6">np.loadtxt()</h5>
+<div class="outline-text-5" id="text-orga1726f6">
 <p>
 語法<br />
 </p>
@@ -2595,17 +2673,17 @@ axis=1:
 </div>
 </div>
 </div>
-<div id="outline-container-org0668d61" class="outline-4">
-<h4 id="org0668d61"><span class="section-number-4">5.1.2.</span> Colab</h4>
-<div class="outline-text-4" id="text-5-1-2">
+<div id="outline-container-org65d4713" class="outline-4">
+<h4 id="org65d4713"><span class="section-number-4">6.1.2.</span> Colab</h4>
+<div class="outline-text-4" id="text-6-1-2">
 <ul class="org-ul">
 <li>先<a href="images/scores.csv">點這裡下載範例資料(scores.csv)</a><br /></li>
 <li><a href="https://letranger.github.io/AI/20240106142947-colab.html#orga293c31">如何在Colab上傳檔案</a><br /></li>
 </ul>
 </div>
-<div id="outline-container-org0ebe9ba" class="outline-5">
-<h5 id="org0ebe9ba">load</h5>
-<div class="outline-text-5" id="text-org0ebe9ba">
+<div id="outline-container-org65f17ff" class="outline-5">
+<h5 id="org65f17ff">load</h5>
+<div class="outline-text-5" id="text-org65f17ff">
 <p>
 在 Numpy 內會使用.loadtxt 或特定的 np.genfromtxt 來讀取文字檔<br />
 </p>
@@ -2616,7 +2694,7 @@ axis=1:
 </pre>
 </div>
 
-<pre class="example" id="orgb05e66c">
+<pre class="example" id="org516a971">
 [[109.    87.   100.    86.    50.  ]
  [ 86.    66.    68.97  33.2   55.  ]
  [ 82.    51.    72.87  57.    70.  ]
@@ -2631,9 +2709,9 @@ axis=1:
 </pre>
 </div>
 </div>
-<div id="outline-container-org9cb4935" class="outline-5">
-<h5 id="org9cb4935">save</h5>
-<div class="outline-text-5" id="text-org9cb4935">
+<div id="outline-container-org95090e9" class="outline-5">
+<h5 id="org95090e9">save</h5>
+<div class="outline-text-5" id="text-org95090e9">
 <p>
 將處理完的陣列回存成 csv 檔：<br />
 </p>
@@ -2647,13 +2725,13 @@ axis=1:
 </div>
 </div>
 </div>
-<div id="outline-container-org156231a" class="outline-4">
-<h4 id="org156231a"><span class="section-number-4">5.1.3.</span> PyCharm</h4>
-<div class="outline-text-4" id="text-5-1-3">
+<div id="outline-container-org9c1597e" class="outline-4">
+<h4 id="org9c1597e"><span class="section-number-4">6.1.3.</span> PyCharm</h4>
+<div class="outline-text-4" id="text-6-1-3">
 </div>
-<div id="outline-container-orgf45384a" class="outline-5">
-<h5 id="orgf45384a">load</h5>
-<div class="outline-text-5" id="text-orgf45384a">
+<div id="outline-container-org57cb174" class="outline-5">
+<h5 id="org57cb174">load</h5>
+<div class="outline-text-5" id="text-org57cb174">
 <p>
 假設:<br />
 </p>
@@ -2672,21 +2750,21 @@ axis=1:
 </div>
 </div>
 </div>
-<div id="outline-container-orgfa4d664" class="outline-3">
-<h3 id="orgfa4d664"><span class="section-number-3">5.2.</span> 不同格式</h3>
-<div class="outline-text-3" id="text-5-2">
+<div id="outline-container-orgb01997f" class="outline-3">
+<h3 id="orgb01997f"><span class="section-number-3">6.2.</span> 不同格式</h3>
+<div class="outline-text-3" id="text-6-2">
 <p>
 NumPy 提供了多種存取陣列內容的檔案操作函式。儲存陣列資料的檔案可以是二進位制格式或者文字格式。二進位制格式的檔案又分為 NumPy 專用的格式化二進位制型別和無格式型別。<sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup><sup>, </sup><sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup><br />
 </p>
 </div>
 </div>
-<div id="outline-container-org097d959" class="outline-3">
-<h3 id="org097d959"><span class="section-number-3">5.3.</span> Bineary Format</h3>
-<div class="outline-text-3" id="text-5-3">
+<div id="outline-container-org61aaf1a" class="outline-3">
+<h3 id="org61aaf1a"><span class="section-number-3">6.3.</span> Bineary Format</h3>
+<div class="outline-text-3" id="text-6-3">
 </div>
-<div id="outline-container-orgc3db60f" class="outline-4">
-<h4 id="orgc3db60f"><span class="section-number-4">5.3.1.</span> save(), load()</h4>
-<div class="outline-text-4" id="text-5-3-1">
+<div id="outline-container-orgf018569" class="outline-4">
+<h4 id="orgf018569"><span class="section-number-4">6.3.1.</span> save(), load()</h4>
+<div class="outline-text-4" id="text-6-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #dcaeea;">a</span> = np.arange(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">12</span>).reshape(<span style="color: #da8548; font-weight: bold;">3</span>,<span style="color: #da8548; font-weight: bold;">4</span>)
@@ -2708,9 +2786,9 @@ NumPy 提供了多種存取陣列內容的檔案操作函式。儲存陣列資�
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc0484db" class="outline-4">
-<h4 id="orgc0484db"><span class="section-number-4">5.3.2.</span> savez()</h4>
-<div class="outline-text-4" id="text-5-3-2">
+<div id="outline-container-orgee45789" class="outline-4">
+<h4 id="orgee45789"><span class="section-number-4">6.3.2.</span> savez()</h4>
+<div class="outline-text-4" id="text-6-3-2">
 <p>
 我們可以儲存多個陣列在一個 zip 的檔案中，使用 np.savez 就可以了！<br />
 </p>
@@ -2732,9 +2810,9 @@ NumPy 提供了多種存取陣列內容的檔案操作函式。儲存陣列資�
 [ 7  8  9 10 11 12]
 </pre>
 </div>
-<div id="outline-container-orga81f892" class="outline-5">
-<h5 id="orga81f892">讀取</h5>
-<div class="outline-text-5" id="text-orga81f892">
+<div id="outline-container-org9bfe89d" class="outline-5">
+<h5 id="org9bfe89d">讀取</h5>
+<div class="outline-text-5" id="text-org9bfe89d">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -2756,9 +2834,9 @@ b 陣列: [ 7  8  9 10 11 12]
 </div>
 </div>
 </div>
-<div id="outline-container-org5712daa" class="outline-3">
-<h3 id="org5712daa"><span class="section-number-3">5.4.</span> 讀取混合格式的文字資料</h3>
-<div class="outline-text-3" id="text-5-4">
+<div id="outline-container-org27e146c" class="outline-3">
+<h3 id="org27e146c"><span class="section-number-3">6.4.</span> 讀取混合格式的文字資料</h3>
+<div class="outline-text-3" id="text-6-4">
 <p>
 如果資料中某些欄位的資料格式是字串 (string)，處理起來相當麻煩，改用 numpy.genfromtxt 會比較簡單。<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup><br />
 <a href="https://numpy.org/doc/stable/user/basics.io.genfromtxt.html">Importing data with genfromtxt</a><br />
@@ -2768,7 +2846,7 @@ b 陣列: [ 7  8  9 10 11 12]
 <pre class="src src-shell"><span class="linenr">1: </span><span style="color: #ECBE7B;">cat</span> cs-scores2.csv
 </pre>
 </div>
-<pre class="example" id="org4bdc84f">
+<pre class="example" id="orgfb54620">
 學號,平時成績,打字成績,作業成績,期中考,期末考
 201811101,109.00,87,100.00,86.00,50.00
 201811102,86.00,66,68.97,33.20,55.00
@@ -2799,7 +2877,7 @@ Pyton 3 在讀取文字時，dtype 應設為 U(Unicode)，否則會在讀到的�
 </pre>
 </div>
 
-<pre class="example" id="org6d39079">
+<pre class="example" id="orgd642c1c">
 &lt;class 'numpy.ndarray'&gt;
 [('201811101', 109., 87., 100.  ,  86. ,  50.)
  ('201811102',  86., 66.,  68.97,  33.2,  55.)
@@ -2815,9 +2893,9 @@ Pyton 3 在讀取文字時，dtype 應設為 U(Unicode)，否則會在讀到的�
 </pre>
 </div>
 </div>
-<div id="outline-container-org7ffd53e" class="outline-3">
-<h3 id="org7ffd53e"><span class="section-number-3">5.5.</span> 讀取一個欄位資料</h3>
-<div class="outline-text-3" id="text-5-5">
+<div id="outline-container-org1dfd1a1" class="outline-3">
+<h3 id="org1dfd1a1"><span class="section-number-3">6.5.</span> 讀取一個欄位資料</h3>
+<div class="outline-text-3" id="text-6-5">
 <p>
 在 numpy.genfromtxt() 中, 使用 usecols 參數指定取出的欄位編號, 即可取出特定欄位<br />
 </p>
@@ -2839,9 +2917,9 @@ Pyton 3 在讀取文字時，dtype 應設為 U(Unicode)，否則會在讀到的�
 </p>
 </div>
 </div>
-<div id="outline-container-org15cb8fb" class="outline-3">
-<h3 id="org15cb8fb"><span class="section-number-3">5.6.</span> Binary Format  <sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup></h3>
-<div class="outline-text-3" id="text-5-6">
+<div id="outline-container-orgeb4ae2e" class="outline-3">
+<h3 id="orgeb4ae2e"><span class="section-number-3">6.6.</span> Binary Format  <sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup></h3>
+<div class="outline-text-3" id="text-6-6">
 <ul class="org-ul">
 <li>save() / load()<br /></li>
 </ul>
@@ -2881,16 +2959,16 @@ Pyton 3 在讀取文字時，dtype 應設為 U(Unicode)，否則會在讀到的�
 </pre>
 </div>
 </div>
-<div id="outline-container-org8ce5992" class="outline-3">
-<h3 id="org8ce5992"><span class="section-number-3">5.7.</span> 由網路讀取資料</h3>
-<div class="outline-text-3" id="text-5-7">
+<div id="outline-container-org54b4c16" class="outline-3">
+<h3 id="org54b4c16"><span class="section-number-3">6.7.</span> 由網路讀取資料</h3>
+<div class="outline-text-3" id="text-6-7">
 <p>
 Numpy 本身並不能直接從網路讀取文件，它只能從本地文件系統中讀取數據，但可結合其他 Python 標準庫或第三方庫，如 requests、urllib 或 pandas，來從網路獲取文件並將其轉換為 Numpy 數組。<br />
 </p>
 </div>
-<div id="outline-container-orgb1506b5" class="outline-4">
-<h4 id="orgb1506b5"><span class="section-number-4">5.7.1.</span> requests</h4>
-<div class="outline-text-4" id="text-5-7-1">
+<div id="outline-container-orgba4c71d" class="outline-4">
+<h4 id="orgba4c71d"><span class="section-number-4">6.7.1.</span> requests</h4>
+<div class="outline-text-4" id="text-6-7-1">
 <ul class="org-ul">
 <li>StringIO(response.text)：將下載的文件內容轉換為類似文件的對象，使 Numpy 可以進一步讀取。<br /></li>
 <li>np.genfromtxt()：用 Numpy 讀取該文件對象，並將其轉換為 Numpy 陣列。<br /></li>
@@ -2920,9 +2998,9 @@ Numpy 本身並不能直接從網路讀取文件，它只能從本地文件系�
 </pre>
 </div>
 </div>
-<div id="outline-container-org58b5633" class="outline-4">
-<h4 id="org58b5633"><span class="section-number-4">5.7.2.</span> pandas</h4>
-<div class="outline-text-4" id="text-5-7-2">
+<div id="outline-container-org0cb5f70" class="outline-4">
+<h4 id="org0cb5f70"><span class="section-number-4">6.7.2.</span> pandas</h4>
+<div class="outline-text-4" id="text-6-7-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
@@ -2941,7 +3019,7 @@ Numpy 本身並不能直接從網路讀取文件，它只能從本地文件系�
 </div>
 </div>
 <div id="outline-container-risktopickles" class="outline-2">
-<h2 id="risktopickles"><span class="section-number-2">6.</span> 允許使用 pickles 的潛在風險</h2>
+<h2 id="risktopickles"><span class="section-number-2">7.</span> 允許使用 pickles 的潛在風險</h2>
 <div class="outline-text-2" id="text-risktopickles">
 <p>
 關於在 python 中使用 pickles 可能有的問題可以來看<a href="https://www.ithome.com.tw/news/163545">這篇文章</a><sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup>，這裡只簡單示範一下情境。<br />
@@ -2955,13 +3033,13 @@ Numpy 本身並不能直接從網路讀取文件，它只能從本地文件系�
 np.save() 函數中的 allow_pickle 參數決定了是否允許使用 pickle 來保存和加載這些 object。如果你保存的 Numpy 陣列只包含數字類型的數據（如整數、浮點數等），pickle 並不會被用到。但如果陣列包含 Python object，Numpy 會使用 pickle 來處理這些 obejct。<br />
 </p>
 </div>
-<div id="outline-container-org8506263" class="outline-3">
-<h3 id="org8506263"><span class="section-number-3">6.1.</span> 安全範例</h3>
-<div class="outline-text-3" id="text-6-1">
+<div id="outline-container-orgef87028" class="outline-3">
+<h3 id="orgef87028"><span class="section-number-3">7.1.</span> 安全範例</h3>
+<div class="outline-text-3" id="text-7-1">
 </div>
-<div id="outline-container-orgd2458c5" class="outline-4">
-<h4 id="orgd2458c5"><span class="section-number-4">6.1.1.</span> 儲存</h4>
-<div class="outline-text-4" id="text-6-1-1">
+<div id="outline-container-org0e33dbb" class="outline-4">
+<h4 id="org0e33dbb"><span class="section-number-4">7.1.1.</span> 儲存</h4>
+<div class="outline-text-4" id="text-7-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -2974,13 +3052,13 @@ np.save() 函數中的 allow_pickle 參數決定了是否允許使用 pickle 來
 </div>
 </div>
 </div>
-<div id="outline-container-orgaa34f89" class="outline-4">
-<h4 id="orgaa34f89"><span class="section-number-4">6.1.2.</span> 載入</h4>
-<div class="outline-text-4" id="text-6-1-2">
+<div id="outline-container-org6bab5ac" class="outline-4">
+<h4 id="org6bab5ac"><span class="section-number-4">7.1.2.</span> 載入</h4>
+<div class="outline-text-4" id="text-7-1-2">
 </div>
-<div id="outline-container-org15c0415" class="outline-5">
-<h5 id="org15c0415">允許 pickle</h5>
-<div class="outline-text-5" id="text-org15c0415">
+<div id="outline-container-orgf35a6d5" class="outline-5">
+<h5 id="orgf35a6d5">允許 pickle</h5>
+<div class="outline-text-5" id="text-orgf35a6d5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21152;&#36617;&#20445;&#23384;&#30340; 'array_with_dict.npy' &#25991;&#20214;</span>
@@ -2994,9 +3072,9 @@ np.save() 函數中的 allow_pickle 參數決定了是否允許使用 pickle 來
 </pre>
 </div>
 </div>
-<div id="outline-container-org9f60a9d" class="outline-5">
-<h5 id="org9f60a9d">禁止 pickle</h5>
-<div class="outline-text-5" id="text-org9f60a9d">
+<div id="outline-container-org702e89e" class="outline-5">
+<h5 id="org702e89e">禁止 pickle</h5>
+<div class="outline-text-5" id="text-org702e89e">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22039;&#35430;&#21152;&#36617;&#26178;&#31105;&#27490;&#20351;&#29992; pickle&#65292;&#23559;&#25291;&#20986;&#37679;&#35492;</span>
@@ -3011,17 +3089,17 @@ ValueError: Object arrays cannot be loaded when allow_pickle=False
 </div>
 </div>
 </div>
-<div id="outline-container-orga52d2ed" class="outline-3">
-<h3 id="orga52d2ed"><span class="section-number-3">6.2.</span> 危險範例(npy)</h3>
-<div class="outline-text-3" id="text-6-2">
+<div id="outline-container-orgc54b8fc" class="outline-3">
+<h3 id="orgc54b8fc"><span class="section-number-3">7.2.</span> 危險範例(npy)</h3>
+<div class="outline-text-3" id="text-7-2">
 <ul class="org-ul">
 <li>.npy 文件中的函數並非真正的函數代碼，而是對該函數的引用。<br /></li>
 <li>Python 需要在反序列化時依據記錄的名稱和模組信息找到該函數的定義。如果這個函數沒有重新定義，Python 就找不到它。<br /></li>
 </ul>
 </div>
-<div id="outline-container-org182f119" class="outline-4">
-<h4 id="org182f119"><span class="section-number-4">6.2.1.</span> 儲存</h4>
-<div class="outline-text-4" id="text-6-2-1">
+<div id="outline-container-orga42830e" class="outline-4">
+<h4 id="orga42830e"><span class="section-number-4">7.2.1.</span> 儲存</h4>
+<div class="outline-text-4" id="text-7-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -3035,9 +3113,9 @@ ValueError: Object arrays cannot be loaded when allow_pickle=False
 </div>
 </div>
 </div>
-<div id="outline-container-orge92cf8d" class="outline-4">
-<h4 id="orge92cf8d"><span class="section-number-4">6.2.2.</span> 載入</h4>
-<div class="outline-text-4" id="text-6-2-2">
+<div id="outline-container-orgf298176" class="outline-4">
+<h4 id="orgf298176"><span class="section-number-4">7.2.2.</span> 載入</h4>
+<div class="outline-text-4" id="text-7-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr">2: </span>
@@ -3057,13 +3135,13 @@ ValueError: Object arrays cannot be loaded when allow_pickle=False
 </div>
 </div>
 </div>
-<div id="outline-container-orgb2c60c8" class="outline-3">
-<h3 id="orgb2c60c8"><span class="section-number-3">6.3.</span> 危險範例(pickle)</h3>
-<div class="outline-text-3" id="text-6-3">
+<div id="outline-container-orgeca2921" class="outline-3">
+<h3 id="orgeca2921"><span class="section-number-3">7.3.</span> 危險範例(pickle)</h3>
+<div class="outline-text-3" id="text-7-3">
 </div>
-<div id="outline-container-orgef45dad" class="outline-4">
-<h4 id="orgef45dad"><span class="section-number-4">6.3.1.</span> 儲存</h4>
-<div class="outline-text-4" id="text-6-3-1">
+<div id="outline-container-org9a2bbb3" class="outline-4">
+<h4 id="org9a2bbb3"><span class="section-number-4">7.3.1.</span> 儲存</h4>
+<div class="outline-text-4" id="text-7-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pickle
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> os
@@ -3079,9 +3157,9 @@ ValueError: Object arrays cannot be loaded when allow_pickle=False
 </div>
 </div>
 </div>
-<div id="outline-container-org476738f" class="outline-4">
-<h4 id="org476738f"><span class="section-number-4">6.3.2.</span> 載入</h4>
-<div class="outline-text-4" id="text-6-3-2">
+<div id="outline-container-org8982811" class="outline-4">
+<h4 id="org8982811"><span class="section-number-4">7.3.2.</span> 載入</h4>
+<div class="outline-text-4" id="text-7-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pickle
 <span class="linenr">2: </span>
@@ -3147,7 +3225,7 @@ ChatGPT 4o. 提示詞:&ldquo;numpy 的 ndarray 和 matrix 有什麼差異?&rdquo
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2025-02-12 Wed 15:10</p>
+<p class="date">Created: 2025-11-21 Fri 10:11</p>
 </div>
 </body>
 </html>
