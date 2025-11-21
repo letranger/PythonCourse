@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-02-24 Mon 15:54 -->
+<!-- 2025-11-21 Fri 09:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pandas</title>
@@ -203,76 +203,108 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org7072449">1. 簡介</a>
+<li><a href="#org502e234">1. 簡介</a>
 <ul>
-<li><a href="#org8b8d02f">1.1. Pandas</a></li>
-<li><a href="#orgd139a1b">1.2. Pandas 資料結構</a></li>
+<li><a href="#orgcdc6aff">1.1. 使用情境</a></li>
+<li><a href="#orgceffc83">1.2. Pandas</a></li>
+<li><a href="#org57ce487">1.3. CSV</a></li>
+<li><a href="#org7bb0524">1.4. Pandas 資料結構</a></li>
 </ul>
 </li>
-<li><a href="#org44bdba3">2. Series</a>
+<li><a href="#orgb237e69">2. Series</a>
 <ul>
-<li><a href="#orgbd18b15">2.1. 建立: 資料類型可為 array, dictionary</a></li>
-<li><a href="#orgb16af42">2.2. 資料篩選</a></li>
+<li><a href="#org7718c82">2.1. 建立: 資料類型可為 array, dictionary</a></li>
+<li><a href="#org31119ea">2.2. 資料篩選</a></li>
 </ul>
 </li>
-<li><a href="#orgfe10c15">3. DataFrame</a>
+<li><a href="#org4f85f72">3. DataFrame</a>
 <ul>
-<li><a href="#org1c71dce">3.1. DataFrame 建立</a></li>
-<li><a href="#org119b30e">3.2. 由 Dictionary 建立</a></li>
-<li><a href="#org4330a58">3.3. 由 Array 建立</a></li>
-<li><a href="#org9ceefe7">3.4. 讀入外部資料檔來建立 Dataframe</a></li>
+<li><a href="#org5ff9343">3.1. DataFrame 建立</a></li>
+<li><a href="#org3127578">3.2. 由 Dictionary 建立</a></li>
+<li><a href="#orgb7479f4">3.3. 由 二維List 建立</a></li>
+<li><a href="#org7939dfe">3.4. 讀入外部資料檔來建立 Dataframe</a></li>
 </ul>
 </li>
-<li><a href="#org0274a94">4. DataFrame 的資料瀏覽</a>
+<li><a href="#org041ed97">4. DataFrame 的資料瀏覽</a>
 <ul>
-<li><a href="#orgc66bed6">4.1. 基本函數</a></li>
-<li><a href="#org6c98576">4.2. DataFrame 資料排序</a></li>
-<li><a href="#org83857b7">4.3. DataFrame 處理遺漏值</a></li>
-<li><a href="#org014252d">4.4. [課堂練習]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org5b43bac">4.1. 基本函數</a></li>
+<li><a href="#orgad81a99">4.2. DataFrame 資料排序</a></li>
+<li><a href="#org12343b4">4.3. DataFrame 處理遺漏值</a></li>
+<li><a href="#org67f8e18">4.4. [課堂練習]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgca533a0">5. Dataframe 的選取與過濾</a>
+<li><a href="#org90344bc">5. Dataframe 的選取與過濾</a>
 <ul>
-<li><a href="#orgb2984b9">5.1. 資料選取: Select column(s)</a></li>
-<li><a href="#org13e3df8">5.2. 資料選取: Select using index (row)</a></li>
-<li><a href="#org48b45ff">5.3. 條件式選取資料</a></li>
-<li><a href="#org0ae691b">5.4. 進階條件過濾[loc/iloc]</a></li>
+<li><a href="#orgb6f3c63">5.1. 資料選取: Select column(s)</a></li>
+<li><a href="#orgf40b44c">5.2. 資料選取: Select using index (row)</a></li>
+<li><a href="#org9c31f18">5.3. 條件式選取資料</a></li>
+<li><a href="#orgec651e1">5.4. 進階條件過濾[loc/iloc]</a></li>
 </ul>
 </li>
-<li><a href="#org8b4843b">6. 進階分析</a>
+<li><a href="#org03b86fa">6. 進階分析</a>
 <ul>
-<li><a href="#orgbd95c8d">6.1. 由其他 column 產生新的 column(重要、實用)</a></li>
-<li><a href="#org8a0192b">6.2. 交叉分析：分組與資料轉置</a></li>
-<li><a href="#orgc032d3d">6.3. 資料檔下載: file:scores.csv</a></li>
+<li><a href="#org92df765">6.1. 由其他 column 產生新的 column(重要、實用)</a></li>
+<li><a href="#orgdaef51d">6.2. 交叉分析：分組與資料轉置</a></li>
+<li><a href="#org91050bf">6.3. 資料檔下載: file:scores.csv</a></li>
 </ul>
 </li>
-<li><a href="#org866b198">7. 資料視覺化</a>
+<li><a href="#org2ef235c">7. 資料視覺化</a>
 <ul>
-<li><a href="#org937f948">7.1. Bar chart</a></li>
-<li><a href="#org862f7ce">7.2. Regression line chart</a></li>
-<li><a href="#orgc40da69">7.3. Pie chart</a></li>
-<li><a href="#org9ed5542">7.4. Scatter chart</a></li>
-<li><a href="#org4494ac1">7.5. Haxbin chart</a></li>
+<li><a href="#org5a56aa3">7.1. Bar chart</a></li>
+<li><a href="#org1ef654e">7.2. Regression line chart</a></li>
+<li><a href="#org67ff413">7.3. Pie chart</a></li>
+<li><a href="#org13c83ad">7.4. Scatter chart</a></li>
+<li><a href="#orgb7838c6">7.5. Haxbin chart</a></li>
 </ul>
 </li>
-<li><a href="#org53c684d">8. [作業]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a>
+<li><a href="#org7a8701a">8. [作業]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a>
 <ul>
-<li><a href="#orgaf76c82">8.1. 403期中考得分統計</a></li>
-<li><a href="#org463068e">8.2. 進階練習</a></li>
+<li><a href="#org2b2e160">8.1. 403期中考得分統計</a></li>
+<li><a href="#org049d46d">8.2. 進階練習</a></li>
 </ul>
 </li>
-<li><a href="#orga685820">9. 教學影片</a></li>
+<li><a href="#org99b78bc">9. 教學影片</a></li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/Pandas.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Pandas.html.svg"/></a>
-<div id="outline-container-org7072449" class="outline-2">
-<h2 id="org7072449"><span class="section-number-2">1.</span> 簡介</h2>
+<div id="outline-container-org502e234" class="outline-2">
+<h2 id="org502e234"><span class="section-number-2">1.</span> 簡介</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+對於使用 Python 進行資料分析的使用者來說，Pandas 是一個非常重要且常用的函式庫。Pandas 提供了高效能、易於使用的資料結構和資料分析工具，使得處理和分析資料變得更加簡單和方便。<br />
+</p>
 </div>
-<div id="outline-container-org8b8d02f" class="outline-3">
-<h3 id="org8b8d02f"><span class="section-number-3">1.1.</span> Pandas</h3>
+<div id="outline-container-orgcdc6aff" class="outline-3">
+<h3 id="orgcdc6aff"><span class="section-number-3">1.1.</span> 使用情境</h3>
 <div class="outline-text-3" id="text-1-1">
+<p>
+對於以下這些同學來說，Pandas 是一個非常有用的工具:<br />
+</p>
+<ul class="org-ul">
+<li>未來你可能要在電腦上跑一些模擬軟體或資料分析軟體<br /></li>
+<li>未來你可能要接觸一些科學儀器或其他設備來收集數據，這類設備通常會生成大量的、格式複雜的資料<br /></li>
+<li>未來你可能要從網路上抓取一些資料來進行分析，這些資料通常是以 CSV、JSON、Excel 等格式存儲的<br /></li>
+</ul>
+
+<p>
+如果你還在想著Excel，早點放下它吧! Pandas 可以讓你更有效率地處理和分析資料，並且可以輕鬆地與其他 Python 函式庫（如 NumPy、Matplotlib、Scikit-learn）結合使用，讓你能夠更快地獲得有用的資訊。<br />
+</p>
+
+<p>
+學會使用 Pandas，可以幫助你更好地理解資料分析的流程和方法，並且可以讓你更快地完成資料分析的任務。它可以協助你輕鬆地完成以下幾個方面的工作:<br />
+</p>
+<ul class="org-ul">
+<li>資料清理與準備: Pandas 提供了強大的資料清理和準備功能，可以輕鬆地處理缺失值、重複值、資料轉換等問題。<br /></li>
+<li>資料探索與分析: Pandas 提供了豐富的資料探索和分析工具，可以快速地進行資料篩選、分組、聚合等操作。<br /></li>
+<li>資料視覺化: Pandas 可以與其他資料視覺化函式庫（如 Matplotlib、Seaborn）結合使用，方便地進行資料視覺化。<br /></li>
+<li>機器學習: Pandas 可以與機器學習函式庫（如 Scikit-learn）結合使用，方便地進行資料預處理和特徵工程。<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgceffc83" class="outline-3">
+<h3 id="orgceffc83"><span class="section-number-3">1.2.</span> Pandas</h3>
+<div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>建構於 NumPy 之上分析模組，適合處理表格資料或異質資料。<br /></li>
 <li>於 2009 年底開源出來，提供高效能、簡易使用的資料格式(Data Frame，為 R 語言主要資料格式)，可以讓使用者可以快速操作及分析資料。<br /></li>
@@ -286,20 +318,24 @@
 </ol></li>
 </ul>
 </div>
-<div id="outline-container-orgc5624c1" class="outline-4">
-<h4 id="orgc5624c1"><span class="section-number-4">1.1.1.</span> CSV</h4>
-<div class="outline-text-4" id="text-1-1-1">
+</div>
+<div id="outline-container-org57ce487" class="outline-3">
+<h3 id="org57ce487"><span class="section-number-3">1.3.</span> CSV</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Pandas 最常用來處理的資料格式為 CSV 檔案，對於那些將來會有需要分析實驗數據的使用者來說，Pandas 是一個非常有用的工具。不管你是使用一些科學儀器或是其他設備來收集數據，這些數據通常都會以 CSV 檔案的形式存儲。就算你是在電腦上跑一些模擬軟體，這些軟體也通常會將結果輸出為 CSV 檔案。Pandas 可以幫助你輕鬆地讀取、處理和分析這些 CSV 檔案中的數據，讓你能夠更快地獲得有用的資訊。<br />
+</p>
 <ul class="org-ul">
 <li>Comma-Separated Values, 為純文字檔，以逗號分隔值，有時也稱為字元分隔值，因為分隔字元也可以不是逗號）。<br /></li>
 <li>純文字意味著該檔案是一個字元序列，不含必須像二進位制數字那樣被解讀的資料。<br /></li>
 <li>CSV 檔案由任意數目的記錄組成，記錄間以某種換行符分隔；每條記錄由欄位組成，欄位間的分隔符是其它字元或字串，最常見的是逗號。<br /></li>
+<li>如果你有使用過 Excel 或其他試算表軟體，應該對 CSV 檔案不陌生，因為這些軟體通常都可以將資料匯出為 CSV 檔案格式。<br /></li>
 </ul>
 </div>
 </div>
-</div>
-<div id="outline-container-orgd139a1b" class="outline-3">
-<h3 id="orgd139a1b"><span class="section-number-3">1.2.</span> Pandas 資料結構</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-org7bb0524" class="outline-3">
+<h3 id="org7bb0524"><span class="section-number-3">1.4.</span> Pandas 資料結構</h3>
+<div class="outline-text-3" id="text-1-4">
 <p>
 Pandas 兩類資料結構<sup><a id="fnr.3" class="footref" href="#fn.3" role="doc-backlink">3</a></sup><sup>, </sup><sup><a id="fnr.2.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup>:<br />
 </p>
@@ -309,10 +345,10 @@ Pandas 兩類資料結構<sup><a id="fnr.3" class="footref" href="#fn.3" role="d
 </ol>
 
 <p>
-Series與DataFrame的差異可由圖<a href="#org0b79e34">1</a>看出<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>:<br />
+Series與DataFrame的差異可由圖<a href="#orgd4d0b9f">1</a>看出<sup><a id="fnr.4" class="footref" href="#fn.4" role="doc-backlink">4</a></sup>:<br />
 </p>
 
-<div id="org0b79e34" class="figure">
+<div id="orgd4d0b9f" class="figure">
 <p><img src="images/簡介/2024-09-15_17-09-32_dataframe_series-e1711596564546.png" alt="2024-09-15_17-09-32_dataframe_series-e1711596564546.png" width="300" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>Series v.s. Dataframe</p>
@@ -320,19 +356,19 @@ Series與DataFrame的差異可由圖<a href="#org0b79e34">1</a>看出<sup><a id=
 </div>
 </div>
 </div>
-<div id="outline-container-org44bdba3" class="outline-2">
-<h2 id="org44bdba3"><span class="section-number-2">2.</span> Series</h2>
+<div id="outline-container-orgb237e69" class="outline-2">
+<h2 id="orgb237e69"><span class="section-number-2">2.</span> Series</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 一維資料(表格中的一欄)，類似numpy中的vector，但可以儲存任何類型的數據，包括整數、浮點數、字串等等。<br />
 </p>
 </div>
-<div id="outline-container-orgbd18b15" class="outline-3">
-<h3 id="orgbd18b15"><span class="section-number-3">2.1.</span> 建立: 資料類型可為 array, dictionary</h3>
+<div id="outline-container-org7718c82" class="outline-3">
+<h3 id="org7718c82"><span class="section-number-3">2.1.</span> 建立: 資料類型可為 array, dictionary</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org179cdfa" class="outline-4">
-<h4 id="org179cdfa"><span class="section-number-4">2.1.1.</span> 由 array 建立 Series</h4>
+<div id="outline-container-org87dfe80" class="outline-4">
+<h4 id="org87dfe80"><span class="section-number-4">2.1.1.</span> 由 array 建立 Series</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -347,7 +383,7 @@ Series與DataFrame的差異可由圖<a href="#org0b79e34">1</a>看出<sup><a id=
 </pre>
 </div>
 
-<pre class="example" id="org38ba9c2">
+<pre class="example" id="orgf79c9a3">
 資料型別: &lt;class 'list'&gt;
 資料型別: &lt;class 'pandas.core.series.Series'&gt;
 (7,)
@@ -364,12 +400,12 @@ Audi
 </div>
 </div>
 </div>
-<div id="outline-container-orgb16af42" class="outline-3">
-<h3 id="orgb16af42"><span class="section-number-3">2.2.</span> 資料篩選</h3>
+<div id="outline-container-org31119ea" class="outline-3">
+<h3 id="org31119ea"><span class="section-number-3">2.2.</span> 資料篩選</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org5c95eb5" class="outline-4">
-<h4 id="org5c95eb5"><span class="section-number-4">2.2.1.</span> 由dict來建立pandas.Series()</h4>
+<div id="outline-container-orga4b45ec" class="outline-4">
+<h4 id="orga4b45ec"><span class="section-number-4">2.2.1.</span> 由dict來建立pandas.Series()</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 就是把dict的key當成index<br />
@@ -405,7 +441,7 @@ Audi
 </pre>
 </div>
 
-<pre class="example" id="orga159bb2">
+<pre class="example" id="org26aab0d">
 Kaohsiung
 =====
 13213
@@ -436,24 +472,39 @@ dtype: object
 </div>
 </div>
 </div>
-<div id="outline-container-orgfe10c15" class="outline-2">
-<h2 id="orgfe10c15"><span class="section-number-2">3.</span> DataFrame</h2>
+<div id="outline-container-org4f85f72" class="outline-2">
+<h2 id="org4f85f72"><span class="section-number-2">3.</span> DataFrame</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-直觀的看DataFrame，這就是個Excel表格。<br />
+其實，你可以單純把DataFrame看成Excel裡的一大張工作表，裡面有很多列(row)和欄(column)，每一列代表一筆資料，每一欄代表一個變數(欄位)。DataFrame可以讓你很方便地操作這些資料，例如篩選、排序、計算統計量等等。<br />
+</p>
+
+<p>
+唯一不同的是，DataFrame是用程式碼來操作的，而不是用滑鼠點來點去的。這樣可以讓你更有效率地處理大量資料，並且可以重複使用你的程式碼來處理不同的資料集。<br />
+</p>
+
+<p>
+永遠記住一件事，但凡某件事需要你用滑鼠去重複點來點去的，那麼這件事就不值得你去做，因為你可以用程式碼來自動化這件事，讓電腦幫你做。<br />
+</p>
+
+<p>
+那麼，要如何在Python中建立你的DataFrame呢？很簡單，你可以使用Pandas這個函式庫來建立DataFrame。Pandas提供了很多方便的方法來建立和操作DataFrame，讓你可以輕鬆地處理你的資料。<br />
 </p>
 </div>
-<div id="outline-container-org1c71dce" class="outline-3">
-<h3 id="org1c71dce"><span class="section-number-3">3.1.</span> DataFrame 建立</h3>
+<div id="outline-container-org5ff9343" class="outline-3">
+<h3 id="org5ff9343"><span class="section-number-3">3.1.</span> DataFrame 建立</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 可利用 Dictionary 或是 Array 來建立，並使用 DataFrame 的方法來操作資料查看、資料篩選、資料切片、資料排序等運算。<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org119b30e" class="outline-3">
-<h3 id="org119b30e"><span class="section-number-3">3.2.</span> 由 Dictionary 建立</h3>
+<div id="outline-container-org3127578" class="outline-3">
+<h3 id="org3127578"><span class="section-number-3">3.2.</span> 由 Dictionary 建立</h3>
 <div class="outline-text-3" id="text-3-2">
+<p>
+如果你對Dictionary不熟，可以先跳過這一節，或是去參考<a href="https://letranger.github.io/PythonCourse/PythonBasic.html">Python 基礎</a>的相關章節。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 2: </span>
@@ -481,9 +532,12 @@ dtype: object
 </pre>
 </div>
 </div>
-<div id="outline-container-org4330a58" class="outline-3">
-<h3 id="org4330a58"><span class="section-number-3">3.3.</span> 由 Array 建立</h3>
+<div id="outline-container-orgb7479f4" class="outline-3">
+<h3 id="orgb7479f4"><span class="section-number-3">3.3.</span> 由 二維List 建立</h3>
 <div class="outline-text-3" id="text-3-3">
+<p>
+就是先建立一個二維陣列(矩陣)，然後再利用 pd.DataFrame() 來把這個二維陣列轉成 DataFrame。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr">2: </span>
@@ -507,23 +561,30 @@ dtype: object
 </pre>
 </div>
 </div>
-<div id="outline-container-org9ceefe7" class="outline-3">
-<h3 id="org9ceefe7"><span class="section-number-3">3.4.</span> 讀入外部資料檔來建立 Dataframe</h3>
+<div id="outline-container-org7939dfe" class="outline-3">
+<h3 id="org7939dfe"><span class="section-number-3">3.4.</span> 讀入外部資料檔來建立 Dataframe</h3>
 <div class="outline-text-3" id="text-3-4">
-</div>
-<div id="outline-container-org66923e0" class="outline-4">
-<h4 id="org66923e0"><span class="section-number-4">3.4.1.</span> 本機CSV(由本機端的PyCharm執行，不能在Google colab上跑)</h4>
-<div class="outline-text-4" id="text-3-4-1">
+<p>
+當然，更常見的情況是，你會從外部資料檔案(如 CSV 檔)來讀取資料，然後把這些資料放入 DataFrame 中，進行資料查看、資料篩選、資料切片等運算。<br />
+</p>
+
+<p>
+首先，我們假設你的電腦上有一個CSV檔案，裡面包含了一些學生的成績資料。你可以先點擊以下連結下載這個範例檔案，然後依你的執行環境（Colab或PyCharm)來進行不同的操作。<br />
+</p>
 <ul class="org-ul">
-<li>可以從異質資料來源讀取檔案(如 CSV 檔)內容，並將資料放入 DataFrame 中，進行資料查看、資料篩選、資料切片等運算。<br /></li>
-<li>如果資料檔和程式放在同一目錄(資料夾)<br /></li>
-<li>如果資料檔放在本機在其他地方<br />
-<ul class="org-ul">
-<li>絕對路徑<br /></li>
-<li>相對路徑<br /></li>
-</ul></li>
 <li><a href="./scores.csv">下載範例檔:scores.csv</a><br /></li>
 </ul>
+</div>
+<div id="outline-container-org48e4d04" class="outline-4">
+<h4 id="org48e4d04"><span class="section-number-4">3.4.1.</span> 本機CSV(由本機端的PyCharm執行，不能在Google colab上跑)</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<p>
+如果你是在本機端使用PyCharm來執行Python程式碼，那你先看看你下載的CSV檔案放在哪個資料夾，然後把那個路徑填入下面的程式碼中，就可以直接讀取這個CSV檔案並建立DataFrame了。<br />
+</p>
+
+<p>
+以pd.read_csv()來讀取CSV檔案後就會變成DataFrame物件，接著就可以使用DataFrame的方法來操作資料了。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr">2: </span>
@@ -535,36 +596,50 @@ dtype: object
 </div>
 </div>
 </div>
-<div id="outline-container-orga4f1f45" class="outline-4">
-<h4 id="orga4f1f45"><span class="section-number-4">3.4.2.</span> Google Colab的檔案上傳</h4>
+<div id="outline-container-org145a331" class="outline-4">
+<h4 id="org145a331"><span class="section-number-4">3.4.2.</span> Google Colab的檔案上傳</h4>
 <div class="outline-text-4" id="text-3-4-2">
 <p>
-import google.colab後，使用files.upload() 就能夠產生上傳檔案，此時cell會進入等待狀態，選取你本機的檔案即可上傳。<br />
+對於使用Google Colab的同學來說，因為Colab是雲端環境，所以你需要先把本機的檔案上傳到Colab，然後才能讀取這些檔案。以下是如何在Colab中上傳檔案並使用Pandas讀取CSV檔案的步驟:<br />
 </p>
+</div>
+<div id="outline-container-org3c11b66" class="outline-5">
+<h5 id="org3c11b66"><span class="section-number-5">3.4.2.1.</span> 在Colab中執行以下程式碼來上傳檔案:</h5>
+<div class="outline-text-5" id="text-3-4-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">from</span> google.colab <span style="color: #51afef;">import</span> files
 <span class="linenr">2: </span><span style="color: #dcaeea;">uploaded</span> = files.upload()
 </pre>
 </div>
-<p>
-執行後會出現以下畫面:<br />
-</p>
+<ul class="org-ul">
+<li>import google.colab後，使用files.upload() 就能夠產生上傳檔案，此時cell會進入等待狀態，選取你本機的檔案即可上傳。<br /></li>
+<li>執行後會出現以下畫面:<br /></li>
+</ul>
 
-<p width="500">
-<img src="images/DataFrame/2023-12-22_09-37-23_2023-12-22_09-36-51.png" alt="2023-12-22_09-37-23_2023-12-22_09-36-51.png" width="500" /><br />
-點選「瀏覽」選取檔案後即可將檔案上傳至Colab<br />
+<div id="orgb5fdbb6" class="figure">
+<p><img src="images/DataFrame/2023-12-22_09-37-23_2023-12-22_09-36-51.png" alt="2023-12-22_09-37-23_2023-12-22_09-36-51.png" width="500" /><br />
 </p>
+<p><span class="figure-number">Figure 2: </span>Colab上傳檔案</p>
 </div>
-<div id="outline-container-org2626bd5" class="outline-5">
-<h5 id="org2626bd5"><span class="section-number-5">3.4.2.1.</span> 檔案上傳到哪裡?</h5>
-<div class="outline-text-5" id="text-3-4-2-1">
+<ul class="org-ul">
+<li>接下來點選「瀏覽」選取檔案後即可將檔案上傳至Colab<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org7bbbc2d" class="outline-5">
+<h5 id="org7bbbc2d"><span class="section-number-5">3.4.2.2.</span> 檔案上傳到哪裡?</h5>
+<div class="outline-text-5" id="text-3-4-2-2">
 <p>
-可以執行!ls查看現在所在的目錄(資料夾)的內容<br />
+這個上傳的檔案會被放在Colab的臨時目錄中，通常是`/content/`。你可以使用以下程式碼來查看目前所在的目錄以及該目錄下的檔案:<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span>!ls
 </pre>
 </div>
+<p>
+ls是Linux系統的指令，可以列出目前目錄下的檔案清單，你應該可以看到剛剛上傳的CSV檔案。如果你想確認目前所在的目錄，<br />
+</p>
+
 <p>
 也可以執行!pwd查看現在在哪一個目錄(資料夾)<br />
 </p>
@@ -572,11 +647,17 @@ import google.colab後，使用files.upload() 就能夠產生上傳檔案，此�
 <pre class="src src-python"><span class="linenr">1: </span>!pwd
 </pre>
 </div>
+<p>
+pwd是Linux系統的指令，可以顯示目前所在的目錄路徑。<br />
+</p>
 </div>
 </div>
-<div id="outline-container-orge48a435" class="outline-5">
-<h5 id="orge48a435"><span class="section-number-5">3.4.2.2.</span> 在Google Colab以Pandas查看csv檔</h5>
-<div class="outline-text-5" id="text-3-4-2-2">
+<div id="outline-container-org7e05da5" class="outline-5">
+<h5 id="org7e05da5"><span class="section-number-5">3.4.2.3.</span> 在Google Colab以Pandas查看csv檔</h5>
+<div class="outline-text-5" id="text-3-4-2-3">
+<p>
+接下來你就可以再新增一個Code Cell來讀取這個CSV檔案並建立DataFrame了。假設你上傳的檔案名稱是`scores.csv`，那麼你可以使用以下程式碼來讀取這個檔案:<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr">2: </span>
@@ -589,9 +670,12 @@ import google.colab後，使用files.upload() 就能夠產生上傳檔案，此�
 </div>
 </div>
 </div>
-<div id="outline-container-org40c62e0" class="outline-4">
-<h4 id="org40c62e0"><span class="section-number-4">3.4.3.</span> 由Pandas直接讀取線上CSV檔</h4>
+<div id="outline-container-org72a5206" class="outline-4">
+<h4 id="org72a5206"><span class="section-number-4">3.4.3.</span> 由Pandas直接讀取線上CSV檔</h4>
 <div class="outline-text-4" id="text-3-4-3">
+<p>
+最後，我們來看最簡單的方法: 直接讓Pandas讀取線上的CSV檔案。這樣你就不需要先下載檔案再上傳了，Pandas會自動幫你下載並讀取檔案。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr">2: </span><span style="color: #dcaeea;">docURL</span> = <span style="color: #98be65;">'https://letranger.github.io/PythonCourse/scores.csv'</span> <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#30452;&#25509;&#25351;&#23450;&#27284;&#26696;&#30340;URL</span>
@@ -605,7 +689,7 @@ import google.colab後，使用files.upload() 就能夠產生上傳檔案，此�
 </pre>
 </div>
 
-<pre class="example" id="org39470b4">
+<pre class="example" id="org9ad8732">
 =====dataFrame的維度
 (212, 6)
 =====dataFrame的數值分佈概況
@@ -630,13 +714,19 @@ max    120.000000  120.00000  107.890000  113.500000  115.000000
 </div>
 </div>
 </div>
-<div id="outline-container-org0274a94" class="outline-2">
-<h2 id="org0274a94"><span class="section-number-2">4.</span> DataFrame 的資料瀏覽</h2>
+<div id="outline-container-org041ed97" class="outline-2">
+<h2 id="org041ed97"><span class="section-number-2">4.</span> DataFrame 的資料瀏覽</h2>
 <div class="outline-text-2" id="text-4">
+<p>
+有了 DataFrame 之後，接下來就可以使用 DataFrame 提供的方法來瀏覽和操作資料了。以下是一些常用的方法:<br />
+</p>
 </div>
-<div id="outline-container-orgc66bed6" class="outline-3">
-<h3 id="orgc66bed6"><span class="section-number-3">4.1.</span> 基本函數</h3>
+<div id="outline-container-org5b43bac" class="outline-3">
+<h3 id="org5b43bac"><span class="section-number-3">4.1.</span> 基本函數</h3>
 <div class="outline-text-3" id="text-4-1">
+<p>
+這些是在你讀入一個DataFrame之後，最常用來查看DataFrame內容的函數：<br />
+</p>
 <ul class="org-ul">
 <li>shape<br />
 用途：查看 DataFrame 的維度（行數與列數），傳回一個包含行數和列數的 tuple。<br /></li>
@@ -654,8 +744,8 @@ max    120.000000  120.00000  107.890000  113.500000  115.000000
 顯示 DataFrame 的結構化資訊, 包含 DataFrame 中的行數、列數、欄位類型、非空值計數、記憶體使用情況等，常用於總覽資料集的結構。<br /></li>
 </ul>
 </div>
-<div id="outline-container-org628db90" class="outline-4">
-<h4 id="org628db90"><span class="section-number-4">4.1.1.</span> 範例</h4>
+<div id="outline-container-org116e65e" class="outline-4">
+<h4 id="org116e65e"><span class="section-number-4">4.1.1.</span> 範例</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -679,7 +769,7 @@ max    120.000000  120.00000  107.890000  113.500000  115.000000
 </pre>
 </div>
 
-<pre class="example" id="orgcfd227a">
+<pre class="example" id="orgdd711e5">
 ====df.shape====
 (212, 6)
 ====df.describe()====
@@ -725,12 +815,22 @@ RangeIndex(start=0, stop=212, step=1)
 </div>
 </div>
 </div>
-<div id="outline-container-org6c98576" class="outline-3">
-<h3 id="org6c98576"><span class="section-number-3">4.2.</span> DataFrame 資料排序</h3>
+<div id="outline-container-orgad81a99" class="outline-3">
+<h3 id="orgad81a99"><span class="section-number-3">4.2.</span> DataFrame 資料排序</h3>
 <div class="outline-text-3" id="text-4-2">
-<ul class="org-ul">
-<li><p>
-sort_values(): 依欄位的值來排序(較常用)<br />
+<p>
+當資料量很大時，排序是一個很常用的功能。Pandas 提供了兩個主要的方法來對 DataFrame 進行排序:<br />
+</p>
+</div>
+<div id="outline-container-orgd1fb0e9" class="outline-4">
+<h4 id="orgd1fb0e9"><span class="section-number-4">4.2.1.</span> sort_values():</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+這個方法是根據指定的欄位值來排序，可以指定單一欄位或多個欄位來進行排序，並且可以選擇是要升冪(ascending=True)還是降冪(ascending=False)排序。<br />
+</p>
+
+<p>
+這也是最常用的排序方法，因為我們通常都是根據某個欄位的值來決定資料的順序。<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -745,30 +845,35 @@ sort_values(): 依欄位的值來排序(較常用)<br />
 </pre>
 </div>
 
-<pre class="example" id="orgb84e268">
-  ====Original====
+<pre class="example" id="org6ef85d3">
+====Original====
+           id  classparti  typing  homework  midexam  finalexam
+0  S201910901         100      72     92.11     48.0       16.0
+1  S201910902          96      56     93.42     60.0       40.0
+2  S201910903          96      76    102.63     45.0       28.0
+3  S201910904          93      64     86.84     44.0       25.0
+4  S201910905          93      56     42.11      0.0       20.0
+===.sort_values()====
              id  classparti  typing  homework  midexam  finalexam
-  0  S201910901         100      72     92.11     48.0       16.0
-  1  S201910902          96      56     93.42     60.0       40.0
-  2  S201910903          96      76    102.63     45.0       28.0
-  3  S201910904          93      64     86.84     44.0       25.0
-  4  S201910905          93      56     42.11      0.0       20.0
-  ===.sort_values()====
-               id  classparti  typing  homework  midexam  finalexam
-  18   S201910919          14      56     25.92      0.0        0.0
-  42   S201911006          20      68     92.11     27.0       20.0
-  27   S201910928          37     108     89.47      0.0       20.0
-  116  S201911307          53      60     41.45      0.0        0.0
-  10   S201910911          62      44     20.39      4.0        0.0
-               id  classparti  typing  homework  midexam  finalexam
-  88   S201911115         120      88    105.26    113.5     111.00
-  98   S201911125         119      80    107.89    113.2     115.00
-  210  S201911729          87      84    105.26    112.3     103.00
-  11   S201910912          87      92     92.11    110.8     103.75
-  195  S201911714         102      44    107.89    110.0     110.00
-</pre></li>
-<li><p>
-sort_index(): 依欄位名稱或index值來排。The axis along which to sort. The value 0 identifies the rows, and 1 identifies the columns.<br />
+18   S201910919          14      56     25.92      0.0        0.0
+42   S201911006          20      68     92.11     27.0       20.0
+27   S201910928          37     108     89.47      0.0       20.0
+116  S201911307          53      60     41.45      0.0        0.0
+10   S201910911          62      44     20.39      4.0        0.0
+             id  classparti  typing  homework  midexam  finalexam
+88   S201911115         120      88    105.26    113.5     111.00
+98   S201911125         119      80    107.89    113.2     115.00
+210  S201911729          87      84    105.26    112.3     103.00
+11   S201910912          87      92     92.11    110.8     103.75
+195  S201911714         102      44    107.89    110.0     110.00
+</pre>
+</div>
+</div>
+<div id="outline-container-orgb680a32" class="outline-4">
+<h4 id="orgb680a32"><span class="section-number-4">4.2.2.</span> sort_index():</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<p>
+依欄位名稱或index值來排。當你的資料欄位很多而且大多是依照字母順序排列時，這個方法就很有用。<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -784,7 +889,7 @@ sort_index(): 依欄位名稱或index值來排。The axis along which to sort. T
 </pre>
 </div>
 
-<pre class="example" id="orgc6e7a4b">
+<pre class="example" id="org3349fad">
   ====Original====
              id  classparti  typing  homework  midexam  finalexam
   0  S201910901         100      72     92.11     48.0       16.0
@@ -822,9 +927,14 @@ sort_index(): 依欄位名稱或index值來排。The axis along which to sort. T
   0    S201910901         100      72     92.11     48.0       16.0
 
   [212 rows x 6 columns]
-</pre></li>
-<li><p>
-sort 後的結果為 <b>複本</b> ，不改變原本的資料<br />
+</pre>
+</div>
+</div>
+<div id="outline-container-org109e727" class="outline-4">
+<h4 id="org109e727"><span class="section-number-4">4.2.3.</span> 有關排序的重要說明</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+sort 後的結果為 <b>複本</b> ，不改變原本的資料，意思是說，當你使用 sort_values() 或 sort_index() 來排序 DataFrame 時，Pandas 會回傳一個 <b><b>新的</b></b>  DataFrame，這個新的 DataFrame 是排序後的結果，而原本的 DataFrame 仍然 <b><b>保持不變</b></b> 。<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -841,7 +951,7 @@ sort 後的結果為 <b>複本</b> ，不改變原本的資料<br />
 </pre>
 </div>
 
-<pre class="example" id="orgb8bafb5">
+<pre class="example" id="org2060999">
   ====Original====
              id  classparti  typing  homework  midexam  finalexam
   0  S201910901         100      72     92.11     48.0       16.0
@@ -871,17 +981,24 @@ sort 後的結果為 <b>複本</b> ，不改變原本的資料<br />
   2  S201910903          96      76    102.63     45.0       28.0
   3  S201910904          93      64     86.84     44.0       25.0
   4  S201910905          93      56     42.11      0.0       20.0
-</pre></li>
-</ul>
+</pre>
 </div>
 </div>
-<div id="outline-container-org83857b7" class="outline-3">
-<h3 id="org83857b7"><span class="section-number-3">4.3.</span> DataFrame 處理遺漏值</h3>
+</div>
+<div id="outline-container-org12343b4" class="outline-3">
+<h3 id="org12343b4"><span class="section-number-3">4.3.</span> DataFrame 處理遺漏值</h3>
 <div class="outline-text-3" id="text-4-3">
+<p>
+在現實世界的資料集中，遺漏值（Missing Values）是非常常見的情況。不管你的資料是來自問卷調查、感測器讀取，還是從網路下載，都可能會有一些資料缺失的情況。Pandas 提供了多種方法來檢查和處理這些遺漏值，以下是一些常用的方法:<br />
+</p>
 </div>
-<div id="outline-container-org4f207cd" class="outline-4">
-<h4 id="org4f207cd"><span class="section-number-4">4.3.1.</span> 觀察遺失狀況</h4>
+<div id="outline-container-orgeb5437e" class="outline-4">
+<h4 id="orgeb5437e"><span class="section-number-4">4.3.1.</span> 觀察遺失狀況</h4>
 <div class="outline-text-4" id="text-4-3-1">
+<p>
+不要只想著你可以用眼睛看資料來找遺漏值，因為當資料量很大時，這樣做是非常不切實際的。<br />
+我們可以使用以下幾個函數來檢查 DataFrame 中的遺漏值:<br />
+</p>
 <ul class="org-ul">
 <li>isnull(): 用來檢查 DataFrame 中的遺漏值，並傳回一個布林值的 DataFrame，True 表示該值為 NaN，False 表示該值不是 NaN。<br /></li>
 <li>notnull(): 傳回一個與原資料相同大小的布林值 DataFrame，其中 True 表示資料為 NaN。<br /></li>
@@ -901,7 +1018,7 @@ sort 後的結果為 <b>複本</b> ，不改變原本的資料<br />
 </pre>
 </div>
 
-<pre class="example" id="org73c2575">
+<pre class="example" id="orgdb823e6">
 ====原始資料====
           id  classparti  typing  homework  finalExam
 0  201910901       100.0    72.0     92.11       48.0
@@ -935,11 +1052,23 @@ dtype: int64
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc8c54e6" class="outline-4">
-<h4 id="orgc8c54e6"><span class="section-number-4">4.3.2.</span> dropna()</h4>
+<div id="outline-container-org10fa281" class="outline-4">
+<h4 id="org10fa281"><span class="section-number-4">4.3.2.</span> dropna()</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
-dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
+在確定資料中有遺失值之後，接下來就要考慮如何處理這些遺失值。最簡單的方法就是刪除這些包含遺失值的行或列，Pandas 提供了 dropna() 方法來實現這個功能。<br />
+</p>
+
+<p>
+什麼？刪除？<br />
+</p>
+
+<p>
+是的，直接刪除！雖然聽起來有點殘酷，但在某些情況下，刪除包含遺失值的行或列是最有效的方法，特別是當遺失值的比例很小時。當然，在刪除之前，你應該先評估這樣做是否會對你的分析結果產生重大影響。<br />
+</p>
+
+<p>
+dropna()就是用來刪除包含遺失值的行或列的方法。以下是 dropna() 方法的主要參數說明:<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python">DataFrame.dropna(axis=<span style="color: #da8548; font-weight: bold;">0</span>, how=<span style="color: #98be65;">'any'</span>, thresh=<span style="color: #a9a1e1;">None</span>, subset=<span style="color: #a9a1e1;">None</span>, inplace=<span style="color: #a9a1e1;">False</span>)
@@ -975,9 +1104,16 @@ dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
 </pre>
 </div>
 </div>
-<div id="outline-container-org59f8157" class="outline-4">
-<h4 id="org59f8157"><span class="section-number-4">4.3.3.</span> fillna()</h4>
+<div id="outline-container-org02d7af5" class="outline-4">
+<h4 id="org02d7af5"><span class="section-number-4">4.3.3.</span> fillna()</h4>
 <div class="outline-text-4" id="text-4-3-3">
+<p>
+當然，有些情況下，刪除遺失值並不是一個好選擇，特別是當遺失值的比例較高時。或者，你在處理學生的段考資料，有幾個學生有某幾科缺考，你總不能把這些學生整個刪掉吧？這時候，我們可以選擇用某個值來填補這些遺失值，Pandas 提供了 fillna() 方法來實現這個功能。<br />
+</p>
+
+<p>
+fillna() 方法允許你指定一個值或方法來填補 DataFrame 中的遺失值。以下是 fillna() 方法的主要參數說明:<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python">DataFrame.fillna(value=<span style="color: #a9a1e1;">None</span>, method=<span style="color: #a9a1e1;">None</span>, axis=<span style="color: #a9a1e1;">None</span>, inplace=<span style="color: #a9a1e1;">False</span>, limit=<span style="color: #a9a1e1;">None</span>)
 </pre>
@@ -1006,7 +1142,7 @@ dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
 </pre>
 </div>
 
-<pre class="example" id="orgedf55b1">
+<pre class="example" id="org42b2102">
 ====原始資料====
           id  classparti  typing  homework  finalExam
 0  201910901       100.0    72.0     92.11       48.0
@@ -1047,8 +1183,8 @@ dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org014252d" class="outline-3">
-<h3 id="org014252d"><span class="section-number-3">4.4.</span> [課堂練習]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-org67f8e18" class="outline-3">
+<h3 id="org67f8e18"><span class="section-number-3">4.4.</span> [課堂練習]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 以下列程式碼讀取線上資料檔，然後完成下列任務<br />
@@ -1065,8 +1201,8 @@ dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
 </ol></li>
 </ol>
 </div>
-<div id="outline-container-org7ac5841" class="outline-4">
-<h4 id="org7ac5841"><span class="section-number-4">4.4.1.</span> 參考</h4>
+<div id="outline-container-orgd20e574" class="outline-4">
+<h4 id="orgd20e574"><span class="section-number-4">4.4.1.</span> 參考</h4>
 <div class="outline-text-4" id="text-4-4-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -1087,12 +1223,15 @@ dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orgca533a0" class="outline-2">
-<h2 id="orgca533a0"><span class="section-number-2">5.</span> Dataframe 的選取與過濾</h2>
+<div id="outline-container-org90344bc" class="outline-2">
+<h2 id="org90344bc"><span class="section-number-2">5.</span> Dataframe 的選取與過濾</h2>
 <div class="outline-text-2" id="text-5">
+<p>
+比起Python內建的資料結構，Pandas的DataFrame提供了更多方便的資料選取與過濾功能。這些功能讓使用者能夠更靈活地操作資料，進行各種分析與處理。以下將介紹幾種常用的選取與過濾方法。<br />
+</p>
 </div>
-<div id="outline-container-orgb2984b9" class="outline-3">
-<h3 id="orgb2984b9"><span class="section-number-3">5.1.</span> 資料選取: Select column(s)</h3>
+<div id="outline-container-orgb6f3c63" class="outline-3">
+<h3 id="orgb6f3c63"><span class="section-number-3">5.1.</span> 資料選取: Select column(s)</h3>
 <div class="outline-text-3" id="text-5-1">
 <ol class="org-ol">
 <li>使用 df[&rsquo;column_name&rsquo;] 來選取單個欄位<br />
@@ -1103,8 +1242,8 @@ dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
 這是一種更簡潔的語法，它只適用於列名為有效的 Python 識別符時（例如，列名中沒有空格或特殊字符）。通過 df.column_name 來選取欄位和 df[&rsquo;column_name&rsquo;] 效果相同，傳回一個 Series。<br /></li>
 </ol>
 </div>
-<div id="outline-container-org365cebd" class="outline-4">
-<h4 id="org365cebd"><span class="section-number-4">5.1.1.</span> 範例</h4>
+<div id="outline-container-org12d8d59" class="outline-4">
+<h4 id="org12d8d59"><span class="section-number-4">5.1.1.</span> 範例</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -1125,7 +1264,7 @@ dropna() 用於刪除 DataFrame 中包含遺失值的行或列。<br />
 </pre>
 </div>
 
-<pre class="example" id="org7362df5">
+<pre class="example" id="orgc84cb92">
            id  classparti  typing  homework  midexam  finalexam
 0  S201910901         100      72     92.11     48.0       16.0
 1  S201910902          96      56     93.42     60.0       40.0
@@ -1189,8 +1328,8 @@ Name: homework, Length: 212, dtype: float64
 </div>
 </div>
 </div>
-<div id="outline-container-org13e3df8" class="outline-3">
-<h3 id="org13e3df8"><span class="section-number-3">5.2.</span> 資料選取: Select using index (row)</h3>
+<div id="outline-container-orgf40b44c" class="outline-3">
+<h3 id="orgf40b44c"><span class="section-number-3">5.2.</span> 資料選取: Select using index (row)</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
 在資料處理與分析中，Pandas 提供了方便的方法來根據列索引或條件選取 DataFrame 中的資料列。這讓使用者能夠靈活地篩選與操作資料，進行更精細的分析。<br />
@@ -1211,8 +1350,8 @@ Pandas 支援使用索引範圍來選取 DataFrame 的資料列。類似於 Pyth
 我們還可以結合列索引與欄位條件來選取資料。例如，使用條件選取特定列後，再篩選出符合條件的資料列，進行進一步操作。<br /></li>
 </ol>
 </div>
-<div id="outline-container-org889b9a5" class="outline-4">
-<h4 id="org889b9a5"><span class="section-number-4">5.2.1.</span> 範例</h4>
+<div id="outline-container-org2cbabdb" class="outline-4">
+<h4 id="org2cbabdb"><span class="section-number-4">5.2.1.</span> 範例</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -1230,7 +1369,7 @@ Pandas 支援使用索引範圍來選取 DataFrame 的資料列。類似於 Pyth
 </pre>
 </div>
 
-<pre class="example" id="org8744869">
+<pre class="example" id="org70fa0e0">
           id  classparti  typing  homework  midexam  finalexam
 1  201910902          96      56     93.42     60.0       40.0
 2  201910903          96      76    102.63     45.0       28.0
@@ -1253,8 +1392,8 @@ Name: id, dtype: int64
 </div>
 </div>
 </div>
-<div id="outline-container-org48b45ff" class="outline-3">
-<h3 id="org48b45ff"><span class="section-number-3">5.3.</span> 條件式選取資料</h3>
+<div id="outline-container-org9c31f18" class="outline-3">
+<h3 id="org9c31f18"><span class="section-number-3">5.3.</span> 條件式選取資料</h3>
 <div class="outline-text-3" id="text-5-3">
 <ol class="org-ol">
 <li>單一條件篩選<br />
@@ -1271,8 +1410,8 @@ Name: id, dtype: int64
 </ul></li>
 </ol>
 </div>
-<div id="outline-container-org7714fbb" class="outline-4">
-<h4 id="org7714fbb"><span class="section-number-4">5.3.1.</span> 範例</h4>
+<div id="outline-container-org6c80ea5" class="outline-4">
+<h4 id="org6c80ea5"><span class="section-number-4">5.3.1.</span> 範例</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -1284,7 +1423,7 @@ Name: id, dtype: int64
 </pre>
 </div>
 
-<pre class="example" id="org1a5ab6a">
+<pre class="example" id="org25039d1">
              id  classparti  typing  homework  midexam  finalexam
 11   S201910912          87      92     92.11    110.8     103.75
 70   S201911034         104      92    102.63    100.8     101.00
@@ -1311,19 +1450,19 @@ Name: id, dtype: int64
 </div>
 </div>
 </div>
-<div id="outline-container-org0ae691b" class="outline-3">
-<h3 id="org0ae691b"><span class="section-number-3">5.4.</span> 進階條件過濾[loc/iloc]</h3>
+<div id="outline-container-orgec651e1" class="outline-3">
+<h3 id="orgec651e1"><span class="section-number-3">5.4.</span> 進階條件過濾[loc/iloc]</h3>
 <div class="outline-text-3" id="text-5-4">
 <p>
 在 Pandas 中，除了基本的索引與條件篩選，loc 和 iloc 提供了更加靈活且強大的資料篩選功能。這些方法允許我們根據行標籤、列標籤，或者純粹基於數值索引來選取資料。此外，between 方法則可以用來方便地篩選特定區間內的數值。<br />
 </p>
 </div>
-<div id="outline-container-org4534e74" class="outline-4">
-<h4 id="org4534e74"><span class="section-number-4">5.4.1.</span> loc, iloc, between <sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup></h4>
+<div id="outline-container-org374c327" class="outline-4">
+<h4 id="org374c327"><span class="section-number-4">5.4.1.</span> loc, iloc, between <sup><a id="fnr.5" class="footref" href="#fn.5" role="doc-backlink">5</a></sup></h4>
 <div class="outline-text-4" id="text-5-4-1">
 </div>
-<div id="outline-container-org3c860f6" class="outline-5">
-<h5 id="org3c860f6"><span class="section-number-5">5.4.1.1.</span> loc</h5>
+<div id="outline-container-org2e2de60" class="outline-5">
+<h5 id="org2e2de60"><span class="section-number-5">5.4.1.1.</span> loc</h5>
 <div class="outline-text-5" id="text-5-4-1-1">
 <ul class="org-ul">
 <li>用法：df.loc[row_label, column_label]<br /></li>
@@ -1349,7 +1488,7 @@ Name: id, dtype: int64
 </pre>
 </div>
 
-<pre class="example" id="orgd6bf475">
+<pre class="example" id="org4f8fd15">
            id  classparti  typing  homework  midexam  finalexam
 0  S201910901         100      72     92.11     48.0       16.0
 1  S201910902          96      56     93.42     60.0       40.0
@@ -1364,8 +1503,8 @@ Name: id, dtype: int64
 </pre>
 </div>
 </div>
-<div id="outline-container-org5902479" class="outline-5">
-<h5 id="org5902479"><span class="section-number-5">5.4.1.2.</span> iloc</h5>
+<div id="outline-container-org39467ca" class="outline-5">
+<h5 id="org39467ca"><span class="section-number-5">5.4.1.2.</span> iloc</h5>
 <div class="outline-text-5" id="text-5-4-1-2">
 <ul class="org-ul">
 <li>iloc 是基於行索引和列索引的數字位置來選取資料。這種方法使用索引的數值來選擇資料，從 0 開始計數，適合在你知道具體位置而非標籤時使用。<br /></li>
@@ -1398,8 +1537,8 @@ Name: id, dtype: int64
 </pre>
 </div>
 </div>
-<div id="outline-container-orge4f7d00" class="outline-5">
-<h5 id="orge4f7d00"><span class="section-number-5">5.4.1.3.</span> between</h5>
+<div id="outline-container-org75e35eb" class="outline-5">
+<h5 id="org75e35eb"><span class="section-number-5">5.4.1.3.</span> between</h5>
 <div class="outline-text-5" id="text-5-4-1-3">
 <ul class="org-ul">
 <li>between 方法可以用來篩選特定區間內的數值資料。例如，如果你需要篩選出某列的值位於某個範圍之間，可以使用 between 方法。<br /></li>
@@ -1423,7 +1562,7 @@ Name: id, dtype: int64
 </pre>
 </div>
 
-<pre class="example" id="org9a67f1d">
+<pre class="example" id="org558e02f">
 0      False
 1       True
 2      False
@@ -1450,26 +1589,26 @@ Name: midexam, Length: 212, dtype: bool
 </div>
 </div>
 </div>
-<div id="outline-container-org8b4843b" class="outline-2">
-<h2 id="org8b4843b"><span class="section-number-2">6.</span> 進階分析</h2>
+<div id="outline-container-org03b86fa" class="outline-2">
+<h2 id="org03b86fa"><span class="section-number-2">6.</span> 進階分析</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgbd95c8d" class="outline-3">
-<h3 id="orgbd95c8d"><span class="section-number-3">6.1.</span> 由其他 column 產生新的 column(重要、實用)</h3>
+<div id="outline-container-org92df765" class="outline-3">
+<h3 id="org92df765"><span class="section-number-3">6.1.</span> 由其他 column 產生新的 column(重要、實用)</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 在資料分析過程中，我們經常需要從現有的資料欄位中計算出新的欄位，以便進行進一步的分析。Pandas 提供了靈活且簡便的方法來根據現有欄位生成新的欄位，這可以應用在加總、條件篩選和分組操作上。<br />
 </p>
 </div>
-<div id="outline-container-orgefe681c" class="outline-4">
-<h4 id="orgefe681c"><span class="section-number-4">6.1.1.</span> 生成新欄位 - 全部指定</h4>
+<div id="outline-container-orgfbba415" class="outline-4">
+<h4 id="orgfbba415"><span class="section-number-4">6.1.1.</span> 生成新欄位 - 全部指定</h4>
 <div class="outline-text-4" id="text-6-1-1">
 <p>
 我們可以使用運算符來操作 DataFrame 的欄位，並將結果存入新的欄位。這種方式適合應用於所有資料列，並且可以用於進行數值運算。<br />
 </p>
 </div>
-<div id="outline-container-org4006825" class="outline-5">
-<h5 id="org4006825"><span class="section-number-5">6.1.1.1.</span> 範例: 生成新欄位 Final（學期總分）</h5>
+<div id="outline-container-org692bb1a" class="outline-5">
+<h5 id="org692bb1a"><span class="section-number-5">6.1.1.1.</span> 範例: 生成新欄位 Final（學期總分）</h5>
 <div class="outline-text-5" id="text-6-1-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -1497,15 +1636,15 @@ Name: midexam, Length: 212, dtype: bool
 </div>
 </div>
 </div>
-<div id="outline-container-org2acac4a" class="outline-4">
-<h4 id="org2acac4a"><span class="section-number-4">6.1.2.</span> 生成新欄位 - 條件指定</h4>
+<div id="outline-container-org153db27" class="outline-4">
+<h4 id="org153db27"><span class="section-number-4">6.1.2.</span> 生成新欄位 - 條件指定</h4>
 <div class="outline-text-4" id="text-6-1-2">
 <p>
 我們還可以根據條件來生成新欄位。使用 loc 方法，可以根據某欄位的值來篩選資料，並指定符合條件的資料對應的欄位值。例如，可以依據成績來指定 PASS 或 FAIL 狀態，或者依據打字速度來分類為 LOW、MID、HIGH。<br />
 </p>
 </div>
-<div id="outline-container-org1d18180" class="outline-5">
-<h5 id="org1d18180"><span class="section-number-5">6.1.2.1.</span> 範例: 依條件新增欄位 PASS 和 TypingSpeed</h5>
+<div id="outline-container-orge0b5a6d" class="outline-5">
+<h5 id="orge0b5a6d"><span class="section-number-5">6.1.2.1.</span> 範例: 依條件新增欄位 PASS 和 TypingSpeed</h5>
 <div class="outline-text-5" id="text-6-1-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20381;&#23416;&#26399;&#32317;&#20998;&#26032;&#22686;&#19968;&#20491;&#27396;&#20301; 'PASS'</span>
@@ -1532,12 +1671,12 @@ Name: midexam, Length: 212, dtype: bool
 </div>
 </div>
 </div>
-<div id="outline-container-org8a0192b" class="outline-3">
-<h3 id="org8a0192b"><span class="section-number-3">6.2.</span> 交叉分析：分組與資料轉置</h3>
+<div id="outline-container-orgdaef51d" class="outline-3">
+<h3 id="orgdaef51d"><span class="section-number-3">6.2.</span> 交叉分析：分組與資料轉置</h3>
 <div class="outline-text-3" id="text-6-2">
 </div>
-<div id="outline-container-org28dd52c" class="outline-4">
-<h4 id="org28dd52c"><span class="section-number-4">6.2.1.</span> 範例：依打字速度分組與資料統計</h4>
+<div id="outline-container-org88a366e" class="outline-4">
+<h4 id="org88a366e"><span class="section-number-4">6.2.1.</span> 範例：依打字速度分組與資料統計</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20381;&#25818;&#25171;&#23383;&#36895;&#24230;&#20998;&#32068;&#65292;&#35336;&#31639;&#27599;&#32068;&#30340;&#23416;&#26399;&#32317;&#20998;&#24179;&#22343;&#20540;</span>
@@ -1553,7 +1692,7 @@ Name: midexam, Length: 212, dtype: bool
 </pre>
 </div>
 
-<pre class="example" id="orge299aca">
+<pre class="example" id="orgd376d42">
 ---依打字速度分組---
 TypingSpeed
 HIGH    69.977451
@@ -1572,16 +1711,19 @@ homework  76.409054  96.350730
 </div>
 </div>
 </div>
-<div id="outline-container-orgc032d3d" class="outline-3">
-<h3 id="orgc032d3d"><span class="section-number-3">6.3.</span> 資料檔下載: <a href="scores.csv">scores.csv</a></h3>
+<div id="outline-container-org91050bf" class="outline-3">
+<h3 id="org91050bf"><span class="section-number-3">6.3.</span> 資料檔下載: <a href="scores.csv">scores.csv</a></h3>
 </div>
 </div>
-<div id="outline-container-org866b198" class="outline-2">
-<h2 id="org866b198"><span class="section-number-2">7.</span> 資料視覺化</h2>
+<div id="outline-container-org2ef235c" class="outline-2">
+<h2 id="org2ef235c"><span class="section-number-2">7.</span> 資料視覺化</h2>
 <div class="outline-text-2" id="text-7">
+<p>
+Pandas自己內建了一些簡單的繪圖功能，可以快速地將DataFrame資料視覺化。以下介紹幾種常用的圖表類型及其範例。<br />
+</p>
 </div>
-<div id="outline-container-org937f948" class="outline-3">
-<h3 id="org937f948"><span class="section-number-3">7.1.</span> Bar chart</h3>
+<div id="outline-container-org5a56aa3" class="outline-3">
+<h3 id="org5a56aa3"><span class="section-number-3">7.1.</span> Bar chart</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -1628,21 +1770,21 @@ Level-3      90.053920   93.159091
 </pre>
 
 
-<div id="org7d88f64" class="figure">
+<div id="org9d8a08b" class="figure">
 <p><img src="images/pandasPlot1.png" alt="pandasPlot1.png" width="500" /><br />
-</p>
-<p><span class="figure-number">Figure 2: </span>Pandas plot bar chart</p>
-</div>
-
-<div id="org04f9615" class="figure">
-<p><img src="images/pandasPlot10.png" alt="pandasPlot10.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>Pandas plot bar chart</p>
 </div>
+
+<div id="org54e10ae" class="figure">
+<p><img src="images/pandasPlot10.png" alt="pandasPlot10.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 4: </span>Pandas plot bar chart</p>
 </div>
 </div>
-<div id="outline-container-org862f7ce" class="outline-3">
-<h3 id="org862f7ce"><span class="section-number-3">7.2.</span> Regression line chart</h3>
+</div>
+<div id="outline-container-org1ef654e" class="outline-3">
+<h3 id="org1ef654e"><span class="section-number-3">7.2.</span> Regression line chart</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -1663,19 +1805,19 @@ Level-3      90.053920   93.159091
 </div>
 
 
-<div id="org1fb2cd5" class="figure">
+<div id="orgade5133" class="figure">
 <p><img src="images/PandasPlot4.png" alt="PandasPlot4.png" width="500" /><br />
 </p>
-<p><span class="figure-number">Figure 4: </span>Pandas plot scatter chart</p>
+<p><span class="figure-number">Figure 5: </span>Pandas plot scatter chart</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc40da69" class="outline-3">
-<h3 id="orgc40da69"><span class="section-number-3">7.3.</span> Pie chart</h3>
+<div id="outline-container-org67ff413" class="outline-3">
+<h3 id="org67ff413"><span class="section-number-3">7.3.</span> Pie chart</h3>
 <div class="outline-text-3" id="text-7-3">
 </div>
-<div id="outline-container-orgea7d5b0" class="outline-4">
-<h4 id="orgea7d5b0"><span class="section-number-4">7.3.1.</span> DEMO</h4>
+<div id="outline-container-orgd5facea" class="outline-4">
+<h4 id="orgd5facea"><span class="section-number-4">7.3.1.</span> DEMO</h4>
 <div class="outline-text-4" id="text-7-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -1701,7 +1843,7 @@ Level-3      90.053920   93.159091
 </pre>
 </div>
 
-<div class="results" id="org5e3e4e9">
+<div class="results" id="orgce580b5">
 <p>
               id  classparti  typing  homework  midexam  finalexam  Final<br />
 TypingSpeed<br />
@@ -1713,15 +1855,15 @@ Level-3      101         101     101       101      100        101    100<br />
 </div>
 
 
-<div id="orged1f3dc" class="figure">
+<div id="orgdf34627" class="figure">
 <p><img src="images/pandasPlot2.png" alt="pandasPlot2.png" width="300" /><br />
 </p>
-<p><span class="figure-number">Figure 5: </span>Pandas plot pie chart</p>
+<p><span class="figure-number">Figure 6: </span>Pandas plot pie chart</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org82d3954" class="outline-4">
-<h4 id="org82d3954"><span class="section-number-4">7.3.2.</span> 如何避免圖例擋住圖表</h4>
+<div id="outline-container-org462d836" class="outline-4">
+<h4 id="org462d836"><span class="section-number-4">7.3.2.</span> 如何避免圖例擋住圖表</h4>
 <div class="outline-text-4" id="text-7-3-2">
 <ul class="org-ul">
 <li><a href="https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot">How to put the legend out of the plot</a><br /></li>
@@ -1729,8 +1871,8 @@ Level-3      101         101     101       101      100        101    100<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org9ed5542" class="outline-3">
-<h3 id="org9ed5542"><span class="section-number-3">7.4.</span> Scatter chart</h3>
+<div id="outline-container-org13c83ad" class="outline-3">
+<h3 id="org13c83ad"><span class="section-number-3">7.4.</span> Scatter chart</h3>
 <div class="outline-text-3" id="text-7-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -1750,15 +1892,15 @@ Level-3      101         101     101       101      100        101    100<br />
 </div>
 
 
-<div id="org8f08e21" class="figure">
+<div id="orga6c06b4" class="figure">
 <p><img src="images/PandasPlot3.png" alt="PandasPlot3.png" width="500" /><br />
 </p>
-<p><span class="figure-number">Figure 6: </span>Pandas plot scatter chart</p>
+<p><span class="figure-number">Figure 7: </span>Pandas plot scatter chart</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org4494ac1" class="outline-3">
-<h3 id="org4494ac1"><span class="section-number-3">7.5.</span> Haxbin chart</h3>
+<div id="outline-container-orgb7838c6" class="outline-3">
+<h3 id="orgb7838c6"><span class="section-number-3">7.5.</span> Haxbin chart</h3>
 <div class="outline-text-3" id="text-7-5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;&#20989;&#24335;&#24235;</span>
@@ -1777,29 +1919,29 @@ Level-3      101         101     101       101      100        101    100<br />
 </div>
 
 
-<div id="orgec0fe05" class="figure">
+<div id="orgec76b96" class="figure">
 <p><img src="images/PandasPlot6.png" alt="PandasPlot6.png" width="500" /><br />
 </p>
-<p><span class="figure-number">Figure 7: </span>Pandas plot hexbin chart</p>
+<p><span class="figure-number">Figure 8: </span>Pandas plot hexbin chart</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org53c684d" class="outline-2">
-<h2 id="org53c684d"><span class="section-number-2">8.</span> [作業]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h2>
+<div id="outline-container-org7a8701a" class="outline-2">
+<h2 id="org7a8701a"><span class="section-number-2">8.</span> [作業]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-orgaf76c82" class="outline-3">
-<h3 id="orgaf76c82"><span class="section-number-3">8.1.</span> 403期中考得分統計</h3>
+<div id="outline-container-org2b2e160" class="outline-3">
+<h3 id="org2b2e160"><span class="section-number-3">8.1.</span> 403期中考得分統計</h3>
 <div class="outline-text-3" id="text-8-1">
 <ul class="org-ul">
 <li>原始數據<br /></li>
 </ul>
 
-<div id="org5d0f521" class="figure">
+<div id="org82285d4" class="figure">
 <p><img src="images/csv.jpg" alt="csv.jpg" width="500" /><br />
 </p>
-<p><span class="figure-number">Figure 8: </span>CSV 內容</p>
+<p><span class="figure-number">Figure 9: </span>CSV 內容</p>
 </div>
 <ul class="org-ul">
 <li><a href="cs109score.csv">cs109score.csv</a>為 T 市某校的資訊科線上期中考系統所匯出的成績檔，該次考試共計 10 題，其中<br />
@@ -1812,8 +1954,8 @@ Level-3      101         101     101       101      100        101    100<br />
 </ul></li>
 </ul>
 </div>
-<div id="outline-container-org38575f6" class="outline-4">
-<h4 id="org38575f6"><span class="section-number-4">8.1.1.</span> 任務 1 (10%):</h4>
+<div id="outline-container-orga6d503b" class="outline-4">
+<h4 id="orga6d503b"><span class="section-number-4">8.1.1.</span> 任務 1 (10%):</h4>
 <div class="outline-text-4" id="text-8-1-1">
 <ul class="org-ul">
 <li>將有缺失值的部份以 0 分取代。<br /></li>
@@ -1821,8 +1963,8 @@ Level-3      101         101     101       101      100        101    100<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org70293c2" class="outline-4">
-<h4 id="org70293c2"><span class="section-number-4">8.1.2.</span> 任務 2 (20%):</h4>
+<div id="outline-container-org4047447" class="outline-4">
+<h4 id="org4047447"><span class="section-number-4">8.1.2.</span> 任務 2 (20%):</h4>
 <div class="outline-text-4" id="text-8-1-2">
 <ul class="org-ul">
 <li>求出每個人的原始總分(即所有分數)，新增的欄位名稱為TOTAL<br /></li>
@@ -1831,8 +1973,8 @@ Level-3      101         101     101       101      100        101    100<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd17211c" class="outline-4">
-<h4 id="orgd17211c"><span class="section-number-4">8.1.3.</span> 任務 3 (20%)</h4>
+<div id="outline-container-org63a0619" class="outline-4">
+<h4 id="org63a0619"><span class="section-number-4">8.1.3.</span> 任務 3 (20%)</h4>
 <div class="outline-text-4" id="text-8-1-3">
 <ul class="org-ul">
 <li>新增班級欄位(已知學號的前四碼為入學年份、接下來的三碼為班級、末兩碼為座號）<br /></li>
@@ -1840,22 +1982,22 @@ Level-3      101         101     101       101      100        101    100<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-org4d2d373" class="outline-4">
-<h4 id="org4d2d373"><span class="section-number-4">8.1.4.</span> 任務 4 (10%):</h4>
+<div id="outline-container-org98aa946" class="outline-4">
+<h4 id="org98aa946"><span class="section-number-4">8.1.4.</span> 任務 4 (10%):</h4>
 <div class="outline-text-4" id="text-8-1-4">
 <p>
 求所有受試者第 B 及 B1 兩題的 scatter plot 以及 regression line。如下圖:<br />
 </p>
 
-<div id="org2976e5d" class="figure">
+<div id="org25b28bd" class="figure">
 <p><img src="images/task8.png" alt="task8.png" width="560" /><br />
 </p>
-<p><span class="figure-number">Figure 9: </span>任務3</p>
+<p><span class="figure-number">Figure 10: </span>任務3</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org48a77e0" class="outline-4">
-<h4 id="org48a77e0"><span class="section-number-4">8.1.5.</span> 任務 5 (20%):</h4>
+<div id="outline-container-orgc52b080" class="outline-4">
+<h4 id="orgc52b080"><span class="section-number-4">8.1.5.</span> 任務 5 (20%):</h4>
 <div class="outline-text-4" id="text-8-1-5">
 <ul class="org-ul">
 <li>新增ABILITY欄位，依以下條件填入類別<br />
@@ -1867,23 +2009,23 @@ Level-3      101         101     101       101      100        101    100<br />
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd6cd83a" class="outline-4">
-<h4 id="orgd6cd83a"><span class="section-number-4">8.1.6.</span> 任務 6 (20%):</h4>
+<div id="outline-container-org3771967" class="outline-4">
+<h4 id="org3771967"><span class="section-number-4">8.1.6.</span> 任務 6 (20%):</h4>
 <div class="outline-text-4" id="text-8-1-6">
 <p>
 交叉分析，依ABILITY分組，查看此三組學生的前三題(A, B, C)得分情況，並繪製圖表<br />
 </p>
 
-<div id="org088d6ea" class="figure">
+<div id="org3eb6b6b" class="figure">
 <p><img src="images/pandastask5.png" alt="pandastask5.png" width="500" /><br />
 </p>
-<p><span class="figure-number">Figure 10: </span>任務5</p>
+<p><span class="figure-number">Figure 11: </span>任務5</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org463068e" class="outline-3">
-<h3 id="org463068e"><span class="section-number-3">8.2.</span> 進階練習</h3>
+<div id="outline-container-org049d46d" class="outline-3">
+<h3 id="org049d46d"><span class="section-number-3">8.2.</span> 進階練習</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 一dataframe如下<br />
@@ -1913,8 +2055,8 @@ Level-3      101         101     101       101      100        101    100<br />
 </div>
 </div>
 </div>
-<div id="outline-container-orga685820" class="outline-2">
-<h2 id="orga685820"><span class="section-number-2">9.</span> 教學影片</h2>
+<div id="outline-container-org99b78bc" class="outline-2">
+<h2 id="org99b78bc"><span class="section-number-2">9.</span> 教學影片</h2>
 <div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="https://www.youtube.com/watch?v=GClDLt2TCQA">4-4 假的成績真的算</a><br /></li>
@@ -1951,7 +2093,7 @@ DEFINITION NOT FOUND.<br />
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2025-02-24 Mon 15:54</p>
+<p class="date">Created: 2025-11-21 Fri 09:26</p>
 </div>
 </body>
 </html>
