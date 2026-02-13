@@ -941,6 +941,16 @@ list = map(function, iterable object)
 
 #+RESULTS:
 
+注意： =map()= 回傳的不是 list，而是一個 *map 物件* （惰性求值，lazy evaluation），也就是說它不會馬上算完全部結果，而是等你真的去取值的時候才一個一個算。所以如果你想看到完整結果，要用 =list()= 把它轉成 list。另外 =map()= 也可以傳多個 iterable：
+#+begin_src python -r -n :results output :exports both
+# 多個 iterable 的用法
+result = map(pow, [2, 3, 4], [3, 2, 1])  # 2^3, 3^2, 4^1
+print(list(result))
+#+end_src
+
+#+RESULTS:
+: [8, 9, 4]
+
 例如：
 #+begin_src python -r -n :results output :exports both
 def yell(text):
@@ -1132,6 +1142,17 @@ print(greet())
 : <function strong.<locals>.wrapper at 0x10fd3ab80>
 : <strong> <em> Hello! </em> </strong>
 唯一要注意的是：若套用修飾器的層級過多會影響程式執行效能。
+
+#+begin_tip
+Decorator 語法小整理：
+- =@decorator= 語法等同於 =func = decorator(func)= ——就是把 function 丟進去包一層再指派回來
+- Decorator 本質上就是一個「接收函式、回傳函式」的函式
+- Python 有幾個常見的內建 decorator：
+  + =@staticmethod= — 定義不需要存取 object 或 class 的靜態方法
+  + =@classmethod= — 定義可存取 class 本身（而非 object）的方法
+  + =@property= — 讓 method 可以像 attribute 一樣用 =obj.xxx= 存取
+#+end_tip
+
 *** 修飾有傳入參數的function
 若要修飾的function有帶參數，則wrapper()要改為wrapper(*args, **kwargs),這分別用來收集所有傳入的positional與keyword類參數，以tuple及dict形式儲存在args與kwargs變數裡，然後wrapper利用*與**將收集到的參數unpack後傳給原始func，如此就不會限制到參數個數。
 #+begin_src python -r -n :results output :exports both
@@ -1431,6 +1452,45 @@ print(a is b)
 : Point(23, 42)
 : False
 : False
+** 繼承（Inheritance）
+繼承是 OOP 的核心概念之一——子類別可以「繼承」父類別的所有屬性與方法，然後再加上自己的東西或覆寫（override）父類別的行為。
+#+begin_src python -r -n
+class 子類別(父類別):
+    def __init__(self, ...):
+        super().__init__(...)  # 呼叫父類別的建構子
+#+end_src
+
+重點整理：
+- =class 子類別(父類別):= — 子類別會繼承父類別的所有屬性與方法
+- =super().__init__()= — 在子類別的 =__init__= 中呼叫父類別的建構子，確保父類別的初始化邏輯也有執行
+- 子類別可以覆寫（override）父類別的方法，只要定義同名的 method 就好
+- Python 支援多重繼承：=class C(A, B):= ，不過用的時候要小心，繼承鏈太複雜會讓人頭痛
+
+#+begin_src python -r -n :results output :exports both
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def speak(self):
+        return f'{self.name} 發出聲音'
+
+class Dog(Animal):
+    def __init__(self, name, breed):
+        super().__init__(name)  # 呼叫 Animal 的 __init__
+        self.breed = breed
+
+    def speak(self):  # 覆寫父類別的 speak
+        return f'{self.name} 說：汪汪！'
+
+dog = Dog('小白', '柴犬')
+print(dog.speak())
+print(f'品種：{dog.breed}')
+#+end_src
+
+#+RESULTS:
+: 小白 說：汪汪！
+: 品種：柴犬
+
 ** ABC: Abstract Base Class
 C++、Java等語言都有「介面」(interface)這種本身無法建立object、卻能當成建立object template的機制。Python則可藉由ABC來實作。藉由ABC來建立class，便是可確保繼承之sub-class均有正確的特定method。
 #+begin_src python -r -n :results output :exports both
@@ -1687,10 +1747,12 @@ print(car)
 #+RESULTS:
 : namespace(color='blue', mileage=1341, automatic=True)
 *** dataclass (Python 3.7+)
-- 能自動建立__init__、__repr__等method
+=@dataclass= 是 Python 3.7 引入的語法糖，幫你省掉一堆重複的樣板程式碼（boilerplate）：
+- =@dataclass= 會自動產生 =__init__()= 、 =__repr__()= 、 =__eq__()= 等 method，不用自己寫
 - 可加入自訂method
-- 可繼承
-- 可設為read only(在@dataclass後加入參數 frozen=True)
+- 可繼承（跟一般 class 一樣用 =class 子類別(父類別):= ）
+- =@dataclass(frozen=True)= — 建立不可變（immutable）的資料類別，設定後就不能改屬性值
+- 欄位可設預設值：例如 =name: str = 'unknown'=
 #+begin_src python -r -n :results output :exports both
 from dataclasses import dataclass
 
@@ -2456,12 +2518,11 @@ numpy = [ ">=1.20.0, <1.21.0", ">=1.22.0, <1.23.0" ]
 poetry run ipython kernel install --name=tnfshbot --user
 #+end_src
 
-* TODO Multiprocessing
+* Multiprocessing
 ** 執行緒 vs. 程序
 程序(process)是系統資源分配的最小單位，而一個程序可以有很多個執行緒(thread)。
 
 我們每次開啟一個python檔案，都是在開啟一個新的程序，而每個程序都有自己的記憶體空間，這些記憶體空間是獨立的，互不影響。那為什麼還需要去探討執行緒呢？因為執行緒是程序中最小的執行單位，當我們在一個程序中開啟多個執行緒時，這些執行緒會共享這個程序的記憶體空間，這樣就可以讓我們在同一個程序中同時執行多個任務。
-
 ** 非執行緒的程式
 為了對照執行緒的程式，我們先來看一個非執行緒的程式，這個程式會依序執行三個函式，並且計算總共花了多少時間來執行這三個函式。
 #+begin_src python -r -n :results output :exports both
@@ -2524,8 +2585,18 @@ Print FUNCTION 3!
 Time taken: 3.11 seconds
 All done!
 #+end_example
-
 ** 建立及執行執行緒
+=threading.Thread= 的常用參數：
+| 參數          | 說明                                          |
+|---------------+-----------------------------------------------|
+| =target=      | 執行緒要執行的函式（注意：傳的是函式本身，不加 =()= ） |
+| =args=        | 傳給 target 的位置引數，要用 tuple（單一引數記得加逗號：=(x,)=）   |
+| =kwargs=      | 傳給 target 的關鍵字引數（dict）               |
+| =name=        | 執行緒名稱，方便 debug 用                      |
+| =daemon=True= | 主程式結束時自動終止此執行緒                    |
+
+建立後呼叫 =.start()= 啟動執行緒，呼叫 =.join()= 會讓主程式等待該執行緒跑完才繼續。
+
 #+begin_src python -r -n :results output :exports both
 from threading import current_thread, Thread as Thread
 from time import sleep, perf_counter

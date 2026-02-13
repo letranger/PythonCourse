@@ -486,6 +486,19 @@ print(f'{name2:>8}的身高是{height2:>6}公分、體重是{weight2:10.2f}公�
 :    James 的身高是   165 公分、體重是     52.30 公斤
 :  Vanessa 的身高是   175 公分、體重是     72.30 公斤
 
+*** f-string 常用格式速查
+以下整理幾個最常用的格式規格，方便查閱：
+| 寫法              | 說明                     | 範例結果              |
+|-------------------+--------------------------+-----------------------|
+| =f'{x:.2f}'=     | 小數點後 2 位            | =3.14=                |
+| =f'{x:>10}'=     | 靠右對齊，寬度 10        | =␣␣␣␣␣hello=         |
+| =f'{x:<10}'=     | 靠左對齊，寬度 10        | =hello␣␣␣␣␣=         |
+| =f'{x:^10}'=     | 置中對齊，寬度 10        | =␣␣hello␣␣␣=         |
+| =f'{x:05d}'=     | 補零至 5 位整數          | =00042=               |
+| =f'{x:+d}'=      | 強制顯示正負號           | =+42= / =-42=        |
+| =f'{x:,}'=       | 千分位逗號               | =1,234,567=           |
+| =f'{x:.2%}'=     | 百分比格式（乘 100 加 %）| =31.42%=              |
+
 ** 其他格式化輸出方法
 前面介紹的 f-string 是目前最推薦的格式化方式，但 Python 的歷史上還有其他幾種格式化方法。雖然現在寫新程式建議優先用 f-string，但你在網路上搜尋範例、閱讀別人的程式碼（尤其是比較早期的專案或教學）時，一定會看到以下這些寫法，所以還是有必要認識一下。
 *** 格式化輸出: format() (新版)
@@ -873,6 +886,15 @@ scoreX, scoreY, scoreZ = map(int, input().split())
 1. =input()= 讀入一整行字串，例如 ='23 45 66'=
 2. =.split()= 把字串以空白切割成 =['23', '45', '66']=
 3. =map(int, ...)= 把每個字串元素都用 int() 轉成整數，最後分別 assign 給 scoreX、scoreY、scoreZ
+
+#+begin_quote
+*map() 小檔案*
+- 語法： =map(function, iterable)=
+- 把 function 套用到 iterable（如 list、tuple）的每一個元素上
+- 回傳的是 map 物件（迭代器），不是 list，所以通常要用 =list()= 轉換
+- function 可以是內建函式（如 =int= 、 =str= ）或自定義函式（包括 =lambda= ，後面會介紹）
+#+end_quote
+
 **** 作法 5:
 在一行輸入不定個數的整數，且不確定到底有幾個數字時，可以用 list comprehension（串列生成式）來處理：
 #+begin_src python -r -n :async :results output :exports both
@@ -1466,6 +1488,31 @@ print(sch[1:10:2])
 #+RESULTS:
 : an is
 
+*** 切片完整語法與負數索引
+切片的完整語法是 =seq[start:stop:step]= ，三個參數都可以省略：
+- start 預設為 0（step 為負時預設為 -1，即最後一個元素）
+- stop 預設為序列長度（step 為負時預設為序列開頭之前）
+- step 預設為 1，可為負數
+
+負數索引代表從尾端算起： =seq[-1]= 是最後一個元素， =seq[-2]= 是倒數第二個，依此類推。
+
+常見技巧：
+#+begin_src python -r -n :results output :exports both
+s = 'ABCDE'
+print(s[::-1])   # 反轉字串
+print(s[-1])     # 最後一個字元
+print(s[-3:])    # 最後三個字元
+print(s[::2])    # 每隔一個取一個
+#+end_src
+
+#+RESULTS:
+: EDCBA
+: E
+: CDE
+: ACE
+
+這個切片語法適用於所有序列型別（字串、List、Tuple），用法完全一樣。
+
 ** 字串為不可變的資料
 在 python 中，字串資料為一種不可變(immutable)的資料類型，這意味著一旦創建了字串，就無法更改它。如果你嘗試直接修改字串中的某個字元，會導致錯誤。
 #+begin_src python -r -n :results output :exports both
@@ -1533,8 +1580,15 @@ if 'tnfsh' in email:
 - <str>.islower(): 字串中英文全小寫
 - <str>.isupper(): 字串中英文全大寫
 - <str>.find(<str1>): 在<str>尋找<str1>，回傳索引值； 若未找到，回傳-1
+  + 完整語法： =str.find(sub[, start[, end]])=
+  + start/end 可限制搜尋範圍，例如 ='hello'.find('l', 3)= 會從 index 3 開始找
 - <str>.replace(<str1>, <str2>): 將<str>中的<str1>以<str2>取代
+  + 完整語法： =str.replace(old, new[, count])=
+  + count 可限制最多取代幾次，例如 ='aaa'.replace('a', 'b', 2)= 得到 ='bba'=
 - <str>.split([sep]): 字串以 sep 分割, sep 預設值為空白
+  + 完整語法： =str.split(sep=None, maxsplit=-1)=
+  + 不指定 sep 則以任意空白分隔（連續空白視為一個）
+  + maxsplit 可限制最多切幾刀，例如 ='a b c d'.split(' ', 2)= 得到 =['a', 'b', 'c d']=
 
 ** 範例 3
 #+BEGIN_SRC python -r -n :results output :exports both
@@ -2041,6 +2095,15 @@ for variable in range([起始值,] 終止值 [,遞增值]):
 - 起始值預設為 0，遞增值預設為 1
 - 起始值 ≤ range( )的範圍 < 終止值
 
+range() 其實有三種呼叫方式：
+| 寫法                        | 說明                                    |
+|-----------------------------+-----------------------------------------|
+| =range(stop)=              | 從 0 到 stop-1                          |
+| =range(start, stop)=       | 從 start 到 stop-1                      |
+| =range(start, stop, step)= | 從 start 開始，每次加 step，不含 stop   |
+
+step 可以是負數，用來產生遞減序列，例如 =range(10, 0, -1)= 會產生 [10, 9, 8, ..., 1]。注意：step 為負時，start 必須大於 stop，否則會得到空序列。
+
 想知道 range() 產生的序列內容，可以使用 list() 函式將其轉換為列表來查看
 #+begin_src python -r -n :results output :exports both
 print(range(4))
@@ -2073,6 +2136,17 @@ for x in range(3, 10, 2):
 : 3, 4, 5, 6, 7, 8, 9,
 : ========
 : 3,5,7,9,
+
+用負數 step 來倒數：
+#+begin_src python -r -n :results output :exports both
+print(list(range(5, 0, -1)))    # 從 5 倒數到 1
+print(list(range(10, 0, -2)))   # 從 10 開始，每次減 2
+#+end_src
+
+#+RESULTS:
+: [5, 4, 3, 2, 1]
+: [10, 8, 6, 4, 2]
+
 **** 重要觀念
 ***** 請問下列程式會輸出幾個*
 #+begin_src python -r -n :async :results output :exports both
@@ -3230,6 +3304,21 @@ print(l.count('A'))
 
 #+RESULTS:
 : 2
+**** <List>.pop([index])
+移除並回傳指定位置的元素。不指定 index 則移除最後一個元素。
+#+begin_src python -r -n :results output :exports both
+x = ['A', 'B', 'C', 'D', 'E']
+last = x.pop()       # 移除最後一個，回傳 'E'
+print("pop():", last, x)
+mid = x.pop(1)       # 移除 index 1，回傳 'B'
+print("pop(1):", mid, x)
+#+end_src
+
+#+RESULTS:
+: pop(): E ['A', 'B', 'C', 'D']
+: pop(1): B ['A', 'C', 'D']
+
+和 remove() 不同的是，pop() 是 *用 index 移除* 並且 *會回傳被移除的值* ，而 remove() 是 *用值來移除* 且 *不回傳* 。
 
 *** 對 List 中元素的修正
 將資料放入 List 後，可以透過索引值來修改 List 中的元素。例如：
@@ -3313,7 +3402,7 @@ print(b)       # b 也跟著變了！因為它們是同一個 List
 
 這和整數、字串的行為不同（因為整數和字串是不可變的），是 Python 初學者最容易踩到的坑之一。
 
-若真要複製一份獨立的 List，有兩種做法:
+若真要複製一份獨立的 List，有兩種做法（兩者都是淺拷貝 shallow copy，只複製第一層元素；如果 List 裡面還有 List，內層仍然是共用的）:
 #+begin_src python -r -n :async :results output :exports both
 a = [1, 2, 3]
 b = a.copy()
@@ -3891,7 +3980,17 @@ print('a:', a)
 *** SORT using lambda
 如果要對二維 List 排序，Python 預設會用每個子 List 的第一個元素來排。但如果你想指定用第幾個元素來排序呢？這時可以用 =key= 參數搭配 =lambda= 。
 
-=lambda= 是一種「匿名函式」的寫法， =lambda x: x[0]= 的意思是「給我一個東西 x，我回傳 x[0]」。所以 =key = lambda x: x[0]= 就是告訴 sort()：「排序時，請用每個元素的第 0 個值來比大小」。lambda 的詳細用法會在進階教材中介紹。
+=lambda= 是一種「匿名函式」的寫法，語法是 =lambda 參數: 運算式= ，它會回傳運算式的結果。例如 =lambda x: x[0]= 的意思是「給我一個東西 x，我回傳 x[0]」。所以 =key = lambda x: x[0]= 就是告訴 sort()：「排序時，請用每個元素的第 0 個值來比大小」。
+
+#+begin_quote
+*lambda 小檔案*
+- 語法： =lambda args: expression=
+- 就是一個沒有名字的小函式，只能寫一行運算式
+- 常搭配 =sort(key=...)= 、 =map()= 、 =filter()= 使用
+- 例如 =lambda x, y: x + y= 等同於寫一個兩數相加的函式
+#+end_quote
+
+lambda 的詳細用法會在進階教材中介紹。
 #+begin_src python -r -n :async :results output :exports both
 a = [[1, 3], [2, 1], [2, 4], [-3, 6]]
 a.sort(key = lambda x: x[0]) #取出x[0]做為比較對象
@@ -4993,6 +5092,17 @@ KeyError: 'Ruby'
 #+end_src
 這就是data[key]和get()的差別所在。
 
+get() 還有一個實用技巧：你可以指定 default 值，這在計數的時候特別好用：
+#+begin_src python -r -n :results output :exports both
+data = {}
+for fruit in ['apple', 'banana', 'apple', 'apple', 'banana']:
+    data[fruit] = data.get(fruit, 0) + 1  # key 不存在時回傳 0，而非 None
+print(data)
+#+end_src
+
+#+RESULTS:
+: {'apple': 3, 'banana': 2}
+
 其實，如果善用in這個運算子，也可以避免KeyError錯誤，例如：
 #+begin_src python -r -n :results output :exports both
 data = { 'Vanessa': 95,  'May': 100, 'John': 105 }
@@ -5008,9 +5118,10 @@ else:
 
 
 *** 刪除字典裡的元素
-- <dict>.clear()
-- <dict>.popitem()
-- <dict>.copy()
+- <dict>.clear(): 清除所有元素
+- <dict>.popitem(): 移除並回傳最後加入的 key-value（以 Tuple 回傳）
+- <dict>.pop(key[, default]): 移除指定 key 並回傳其 value。若 key 不存在且有給 default 則回傳 default，否則產生 KeyError
+- <dict>.copy(): 淺拷貝整個字典
 #+BEGIN_SRC python -r -n :results output :exports both
 data = { 'Vanessa': 95,  'May': 100, 'John': 105, 'Ruby': 89 }
 print("data:",data)
@@ -5028,6 +5139,31 @@ print(data)
 : {'Vanessa': 95, 'May': 100, 'John': 105}
 : data.clear(): None
 : {}
+
+**** dict.pop() 範例
+#+begin_src python -r -n :results output :exports both
+data = { 'Vanessa': 95,  'May': 100, 'John': 105 }
+val = data.pop('May')          # 移除 'May'，回傳 100
+print(val, data)
+val2 = data.pop('Ruby', -1)   # 'Ruby' 不存在，回傳 default 值 -1
+print(val2, data)
+#+end_src
+
+#+RESULTS:
+: 100 {'Vanessa': 95, 'John': 105}
+: -1 {'Vanessa': 95, 'John': 105}
+
+*** 更新字典: dict.update()
+=dict.update(other)= 可以用另一個字典（或 key-value 的序列）來批量更新字典。如果 key 已存在就覆蓋，不存在就新增。
+#+begin_src python -r -n :results output :exports both
+data = { 'Vanessa': 95,  'May': 100 }
+data.update({'May': 88, 'Ruby': 77})  # May 被覆蓋，Ruby 是新增
+print(data)
+#+end_src
+
+#+RESULTS:
+: {'Vanessa': 95, 'May': 88, 'Ruby': 77}
+
 *** 找出字典中某個 value 的 key: index
 **** Solution #1: 用 for 迴圈一個一個找
 #+begin_src python -r -n :results output :exports both

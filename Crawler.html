@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2025-12-19 Fri 09:28 -->
+<!-- 2026-02-13 Fri 15:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Crawler: 網路資料解析與爬蟲</title>
@@ -195,6 +195,38 @@
 </style>
 <link rel="stylesheet" type="text/css" href="../css/muse.css" />
 <script src="../css/copy_code.js"></script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -203,49 +235,50 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org9d0399d">1. JSON</a>
+<li><a href="#orgbde5abe">1. JSON</a>
 <ul>
-<li><a href="#orgdc2590e">1.1. 網路資料分析的兩種類型</a></li>
-<li><a href="#org77f461e">1.2. JSON</a></li>
-<li><a href="#org5a972f5">1.3. JSON 實作範例</a></li>
-<li><a href="#orgc4243cf">1.4. [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#orgc110025">1.5. JSON 進階閱讀</a></li>
+<li><a href="#org8e11d18">1.1. 網路資料分析的兩種類型</a></li>
+<li><a href="#orgc83e89c">1.2. JSON</a></li>
+<li><a href="#org6bda2be">1.3. JSON 實作範例</a></li>
+<li><a href="#orgc5385f3">1.4. [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org90d1e6b">1.5. JSON 進階閱讀</a></li>
+<li><a href="#org6926e27">1.6. [課堂練習]社團 JSON 資料處理&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgabced7d">2. HTML</a>
+<li><a href="#orgd050018">2. HTML</a>
 <ul>
-<li><a href="#org120216e">2.1. What is HTML</a></li>
-<li><a href="#org78cfbe0">2.2. HTML 範例</a></li>
+<li><a href="#org129050c">2.1. HTML 是什麼</a></li>
+<li><a href="#org1360971">2.2. HTML 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgcb98d7a">3. 網路爬蟲</a>
+<li><a href="#org0d6de36">3. 網路爬蟲</a>
 <ul>
-<li><a href="#orgc41cb68">3.1. 爬蟲精神：將程式模仿成一般 user</a></li>
-<li><a href="#org8fba494">3.2. BeautifulSoup</a></li>
-<li><a href="#org1a060af">3.3. Beautifulsoup 解析器</a></li>
-<li><a href="#orga6c5e7a">3.4. BeautifulSoup 的方法</a></li>
+<li><a href="#orgcec6a99">3.1. 爬蟲精神：將程式模仿成一般 user</a></li>
+<li><a href="#org433c427">3.2. BeautifulSoup</a></li>
+<li><a href="#orgf0f18a3">3.3. BeautifulSoup 的方法</a></li>
 </ul>
 </li>
-<li><a href="#orgf5edb2b">4. BS4:開始爬</a>
+<li><a href="#org5239b82">4. 先說我們最後到底想完什麼</a></li>
+<li><a href="#orgae8b64a">5. BS4:開始爬</a>
 <ul>
-<li><a href="#orgc721ef6">4.1. bs4.tag</a></li>
-<li><a href="#org0d9a727">4.2. find</a></li>
-<li><a href="#org3348a1a">4.3. find_all</a></li>
-<li><a href="#org7507efb">4.4. 第四版：擷取所有主題</a></li>
-<li><a href="#org92a835c">4.5. [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#orgc89391c">4.6. 爬蟲進階閱讀</a></li>
+<li><a href="#org3a44e50">5.1. bs4.tag</a></li>
+<li><a href="#org8ff79ec">5.2. find</a></li>
+<li><a href="#org5978e15">5.3. find_all</a></li>
+<li><a href="#orga7b7412">5.4. 第四版：擷取所有主題</a></li>
+<li><a href="#org1f99acd">5.5. [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgba998ad">5.6. 爬蟲進階閱讀</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/Crawler.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Crawler.html.svg"/></a>
-<div id="outline-container-org9d0399d" class="outline-2">
-<h2 id="org9d0399d"><span class="section-number-2">1.</span> JSON</h2>
+<div id="outline-container-orgbde5abe" class="outline-2">
+<h2 id="orgbde5abe"><span class="section-number-2">1.</span> JSON</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgdc2590e" class="outline-3">
-<h3 id="orgdc2590e"><span class="section-number-3">1.1.</span> 網路資料分析的兩種類型</h3>
+<div id="outline-container-org8e11d18" class="outline-3">
+<h3 id="org8e11d18"><span class="section-number-3">1.1.</span> 網路資料分析的兩種類型</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>可直接下載的靜態結構化資料，如 CSV、JSON、XML<br /></li>
@@ -253,12 +286,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org77f461e" class="outline-3">
-<h3 id="org77f461e"><span class="section-number-3">1.2.</span> JSON</h3>
+<div id="outline-container-orgc83e89c" class="outline-3">
+<h3 id="orgc83e89c"><span class="section-number-3">1.2.</span> JSON</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org080e8ee" class="outline-4">
-<h4 id="org080e8ee"><span class="section-number-4">1.2.1.</span> What is JSON?</h4>
+<div id="outline-container-org8c04513" class="outline-4">
+<h4 id="org8c04513"><span class="section-number-4">1.2.1.</span> JSON 是什麼？</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <ul class="org-ul">
 <li>JSON(JavaScript Object Notation，JavaScript 物件表示法)是個以純文字來描述資料的簡單結構，在 JSON 中可以透過特定的格式去儲存任何資料(字串,數字,陣列,物件)，也可以透過物件或陣列來傳送較複雜的資料。<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup><br /></li>
@@ -267,8 +300,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org916e1a6" class="outline-4">
-<h4 id="org916e1a6"><span class="section-number-4">1.2.2.</span> JSON 的優點</h4>
+<div id="outline-container-orgb70a120" class="outline-4">
+<h4 id="orgb70a120"><span class="section-number-4">1.2.2.</span> JSON 的優點</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ul class="org-ul">
 <li>相容性高<br /></li>
@@ -279,8 +312,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org99bbbd8" class="outline-4">
-<h4 id="org99bbbd8"><span class="section-number-4">1.2.3.</span> JSON 結構</h4>
+<div id="outline-container-org2f583f6" class="outline-4">
+<h4 id="org2f583f6"><span class="section-number-4">1.2.3.</span> JSON 結構</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <ul class="org-ul">
 <li>物件: {}<br /></li>
@@ -288,8 +321,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org0d5866b" class="outline-4">
-<h4 id="org0d5866b"><span class="section-number-4">1.2.4.</span> JSON 支援的資料格式</h4>
+<div id="outline-container-org20d52f1" class="outline-4">
+<h4 id="org20d52f1"><span class="section-number-4">1.2.4.</span> JSON 支援的資料格式</h4>
 <div class="outline-text-4" id="text-1-2-4">
 <ul class="org-ul">
 <li>字串 (string)，要以雙引號括起來:<br />
@@ -302,7 +335,7 @@
 </ul></li>
 <li>布林值 (boolean)<br />
 <ul class="org-ul">
-<li>{&ldquo;pass&rdquo;: True}<br /></li>
+<li>{&ldquo;pass&rdquo;: true}<br /></li>
 </ul></li>
 <li>空值 (null)<br />
 <ul class="org-ul">
@@ -313,8 +346,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org52f8649" class="outline-4">
-<h4 id="org52f8649"><span class="section-number-4">1.2.5.</span> JSON 物件</h4>
+<div id="outline-container-orgc83502b" class="outline-4">
+<h4 id="orgc83502b"><span class="section-number-4">1.2.5.</span> JSON 物件</h4>
 <div class="outline-text-4" id="text-1-2-5">
 <ul class="org-ul">
 <li>格式<br /></li>
@@ -355,12 +388,12 @@
 <span class="linenr"> 7: </span>        { <span style="color: #98be65;">"title"</span>: <span style="color: #98be65;">"&#26399;&#20013;&#32771;"</span>,
 <span class="linenr"> 8: </span>          <span style="color: #98be65;">"chinese"</span>: <span style="color: #da8548; font-weight: bold;">85</span>,
 <span class="linenr"> 9: </span>          <span style="color: #98be65;">"math"</span>: <span style="color: #da8548; font-weight: bold;">98</span>,
-<span class="linenr">10: </span>          <span style="color: #98be65;">"englihs"</span>: <span style="color: #da8548; font-weight: bold;">92</span>
+<span class="linenr">10: </span>          <span style="color: #98be65;">"english"</span>: <span style="color: #da8548; font-weight: bold;">92</span>
 <span class="linenr">11: </span>        },
 <span class="linenr">12: </span>        { <span style="color: #98be65;">"title"</span>: <span style="color: #98be65;">"&#26399;&#26411;&#32771;"</span>,
 <span class="linenr">13: </span>          <span style="color: #98be65;">"chinese"</span>: <span style="color: #da8548; font-weight: bold;">81</span>,
 <span class="linenr">14: </span>          <span style="color: #98be65;">"math"</span>: <span style="color: #da8548; font-weight: bold;">92</span>,
-<span class="linenr">15: </span>          <span style="color: #98be65;">"englihs"</span>: <span style="color: #da8548; font-weight: bold;">97</span>
+<span class="linenr">15: </span>          <span style="color: #98be65;">"english"</span>: <span style="color: #da8548; font-weight: bold;">97</span>
 <span class="linenr">16: </span>        }
 <span class="linenr">17: </span>    ],
 <span class="linenr">18: </span>    <span style="color: #98be65;">"hobby"</span>: [<span style="color: #98be65;">"music"</span>, <span style="color: #98be65;">"programming"</span>]
@@ -369,8 +402,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgf31bd88" class="outline-4">
-<h4 id="orgf31bd88"><span class="section-number-4">1.2.6.</span> JSON 轉 PANDAS dataFrame</h4>
+<div id="outline-container-org950de68" class="outline-4">
+<h4 id="org950de68"><span class="section-number-4">1.2.6.</span> JSON 轉 PANDAS dataFrame</h4>
 <div class="outline-text-4" id="text-1-2-6">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">from</span> pandas.io.json <span style="color: #51afef;">import</span> json_normalize
@@ -382,22 +415,22 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org5a972f5" class="outline-3">
-<h3 id="org5a972f5"><span class="section-number-3">1.3.</span> JSON 實作範例</h3>
+<div id="outline-container-org6bda2be" class="outline-3">
+<h3 id="org6bda2be"><span class="section-number-3">1.3.</span> JSON 實作範例</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org1e380e4" class="outline-4">
-<h4 id="org1e380e4"><span class="section-number-4">1.3.1.</span> 實作 1: <a href="https://data.gov.tw/dataset/31897">國際主要國家貨幣每月匯率概況</a></h4>
+<div id="outline-container-orgf010b93" class="outline-4">
+<h4 id="orgf010b93"><span class="section-number-4">1.3.1.</span> 實作 1: <a href="https://data.gov.tw/dataset/31897">國際主要國家貨幣每月匯率概況</a></h4>
 <div class="outline-text-4" id="text-1-3-1">
 </div>
-<div id="outline-container-orgb440a29" class="outline-5">
-<h5 id="orgb440a29"><span class="section-number-5">1.3.1.1.</span> 下載 JSON</h5>
+<div id="outline-container-orgdcba4cd" class="outline-5">
+<h5 id="orgdcba4cd"><span class="section-number-5">1.3.1.1.</span> 下載 JSON</h5>
 <div class="outline-text-5" id="text-1-3-1-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> requests
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">json_url</span> = <span style="color: #98be65;">'https://quality.data.gov.tw/dq_download_json.php?nid=31897&amp;md5_url=bf1f3b3e4a09f5c75ec9af665afbf7b3'</span>
+<span class="linenr"> 4: </span><span style="color: #dcaeea;">json_url</span> = <span style="color: #98be65;">'http://quality.data.gov.tw/dq_download_json.php?nid=31897&amp;md5_url=bf1f3b3e4a09f5c75ec9af665afbf7b3'</span>
 <span class="linenr"> 5: </span><span style="color: #dcaeea;">response</span> = requests.get(json_url)
 <span class="linenr"> 6: </span><span style="color: #c678dd;">print</span>(response)
 <span class="linenr"> 7: </span><span style="color: #dcaeea;">jsonRes</span> = response.json()
@@ -409,73 +442,263 @@
 </pre>
 </div>
 
-<pre class="example" id="orgc2c91b5">
-/Users/letranger/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:34: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
-  warnings.warn(
-&lt;Response [200]&gt;
-&lt;class 'list'&gt;
-[{'日期': '20201005', '美元／新台幣': '29.02', '人民幣／新台幣': '4.29882', '歐元／美元': '1.17405', '美元／日幣': '105.645', '英鎊／美元': '1.2947', '澳幣／美元': '0.71775', '美元／港幣': '7.75005', '美元／人民幣': '6.7507', '美元／南非幣': '16.4019', '紐幣／美元': '0.66435'}]
-[
-    {
-        "日期": "20201005",
-        "美元／新台幣": "29.02",
-        "人民幣／新台幣": "4.29882",
-        "歐元／美元": "1.17405",
-        "美元／日幣": "105.645",
-        "英鎊／美元": "1.2947",
-        "澳幣／美元": "0.71775",
-        "美元／港幣": "7.75005",
-        "美元／人民幣": "6.7507",
-        "美元／南非幣": "16.4019",
-        "紐幣／美元": "0.66435"
-    },
-    {
-        "日期": "20201006",
-        "美元／新台幣": "28.96",
-        "人民幣／新台幣": "4.300705",
-        "歐元／美元": "1.17735",
-        "美元／日幣": "105.555",
-        "英鎊／美元": "1.297",
-        "澳幣／美元": "0.7156",
-        "美元／港幣": "7.75005",
-        "美元／人民幣": "6.7338",
-        "美元／南非幣": "16.63735",
-        "紐幣／美元": "0.66365"
-    }
-]
+<p>
+上面這段程式碼用到了幾個重要的東西，我們先來認識一下：<br />
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="orgf80dd1a"></a>requests.get() 常用參數<br />
+<div class="outline-text-6" id="text-1-3-1-1-1">
+<p>
+<code>requests.get()</code> 是用來發送 HTTP GET 請求的函式，完整寫法長這樣：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>requests.get(url, params=<span style="color: #a9a1e1;">None</span>, headers=<span style="color: #a9a1e1;">None</span>, timeout=<span style="color: #a9a1e1;">None</span>, verify=<span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">參數</th>
+<th scope="col" class="org-left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>params</code></td>
+<td class="org-left">查詢字串參數（dict），會自動附加到 URL</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>headers</code></td>
+<td class="org-left">自訂 HTTP 標頭（dict），常用來設定 User-Agent</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>timeout</code></td>
+<td class="org-left">等待回應的秒數，避免程式卡住</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>verify</code></td>
+<td class="org-left">SSL 憑證驗證，設為 <code>False</code> 可跳過驗證（不建議，但有時不得已QQ）</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="outline-container-orgcfb6b73" class="outline-5">
-<h5 id="orgcfb6b73"><span class="section-number-5">1.3.1.2.</span> 輸出日期與匯率</h5>
-<div class="outline-text-5" id="text-1-3-1-2">
+</li>
+<li><a id="org15bc07e"></a>response 物件常用屬性<br />
+<div class="outline-text-6" id="text-1-3-1-1-2">
+<p>
+<code>requests.get()</code> 回傳的是一個 <code>Response</code> 物件，常用的屬性如下：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">屬性 / 方法</th>
+<th scope="col" class="org-left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>response.status_code</code></td>
+<td class="org-left">HTTP 狀態碼（200 表示成功）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>response.text</code></td>
+<td class="org-left">回應內容（字串）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>response.json()</code></td>
+<td class="org-left">將 JSON 回應解析為 dict/list（等同 <code>json.loads(response.text)</code> ）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>response.encoding</code></td>
+<td class="org-left">回應的編碼</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+<li><a id="orged25236"></a>json.dumps() 常用參數<br />
+<div class="outline-text-6" id="text-1-3-1-1-3">
+<p>
+<code>json.dumps()</code> 可以把 Python 物件轉成 JSON 格式的字串，完整寫法：<br />
+</p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#26085;&#26399;'</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t\t</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">'&#32654;&#20803;/&#26032;&#21488;&#24163;'</span>)
-<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'===='</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t\t</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">'==========='</span>)
-<span class="linenr">3: </span><span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes[:<span style="color: #da8548; font-weight: bold;">10</span>]:
-<span class="linenr">4: </span>    <span style="color: #c678dd;">print</span>(item[<span style="color: #98be65;">'&#26085;&#26399;'</span>], <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t</span><span style="color: #98be65;">"</span>, item[<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;'</span>])
+<pre class="src src-python"><span class="linenr">1: </span>json.dumps(obj, indent=<span style="color: #a9a1e1;">None</span>, ensure_ascii=<span style="color: #a9a1e1;">True</span>, sort_keys=<span style="color: #a9a1e1;">False</span>)
+</pre>
+</div>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">參數</th>
+<th scope="col" class="org-left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>indent</code></td>
+<td class="org-left">縮排空格數，讓輸出更易讀</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>ensure_ascii</code></td>
+<td class="org-left">設為 <code>False</code> 才能輸出中文（不然會變 =\uXXXX=）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>sort_keys</code></td>
+<td class="org-left">設為 <code>True</code> 會按 key 排序</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+如果你以上述程式碼執行，結果看到如下的錯誤訊息（請略過不重要的中間部分）留意「CERTIFICATE_VERIFY_FAILED]」，表示你的 Python 環境無法驗證該網站的 SSL 憑證&#x2026;.QQ<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-nil">Traceback (most recent call last):
+   ...... 中間省略......
+increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='quality.data.gov.tw', port=443): Max retries exceeded with url: /dq_download_json.php?nid=31897&amp;md5_url=bf1f3b3e4a09f5c75ec9af665afbf7b3 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Subject Key Identifier (_ssl.c:1032)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 5, in &lt;module&gt;
+   ...... 中間省略......
+    raise SSLError(e, request=request)
+requests.exceptions.SSLError: HTTPSConnectionPool(host='quality.data.gov.tw', port=443): Max retries exceeded with url: /dq_download_json.php?nid=31897&amp;md5_url=bf1f3b3e4a09f5c75ec9af665afbf7b3 (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Missing Subject Key Identifier (_ssl.c:1032)')))
+[ Babel evaluation exited with code 1 ]
 </pre>
 </div>
 
-<pre class="example" id="orgd36a530">
-日期 		 美元/新台幣
-==== 		 ===========
-20201005 	 29.02
-20201006 	 28.96
-20201007 	 28.965
-20201008 	 28.966
-20201012 	 28.909
-20201013 	 28.92
-20201014 	 28.952
-20201015 	 28.96
-20201016 	 28.979
-20201019 	 28.95
+<p>
+解決方法:<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> requests
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> urllib3
+<span class="linenr"> 3: </span>urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+<span class="linenr"> 4: </span><span style="color: #5B6268;">## </span><span style="color: #5B6268;">&#26283;&#26178;&#38364;&#38281; SSL &#39511;&#35657;</span>
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">json_url</span> = <span style="color: #98be65;">"https://quality.data.gov.tw/dq_download_json.php?nid=31897&amp;md5_url=bf1f3b3e4a09f5c75ec9af665afbf7b3"</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span style="color: #dcaeea;">r</span> = requests.get(json_url, verify=<span style="color: #a9a1e1;">False</span>, timeout=<span style="color: #da8548; font-weight: bold;">30</span>)
+<span class="linenr"> 8: </span><span style="color: #c678dd;">print</span>(r.status_code)
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span><span style="color: #dcaeea;">jsonRes</span> = r.json()
+<span class="linenr">11: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(jsonRes))
+<span class="linenr">12: </span><span style="color: #c678dd;">print</span>(jsonRes[:<span style="color: #da8548; font-weight: bold;">1</span>]) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#39023;&#31034;&#31532;&#19968;&#31558;&#36039;&#26009;</span>
+<span class="linenr">13: </span>
+<span class="linenr">14: </span><span style="color: #51afef;">import</span> json
+<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(json.dumps(jsonRes[:<span style="color: #da8548; font-weight: bold;">2</span>], indent=<span style="color: #da8548; font-weight: bold;">4</span>, ensure_ascii=<span style="color: #a9a1e1;">False</span>)) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#39023;&#31034;&#21069;&#20841;&#31558;&#36039;&#26009;</span>
+<span class="linenr">16: </span>
+</pre>
+</div>
+
+<pre class="example" id="org129694a">
+200
+&lt;class 'list'&gt;
+[{'月別': '2024-03', '新台幣（匯率）': '31.990', '人民幣（匯率）': '7.2232', '日圓（匯率）': '151.34', '韓元（匯率）': '1347.2', '新加坡元（匯率）': '1.3494', '歐元（匯率）': '1.0769', '英鎊（匯率）': '1.2619', '澳幣（匯率）': '0.6509'}]
+[
+    {
+        "月別": "2024-03",
+        "新台幣（匯率）": "31.990",
+        "人民幣（匯率）": "7.2232",
+        "日圓（匯率）": "151.34",
+        "韓元（匯率）": "1347.2",
+        "新加坡元（匯率）": "1.3494",
+        "歐元（匯率）": "1.0769",
+        "英鎊（匯率）": "1.2619",
+        "澳幣（匯率）": "0.6509"
+    },
+    {
+        "月別": "2024-04",
+        "新台幣（匯率）": "32.542",
+        "人民幣（匯率）": "7.2416",
+        "日圓（匯率）": "156.86",
+        "韓元（匯率）": "1382.0",
+        "新加坡元（匯率）": "1.3614",
+        "歐元（匯率）": "1.0705",
+        "英鎊（匯率）": "1.2542",
+        "澳幣（匯率）": "0.6528"
+    }
+]
+</pre>
+<p>
+由以上輸出可知，這是一個包含多筆資料的 JSON 陣列，而每筆資料都是一個包含多個鍵值對的 JSON 物件。每個物件代表某個月份的匯率資訊，包括新台幣、人民幣、日圓、韓元、新加坡元、歐元、英鎊和澳幣的匯率。<br />
+</p>
+
+<p>
+那，我們來看看如何從這些資料中提取出我們需要的資訊，例如「日期」和「美元/新台幣」的匯率。<br />
+</p>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org3f7b226" class="outline-5">
+<h5 id="org3f7b226"><span class="section-number-5">1.3.1.2.</span> 輸出日期與匯率</h5>
+<div class="outline-text-5" id="text-1-3-1-2">
+<p>
+我們可以使用一個簡單的迴圈來遍歷 JSON 陣列，並從每個物件中提取出「月別」和「新台幣（匯率）」這兩個欄位，然後將它們格式化輸出。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'&#26085;    &#26399;'</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">'&#32654;&#20803;/&#26032;&#21488;&#24163;'</span>)
+<span class="linenr">2: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'======='</span>, <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t</span><span style="color: #98be65;">"</span>, <span style="color: #98be65;">'==========='</span>)
+<span class="linenr">3: </span><span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes[:<span style="color: #da8548; font-weight: bold;">10</span>]:
+<span class="linenr">4: </span>    <span style="color: #c678dd;">print</span>(item[<span style="color: #98be65;">'&#26376;&#21029;'</span>], <span style="color: #98be65;">"</span><span style="color: #a9a1e1;">\t</span><span style="color: #98be65;">"</span>, item[<span style="color: #98be65;">'&#26032;&#21488;&#24163;&#65288;&#21295;&#29575;&#65289;'</span>])
+</pre>
+</div>
+
+<pre class="example" id="org38b500a">
+日    期 	 美元/新台幣
+======= 	 ===========
+2024-03 	 31.990
+2024-04 	 32.542
+2024-05 	 32.420
+2024-06 	 32.450
+2024-07 	 32.836
+2024-08 	 31.940
+2024-09 	 31.651
+2024-10 	 32.031
+2024-11 	 32.457
+2024-12 	 32.781
 </pre>
 </div>
 </div>
-<div id="outline-container-org6beb4b3" class="outline-5">
-<h5 id="org6beb4b3"><span class="section-number-5">1.3.1.3.</span> 製圖</h5>
+<div id="outline-container-org3c9db25" class="outline-5">
+<h5 id="org3c9db25"><span class="section-number-5">1.3.1.3.</span> 製圖</h5>
 <div class="outline-text-5" id="text-1-3-1-3">
+<p>
+有了日期和匯率的資料後，我們可以使用 Matplotlib 來繪製折線圖，展示美元/新台幣匯率的走勢。<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
@@ -486,38 +709,48 @@
 <span class="linenr"> 7: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
 <span class="linenr"> 8: </span>
 <span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25552;&#21462;&#26085;&#26399;&#21644;&#32654;&#20803;/&#26032;&#21488;&#24163;&#30340;&#25976;&#25818;</span>
-<span class="linenr">10: </span><span style="color: #dcaeea;">dates</span> = [item[<span style="color: #98be65;">'&#26085;&#26399;'</span>] <span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes]
-<span class="linenr">11: </span><span style="color: #dcaeea;">exchange_rates</span> = [<span style="color: #c678dd;">float</span>(item[<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;'</span>]) <span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes]
-<span class="linenr">12: </span>
-<span class="linenr">13: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32362;&#35069;&#25240;&#32218;&#22294;</span>
-<span class="linenr">14: </span>plt.figure(figsize=(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">6</span>))
-<span class="linenr">15: </span>plt.plot(dates, exchange_rates, marker=<span style="color: #98be65;">'o'</span>, linestyle=<span style="color: #98be65;">'-'</span>)
-<span class="linenr">16: </span>
-<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35373;&#32622;&#22294;&#24418;&#27161;&#31844;&#21644;&#27161;&#38988;</span>
-<span class="linenr">18: </span>plt.xlabel(<span style="color: #98be65;">'&#26085;&#26399;'</span>)
-<span class="linenr">19: </span>plt.ylabel(<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;'</span>)
-<span class="linenr">20: </span>plt.title(<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;&#21295;&#29575;&#36208;&#21218;'</span>)
-<span class="linenr">21: </span>
-<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26059;&#36681;x&#36600;&#19978;&#30340;&#26085;&#26399;&#27161;&#31844;&#65292;&#20197;&#36991;&#20813;&#37325;&#30090;</span>
-<span class="linenr">23: </span>plt.xticks(rotation=<span style="color: #da8548; font-weight: bold;">45</span>, ha=<span style="color: #98be65;">'right'</span>)
-<span class="linenr">24: </span>
-<span class="linenr">25: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39023;&#31034;&#22294;&#24418;</span>
-<span class="linenr">26: </span>plt.tight_layout()
-<span class="linenr">27: </span>plt.savefig(<span style="color: #98be65;">'images/json-plot.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">10: </span><span style="color: #dcaeea;">dates</span> = [item[<span style="color: #98be65;">'&#26376;&#21029;'</span>] <span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes]
+<span class="linenr">11: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#19978;&#38754;&#26159;&#19968;&#27573;&#31934;&#31777;&#30340;&#23531;&#27861;&#65292;&#31561;&#21516;&#26044;&#19979;&#38754;&#30340;&#23531;&#27861;</span>
+<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">dates = []</span>
+<span class="linenr">13: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">for item in jsonRes:</span>
+<span class="linenr">14: </span><span style="color: #5B6268;">#     </span><span style="color: #5B6268;">dates.append(item['&#26376;&#21029;'])</span>
+<span class="linenr">15: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24847;&#24605;&#23601;&#26159;&#25226;&#27599;&#19968;&#31558;&#36039;&#26009;&#30340;&#12300;&#26376;&#21029;&#12301;&#27396;&#20301;&#21462;&#20986;&#20358;&#65292;&#25918;&#21040;&#19968;&#20491;&#26032;&#30340;&#21015;&#34920;(dates)&#20013;</span>
+<span class="linenr">16: </span><span style="color: #dcaeea;">exchange_rates</span> = [<span style="color: #c678dd;">float</span>(item[<span style="color: #98be65;">'&#26032;&#21488;&#24163;&#65288;&#21295;&#29575;&#65289;'</span>]) <span style="color: #51afef;">for</span> item <span style="color: #51afef;">in</span> jsonRes]
+<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36889;&#35041;&#20063;&#19968;&#27171;&#65292;&#35531;&#33258;&#34892;&#38936;&#24735;</span>
+<span class="linenr">18: </span>
+<span class="linenr">19: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#32362;&#35069;&#25240;&#32218;&#22294;</span>
+<span class="linenr">20: </span>plt.figure(figsize=(<span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">6</span>))
+<span class="linenr">21: </span>plt.plot(dates, exchange_rates, marker=<span style="color: #98be65;">'o'</span>, linestyle=<span style="color: #98be65;">'-'</span>)
+<span class="linenr">22: </span>
+<span class="linenr">23: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35373;&#32622;&#22294;&#24418;&#27161;&#31844;&#21644;&#27161;&#38988;</span>
+<span class="linenr">24: </span>plt.xlabel(<span style="color: #98be65;">'&#26085;&#26399;'</span>)
+<span class="linenr">25: </span>plt.ylabel(<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;'</span>)
+<span class="linenr">26: </span>plt.title(<span style="color: #98be65;">'&#32654;&#20803;&#65295;&#26032;&#21488;&#24163;&#21295;&#29575;&#36208;&#21218;'</span>)
+<span class="linenr">27: </span>
+<span class="linenr">28: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26059;&#36681;x&#36600;&#19978;&#30340;&#26085;&#26399;&#27161;&#31844;&#65292;&#20197;&#36991;&#20813;&#37325;&#30090;</span>
+<span class="linenr">29: </span>plt.xticks(rotation=<span style="color: #da8548; font-weight: bold;">45</span>, ha=<span style="color: #98be65;">'right'</span>)
+<span class="linenr">30: </span>
+<span class="linenr">31: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39023;&#31034;&#22294;&#24418;</span>
+<span class="linenr">32: </span>plt.tight_layout()
+<span class="linenr">33: </span>plt.savefig(<span style="color: #98be65;">'images/json-plot.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
 </pre>
 </div>
 
 
-<div id="orgf8258bc" class="figure">
+<div id="org188fcb4" class="figure">
 <p><img src="images/json-plot.png" alt="json-plot.png" width="800" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>美元／新台幣匯率走勢</p>
 </div>
+
+<p>
+現在，你應該已經具備了從網路上下載 JSON 資料、解析資料、提取所需資訊，並使用 Matplotlib 繪製圖表的基本能力。接下來，你可以嘗試應用這些技巧來分析其他類型的 JSON 資料，並創建更多有趣的視覺化圖表！<br />
+</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org52510a2" class="outline-4">
-<h4 id="org52510a2"><span class="section-number-4">1.3.2.</span> 實作 2: <a href="https://data.gov.tw/dataset/113063">澎湖生活博物館每月參觀人次統計資料</a></h4>
+<div id="outline-container-orge432c1c" class="outline-4">
+<h4 id="orge432c1c"><span class="section-number-4">1.3.2.</span> 實作 2: <a href="https://data.gov.tw/dataset/113063">澎湖生活博物館每月參觀人次統計資料</a></h4>
 <div class="outline-text-4" id="text-1-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">coding:utf-8</span>
@@ -559,7 +792,7 @@
 </pre>
 </div>
 
-<div id="org924c4eb" class="figure">
+<div id="org194db10" class="figure">
 <p><img src="images/jsonBar.png" alt="jsonBar.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>參觀人數</p>
@@ -567,8 +800,8 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgc4243cf" class="outline-3">
-<h3 id="orgc4243cf"><span class="section-number-3">1.4.</span> [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-orgc5385f3" class="outline-3">
+<h3 id="orgc5385f3"><span class="section-number-3">1.4.</span> [課堂練習]線上 JSON 讀取&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
 <li>[注意]如果 JSON 的資料下載發生錯誤，可以試著將 URL 由&rsquo;https://&rsquo;改為&rsquo;http://&rsquo;<br /></li>
@@ -576,7 +809,7 @@
 請上網查詢台南市各區 WIFI 熱點數量，依行政區統計，繪製類似以下圖形，儘可能加上統計圖表所需元素並加以美化<br />
 </p>
 
-<div id="orgc7083e6" class="figure">
+<div id="org871c7cb" class="figure">
 <p><img src="images/wifis.png" alt="wifis.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>台南市各區熱點分佈</p>
@@ -584,8 +817,8 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc110025" class="outline-3">
-<h3 id="orgc110025"><span class="section-number-3">1.5.</span> JSON 進階閱讀</h3>
+<div id="outline-container-org90d1e6b" class="outline-3">
+<h3 id="org90d1e6b"><span class="section-number-3">1.5.</span> JSON 進階閱讀</h3>
 <div class="outline-text-3" id="text-1-5">
 <ul class="org-ul">
 <li><a href="https://officeguide.cc/python-read-write-json-encode-decode-tutorial-examples/">Python 讀取、產生 JSON 格式資料教學與範例</a><br /></li>
@@ -596,13 +829,80 @@
 </ul>
 </div>
 </div>
+<div id="outline-container-org6926e27" class="outline-3">
+<h3 id="org6926e27"><span class="section-number-3">1.6.</span> [課堂練習]社團 JSON 資料處理&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+以下是某校社團的 JSON 資料，請使用 Python 的 json 模組完成以下任務：<br />
+</p>
+<ol class="org-ol">
+<li>列出所有社團名稱與人數<br /></li>
+<li>找出人數最多的社團<br /></li>
+<li>按類別（學術/音樂/體育/休閒）統計社團數量<br /></li>
+<li>找出 2019 年之後成立的社團<br /></li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> json
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span><span style="color: #dcaeea;">club_data</span> = <span style="color: #98be65;">'''</span>
+<span class="linenr"> 4: </span><span style="color: #98be65;">{</span>
+<span class="linenr"> 5: </span><span style="color: #98be65;">    "school": "&#21488;&#21335;&#19968;&#20013;",</span>
+<span class="linenr"> 6: </span><span style="color: #98be65;">    "clubs": [</span>
+<span class="linenr"> 7: </span><span style="color: #98be65;">        {"name": "&#31243;&#24335;&#35373;&#35336;&#31038;", "members": 25, "category": "&#23416;&#34899;", "year": 2020},</span>
+<span class="linenr"> 8: </span><span style="color: #98be65;">        {"name": "&#21513;&#20182;&#31038;", "members": 40, "category": "&#38899;&#27138;", "year": 2015},</span>
+<span class="linenr"> 9: </span><span style="color: #98be65;">        {"name": "&#31811;&#29699;&#31038;", "members": 30, "category": "&#39636;&#32946;", "year": 2018},</span>
+<span class="linenr">10: </span><span style="color: #98be65;">        {"name": "&#21205;&#28459;&#31038;", "members": 35, "category": "&#20241;&#38290;", "year": 2019},</span>
+<span class="linenr">11: </span><span style="color: #98be65;">        {"name": "&#31649;&#27138;&#31038;", "members": 45, "category": "&#38899;&#27138;", "year": 2010},</span>
+<span class="linenr">12: </span><span style="color: #98be65;">        {"name": "&#26700;&#36938;&#31038;", "members": 20, "category": "&#20241;&#38290;", "year": 2021},</span>
+<span class="linenr">13: </span><span style="color: #98be65;">        {"name": "&#25490;&#29699;&#31038;", "members": 28, "category": "&#39636;&#32946;", "year": 2016},</span>
+<span class="linenr">14: </span><span style="color: #98be65;">        {"name": "&#33521;&#35486;&#36783;&#35542;&#31038;", "members": 15, "category": "&#23416;&#34899;", "year": 2017}</span>
+<span class="linenr">15: </span><span style="color: #98be65;">    ]</span>
+<span class="linenr">16: </span><span style="color: #98be65;">}</span>
+<span class="linenr">17: </span><span style="color: #98be65;">'''</span>
+<span class="linenr">18: </span><span style="color: #dcaeea;">data</span> = json.loads(club_data)
+</pre>
 </div>
-<div id="outline-container-orgabced7d" class="outline-2">
-<h2 id="orgabced7d"><span class="section-number-2">2.</span> HTML</h2>
+
+<p>
+結果範例<br />
+</p>
+<pre class="example" id="org0f25cce">
+=== 台南一中社團資訊 ===
+社團總數: 8 個
+
+1. 各社團人數:
+   程式設計社: 25 人
+   吉他社: 40 人
+   籃球社: 30 人
+   動漫社: 35 人
+   管樂社: 45 人
+   桌遊社: 20 人
+   排球社: 28 人
+   英語辯論社: 15 人
+
+2. 人數最多的社團: 管樂社 (45 人)
+
+3. 各類別社團數:
+   學術: 2 個
+   音樂: 2 個
+   體育: 2 個
+   休閒: 2 個
+
+4. 2019年之後成立的社團:
+   程式設計社 (2020年成立)
+   動漫社 (2019年成立)
+   桌遊社 (2021年成立)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd050018" class="outline-2">
+<h2 id="orgd050018"><span class="section-number-2">2.</span> HTML</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org120216e" class="outline-3">
-<h3 id="org120216e"><span class="section-number-3">2.1.</span> What is HTML</h3>
+<div id="outline-container-org129050c" class="outline-3">
+<h3 id="org129050c"><span class="section-number-3">2.1.</span> HTML 是什麼</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li><a href="https://data.gov.tw/datasets/search?qs=tid%3A6410">政府資料開放平台</a><br /></li>
@@ -619,12 +919,12 @@
 </ul>
 </div>
 </div>
-<div id="outline-container-org78cfbe0" class="outline-3">
-<h3 id="org78cfbe0"><span class="section-number-3">2.2.</span> HTML 範例</h3>
+<div id="outline-container-org1360971" class="outline-3">
+<h3 id="org1360971"><span class="section-number-3">2.2.</span> HTML 範例</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org7616d7f" class="outline-4">
-<h4 id="org7616d7f"><span class="section-number-4">2.2.1.</span> HTML code</h4>
+<div id="outline-container-orgd012759" class="outline-4">
+<h4 id="orgd012759"><span class="section-number-4">2.2.1.</span> HTML 程式碼</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-html"><span class="linenr"> 1: </span>&lt;<span style="color: #c678dd;">html</span>&gt;
@@ -647,8 +947,8 @@
 </pre>
 </div>
 </div>
-<div id="outline-container-orgaaaded3" class="outline-5">
-<h5 id="orgaaaded3"><span class="section-number-5">2.2.1.1.</span> 執行結果</h5>
+<div id="outline-container-orgb690a3e" class="outline-5">
+<h5 id="orgb690a3e"><span class="section-number-5">2.2.1.1.</span> 執行結果</h5>
 <div class="outline-text-5" id="text-2-2-1-1">
 <p>
 上述 html code 的執行結果如下<br />
@@ -673,11 +973,11 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgd235295" class="outline-4">
-<h4 id="orgd235295"><span class="section-number-4">2.2.2.</span> HTML tree</h4>
+<div id="outline-container-orgc1ad4b0" class="outline-4">
+<h4 id="orgc1ad4b0"><span class="section-number-4">2.2.2.</span> HTML tree</h4>
 <div class="outline-text-4" id="text-2-2-2">
 
-<div id="org68e4320" class="figure">
+<div id="org2b2ff7f" class="figure">
 <p><img src="images/html-tree.png" alt="html-tree.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 4: </span>HTML tree</p>
@@ -708,19 +1008,19 @@
 </div>
 </div>
 </div>
-<div id="outline-container-orgcb98d7a" class="outline-2">
-<h2 id="orgcb98d7a"><span class="section-number-2">3.</span> 網路爬蟲</h2>
+<div id="outline-container-org0d6de36" class="outline-2">
+<h2 id="org0d6de36"><span class="section-number-2">3.</span> 網路爬蟲</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 上述的 html 程式碼只能透過瀏覽器來解析並呈現結果，如果我們想跳過瀏覽器，直接以程式來抓取網頁上的資訊，就要透過爬蟲程式。<br />
 </p>
 </div>
-<div id="outline-container-orgc41cb68" class="outline-3">
-<h3 id="orgc41cb68"><span class="section-number-3">3.1.</span> 爬蟲精神：將程式模仿成一般 user</h3>
+<div id="outline-container-orgcec6a99" class="outline-3">
+<h3 id="orgcec6a99"><span class="section-number-3">3.1.</span> 爬蟲精神：將程式模仿成一般 user</h3>
 <div class="outline-text-3" id="text-3-1">
 </div>
-<div id="outline-container-org5dfb163" class="outline-4">
-<h4 id="org5dfb163"><span class="section-number-4">3.1.1.</span> 原則</h4>
+<div id="outline-container-org9f73b73" class="outline-4">
+<h4 id="org9f73b73"><span class="section-number-4">3.1.1.</span> 原則</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ol class="org-ol">
 <li>要抓網路資料，就要先仔細觀察網頁內容<br /></li>
@@ -728,18 +1028,18 @@
 </ol>
 </div>
 </div>
-<div id="outline-container-org46adf99" class="outline-4">
-<h4 id="org46adf99"><span class="section-number-4">3.1.2.</span> 實作範例: 取得 HTML 資料</h4>
+<div id="outline-container-org120827f" class="outline-4">
+<h4 id="org120827f"><span class="section-number-4">3.1.2.</span> 實作範例: 取得 HTML 資料</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <p>
 網頁: <a href="https://www.ptt.cc/bbs/Japan_Travel/index.html">批踢踢實業坊›看板 Japan_Travel</a><br />
 </p>
 </div>
-<div id="outline-container-org7515492" class="outline-5">
-<h5 id="org7515492"><span class="section-number-5">3.1.2.1.</span> 第一版: 以 urllib 模組來抓取 HTML 資料</h5>
+<div id="outline-container-org424cba6" class="outline-5">
+<h5 id="org424cba6"><span class="section-number-5">3.1.2.1.</span> 第一版: 以 urllib 模組來抓取 HTML 資料</h5>
 <div class="outline-text-5" id="text-3-1-2-1">
 <p>
-urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料的 Python 模組。它提供一個了非常簡單的介面能接受多種不同的協議(protocol, 如 http, ftp)， urlopen 函數。<br />
+urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料的 Python 模組。它提供了一個非常簡單的介面能接受多種不同的協議(protocol, 如 http, ftp)， urlopen 函數。<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25235;&#21462;PTT&#38651;&#24433;&#29256;header</span>
@@ -764,8 +1064,8 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </p>
 </div>
 </div>
-<div id="outline-container-org9914b55" class="outline-5">
-<h5 id="org9914b55"><span class="section-number-5">3.1.2.2.</span> 第二版:加入 headers(純文字)</h5>
+<div id="outline-container-orga117135" class="outline-5">
+<h5 id="orga117135"><span class="section-number-5">3.1.2.2.</span> 第二版:加入 headers(純文字)</h5>
 <div class="outline-text-5" id="text-3-1-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
@@ -782,10 +1082,11 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 
-<pre class="example" id="orgbb9ed55">
+<pre class="example" id="orgd996ee5">
 所取得的資料型態： &lt;class 'str'&gt;
 ===得到的部份HTML內容===
-
+ 		&lt;/div&gt;
+				&lt;div class="date"&gt;12/19&lt;/div&gt;
 				&lt;div class="mark"&gt;&lt;/div&gt;
 			&lt;/div&gt;
 		&lt;/div&gt;
@@ -795,30 +1096,25 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 
 
 		&lt;div class="r-ent"&gt;
-			&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;5&lt;/span&gt;&lt;/div&gt;
+			&lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;3&lt;/span&gt;&lt;/div&gt;
 			&lt;div class="title"&gt;
 
-				&lt;a href="/bbs/movie/M.1709626126.A.AAB.html"&gt;[  好雷] 時空永恆的愛戀&lt;/a&gt;
+				&lt;a href="/bbs/movie/M.1766116859.A.6F8.html"&gt;[問片] 某部非常久遠的二戰片 (有雷)&lt;/a&gt;
 
 			&lt;/div&gt;
 			&lt;div class="meta"&gt;
-				&lt;div class="author"&gt;tilwemeet&lt;/div&gt;
+				&lt;div class="author"&gt;Maserati&lt;/div&gt;
 				&lt;div class="article-menu"&gt;
 
 					&lt;div class="trigger"&gt;&amp;#x22ef;&lt;/div&gt;
 					&lt;div class="dropdown"&gt;
-						&lt;div class="item"&gt;&lt;a href="/bbs/movie/search?q=thread%3A%5B&amp;#43;&amp;#43;%E5%A5%BD%E9%9B%B7%5D&amp;#43;%E6%99%82%E7%A9%BA%E6%B0%B8%E6%81%86%E7%9A%84%E6%84%9B%E6%88%80"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
+						&lt;div class="item"&gt;&lt;a href="/bbs/movie/search?q=thread%3A%5B%E5%95%8F%E7%89%87%5D&amp;#43;%E6%9F%90%E9%83%A8%E9%9D%9E%E5%B8%B8%E4%B9%85%E9%81%A0%E7%9A%84%E4%BA%8C%E6%88%B0%E7%89%87&amp;#43;%28%E6%9C%89%E9%9B%B7%29"&gt;搜尋同標題文章&lt;/a&gt;&lt;/div&gt;
 
-						&lt;div class="item"&gt;&lt;a href="/bbs/movie/search?q=author%3Atilwemeet"&gt;搜尋看板內 tilwemeet 的文章&lt;/a&gt;&lt;/div&gt;
+						&lt;div class="item"&gt;&lt;a href="/bbs/movie/search?q=author%3AMaserati"&gt;搜尋看板內 Maserati 的文章&lt;/a&gt;&lt;/div&gt;
 
 					&lt;/div&gt;
-
-				&lt;/div&gt;
-				&lt;div class="date"&gt; 3/05&lt;/div&gt;
-				&lt;div class="mark"&gt;&lt;/div&gt;
-			&lt;/div&gt;
-		&lt;/div
 </pre>
+
 <p>
 可以發現抓取下來的結果都是字串型態，不太容易進一步擷取所需資訊。例如，當我們想抓取所有看板中的標題，只使用字串所提供的一些函式就很難完成工作。<br />
 </p>
@@ -826,35 +1122,85 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </div>
 </div>
 </div>
-<div id="outline-container-org8fba494" class="outline-3">
-<h3 id="org8fba494"><span class="section-number-3">3.2.</span> BeautifulSoup</h3>
+<div id="outline-container-org433c427" class="outline-3">
+<h3 id="org433c427"><span class="section-number-3">3.2.</span> BeautifulSoup</h3>
 <div class="outline-text-3" id="text-3-2">
+<p>
+BeautifulSoup 是一個可以從 HTML 或 XML 檔案中擷取資料的 Python 套件。它可以自動將不完整或格式錯誤的標記修正，並以 Python 物件的形式呈現文件結構，讓使用者能夠輕鬆地導航、搜尋和修改文件內容。<br />
+</p>
+
+<p>
+建立 BeautifulSoup 物件的基本語法：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">soup</span> = BeautifulSoup(markup, parser)
+</pre>
 </div>
-<div id="outline-container-org1ffd474" class="outline-4">
-<h4 id="org1ffd474"><span class="section-number-4">3.2.1.</span> BeautifulSoup4 簡介</h4>
+<p>
+其中 <code>parser</code> 是用來解析 HTML 的解析器，常用的有：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">解析器</th>
+<th scope="col" class="org-left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>'html.parser'</code></td>
+<td class="org-left">Python 內建，不需額外安裝，夠用了</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>'lxml'</code></td>
+<td class="org-left">速度快，需 <code>pip install lxml</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>'html5lib'</code></td>
+<td class="org-left">最寬容，能處理嚴重損壞的 HTML，需另外安裝</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+一般來說用 <code>html.parser</code> 就可以了，除非你遇到什麼奇怪的網頁解析不了再考慮換別的。<br />
+</p>
+</div>
+<div id="outline-container-orgdc38594" class="outline-4">
+<h4 id="orgdc38594"><span class="section-number-4">3.2.1.</span> 實作：解析 HTML 資料內容</h4>
 <div class="outline-text-4" id="text-3-2-1">
-<ul class="org-ul">
-<li>BeautifulSoup4 和 lxml 一樣，Beautiful Soup 也是一個 HTML/XML 的解析器，<br /></li>
-<li>主要的功能是解析和提取 HTML/XML 資料。<br /></li>
-</ul>
 </div>
-</div>
-<div id="outline-container-org36d8772" class="outline-4">
-<h4 id="org36d8772"><span class="section-number-4">3.2.2.</span> 實作：解析 HTML 資料內容</h4>
-<div class="outline-text-4" id="text-3-2-2">
-</div>
-<div id="outline-container-orge4fd5a1" class="outline-5">
-<h5 id="orge4fd5a1"><span class="section-number-5">3.2.2.1.</span> 安裝解析 HTML 所需套件(安裝套件名稱後面有 4)</h5>
-<div class="outline-text-5" id="text-3-2-2-1">
+<div id="outline-container-orgba3a3ba" class="outline-5">
+<h5 id="orgba3a3ba"><span class="section-number-5">3.2.1.1.</span> 安裝解析 HTML 所需套件(安裝套件名稱後面有 4)</h5>
+<div class="outline-text-5" id="text-3-2-1-1">
+<p>
+如果尚未安裝 BeautifulSoup4，可以使用 pip 來安裝，在PyCharm裡你可以打開 Terminal 視窗，輸入以下指令安裝<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip install beautifulsoup4
 </pre>
 </div>
+<p>
+如果你是使用Colab，可以在程式碼區塊輸入以下指令安裝<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>!pip install beautifulsoup4
+</pre>
 </div>
 </div>
-<div id="outline-container-org77e95c7" class="outline-5">
-<h5 id="org77e95c7"><span class="section-number-5">3.2.2.2.</span> 第三版: 以 BS4 解析 HTML</h5>
-<div class="outline-text-5" id="text-3-2-2-2">
+</div>
+<div id="outline-container-org0df4918" class="outline-5">
+<h5 id="org0df4918"><span class="section-number-5">3.2.1.2.</span> 第三版: 以 BS4 解析 HTML</h5>
+<div class="outline-text-5" id="text-3-2-1-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
 <span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/Japan_Travel/index.html"</span>
@@ -874,7 +1220,7 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 
-<pre class="example" id="orgf576332">
+<pre class="example" id="org5f2b733">
 &lt;class 'bs4.BeautifulSoup'&gt;
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
@@ -884,8 +1230,7 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
   &lt;title&gt;
    看板 Japan_Travel 文章列表 - 批踢踢實業坊
   &lt;/title&gt;
-  &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-common.css" rel="stylesheet" type
-  ="text/css"/&gt;
+  &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-common.css" rel="stylesheet" type="text/css"/&gt;
   &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-base.css" media="screen" rel="stylesheet" type="text/css"/&gt;
   &lt;link href="//images.ptt.cc/bbs/v2.27/bbs-custom.css" rel="stylesheet" type="text/css"/&gt;
   &lt;link href="//images.ptt.cc/bbs/v2.27/pushstream.css" media="screen" rel="stylesheet" type="text/css"/&gt;
@@ -929,7 +1274,7 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
       &lt;a class="btn wide" href="/bbs/Japan_Travel/index1.html"&gt;
        最舊
       &lt;/a&gt;
-      &lt;a class="btn wide" href="/bbs/Japan_Travel/index7965.html"&gt;
+      &lt;a class="btn wide" href="/bbs/Japan_Travel/index8564.html"&gt;
        ‹ 上頁
       &lt;/a&gt;
       &lt;a class="btn wide disabled"&gt;
@@ -949,18 +1294,15 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
     &lt;/div&gt;
     &lt;div class="r-ent"&gt;
      &lt;div class="nrec"&gt;
-      &lt;span class="hl f2"&gt;
-       9
-      &lt;/span&gt;
      &lt;/div&gt;
      &lt;div class="title"&gt;
-      &lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;
-       [問題] 京都住宿請益
+      &lt;a href="/bbs/Japan_Travel/M.1766056069.A.809.html"&gt;
+       Fw: [食記] 喜一 福島喜多方 鮮味軟嫩叉燒喜多方拉麵
       &lt;/a&gt;
      &lt;/div&gt;
      &lt;div class="meta"&gt;
       &lt;div class="author"&gt;
-       poi9430
+       Geiwoyujie
       &lt;/div&gt;
       &lt;div class="article-menu"&gt;
        &lt;div class="trigger"&gt;
@@ -968,19 +1310,19 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
        &lt;/div&gt;
        &lt;div class="dropdown"&gt;
         &lt;div class="item"&gt;
-         &lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E4%BA%AC%E9%83%BD%E4%BD%8F%E5%AE%BF%E8%AB%8B%E7%9B%8A"&gt;
+         &lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E9%A3%9F%E8%A8%98%5D+%E5%96%9C%E4%B8%80+%E7%A6%8F%E5%B3%B6%E5%96%9C%E5%A4%9A%E6%96%B9+%E9%AE%AE%E5%91%B3%E8%BB%9F%E5%AB%A9%E5%8F%89%E7%87%92%E5%96%9C%E5%A4%9A%E6%96%B9%E6%8B%89%E9%BA%B5"&gt;
           搜尋同標題文章
          &lt;/a&gt;
         &lt;/div&gt;
         &lt;div class="item"&gt;
-         &lt;a href="/bbs/Japan_Travel/search?q=author%3Apoi9430"&gt;
-          搜尋看板內 poi9430 的文章
+         &lt;a href="/bbs/Japan_Travel/search?q=author%3AGeiwoyujie"&gt;
+          搜尋看板內 Geiwoyujie 的文章
          &lt;/a&gt;
         &lt;/div&gt;
        &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class="date"&gt;
-       3/06
+       12/18
       &lt;/div&gt;
       &lt;div class="mark"&gt;
       &lt;/div&gt;
@@ -989,17 +1331,17 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
     &lt;div class="r-ent"&gt;
      &lt;div class="nrec"&gt;
       &lt;span class="hl f3"&gt;
-       17
+       63
       &lt;/span&gt;
      &lt;/div&gt;
      &lt;div class="title"&gt;
-      &lt;a href="/bbs/Japan_Travel/M.1709718584.A.E96.html"&gt;
-       [問題] 沖繩親子遊首衝安排請益
+      &lt;a href="/bbs/Japan_Travel/M.1766058399.A.C20.html"&gt;
+       [資訊] JCB日本消費滿10萬回饋1萬
       &lt;/a&gt;
      &lt;/div&gt;
      &lt;div class="meta"&gt;
       &lt;div class="author"&gt;
-       newsnotti
+       medama
       &lt;/div&gt;
       &lt;div class="article-menu"&gt;
        &lt;div class="trigger"&gt;
@@ -1007,87 +1349,32 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
        &lt;/div&gt;
        &lt;div class="dropdown"&gt;
         &lt;div class="item"&gt;
-         &lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E5%95%8F%E9%A1%8C%5D+%E6%B2%96%E7%B9%A9%E8%A6%AA%E5%AD%90%E9%81%8A%E9%A6%96%E8%A1%9D%E5%AE%89%E6%8E%92%E8%AB%8B%E7%9B%8A"&gt;
+         &lt;a href="/bbs/Japan_Travel/search?q=thread%3A%5B%E8%B3%87%E8%A8%8A%5D+JCB%E6%97%A5%E6%9C%AC%E6%B6%88%E8%B2%BB%E6%BB%BF10%E8%90%AC%E5%9B%9E%E9%A5%8B1%E8%90%AC"&gt;
           搜尋同標題文章
          &lt;/a&gt;
         &lt;/div&gt;
         &lt;div class="item"&gt;
-         &lt;a href="/bbs/Japan_Travel/search?q=author%3Anewsnotti"&gt;
-          搜尋看板內 newsnotti 的文章
+         &lt;a href="/bbs/Japan_Travel/search?q=author%3Amedama"&gt;
+          搜尋看板內 medama 的文章
          &lt;/a&gt;
         &lt;/div&gt;
        &lt;/div&gt;
       &lt;/div&gt;
       &lt;div class="date"&gt;
-       3/06
-      &lt;/div&gt;
-      &lt;div class="mark"&gt;
-      &lt;/div&gt;
-     &lt;/di
 </pre>
+<p>
+看到這裡，我們成功地將 HTML 解析成 BeautifulSoup 物件，接下來我們就可以利用 BeautifulSoup 所提供的方法來擷取我們想要的資料了。<br />
+</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org1a060af" class="outline-3">
-<h3 id="org1a060af"><span class="section-number-3">3.3.</span> Beautifulsoup 解析器</h3>
+<div id="outline-container-orgf0f18a3" class="outline-3">
+<h3 id="orgf0f18a3"><span class="section-number-3">3.3.</span> BeautifulSoup 的方法<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup></h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
-現在我們可以進一步來研究 bs4 的玩法<br />
+當我們把原本亂七八糟的 HTML 程式從「字串」解析成 「BeautifulSoup 物件」後，接下來就可以利用 BeautifulSoup 所提供的方法來擷取我們想要的資料了。以下是常用的方法說明：<br />
 </p>
-<ul class="org-ul">
-<li><p>
-在上面的語句中，我們使用了一個 html.parser。 這是一個解析器，在構造 BeautifulSoup 物件的時候，需要用到解析器。BeautifulSoup 支援 python 內建的解析器和少數第三方解析器。<sup><a id="fnr.6" class="footref" href="#fn.6" role="doc-backlink">6</a></sup>:<br />
-</p>
-
-<div id="org0854d9c" class="figure">
-<p><img src="images/parsers.jpg" alt="parsers.jpg" width="600" /><br />
-</p>
-<p><span class="figure-number">Figure 5: </span>Parsers 比較</p>
-</div></li>
-<li>一般來說，對於速度或效能要求不太高的話，也可以使用 html5lib 來進行解析；如果較在乎效能則建議使用 lxml 來進行解析。<br /></li>
-</ul>
-
-<p>
-如果要換用 html5lib，則要先安裝:<br />
-</p>
-<div class="org-src-container">
-<pre class="src src-shell"><span class="linenr">1: </span>pip install html5lib
-</pre>
-</div>
-
-<p>
-接下來更換 parser:<br />
-<a href="https://www.ptt.cc/bbs/PC_Shopping/index.html">批踢踢實業坊›看板 PC_Shopping</a><br />
-</p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
-<span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/PC_Shopping/index.html"</span>
-<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">request</span> = req.Request(url, headers = {
-<span class="linenr"> 5: </span>    <span style="color: #98be65;">"User-Agent"</span>:<span style="color: #98be65;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
-<span class="linenr"> 6: </span>})
-<span class="linenr"> 7: </span>
-<span class="linenr"> 8: </span><span style="color: #51afef;">with</span> req.urlopen(request) <span style="color: #51afef;">as</span> response:
-<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">data</span> = response.read().decode(<span style="color: #98be65;">"utf-8"</span>)
-<span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #51afef;">import</span> bs4
-<span class="linenr">12: </span><span style="color: #dcaeea;">root</span> = bs4.BeautifulSoup(data,<span style="color: #98be65;">"html5lib"</span>)
-<span class="linenr">13: </span>
-<span class="linenr">14: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20381;&#24207;&#22519;&#34892;&#19969;&#21015;&#31243;&#24335;</span>
-<span class="linenr">15: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(root)) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#21462;&#24471;&#30340;&#36039;&#26009;&#22411;&#24907;&#35722;&#25104;&#26159;bs4&#30340;&#29289;&#20214;&#65292;&#32780;&#38750;&#23383;&#20018;</span>
-<span class="linenr">16: </span><span style="color: #c678dd;">print</span>(<span style="color: #c678dd;">type</span>(root.prettify())) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#21487;&#20197;&#20808;&#32654;&#21270;&#36664;&#20986;&#65292;&#26041;&#20415;&#26597;&#30475;HTML&#32080;&#27083;</span>
-<span class="linenr">17: </span><span style="color: #c678dd;">print</span>(root.prettify()[<span style="color: #da8548; font-weight: bold;">3000</span>:])
-</pre>
-</div>
-<p>
-請自行執行、比對解析後的結果<br />
-</p>
-</div>
-</div>
-<div id="outline-container-orga6c5e7a" class="outline-3">
-<h3 id="orga6c5e7a"><span class="section-number-3">3.4.</span> BeautifulSoup 的方法<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup></h3>
-<div class="outline-text-3" id="text-3-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1169,12 +1456,130 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </tr>
 </tbody>
 </table>
+<p>
+看起來有點複雜，其實一點也不簡單。<br />
+</p>
+
+<p>
+啊不是，我是要說，沒關係，在這裡我只打算介紹其中兩個最常用的方法：find()、find_all()，其他方法就留給有興趣的同學自行研究囉！<br />
+</p>
+
+<p>
+先看一下這兩個方法的完整參數：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>soup.find(name, attrs, string, **kwargs)       <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#31532;&#19968;&#20491;&#31526;&#21512;&#30340; Tag</span>
+<span class="linenr">2: </span>soup.find_all(name, attrs, string, limit, **kwargs)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22238;&#20659;&#25152;&#26377;&#31526;&#21512;&#30340; Tag&#65288;list&#65289;</span>
+</pre>
+</div>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">參數</th>
+<th scope="col" class="org-left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>name</code></td>
+<td class="org-left">標籤名稱，如 <code>'div'</code>, <code>'a'</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>attrs</code></td>
+<td class="org-left">屬性 dict，如 <code>attrs={'class': 'title'}</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>string</code></td>
+<td class="org-left">搜尋標籤內的文字</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>limit</code></td>
+<td class="org-left">（僅 <code>find_all</code> ）限制回傳的最大數量</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+有個方便的簡寫：可以直接用 <code>class_</code> 當參數名稱來篩選 class（因為 <code>class</code> 是 Python 保留字，所以要加底線），例如：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20197;&#19979;&#20841;&#31278;&#23531;&#27861;&#25928;&#26524;&#19968;&#27171;</span>
+<span class="linenr">2: </span>soup.find(<span style="color: #98be65;">'a'</span>, class_=<span style="color: #98be65;">'link'</span>)
+<span class="linenr">3: </span>soup.find(<span style="color: #98be65;">'a'</span>, attrs={<span style="color: #98be65;">'class'</span>: <span style="color: #98be65;">'link'</span>})
+</pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf5edb2b" class="outline-2">
-<h2 id="orgf5edb2b"><span class="section-number-2">4.</span> BS4:開始爬</h2>
+</div>
+<div id="outline-container-org5239b82" class="outline-2">
+<h2 id="org5239b82"><span class="section-number-2">4.</span> 先說我們最後到底想完什麼</h2>
 <div class="outline-text-2" id="text-4">
+<p>
+目標: 讓Python自己去抓取批踢踢 Japan_Travel 看板(<a href="https://www.ptt.cc/bbs/Japan_Travel/index.html">https://www.ptt.cc/bbs/Japan_Travel/index.html</a>)中所有文章的標題，並列出來，<br />
+</p>
+
+<p>
+目前的這個網頁長的像這樣:<br />
+</p>
+
+
+<div id="org362c41a" class="figure">
+<p><img src="images/2025-12-19_14-41-11.png" alt="2025-12-19_14-41-11.png" width="600" /><br />
+</p>
+<p><span class="figure-number">Figure 5: </span>2025-12-19的Japan_Travel看板</p>
+</div>
+
+<p>
+我們想要的結果是像這樣:<br />
+</p>
+<pre class="example" id="org47f4eea">
+第1則貼文::Fw: [食記] 喜一 福島喜多方 鮮味軟嫩叉燒喜多方拉麵
+第2則貼文::[資訊] JCB日本消費滿10萬回饋1萬
+第3則貼文::[遊記] 三保松原、富士山五湖、昇仙峽（前篇）
+第4則貼文::[資訊] JR四國松山-宇和島指定日期部分路段停駛
+第5則貼文::Re: [新聞] 獨／基隆-石垣島渡輪「延至10月開航
+第6則貼文::[遊記] 宮崎五天四夜（非自駕獨旅）-2
+第7則貼文::Re: [問題] 請教熊本熊港八代交通
+第8則貼文::[資訊] 20251219匯率
+第9則貼文::[問題] skyliner 成田往日暮里有需要提前買票嗎
+第10則貼文::[問題] 御朱印帳的尺寸
+第11則貼文::[資訊] 台灣虎航 26夏增班開賣
+第12則貼文::[資訊] 長榮航空台北＝青森航線增班
+第13則貼文::[遊記] SL磐越物語與只見線攝影紀行
+第14則貼文::[公告] 日本旅遊板板規 114.02.02
+第15則貼文::Fw: [公告] 請避免與登入1次之帳號進行交易
+第16則貼文::Fw: [公告] 違反菸害防制法本站將依使用者條款處分
+第17則貼文::[公告] 114.12 實況回報 (含天氣/物候/穿著詢問)
+</pre>
+
+<p>
+現在，我們就一步一步來完成這個目標吧！<br />
+</p>
+
+
+<p>
+#+begin_src python -r -n :async :results output :exports both :session BS<br />
+</p>
+
+
+<p>
+我們可以先觀察 HTML 程式碼，發現每一篇文章的標題都在 &lt;div class=&ldquo;title&rdquo;&gt; 這個 tag 裡面，例如:<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgae8b64a" class="outline-2">
+<h2 id="orgae8b64a"><span class="section-number-2">5.</span> BS4:開始爬</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 在[第三版: 以 BS4 解析 HTML]中，我們以 bs4.BeautifulSoup()將下載的 html 解析成 BS4 的物件，現在開始我們可以利用 BS4 來探索、抓取 html 的內容。<br />
 </p>
@@ -1183,9 +1588,9 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc721ef6" class="outline-3">
-<h3 id="orgc721ef6"><span class="section-number-3">4.1.</span> bs4.tag</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-org3a44e50" class="outline-3">
+<h3 id="org3a44e50"><span class="section-number-3">5.1.</span> bs4.tag</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 最簡單的方式是利用如下的格式取得 bs4 物件中的 tag<br />
 </p>
@@ -1194,9 +1599,9 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 </div>
-<div id="outline-container-org9dd03ec" class="outline-4">
-<h4 id="org9dd03ec"><span class="section-number-4">4.1.1.</span> &lt;title&gt;</h4>
-<div class="outline-text-4" id="text-4-1-1">
+<div id="outline-container-org623e03d" class="outline-4">
+<h4 id="org623e03d"><span class="section-number-4">5.1.1.</span> &lt;title&gt;</h4>
+<div class="outline-text-4" id="text-5-1-1">
 <p>
 例如，下例為取出 html 程式碼中的標題 tag<br />
 </p>
@@ -1224,9 +1629,9 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 </div>
 </div>
-<div id="outline-container-org1b4548e" class="outline-4">
-<h4 id="org1b4548e"><span class="section-number-4">4.1.2.</span> &lt;div&gt;</h4>
-<div class="outline-text-4" id="text-4-1-2">
+<div id="outline-container-org5a6828d" class="outline-4">
+<h4 id="org5a6828d"><span class="section-number-4">5.1.2.</span> &lt;div&gt;</h4>
+<div class="outline-text-4" id="text-5-1-2">
 <p>
 繼續取出 html 中的&lt;div&gt;tag，結果如下<br />
 </p>
@@ -1252,9 +1657,9 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </p>
 </div>
 </div>
-<div id="outline-container-orgf0081c1" class="outline-4">
-<h4 id="orgf0081c1"><span class="section-number-4">4.1.3.</span> &lt;a&gt;</h4>
-<div class="outline-text-4" id="text-4-1-3">
+<div id="outline-container-orgb792278" class="outline-4">
+<h4 id="orgb792278"><span class="section-number-4">5.1.3.</span> &lt;a&gt;</h4>
+<div class="outline-text-4" id="text-5-1-3">
 <p>
 依此類推，我們還能由取得的 doc.div 繼續抓到裡面的第一組&lt;a&gt; tag<br />
 </p>
@@ -1268,7 +1673,7 @@ urllib.request 是一個用來從 URLs (Uniform Resource Locators)取得資料�
 </pre>
 
 <p>
-tag &lt;a&gt;是一個超連結(hyperlink)，除了&rsquo;href&rsquo;和&rsquo;id&rsquo;，還有&rsquo;target&rsquo;, &rsquo;download&rsquo;, &rsquo;ref&rsquo;&#x2026;等屬性<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup>。我們可以透過以下的方式取得 tag 中的相關內容<br />
+tag &lt;a&gt;是一個超連結(hyperlink)，除了&rsquo;href&rsquo;和&rsquo;id&rsquo;，還有&rsquo;target&rsquo;, &rsquo;download&rsquo;, &rsquo;ref&rsquo;&#x2026;等屬性<sup><a id="fnr.7" class="footref" href="#fn.7" role="doc-backlink">7</a></sup>。我們可以透過以下的方式取得 tag 中的相關內容<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #c678dd;">print</span>(doc.div.a.text)
@@ -1285,20 +1690,20 @@ logo
 </div>
 </div>
 </div>
-<div id="outline-container-org0d9a727" class="outline-3">
-<h3 id="org0d9a727"><span class="section-number-3">4.2.</span> find</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-org8ff79ec" class="outline-3">
+<h3 id="org8ff79ec"><span class="section-number-3">5.2.</span> find</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
-BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find 有兩個常用的用法<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup>：<br />
+BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find 有兩個常用的用法<sup><a id="fnr.8" class="footref" href="#fn.8" role="doc-backlink">8</a></sup>：<br />
 </p>
 </div>
-<div id="outline-container-org743338e" class="outline-4">
-<h4 id="org743338e"><span class="section-number-4">4.2.1.</span> 直接接標籤名稱</h4>
-<div class="outline-text-4" id="text-4-2-1">
+<div id="outline-container-orgd5ac69f" class="outline-4">
+<h4 id="orgd5ac69f"><span class="section-number-4">5.2.1.</span> 直接接標籤名稱</h4>
+<div class="outline-text-4" id="text-5-2-1">
 </div>
-<div id="outline-container-orgb0818fd" class="outline-5">
-<h5 id="orgb0818fd"><span class="section-number-5">4.2.1.1.</span> Soup.find(‘tag’)</h5>
-<div class="outline-text-5" id="text-4-2-1-1">
+<div id="outline-container-org7583f38" class="outline-5">
+<h5 id="org7583f38"><span class="section-number-5">5.2.1.1.</span> Soup.find(‘tag’)</h5>
+<div class="outline-text-5" id="text-5-2-1-1">
 <p>
 可以直接找到第一個 a 標籤的元素，例如<br />
 </p>
@@ -1330,13 +1735,13 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </div>
 </div>
 </div>
-<div id="outline-container-orgcaa9f19" class="outline-4">
-<h4 id="orgcaa9f19"><span class="section-number-4">4.2.2.</span> 指定屬性名稱用鍵值方式對應</h4>
-<div class="outline-text-4" id="text-4-2-2">
+<div id="outline-container-org73dda23" class="outline-4">
+<h4 id="org73dda23"><span class="section-number-4">5.2.2.</span> 指定屬性名稱用鍵值方式對應</h4>
+<div class="outline-text-4" id="text-5-2-2">
 </div>
-<div id="outline-container-org3376f7d" class="outline-5">
-<h5 id="org3376f7d"><span class="section-number-5">4.2.2.1.</span> Soup.find(class_=’類別名稱’)</h5>
-<div class="outline-text-5" id="text-4-2-2-1">
+<div id="outline-container-orgb3fd8be" class="outline-5">
+<h5 id="orgb3fd8be"><span class="section-number-5">5.2.2.1.</span> Soup.find(class_=’類別名稱’)</h5>
+<div class="outline-text-5" id="text-5-2-2-1">
 <p>
 可以找到第一個 class 為’abc’的元素，要注意的是因為 python 中 class 是保留字，所以要用 class_才能表達<br />
 </p>
@@ -1346,7 +1751,7 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 
-<pre class="example" id="orgeca06e9">
+<pre class="example" id="org6757ba2">
 &lt;div class="r-ent"&gt;
 &lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
 &lt;div class="title"&gt;
@@ -1368,9 +1773,9 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 </div>
-<div id="outline-container-org43733a9" class="outline-5">
-<h5 id="org43733a9"><span class="section-number-5">4.2.2.2.</span> Soup.find(id=’id 名稱’)</h5>
-<div class="outline-text-5" id="text-4-2-2-2">
+<div id="outline-container-orgef928ec" class="outline-5">
+<h5 id="orgef928ec"><span class="section-number-5">5.2.2.2.</span> Soup.find(id=’id 名稱’)</h5>
+<div class="outline-text-5" id="text-5-2-2-2">
 <p>
 可以找到第一個 id 為’id 名稱’的元素<br />
 </p>
@@ -1391,9 +1796,9 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 </div>
-<div id="outline-container-orgfe949c5" class="outline-5">
-<h5 id="orgfe949c5"><span class="section-number-5">4.2.2.3.</span> Soup.find(type=’類型名稱’)</h5>
-<div class="outline-text-5" id="text-4-2-2-3">
+<div id="outline-container-orgb8a26bd" class="outline-5">
+<h5 id="orgb8a26bd"><span class="section-number-5">5.2.2.3.</span> Soup.find(type=’類型名稱’)</h5>
+<div class="outline-text-5" id="text-5-2-2-3">
 <p>
 可以找到第一個 type 為’類型名稱’的元素<br />
 </p>
@@ -1411,13 +1816,13 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </pre>
 </div>
 </div>
-<div id="outline-container-org2ed592c" class="outline-5">
-<h5 id="org2ed592c"><span class="section-number-5">4.2.2.4.</span> 複合搜尋</h5>
-<div class="outline-text-5" id="text-4-2-2-4">
+<div id="outline-container-org409b5dc" class="outline-5">
+<h5 id="org409b5dc"><span class="section-number-5">5.2.2.4.</span> 複合搜尋</h5>
+<div class="outline-text-5" id="text-5-2-2-4">
 <p>
 上述的 doc.find(class_=&rsquo;r-ent&rsquo;)找出了以下的一整個&ldquo;r-ent&rdquo;tag<br />
 </p>
-<pre class="example" id="org0b3eef9">
+<pre class="example" id="org7209a1c">
 &lt;div class="r-ent"&gt;
 &lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
 &lt;div class="title"&gt;
@@ -1441,7 +1846,7 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 這個&rsquo;r-ent&rsquo;&lt;div&gt;的結構大致如下:<br />
 </p>
 
-<div id="org1440c24" class="figure">
+<div id="org4eea2cd" class="figure">
 <p><img src="images/e-rent.png" alt="e-rent.png" /><br />
 </p>
 </div>
@@ -1487,11 +1892,11 @@ BS4 的 find()可以較彈性的找出 html 中不同類型的&lt;tag&gt;，find
 </div>
 </div>
 </div>
-<div id="outline-container-org3348a1a" class="outline-3">
-<h3 id="org3348a1a"><span class="section-number-3">4.3.</span> find_all</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-org5978e15" class="outline-3">
+<h3 id="org5978e15"><span class="section-number-3">5.3.</span> find_all</h3>
+<div class="outline-text-3" id="text-5-3">
 <p>
-find()只會傳回第一個符合條件的資料，我們可以使用 find_all 找出所有特定的 HTML 標籤節點，再以 Python 的迴圈來依序輸出每個超連結的文字<sup><a id="fnr.10" class="footref" href="#fn.10" role="doc-backlink">10</a></sup>：<br />
+find()只會傳回第一個符合條件的資料，我們可以使用 find_all 找出所有特定的 HTML 標籤節點，再以 Python 的迴圈來依序輸出每個超連結的文字<sup><a id="fnr.9" class="footref" href="#fn.9" role="doc-backlink">9</a></sup>：<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #dcaeea;">QQ</span> = doc.find_all(class_=<span style="color: #98be65;">'r-ent'</span>)
@@ -1499,7 +1904,7 @@ find()只會傳回第一個符合條件的資料，我們可以使用 find_all �
 </pre>
 </div>
 
-<pre class="example" id="orge8e894b">
+<pre class="example" id="orgc5325ac">
 [&lt;div class="r-ent"&gt;
 &lt;div class="nrec"&gt;&lt;span class="hl f2"&gt;9&lt;/span&gt;&lt;/div&gt;
 &lt;div class="title"&gt;
@@ -1679,7 +2084,7 @@ find()只會傳回第一個符合條件的資料，我們可以使用 find_all �
 </pre>
 </div>
 
-<pre class="example" id="org3ea1a1f">
+<pre class="example" id="org72cc348">
 &lt;div class="title"&gt;
  &lt;a href="/bbs/Japan_Travel/M.1709715202.A.9ED.html"&gt;
   [問題] 京都住宿請益
@@ -1767,12 +2172,12 @@ AttributeError: 'NoneType' object has no attribute 'text'
 </p>
 </div>
 </div>
-<div id="outline-container-org7507efb" class="outline-3">
-<h3 id="org7507efb"><span class="section-number-3">4.4.</span> 第四版：擷取所有主題</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-orga7b7412" class="outline-3">
+<h3 id="orga7b7412"><span class="section-number-3">5.4.</span> 第四版：擷取所有主題</h3>
+<div class="outline-text-3" id="text-5-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> urllib.request <span style="color: #51afef;">as</span> req
-<span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/Food/index.html"</span>
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">url</span> = <span style="color: #98be65;">"https://www.ptt.cc/bbs/Japan_Travel/index.html"</span>
 <span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24171;request&#21152;&#19978;&#19968;&#20491;header</span>
 <span class="linenr"> 4: </span><span style="color: #dcaeea;">request</span> = req.Request(url, headers = {
 <span class="linenr"> 5: </span>    <span style="color: #98be65;">"User-Agent"</span>:<span style="color: #98be65;">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:72.0) Gecko/20100101 Firefox/72.0"</span>
@@ -1786,43 +2191,41 @@ AttributeError: 'NoneType' object has no attribute 'text'
 <span class="linenr">13: </span>
 <span class="linenr">14: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#30452;&#25509;&#25214;&#21040;&#25152;&#26377;class&#28858;title&#30340;div</span>
 <span class="linenr">15: </span><span style="color: #dcaeea;">titles</span> = doc.find_all(<span style="color: #98be65;">"div"</span>, class_=<span style="color: #98be65;">"title"</span>)
-<span class="linenr">16: </span><span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> titles:
-<span class="linenr">17: </span>    <span style="color: #51afef;">try</span>:
-<span class="linenr">18: </span>        <span style="color: #dcaeea;">t</span> = i.a
-<span class="linenr">19: </span>        <span style="color: #c678dd;">print</span>(t.text)
-<span class="linenr">20: </span>    <span style="color: #51afef;">except</span>:
-<span class="linenr">21: </span>        <span style="color: #51afef;">pass</span>
+<span class="linenr">16: </span><span style="color: #dcaeea;">no</span> = <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">17: </span><span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> titles:
+<span class="linenr">18: </span>    <span style="color: #51afef;">try</span>:
+<span class="linenr">19: </span>        <span style="color: #dcaeea;">t</span> = i.a
+<span class="linenr">20: </span>        <span style="color: #c678dd;">print</span>(f<span style="color: #98be65;">'&#31532;</span>{no}<span style="color: #98be65;">&#21063;&#36028;&#25991;::</span>{t.text}<span style="color: #98be65;">'</span>)
+<span class="linenr">21: </span>        <span style="color: #dcaeea;">no</span> += <span style="color: #da8548; font-weight: bold;">1</span>
+<span class="linenr">22: </span>    <span style="color: #51afef;">except</span>:
+<span class="linenr">23: </span>        <span style="color: #51afef;">pass</span>
 </pre>
 </div>
 
-<pre class="example" id="org11078f1">
-[食記] 台北車站 倪記鍋貼 歷史悠久的平價美食
-[食記] 四川蜀渝小吃 台北大安 麻辣下飯麻婆豆腐
-[轉讓] 饗 A Joy 3/30 六位
-[食記] 桃園中壢區。豐園祖傳客家大湯圓
-[食記] 台中 網美餐廳近中國醫分店，KOI PLUS
-[食記] 台中 打盹 Nap &amp; Knife - 義大利麵專賣
-[食記] 台中大墩燒肉中山 最難預訂精緻和牛燒肉
-[食記] 新北市新店區-新馬辣經典麻辣鍋
-[食記] 基隆 義美石頭火鍋 二訪
-[食記] 釜山 No Brand Burger
-[食記] 台北大安 韓庭州韓國料理 公館老字號
-[食記] 新北新店 山東水餃王 多種小菜與麵食
-[食記] 台北福華大飯店-彩虹座-台北老字號buffet
-[廣宣] 桃園 高級日本A5和牛有專人代烤-純水燒肉
-[食記]台南美食｜米亞漢堡｜蔬菜量豐富早餐店
-[食記] 台北天母 家傳美味小館- 好吃的麻醬麵
-[食記] 台中中區—久流麵攤｜全臺最狂什錦麵 大胃王版海陸齊聚銅板
-[公告] Food板 板規 V3.91
-[公告] 發文請在標題加上地區及提供地址電話。^^
-[公告] 文章被刪除者請洽精華區的資源回收桶
-[公告] 新增板規22：發文禁附延伸閱讀連結
+<pre class="example" id="org34f3cb5">
+第1則貼文::Fw: [食記] 喜一 福島喜多方 鮮味軟嫩叉燒喜多方拉麵
+第2則貼文::[資訊] JCB日本消費滿10萬回饋1萬
+第3則貼文::[遊記] 三保松原、富士山五湖、昇仙峽（前篇）
+第4則貼文::[資訊] JR四國松山-宇和島指定日期部分路段停駛
+第5則貼文::Re: [新聞] 獨／基隆-石垣島渡輪「延至10月開航
+第6則貼文::[遊記] 宮崎五天四夜（非自駕獨旅）-2
+第7則貼文::Re: [問題] 請教熊本熊港八代交通
+第8則貼文::[資訊] 20251219匯率
+第9則貼文::[問題] skyliner 成田往日暮里有需要提前買票嗎
+第10則貼文::[問題] 御朱印帳的尺寸
+第11則貼文::[資訊] 台灣虎航 26夏增班開賣
+第12則貼文::[資訊] 長榮航空台北＝青森航線增班
+第13則貼文::[遊記] SL磐越物語與只見線攝影紀行
+第14則貼文::[公告] 日本旅遊板板規 114.02.02
+第15則貼文::Fw: [公告] 請避免與登入1次之帳號進行交易
+第16則貼文::Fw: [公告] 違反菸害防制法本站將依使用者條款處分
+第17則貼文::[公告] 114.12 實況回報 (含天氣/物候/穿著詢問)
 </pre>
 </div>
 </div>
-<div id="outline-container-org92a835c" class="outline-3">
-<h3 id="org92a835c"><span class="section-number-3">4.5.</span> [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-org1f99acd" class="outline-3">
+<h3 id="org1f99acd"><span class="section-number-3">5.5.</span> [課堂練習]爬蟲實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div class="outline-text-3" id="text-5-5">
 <p>
 Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇文章的標題以及文章發表日期。<br />
 </p>
@@ -1835,9 +2238,9 @@ Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇�
 </pre>
 </div>
 </div>
-<div id="outline-container-orgc89391c" class="outline-3">
-<h3 id="orgc89391c"><span class="section-number-3">4.6.</span> 爬蟲進階閱讀</h3>
-<div class="outline-text-3" id="text-4-6">
+<div id="outline-container-orgba998ad" class="outline-3">
+<h3 id="orgba998ad"><span class="section-number-3">5.6.</span> 爬蟲進階閱讀</h3>
+<div class="outline-text-3" id="text-5-6">
 <ul class="org-ul">
 <li><a href="https://liangyuh.neocities.org/python/2_Python_BS4">網路爬蟲：數據資料的爬取</a><br /></li>
 <li><a href="https://steam.oxxostudio.tw/category/python/spider/beautiful-soup.html">Beautiful Soup 函式庫</a><br /></li>
@@ -1871,22 +2274,18 @@ Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇�
 </p></div></div>
 
 <div class="footdef"><sup><a id="fn.6" class="footnum" href="#fnr.6" role="doc-backlink">6</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://iter01.com/60617.html">Python 爬蟲十六式 - 第五式：BeautifulSoup，美味的湯</a><br />
-</p></div></div>
-
-<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://steam.oxxostudio.tw/category/python/spider/beautiful-soup.html">Beautiful Soup 函式庫</a><br />
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.7" class="footnum" href="#fnr.7" role="doc-backlink">7</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://www.w3schools.com/tags/tag_a.asp">HTML &lt;a&gt; Tag</a><br />
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.8" class="footnum" href="#fnr.8" role="doc-backlink">8</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://seanchien0525.medium.com/python-requests-beautifulsoup-%E7%88%AC%E8%9F%B2%E6%95%99%E5%AD%B8-83d146faa9e8">Python 網路爬蟲Web Crawler教學 — Beautiful Soup篇</a><br />
 </p></div></div>
 
-<div class="footdef"><sup><a id="fn.10" class="footnum" href="#fnr.10" role="doc-backlink">10</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+<div class="footdef"><sup><a id="fn.9" class="footnum" href="#fnr.9" role="doc-backlink">9</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
 <a href="https://blog.gtwang.org/programming/python-beautiful-soup-module-scrape-web-pages-tutorial/">Python 使用 Beautiful Soup 抓取與解析網頁資料</a><br />
 </p></div></div>
 
@@ -1895,7 +2294,7 @@ Google 美食達人「壽司羊」，以爬蟲程式列出其網站最近五篇�
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2025-12-19 Fri 09:28</p>
+<p class="date">Created: 2026-02-13 Fri 15:33</p>
 </div>
 </body>
 </html>
