@@ -1016,7 +1016,7 @@ print(func())
 : HELLO, WORLD!
 這種會捕捉並記住外部參數的function，稱之為詞法閉包(lexical closure)，或簡稱閉包(closure)。閉包會記住外圍程式範圍裡的變數值，即便其程式流程已經離開該變數所在的範圍也一樣。
 
-簡單來說：closure 就像一個「帶著行李箱的 function」——它不只記得自己要做什麼事，還記得當初被建立時周圍的環境（變數）。上面的例子中，即使 =get_speak_func= 已經執行完畢，=func= 仍然記得 =text= 的值是 ='Hello, world'= 。
+簡單來說：closure 就像一個「帶著行李箱的 function」——它不只記得自己要做什麼事，還記得當初被建立時周圍的環境（變數）。上面的例子中，即使 =get_speak_func= 已經執行完畢，=func= 仍然記得 =text= 的值是 'Hello, world' 。
 *** 物件也能像function一樣被呼叫
 在Python中，function皆為object，反之object不見得是function，不過，我們能讓不是function的object變成可呼叫(callable)，許多情況下，甚至可以把callable object當成function，在後面加上小括號來呼叫它，甚至能傳入參數。要使object變為callable，方法是在類別加入__call__：
 #+begin_src python -r -n :results output :exports both
@@ -1752,7 +1752,7 @@ print(car)
 - 可加入自訂method
 - 可繼承（跟一般 class 一樣用 =class 子類別(父類別):= ）
 - =@dataclass(frozen=True)= — 建立不可變（immutable）的資料類別，設定後就不能改屬性值
-- 欄位可設預設值：例如 =name: str = 'unknown'=
+- 欄位可設預設值：例如 =name: str= 預設為 'unknown'
 #+begin_src python -r -n :results output :exports both
 from dataclasses import dataclass
 

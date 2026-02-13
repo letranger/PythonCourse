@@ -883,8 +883,8 @@ c = int(c)
 scoreX, scoreY, scoreZ = map(int, input().split())
 #+end_src
 上面這行做了三件事：
-1. =input()= 讀入一整行字串，例如 ='23 45 66'=
-2. =.split()= 把字串以空白切割成 =['23', '45', '66']=
+1. =input()= 讀入一整行字串，例如 =23 45 66=
+2. =.split()= 把字串以空白切割成 =['23', '45', '66']
 3. =map(int, ...)= 把每個字串元素都用 int() 轉成整數，最後分別 assign 給 scoreX、scoreY、scoreZ
 
 #+begin_quote
@@ -1581,14 +1581,14 @@ if 'tnfsh' in email:
 - <str>.isupper(): 字串中英文全大寫
 - <str>.find(<str1>): 在<str>尋找<str1>，回傳索引值； 若未找到，回傳-1
   + 完整語法： =str.find(sub[, start[, end]])=
-  + start/end 可限制搜尋範圍，例如 ='hello'.find('l', 3)= 會從 index 3 開始找
+  + start/end 可限制搜尋範圍，例如 =s.find('l', 3)= 會從 index 3 開始找
 - <str>.replace(<str1>, <str2>): 將<str>中的<str1>以<str2>取代
   + 完整語法： =str.replace(old, new[, count])=
-  + count 可限制最多取代幾次，例如 ='aaa'.replace('a', 'b', 2)= 得到 ='bba'=
+  + count 可限制最多取代幾次，例如 =s.replace('a', 'b', 2)= 在 s 為 'aaa' 時會得到 'bba'
 - <str>.split([sep]): 字串以 sep 分割, sep 預設值為空白
   + 完整語法： =str.split(sep=None, maxsplit=-1)=
   + 不指定 sep 則以任意空白分隔（連續空白視為一個）
-  + maxsplit 可限制最多切幾刀，例如 ='a b c d'.split(' ', 2)= 得到 =['a', 'b', 'c d']=
+  + maxsplit 可限制最多切幾刀，例如 =s.split(' ', 2)= 在 s 為 'a b c d' 時得到 ['a', 'b', 'c d']
 
 ** 範例 3
 #+BEGIN_SRC python -r -n :results output :exports both
