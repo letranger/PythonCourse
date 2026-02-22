@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CowBell 偵探社：用 Python 破解校園懸案</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: "Noto Serif TC", "Source Han Serif TC", serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    line-height: 1.8;
+  }
+  h1 {
+    color: #f5c518;
+    text-align: center;
+    border-bottom: 2px solid #f5c518;
+    padding-bottom: 12px;
+  }
+  h2 {
+    color: #f5c518;
+    margin-top: 40px;
+    border-left: 4px solid #f5c518;
+    padding-left: 12px;
+  }
+  h3 { color: #e0a000; }
+  strong { color: #ff6b6b; }
+  em { color: #a0c4ff; font-style: normal; }
+  a { color: #f5c518; }
+  .terminal {
+    background: #0d0d0d;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: "Courier New", monospace;
+    color: #00ff88;
+    margin: 16px 0;
+    font-size: 0.95em;
+    line-height: 1.6;
+  }
+  .cowbell {
+    background: #16213e;
+    border-left: 4px solid #f5c518;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 0.95em;
+  }
+  .cowbell::before {
+    content: "🔔 牛鈴：";
+    font-weight: bold;
+    color: #f5c518;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+  th {
+    background: #16213e;
+    color: #f5c518;
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid #3a3a3a;
+  }
+  td {
+    padding: 10px 14px;
+    border: 1px solid #3a3a3a;
+  }
+  tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+  .mission {
+    background: #16213e;
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border: 1px solid #3a3a3a;
+  }
+  .mission h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .badge {
+    display: inline-block;
+    background: #f5c518;
+    color: #1a1a2e;
+    font-size: 0.75em;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid #3a3a3a;
+    margin: 32px 0;
+  }
+</style>
+</head>
+<body>
+
+<h1>🔔 CowBell 偵探社<br><span style="font-size:0.6em;color:#a0a0a0;">用 Python 破解校園懸案</span></h1>
+
+<h2>序章：歡迎加入 CowBell 偵探社</h2>
+
+<p>2025 年 12 月 25 日，學校辦理聖誕夜校園宿營活動，吸引大量學生留宿校園。活動期間校園人員進出頻繁，晚間動線複雜。</p>
+
+<p>在活動結束後的隔天清晨，校方發現 <strong>403 電腦教室遭人入侵</strong>，教室內所有的黑色 MacMini 主機全數被入侵者無恥地噴成白色，所有桌布也都被改為「穿著性感內衣的聖誕兔女郎」。</p>
+
+<p>此舉讓身兼<em>南一中道德重整委員會會長</em>的電腦教師十分氣憤，旋即通報校方，但校方為了<em>有剩但不多</em>的校譽著想，立即封鎖此消息，並延請南一中地下社團「<strong>CowBell 偵探社</strong>」協助調查此案。</p>
+
+<p>這個社團的命名原是想向「柯南」致敬，原來的英文名稱應該是「柯北偵探社 (CoBe Detective Agency)」，但因為初代社長手殘打錯字，變成了「CowBell」，於是也就將錯就錯沿用下來了。正好也象徵本偵探社的「牛鈴」精神，擁有<em>「叮叮噹噹，真相大白」</em>的決心。</p>
+
+<p>初代社長還留下了一個遺產——一個用 Python 寫的聊天機器人，安裝在社辦那台又老又慢的電腦上。這個機器人原本只會回覆「叮叮噹噹」四個字，但在某次 Windows 更新後，它突然開始會用充滿疲憊感的語氣吐槽社員。社員們管它叫「<strong>牛鈴</strong>」，並正式任命它為偵探社的 AI 分析助手。</p>
+
+<p>身為<em>CowBell 偵探社現任社長鄰居小孩同學</em>的你，決定接受社長的指派，帶領社員協助校方找出真正的兇手。</p>
+
+<div class="terminal">
+&gt; 歡迎加入 CowBell 偵探社。案件編號：#2025-XMAS-403。<br>
+&gt; 案情摘要：403 電腦教室遭入侵，主機被噴白漆，桌布被竄改。<br>
+&gt; 調查方式：學會 Python，逐步分析六大類調查資料。<br>
+&gt; 警告：若未能在期限內破案，社長說要拿你的社費去買牛鈴。
+</div>
+
+<div class="cowbell">
+「叮。我是牛鈴，CowBell 偵探社的 AI 分析助手。」電腦螢幕上跳出一個看起來像是 90 年代聊天室的視窗。「在你問之前：是的，我是一個 chatbot；不，我不知道為什麼我會有自我意識；是的，你的社費真的會被拿去買牛鈴。」
+</div>
+
+<h3>CowBell 偵探社基本資訊</h3>
+
+<table>
+<tr><th>項目</th><th>說明</th></tr>
+<tr><td>社長</td><td>神龍見首不見尾（據說長年在外執行秘密任務，其實是去補習了）</td></tr>
+<tr><td>AI 助手</td><td>牛鈴（一個意外獲得自我意識的 Python chatbot）</td></tr>
+<tr><td>座右銘</td><td>「叮叮噹噹，真相大白。」</td></tr>
+<tr><td>任務數量</td><td>6 項調查任務</td></tr>
+<tr><td>獎勵</td><td>每完成一項任務，獲得一枚「調查徽章」</td></tr>
+<tr><td>懲罰</td><td>寫出 SyntaxError 時，牛鈴會顯示「叮叮噹噹，語法不通」然後沉默三秒</td></tr>
+</table>
+
+<h3>學生代號</h3>
+<p>為了保護學生隱私，偵探社統一以「S01」至「S40」的編號來代表所有涉案學生。後續各任務的分析結果，均可透過此編號相互串連比對。</p>
+
+<hr>
+
+<h2>學期任務總覽</h2>
+
+<div class="mission">
+<h3><span class="badge">任務 1</span> 環境建置（Colab）</h3>
+<p>熟悉 Google Colab 操作環境，完成第一個嫌疑人風險評估程式，正式成為偵探社資料分析組成員。</p>
+</div>
+
+<div class="mission">
+<h3><span class="badge">任務 2</span> 數值運算（NumPy）</h3>
+<p>分析現場採集的 30 枚指紋特徵數據（紋線密度、分岔點數、端點數、中心距離），清理被社員搞壞的錯誤資料，找出異常指紋。另外分析 403 教室聖誕夜的環境感測器數據（溫度、濕度、噪音），鎖定案發時間。</p>
+</div>
+
+<div class="mission">
+<h3><span class="badge">任務 3</span> 資料視覺化（Matplotlib）</h3>
+<p>將調查數據繪製成圖表，在社團會議上呈現調查進度。包括案件時間線、嫌疑人分布、指紋特徵散佈圖等視覺化分析。</p>
+</div>
+
+<div class="mission">
+<h3><span class="badge">任務 4</span> 資料處理（Pandas）</h3>
+<p>整理人證調查小組蒐集的學生證詞資料，修復混亂的表格數據（負數時間、超範圍評分、空白姓名、出現地點為「火星」的離譜記錄），建立完整的嫌疑人資料庫。</p>
+</div>
+
+<div class="mission">
+<h3><span class="badge">任務 5</span> 網路爬蟲</h3>
+<p>從學校公告系統和活動紀錄網頁上爬取關鍵線索，包括聖誕夜活動報名名單、場地借用紀錄、校園設備維護日誌等。</p>
+</div>
+
+<div class="mission">
+<h3><span class="badge">任務 6</span> 圖形介面（GUI）</h3>
+<p>用 tkinter 打造 CowBell 偵探社的案件管理系統，整合所有調查證據，讓偵探社終於不用靠便利貼辦案。</p>
+</div>
+
+</body>
+</html>
