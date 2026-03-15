@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-13 Fri 15:33 -->
+<!-- 2026-03-15 Sun 22:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>GUI</title>
@@ -194,6 +194,7 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="../css/muse.css" />
+<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
@@ -202,75 +203,77 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org2f4bf65">1. Streamlit</a>
+<li><a href="#org1755fb0">1. Streamlit</a>
 <ul>
-<li><a href="#org1188612">1.1. 特點：</a></li>
-<li><a href="#orgeed5c58">1.2. 適用場景：</a></li>
-<li><a href="#org2bddb26">1.3. 安裝套件</a></li>
-<li><a href="#org34dd404">1.4. 在 Google Colab 中執行 Streamlit</a></li>
-<li><a href="#org2624923">1.5. 秀資料</a></li>
-<li><a href="#org9aed675">1.6. 側邊欄 (Sidebar)</a></li>
-<li><a href="#org74cee00">1.7. 選單</a></li>
-<li><a href="#orga7f0a22">1.8. 地圖</a></li>
-<li><a href="#org7e36cae">1.9. 照相</a></li>
-<li><a href="#org40b1167">1.10. 部署應用程式 (Deploy your app)</a></li>
-<li><a href="#org327304b">1.11. 研習用範例</a></li>
-<li><a href="#org218e1b6">1.12. 執行結果</a></li>
+<li><a href="#orgedeb467">1.1. 特點：</a></li>
+<li><a href="#org0bc75d7">1.2. 適用場景：</a></li>
+<li><a href="#org9944c66">1.3. 開發環境設定（本機）</a></li>
+<li><a href="#org8cd811e">1.4. 替代方案：在 Google Colab 中執行 Streamlit</a></li>
+<li><a href="#orgf6a4fe1">1.5. 秀資料</a></li>
+<li><a href="#org66aaefb">1.6. 文字輸入與核取方塊</a></li>
+<li><a href="#orgd350e8a">1.7. 在 Streamlit 中使用 Matplotlib</a></li>
+<li><a href="#orgc0f6d98">1.8. 上傳檔案</a></li>
+<li><a href="#orgecea64a">1.9. 版面配置</a></li>
+<li><a href="#orgbfe3cbd">1.10. 顯示圖片</a></li>
+<li><a href="#orgdc02cba">1.11. 常用元件速查表</a></li>
+<li><a href="#org56cd505">1.12. 側邊欄 (Sidebar)</a></li>
+<li><a href="#orgb78a182">1.13. 選單</a></li>
+<li><a href="#orgfec8bc0">1.14. 地圖</a></li>
+<li><a href="#org70b7f12">1.15. 照相</a></li>
+<li><a href="#org01b5a7f">1.16. 部署應用程式 (Deploy your app)</a></li>
+<li><a href="#org6d2df2c">1.17. 研習用範例</a></li>
+<li><a href="#org7b975ec">1.18. 執行結果</a></li>
 </ul>
 </li>
-<li><a href="#orgef474ef">2. Gradio</a>
+<li><a href="#orgfb0c24c">2. Gradio</a>
 <ul>
-<li><a href="#org13aa7e6">2.1. 安裝套件</a></li>
-<li><a href="#orgcec5b80">2.2. Hello world</a></li>
-<li><a href="#orgdeb3e63">2.3. 數字 I/O</a></li>
-<li><a href="#org050e603">2.4. 文字 I/O</a></li>
-<li><a href="#org9ee1a52">2.5. 多資料 I/O</a></li>
-<li><a href="#org2547647">2.6. 圖形 I/O</a></li>
-<li><a href="#orgd0582b6">2.7. 按鈕 (Button)</a></li>
-<li><a href="#org79e454f">2.8. Radio</a></li>
-<li><a href="#org4e4c245">2.9. Tab(分頁)</a></li>
+<li><a href="#orgc3e7272">2.1. 安裝套件</a></li>
+<li><a href="#org6562175">2.2. Hello world</a></li>
+<li><a href="#org59f1a06">2.3. 數字 I/O</a></li>
+<li><a href="#org5ab45b7">2.4. 文字 I/O</a></li>
+<li><a href="#org603dd28">2.5. 多資料 I/O</a></li>
+<li><a href="#orgd4e79d7">2.6. 圖形 I/O</a></li>
+<li><a href="#org3e036f2">2.7. 按鈕 (Button)</a></li>
+<li><a href="#orgeafa8d7">2.8. Radio</a></li>
+<li><a href="#orgd0b04cd">2.9. Tab(分頁)</a></li>
 </ul>
 </li>
-<li><a href="#org818c78c">3. Flask</a>
+<li><a href="#org6761a13">3. Flask</a>
 <ul>
-<li><a href="#orgc8c52d6">3.1. 按鈕 (Button)</a></li>
-<li><a href="#org361a183">3.2. 輸入表單 (Input form)</a></li>
-<li><a href="#org9bcc0be">3.3. [課堂練習]Flask 自我介紹網站&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org21c191a">3.1. 按鈕 (Button)</a></li>
+<li><a href="#org437bb08">3.2. 輸入表單 (Input form)</a></li>
+<li><a href="#org5ed956f">3.3. [課堂練習]Flask 自我介紹網站&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#orgfa6f6ff">4. tkinter</a>
+<li><a href="#orgdc8b0bb">4. tkinter</a>
 <ul>
-<li><a href="#orgd06c91a">4.1. 安裝</a></li>
-<li><a href="#orgedb9759">4.2. 範例 #1</a></li>
-<li><a href="#org7022c5d">4.3. 範例 #2</a></li>
-<li><a href="#orgca84a2e">4.4. [課堂練習]簡易計算機&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgedf8066">4.1. 安裝</a></li>
+<li><a href="#orga0ef21f">4.2. 範例 #1</a></li>
+<li><a href="#orge86738e">4.3. 範例 #2</a></li>
+<li><a href="#org77d85d5">4.4. [課堂練習]簡易計算機&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org65c69a4">5. PyInstaller</a>
+<li><a href="#orgaf62c59">5. PyInstaller</a>
 <ul>
-<li><a href="#org2690109">5.1. 安裝pyinstaller</a></li>
-<li><a href="#org29381db">5.2. 準備要打包的檔案</a></li>
-<li><a href="#org1ca89ff">5.3. 打包</a></li>
+<li><a href="#orga305a05">5.1. 安裝pyinstaller</a></li>
+<li><a href="#org57a2afd">5.2. 準備要打包的檔案</a></li>
+<li><a href="#org14c2a20">5.3. 打包</a></li>
 </ul>
 </li>
-<li><a href="#orgcb6f806">6. Flet</a></li>
-<li><a href="#orgdb0ebef">7. <span class="todo TODO">TODO</span> Kivy</a></li>
-<li><a href="#orga52033a">8. PyQt</a></li>
-<li><a href="#orgd809458">9. Resources</a></li>
+<li><a href="#org5956c5f">6. Resources</a></li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/gui.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/gui.html.svg"/></a>
-#+HTML_HEAD_EXTRA: <script src="../css/copy_code.js"></script>
-<div id="outline-container-org2f4bf65" class="outline-2">
-<h2 id="org2f4bf65"><span class="section-number-2">1.</span> Streamlit</h2>
+<div id="outline-container-org1755fb0" class="outline-2">
+<h2 id="org1755fb0"><span class="section-number-2">1.</span> Streamlit</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Streamlit 是一個開源的 Python 庫，專為數據科學家、機器學習工程師和開發者設計，能夠快速構建美觀且功能強大的網頁應用程式。它最大的優勢在於不需要複雜的前端開發技術，只需用簡單的 Python 代碼即可生成互動式的網頁應用。Streamlit 常被用於展示數據分析結果、機器學習模型或交互式儀表板。<br />
 </p>
 </div>
-<div id="outline-container-org1188612" class="outline-3">
-<h3 id="org1188612"><span class="section-number-3">1.1.</span> 特點：</h3>
+<div id="outline-container-orgedeb467" class="outline-3">
+<h3 id="orgedeb467"><span class="section-number-3">1.1.</span> 特點：</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li>簡單易用：只需要使用 Python 代碼，無需學習 HTML、CSS 或 JavaScript 等前端技術。<br /></li>
@@ -280,8 +283,8 @@ Streamlit 是一個開源的 Python 庫，專為數據科學家、機器學習�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeed5c58" class="outline-3">
-<h3 id="orgeed5c58"><span class="section-number-3">1.2.</span> 適用場景：</h3>
+<div id="outline-container-org0bc75d7" class="outline-3">
+<h3 id="org0bc75d7"><span class="section-number-3">1.2.</span> 適用場景：</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>數據展示與可視化：簡單地展示數據分析結果，通過圖表和文字解說進行報告。<br /></li>
@@ -290,22 +293,31 @@ Streamlit 是一個開源的 Python 庫，專為數據科學家、機器學習�
 </ul>
 </div>
 </div>
-<div id="outline-container-org2bddb26" class="outline-3">
-<h3 id="org2bddb26"><span class="section-number-3">1.3.</span> 安裝套件</h3>
+<div id="outline-container-org9944c66" class="outline-3">
+<h3 id="org9944c66"><span class="section-number-3">1.3.</span> 開發環境設定（本機）</h3>
 <div class="outline-text-3" id="text-1-3">
+<p>
+建議在自己的電腦上開發 Streamlit 應用，這是最簡單、最穩定的方式。<br />
+</p>
 </div>
-<div id="outline-container-org1f10cf4" class="outline-4">
-<h4 id="org1f10cf4"><span class="section-number-4">1.3.1.</span> 1. 使用前先安裝套件</h4>
+<div id="outline-container-orgd562441" class="outline-4">
+<h4 id="orgd562441"><span class="section-number-4">1.3.1.</span> 1. 安裝套件</h4>
 <div class="outline-text-4" id="text-1-3-1">
+<p>
+在 PyCharm 或 VS Code 的終端機輸入：<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip3 install streamlit
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orged46ba2" class="outline-4">
-<h4 id="orged46ba2"><span class="section-number-4">1.3.2.</span> 2. 利用pycharm或其他編輯器新增一個python程式碼，檔名先叫main.py，輸入下列程式、存檔</h4>
+<div id="outline-container-org2eb8e64" class="outline-4">
+<h4 id="org2eb8e64"><span class="section-number-4">1.3.2.</span> 2. 建立程式檔案</h4>
 <div class="outline-text-4" id="text-1-3-2">
+<p>
+新增一個 Python 檔案，檔名先叫 =main.py=，輸入下列程式並存檔：<br />
+</p>
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr">2: </span>
@@ -314,23 +326,26 @@ Streamlit 是一個開源的 Python 庫，專為數據科學家、機器學習�
 </div>
 </div>
 </div>
-<div id="outline-container-orgf7bb4b4" class="outline-4">
-<h4 id="orgf7bb4b4"><span class="section-number-4">1.3.3.</span> 3. 執行</h4>
+<div id="outline-container-org4326ee2" class="outline-4">
+<h4 id="org4326ee2"><span class="section-number-4">1.3.3.</span> 3. 執行</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <p>
-在pycharm、visual code裡的終端機輸入以下指令<br />
+在終端機輸入以下指令，瀏覽器會自動開啟：<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>streamlit run main.py
 </pre>
 </div>
+<p>
+程式修改後存檔，網頁會自動重新載入，不需要重新執行指令。<br />
+</p>
 </div>
 </div>
-<div id="outline-container-org6ca788c" class="outline-4">
-<h4 id="org6ca788c"><span class="section-number-4">1.3.4.</span> 結果</h4>
+<div id="outline-container-org5057e16" class="outline-4">
+<h4 id="org5057e16"><span class="section-number-4">1.3.4.</span> 結果</h4>
 <div class="outline-text-4" id="text-1-3-4">
 
-<div id="org1a91fe1" class="figure">
+<div id="org34af3d9" class="figure">
 <p><img src="images/Streamlit/2024-07-24_13-58-48_2024-07-24_13-58-19.png" alt="2024-07-24_13-58-48_2024-07-24_13-58-19.png" width="300" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>Streamlit 執行畫面</p>
@@ -338,36 +353,27 @@ Streamlit 是一個開源的 Python 庫，專為數據科學家、機器學習�
 </div>
 </div>
 </div>
-<div id="outline-container-org34dd404" class="outline-3">
-<h3 id="org34dd404"><span class="section-number-3">1.4.</span> 在 Google Colab 中執行 Streamlit</h3>
+<div id="outline-container-org8cd811e" class="outline-3">
+<h3 id="org8cd811e"><span class="section-number-3">1.4.</span> 替代方案：在 Google Colab 中執行 Streamlit</h3>
 <div class="outline-text-3" id="text-1-4">
+<p>
+如果你的電腦無法安裝 Python 環境，可以用 Google Colab 來開發 Streamlit 應用。但由於 Colab 不支援直接開啟網頁服務，需要透過 localtunnel 將應用暴露到網路上，步驟較繁瑣，建議*優先使用本機開發*。<br />
+</p>
 </div>
-<div id="outline-container-orge040d7b" class="outline-4">
-<h4 id="orge040d7b"><span class="section-number-4">1.4.1.</span> 安裝streamlit</h4>
+<div id="outline-container-orgdcb54e0" class="outline-4">
+<h4 id="orgdcb54e0"><span class="section-number-4">1.4.1.</span> Step 1：安裝套件</h4>
 <div class="outline-text-4" id="text-1-4-1">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span>!pip install streamlit -q
+<pre class="src src-python"><span class="linenr">1: </span>!pip install streamlit <span style="color: #51afef;">-</span>q
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org02de795" class="outline-4">
-<h4 id="org02de795"><span class="section-number-4">1.4.2.</span> 取得外部IP</h4>
+<div id="outline-container-org0bc3a3d" class="outline-4">
+<h4 id="org0bc3a3d"><span class="section-number-4">1.4.2.</span> Step 2：撰寫程式</h4>
 <div class="outline-text-4" id="text-1-4-2">
 <p>
-The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP address using the wget command.<br />
-</p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span>!wget -q -O - ipv4.icanhazip.com
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-org5608d09" class="outline-4">
-<h4 id="org5608d09"><span class="section-number-4">1.4.3.</span> 生成app.py</h4>
-<div class="outline-text-4" id="text-1-4-3">
-<p>
-以下程式碼使用 <code>%%writefile app.py</code> 將 Streamlit 應用程式寫入名為 app.py 的檔案。這個 Streamlit 應用是一個簡單的計算機，輸入兩個數字後自動加總並顯示結果。<br />
+使用 <code>%%writefile</code> 將程式碼寫入檔案：<br />
 </p>
 
 <p>
@@ -419,43 +425,41 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </table>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span>%%writefile app.py
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">%%</span>writefile app.py
 <span class="linenr">2: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr">3: </span>st.write(<span style="color: #98be65;">'#Streamlit&#35336;&#31639;&#27231;'</span>)
-<span class="linenr">4: </span><span style="color: #dcaeea;">num1</span> = st.number_input(<span style="color: #98be65;">'&#25976;&#23383;1'</span>)
-<span class="linenr">5: </span><span style="color: #dcaeea;">num2</span> = st.number_input(<span style="color: #98be65;">'&#25976;&#23383;2'</span>)
-<span class="linenr">6: </span><span style="color: #dcaeea;">num3</span> = num1 + num2
+<span class="linenr">4: </span><span style="color: #dcaeea;">num1</span> <span style="color: #51afef;">=</span> st.number_input(<span style="color: #98be65;">'&#25976;&#23383;1'</span>)
+<span class="linenr">5: </span><span style="color: #dcaeea;">num2</span> <span style="color: #51afef;">=</span> st.number_input(<span style="color: #98be65;">'&#25976;&#23383;2'</span>)
+<span class="linenr">6: </span><span style="color: #dcaeea;">num3</span> <span style="color: #51afef;">=</span> num1 <span style="color: #51afef;">+</span> num2
 <span class="linenr">7: </span>st.write(<span style="color: #98be65;">'#&#31572;&#26696;'</span>, num3)
-<span class="linenr">8: </span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org6abbae3" class="outline-4">
-<h4 id="org6abbae3"><span class="section-number-4">1.4.4.</span> 執行app.py</h4>
-<div class="outline-text-4" id="text-1-4-4">
+<div id="outline-container-org83134e4" class="outline-4">
+<h4 id="org83134e4"><span class="section-number-4">1.4.3.</span> Step 3：執行並取得公開網址</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span>!streamlit run app.py <span style="color: #51afef;">&amp;</span> npx localtunnel <span style="color: #51afef;">--</span>port 8501
+</pre>
+</div>
 <p>
-<code>!streamlit run app.py &amp;</code> 會在背景執行 Streamlit 應用，末尾的 <code>&amp;</code> 讓 Colab 可以繼續執行其他 cell。<br />
+執行後會產生一個 <code>xxx.loca.lt</code> 的網址，點擊即可開啟你的應用。<br />
 </p>
 
 <p>
-<code>!npx localtunnel --port 8501</code> 使用 localtunnel 將本機的 Streamlit 應用（port 8501）暴露到網路上，提供一個公開的 URL 讓你可以從瀏覽器存取。<br />
+原理說明：<br />
 </p>
-<div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span>!streamlit run app.py &amp; npx localtunnel --port <span style="color: #da8548; font-weight: bold;">8501</span>
-</pre>
-</div>
 <ul class="org-ul">
-<li>&amp; 是一個 Linux/Unix Shell 的符號，表示在後台運行該命令。在這裡，它將 streamlit run app.py 放到後台執行，使得後續的指令可以繼續在同一個終端中執行，而不需要等待這個 Streamlit 應用結束。<br /></li>
-<li>npx：npx 是 Node.js 的一個工具，用來執行 Node.js 的命令。<br /></li>
-<li>localtunnel：localtunnel 是一個開源工具，允許你將本地運行的服務通過臨時的公共 URL 發布到互聯網上。它經常用來在開發環境中分享本地服務，或者測試時讓遠程用戶訪問。<br /></li>
-<li>&#x2013;port 8501：這裡指定 localtunnel 將本地的 8501 端口開放到網路上。因為 streamlit run app.py 預設運行在 8501 端口上，所以 localtunnel 將這個端口的服務映射到一個臨時的公共 URL。<br /></li>
+<li><code>&amp;</code> 讓 <code>streamlit run</code> 在背景執行，不阻擋後面的指令<br /></li>
+<li><code>npx localtunnel --port 8501</code> 把 Colab 內部的 8501 port 暴露到網路上，產生一個臨時的公開網址<br /></li>
+<li>這個網址是暫時的，Colab 斷線後就會失效<br /></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org2624923" class="outline-3">
-<h3 id="org2624923"><span class="section-number-3">1.5.</span> 秀資料</h3>
+<div id="outline-container-orgf6a4fe1" class="outline-3">
+<h3 id="orgf6a4fe1"><span class="section-number-3">1.5.</span> 秀資料</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 學生成績<br />
@@ -466,35 +470,356 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;'</span>)
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> = pd.DataFrame({
-<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [<span style="color: #da8548; font-weight: bold;">98</span>, <span style="color: #da8548; font-weight: bold;">76</span>, <span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">38</span>, <span style="color: #da8548; font-weight: bold;">40</span>],
-<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [<span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">46</span>, <span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">67</span>, <span style="color: #da8548; font-weight: bold;">66</span>]
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40],
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66]
 <span class="linenr"> 9: </span>})
 <span class="linenr">10: </span>df
 <span class="linenr">11: </span>
-<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#30059;&#22294;</span>
-<span class="linenr">13: </span>st.line_chart(df)
+<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#30059;&#22294;
+<span class="linenr">13: </span></span>st.line_chart(df)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org9aed675" class="outline-3">
-<h3 id="org9aed675"><span class="section-number-3">1.6.</span> 側邊欄 (Sidebar)</h3>
+<div id="outline-container-org66aaefb" class="outline-3">
+<h3 id="org66aaefb"><span class="section-number-3">1.6.</span> 文字輸入與核取方塊</h3>
 <div class="outline-text-3" id="text-1-6">
+<p>
+<code>st.text_input</code> 用來接收使用者輸入的文字，=st.checkbox= 則是一個簡單的開關：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;&#26597;&#35426;'</span>)
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#22995;&#21517;'</span>: [<span style="color: #98be65;">'&#23567;&#26126;'</span>, <span style="color: #98be65;">'&#23567;&#33775;'</span>, <span style="color: #98be65;">'&#23567;&#32654;'</span>, <span style="color: #98be65;">'&#23567;&#24375;'</span>, <span style="color: #98be65;">'&#23567;&#29577;'</span>],
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40],
+<span class="linenr"> 9: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66]
+<span class="linenr">10: </span>})
+<span class="linenr">11: </span>
+<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25991;&#23383;&#36664;&#20837;&#65306;&#25628;&#23563;&#23416;&#29983;
+<span class="linenr">13: </span></span><span style="color: #dcaeea;">name</span> <span style="color: #51afef;">=</span> st.text_input(<span style="color: #98be65;">'&#36664;&#20837;&#23416;&#29983;&#22995;&#21517;'</span>)
+<span class="linenr">14: </span><span style="color: #51afef;">if</span> name:
+<span class="linenr">15: </span>    <span style="color: #dcaeea;">result</span> <span style="color: #51afef;">=</span> df[df[<span style="color: #98be65;">'&#22995;&#21517;'</span>].<span style="color: #c678dd;">str</span>.contains(name)]
+<span class="linenr">16: </span>    st.dataframe(result)
+<span class="linenr">17: </span>
+<span class="linenr">18: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26680;&#21462;&#26041;&#22602;&#65306;&#39023;&#31034;/&#38577;&#34255;&#21407;&#22987;&#36039;&#26009;
+<span class="linenr">19: </span></span><span style="color: #51afef;">if</span> st.checkbox(<span style="color: #98be65;">'&#39023;&#31034;&#20840;&#37096;&#36039;&#26009;'</span>):
+<span class="linenr">20: </span>    st.dataframe(df)
+</pre>
 </div>
-<div id="outline-container-org4e8f8d7" class="outline-4">
-<h4 id="org4e8f8d7"><span class="section-number-4">1.6.1.</span> 測試一下</h4>
-<div class="outline-text-4" id="text-1-6-1">
+</div>
+</div>
+<div id="outline-container-orgd350e8a" class="outline-3">
+<h3 id="orgd350e8a"><span class="section-number-3">1.7.</span> 在 Streamlit 中使用 Matplotlib</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+前面學過的 matplotlib 圖表，可以用 <code>st.pyplot(fig)</code> 直接放進 Streamlit。重點是要先建立 <code>fig</code> 物件，再丟給 =st.pyplot()=：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] <span style="color: #51afef;">=</span> [<span style="color: #98be65;">'Arial Unicode MS'</span>]
+<span class="linenr"> 6: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] <span style="color: #51afef;">=</span> <span style="color: #a9a1e1;">False</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>st.title(<span style="color: #98be65;">'&#25104;&#32318;&#20998;&#20296;'</span>)
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr">11: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40, 85, 72, 91],
+<span class="linenr">12: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66, 55, 88, 73]
+<span class="linenr">13: </span>})
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#29992; matplotlib &#30059;&#22294;&#65292;&#20877;&#29992; st.pyplot() &#39023;&#31034;
+<span class="linenr">16: </span></span><span style="color: #dcaeea;">fig</span>, <span style="color: #dcaeea;">ax</span> <span style="color: #51afef;">=</span> plt.subplots()
+<span class="linenr">17: </span>ax.hist(df[<span style="color: #98be65;">'&#22283;&#25991;'</span>], bins<span style="color: #51afef;">=</span><span style="color: #c678dd;">range</span>(0, 101, 10), rwidth<span style="color: #51afef;">=</span>0.8)
+<span class="linenr">18: </span>ax.set_xlabel(<span style="color: #98be65;">'&#20998;&#25976;'</span>)
+<span class="linenr">19: </span>ax.set_ylabel(<span style="color: #98be65;">'&#20154;&#25976;'</span>)
+<span class="linenr">20: </span>ax.set_title(<span style="color: #98be65;">'&#22283;&#25991;&#25104;&#32318;&#20998;&#20296;'</span>)
+<span class="linenr">21: </span>st.pyplot(fig)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc0f6d98" class="outline-3">
+<h3 id="orgc0f6d98"><span class="section-number-3">1.8.</span> 上傳檔案</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+<code>st.file_uploader</code> 讓使用者上傳 CSV 檔案，搭配 pandas 就能做出「上傳資料→分析→視覺化」的完整流程：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'CSV &#36039;&#26009;&#20998;&#26512;&#22120;'</span>)
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">uploaded_file</span> <span style="color: #51afef;">=</span> st.file_uploader(<span style="color: #98be65;">"&#19978;&#20659; CSV &#27284;&#26696;"</span>, <span style="color: #c678dd;">type</span><span style="color: #51afef;">=</span><span style="color: #98be65;">"csv"</span>)
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span><span style="color: #51afef;">if</span> uploaded_file <span style="color: #51afef;">is</span> <span style="color: #51afef;">not</span> <span style="color: #a9a1e1;">None</span>:
+<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.read_csv(uploaded_file)
+<span class="linenr">10: </span>    st.write(f<span style="color: #98be65;">'&#20849; </span>{<span style="color: #c678dd;">len</span>(df)}<span style="color: #98be65;"> &#31558;&#36039;&#26009;&#65292;</span>{<span style="color: #c678dd;">len</span>(df.columns)}<span style="color: #98be65;"> &#20491;&#27396;&#20301;'</span>)
+<span class="linenr">11: </span>    st.dataframe(df)
+<span class="linenr">12: </span>
+<span class="linenr">13: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35731;&#20351;&#29992;&#32773;&#36984;&#25799;&#35201;&#30475;&#21738;&#20491;&#27396;&#20301;&#30340;&#32113;&#35336;
+<span class="linenr">14: </span></span>    <span style="color: #dcaeea;">numeric_cols</span> <span style="color: #51afef;">=</span> df.select_dtypes(include<span style="color: #51afef;">=</span><span style="color: #98be65;">'number'</span>).columns.tolist()
+<span class="linenr">15: </span>    <span style="color: #51afef;">if</span> numeric_cols:
+<span class="linenr">16: </span>        <span style="color: #dcaeea;">col</span> <span style="color: #51afef;">=</span> st.selectbox(<span style="color: #98be65;">'&#36984;&#25799;&#27396;&#20301;&#26597;&#30475;&#32113;&#35336;'</span>, numeric_cols)
+<span class="linenr">17: </span>        st.write(df[col].describe())
+<span class="linenr">18: </span><span style="color: #51afef;">else</span>:
+<span class="linenr">19: </span>    st.info(<span style="color: #98be65;">'&#35531;&#19978;&#20659;&#19968;&#20491; CSV &#27284;&#26696;'</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgecea64a" class="outline-3">
+<h3 id="orgecea64a"><span class="section-number-3">1.9.</span> 版面配置</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+預設的 Streamlit 畫面是由上到下一條直線排列。用 <code>st.columns</code> 可以做出左右並排的版面，用 <code>st.tabs</code> 可以做出分頁效果：<br />
+</p>
+</div>
+<div id="outline-container-orgbcedea1" class="outline-4">
+<h4 id="orgbcedea1"><span class="section-number-4">1.9.1.</span> 左右並排 (columns)</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#29256;&#38754;&#31034;&#31684;'</span>)
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40],
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66]
+<span class="linenr"> 9: </span>})
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#24314;&#31435;&#20841;&#20491;&#27396;&#20301;&#65292;&#24038;&#21491;&#20006;&#25490;
+<span class="linenr">12: </span></span><span style="color: #dcaeea;">col1</span>, <span style="color: #dcaeea;">col2</span> <span style="color: #51afef;">=</span> st.columns(2)
+<span class="linenr">13: </span>
+<span class="linenr">14: </span><span style="color: #51afef;">with</span> col1:
+<span class="linenr">15: </span>    st.subheader(<span style="color: #98be65;">'&#22283;&#25991;&#25104;&#32318;'</span>)
+<span class="linenr">16: </span>    st.dataframe(df[[<span style="color: #98be65;">'&#22283;&#25991;'</span>]])
+<span class="linenr">17: </span>
+<span class="linenr">18: </span><span style="color: #51afef;">with</span> col2:
+<span class="linenr">19: </span>    st.subheader(<span style="color: #98be65;">'&#25976;&#23416;&#25104;&#32318;'</span>)
+<span class="linenr">20: </span>    st.dataframe(df[[<span style="color: #98be65;">'&#25976;&#23416;'</span>]])
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb0d7970" class="outline-4">
+<h4 id="orgb0d7970"><span class="section-number-4">1.9.2.</span> 分頁 (tabs)</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
+<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] <span style="color: #51afef;">=</span> [<span style="color: #98be65;">'Arial Unicode MS'</span>]
+<span class="linenr"> 6: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] <span style="color: #51afef;">=</span> <span style="color: #a9a1e1;">False</span>
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>st.title(<span style="color: #98be65;">'&#25104;&#32318;&#31995;&#32113;'</span>)
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr">11: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40],
+<span class="linenr">12: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66]
+<span class="linenr">13: </span>})
+<span class="linenr">14: </span>
+<span class="linenr">15: </span><span style="color: #dcaeea;">tab1</span>, <span style="color: #dcaeea;">tab2</span>, <span style="color: #dcaeea;">tab3</span> <span style="color: #51afef;">=</span> st.tabs([<span style="color: #98be65;">"&#21407;&#22987;&#36039;&#26009;"</span>, <span style="color: #98be65;">"&#32113;&#35336;&#25688;&#35201;"</span>, <span style="color: #98be65;">"&#22294;&#34920;"</span>])
+<span class="linenr">16: </span>
+<span class="linenr">17: </span><span style="color: #51afef;">with</span> tab1:
+<span class="linenr">18: </span>    st.dataframe(df)
+<span class="linenr">19: </span>
+<span class="linenr">20: </span><span style="color: #51afef;">with</span> tab2:
+<span class="linenr">21: </span>    st.write(df.describe())
+<span class="linenr">22: </span>
+<span class="linenr">23: </span><span style="color: #51afef;">with</span> tab3:
+<span class="linenr">24: </span>    <span style="color: #dcaeea;">fig</span>, <span style="color: #dcaeea;">ax</span> <span style="color: #51afef;">=</span> plt.subplots()
+<span class="linenr">25: </span>    df.plot(kind<span style="color: #51afef;">=</span><span style="color: #98be65;">'box'</span>, ax<span style="color: #51afef;">=</span>ax)
+<span class="linenr">26: </span>    ax.set_title(<span style="color: #98be65;">'&#21508;&#31185;&#25104;&#32318;&#31665;&#24418;&#22294;'</span>)
+<span class="linenr">27: </span>    st.pyplot(fig)
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbfe3cbd" class="outline-3">
+<h3 id="orgbfe3cbd"><span class="section-number-3">1.10.</span> 顯示圖片</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+<code>st.image</code> 可以顯示本機圖片或網路圖片：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
+<span class="linenr">2: </span>
+<span class="linenr">3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39023;&#31034;&#32178;&#36335;&#22294;&#29255;
+<span class="linenr">4: </span></span>st.image(<span style="color: #98be65;">"https://www.python.org/static/img/python-logo.png"</span>,
+<span class="linenr">5: </span>         caption<span style="color: #51afef;">=</span><span style="color: #98be65;">"Python Logo"</span>, width<span style="color: #51afef;">=</span>300)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgdc02cba" class="outline-3">
+<h3 id="orgdc02cba"><span class="section-number-3">1.11.</span> 常用元件速查表</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+以下整理 Streamlit 常用元件，方便做專題時快速查找：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">元件</th>
+<th scope="col" class="org-left">用途</th>
+<th scope="col" class="org-left">範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>st.title</code></td>
+<td class="org-left">大標題</td>
+<td class="org-left"><code>st.title('我的應用')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.write</code></td>
+<td class="org-left">萬用輸出</td>
+<td class="org-left"><code>st.write(df)</code>, <code>st.write('文字')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.dataframe</code></td>
+<td class="org-left">互動式表格</td>
+<td class="org-left"><code>st.dataframe(df)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.text_input</code></td>
+<td class="org-left">文字輸入</td>
+<td class="org-left"><code>name = st.text_input('姓名')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.number_input</code></td>
+<td class="org-left">數字輸入</td>
+<td class="org-left"><code>n = st.number_input('數量')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.selectbox</code></td>
+<td class="org-left">下拉選單</td>
+<td class="org-left"><code>opt = st.selectbox('選擇', ['A','B'])</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.checkbox</code></td>
+<td class="org-left">核取方塊</td>
+<td class="org-left"><code>if st.checkbox('顯示'):</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.slider</code></td>
+<td class="org-left">滑桿</td>
+<td class="org-left"><code>val = st.slider('值', 0, 100, 50)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.radio</code></td>
+<td class="org-left">單選按鈕</td>
+<td class="org-left"><code>r = st.radio('選擇', ['甲','乙'])</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.file_uploader</code></td>
+<td class="org-left">上傳檔案</td>
+<td class="org-left"><code>f = st.file_uploader('上傳', type</code>&rsquo;csv&rsquo;)=</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.image</code></td>
+<td class="org-left">顯示圖片</td>
+<td class="org-left"><code>st.image('photo.png')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.pyplot</code></td>
+<td class="org-left">顯示 matplotlib</td>
+<td class="org-left"><code>st.pyplot(fig)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.line_chart</code></td>
+<td class="org-left">快速折線圖</td>
+<td class="org-left"><code>st.line_chart(df)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.bar_chart</code></td>
+<td class="org-left">快速長條圖</td>
+<td class="org-left"><code>st.bar_chart(df)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.map</code></td>
+<td class="org-left">地圖</td>
+<td class="org-left"><code>st.map(df)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.sidebar</code></td>
+<td class="org-left">側邊欄</td>
+<td class="org-left"><code>st.sidebar.write('Hi')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.columns</code></td>
+<td class="org-left">左右並排</td>
+<td class="org-left"><code>c1, c2 = st.columns(2)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.tabs</code></td>
+<td class="org-left">分頁</td>
+<td class="org-left"><code>t1, t2 = st.tabs(['頁1','頁2'])</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.camera_input</code></td>
+<td class="org-left">拍照</td>
+<td class="org-left"><code>img = st.camera_input('拍照')</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org56cd505" class="outline-3">
+<h3 id="org56cd505"><span class="section-number-3">1.12.</span> 側邊欄 (Sidebar)</h3>
+<div class="outline-text-3" id="text-1-12">
+</div>
+<div id="outline-container-org5ef8a59" class="outline-4">
+<h4 id="org5ef8a59"><span class="section-number-4">1.12.1.</span> 測試一下</h4>
+<div class="outline-text-4" id="text-1-12-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;'</span>)
 <span class="linenr"> 5: </span>st.write(<span style="color: #98be65;">'lalala'</span>)
-<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25976;&#25818;</span>
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">df</span> = pd.DataFrame({
-<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [<span style="color: #da8548; font-weight: bold;">98</span>, <span style="color: #da8548; font-weight: bold;">76</span>, <span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">38</span>, <span style="color: #da8548; font-weight: bold;">40</span>],
-<span class="linenr"> 9: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [<span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">46</span>, <span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">67</span>, <span style="color: #da8548; font-weight: bold;">66</span>]
+<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25976;&#25818;
+<span class="linenr"> 7: </span></span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40],
+<span class="linenr"> 9: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66]
 <span class="linenr">10: </span>})
 <span class="linenr">11: </span>
 <span class="linenr">12: </span>st.sidebar.write(<span style="color: #98be65;">'&#36984;&#38917;1'</span>)
@@ -507,9 +832,9 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-org92611b7" class="outline-4">
-<h4 id="org92611b7"><span class="section-number-4">1.6.2.</span> 練習</h4>
-<div class="outline-text-4" id="text-1-6-2">
+<div id="outline-container-org70f7266" class="outline-4">
+<h4 id="org70f7266"><span class="section-number-4">1.12.2.</span> 練習</h4>
+<div class="outline-text-4" id="text-1-12-2">
 <ul class="org-ul">
 <li>請自行在sidebar和main area裡加入一些文字<br /></li>
 <li>可以發現sidebar是可以接受markdown語法的，那麼，你能否應用markdown語法在sidebar裡放一個google的連結呢?<br /></li>
@@ -517,47 +842,47 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-org74cee00" class="outline-3">
-<h3 id="org74cee00"><span class="section-number-3">1.7.</span> 選單</h3>
-<div class="outline-text-3" id="text-1-7">
+<div id="outline-container-orgb78a182" class="outline-3">
+<h3 id="orgb78a182"><span class="section-number-3">1.13.</span> 選單</h3>
+<div class="outline-text-3" id="text-1-13">
 </div>
-<div id="outline-container-orgf206ad5" class="outline-4">
-<h4 id="orgf206ad5"><span class="section-number-4">1.7.1.</span> 連結式選單</h4>
-<div class="outline-text-4" id="text-1-7-1">
+<div id="outline-container-orgf87551d" class="outline-4">
+<h4 id="orgf87551d"><span class="section-number-4">1.13.1.</span> 連結式選單</h4>
+<div class="outline-text-4" id="text-1-13-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;'</span>)
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25976;&#25818;</span>
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">df</span> = pd.DataFrame({
-<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [<span style="color: #da8548; font-weight: bold;">98</span>, <span style="color: #da8548; font-weight: bold;">76</span>, <span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">38</span>, <span style="color: #da8548; font-weight: bold;">40</span>],
-<span class="linenr"> 9: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [<span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">46</span>, <span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">67</span>, <span style="color: #da8548; font-weight: bold;">66</span>]
+<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25976;&#25818;
+<span class="linenr"> 7: </span></span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40],
+<span class="linenr"> 9: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66]
 <span class="linenr">10: </span>})
 <span class="linenr">11: </span>
-<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20596;&#37002;&#27396;&#36899;&#32080;</span>
-<span class="linenr">13: </span>st.sidebar.markdown(<span style="color: #98be65;">"[&#26597;&#30475;&#25976;&#25818;](?page=table)"</span>)
+<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20596;&#37002;&#27396;&#36899;&#32080;
+<span class="linenr">13: </span></span>st.sidebar.markdown(<span style="color: #98be65;">"[&#26597;&#30475;&#25976;&#25818;](?page=table)"</span>)
 <span class="linenr">14: </span>st.sidebar.markdown(<span style="color: #98be65;">"[&#30059;&#22294;](?page=chart)"</span>)
 <span class="linenr">15: </span>
-<span class="linenr">16: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#29554;&#21462;&#30070;&#21069;URL&#21443;&#25976;</span>
-<span class="linenr">17: </span><span style="color: #dcaeea;">query_params</span> = st.query_params
-<span class="linenr">18: </span><span style="color: #dcaeea;">page</span> = query_params.get(<span style="color: #98be65;">"page"</span>, <span style="color: #98be65;">"table"</span>)
+<span class="linenr">16: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#29554;&#21462;&#30070;&#21069;URL&#21443;&#25976;
+<span class="linenr">17: </span></span><span style="color: #dcaeea;">query_params</span> <span style="color: #51afef;">=</span> st.query_params
+<span class="linenr">18: </span><span style="color: #dcaeea;">page</span> <span style="color: #51afef;">=</span> query_params.get(<span style="color: #98be65;">"page"</span>, <span style="color: #98be65;">"table"</span>)
 <span class="linenr">19: </span>
-<span class="linenr">20: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26681;&#25818;URL&#21443;&#25976;&#39023;&#31034;&#30456;&#25033;&#30340;&#20839;&#23481;</span>
-<span class="linenr">21: </span><span style="color: #51afef;">if</span> page == <span style="color: #98be65;">'table'</span>:
+<span class="linenr">20: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26681;&#25818;URL&#21443;&#25976;&#39023;&#31034;&#30456;&#25033;&#30340;&#20839;&#23481;
+<span class="linenr">21: </span></span><span style="color: #51afef;">if</span> page <span style="color: #51afef;">==</span> <span style="color: #98be65;">'table'</span>:
 <span class="linenr">22: </span>    st.write(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;&#25976;&#25818;&#34920;'</span>)
 <span class="linenr">23: </span>    st.dataframe(df)
-<span class="linenr">24: </span><span style="color: #51afef;">elif</span> page == <span style="color: #98be65;">'chart'</span>:
+<span class="linenr">24: </span><span style="color: #51afef;">elif</span> page <span style="color: #51afef;">==</span> <span style="color: #98be65;">'chart'</span>:
 <span class="linenr">25: </span>    st.write(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;&#25240;&#32218;&#22294;'</span>)
 <span class="linenr">26: </span>    st.line_chart(df)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org80d184a" class="outline-4">
-<h4 id="org80d184a"><span class="section-number-4">1.7.2.</span> 下拉式選單</h4>
-<div class="outline-text-4" id="text-1-7-2">
+<div id="outline-container-orgb6c4665" class="outline-4">
+<h4 id="orgb6c4665"><span class="section-number-4">1.13.2.</span> 下拉式選單</h4>
+<div class="outline-text-4" id="text-1-13-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
@@ -565,38 +890,38 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 <span class="linenr"> 4: </span>
 <span class="linenr"> 5: </span>st.title(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;'</span>)
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25976;&#25818;</span>
-<span class="linenr"> 8: </span><span style="color: #dcaeea;">df</span> = pd.DataFrame({
-<span class="linenr"> 9: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [<span style="color: #da8548; font-weight: bold;">98</span>, <span style="color: #da8548; font-weight: bold;">76</span>, <span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">38</span>, <span style="color: #da8548; font-weight: bold;">40</span>],
-<span class="linenr">10: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [<span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">46</span>, <span style="color: #da8548; font-weight: bold;">80</span>, <span style="color: #da8548; font-weight: bold;">67</span>, <span style="color: #da8548; font-weight: bold;">66</span>]
+<span class="linenr"> 7: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25976;&#25818;
+<span class="linenr"> 8: </span></span><span style="color: #dcaeea;">df</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr"> 9: </span>    <span style="color: #98be65;">'&#22283;&#25991;'</span>: [98, 76, 100, 38, 40],
+<span class="linenr">10: </span>    <span style="color: #98be65;">'&#25976;&#23416;'</span>: [80, 46, 80, 67, 66]
 <span class="linenr">11: </span>})
 <span class="linenr">12: </span>
-<span class="linenr">13: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20596;&#37002;&#27396;&#36984;&#25799;</span>
-<span class="linenr">14: </span>st.sidebar.write(<span style="color: #98be65;">'&#36984;&#21934;'</span>)
-<span class="linenr">15: </span><span style="color: #dcaeea;">option</span> = st.sidebar.selectbox(
+<span class="linenr">13: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20596;&#37002;&#27396;&#36984;&#25799;
+<span class="linenr">14: </span></span>st.sidebar.write(<span style="color: #98be65;">'&#36984;&#21934;'</span>)
+<span class="linenr">15: </span><span style="color: #dcaeea;">option</span> <span style="color: #51afef;">=</span> st.sidebar.selectbox(
 <span class="linenr">16: </span>    <span style="color: #98be65;">'&#35531;&#36984;&#25799;&#25805;&#20316;'</span>,
 <span class="linenr">17: </span>    [<span style="color: #98be65;">'&#26597;&#30475;&#25104;&#32318;'</span>, <span style="color: #98be65;">'&#30059;&#25240;&#32218;&#22294;'</span>]
 <span class="linenr">18: </span>)
 <span class="linenr">19: </span>
-<span class="linenr">20: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26681;&#25818;&#36984;&#25799;&#39023;&#31034;&#30456;&#25033;&#30340;&#20839;&#23481;</span>
-<span class="linenr">21: </span><span style="color: #51afef;">if</span> option == <span style="color: #98be65;">'&#26597;&#30475;&#25104;&#32318;'</span>:
+<span class="linenr">20: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26681;&#25818;&#36984;&#25799;&#39023;&#31034;&#30456;&#25033;&#30340;&#20839;&#23481;
+<span class="linenr">21: </span></span><span style="color: #51afef;">if</span> option <span style="color: #51afef;">==</span> <span style="color: #98be65;">'&#26597;&#30475;&#25104;&#32318;'</span>:
 <span class="linenr">22: </span>    st.write(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;&#34920;'</span>)
 <span class="linenr">23: </span>    st.dataframe(df)
-<span class="linenr">24: </span><span style="color: #51afef;">elif</span> option == <span style="color: #98be65;">'&#30059;&#25240;&#32218;&#22294;'</span>:
+<span class="linenr">24: </span><span style="color: #51afef;">elif</span> option <span style="color: #51afef;">==</span> <span style="color: #98be65;">'&#30059;&#25240;&#32218;&#22294;'</span>:
 <span class="linenr">25: </span>    st.write(<span style="color: #98be65;">'&#23416;&#29983;&#25104;&#32318;&#25240;&#32218;&#22294;'</span>)
-<span class="linenr">26: </span>    <span style="color: #dcaeea;">fig</span>, <span style="color: #dcaeea;">ax</span> = plt.subplots()
+<span class="linenr">26: </span>    <span style="color: #dcaeea;">fig</span>, <span style="color: #dcaeea;">ax</span> <span style="color: #51afef;">=</span> plt.subplots()
 <span class="linenr">27: </span>    ax.plot(df[<span style="color: #98be65;">'&#22283;&#25991;'</span>])
 <span class="linenr">28: </span>    ax.plot(df[<span style="color: #98be65;">'&#25976;&#23416;'</span>])
-<span class="linenr">29: </span>    ax.set_xticks(<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">5</span>))
-<span class="linenr">30: </span>    ax.set_xticklabels(<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #c678dd;">len</span>(df) + <span style="color: #da8548; font-weight: bold;">1</span>))
+<span class="linenr">29: </span>    ax.set_xticks(<span style="color: #c678dd;">range</span>(5))
+<span class="linenr">30: </span>    ax.set_xticklabels(<span style="color: #c678dd;">range</span>(1, <span style="color: #c678dd;">len</span>(df) <span style="color: #51afef;">+</span> 1))
 <span class="linenr">31: </span>    st.pyplot(fig)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orge58c57b" class="outline-4">
-<h4 id="orge58c57b"><span class="section-number-4">1.7.3.</span> 課堂練習</h4>
-<div class="outline-text-4" id="text-1-7-3">
+<div id="outline-container-org6046e0e" class="outline-4">
+<h4 id="org6046e0e"><span class="section-number-4">1.13.3.</span> 課堂練習</h4>
+<div class="outline-text-4" id="text-1-13-3">
 <p>
 請參考Google Classroom中的[實作練習7]更專業的資料處理工具: Pandas，新增三種選單功能<br />
 </p>
@@ -611,29 +936,29 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 完成結果參考下圖:<br />
 </p>
 
-<div id="org5dfe07b" class="figure">
+<div id="org7c42c2a" class="figure">
 <p><img src="images/Streamlit/2024-08-08_16-05-46_2024-08-08_15-09-45 (1).gif" alt="2024-08-08_16-05-46_2024-08-08_15-09-45 (1).gif" width="500" /><br />
 </p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orga7f0a22" class="outline-3">
-<h3 id="orga7f0a22"><span class="section-number-3">1.8.</span> 地圖</h3>
-<div class="outline-text-3" id="text-1-8">
+<div id="outline-container-orgfec8bc0" class="outline-3">
+<h3 id="orgfec8bc0"><span class="section-number-3">1.14.</span> 地圖</h3>
+<div class="outline-text-3" id="text-1-14">
 </div>
-<div id="outline-container-org6d220e2" class="outline-4">
-<h4 id="org6d220e2"><span class="section-number-4">1.8.1.</span> 單一地標</h4>
-<div class="outline-text-4" id="text-1-8-1">
+<div id="outline-container-org4fa6918" class="outline-4">
+<h4 id="org4fa6918"><span class="section-number-4">1.14.1.</span> 單一地標</h4>
+<div class="outline-text-4" id="text-1-14-1">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>)
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">data</span> = pd.DataFrame({
-<span class="linenr"> 7: </span>    <span style="color: #98be65;">'lat'</span>: <span style="color: #da8548; font-weight: bold;">23.67</span>,
-<span class="linenr"> 8: </span>    <span style="color: #98be65;">'lon'</span>: <span style="color: #da8548; font-weight: bold;">120.39</span>,
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">data</span> <span style="color: #51afef;">=</span> pd.DataFrame({
+<span class="linenr"> 7: </span>    <span style="color: #98be65;">'lat'</span>: 23.67,
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'lon'</span>: 120.39,
 <span class="linenr"> 9: </span>    <span style="color: #98be65;">'name'</span>: [<span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>]
 <span class="linenr">10: </span>})
 <span class="linenr">11: </span>
@@ -642,21 +967,21 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-org41665ca" class="outline-4">
-<h4 id="org41665ca"><span class="section-number-4">1.8.2.</span> 兩個或以上地標</h4>
-<div class="outline-text-4" id="text-1-8-2">
+<div id="outline-container-orgb262eac" class="outline-4">
+<h4 id="orgb262eac"><span class="section-number-4">1.14.2.</span> 兩個或以上地標</h4>
+<div class="outline-text-4" id="text-1-14-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#38642;&#26519;'</span>)
-<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23450;&#32681;&#19981;&#21516;&#22320;&#40670;&#30340;&#25976;&#25818;</span>
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">locs</span> = {
-<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>: {<span style="color: #98be65;">'lat'</span>: <span style="color: #da8548; font-weight: bold;">23.67</span>, <span style="color: #98be65;">'lon'</span>: <span style="color: #da8548; font-weight: bold;">120.39</span>},
-<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>: {<span style="color: #98be65;">'lat'</span>: <span style="color: #da8548; font-weight: bold;">23.738</span>, <span style="color: #98be65;">'lon'</span>: <span style="color: #da8548; font-weight: bold;">120.428</span>}
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23450;&#32681;&#19981;&#21516;&#22320;&#40670;&#30340;&#25976;&#25818;
+<span class="linenr"> 6: </span></span><span style="color: #dcaeea;">locs</span> <span style="color: #51afef;">=</span> {
+<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>: {<span style="color: #98be65;">'lat'</span>: 23.67, <span style="color: #98be65;">'lon'</span>: 120.39},
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>: {<span style="color: #98be65;">'lat'</span>: 23.738, <span style="color: #98be65;">'lon'</span>: 120.428}
 <span class="linenr"> 9: </span>}
 <span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #dcaeea;">data</span> = pd.DataFrame([
+<span class="linenr">11: </span><span style="color: #dcaeea;">data</span> <span style="color: #51afef;">=</span> pd.DataFrame([
 <span class="linenr">12: </span>    {<span style="color: #98be65;">'lat'</span>: locs[<span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>][<span style="color: #98be65;">'lat'</span>], <span style="color: #98be65;">'lon'</span>: locs[<span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>][<span style="color: #98be65;">'lon'</span>], <span style="color: #98be65;">'name'</span>: <span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>},
 <span class="linenr">13: </span>    {<span style="color: #98be65;">'lat'</span>: locs[<span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>][<span style="color: #98be65;">'lat'</span>], <span style="color: #98be65;">'lon'</span>: locs[<span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>][<span style="color: #98be65;">'lon'</span>], <span style="color: #98be65;">'name'</span>: <span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>}
 <span class="linenr">14: </span>])
@@ -667,29 +992,29 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7234d5" class="outline-4">
-<h4 id="orgb7234d5"><span class="section-number-4">1.8.3.</span> 加入選單</h4>
-<div class="outline-text-4" id="text-1-8-3">
+<div id="outline-container-org4c03866" class="outline-4">
+<h4 id="org4c03866"><span class="section-number-4">1.14.3.</span> 加入選單</h4>
+<div class="outline-text-4" id="text-1-14-3">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span>st.title(<span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>)
-<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23450;&#32681;&#19981;&#21516;&#22320;&#40670;&#30340;&#25976;&#25818;</span>
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">locations</span> = {
-<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>: {<span style="color: #98be65;">'lat'</span>: <span style="color: #da8548; font-weight: bold;">23.67</span>, <span style="color: #98be65;">'lon'</span>: <span style="color: #da8548; font-weight: bold;">120.39</span>},
-<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>: {<span style="color: #98be65;">'lat'</span>: <span style="color: #da8548; font-weight: bold;">23.738</span>, <span style="color: #98be65;">'lon'</span>: <span style="color: #da8548; font-weight: bold;">120.428</span>}
+<span class="linenr"> 5: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23450;&#32681;&#19981;&#21516;&#22320;&#40670;&#30340;&#25976;&#25818;
+<span class="linenr"> 6: </span></span><span style="color: #dcaeea;">locations</span> <span style="color: #51afef;">=</span> {
+<span class="linenr"> 7: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>: {<span style="color: #98be65;">'lat'</span>: 23.67, <span style="color: #98be65;">'lon'</span>: 120.39},
+<span class="linenr"> 8: </span>    <span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>: {<span style="color: #98be65;">'lat'</span>: 23.738, <span style="color: #98be65;">'lon'</span>: 120.428}
 <span class="linenr"> 9: </span>}
 <span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22312;&#20596;&#37002;&#27396;&#20013;&#36984;&#25799;&#22320;&#40670;</span>
-<span class="linenr">12: </span>st.sidebar.write(<span style="color: #98be65;">'&#36984;&#21934;'</span>)
-<span class="linenr">13: </span><span style="color: #dcaeea;">option</span> = st.sidebar.selectbox(
+<span class="linenr">11: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22312;&#20596;&#37002;&#27396;&#20013;&#36984;&#25799;&#22320;&#40670;
+<span class="linenr">12: </span></span>st.sidebar.write(<span style="color: #98be65;">'&#36984;&#21934;'</span>)
+<span class="linenr">13: </span><span style="color: #dcaeea;">option</span> <span style="color: #51afef;">=</span> st.sidebar.selectbox(
 <span class="linenr">14: </span>    <span style="color: #98be65;">'&#35531;&#36984;&#25799;&#22320;&#40670;'</span>,
 <span class="linenr">15: </span>    [<span style="color: #98be65;">'&#38642;&#26519;&#26234;&#24935;&#25945;&#32946;&#20013;&#24515;'</span>, <span style="color: #98be65;">'&#38642;&#26519;&#39640;&#37941;&#31449;'</span>])
 <span class="linenr">16: </span>
-<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26681;&#25818;&#36984;&#25799;&#30340;&#22320;&#40670;&#26356;&#26032;&#22320;&#22294;&#25976;&#25818;</span>
-<span class="linenr">18: </span><span style="color: #dcaeea;">selected_location</span> = locations[option]
-<span class="linenr">19: </span><span style="color: #dcaeea;">data</span> = pd.DataFrame({
+<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26681;&#25818;&#36984;&#25799;&#30340;&#22320;&#40670;&#26356;&#26032;&#22320;&#22294;&#25976;&#25818;
+<span class="linenr">18: </span></span><span style="color: #dcaeea;">selected_location</span> <span style="color: #51afef;">=</span> locations[option]
+<span class="linenr">19: </span><span style="color: #dcaeea;">data</span> <span style="color: #51afef;">=</span> pd.DataFrame({
 <span class="linenr">20: </span>    <span style="color: #98be65;">'lat'</span>: [selected_location[<span style="color: #98be65;">'lat'</span>]],
 <span class="linenr">21: </span>    <span style="color: #98be65;">'lon'</span>: [selected_location[<span style="color: #98be65;">'lon'</span>]],
 <span class="linenr">22: </span>    <span style="color: #98be65;">'name'</span>: [option]
@@ -703,9 +1028,9 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-orgc21e9c3" class="outline-4">
-<h4 id="orgc21e9c3"><span class="section-number-4">1.8.4.</span> 課堂練習</h4>
-<div class="outline-text-4" id="text-1-8-4">
+<div id="outline-container-org73336f6" class="outline-4">
+<h4 id="org73336f6"><span class="section-number-4">1.14.4.</span> 課堂練習</h4>
+<div class="outline-text-4" id="text-1-14-4">
 <ul class="org-ul">
 <li>請加入你家的地圖<br /></li>
 <li>請加入和你學校的地圖<br /></li>
@@ -713,45 +1038,100 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-org7e36cae" class="outline-3">
-<h3 id="org7e36cae"><span class="section-number-3">1.9.</span> 照相</h3>
-<div class="outline-text-3" id="text-1-9">
+<div id="outline-container-org70b7f12" class="outline-3">
+<h3 id="org70b7f12"><span class="section-number-3">1.15.</span> 照相</h3>
+<div class="outline-text-3" id="text-1-15">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21462;&#24471;&#30001;&#30456;&#27231;&#36664;&#20837;&#30340;&#24433;&#20687;&#32233;&#34909;&#36039;&#26009;</span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">imgBuffer</span> = st.camera_input(<span style="color: #98be65;">"Take a picture"</span>)
+<span class="linenr"> 3: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21462;&#24471;&#30001;&#30456;&#27231;&#36664;&#20837;&#30340;&#24433;&#20687;&#32233;&#34909;&#36039;&#26009;
+<span class="linenr"> 4: </span></span><span style="color: #dcaeea;">imgBuffer</span> <span style="color: #51afef;">=</span> st.camera_input(<span style="color: #98be65;">"&#25293;&#29031;"</span>)
 <span class="linenr"> 5: </span>
 <span class="linenr"> 6: </span><span style="color: #51afef;">if</span> imgBuffer <span style="color: #51afef;">is</span> <span style="color: #51afef;">not</span> <span style="color: #a9a1e1;">None</span>:
-<span class="linenr"> 7: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;&#32233;&#34909;&#36039;&#26009;&#36681;&#25563;&#28858;&#20108;&#36914;&#20301;&#36039;&#26009;</span>
-<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">imgData</span> = imgBuffer.getvalue()
+<span class="linenr"> 7: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;&#32233;&#34909;&#36039;&#26009;&#36681;&#25563;&#28858;&#20108;&#36914;&#20301;&#36039;&#26009;
+<span class="linenr"> 8: </span></span>    <span style="color: #dcaeea;">imgData</span> <span style="color: #51afef;">=</span> imgBuffer.getvalue()
 <span class="linenr"> 9: </span>
-<span class="linenr">10: </span>    <span style="color: #51afef;">with</span> <span style="color: #c678dd;">open</span>(<span style="color: #98be65;">"/Users/letranger/Desktop/captured_image.png"</span>, <span style="color: #98be65;">"wb"</span>) <span style="color: #51afef;">as</span> f:
-<span class="linenr">11: </span>        f.write(imgData)
-<span class="linenr">12: </span>
-<span class="linenr">13: </span>    st.success(<span style="color: #98be65;">"&#24433;&#20687;&#25104;&#21151;&#20786;&#23384;!"</span>)
+<span class="linenr">10: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20786;&#23384;&#21040;&#30446;&#21069;&#36039;&#26009;&#22846;&#65288;&#35531;&#20381;&#38656;&#27714;&#20462;&#25913;&#36335;&#24465;&#65289;
+<span class="linenr">11: </span></span>    <span style="color: #51afef;">with</span> <span style="color: #c678dd;">open</span>(<span style="color: #98be65;">"captured_image.png"</span>, <span style="color: #98be65;">"wb"</span>) <span style="color: #51afef;">as</span> f:
+<span class="linenr">12: </span>        f.write(imgData)
+<span class="linenr">13: </span>
+<span class="linenr">14: </span>    st.success(<span style="color: #98be65;">"&#24433;&#20687;&#25104;&#21151;&#20786;&#23384;!"</span>)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org40b1167" class="outline-3">
-<h3 id="org40b1167"><span class="section-number-3">1.10.</span> 部署應用程式 (Deploy your app)</h3>
-<div class="outline-text-3" id="text-1-10">
+<div id="outline-container-org01b5a7f" class="outline-3">
+<h3 id="org01b5a7f"><span class="section-number-3">1.16.</span> 部署應用程式 (Deploy your app)</h3>
+<div class="outline-text-3" id="text-1-16">
+<p>
+做完專題後，你可以把 Streamlit 應用發佈到網路上，讓老師和同學都能直接用瀏覽器打開你的作品。這是交作業和展示成果的最佳方式。<br />
+</p>
 </div>
-<div id="outline-container-org6689acf" class="outline-4">
-<h4 id="org6689acf"><span class="section-number-4">1.10.1.</span> 上傳至 GitHub</h4>
+<div id="outline-container-org3e0f7c1" class="outline-4">
+<h4 id="org3e0f7c1"><span class="section-number-4">1.16.1.</span> Step 1：準備檔案</h4>
+<div class="outline-text-4" id="text-1-16-1">
+<p>
+你的專案資料夾至少需要兩個檔案：<br />
+</p>
+<pre class="example" id="org2bb177a">
+my-project/
+├── app.py               ← 你的 Streamlit 主程式
+└── requirements.txt      ← 列出所需套件
+</pre>
+<p>
+<code>requirements.txt</code> 的內容就是你的程式有 import 的套件名稱，例如：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-text"><span class="linenr">1: </span>streamlit
+<span class="linenr">2: </span>pandas
+<span class="linenr">3: </span>matplotlib
+</pre>
 </div>
-<div id="outline-container-org81e359f" class="outline-4">
-<h4 id="org81e359f"><span class="section-number-4">1.10.2.</span> 部署到 streamlit.io</h4>
+<p>
+如果你的程式有用到 CSV 資料檔，也一起放進資料夾。<br />
+</p>
 </div>
 </div>
-<div id="outline-container-org327304b" class="outline-3">
-<h3 id="org327304b"><span class="section-number-3">1.11.</span> 研習用範例</h3>
-<div class="outline-text-3" id="text-1-11">
+<div id="outline-container-org8d16ba9" class="outline-4">
+<h4 id="org8d16ba9"><span class="section-number-4">1.16.2.</span> Step 2：上傳至 GitHub</h4>
+<div class="outline-text-4" id="text-1-16-2">
+<ol class="org-ol">
+<li>登入 <a href="https://github.com/">GitHub</a>（沒有帳號的先註冊一個）<br /></li>
+<li>點右上角「+」→「New repository」，取個名字（例如 =my-streamlit-app=）<br /></li>
+<li>把 <code>app.py</code> 和 <code>requirements.txt</code> 上傳到這個 repository<br /></li>
+</ol>
 </div>
-<div id="outline-container-orgdc632f1" class="outline-4">
-<h4 id="orgdc632f1"><span class="section-number-4">1.11.1.</span> 需要先在本機端安裝的套件</h4>
-<div class="outline-text-4" id="text-1-11-1">
+</div>
+<div id="outline-container-org6e05c49" class="outline-4">
+<h4 id="org6e05c49"><span class="section-number-4">1.16.3.</span> Step 3：部署到 Streamlit Community Cloud</h4>
+<div class="outline-text-4" id="text-1-16-3">
+<ol class="org-ol">
+<li>前往 <a href="https://share.streamlit.io/">Streamlit Community Cloud</a>，用 GitHub 帳號登入<br /></li>
+<li>點選「New app」<br /></li>
+<li>選擇你的 repository、branch（通常是 =main=）、主程式檔案（=app.py=）<br /></li>
+<li>點選「Deploy」，等待約 1-2 分鐘<br /></li>
+<li>部署完成後會取得一個公開網址（例如 =<a href="https://你的名字-app.streamlit.app=），任何人都能打開">https://你的名字-app.streamlit.app=），任何人都能打開</a><br /></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgdd6c788" class="outline-4">
+<h4 id="orgdd6c788"><span class="section-number-4">1.16.4.</span> 注意事項</h4>
+<div class="outline-text-4" id="text-1-16-4">
+<ul class="org-ul">
+<li>Streamlit Community Cloud 是免費的，但每個帳號有數量限制<br /></li>
+<li>如果程式有修改，push 到 GitHub 後會自動重新部署<br /></li>
+<li>資料檔案不要太大（建議 &lt; 50MB），大檔案改用網路 URL 讀取<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org6d2df2c" class="outline-3">
+<h3 id="org6d2df2c"><span class="section-number-3">1.17.</span> 研習用範例</h3>
+<div class="outline-text-3" id="text-1-17">
+</div>
+<div id="outline-container-org0600804" class="outline-4">
+<h4 id="org0600804"><span class="section-number-4">1.17.1.</span> 需要先在本機端安裝的套件</h4>
+<div class="outline-text-4" id="text-1-17-1">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip3 install pandas
 <span class="linenr">2: </span>pip3 install streamlit
@@ -761,71 +1141,71 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-org24d9962" class="outline-4">
-<h4 id="org24d9962"><span class="section-number-4">1.11.2.</span> 範例程式</h4>
-<div class="outline-text-4" id="text-1-11-2">
+<div id="outline-container-org66584c8" class="outline-4">
+<h4 id="org66584c8"><span class="section-number-4">1.17.2.</span> 範例程式</h4>
+<div class="outline-text-4" id="text-1-17-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> streamlit <span style="color: #51afef;">as</span> st
 <span class="linenr"> 3: </span><span style="color: #51afef;">import</span> plotly.express <span style="color: #51afef;">as</span> px
 <span class="linenr"> 4: </span><span style="color: #51afef;">from</span> sklearn.cluster <span style="color: #51afef;">import</span> KMeans
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;&#36039;&#26009;</span>
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">test</span> = pd.read_csv(<span style="color: #98be65;">"https://letranger.github.io/working/scores.csv"</span>)
+<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35712;&#21462;&#36039;&#26009;
+<span class="linenr"> 7: </span></span><span style="color: #dcaeea;">test</span> <span style="color: #51afef;">=</span> pd.read_csv(<span style="color: #98be65;">"https://letranger.github.io/working/scores.csv"</span>)
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Streamlit &#25033;&#29992;&#31243;&#24335;&#27161;&#38988;</span>
-<span class="linenr">10: </span>st.title(<span style="color: #98be65;">"&#20998;&#25976;&#20998;&#20296;"</span>)
+<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Streamlit &#25033;&#29992;&#31243;&#24335;&#27161;&#38988;
+<span class="linenr">10: </span></span>st.title(<span style="color: #98be65;">"&#20998;&#25976;&#20998;&#20296;"</span>)
 <span class="linenr">11: </span>
-<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35373;&#23450;&#20596;&#37002;&#27396;&#36984;&#21934;</span>
-<span class="linenr">13: </span>st.sidebar.write(<span style="color: #98be65;">'&#36984;&#21934;'</span>)
+<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35373;&#23450;&#20596;&#37002;&#27396;&#36984;&#21934;
+<span class="linenr">13: </span></span>st.sidebar.write(<span style="color: #98be65;">'&#36984;&#21934;'</span>)
 <span class="linenr">14: </span>
-<span class="linenr">15: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31185;&#30446;&#36984;&#25799;&#19979;&#25289;&#36984;&#21934;</span>
-<span class="linenr">16: </span><span style="color: #dcaeea;">option</span> = st.sidebar.selectbox(
+<span class="linenr">15: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#31185;&#30446;&#36984;&#25799;&#19979;&#25289;&#36984;&#21934;
+<span class="linenr">16: </span></span><span style="color: #dcaeea;">option</span> <span style="color: #51afef;">=</span> st.sidebar.selectbox(
 <span class="linenr">17: </span>    <span style="color: #98be65;">'&#35531;&#36984;&#25799;&#31185;&#30446;'</span>,
 <span class="linenr">18: </span>    [<span style="color: #98be65;">'&#22283;&#25991;'</span>, <span style="color: #98be65;">'&#33521;&#25991;'</span>, <span style="color: #98be65;">'&#25976;&#23416;'</span>, <span style="color: #98be65;">'&#29289;&#29702;'</span>]
 <span class="linenr">19: </span>)
 <span class="linenr">20: </span>
-<span class="linenr">21: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39023;&#31034;&#36039;&#26009;&#26694;</span>
-<span class="linenr">22: </span>st.write(<span style="color: #98be65;">"### &#36039;&#26009;"</span>, test)
+<span class="linenr">21: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#39023;&#31034;&#36039;&#26009;&#26694;
+<span class="linenr">22: </span></span>st.write(<span style="color: #98be65;">"### &#36039;&#26009;"</span>, test)
 <span class="linenr">23: </span>
-<span class="linenr">24: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;&#20998;&#25976;&#20381;&#27599;10&#20998;&#20998;&#19968;&#32068;</span>
-<span class="linenr">25: </span><span style="color: #dcaeea;">test</span>[<span style="color: #98be65;">'binned'</span>] = pd.cut(test[option], bins=<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">101</span>, <span style="color: #da8548; font-weight: bold;">10</span>))
+<span class="linenr">24: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;&#20998;&#25976;&#20381;&#27599;10&#20998;&#20998;&#19968;&#32068;
+<span class="linenr">25: </span></span><span style="color: #dcaeea;">test</span>[<span style="color: #98be65;">'binned'</span>] <span style="color: #51afef;">=</span> pd.cut(test[option], bins<span style="color: #51afef;">=</span><span style="color: #c678dd;">range</span>(0, 101, 10))
 <span class="linenr">26: </span>
-<span class="linenr">27: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35336;&#31639;&#27599;&#20491;&#21312;&#38291;&#30340;&#38971;&#29575;</span>
-<span class="linenr">28: </span><span style="color: #dcaeea;">frequency</span> = test[<span style="color: #98be65;">'binned'</span>].value_counts().sort_index()
-<span class="linenr">29: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36681;&#25563;&#28858;&#36039;&#26009;&#26694;&#26684;&#24335;&#65292;&#26041;&#20415; Streamlit &#39023;&#31034;</span>
-<span class="linenr">30: </span><span style="color: #dcaeea;">frequency_df</span> = pd.DataFrame({<span style="color: #98be65;">'&#20998;&#25976;&#21312;&#38291;'</span>: frequency.index.astype(<span style="color: #c678dd;">str</span>), <span style="color: #98be65;">'&#38971;&#29575;'</span>: frequency.values})
+<span class="linenr">27: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35336;&#31639;&#27599;&#20491;&#21312;&#38291;&#30340;&#38971;&#29575;
+<span class="linenr">28: </span></span><span style="color: #dcaeea;">frequency</span> <span style="color: #51afef;">=</span> test[<span style="color: #98be65;">'binned'</span>].value_counts().sort_index()
+<span class="linenr">29: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36681;&#25563;&#28858;&#36039;&#26009;&#26694;&#26684;&#24335;&#65292;&#26041;&#20415; Streamlit &#39023;&#31034;
+<span class="linenr">30: </span></span><span style="color: #dcaeea;">frequency_df</span> <span style="color: #51afef;">=</span> pd.DataFrame({<span style="color: #98be65;">'&#20998;&#25976;&#21312;&#38291;'</span>: frequency.index.astype(<span style="color: #c678dd;">str</span>), <span style="color: #98be65;">'&#38971;&#29575;'</span>: frequency.values})
 <span class="linenr">31: </span>
-<span class="linenr">32: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992; Streamlit &#39023;&#31034;&#38263;&#26781;&#22294;</span>
-<span class="linenr">33: </span>st.bar_chart(frequency_df.set_index(<span style="color: #98be65;">'&#20998;&#25976;&#21312;&#38291;'</span>))
+<span class="linenr">32: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992; Streamlit &#39023;&#31034;&#38263;&#26781;&#22294;
+<span class="linenr">33: </span></span>st.bar_chart(frequency_df.set_index(<span style="color: #98be65;">'&#20998;&#25976;&#21312;&#38291;'</span>))
 <span class="linenr">34: </span>
-<span class="linenr">35: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">KMeans &#32858;&#39006;</span>
-<span class="linenr">36: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#28369;&#26751;&#36984;&#25799; k &#20540;&#65288;&#32858;&#39006;&#25976;&#37327;&#65289;</span>
-<span class="linenr">37: </span><span style="color: #dcaeea;">k</span> = st.slider(<span style="color: #98be65;">"&#36984;&#25799;&#32858;&#39006;&#30340;&#25976;&#37327; k"</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">3</span>)
-<span class="linenr">38: </span><span style="color: #dcaeea;">kmeans</span> = KMeans(n_clusters=k)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#38928;&#35373;&#20998;&#28858; k &#32676;</span>
-<span class="linenr">39: </span>kmeans.fit(test[[<span style="color: #98be65;">'&#22283;&#25991;'</span>, <span style="color: #98be65;">'&#33521;&#25991;'</span>]])  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992; '&#22283;&#25991;' &#21644; '&#33521;&#25991;' &#36914;&#34892;&#32858;&#39006;</span>
-<span class="linenr">40: </span><span style="color: #dcaeea;">clusters</span> = kmeans.predict(test[[<span style="color: #98be65;">'&#22283;&#25991;'</span>, <span style="color: #98be65;">'&#33521;&#25991;'</span>]])
+<span class="linenr">35: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">KMeans &#32858;&#39006;
+<span class="linenr">36: </span></span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#28369;&#26751;&#36984;&#25799; k &#20540;&#65288;&#32858;&#39006;&#25976;&#37327;&#65289;
+<span class="linenr">37: </span></span><span style="color: #dcaeea;">k</span> <span style="color: #51afef;">=</span> st.slider(<span style="color: #98be65;">"&#36984;&#25799;&#32858;&#39006;&#30340;&#25976;&#37327; k"</span>, 2, 10, 3)
+<span class="linenr">38: </span><span style="color: #dcaeea;">kmeans</span> <span style="color: #51afef;">=</span> KMeans(n_clusters<span style="color: #51afef;">=</span>k)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#38928;&#35373;&#20998;&#28858; k &#32676;
+<span class="linenr">39: </span></span>kmeans.fit(test[[<span style="color: #98be65;">'&#22283;&#25991;'</span>, <span style="color: #98be65;">'&#33521;&#25991;'</span>]])  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992; '&#22283;&#25991;' &#21644; '&#33521;&#25991;' &#36914;&#34892;&#32858;&#39006;
+<span class="linenr">40: </span></span><span style="color: #dcaeea;">clusters</span> <span style="color: #51afef;">=</span> kmeans.predict(test[[<span style="color: #98be65;">'&#22283;&#25991;'</span>, <span style="color: #98be65;">'&#33521;&#25991;'</span>]])
 <span class="linenr">41: </span>
-<span class="linenr">42: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;&#32858;&#39006;&#32080;&#26524;&#28155;&#21152;&#21040;&#36039;&#26009;&#26694;</span>
-<span class="linenr">43: </span><span style="color: #dcaeea;">test</span>[<span style="color: #98be65;">'&#32858;&#39006;'</span>] = clusters
+<span class="linenr">42: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;&#32858;&#39006;&#32080;&#26524;&#28155;&#21152;&#21040;&#36039;&#26009;&#26694;
+<span class="linenr">43: </span></span><span style="color: #dcaeea;">test</span>[<span style="color: #98be65;">'&#32858;&#39006;'</span>] <span style="color: #51afef;">=</span> clusters
 <span class="linenr">44: </span>
-<span class="linenr">45: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992; Plotly &#32362;&#35069;&#32858;&#39006;&#32080;&#26524;&#30340;&#25955;&#40670;&#22294;</span>
-<span class="linenr">46: </span><span style="color: #dcaeea;">fig2</span> = px.scatter(test, x=<span style="color: #98be65;">'&#22283;&#25991;'</span>, y=<span style="color: #98be65;">'&#33521;&#25991;'</span>, color=<span style="color: #98be65;">'&#32858;&#39006;'</span>, title=<span style="color: #98be65;">'&#22283;&#25991;&#33287;&#33521;&#25991;&#20998;&#25976;&#30340;&#32858;&#39006;&#32080;&#26524;'</span>)
+<span class="linenr">45: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992; Plotly &#32362;&#35069;&#32858;&#39006;&#32080;&#26524;&#30340;&#25955;&#40670;&#22294;
+<span class="linenr">46: </span></span><span style="color: #dcaeea;">fig2</span> <span style="color: #51afef;">=</span> px.scatter(test, x<span style="color: #51afef;">=</span><span style="color: #98be65;">'&#22283;&#25991;'</span>, y<span style="color: #51afef;">=</span><span style="color: #98be65;">'&#33521;&#25991;'</span>, color<span style="color: #51afef;">=</span><span style="color: #98be65;">'&#32858;&#39006;'</span>, title<span style="color: #51afef;">=</span><span style="color: #98be65;">'&#22283;&#25991;&#33287;&#33521;&#25991;&#20998;&#25976;&#30340;&#32858;&#39006;&#32080;&#26524;'</span>)
 <span class="linenr">47: </span>st.plotly_chart(fig2)
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-org218e1b6" class="outline-3">
-<h3 id="org218e1b6"><span class="section-number-3">1.12.</span> 執行結果</h3>
-<div class="outline-text-3" id="text-1-12">
+<div id="outline-container-org7b975ec" class="outline-3">
+<h3 id="org7b975ec"><span class="section-number-3">1.18.</span> 執行結果</h3>
+<div class="outline-text-3" id="text-1-18">
 <p>
 你也可以把你開發好的程式透過<a href="https://github.com/">Github</a>發佈到Streamlit的<a href="https://streamlit.io/">免費雲端平台</a>，<a href="https://playapp-letranger.streamlit.app/">像這樣</a><br />
 </p>
 
 
-<div id="org7348dab" class="figure">
+<div id="org9d7c30f" class="figure">
 <p><img src="images/Streamlit/Streamlit-Demo.gif" alt="Streamlit-Demo.gif" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>Streamlit執行範例</p>
@@ -833,11 +1213,41 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-orgef474ef" class="outline-2">
-<h2 id="orgef474ef"><span class="section-number-2">2.</span> Gradio</h2>
+<div id="outline-container-orgfb0c24c" class="outline-2">
+<h2 id="orgfb0c24c"><span class="section-number-2">2.</span> Gradio</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-讓只有command line I/O的python程式搖身一變成為web service。<br />
+前面學了 Streamlit，這裡再介紹另一個 Web GUI 工具 Gradio。兩者的差異：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">工具</th>
+<th scope="col" class="org-left">適合場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Streamlit</td>
+<td class="org-left">資料儀表板、多頁面的資料展示應用</td>
+</tr>
+
+<tr>
+<td class="org-left">Gradio</td>
+<td class="org-left">「輸入→處理→輸出」的 demo，特別適合 AI 模型展示</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+簡單來說，如果你的程式是「丟東西進去、吐結果出來」的型態，Gradio 會比 Streamlit 更快上手。<br />
 </p>
 <ul class="org-ul">
 <li><a href="https://gradio.app/">官網</a><br /></li>
@@ -845,8 +1255,8 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 <li><a href="https://github.com/gradio-app/gradio">Gradio github</a><br /></li>
 </ul>
 </div>
-<div id="outline-container-org13aa7e6" class="outline-3">
-<h3 id="org13aa7e6"><span class="section-number-3">2.1.</span> 安裝套件</h3>
+<div id="outline-container-orgc3e7272" class="outline-3">
+<h3 id="orgc3e7272"><span class="section-number-3">2.1.</span> 安裝套件</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip3 install gradio
@@ -854,8 +1264,8 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-orgcec5b80" class="outline-3">
-<h3 id="orgcec5b80"><span class="section-number-3">2.2.</span> Hello world<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
+<div id="outline-container-org6562175" class="outline-3">
+<h3 id="org6562175"><span class="section-number-3">2.2.</span> Hello world<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 <code>gr.Interface</code> 是 Gradio 最核心的類別，把一個 Python 函式包裝成網頁介面：<br />
@@ -912,24 +1322,24 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 <pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
 <span class="linenr">2: </span>
 <span class="linenr">3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name):
-<span class="linenr">4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> + name + <span style="color: #98be65;">"!!"</span>
+<span class="linenr">4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> <span style="color: #51afef;">+</span> name <span style="color: #51afef;">+</span> <span style="color: #98be65;">"!!"</span>
 <span class="linenr">5: </span>
-<span class="linenr">6: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(fn=greet, inputs=<span style="color: #98be65;">"text"</span>, outputs=<span style="color: #98be65;">"text"</span>)
+<span class="linenr">6: </span><span style="color: #dcaeea;">demo</span> <span style="color: #51afef;">=</span> gr.Interface(fn<span style="color: #51afef;">=</span>greet, inputs<span style="color: #51afef;">=</span><span style="color: #98be65;">"text"</span>, outputs<span style="color: #51afef;">=</span><span style="color: #98be65;">"text"</span>)
 <span class="linenr">7: </span>
 <span class="linenr">8: </span>demo.launch()
 </pre>
 </div>
 
 
-<div id="org5f3855b" class="figure">
+<div id="orgd8e01f3" class="figure">
 <p><img src="images/Gradio/2024-03-07_16-09-49_2024-03-07_16-09-26.png" alt="2024-03-07_16-09-49_2024-03-07_16-09-26.png" width="800" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>執行畫面</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgdeb3e63" class="outline-3">
-<h3 id="orgdeb3e63"><span class="section-number-3">2.3.</span> 數字 I/O</h3>
+<div id="outline-container-org59f1a06" class="outline-3">
+<h3 id="org59f1a06"><span class="section-number-3">2.3.</span> 數字 I/O</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 這裡用 <code>gr.Slider</code> 當作數字輸入元件，比起手動打數字方便多了：<br />
@@ -983,25 +1393,25 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">BMI</span>(h, w):
-<span class="linenr"> 4: </span>  <span style="color: #dcaeea;">h</span> /= <span style="color: #da8548; font-weight: bold;">100</span>
-<span class="linenr"> 5: </span>  <span style="color: #51afef;">return</span> f<span style="color: #98be65;">'BMI&#20540;: </span>{w/(h*h)}<span style="color: #98be65;">'</span>
+<span class="linenr"> 4: </span>  <span style="color: #dcaeea;">h</span> <span style="color: #51afef;">/=</span> 100
+<span class="linenr"> 5: </span>  <span style="color: #51afef;">return</span> f<span style="color: #98be65;">'BMI&#20540;: </span>{w<span style="color: #51afef;">/</span>(h<span style="color: #51afef;">*</span>h)}<span style="color: #98be65;">'</span>
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">ui</span> = gr.Interface(
-<span class="linenr"> 8: </span>    fn=BMI, inputs=[gr.Slider(<span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">240</span>, label=<span style="color: #98be65;">"&#36523;&#39640;(cm)"</span>), gr.Slider(<span style="color: #da8548; font-weight: bold;">40</span>, <span style="color: #da8548; font-weight: bold;">200</span>, label=<span style="color: #98be65;">"&#39636;&#37325;(kg)"</span>)],
-<span class="linenr"> 9: </span>    outputs=[<span style="color: #98be65;">"text"</span>]
+<span class="linenr"> 7: </span><span style="color: #dcaeea;">ui</span> <span style="color: #51afef;">=</span> gr.Interface(
+<span class="linenr"> 8: </span>    fn<span style="color: #51afef;">=</span>BMI, inputs<span style="color: #51afef;">=</span>[gr.Slider(100, 240, label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#36523;&#39640;(cm)"</span>), gr.Slider(40, 200, label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#39636;&#37325;(kg)"</span>)],
+<span class="linenr"> 9: </span>    outputs<span style="color: #51afef;">=</span>[<span style="color: #98be65;">"text"</span>]
 <span class="linenr">10: </span>)
-<span class="linenr">11: </span>ui.launch(share=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">11: </span>ui.launch(share<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 
-<div id="org25cac34" class="figure">
+<div id="org19ed0a2" class="figure">
 <p><img src="images/Gradio/2024-03-07_16-41-11_2024-03-07_16-40-52.png" alt="2024-03-07_16-41-11_2024-03-07_16-40-52.png" width="700" /><br />
 </p>
 <p><span class="figure-number">Figure 4: </span>執行畫面</p>
 </div>
 </div>
-<div id="outline-container-org8a31a2b" class="outline-4">
-<h4 id="org8a31a2b"><span class="section-number-4">2.3.1.</span> [課堂練習]三角形面積&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h4>
+<div id="outline-container-org490de70" class="outline-4">
+<h4 id="org490de70"><span class="section-number-4">2.3.1.</span> [課堂練習]三角形面積&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 輸入三角形三邊長(1..100)，輸出面積、周長<br />
@@ -1009,95 +1419,95 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-org050e603" class="outline-3">
-<h3 id="org050e603"><span class="section-number-3">2.4.</span> 文字 I/O</h3>
+<div id="outline-container-org5ab45b7" class="outline-3">
+<h3 id="org5ab45b7"><span class="section-number-3">2.4.</span> 文字 I/O</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name):
-<span class="linenr"> 4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> <span style="color: #51afef;">+</span> name <span style="color: #51afef;">+</span> <span style="color: #98be65;">"!"</span>
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(
-<span class="linenr"> 7: </span>    fn=greet,
-<span class="linenr"> 8: </span>    inputs=gr.Textbox(lines=<span style="color: #da8548; font-weight: bold;">2</span>, placeholder=<span style="color: #98be65;">"Name Here..."</span>),
-<span class="linenr"> 9: </span>    outputs=<span style="color: #98be65;">"text"</span>,
+<span class="linenr"> 6: </span><span style="color: #dcaeea;">demo</span> <span style="color: #51afef;">=</span> gr.Interface(
+<span class="linenr"> 7: </span>    fn<span style="color: #51afef;">=</span>greet,
+<span class="linenr"> 8: </span>    inputs<span style="color: #51afef;">=</span>gr.Textbox(lines<span style="color: #51afef;">=</span>2, placeholder<span style="color: #51afef;">=</span><span style="color: #98be65;">"Name Here..."</span>),
+<span class="linenr"> 9: </span>    outputs<span style="color: #51afef;">=</span><span style="color: #98be65;">"text"</span>,
 <span class="linenr">10: </span>)
-<span class="linenr">11: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">11: </span>demo.launch(share<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 
 
-<div id="orgf4769e4" class="figure">
+<div id="org407777b" class="figure">
 <p><img src="images/Gradio/2024-03-07_16-44-41_2024-03-07_16-44-28.png" alt="2024-03-07_16-44-41_2024-03-07_16-44-28.png" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 5: </span>執行畫面</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org9ee1a52" class="outline-3">
-<h3 id="org9ee1a52"><span class="section-number-3">2.5.</span> 多資料 I/O</h3>
+<div id="outline-container-org603dd28" class="outline-3">
+<h3 id="org603dd28"><span class="section-number-3">2.5.</span> 多資料 I/O</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name, is_morning, temperature):
-<span class="linenr"> 4: </span>    <span style="color: #dcaeea;">salutation</span> = <span style="color: #98be65;">"Good morning"</span> <span style="color: #51afef;">if</span> is_morning <span style="color: #51afef;">else</span> <span style="color: #98be65;">"Good evening"</span>
-<span class="linenr"> 5: </span>    <span style="color: #dcaeea;">greeting</span> = f<span style="color: #98be65;">"</span>{salutation}<span style="color: #98be65;"> </span>{name}<span style="color: #98be65;">. It is </span>{temperature}<span style="color: #98be65;"> degrees today"</span>
-<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">celsius</span> = (temperature - <span style="color: #da8548; font-weight: bold;">32</span>) * <span style="color: #da8548; font-weight: bold;">5</span> / <span style="color: #da8548; font-weight: bold;">9</span>
-<span class="linenr"> 7: </span>    <span style="color: #51afef;">return</span> greeting, <span style="color: #c678dd;">round</span>(celsius, <span style="color: #da8548; font-weight: bold;">2</span>)
+<span class="linenr"> 4: </span>    <span style="color: #dcaeea;">salutation</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"Good morning"</span> <span style="color: #51afef;">if</span> is_morning <span style="color: #51afef;">else</span> <span style="color: #98be65;">"Good evening"</span>
+<span class="linenr"> 5: </span>    <span style="color: #dcaeea;">greeting</span> <span style="color: #51afef;">=</span> f<span style="color: #98be65;">"</span>{salutation}<span style="color: #98be65;"> </span>{name}<span style="color: #98be65;">. It is </span>{temperature}<span style="color: #98be65;"> degrees today"</span>
+<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">celsius</span> <span style="color: #51afef;">=</span> (temperature <span style="color: #51afef;">-</span> 32) <span style="color: #51afef;">*</span> 5 <span style="color: #51afef;">/</span> 9
+<span class="linenr"> 7: </span>    <span style="color: #51afef;">return</span> greeting, <span style="color: #c678dd;">round</span>(celsius, 2)
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(
-<span class="linenr">10: </span>    fn=greet,
-<span class="linenr">11: </span>    inputs=[<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">"checkbox"</span>, gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">100</span>)],
-<span class="linenr">12: </span>    outputs=[<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">"number"</span>],
+<span class="linenr"> 9: </span><span style="color: #dcaeea;">demo</span> <span style="color: #51afef;">=</span> gr.Interface(
+<span class="linenr">10: </span>    fn<span style="color: #51afef;">=</span>greet,
+<span class="linenr">11: </span>    inputs<span style="color: #51afef;">=</span>[<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">"checkbox"</span>, gr.Slider(0, 100)],
+<span class="linenr">12: </span>    outputs<span style="color: #51afef;">=</span>[<span style="color: #98be65;">"text"</span>, <span style="color: #98be65;">"number"</span>],
 <span class="linenr">13: </span>)
-<span class="linenr">14: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">14: </span>demo.launch(share<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 
-<div id="orgbe0831d" class="figure">
+<div id="org8aec4b7" class="figure">
 <p><img src="images/Gradio/2024-03-07_16-46-19_2024-03-07_16-46-06.png" alt="2024-03-07_16-46-19_2024-03-07_16-46-06.png" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 6: </span>執行畫面</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org2547647" class="outline-3">
-<h3 id="org2547647"><span class="section-number-3">2.6.</span> 圖形 I/O</h3>
+<div id="outline-container-orgd4e79d7" class="outline-3">
+<h3 id="orgd4e79d7"><span class="section-number-3">2.6.</span> 圖形 I/O</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
 <span class="linenr"> 2: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
 <span class="linenr"> 3: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
 <span class="linenr"> 4: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">curve</span>(a, b, c):
-<span class="linenr"> 5: </span>    <span style="color: #dcaeea;">x</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.3</span>)
-<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">y</span> = a*x**<span style="color: #da8548; font-weight: bold;">2</span> + b*x + c
-<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">fig</span> = plt.figure()
+<span class="linenr"> 5: </span>    <span style="color: #dcaeea;">x</span> <span style="color: #51afef;">=</span> np.arange(<span style="color: #51afef;">-</span>3, 3, 0.3)
+<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">y</span> <span style="color: #51afef;">=</span> a<span style="color: #51afef;">*</span>x<span style="color: #51afef;">**</span>2 <span style="color: #51afef;">+</span> b<span style="color: #51afef;">*</span>x <span style="color: #51afef;">+</span> c
+<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">fig</span> <span style="color: #51afef;">=</span> plt.figure()
 <span class="linenr"> 8: </span>    plt.plot(x, y)
 <span class="linenr"> 9: </span>    <span style="color: #c678dd;">print</span>(x)
 <span class="linenr">10: </span>    <span style="color: #c678dd;">print</span>(y)
 <span class="linenr">11: </span>    <span style="color: #51afef;">return</span> fig
-<span class="linenr">12: </span><span style="color: #dcaeea;">inputs</span> = [gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">5</span>), gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">5</span>), gr.Slider(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">10</span>, <span style="color: #da8548; font-weight: bold;">5</span>)]
-<span class="linenr">13: </span><span style="color: #dcaeea;">outputs</span> = gr.Plot()
-<span class="linenr">14: </span><span style="color: #dcaeea;">demo</span> = gr.Interface(
-<span class="linenr">15: </span>    fn=curve,
-<span class="linenr">16: </span>    inputs=inputs,
-<span class="linenr">17: </span>    outputs=outputs,
-<span class="linenr">18: </span>    cache_examples=<span style="color: #a9a1e1;">True</span>,)
-<span class="linenr">19: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">12: </span><span style="color: #dcaeea;">inputs</span> <span style="color: #51afef;">=</span> [gr.Slider(0, 10, 5), gr.Slider(0, 10, 5), gr.Slider(0, 10, 5)]
+<span class="linenr">13: </span><span style="color: #dcaeea;">outputs</span> <span style="color: #51afef;">=</span> gr.Plot()
+<span class="linenr">14: </span><span style="color: #dcaeea;">demo</span> <span style="color: #51afef;">=</span> gr.Interface(
+<span class="linenr">15: </span>    fn<span style="color: #51afef;">=</span>curve,
+<span class="linenr">16: </span>    inputs<span style="color: #51afef;">=</span>inputs,
+<span class="linenr">17: </span>    outputs<span style="color: #51afef;">=</span>outputs,
+<span class="linenr">18: </span>    cache_examples<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>,)
+<span class="linenr">19: </span>demo.launch(share<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 
-<div id="org9a9b30b" class="figure">
+<div id="org4c3215b" class="figure">
 <p><img src="images/Gradio/2024-03-07_16-51-43_2024-03-07_16-51-32.png" alt="2024-03-07_16-51-43_2024-03-07_16-51-32.png" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 7: </span>執行畫面</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd0582b6" class="outline-3">
-<h3 id="orgd0582b6"><span class="section-number-3">2.7.</span> 按鈕 (Button)</h3>
+<div id="outline-container-org3e036f2" class="outline-3">
+<h3 id="org3e036f2"><span class="section-number-3">2.7.</span> 按鈕 (Button)</h3>
 <div class="outline-text-3" id="text-2-7">
 <p>
 前面的 <code>gr.Interface</code> 適合「一進一出」的簡單情境，如果需要自訂版面配置（例如自己決定元件排列方式），就要用 =gr.Blocks=：<br />
@@ -1115,56 +1525,56 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(name):
-<span class="linenr"> 4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 4: </span>    <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello "</span> <span style="color: #51afef;">+</span> name <span style="color: #51afef;">+</span> <span style="color: #98be65;">"!"</span>
 <span class="linenr"> 5: </span>
 <span class="linenr"> 6: </span><span style="color: #51afef;">with</span> gr.Blocks() <span style="color: #51afef;">as</span> demo:
-<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">name</span> = gr.Textbox(label=<span style="color: #98be65;">"Name"</span>)
-<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">output</span> = gr.Textbox(label=<span style="color: #98be65;">"Output Box"</span>)
-<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">greet_btn</span> = gr.Button(<span style="color: #98be65;">"Greet"</span>)
-<span class="linenr">10: </span>    greet_btn.click(fn=greet, inputs=name, outputs=output)
+<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">name</span> <span style="color: #51afef;">=</span> gr.Textbox(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"Name"</span>)
+<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">output</span> <span style="color: #51afef;">=</span> gr.Textbox(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"Output Box"</span>)
+<span class="linenr"> 9: </span>    <span style="color: #dcaeea;">greet_btn</span> <span style="color: #51afef;">=</span> gr.Button(<span style="color: #98be65;">"Greet"</span>)
+<span class="linenr">10: </span>    greet_btn.click(fn<span style="color: #51afef;">=</span>greet, inputs<span style="color: #51afef;">=</span>name, outputs<span style="color: #51afef;">=</span>output)
 <span class="linenr">11: </span>
-<span class="linenr">12: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">12: </span>demo.launch(share<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 
-<div id="org14ea9eb" class="figure">
+<div id="org2971f2e" class="figure">
 <p><img src="images/Gradio/2024-03-11_20-11-32_2024-03-11_20-10-15.gif" alt="2024-03-11_20-11-32_2024-03-11_20-10-15.gif" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 8: </span>執行畫面</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org79e454f" class="outline-3">
-<h3 id="org79e454f"><span class="section-number-3">2.8.</span> Radio</h3>
+<div id="outline-container-orgeafa8d7" class="outline-3">
+<h3 id="orgeafa8d7"><span class="section-number-3">2.8.</span> Radio</h3>
 <div class="outline-text-3" id="text-2-8">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> gradio <span style="color: #51afef;">as</span> gr
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">greet</span>(gender, name):
-<span class="linenr"> 4: </span>    <span style="color: #51afef;">if</span> gender == <span style="color: #98be65;">"Male"</span>:
-<span class="linenr"> 5: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello, Mr. "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 4: </span>    <span style="color: #51afef;">if</span> gender <span style="color: #51afef;">==</span> <span style="color: #98be65;">"Male"</span>:
+<span class="linenr"> 5: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello, Mr. "</span> <span style="color: #51afef;">+</span> name <span style="color: #51afef;">+</span> <span style="color: #98be65;">"!"</span>
 <span class="linenr"> 6: </span>    <span style="color: #51afef;">else</span>:
-<span class="linenr"> 7: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello, Ms. "</span> + name + <span style="color: #98be65;">"!"</span>
+<span class="linenr"> 7: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">"Hello, Ms. "</span> <span style="color: #51afef;">+</span> name <span style="color: #51afef;">+</span> <span style="color: #98be65;">"!"</span>
 <span class="linenr"> 8: </span>
 <span class="linenr"> 9: </span><span style="color: #51afef;">with</span> gr.Blocks() <span style="color: #51afef;">as</span> demo:
-<span class="linenr">10: </span>    <span style="color: #c678dd;">input</span> = [gr.Radio([<span style="color: #98be65;">"Male"</span>, <span style="color: #98be65;">"Female"</span>]), gr.Textbox(label=<span style="color: #98be65;">"Name"</span>)]
-<span class="linenr">11: </span>    <span style="color: #dcaeea;">output</span> = gr.Textbox(label=<span style="color: #98be65;">"Output Box"</span>)
-<span class="linenr">12: </span>    <span style="color: #dcaeea;">greet_btn</span> = gr.Button(<span style="color: #98be65;">"Greet"</span>)
-<span class="linenr">13: </span>    greet_btn.click(fn=greet, inputs=<span style="color: #c678dd;">input</span>, outputs=output)
+<span class="linenr">10: </span>    <span style="color: #dcaeea;">inputs</span> <span style="color: #51afef;">=</span> [gr.Radio([<span style="color: #98be65;">"Male"</span>, <span style="color: #98be65;">"Female"</span>]), gr.Textbox(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"Name"</span>)]
+<span class="linenr">11: </span>    <span style="color: #dcaeea;">output</span> <span style="color: #51afef;">=</span> gr.Textbox(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"Output Box"</span>)
+<span class="linenr">12: </span>    <span style="color: #dcaeea;">greet_btn</span> <span style="color: #51afef;">=</span> gr.Button(<span style="color: #98be65;">"Greet"</span>)
+<span class="linenr">13: </span>    greet_btn.click(fn<span style="color: #51afef;">=</span>greet, inputs<span style="color: #51afef;">=</span>inputs, outputs<span style="color: #51afef;">=</span>output)
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>demo.launch(share=<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">15: </span>demo.launch(share<span style="color: #51afef;">=</span><span style="color: #a9a1e1;">True</span>)
 </pre>
 </div>
 
-<div id="org703b2ae" class="figure">
+<div id="orgb12bc99" class="figure">
 <p><img src="images/Gradio/2024-03-11_20-13-52_2024-03-11_20-13-00.gif" alt="2024-03-11_20-13-52_2024-03-11_20-13-00.gif" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 9: </span>執行畫面</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org4e4c245" class="outline-3">
-<h3 id="org4e4c245"><span class="section-number-3">2.9.</span> Tab(分頁)</h3>
+<div id="outline-container-orgd0b04cd" class="outline-3">
+<h3 id="orgd0b04cd"><span class="section-number-3">2.9.</span> Tab(分頁)</h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
 適合多功能的程式(靜態的多重輸入)<br />
@@ -1174,25 +1584,25 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 <span class="linenr"> 2: </span>
 <span class="linenr"> 3: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">tri</span>(a, b, c):
 <span class="linenr"> 4: </span>    <span style="color: #51afef;">import</span> math
-<span class="linenr"> 5: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#28023;&#40845;&#20844;&#24335;&#35336;&#31639;&#21322;&#21608;&#38263;</span>
-<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">s</span> = (a + b + c) / <span style="color: #da8548; font-weight: bold;">2</span>
-<span class="linenr"> 7: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#21322;&#21608;&#38263;&#35336;&#31639;&#38754;&#31309;</span>
-<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">area</span> = math.sqrt(s * (s - a) * (s - b) * (s - c))
-<span class="linenr"> 9: </span>    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">round</span>(area,<span style="color: #da8548; font-weight: bold;">2</span>)
+<span class="linenr"> 5: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#28023;&#40845;&#20844;&#24335;&#35336;&#31639;&#21322;&#21608;&#38263;
+<span class="linenr"> 6: </span></span>    <span style="color: #dcaeea;">s</span> <span style="color: #51afef;">=</span> (a <span style="color: #51afef;">+</span> b <span style="color: #51afef;">+</span> c) <span style="color: #51afef;">/</span> 2
+<span class="linenr"> 7: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#20351;&#29992;&#21322;&#21608;&#38263;&#35336;&#31639;&#38754;&#31309;
+<span class="linenr"> 8: </span></span>    <span style="color: #dcaeea;">area</span> <span style="color: #51afef;">=</span> math.sqrt(s <span style="color: #51afef;">*</span> (s <span style="color: #51afef;">-</span> a) <span style="color: #51afef;">*</span> (s <span style="color: #51afef;">-</span> b) <span style="color: #51afef;">*</span> (s <span style="color: #51afef;">-</span> c))
+<span class="linenr"> 9: </span>    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">round</span>(area,2)
 <span class="linenr">10: </span>
 <span class="linenr">11: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">rect</span>(a, b):
-<span class="linenr">12: </span>    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">round</span>(a*b,<span style="color: #da8548; font-weight: bold;">2</span>)
+<span class="linenr">12: </span>    <span style="color: #51afef;">return</span> <span style="color: #c678dd;">round</span>(a<span style="color: #51afef;">*</span>b,2)
 <span class="linenr">13: </span>
-<span class="linenr">14: </span><span style="color: #dcaeea;">area1</span> = gr.Interface(
+<span class="linenr">14: </span><span style="color: #dcaeea;">area1</span> <span style="color: #51afef;">=</span> gr.Interface(
 <span class="linenr">15: </span>    tri,
-<span class="linenr">16: </span>    [gr.Slider(label=<span style="color: #98be65;">"&#38263;"</span>), gr.Slider(label=<span style="color: #98be65;">"&#23532;"</span>), gr.Slider(label=<span style="color: #98be65;">"&#39640;"</span>) ],
-<span class="linenr">17: </span>    gr.Number(label=<span style="color: #98be65;">"&#38754;&#31309;"</span>),
+<span class="linenr">16: </span>    [gr.Slider(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#38263;"</span>), gr.Slider(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#23532;"</span>), gr.Slider(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#39640;"</span>) ],
+<span class="linenr">17: </span>    gr.Number(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#38754;&#31309;"</span>),
 <span class="linenr">18: </span>)
 <span class="linenr">19: </span>
-<span class="linenr">20: </span><span style="color: #dcaeea;">area2</span> = gr.Interface(
+<span class="linenr">20: </span><span style="color: #dcaeea;">area2</span> <span style="color: #51afef;">=</span> gr.Interface(
 <span class="linenr">21: </span>    rect,
-<span class="linenr">22: </span>    [ gr.Slider(label=<span style="color: #98be65;">"&#38263;"</span>), gr.Slider(label=<span style="color: #98be65;">"&#23532;"</span>) ],
-<span class="linenr">23: </span>    gr.Number(label=<span style="color: #98be65;">"&#38754;&#31309;"</span>),
+<span class="linenr">22: </span>    [ gr.Slider(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#38263;"</span>), gr.Slider(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#23532;"</span>) ],
+<span class="linenr">23: </span>    gr.Number(label<span style="color: #51afef;">=</span><span style="color: #98be65;">"&#38754;&#31309;"</span>),
 <span class="linenr">24: </span>)
 <span class="linenr">25: </span>
 <span class="linenr">26: </span>gr.TabbedInterface(
@@ -1201,7 +1611,7 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </pre>
 </div>
 
-<div id="org0c8660d" class="figure">
+<div id="org248819f" class="figure">
 <p><img src="images/Gradio/2024-04-16_16-05-40_gradio-tabs.gif" alt="2024-04-16_16-05-40_gradio-tabs.gif" width="600" /><br />
 </p>
 <p><span class="figure-number">Figure 10: </span>分頁式的Gradio</p>
@@ -1209,12 +1619,12 @@ The second line (!wget -q -O - ipv4.icanhazip.com) retrieves your external IP ad
 </div>
 </div>
 </div>
-<div id="outline-container-org818c78c" class="outline-2">
-<h2 id="org818c78c"><span class="section-number-2">3.</span> Flask</h2>
+<div id="outline-container-org6761a13" class="outline-2">
+<h2 id="org6761a13"><span class="section-number-2">3.</span> Flask</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-orgc8c52d6" class="outline-3">
-<h3 id="orgc8c52d6"><span class="section-number-3">3.1.</span> 按鈕 (Button)</h3>
+<div id="outline-container-org21c191a" class="outline-3">
+<h3 id="org21c191a"><span class="section-number-3">3.1.</span> 按鈕 (Button)</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函式：<br />
@@ -1255,40 +1665,40 @@ Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函�
 
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">from</span> flask <span style="color: #51afef;">import</span> Flask
-<span class="linenr"> 2: </span><span style="color: #dcaeea;">app</span> = Flask(<span style="color: #c678dd;">__name__</span>)
+<span class="linenr"> 2: </span><span style="color: #dcaeea;">app</span> <span style="color: #51afef;">=</span> Flask(<span style="color: #c678dd;">__name__</span>)
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span><span style="color: #ECBE7B;">@app.route</span>(<span style="color: #98be65;">"/"</span>)
 <span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">hello</span>():
-<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">title</span> = <span style="color: #98be65;">"&lt;title&gt;Advanced Materials of Python&lt;/title&gt;"</span>
-<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">h1</span> = <span style="color: #98be65;">"&lt;h1&gt;Python based web&lt;/h1&gt;"</span>
-<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">p1</span> = <span style="color: #98be65;">"&lt;p&gt;&#36889;&#26159;&#29992;Python&#38283;&#30332;&#30340;&#32178;&#31449;&lt;/p&gt;"</span>
-<span class="linenr"> 9: </span>    <span style="color: #51afef;">return</span> title+h1+p1
+<span class="linenr"> 6: </span>    <span style="color: #dcaeea;">title</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"&lt;title&gt;Advanced Materials of Python&lt;/title&gt;"</span>
+<span class="linenr"> 7: </span>    <span style="color: #dcaeea;">h1</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"&lt;h1&gt;Python based web&lt;/h1&gt;"</span>
+<span class="linenr"> 8: </span>    <span style="color: #dcaeea;">p1</span> <span style="color: #51afef;">=</span> <span style="color: #98be65;">"&lt;p&gt;&#36889;&#26159;&#29992;Python&#38283;&#30332;&#30340;&#32178;&#31449;&lt;/p&gt;"</span>
+<span class="linenr"> 9: </span>    <span style="color: #51afef;">return</span> title<span style="color: #51afef;">+</span>h1<span style="color: #51afef;">+</span>p1
 <span class="linenr">10: </span>
-<span class="linenr">11: </span><span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> == <span style="color: #98be65;">"__main__"</span>:
+<span class="linenr">11: </span><span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> <span style="color: #51afef;">==</span> <span style="color: #98be65;">"__main__"</span>:
 <span class="linenr">12: </span>    app.run()
 </pre>
 </div>
 
 
-<div id="org09a8241" class="figure">
+<div id="orgffd7286" class="figure">
 <p><img src="images/FlashSite.jpg" alt="FlashSite.jpg" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 11: </span>Flask Web Site</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org361a183" class="outline-3">
-<h3 id="org361a183"><span class="section-number-3">3.2.</span> 輸入表單 (Input form)<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h3>
+<div id="outline-container-org437bb08" class="outline-3">
+<h3 id="org437bb08"><span class="section-number-3">3.2.</span> 輸入表單 (Input form)<sup><a id="fnr.2" class="footref" href="#fn.2" role="doc-backlink">2</a></sup></h3>
 <div class="outline-text-3" id="text-3-2">
 
-<div id="org26bd376" class="figure">
+<div id="orgf308d0c" class="figure">
 <p><img src="images/Flask/2024-03-11_21-44-56_2024-03-11_21-43-18.gif" alt="2024-03-11_21-44-56_2024-03-11_21-43-18.gif" width="700" /><br />
 </p>
 <p><span class="figure-number">Figure 12: </span>執行畫面</p>
 </div>
 </div>
-<div id="outline-container-org88aea8f" class="outline-4">
-<h4 id="org88aea8f"><span class="section-number-4">3.2.1.</span> Python</h4>
+<div id="outline-container-orgd65378b" class="outline-4">
+<h4 id="orgd65378b"><span class="section-number-4">3.2.1.</span> Python</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 這個範例用到了 <code>render_template()</code> 來載入 HTML 模板：<br />
@@ -1332,16 +1742,16 @@ Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函�
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Flask&#32178;&#31449;&#21069;&#24460;&#31471;&#20114;&#21205; 09 - &#36229;&#36899;&#32080;&#33287;&#22294;&#29255;</span>
-<span class="linenr"> 2: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;Flask&#12289;Request&#12289;render_template</span>
-<span class="linenr"> 3: </span><span style="color: #51afef;">from</span> flask <span style="color: #51afef;">import</span> Flask, request, render_template
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Flask&#32178;&#31449;&#21069;&#24460;&#31471;&#20114;&#21205; 09 - &#36229;&#36899;&#32080;&#33287;&#22294;&#29255;
+<span class="linenr"> 2: </span></span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36617;&#20837;Flask&#12289;Request&#12289;render_template
+<span class="linenr"> 3: </span></span><span style="color: #51afef;">from</span> flask <span style="color: #51afef;">import</span> Flask, request, render_template
 <span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span><span style="color: #dcaeea;">app</span> = Flask(<span style="color: #c678dd;">__name__</span>, template_folder=<span style="color: #98be65;">'templates'</span>,
-<span class="linenr"> 6: </span>            static_folder=<span style="color: #98be65;">"public"</span>,
-<span class="linenr"> 7: </span>            static_url_path=<span style="color: #98be65;">"/"</span>)
+<span class="linenr"> 5: </span><span style="color: #dcaeea;">app</span> <span style="color: #51afef;">=</span> Flask(<span style="color: #c678dd;">__name__</span>, template_folder<span style="color: #51afef;">=</span><span style="color: #98be65;">'templates'</span>,
+<span class="linenr"> 6: </span>            static_folder<span style="color: #51afef;">=</span><span style="color: #98be65;">"public"</span>,
+<span class="linenr"> 7: </span>            static_url_path<span style="color: #51afef;">=</span><span style="color: #98be65;">"/"</span>)
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#34389;&#29702;&#36335;&#24465; / &#30340;&#23565;&#25033;&#20989;&#24335;</span>
-<span class="linenr">10: </span><span style="color: #ECBE7B;">@app.route</span>(<span style="color: #98be65;">"/"</span>)
+<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#34389;&#29702;&#36335;&#24465; / &#30340;&#23565;&#25033;&#20989;&#24335;
+<span class="linenr">10: </span></span><span style="color: #ECBE7B;">@app.route</span>(<span style="color: #98be65;">"/"</span>)
 <span class="linenr">11: </span>
 <span class="linenr">12: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">main</span>():
 <span class="linenr">13: </span>    <span style="color: #51afef;">return</span> render_template(<span style="color: #98be65;">"index.html"</span>)
@@ -1349,21 +1759,21 @@ Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函�
 <span class="linenr">15: </span><span style="color: #ECBE7B;">@app.route</span>(<span style="color: #98be65;">"/page"</span>)
 <span class="linenr">16: </span>
 <span class="linenr">17: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">page</span>():
-<span class="linenr">18: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#24478;main.html&#38913;&#38754;&#20013;&#35712;&#21462;&#22995;&#21517;&#65292;&#23384;&#22312;name&#20013;</span>
-<span class="linenr">19: </span>    <span style="color: #dcaeea;">name</span> = request.args.get(<span style="color: #98be65;">"nameis"</span>)
-<span class="linenr">20: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;name&#30340;&#36039;&#26009;&#36681;&#32102;page.html&#20013;&#30340;&#35722;&#25976;namepage</span>
-<span class="linenr">21: </span>    <span style="color: #51afef;">return</span> render_template(<span style="color: #98be65;">"page.html"</span>, namepage=name)
-<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21855;&#21205;Server</span>
-<span class="linenr">23: </span>
-<span class="linenr">24: </span><span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> == <span style="color: #98be65;">'__main__'</span>:
-<span class="linenr">25: </span>    app.<span style="color: #dcaeea;">debug</span> = <span style="color: #a9a1e1;">True</span>
-<span class="linenr">26: </span>    app.run()
+<span class="linenr">18: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#24478;main.html&#38913;&#38754;&#20013;&#35712;&#21462;&#22995;&#21517;&#65292;&#23384;&#22312;name&#20013;
+<span class="linenr">19: </span></span>    <span style="color: #dcaeea;">name</span> <span style="color: #51afef;">=</span> request.args.get(<span style="color: #98be65;">"nameis"</span>)
+<span class="linenr">20: </span>    <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23559;name&#30340;&#36039;&#26009;&#36681;&#32102;page.html&#20013;&#30340;&#35722;&#25976;namepage
+<span class="linenr">21: </span></span>    <span style="color: #51afef;">return</span> render_template(<span style="color: #98be65;">"page.html"</span>, namepage<span style="color: #51afef;">=</span>name)
+<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#21855;&#21205;Server
+<span class="linenr">23: </span></span>
+<span class="linenr">24: </span><span style="color: #51afef;">if</span> <span style="color: #c678dd;">__name__</span> <span style="color: #51afef;">==</span> <span style="color: #98be65;">'__main__'</span>:
+<span class="linenr">25: </span>    app.<span style="color: #dcaeea;">debug</span> <span style="color: #51afef;">=</span> <span style="color: #a9a1e1;">True</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#38283;&#30332;&#26178;&#26041;&#20415;&#38500;&#37679;&#65292;&#27491;&#24335;&#19978;&#32218;&#26178;&#35352;&#24471;&#38364;&#25481;
+<span class="linenr">26: </span></span>    app.run()
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4e87ed6" class="outline-4">
-<h4 id="org4e87ed6"><span class="section-number-4">3.2.2.</span> templates</h4>
+<div id="outline-container-orgd38adb6" class="outline-4">
+<h4 id="orgd38adb6"><span class="section-number-4">3.2.2.</span> templates</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <ol class="org-ol">
 <li>建立public資料夾，放入一個head.png圖檔<br /></li>
@@ -1371,8 +1781,8 @@ Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函�
 <li>以下兩個html檔要放在templates資料夾中<br /></li>
 </ol>
 </div>
-<div id="outline-container-org786683f" class="outline-5">
-<h5 id="org786683f"><span class="section-number-5">3.2.2.1.</span> index.html</h5>
+<div id="outline-container-org6496ac8" class="outline-5">
+<h5 id="org6496ac8"><span class="section-number-5">3.2.2.1.</span> index.html</h5>
 <div class="outline-text-5" id="text-3-2-2-1">
 <div class="org-src-container">
 <pre class="src src-html"><span class="linenr"> 1: </span>&lt;<span style="color: #51afef;">!DOCTYPE</span> html&gt;
@@ -1398,8 +1808,8 @@ Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函�
 </div>
 </div>
 </div>
-<div id="outline-container-orgeea05b4" class="outline-5">
-<h5 id="orgeea05b4"><span class="section-number-5">3.2.2.2.</span> page.html</h5>
+<div id="outline-container-org0e73742" class="outline-5">
+<h5 id="org0e73742"><span class="section-number-5">3.2.2.2.</span> page.html</h5>
 <div class="outline-text-5" id="text-3-2-2-2">
 <div class="org-src-container">
 <pre class="src src-html">&lt;<span style="color: #51afef;">!DOCTYPE</span> html&gt;
@@ -1424,8 +1834,8 @@ Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函�
 </div>
 </div>
 </div>
-<div id="outline-container-org9bcc0be" class="outline-3">
-<h3 id="org9bcc0be"><span class="section-number-3">3.3.</span> [課堂練習]Flask 自我介紹網站&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-org5ed956f" class="outline-3">
+<h3 id="org5ed956f"><span class="section-number-3">3.3.</span> [課堂練習]Flask 自我介紹網站&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 參考上面的 Input form 範例，製作一個簡易的自我介紹網站：<br />
@@ -1452,31 +1862,31 @@ Flask 用 <code>@app.route()</code> 裝飾器把 URL 路徑對應到 Python 函�
 </div>
 </div>
 </div>
-<div id="outline-container-orgfa6f6ff" class="outline-2">
-<h2 id="orgfa6f6ff"><span class="section-number-2">4.</span> tkinter</h2>
+<div id="outline-container-orgdc8b0bb" class="outline-2">
+<h2 id="orgdc8b0bb"><span class="section-number-2">4.</span> tkinter</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgd06c91a" class="outline-3">
-<h3 id="orgd06c91a"><span class="section-number-3">4.1.</span> 安裝</h3>
+<div id="outline-container-orgedf8066" class="outline-3">
+<h3 id="orgedf8066"><span class="section-number-3">4.1.</span> 安裝</h3>
 <div class="outline-text-3" id="text-4-1">
 </div>
-<div id="outline-container-orgd99d9df" class="outline-4">
-<h4 id="orgd99d9df"><span class="section-number-4">4.1.1.</span> MacOS</h4>
+<div id="outline-container-org44c5898" class="outline-4">
+<h4 id="org44c5898"><span class="section-number-4">4.1.1.</span> MacOS</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <p>
 於PyCharm的terminal下輸入brew install python-tk@Python版本<br />
 如果系統的預設python版本為3.9，則輸入<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-shell"><span class="linenr">1: </span>brew install python-tk@<span style="color: #da8548; font-weight: bold;">3.9</span>
+<pre class="src src-shell"><span class="linenr">1: </span>brew install python-tk@3.9
 <span class="linenr">2: </span>pip install tk
 </pre>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgedb9759" class="outline-3">
-<h3 id="orgedb9759"><span class="section-number-3">4.2.</span> 範例 #1</h3>
+<div id="outline-container-orga0ef21f" class="outline-3">
+<h3 id="orga0ef21f"><span class="section-number-3">4.2.</span> 範例 #1</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 tkinter 的 <code>tk.Button</code> 用來建立按鈕，最重要的是 <code>command</code> 參數：<br />
@@ -1525,29 +1935,29 @@ command=lambda: calculate('+')
 
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-
+<span class="linenr"> 2: </span></span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
 <span class="linenr"> 3: </span><span style="color: #51afef;">from</span> tkinter <span style="color: #51afef;">import</span> messagebox
-<span class="linenr"> 4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25353;&#23436;button&#35201;&#20570;&#20160;&#40636;</span>
-<span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">test</span>():
+<span class="linenr"> 4: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#25353;&#23436;button&#35201;&#20570;&#20160;&#40636;
+<span class="linenr"> 5: </span></span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">test</span>():
 <span class="linenr"> 6: </span>    tk.messagebox.showinfo(<span style="color: #98be65;">'&#28204;&#35430;'</span>, <span style="color: #98be65;">'Hi'</span>)
 <span class="linenr"> 7: </span>
-<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">main window</span>
-<span class="linenr"> 9: </span><span style="color: #dcaeea;">root</span> = tk.Tk()
+<span class="linenr"> 8: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">main window
+<span class="linenr"> 9: </span></span><span style="color: #dcaeea;">root</span> <span style="color: #51afef;">=</span> tk.Tk()
 <span class="linenr">10: </span>root.title(<span style="color: #98be65;">'my window'</span>)
 <span class="linenr">11: </span>root.geometry(<span style="color: #98be65;">'200x150'</span>)
 <span class="linenr">12: </span>
-<span class="linenr">13: </span>root.configure(background=<span style="color: #98be65;">'white'</span>)
+<span class="linenr">13: </span>root.configure(background<span style="color: #51afef;">=</span><span style="color: #98be65;">'white'</span>)
 <span class="linenr">14: </span>
-<span class="linenr">15: </span><span style="color: #dcaeea;">myentry</span> = tk.Entry(root)
+<span class="linenr">15: </span><span style="color: #dcaeea;">myentry</span> <span style="color: #51afef;">=</span> tk.Entry(root)
 <span class="linenr">16: </span>myentry.pack()
 <span class="linenr">17: </span>
-<span class="linenr">18: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Button</span>
-<span class="linenr">19: </span><span style="color: #dcaeea;">myButton</span> = tk.Button(root, text=<span style="color: #98be65;">'Button'</span>, command=test)
+<span class="linenr">18: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Button
+<span class="linenr">19: </span></span><span style="color: #dcaeea;">myButton</span> <span style="color: #51afef;">=</span> tk.Button(root, text<span style="color: #51afef;">=</span><span style="color: #98be65;">'Button'</span>, command<span style="color: #51afef;">=</span>test)
 <span class="linenr">20: </span>myButton.pack()
 <span class="linenr">21: </span>
-<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Label</span>
-<span class="linenr">23: </span><span style="color: #dcaeea;">resultLabel</span> = tk.Label(root, text=<span style="color: #98be65;">'&#36889;&#26159;Label'</span>)
+<span class="linenr">22: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Label
+<span class="linenr">23: </span></span><span style="color: #dcaeea;">resultLabel</span> <span style="color: #51afef;">=</span> tk.Label(root, text<span style="color: #51afef;">=</span><span style="color: #98be65;">'&#36889;&#26159;Label'</span>)
 <span class="linenr">24: </span>resultLabel.pack()
 <span class="linenr">25: </span>
 <span class="linenr">26: </span>root.mainloop()
@@ -1555,50 +1965,50 @@ command=lambda: calculate('+')
 </div>
 
 
-<div id="org97ff201" class="figure">
+<div id="org130289f" class="figure">
 <p><img src="images/tkinter/2024-03-12_10-24-30_2024-03-12_10-24-05.png" alt="2024-03-12_10-24-30_2024-03-12_10-24-05.png" width="200" /><br />
 </p>
 <p><span class="figure-number">Figure 13: </span>執行畫面</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org7022c5d" class="outline-3">
-<h3 id="org7022c5d"><span class="section-number-3">4.3.</span> 範例 #2</h3>
+<div id="outline-container-orge86738e" class="outline-3">
+<h3 id="orge86738e"><span class="section-number-3">4.3.</span> 範例 #2</h3>
 <div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-</span>
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
+<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">-*- coding: utf-8 -*-
+<span class="linenr"> 2: </span></span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
 <span class="linenr"> 3: </span><span style="color: #51afef;">from</span> tkinter <span style="color: #51afef;">import</span> messagebox
 <span class="linenr"> 4: </span>
 <span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">button_event</span>():
-<span class="linenr"> 6: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">print(var.get())</span>
-<span class="linenr"> 7: </span>    <span style="color: #51afef;">if</span> var.get() == <span style="color: #98be65;">''</span>:
+<span class="linenr"> 6: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">print(var.get())
+<span class="linenr"> 7: </span></span>    <span style="color: #51afef;">if</span> var.get() <span style="color: #51afef;">==</span> <span style="color: #98be65;">''</span>:
 <span class="linenr"> 8: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#26410;&#36664;&#20837;&#31572;&#26696;'</span>)
-<span class="linenr"> 9: </span>    <span style="color: #51afef;">elif</span> var.get() == <span style="color: #98be65;">'2'</span>:
+<span class="linenr"> 9: </span>    <span style="color: #51afef;">elif</span> var.get() <span style="color: #51afef;">==</span> <span style="color: #98be65;">'2'</span>:
 <span class="linenr">10: </span>        tk.messagebox.showinfo(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#23565;&#20102;&#65281;'</span>)
 <span class="linenr">11: </span>    <span style="color: #51afef;">else</span>:
 <span class="linenr">12: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#37679;'</span>)
 <span class="linenr">13: </span>
-<span class="linenr">14: </span><span style="color: #dcaeea;">root</span> = tk.Tk()
+<span class="linenr">14: </span><span style="color: #dcaeea;">root</span> <span style="color: #51afef;">=</span> tk.Tk()
 <span class="linenr">15: </span>root.title(<span style="color: #98be65;">'my window'</span>)
 <span class="linenr">16: </span>
-<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">label</span>
-<span class="linenr">18: </span><span style="color: #dcaeea;">mylabel</span> = tk.Label(root, text=<span style="color: #98be65;">'1+1='</span>)
-<span class="linenr">19: </span>mylabel.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">0</span>)
+<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">label
+<span class="linenr">18: </span></span><span style="color: #dcaeea;">mylabel</span> <span style="color: #51afef;">=</span> tk.Label(root, text<span style="color: #51afef;">=</span><span style="color: #98be65;">'1+1='</span>)
+<span class="linenr">19: </span>mylabel.grid(row<span style="color: #51afef;">=</span>0, column<span style="color: #51afef;">=</span>0)
 <span class="linenr">20: </span>
-<span class="linenr">21: </span><span style="color: #dcaeea;">var</span> = tk.StringVar()
-<span class="linenr">22: </span><span style="color: #dcaeea;">myentry</span> = tk.Entry(root, textvariable=var)
-<span class="linenr">23: </span>myentry.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">21: </span><span style="color: #dcaeea;">var</span> <span style="color: #51afef;">=</span> tk.StringVar()
+<span class="linenr">22: </span><span style="color: #dcaeea;">myentry</span> <span style="color: #51afef;">=</span> tk.Entry(root, textvariable<span style="color: #51afef;">=</span>var)
+<span class="linenr">23: </span>myentry.grid(row<span style="color: #51afef;">=</span>0, column<span style="color: #51afef;">=</span>1)
 <span class="linenr">24: </span>
-<span class="linenr">25: </span><span style="color: #dcaeea;">mybutton</span> = tk.Button(root, text=<span style="color: #98be65;">'&#23436;&#25104;'</span>, command=button_event)
-<span class="linenr">26: </span>mybutton.grid(row=<span style="color: #da8548; font-weight: bold;">1</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">25: </span><span style="color: #dcaeea;">mybutton</span> <span style="color: #51afef;">=</span> tk.Button(root, text<span style="color: #51afef;">=</span><span style="color: #98be65;">'&#23436;&#25104;'</span>, command<span style="color: #51afef;">=</span>button_event)
+<span class="linenr">26: </span>mybutton.grid(row<span style="color: #51afef;">=</span>1, column<span style="color: #51afef;">=</span>1)
 <span class="linenr">27: </span>
 <span class="linenr">28: </span>root.mainloop()
 </pre>
 </div>
 
 
-<div id="orgb86873b" class="figure">
+<div id="orgfbbf0c6" class="figure">
 <p><img src="images/tkinter/2024-03-12_10-27-00_2024-03-12_10-25-57.gif" alt="2024-03-12_10-27-00_2024-03-12_10-25-57.gif" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 14: </span>執行畫面</p>
@@ -1609,8 +2019,8 @@ command=lambda: calculate('+')
 </ul>
 </div>
 </div>
-<div id="outline-container-orgca84a2e" class="outline-3">
-<h3 id="orgca84a2e"><span class="section-number-3">4.4.</span> [課堂練習]簡易計算機&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-org77d85d5" class="outline-3">
+<h3 id="org77d85d5"><span class="section-number-3">4.4.</span> [課堂練習]簡易計算機&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 參考範例 #1 和 #2，用 tkinter 製作一個簡易計算機，需包含：<br />
@@ -1643,12 +2053,12 @@ command=lambda: calculate('+')
 </div>
 </div>
 </div>
-<div id="outline-container-org65c69a4" class="outline-2">
-<h2 id="org65c69a4"><span class="section-number-2">5.</span> PyInstaller</h2>
+<div id="outline-container-orgaf62c59" class="outline-2">
+<h2 id="orgaf62c59"><span class="section-number-2">5.</span> PyInstaller</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org2690109" class="outline-3">
-<h3 id="org2690109"><span class="section-number-3">5.1.</span> 安裝pyinstaller</h3>
+<div id="outline-container-orga305a05" class="outline-3">
+<h3 id="orga305a05"><span class="section-number-3">5.1.</span> 安裝pyinstaller</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip3 install pyinstaller
@@ -1656,12 +2066,12 @@ command=lambda: calculate('+')
 </div>
 </div>
 </div>
-<div id="outline-container-org29381db" class="outline-3">
-<h3 id="org29381db"><span class="section-number-3">5.2.</span> 準備要打包的檔案</h3>
+<div id="outline-container-org57a2afd" class="outline-3">
+<h3 id="org57a2afd"><span class="section-number-3">5.2.</span> 準備要打包的檔案</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org8733d6d" class="outline-4">
-<h4 id="org8733d6d"><span class="section-number-4">5.2.1.</span> 找一個喜歡的icon</h4>
+<div id="outline-container-org40bef4e" class="outline-4">
+<h4 id="org40bef4e"><span class="section-number-4">5.2.1.</span> 找一個喜歡的icon</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <ul class="org-ul">
 <li><a href="https://www.iconarchive.com">https://www.iconarchive.com</a><br /></li>
@@ -1673,35 +2083,35 @@ command=lambda: calculate('+')
 </p>
 </div>
 </div>
-<div id="outline-container-org0870e87" class="outline-4">
-<h4 id="org0870e87"><span class="section-number-4">5.2.2.</span> 以前述tkinter demo#2為例，將下列程式命名為403qq.py</h4>
+<div id="outline-container-org23d17e4" class="outline-4">
+<h4 id="org23d17e4"><span class="section-number-4">5.2.2.</span> 以前述tkinter demo#2為例，將下列程式命名為403qq.py</h4>
 <div class="outline-text-4" id="text-5-2-2">
 <div class="org-src-container">
 <pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> tkinter <span style="color: #51afef;">as</span> tk
 <span class="linenr"> 2: </span><span style="color: #51afef;">from</span> tkinter <span style="color: #51afef;">import</span> messagebox
 <span class="linenr"> 3: </span>
 <span class="linenr"> 4: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">button_event</span>():
-<span class="linenr"> 5: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">print(var.get())</span>
-<span class="linenr"> 6: </span>    <span style="color: #51afef;">if</span> var.get() == <span style="color: #98be65;">''</span>:
+<span class="linenr"> 5: </span>    <span style="color: #5B6268;">#</span><span style="color: #5B6268;">print(var.get())
+<span class="linenr"> 6: </span></span>    <span style="color: #51afef;">if</span> var.get() <span style="color: #51afef;">==</span> <span style="color: #98be65;">''</span>:
 <span class="linenr"> 7: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#26410;&#36664;&#20837;&#31572;&#26696;'</span>)
-<span class="linenr"> 8: </span>    <span style="color: #51afef;">elif</span> var.get() == <span style="color: #98be65;">'2'</span>:
+<span class="linenr"> 8: </span>    <span style="color: #51afef;">elif</span> var.get() <span style="color: #51afef;">==</span> <span style="color: #98be65;">'2'</span>:
 <span class="linenr"> 9: </span>        tk.messagebox.showinfo(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#23565;&#20102;&#65281;'</span>)
 <span class="linenr">10: </span>    <span style="color: #51afef;">else</span>:
 <span class="linenr">11: </span>        tk.messagebox.showerror(<span style="color: #98be65;">'message'</span>, <span style="color: #98be65;">'&#31572;&#37679;'</span>)
 <span class="linenr">12: </span>
-<span class="linenr">13: </span><span style="color: #dcaeea;">root</span> = tk.Tk()
+<span class="linenr">13: </span><span style="color: #dcaeea;">root</span> <span style="color: #51afef;">=</span> tk.Tk()
 <span class="linenr">14: </span>root.title(<span style="color: #98be65;">'my window'</span>)
 <span class="linenr">15: </span>
-<span class="linenr">16: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">label</span>
-<span class="linenr">17: </span><span style="color: #dcaeea;">mylabel</span> = tk.Label(root, text=<span style="color: #98be65;">'1+1='</span>)
-<span class="linenr">18: </span>mylabel.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">0</span>)
+<span class="linenr">16: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">label
+<span class="linenr">17: </span></span><span style="color: #dcaeea;">mylabel</span> <span style="color: #51afef;">=</span> tk.Label(root, text<span style="color: #51afef;">=</span><span style="color: #98be65;">'1+1='</span>)
+<span class="linenr">18: </span>mylabel.grid(row<span style="color: #51afef;">=</span>0, column<span style="color: #51afef;">=</span>0)
 <span class="linenr">19: </span>
-<span class="linenr">20: </span><span style="color: #dcaeea;">var</span> = tk.StringVar()
-<span class="linenr">21: </span><span style="color: #dcaeea;">myentry</span> = tk.Entry(root, textvariable=var)
-<span class="linenr">22: </span>myentry.grid(row=<span style="color: #da8548; font-weight: bold;">0</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">20: </span><span style="color: #dcaeea;">var</span> <span style="color: #51afef;">=</span> tk.StringVar()
+<span class="linenr">21: </span><span style="color: #dcaeea;">myentry</span> <span style="color: #51afef;">=</span> tk.Entry(root, textvariable<span style="color: #51afef;">=</span>var)
+<span class="linenr">22: </span>myentry.grid(row<span style="color: #51afef;">=</span>0, column<span style="color: #51afef;">=</span>1)
 <span class="linenr">23: </span>
-<span class="linenr">24: </span><span style="color: #dcaeea;">mybutton</span> = tk.Button(root, text=<span style="color: #98be65;">'&#23436;&#25104;'</span>, command=button_event)
-<span class="linenr">25: </span>mybutton.grid(row=<span style="color: #da8548; font-weight: bold;">1</span>, column=<span style="color: #da8548; font-weight: bold;">1</span>)
+<span class="linenr">24: </span><span style="color: #dcaeea;">mybutton</span> <span style="color: #51afef;">=</span> tk.Button(root, text<span style="color: #51afef;">=</span><span style="color: #98be65;">'&#23436;&#25104;'</span>, command<span style="color: #51afef;">=</span>button_event)
+<span class="linenr">25: </span>mybutton.grid(row<span style="color: #51afef;">=</span>1, column<span style="color: #51afef;">=</span>1)
 <span class="linenr">26: </span>
 <span class="linenr">27: </span>root.mainloop()
 </pre>
@@ -1709,8 +2119,8 @@ command=lambda: calculate('+')
 </div>
 </div>
 </div>
-<div id="outline-container-org1ca89ff" class="outline-3">
-<h3 id="org1ca89ff"><span class="section-number-3">5.3.</span> 打包</h3>
+<div id="outline-container-org14c2a20" class="outline-3">
+<h3 id="org14c2a20"><span class="section-number-3">5.3.</span> 打包</h3>
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pyinstaller --icon imac.icns --noconsole -n 403QQ 403qq.py
@@ -1720,7 +2130,7 @@ command=lambda: calculate('+')
 成功執行後，會在同一資料夾中看到一個dist的資料夾，裡面有一支403QQ的應用程式，試著執行看看<br />
 </p>
 
-<div id="org08bd025" class="figure">
+<div id="orgf6e224b" class="figure">
 <p><img src="images/PySimpleGUI/2024-03-12_12-56-19_2024-03-12_12-55-49.png" alt="2024-03-12_12-56-19_2024-03-12_12-55-49.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 15: </span>編譯後的應用程式: 403QQ</p>
@@ -1728,58 +2138,9 @@ command=lambda: calculate('+')
 </div>
 </div>
 </div>
-<div id="outline-container-orgcb6f806" class="outline-2">
-<h2 id="orgcb6f806"><span class="section-number-2">6.</span> Flet</h2>
+<div id="outline-container-org5956c5f" class="outline-2">
+<h2 id="org5956c5f"><span class="section-number-2">6.</span> Resources</h2>
 <div class="outline-text-2" id="text-6">
-<ul class="org-ul">
-<li><a href="https://www.youtube.com/watch?v=y75vekE9OqU"> User Interface in Python and Flet | Flutter for Python </a><br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgdb0ebef" class="outline-2">
-<h2 id="orgdb0ebef"><span class="section-number-2">7.</span> <span class="todo TODO">TODO</span> Kivy</h2>
-<div class="outline-text-2" id="text-7">
-<p>
-<a href="https://www.youtube.com/watch?v=YDp73WjNISc">https://www.youtube.com/watch?v=YDp73WjNISc</a><br />
-<a href="https://www.youtube.com/watch?v=UAi3PG-qN2k">https://www.youtube.com/watch?v=UAi3PG-qN2k</a><br />
-<a href="https://www.youtube.com/watch?v=7L37IMVZANI">https://www.youtube.com/watch?v=7L37IMVZANI</a><br />
-<a href="https://kivy.org/doc/stable/gettingstarted/installation.html">https://kivy.org/doc/stable/gettingstarted/installation.html</a><br />
-</p>
-</div>
-</div>
-<div id="outline-container-orga52033a" class="outline-2">
-<h2 id="orga52033a"><span class="section-number-2">8.</span> PyQt</h2>
-<div class="outline-text-2" id="text-8">
-<div class="org-src-container">
-<pre class="src src-shell"><span class="linenr">1: </span>pip3 install PyQt6
-</pre>
-</div>
-<div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> sys
-<span class="linenr"> 2: </span><span style="color: #51afef;">from</span> PyQt6.QtWidgets <span style="color: #51afef;">import</span> QApplication, QWidget
-<span class="linenr"> 3: </span><span style="color: #51afef;">from</span> PyQt6.QtGui <span style="color: #51afef;">import</span> QIcon
-<span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span><span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Window</span>(QWidget):
-<span class="linenr"> 6: </span>    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">__init__</span>(<span style="color: #51afef;">self</span>):
-<span class="linenr"> 7: </span>        <span style="color: #c678dd;">super</span>().__init__()
-<span class="linenr"> 8: </span>        <span style="color: #51afef;">self</span>.setWindowTitle(<span style="color: #98be65;">"PyQT"</span>)
-<span class="linenr"> 9: </span>        <span style="color: #51afef;">self</span>.setFixedHeight(<span style="color: #da8548; font-weight: bold;">200</span>)
-<span class="linenr">10: </span>        <span style="color: #51afef;">self</span>.setFixedWidth(<span style="color: #da8548; font-weight: bold;">200</span>)
-<span class="linenr">11: </span>        <span style="color: #51afef;">self</span>.setGeometry(<span style="color: #da8548; font-weight: bold;">500</span>, <span style="color: #da8548; font-weight: bold;">300</span>, <span style="color: #da8548; font-weight: bold;">400</span>, <span style="color: #da8548; font-weight: bold;">300</span>)
-<span class="linenr">12: </span>        <span style="color: #dcaeea;">stylesheet</span> = <span style="color: #51afef;">self</span>.setStyleSheet(<span style="color: #98be65;">'background-color:Gray'</span>)
-<span class="linenr">13: </span>
-<span class="linenr">14: </span><span style="color: #dcaeea;">app</span> = QApplication([])
-<span class="linenr">15: </span><span style="color: #dcaeea;">window</span> = Window()
-<span class="linenr">16: </span>
-<span class="linenr">17: </span>window.show()
-<span class="linenr">18: </span>sys.<span style="color: #a9a1e1;">exit</span>(app.<span style="color: #c678dd;">exec</span>())
-</pre>
-</div>
-</div>
-</div>
-<div id="outline-container-orgd809458" class="outline-2">
-<h2 id="orgd809458"><span class="section-number-2">9.</span> Resources</h2>
-<div class="outline-text-2" id="text-9">
 <ul class="org-ul">
 <li><a href="https://www.coderbridge.com/series/c471d97bb201460ab137c5e4955987df/posts/e1755ac2099b430291ffb7a8b61f169e">【Day01】用tkinter製作圖形視窗介面(GUI)</a><br /></li>
 <li><a href="https://blog.techbridge.cc/2019/09/21/how-to-use-python-tkinter-to-make-gui-app-tutorial/">如何使用 Python Tkinter 製作 GUI 應用程式入門教學</a><br /></li>
@@ -1806,7 +2167,7 @@ command=lambda: calculate('+')
 </div></div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2026-02-13 Fri 15:33</p>
+<p class="date">Created: 2026-03-15 Sun 22:46</p>
 </div>
 </body>
 </html>
