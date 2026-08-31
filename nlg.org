@@ -1,0 +1,73 @@
+#+TITLE: NLG
+#+SUBTITLE: TNFSH Python教材
+#+begin_export html
+<a href="https://hits.sh/letranger.github.io/PythonCourse/nlg.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/nlg.html.svg"/></a>
+#+end_export
+
+
+* webs
+- [[https://www.analyticsvidhya.com/blog/2019/07/openai-gpt2-text-generator-python/][OpenAI’s GPT-2: A Simple Guide to Build the World’s Most Advanced Text Generator in Python]]
+- [[https://www.toptal.com/deep-learning/exploring-pre-trained-models][https://www.toptal.com/deep-learning/exploring-pre-trained-models]]
+- https://ecraft2learn.github.io/ai/AI-Teacher-Guide/chapter-5.html
+- https://sentence.wordhippo.com/
+- [[https://github.com/google-research/text-to-text-transfer-transformer/issues/133][ Fill-in-the-Blank Text Generation #133 ]]
+- Build a model to predicting the next words: [[https://towardsdatascience.com/how-our-device-thinks-e1f5ab15071e][Natural Language Generation using Sequence Models]]
+#+begin_src python -r -n :results output :exports both
+from nltk.parse.generate import generate, demo_grammar
+from nltk import CFG
+grammar = CFG.fromstring(demo_grammar)
+print(grammar)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Grammar with 13 productions (start state = S)
+    S -> NP VP
+    NP -> Det N
+    PP -> P NP
+    VP -> 'slept'
+    VP -> 'saw' NP
+    VP -> 'walked' PP
+    Det -> 'the'
+    Det -> 'a'
+    N -> 'man'
+    N -> 'park'
+    N -> 'dog'
+    P -> 'in'
+    P -> 'with'
+#+end_example
+
+
+註：Keras 3 已移除 =tensorflow.keras.preprocessing.text.Tokenizer= 與 =tensorflow.keras.preprocessing.sequence.pad_sequences=。現行對應做法：Tokenizer 的功能改由 =keras.layers.TextVectorization= 承接（先 =adapt()= 建立詞彙表，再把文字轉成整數序列）；=pad_sequences= 則移至 =keras.utils.pad_sequences=。以下範例已依新版 API 改寫。
+
+#+begin_src python -r -n :results output :exports both
+import keras
+from keras.layers import TextVectorization
+from keras.utils import pad_sequences, to_categorical
+import numpy as np
+
+sentence = "AI is the new electrcity \n AI is my power"
+corpus = sentence.lower().split("\n") #converting the sentence to lowercase
+
+# 用 TextVectorization 建立詞彙表（取代 Keras 3 移除的 Tokenizer）
+vectorizer = TextVectorization()
+vectorizer.adapt(corpus) #creates tokens for each words
+total_words = vectorizer.vocabulary_size() #calculating total number of words in the initial sentence
+
+input_sequences = [] #training features (x) will be a list
+
+for line in corpus:
+	token_list = [int(t) for t in vectorizer([line]).numpy()[0] if t != 0] #converts each sentence as its tokenized equivalent
+	for i in range(1, len(token_list)):
+		n_gram_sequence = token_list[:i+1] #generating n gram sequences
+		input_sequences.append(n_gram_sequence) #appending each n gram sequence to the list of our features (xs)
+
+max_sequence_len = max([len(x) for x in input_sequences]) #calculating the length of the longest sequence
+input_sequences = np.array(pad_sequences(input_sequences, maxlen=max_sequence_len, padding='pre')) #pre-pading each value of the input_sequence
+xs, labels = input_sequences[:,:-1],input_sequences[:,-1] #creating xs and their labels using numpy slicing
+ys = to_categorical(labels, num_classes=total_words) #creating one hot encoding values
+
+print("詞彙量:", total_words)
+print("訓練特徵 xs 形狀:", xs.shape)
+print("one-hot 標籤 ys 形狀:", ys.shape)
+#+end_src

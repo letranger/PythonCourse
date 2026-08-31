@@ -1,0 +1,39 @@
+#+TITLE: Find Image
+#+SUBTITLE: TNFSH Python教材
+#+begin_export html
+<a href="https://hits.sh/letranger.github.io/PythonCourse/findImage.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/findImage.html.svg"/></a>
+#+end_export
+
+#+begin_src python -r -n :results output :exports both
+import requests
+from bs4 import BeautifulSoup
+
+url = 'https://moodle.tnfsh.tn.edu.tw/index.php'
+response = requests.get(url)
+#soup = BeautifulSoup(response.text, 'html')
+
+soup = BeautifulSoup(response.text, 'html.parser')
+imagesElements = soup.find_all('img')
+
+for x in imagesElements:
+    print(x)
+
+#+end_src
+
+#+RESULTS:
+#+begin_example
+<img alt="" id="logo" src="//moodle.tnfsh.tn.edu.tw/pluginfile.php/1/theme_adaptable/logo/1624531833/%E7%B7%9A%E4%B8%8A%E5%85%8D%E8%B2%BB%E8%A3%BD%E4%BD%9CLogo%EF%BC%8C%E5%AE%9A%E5%88%B6%E5%B0%88%E5%B1%AC%E6%96%BC%E4%BD%A0%E7%9A%84Logo%E8%A8%AD%E8%A8%88_%E2%80%93_DesignEvo.jpg"/>
+<img alt=" " class="iconlarge activityicon" role="presentation" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon"/>
+<img alt=" " class="iconlarge activityicon" role="presentation" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon"/>
+<img alt="admin Yen的相片" aria-hidden="true" class="rounded-circle w-100" src="https://moodle.tnfsh.tn.edu.tw/pluginfile.php/5/user/icon/adaptable/f1?rev=21" title="admin Yen的相片"/>
+<img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"><a href="https://moodle.tnfsh.tn.edu.tw/blocks/links/follow.php?id=8" target="_blank">CPP教材:考試用</a></img>
+<img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/>
+<img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/>
+<img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/>
+<img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/>
+<img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/>
+<img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/>
+<img alt="討論區" class="icon navicon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/forum/1624531833/icon" title="討論區"/>
+<img alt="網址" class="icon navicon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon" title="網址"/>
+<img alt="網址" class="icon navicon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon" title="網址"/>
+#+end_example

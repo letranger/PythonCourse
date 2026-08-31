@@ -1,0 +1,52 @@
+#+title: Word Cloud
+#+SUBTITLE: TNFSH Python教材
+#+begin_export html
+<a href="https://hits.sh/letranger.github.io/PythonCourse/WordCloud.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/WordCloud.html.svg"/></a>
+#+end_export
+
+
+* 事前準備
+執行本範例前，請先把下列檔案放在教材（程式）所在目錄：
+- =dict.txt.big= ：jieba 的繁體中文字典檔，可由 jieba 官方 GitHub 下載：https://github.com/fxsjy/jieba/raw/master/extra_dict/dict.txt.big
+- =stopwords.txt= ：停用詞清單（自行整理，一行一個詞）
+- =NotoSansTC-Medium.otf= ：中文字型檔，可到 Google Fonts 搜尋「Noto Sans TC」下載（https://fonts.google.com/noto/specimen/Noto+Sans+TC ），解壓縮後取出字型檔
+- =article.txt= ：要製作文字雲的文章（UTF-8 純文字檔）
+
+* 產生文字雲
+#+begin_src python -r -n :results output :exports both
+from wordcloud import WordCloud, STOPWORDS
+import numpy as np
+import matplotlib.pyplot as plt
+from PIL import Image
+import jieba
+import jieba.analyse
+from collections import Counter # 次數統計
+
+dictfile = "dict.txt.big"  # 字典檔（放在程式所在目錄）
+stopfile = "stopwords.txt"  # stopwords（放在程式所在目錄）
+fontpath = "NotoSansTC-Medium.otf"  # 字型檔（放在程式所在目錄）
+
+mdfile = "article.txt"  # 要分析的文章（放在程式所在目錄）
+
+jieba.set_dictionary(dictfile)
+jieba.analyse.set_stop_words(stopfile)
+
+text = open(mdfile,"r",encoding="utf-8").read()
+
+tags = jieba.analyse.extract_tags(text, topK=50)
+
+seg_list = jieba.lcut(text, cut_all=False)
+dictionary = Counter(seg_list)
+
+freq = {}
+for ele in dictionary:
+    if ele in tags:
+        freq[ele] = dictionary[ele]
+print(freq) # 計算出現的次數
+#wordcloud = WordCloud(width=800, height=400).generate(text)
+wordcloud = WordCloud(width=1024, height=768, background_color="white", contour_width=3, contour_color='steelblue', font_path= fontpath).generate_from_frequencies(freq)
+plt.figure()
+plt.imshow(wordcloud, interpolation="bilinear")
+plt.axis("off")
+plt.savefig('wc.png', dpi=600)  # 存到目前目錄
+#+end_src

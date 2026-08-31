@@ -1,0 +1,21 @@
+#+title: Ip Location
+#+SUBTITLE: TNFSH Python教材
+#+begin_export html
+<a href="https://hits.sh/letranger.github.io/PythonCourse/ipLocation.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/ipLocation.html.svg"/></a>
+#+end_export
+
+註：geocoder 套件已停止維護，且其查詢端點現在多半需要申請 token 才能使用，現行做法改用 requests 直接呼叫免費的 ip-api.com 服務。
+
+#+begin_src python -r -n :results output :exports both
+import requests
+
+data = requests.get('http://ip-api.com/json/8.8.8.8').json()
+print(data)
+print('國家:', data['country'])
+print('城市:', data['city'])
+#+end_src
+
+#+RESULTS:
+: {'status': 'success', 'country': 'United States', 'countryCode': 'US', 'region': 'VA', 'regionName': 'Virginia', 'city': 'Ashburn', 'zip': '20149', 'lat': 39.03, 'lon': -77.5, 'timezone': 'America/New_York', 'isp': 'Google LLC', 'org': 'Google Public DNS', 'as': 'AS15169 Google LLC', 'query': '8.8.8.8'}
+: 國家: United States
+: 城市: Ashburn

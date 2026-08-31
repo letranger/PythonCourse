@@ -1,5 +1,6 @@
 # -*- org-export-babel-evaluate: nil -*-
 #+Title: Advanced Materials of Python
+#+SUBTITLE: TNFSH Python教材
 
 #+INCLUDE: ../pdf.org
 #+PROPERTY: header-args :eval never-export
@@ -169,20 +170,21 @@ print('後來的r:', r)
 : 原來的 r: 10
 : 算面積： 31400.0
 : 後來的 r: 10
-有些參數可以在 function 中被修改，有些則不行，這就是傳值/傳址的差異。
-- 引數(argument)的傳遞分為兩種方式，由 Python 自動判別：
-  + 傳值呼叫(Call-by-Value): 參數不會被 function 修正
-  + 傳址呼叫(Call-by-Reference): 參數可以被 function 修改
-|--------------------------+-------------+--------+-----------------------------------|
-| 引數傳遞                   | 傳遞內容      | 參數改變 | 資料型別                            |
-|--------------------------+-------------+--------+-----------------------------------|
-| 傳值呼叫 call-by-value     | 引數值        | 否      | bool, int, float, str, tuple, chr |
-| 傳址呼叫 call-by-reference | 引數記憶體位址 | 是      | List, dict, set                   |
-|--------------------------+-------------+--------+-----------------------------------|
+有些參數可以在 function 中被修改，有些則不行，差別在於傳入的物件是「可變」還是「不可變」。
+- Python 的引數(argument)傳遞其實只有一種方式：一律傳遞「物件參考」(pass by object reference)
+- 行為上的差異取決於傳入的物件是可變(mutable)還是不可變(immutable)：
+  + 不可變(immutable)物件: 在 function 內對參數重新指定值只會建立新物件，不會影響原來的引數
+  + 可變(mutable)物件: 在 function 內「就地修改」(如 append)會直接影響原來的引數
+|--------------------+------------------------------+------------------------|
+| 物件類型            | 資料型別                      | 原引數是否可能被修改      |
+|--------------------+------------------------------+------------------------|
+| 不可變 (immutable) | bool, int, float, str, tuple | 否                     |
+| 可變 (mutable)     | list, dict, set              | 是                     |
+|--------------------+------------------------------+------------------------|
 也就是說，如果你傳進去的參數是 list，那很有可能就會被修改：
 範例:
 #+BEGIN_SRC python -r -n :results output :exports both
-# str傳值、List傳址
+# str不可變、List可變
 def ccc(name, score):
     name = 'Amy'
     score.append(99)
@@ -336,6 +338,11 @@ printN(5)
 ** 練習
 為 printN()加入停止條件，讓它可以傳入一個參數 n，輸出 1 到 n，即，當參數(n)的值小於 1 時就不再呼叫自己
 #+begin_src python -r -n :results output :exports both
+def printN(n):
+    if n >= 1:
+        print(n, end=' ')
+        printN(n-1)
+
 #主程式
 printN(5)
 #+end_src
@@ -461,8 +468,8 @@ $$ C(n, r) = \frac{n!}{r! \times (n-r)!} $$
 
 提示：可以先寫一個遞迴的階乘 function =factorial(n)= ，再利用它來計算組合數。
 *** 調和級數 :Recursion:
-寫一個遞迴 function 計算前 n-1 項的調和級數（harmonic sum），也就是正整數倒數的和：
-$$ 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ... +  \frac{1}{n-1}    $$
+寫一個遞迴 function 計算前 n 項的調和級數（harmonic sum），也就是正整數倒數的和：
+$$ 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + ... +  \frac{1}{n}    $$
 **** Solution :noexport:
 #+begin_src python -r -n :results output :exports both
 def harmonic_sum(n):
@@ -500,7 +507,7 @@ def sumOfList(intLst):
             total += element
     return total
 
-intStr = '[1, 2, [3, 4, [5, 6, 7]]]'
+intStr = '[1, 2, [3, 4], [5, 6]]'
 
 intLst = ast.literal_eval(intStr)
 
@@ -508,7 +515,7 @@ print(sumOfList(intLst))
 #+end_src
 
 #+RESULTS:
-: 28
+: 21
 
 #+latex:\newpage
 *** MAX: Recursive solution :List:recursion:noexport:
@@ -643,7 +650,7 @@ print(sum_series(298))
 1 2 3 4 5
 **** 輸出
 48
-28 28
+20 28
 8 12 16
 3 5 7 9
 1 2 3 4 5
@@ -697,13 +704,13 @@ Generator 的好處是「用多少算多少」——不會一次把所有結果�
 延伸閱讀：[[https://chriskang028.medium.com/python-%E8%A3%A1%E7%9A%84-yield-%E8%AE%93%E4%BD%A0%E7%B0%A1%E5%96%AE-%E5%BF%AB%E9%80%9F%E7%9E%AD%E8%A7%A3-yield-%E7%9A%84%E6%A6%82%E5%BF%B5-f660521f3aa7][Python 裡的 yield — 讓你簡單、快速瞭解 yield 的概念]]
 
 * 星號
-在 Python 中，星號除了用於乘法數值運算和冪運算外，還有一種特殊的用法"在變量前添加單個星號或兩個星號"，實現多參數的傳入或變量的拆解[fn:16]。
+在 Python 中，星號除了用於乘法數值運算和冪運算外，還有一種特殊的用法"在變量前添加單個星號或兩個星號"，實現多參數的傳入或變量的拆解。
 
-* 函數的參數傳遞
+** 函數的參數傳遞
 最初，星號變量是用在函數的參數傳遞上，其用法如下：
 - *: 該位置接受任意多個非關鍵字（non-keyword）參數，在函數中將其轉化為元組（1,2,3,4）
 - **: 該位置接受任意多個關鍵字（keyword）參數，在函數**位置上轉化為詞典 [key:value, key:value ]
-** 單星號的用法
+*** 單星號的用法
 #+begin_src python -r -n :results output :exports both
 def one(a, *b):
     #a是一個普通的傳入參數; *b是一個非關鍵字(non-keyword)參數
@@ -722,7 +729,7 @@ one(11, 22, 33, 44, 55)
 : b 的 value 為: (22, 33, 44, 55)
 
 由執行結果可以看出，第 1 個參數(11)對映到 function one 的第一個引數(a)，至於剩下的 4 個參數(22, 33, 44, 55)則全都被引數(b)接收了，原因就是 b 前面的星號，這個單星號代表這個位置接收任意多個非關鍵字參數，接收後的所有資料會被轉成一個 tuple。
-** 單星號使用情境
+*** 單星號使用情境
 例如，我們想寫個 function 計算某學生成績，這個 function 會傳若干成績，成績數不確定，最後傳回該生總分、平均。
 #+begin_src python -r -n :results output :exports both
 def scoProc(*scores):
@@ -737,7 +744,7 @@ print('平均', scavg)
 #+RESULTS:
 : 總分 335
 : 平均 55.833333333333336
-** 雙星號的用法
+*** 雙星號的用法
 #+begin_src python -r -n :results output :exports both
 def two(a, **b):
     #a是一個普通的關鍵字參數，**b是一個關鍵字雙星號參數
@@ -754,7 +761,7 @@ two(a=3, b=2, c=3, d=4, e=5, f=6)
 : b 的 type 為: <class 'dict'>
 : b 的 value 為: {'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6}
 由執行結果可以看出：第 1 個參數(3)的值被 assign 給引數 a，至於其他的 5 個參數(b, c, d, e, f)則都被第 2 個引數(b)接收了，原因是雙星號代表這個位置接收任意多個關鍵字參數，至於接收後的值，其類型變為 dict。
-** 雙星號使用情境
+*** 雙星號使用情境
 例如，我們想寫個 function 計算某學生成績，這個 function 會傳入各科成績，學科數不確定，最後傳回該生總分、平均。
 #+begin_src python -r -n :results output :exports both
 def scoProc(**scores):
@@ -935,7 +942,7 @@ greet(bark)
 #+RESULTS:
 : HI, I AM A PYTHON PROGRAM!
 這種能接續其他function做為參數的格式也稱為高階function(higher-order function)。Python內建的map function即為higher-order的經典範例，它接受一個function object與一個可走訪物件(iterable)做為參數，然後會套用該function到iterable object內的每一元素，產出一系列結果：
-#+begin_src python -r -n :results output :exports both
+#+begin_src python -r -n :results output :exports both :eval no
 list = map(function, iterable object)
 #+end_src
 
@@ -963,6 +970,7 @@ print(list(map(bark, list1)))
 #+end_src
 
 #+RESULTS:
+: ['HELLO!', 'HEY!', 'HI!']
 *** Function可構成巢狀結構
 在function內定義function，稱之為巢狀function(nested function)或內部function(inner function)
 #+begin_src python -r -n :results output :exports both
@@ -1034,7 +1042,7 @@ print(plus_3(4))
 : 7
 ** lambda
 lambda 提供了可用來宣告小型匿名 function 的快速宣告方式:
-#+begin_src python -r :results output :exports both
+#+begin_src python -r :results output :exports both :eval no
 函式名稱 = lambda 參數:運算式
 #+end_src
 
@@ -1059,7 +1067,7 @@ print((lambda x, y : x + y)(5, 3))
 在許多場合中，使用lambda來定義臨時性的function就比較方便，但 lambda function 有個語法上的限制：只能含有一條運算式。
 
 lambda function使用時機: 任何需要快速用上function object的地方，例如sorted()：
-#+begin_src python -r -n :results output :exports both
+#+begin_src python -r -n :results output :exports both :eval no
 sorted(iterable object, key=function)
 #+end_src
 
@@ -1752,7 +1760,7 @@ print(car)
 - 可加入自訂method
 - 可繼承（跟一般 class 一樣用 =class 子類別(父類別):= ）
 - =@dataclass(frozen=True)= — 建立不可變（immutable）的資料類別，設定後就不能改屬性值
-- 欄位可設預設值：例如 =name: str= 預設為 'unknown'
+- 欄位可設預設值：在型別註記後面接等號與預設值，寫法是 ~name: str = 'unknown'~
 #+begin_src python -r -n :results output :exports both
 from dataclasses import dataclass
 
@@ -1806,7 +1814,7 @@ __slots__不限於dataclass，在任何class均可使用
 #+begin_src python -r -n :results output :exports both
 from struct import Struct
 
-MyStruct = Struct('1?f') #指定資料格式
+MyStruct = Struct('i?f') #指定資料格式：int, bool, float
 data = MyStruct.pack(23, False, 42.0) #資料打包成二進位資料
 print(data)
 x = MyStruct.unpack(data)
@@ -1814,6 +1822,8 @@ print(x)
 #+end_src
 
 #+RESULTS:
+: b'\x17\x00\x00\x00\x00\x00\x00\x00\x00\x00(B'
+: (23, False, 42.0)
 ** Set
 - Python建立set，除了用{}、也可以用set comprehension
 - 若要建立empty set，一定要call set()建構子，因為空的{}會被當成dict
@@ -2048,7 +2058,7 @@ print(list(zip(*reversed(matrix))))
 - 即簡單的單行for-loop
 - 可以讓我們用單行程式產生出包含特定元素的list, set, dict
 *** 語法
-#+begin_src python -r -n :results output :exports both
+#+begin_src python -r -n :results output :exports both :eval no
 list = [運算式 for 變數 in iterable object]
 #+end_src
 
@@ -2072,19 +2082,19 @@ print(list)
 : [0, 4, 16, 36, 64]
 *** set與dict comprehension
 #+begin_src python -r -n :results output :exports both
-setA = [x ** 2 for x in range(10)]
+setA = {x ** 2 for x in range(10)}
 print(setA)
 dicA = {x: x ** 2 for x in range(10)}
 print(dicA)
 #+end_src
 
 #+RESULTS:
-: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+: {0, 1, 64, 4, 36, 9, 16, 49, 81, 25}
 : {0: 0, 1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81}
 ** list
 *** slice
 語法
-#+begin_src python -r -n :results output :exports both
+#+begin_src python -r -n :results output :exports both :eval no
 list[index start: index end: step]
 #+end_src
 
@@ -2173,7 +2183,7 @@ export PATH="/usr/local/anaconda3/bin:$PATH"
 - 安裝特定版本 python
   src_python[:exports code]{ conda install python=version }
   #+BEGIN_SRC shell
-  conda install python=3.5
+  conda install python=3.12
   #+END_SRC
 - 了解目前系統可用套件
   #+begin_src shell
@@ -2298,6 +2308,8 @@ export PATH="/usr/local/anaconda3/bin:$PATH"
   的繪圖與數據無關的繪圖分離。[fn:16]
 - 它是按圖層作圖的，一個語句做一個僅包含基礎作圖單元的圖層，然後通過不同圖層的疊
   加最後成圖。
+- 注意：早期的 Python 版 ggplot 套件已停止維護，目前 Python 中實作 ggplot2 繪圖
+  語法的現行套件是 [[https://plotnine.org/][plotnine]]，安裝方式為 =pip install plotnine= 。
 **** plotly
 #+ATTR_LATEX: :width 400
 #+ATTR_HTML: :width 400
@@ -2322,7 +2334,7 @@ export PATH="/usr/local/anaconda3/bin:$PATH"
 #+ATTR_ORG: :width 300
 #+RESULTS:
 [[file:images/NLTK.png]]
-- NLTK 全文是 “Nature Language Tool Kit” (NLTK)，是 Python 中一個經典的、專門用於進行自然語言處理的工具。[fn:18]
+- NLTK 全文是 “Natural Language Toolkit” (NLTK)，是 Python 中一個經典的、專門用於進行自然語言處理的工具。[fn:18]
 - 雖然也能進行部份中文的處理，但是對於中文的支援度自然沒有英文來得好
 - 目前而言，繁體中文有兩個套件可以使用，一個是中研院開發的斷詞系統，另一套系統為
   jieba(結巴)。
@@ -2333,7 +2345,7 @@ export PATH="/usr/local/anaconda3/bin:$PATH"
 #+ATTR_ORG: :width 400
 #+RESULTS:
 [[file:images/tensorflow.jpg]]
-- Tensorflow 最初為 Google Brian 所開發。在 2015 時，Google 將之開源，為現今重要的深
+- Tensorflow 最初為 Google Brain 所開發。在 2015 時，Google 將之開源，為現今重要的深
   度學習框架之一，它支援各式不同的深度學習演算法，並已應用於各大企業服務上，Ex:
   Google, Youtube, Airbnb, Paypal ... 等。[fn:19]
 - 此外，Tensorflow 也支援在各式不同的
@@ -2349,11 +2361,11 @@ export PATH="/usr/local/anaconda3/bin:$PATH"
 #+ATTR_ORG: :width 400
 #+RESULTS:
 [[file:images/keras.png]]
-- 在 2015 年 TensorFlow 推出的同時，美國麻省理工學院（又是它，這學校開門就能賺錢）
-  也推出一套能很容易被使用者透過 Python 寫 Deep learning 的應用程式介面 API ，叫
-  做 Keras 。
-- Keras 只有介面喔！ [[https://www.math.ntnu.no/emner/TMA4268/2018v/11NN/3-keras.html][Keras 本身還是得透過 TensorFlow ，或者其
-  他像是微軟的 CNTK 這類引擎當作底層，才能執行]]。[fn:21]
+- Keras 是由 Google 工程師 François Chollet 於 2015 年釋出的深度學習 API，讓使
+  用者能很容易地透過 Python 撰寫 Deep Learning 程式。
+- Keras 是高階介面！早期的 Keras 必須透過 TensorFlow、Theano 或微軟的 CNTK 這類
+  引擎當作底層才能執行[fn:21]；後來它被整合進 TensorFlow 成為 =tf.keras= ，而目
+  前的 Keras 3 則支援多後端，可以在 TensorFlow、JAX、PyTorch 上執行。
 - Keras 使用上比較接近人類的想法（ TensorFlow 設計上沒有錯，只不過比較是針對電腦
   系統跟網路通訊的想法），所以透過 Python 呼叫 Keras 能夠很簡單地描述我們人類想
   要電腦達到 Deep Learning 要做的事情。目前在教學上， Keras 的普及率相當高
@@ -2518,7 +2530,7 @@ numpy = [ ">=1.20.0, <1.21.0", ">=1.22.0, <1.23.0" ]
 poetry run ipython kernel install --name=tnfshbot --user
 #+end_src
 
-* Multiprocessing
+* Threading(多執行緒)
 ** 執行緒 vs. 程序
 程序(process)是系統資源分配的最小單位，而一個程序可以有很多個執行緒(thread)。
 
@@ -2598,7 +2610,7 @@ All done!
 建立後呼叫 =.start()= 啟動執行緒，呼叫 =.join()= 會讓主程式等待該執行緒跑完才繼續。
 
 #+begin_src python -r -n :results output :exports both
-from threading import current_thread, Thread as Thread
+from threading import current_thread, Thread
 from time import sleep, perf_counter
 
 def print_hello(): # 此func所需執行時間應為1秒
@@ -2675,7 +2687,7 @@ All done!
 
 仔細觀察執行輸出，我們可以發現兩項重要的事項：
 1. 這三個執行緒都是 *同時* 執行的，所以我們可以看到它們的輸出是交錯在一起的
-2. 照理說這三個執行緒都需要 1 秒的時間來執行，但實際上卻只花了 1.05 秒，這是因為這三個執行緒是同時執行的，所以它們的執行時間是重疊的。
+2. 這三個函式各需要約 1 秒的執行時間，若像前一節那樣依序執行，總共要花約 3 秒；但這裡實際上只花了 1.05 秒，這是因為這三個執行緒是同時執行的，它們的執行時間是重疊的。
 
 這就是為什麼我們需要使用執行緒的原因，因為它可以讓我們在同一個程序中同時執行多個任務，這樣就可以提高我們的程式效率。
 ** 延伸閱讀
@@ -2716,7 +2728,7 @@ https://www.youtube.com/watch?v=rkBPgTL-D3Y
 
 [fn:7] [[https://freelancerlife.info/zh/blog/python%E7%B6%B2%E8%B7%AF%E7%88%AC%E8%9F%B2%E6%95%99%E5%AD%B8-selenium%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/][python網路爬蟲教學-Selenium基本操作]]
 
-[fn:8] [[https://learngeb-ebook.readbook.tw/intro/selenium.html][[認識 Selenium]]
+[fn:8] [[https://learngeb-ebook.readbook.tw/intro/selenium.html][認識 Selenium]]
 
 [fn:9] [[https://djangogirlstaipei.gitbooks.io/django-girls-taipei-tutorial/django/introduction.html][Django 介紹]]
 
@@ -2740,9 +2752,9 @@ https://www.youtube.com/watch?v=rkBPgTL-D3Y
 
 [fn:19] [[https://ithelp.ithome.com.tw/articles/10215969?sc=iThelpR][[Day-1] Tensorflow 介紹 及 Tensorflow 2.0相關知識 ]]
 
-[fn:20] [[https://towardsdatascience.com/deep-learning-framework-power-scores-2018-23607ddf297a][Deep Learning Framework Power Scores 2018
-]]
-[fn:21][[https://makerpro.cc/2019/06/self-learning-series5-of-ai/][【自學AI#5】深度學習必備：Keras、Jupyter安裝教學]]
+[fn:20] [[https://towardsdatascience.com/deep-learning-framework-power-scores-2018-23607ddf297a][Deep Learning Framework Power Scores 2018]]
+
+[fn:21] [[https://makerpro.cc/2019/06/self-learning-series5-of-ai/][【自學AI#5】深度學習必備：Keras、Jupyter安裝教學]]
 
 [fn:22] [[https://medium.com/chiukevin0321/tensorflow%E8%88%87keras%E5%9F%BA%E6%9C%AC%E4%BB%8B%E7%B4%B9-621352fc7150][Tensorflow與Keras基本介紹]]
 

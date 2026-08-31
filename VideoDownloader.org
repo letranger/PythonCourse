@@ -1,0 +1,87 @@
+#+TITLE: Video Downloader
+#+SUBTITLE: TNFSH Python教材
+#+begin_export html
+<a href="https://hits.sh/letranger.github.io/PythonCourse/VideoDownloader.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/VideoDownloader.html.svg"/></a>
+#+end_export
+
+註：pytube 已停止維護、目前無法正常下載 YouTube 影片，現行方案為 yt-dlp。本篇範例已全面改用 yt-dlp 改寫。
+
+* 安裝套件
+安裝 yt-dlp（若要轉出 mp3，系統另需安裝 ffmpeg）：
+#+begin_src shell -r -n :eval never
+pip install yt-dlp
+#+end_src
+
+* 下載單支影片（mp4）
+以 =yt_dlp.YoutubeDL(opts)= 建立下載器，呼叫 =download()= 才會真正開始下載。
+
+#+begin_src python -r -n :results output :exports both
+import yt_dlp
+
+url = 'https://www.youtube.com/watch?v=影片ID'  # 換成想下載的影片網址
+
+opts = {
+    'format': 'mp4',                # 下載 mp4 格式
+    'outtmpl': '%(title)s.%(ext)s', # 以影片標題命名輸出檔
+}
+
+try:
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        ydl.download([url])         # 一定要呼叫 download() 才會下載
+    print('下載完成')
+except Exception as e:              # 印出例外內容，方便除錯
+    print('下載失敗:', e)
+#+end_src
+
+* 下載單支影片並轉成 mp3
+註：舊版教材以 moviepy 將 mp4 轉為 mp3；且 =from moviepy.editor import ...= 這種寫法在 MoviePy 2.x 已移除（新寫法為 =from moviepy import VideoFileClip=）。不過 yt-dlp 內建 postprocessor 可直接透過 ffmpeg 抽出音訊，因此這裡採用更簡潔的做法，不再依賴 moviepy。
+
+#+begin_src python -r -n :results output :exports both
+import yt_dlp
+
+url = 'https://www.youtube.com/watch?v=影片ID'  # 換成想下載的影片網址
+
+opts = {
+    'format': 'bestaudio/best',       # 只抓最佳音訊
+    'outtmpl': '%(title)s.%(ext)s',
+    'postprocessors': [{              # 下載完自動用 ffmpeg 轉 mp3
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }],
+}
+
+try:
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        ydl.download([url])
+    print('下載並轉檔完成')
+except Exception as e:
+    print('下載失敗:', e)
+#+end_src
+
+* 下載整個播放清單
+yt-dlp 直接支援播放清單網址，不需再透過 YouTube API 逐一取得影片 ID。
+
+#+begin_src python -r -n :results output :exports both
+import yt_dlp
+
+playlist_url = 'https://www.youtube.com/playlist?list=播放清單ID'
+
+opts = {
+    'format': 'bestaudio/best',
+    'outtmpl': '%(playlist_index)s-%(title)s.%(ext)s',
+    'ignoreerrors': True,             # 清單中個別影片失敗時繼續下載其他影片
+    'postprocessors': [{
+        'key': 'FFmpegExtractAudio',
+        'preferredcodec': 'mp3',
+        'preferredquality': '192',
+    }],
+}
+
+try:
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        ydl.download([playlist_url])
+    print('播放清單下載完成')
+except Exception as e:
+    print('下載失敗:', e)
+#+end_src
