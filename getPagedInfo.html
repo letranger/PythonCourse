@@ -6,7 +6,7 @@
 <!-- 2026-08-31 一 10:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Python: From Zero to Error</title>
+<title>Get Paged Info</title>
 <meta name="author" content="Yung Chin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -193,52 +193,55 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../css/muse.css" />
-<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Python: From Zero to Error
+<h1 class="title">Get Paged Info
 <br />
 <span class="subtitle">TNFSH Python教材</span>
 </h1>
-<a href="https://hits.sh/letranger.github.io/PythonCourse/index.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/index.html.svg"/></a>
-<div id="outline-container-org3f7e7f9" class="outline-2">
-<h2 id="org3f7e7f9"><span class="section-number-2">1.</span> 核心教材</h2>
-<div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="PythonBasic.html">Python基本教材</a><br /></li>
-<li><a href="PythonAdvanced.html">Python進階教材</a><br /></li>
-<li><a href="exams.html">試題與練習</a><br /></li>
-</ul>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/getPagedInfo.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/getPagedInfo.html.svg"/></a>
+
+<p>
+註：Selenium 4.10 起已移除以位置參數傳入 driver 路徑的寫法（如 =webdriver.Chrome('/usr/local/bin/chromedriver')=），現行寫法直接用 =webdriver.Chrome()=，由 Selenium Manager 自動下載與管理 driver。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>import sys
+<span class="linenr"> 2: </span>import urllib3
+<span class="linenr"> 3: </span>import time
+<span class="linenr"> 4: </span>from bs4 import BeautifulSoup
+<span class="linenr"> 5: </span>from selenium import webdriver
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span>def substring(whole, sub1, sub2):
+<span class="linenr"> 8: </span>    return whole[whole.index(sub1)+len(sub1) : whole.index(sub2)]
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span>url = 'https://university.1111.com.tw/univ_depsearchsub.aspx?mgno=1&amp;fno=2&amp;agent=out_careerdata_university'
+<span class="linenr">11: </span>
+<span class="linenr">12: </span>driver = webdriver.Chrome()  # Selenium Manager 會自動管理 chromedriver
+<span class="linenr">13: </span>driver.get(url)
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>soup = BeautifulSoup(driver.page_source, "lxml")
+<span class="linenr">16: </span>
+<span class="linenr">17: </span>schools = list(soup.find_all("span", id=lambda value: value and value.startswith("main_lvCollegeMajor")))
+<span class="linenr">18: </span>
+<span class="linenr">19: </span>print(schools)
+<span class="linenr">20: </span>i = 0
+<span class="linenr">21: </span>for school in schools:
+<span class="linenr">22: </span>    i += 1
+<span class="linenr">23: </span>    print(i, end=": ")
+<span class="linenr">24: </span>    print(substring(str(school), "&lt;/i&gt;", "&lt;/a&gt;"))
+</pre>
 </div>
-</div>
-<div id="outline-container-org87b96db" class="outline-2">
-<h2 id="org87b96db"><span class="section-number-2">2.</span> 函式庫</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="Numpy.html">Numpy</a><br /></li>
-<li><a href="Matplotlib.html">Matplotlib</a><br /></li>
-<li><a href="Pandas.html">Pandas</a><br /></li>
-<li><a href="Streamlit.html">Streamlit</a><br /></li>
-<li><a href="Sympy.html">Sympy: 數學相關的模組</a><br /></li>
-<li><a href="Crawler.html">Crawler: 網路資料解析與爬蟲</a><br /></li>
-<li><a href="gui.html">GUI:Python的人機界面</a><br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgc021d31" class="outline-2">
-<h2 id="orgc021d31"><span class="section-number-2">3.</span> 專題與應用</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="Python偵探社.html">Python偵探社（學期任務）</a><br /></li>
-<li><a href="WordCloud.html">文字雲 WordCloud</a><br /></li>
-<li><a href="VideoDownloader.html">影片下載器</a><br /></li>
-<li><a href="ipLocation.html">IP 位置查詢</a><br /></li>
-<li><a href="findImage.html">網頁圖片擷取</a><br /></li>
-</ul>
-</div>
-</div>
+
+<pre class="example">
+[&lt;span id="main_lvCollegeMajor_lbschoolname_0"&gt; &lt;a href="univ_depinfo.aspx?sno=100101"&gt; &lt;i class="uk-icon-building"&gt;&lt;/i&gt;國立臺北商業大學&lt;/a&gt;&lt;/span&gt;, &lt;span id="main_lvCollegeMajor_lbschoolname_1"&gt; &lt;a href="univ_depinfo.aspx?sno=100102"&gt; &lt;i class="uk-icon-university"&gt;&lt;/i&gt;國立臺灣大學&lt;/a&gt;&lt;/span&gt;, &lt;span id="main_lvCollegeMajor_lbschoolname_2"&gt; &lt;a href="univ_depinfo.aspx?sno=100104"&gt; &lt;i class="uk-icon-building"&gt;&lt;/i&gt;國立臺灣科技大學&lt;/a&gt;&lt;/span&gt;, &lt;span id="main_lvCollegeMajor_lbschoolname_3"&gt; &lt;a href="univ_depinfo.aspx?sno=100109"&gt; &lt;i class="uk-icon-building"&gt;&lt;/i&gt;國立臺北護理健康大學&lt;/a&gt;&lt;/span&gt;, &lt;span id="main_lvCollegeMajor_lbschoolname_4"&gt; &lt;a href="univ_depinfo.aspx?sno=100111"&gt; &lt;i class="uk-icon-university"&gt;&lt;/i&gt;國立政治大學&lt;/a&gt;&lt;/span&gt;]
+1: 國立臺北商業大學
+2: 國立臺灣大學
+3: 國立臺灣科技大學
+4: 國立臺北護理健康大學
+5: 國立政治大學
+</pre>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>

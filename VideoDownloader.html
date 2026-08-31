@@ -6,7 +6,7 @@
 <!-- 2026-08-31 一 10:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Python: From Zero to Error</title>
+<title>Video Downloader</title>
 <meta name="author" content="Yung Chin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -193,50 +193,131 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../css/muse.css" />
-<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Python: From Zero to Error
+<h1 class="title">Video Downloader
 <br />
 <span class="subtitle">TNFSH Python教材</span>
 </h1>
-<a href="https://hits.sh/letranger.github.io/PythonCourse/index.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/index.html.svg"/></a>
-<div id="outline-container-org3f7e7f9" class="outline-2">
-<h2 id="org3f7e7f9"><span class="section-number-2">1.</span> 核心教材</h2>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org6fa9374">1. 安裝套件</a></li>
+<li><a href="#org91489c3">2. 下載單支影片（mp4）</a></li>
+<li><a href="#org65ccc8b">3. 下載單支影片並轉成 mp3</a></li>
+<li><a href="#org818945d">4. 下載整個播放清單</a></li>
+</ul>
+</div>
+</div>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/VideoDownloader.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/VideoDownloader.html.svg"/></a>
+
+<p>
+註：pytube 已停止維護、目前無法正常下載 YouTube 影片，現行方案為 yt-dlp。本篇範例已全面改用 yt-dlp 改寫。
+</p>
+<div id="outline-container-org6fa9374" class="outline-2">
+<h2 id="org6fa9374"><span class="section-number-2">1.</span> 安裝套件</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="PythonBasic.html">Python基本教材</a><br /></li>
-<li><a href="PythonAdvanced.html">Python進階教材</a><br /></li>
-<li><a href="exams.html">試題與練習</a><br /></li>
-</ul>
+<p>
+安裝 yt-dlp（若要轉出 mp3，系統另需安裝 ffmpeg）：
+</p>
+<div class="org-src-container">
+<pre class="src src-shell"><span class="linenr">1: </span>pip install yt-dlp
+</pre>
 </div>
 </div>
-<div id="outline-container-org87b96db" class="outline-2">
-<h2 id="org87b96db"><span class="section-number-2">2.</span> 函式庫</h2>
+</div>
+<div id="outline-container-org91489c3" class="outline-2">
+<h2 id="org91489c3"><span class="section-number-2">2.</span> 下載單支影片（mp4）</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="Numpy.html">Numpy</a><br /></li>
-<li><a href="Matplotlib.html">Matplotlib</a><br /></li>
-<li><a href="Pandas.html">Pandas</a><br /></li>
-<li><a href="Streamlit.html">Streamlit</a><br /></li>
-<li><a href="Sympy.html">Sympy: 數學相關的模組</a><br /></li>
-<li><a href="Crawler.html">Crawler: 網路資料解析與爬蟲</a><br /></li>
-<li><a href="gui.html">GUI:Python的人機界面</a><br /></li>
-</ul>
+<p>
+以 <code>yt_dlp.YoutubeDL(opts)</code> 建立下載器，呼叫 <code>download()</code> 才會真正開始下載。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>import yt_dlp
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span>url = 'https://www.youtube.com/watch?v=影片ID'  # 換成想下載的影片網址
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>opts = {
+<span class="linenr"> 6: </span>    'format': 'mp4',                # 下載 mp4 格式
+<span class="linenr"> 7: </span>    'outtmpl': '%(title)s.%(ext)s', # 以影片標題命名輸出檔
+<span class="linenr"> 8: </span>}
+<span class="linenr"> 9: </span>
+<span class="linenr">10: </span>try:
+<span class="linenr">11: </span>    with yt_dlp.YoutubeDL(opts) as ydl:
+<span class="linenr">12: </span>        ydl.download([url])         # 一定要呼叫 download() 才會下載
+<span class="linenr">13: </span>    print('下載完成')
+<span class="linenr">14: </span>except Exception as e:              # 印出例外內容，方便除錯
+<span class="linenr">15: </span>    print('下載失敗:', e)
+</pre>
 </div>
 </div>
-<div id="outline-container-orgc021d31" class="outline-2">
-<h2 id="orgc021d31"><span class="section-number-2">3.</span> 專題與應用</h2>
+</div>
+<div id="outline-container-org65ccc8b" class="outline-2">
+<h2 id="org65ccc8b"><span class="section-number-2">3.</span> 下載單支影片並轉成 mp3</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="Python偵探社.html">Python偵探社（學期任務）</a><br /></li>
-<li><a href="WordCloud.html">文字雲 WordCloud</a><br /></li>
-<li><a href="VideoDownloader.html">影片下載器</a><br /></li>
-<li><a href="ipLocation.html">IP 位置查詢</a><br /></li>
-<li><a href="findImage.html">網頁圖片擷取</a><br /></li>
-</ul>
+<p>
+註：舊版教材以 moviepy 將 mp4 轉為 mp3；且 <code>from moviepy.editor import ...</code> 這種寫法在 MoviePy 2.x 已移除（新寫法為 =from moviepy import VideoFileClip=）。不過 yt-dlp 內建 postprocessor 可直接透過 ffmpeg 抽出音訊，因此這裡採用更簡潔的做法，不再依賴 moviepy。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>import yt_dlp
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span>url = 'https://www.youtube.com/watch?v=影片ID'  # 換成想下載的影片網址
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>opts = {
+<span class="linenr"> 6: </span>    'format': 'bestaudio/best',       # 只抓最佳音訊
+<span class="linenr"> 7: </span>    'outtmpl': '%(title)s.%(ext)s',
+<span class="linenr"> 8: </span>    'postprocessors': [{              # 下載完自動用 ffmpeg 轉 mp3
+<span class="linenr"> 9: </span>        'key': 'FFmpegExtractAudio',
+<span class="linenr">10: </span>        'preferredcodec': 'mp3',
+<span class="linenr">11: </span>        'preferredquality': '192',
+<span class="linenr">12: </span>    }],
+<span class="linenr">13: </span>}
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>try:
+<span class="linenr">16: </span>    with yt_dlp.YoutubeDL(opts) as ydl:
+<span class="linenr">17: </span>        ydl.download([url])
+<span class="linenr">18: </span>    print('下載並轉檔完成')
+<span class="linenr">19: </span>except Exception as e:
+<span class="linenr">20: </span>    print('下載失敗:', e)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org818945d" class="outline-2">
+<h2 id="org818945d"><span class="section-number-2">4.</span> 下載整個播放清單</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+yt-dlp 直接支援播放清單網址，不需再透過 YouTube API 逐一取得影片 ID。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>import yt_dlp
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span>playlist_url = 'https://www.youtube.com/playlist?list=播放清單ID'
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span>opts = {
+<span class="linenr"> 6: </span>    'format': 'bestaudio/best',
+<span class="linenr"> 7: </span>    'outtmpl': '%(playlist_index)s-%(title)s.%(ext)s',
+<span class="linenr"> 8: </span>    'ignoreerrors': True,             # 清單中個別影片失敗時繼續下載其他影片
+<span class="linenr"> 9: </span>    'postprocessors': [{
+<span class="linenr">10: </span>        'key': 'FFmpegExtractAudio',
+<span class="linenr">11: </span>        'preferredcodec': 'mp3',
+<span class="linenr">12: </span>        'preferredquality': '192',
+<span class="linenr">13: </span>    }],
+<span class="linenr">14: </span>}
+<span class="linenr">15: </span>
+<span class="linenr">16: </span>try:
+<span class="linenr">17: </span>    with yt_dlp.YoutubeDL(opts) as ydl:
+<span class="linenr">18: </span>        ydl.download([playlist_url])
+<span class="linenr">19: </span>    print('播放清單下載完成')
+<span class="linenr">20: </span>except Exception as e:
+<span class="linenr">21: </span>    print('下載失敗:', e)
+</pre>
+</div>
 </div>
 </div>
 </div>

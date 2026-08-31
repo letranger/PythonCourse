@@ -6,7 +6,7 @@
 <!-- 2026-08-31 一 10:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Python: From Zero to Error</title>
+<title>Word Cloud</title>
 <meta name="author" content="Yung Chin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -193,50 +193,78 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../css/muse.css" />
-<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Python: From Zero to Error
+<h1 class="title">Word Cloud
 <br />
 <span class="subtitle">TNFSH Python教材</span>
 </h1>
-<a href="https://hits.sh/letranger.github.io/PythonCourse/index.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/index.html.svg"/></a>
-<div id="outline-container-org3f7e7f9" class="outline-2">
-<h2 id="org3f7e7f9"><span class="section-number-2">1.</span> 核心教材</h2>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orge11909f">1. 事前準備</a></li>
+<li><a href="#org8844173">2. 產生文字雲</a></li>
+</ul>
+</div>
+</div>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/WordCloud.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/WordCloud.html.svg"/></a>
+<div id="outline-container-orge11909f" class="outline-2">
+<h2 id="orge11909f"><span class="section-number-2">1.</span> 事前準備</h2>
 <div class="outline-text-2" id="text-1">
+<p>
+執行本範例前，請先把下列檔案放在教材（程式）所在目錄：
+</p>
 <ul class="org-ul">
-<li><a href="PythonBasic.html">Python基本教材</a><br /></li>
-<li><a href="PythonAdvanced.html">Python進階教材</a><br /></li>
-<li><a href="exams.html">試題與練習</a><br /></li>
+<li><code>dict.txt.big</code> ：jieba 的繁體中文字典檔，可由 jieba 官方 GitHub 下載：<a href="https://github.com/fxsjy/jieba/raw/master/extra_dict/dict.txt.big">https://github.com/fxsjy/jieba/raw/master/extra_dict/dict.txt.big</a></li>
+<li><code>stopwords.txt</code> ：停用詞清單（自行整理，一行一個詞）</li>
+<li><code>NotoSansTC-Medium.otf</code> ：中文字型檔，可到 Google Fonts 搜尋「Noto Sans TC」下載（<a href="https://fonts.google.com/noto/specimen/Noto+Sans+TC">https://fonts.google.com/noto/specimen/Noto+Sans+TC</a> ），解壓縮後取出字型檔</li>
+<li><code>article.txt</code> ：要製作文字雲的文章（UTF-8 純文字檔）</li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org87b96db" class="outline-2">
-<h2 id="org87b96db"><span class="section-number-2">2.</span> 函式庫</h2>
+<div id="outline-container-org8844173" class="outline-2">
+<h2 id="org8844173"><span class="section-number-2">2.</span> 產生文字雲</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="Numpy.html">Numpy</a><br /></li>
-<li><a href="Matplotlib.html">Matplotlib</a><br /></li>
-<li><a href="Pandas.html">Pandas</a><br /></li>
-<li><a href="Streamlit.html">Streamlit</a><br /></li>
-<li><a href="Sympy.html">Sympy: 數學相關的模組</a><br /></li>
-<li><a href="Crawler.html">Crawler: 網路資料解析與爬蟲</a><br /></li>
-<li><a href="gui.html">GUI:Python的人機界面</a><br /></li>
-</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>from wordcloud import WordCloud, STOPWORDS
+<span class="linenr"> 2: </span>import numpy as np
+<span class="linenr"> 3: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 4: </span>from PIL import Image
+<span class="linenr"> 5: </span>import jieba
+<span class="linenr"> 6: </span>import jieba.analyse
+<span class="linenr"> 7: </span>from collections import Counter # 次數統計
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>dictfile = "dict.txt.big"  # 字典檔（放在程式所在目錄）
+<span class="linenr">10: </span>stopfile = "stopwords.txt"  # stopwords（放在程式所在目錄）
+<span class="linenr">11: </span>fontpath = "NotoSansTC-Medium.otf"  # 字型檔（放在程式所在目錄）
+<span class="linenr">12: </span>
+<span class="linenr">13: </span>mdfile = "article.txt"  # 要分析的文章（放在程式所在目錄）
+<span class="linenr">14: </span>
+<span class="linenr">15: </span>jieba.set_dictionary(dictfile)
+<span class="linenr">16: </span>jieba.analyse.set_stop_words(stopfile)
+<span class="linenr">17: </span>
+<span class="linenr">18: </span>text = open(mdfile,"r",encoding="utf-8").read()
+<span class="linenr">19: </span>
+<span class="linenr">20: </span>tags = jieba.analyse.extract_tags(text, topK=50)
+<span class="linenr">21: </span>
+<span class="linenr">22: </span>seg_list = jieba.lcut(text, cut_all=False)
+<span class="linenr">23: </span>dictionary = Counter(seg_list)
+<span class="linenr">24: </span>
+<span class="linenr">25: </span>freq = {}
+<span class="linenr">26: </span>for ele in dictionary:
+<span class="linenr">27: </span>    if ele in tags:
+<span class="linenr">28: </span>        freq[ele] = dictionary[ele]
+<span class="linenr">29: </span>print(freq) # 計算出現的次數
+<span class="linenr">30: </span>#wordcloud = WordCloud(width=800, height=400).generate(text)
+<span class="linenr">31: </span>wordcloud = WordCloud(width=1024, height=768, background_color="white", contour_width=3, contour_color='steelblue', font_path= fontpath).generate_from_frequencies(freq)
+<span class="linenr">32: </span>plt.figure()
+<span class="linenr">33: </span>plt.imshow(wordcloud, interpolation="bilinear")
+<span class="linenr">34: </span>plt.axis("off")
+<span class="linenr">35: </span>plt.savefig('wc.png', dpi=600)  # 存到目前目錄
+</pre>
 </div>
-</div>
-<div id="outline-container-orgc021d31" class="outline-2">
-<h2 id="orgc021d31"><span class="section-number-2">3.</span> 專題與應用</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="Python偵探社.html">Python偵探社（學期任務）</a><br /></li>
-<li><a href="WordCloud.html">文字雲 WordCloud</a><br /></li>
-<li><a href="VideoDownloader.html">影片下載器</a><br /></li>
-<li><a href="ipLocation.html">IP 位置查詢</a><br /></li>
-<li><a href="findImage.html">網頁圖片擷取</a><br /></li>
-</ul>
 </div>
 </div>
 </div>

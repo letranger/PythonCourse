@@ -3,11 +3,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-02-13 Fri 15:33 -->
+<!-- 2026-08-31 一 10:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Matplotlib</title>
-<meta name="author" content="Yung-Chin Yen" />
+<meta name="author" content="Yung Chin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -230,124 +230,127 @@
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Matplotlib</h1>
+<h1 class="title">Matplotlib
+<br />
+<span class="subtitle">TNFSH Python教材</span>
+</h1>
 <div id="table-of-contents" role="doc-toc">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org466f05c">1. Matplotlib 簡介</a>
+<li><a href="#orgc13b7bd">1. Matplotlib 簡介</a>
 <ul>
-<li><a href="#org9c57c38">1.1. Matplotlib 是什麼？</a></li>
-<li><a href="#org68ec3c6">1.2. 兩個重要模組：pylab 和 pyplot</a></li>
-<li><a href="#orgc60243c">1.3. 為什麼使用 Matplotlib？</a></li>
-<li><a href="#org8ad2a06">1.4. 官方資源：</a></li>
+<li><a href="#org7a7ff23">1.1. Matplotlib 是什麼？</a></li>
+<li><a href="#orgb093b33">1.2. 兩個重要模組：pylab 和 pyplot</a></li>
+<li><a href="#org0f73181">1.3. 為什麼使用 Matplotlib？</a></li>
+<li><a href="#org0c2f6f9">1.4. 官方資源：</a></li>
 </ul>
 </li>
-<li><a href="#org10d7e71">2. Matplotlib 基本語法</a>
+<li><a href="#org2be82e3">2. Matplotlib 基本語法</a>
 <ul>
-<li><a href="#org2b52f8e">2.1. 基本語法:</a></li>
-<li><a href="#orgcd91799">2.2. 範例:簡單的 sin 圖形</a></li>
-<li><a href="#org70c6224">2.3. plot 官方語法</a></li>
+<li><a href="#orgc232713">2.1. 基本語法:</a></li>
+<li><a href="#org06b688c">2.2. 範例:簡單的 sin 圖形</a></li>
+<li><a href="#org12078f2">2.3. plot 官方語法</a></li>
 </ul>
 </li>
-<li><a href="#org6730dfe">3. 參數控制</a>
+<li><a href="#orgce23b6d">3. 參數控制</a>
 <ul>
-<li><a href="#orgd91d740">3.1. fmt 控制參數</a></li>
-<li><a href="#orge1097ae">3.2. kwarg 參數</a></li>
+<li><a href="#org239d258">3.1. fmt 控制參數</a></li>
+<li><a href="#org76c4b13">3.2. kwarg 參數</a></li>
 </ul>
 </li>
-<li><a href="#orgc72f524">4. 中文問題</a>
+<li><a href="#orgfa05f49">4. 中文問題</a>
 <ul>
-<li><a href="#org621c72f">4.1. 在 PyCharm 中使用中文</a></li>
-<li><a href="#org6e297f3">4.2. 在 colab 中使用中文</a></li>
+<li><a href="#orgedea951">4.1. 在 PyCharm 中使用中文</a></li>
+<li><a href="#org572cd53">4.2. 在 colab 中使用中文</a></li>
 </ul>
 </li>
-<li><a href="#orge9759c6">5. Legend</a>
+<li><a href="#orgafc2026">5. Legend</a>
 <ul>
-<li><a href="#orgc912698">5.1. plt.legend() 基本語法</a></li>
-<li><a href="#orgad54448">5.2. 範例</a></li>
+<li><a href="#orgba27a0f">5.1. plt.legend() 基本語法</a></li>
+<li><a href="#orge6aacb2">5.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orga40677c">6. Line Chart</a>
+<li><a href="#org15df185">6. Line Chart</a>
 <ul>
-<li><a href="#org3d54f09">6.1. 範例 #1</a></li>
-<li><a href="#org06caaa4">6.2. 範例 #2</a></li>
-<li><a href="#orgbb83eb7">6.3. 範例 #3</a></li>
-<li><a href="#org9f4b5f7">6.4. 範例 #4</a></li>
-<li><a href="#org1eafb7c">6.5. 範例 #5</a></li>
-<li><a href="#orge00cadf">6.6. [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#org9979f98">6.7. [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
-<li><a href="#org8c65a97">6.8. [課堂練習]全班成績統計圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgbce98b8">6.1. 範例 #1</a></li>
+<li><a href="#orgf285747">6.2. 範例 #2</a></li>
+<li><a href="#org1c76dbf">6.3. 範例 #3</a></li>
+<li><a href="#org1bf51dd">6.4. 範例 #4</a></li>
+<li><a href="#org7cd3513">6.5. 範例 #5</a></li>
+<li><a href="#org4730291">6.6. [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#orgcf991b9">6.7. [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
+<li><a href="#org1086f22">6.8. [課堂練習]全班成績統計圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a></li>
 </ul>
 </li>
-<li><a href="#org16c1ba2">7. 長條圖 (Bar Chart)</a>
+<li><a href="#org0e97c49">7. 長條圖 (Bar Chart)</a>
 <ul>
-<li><a href="#org5f5f953">7.1. 語法</a></li>
-<li><a href="#org53efd83">7.2. 範例</a></li>
+<li><a href="#orge92033b">7.1. 語法</a></li>
+<li><a href="#org5080f0e">7.2. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgf5fc8fb">8. 圓餅圖 (Pie Chart)</a>
+<li><a href="#org33a65b7">8. 圓餅圖 (Pie Chart)</a>
 <ul>
-<li><a href="#org470e365">8.1. 語法： </a></li>
-<li><a href="#orgeb739f5">8.2. 參數：</a></li>
-<li><a href="#org6b2c4f9">8.3. 範例</a></li>
+<li><a href="#orge2a9932">8.1. 語法： </a></li>
+<li><a href="#org4644098">8.2. 參數：</a></li>
+<li><a href="#orgf15f642">8.3. 範例</a></li>
 </ul>
 </li>
-<li><a href="#orgbb78f69">9. 其它圖表</a>
+<li><a href="#org09c7bbb">9. 其它圖表</a>
 <ul>
-<li><a href="#org6d3740f">9.1. 散佈圖 (Scatter)</a></li>
-<li><a href="#org444c880">9.2. 直方圖 (Histogram)</a></li>
-<li><a href="#org2e7c423">9.3. 進階資源</a></li>
+<li><a href="#org8a88b1a">9.1. 散佈圖 (Scatter)</a></li>
+<li><a href="#orge4ffb66">9.2. 直方圖 (Histogram)</a></li>
+<li><a href="#org04a9a4d">9.3. 進階資源</a></li>
 </ul>
 </li>
-<li><a href="#org2e5a09e">10. 文字註解: plt.text()</a>
+<li><a href="#org49b5c99">10. 文字註解: plt.text()</a>
 <ul>
-<li><a href="#org6c47223">10.1. 語法</a></li>
-<li><a href="#org4cfc658">10.2. 常用參數</a></li>
-<li><a href="#orgb504c98">10.3. 範例</a></li>
+<li><a href="#orgc9a11a6">10.1. 語法</a></li>
+<li><a href="#org822a3bd">10.2. 常用參數</a></li>
+<li><a href="#org62297cd">10.3. 範例</a></li>
 </ul>
 </li>
-<li><a href="#org2adddf4">11. 子圖表: plt.subplot()</a>
+<li><a href="#org23affd8">11. 子圖表: plt.subplot()</a>
 <ul>
-<li><a href="#orgcbda70b">11.1. subplot 語法</a></li>
-<li><a href="#org6b893b9">11.2. subplots_adjust 語法</a></li>
-<li><a href="#org2a6ecba">11.3. 範例</a></li>
-<li><a href="#org9d56f08">11.4. 進階設定</a></li>
+<li><a href="#org13ea69d">11.1. subplot 語法</a></li>
+<li><a href="#orgeff9307">11.2. subplots_adjust 語法</a></li>
+<li><a href="#org984a55c">11.3. 範例</a></li>
+<li><a href="#org437c32a">11.4. 進階設定</a></li>
 </ul>
 </li>
-<li><a href="#org3990f8c">12. [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a>
+<li><a href="#org325bf89">12. [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></a>
 <ul>
-<li><a href="#org62a6f42">12.1. 方程式圖形</a></li>
-<li><a href="#orgd0f9f72">12.2. 成績處理</a></li>
-<li><a href="#orgaea9174">12.3. 盒鬚圖 (Boxplot)</a></li>
+<li><a href="#org6480502">12.1. 方程式圖形</a></li>
+<li><a href="#orgba27f59">12.2. 成績處理</a></li>
+<li><a href="#org7aba504">12.3. 盒鬚圖 (Boxplot)</a></li>
 </ul>
 </li>
-<li><a href="#orgc3feda9">13. 其他視覺化模組</a>
+<li><a href="#org7d6b4d3">13. 其他視覺化模組</a>
 <ul>
-<li><a href="#org5834f96">13.1. pylab</a></li>
-<li><a href="#org04192d7">13.2. Bokeh</a></li>
-<li><a href="#org3e806be">13.3. seaborn</a></li>
-<li><a href="#org963edc3">13.4. Altair</a></li>
+<li><a href="#orgef1588b">13.1. pylab</a></li>
+<li><a href="#org7d7d8f7">13.2. Bokeh</a></li>
+<li><a href="#orgbe6aa19">13.3. seaborn</a></li>
+<li><a href="#orga8addfb">13.4. Altair</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/Matplotlib.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/Matplotlib.html.svg"/></a>
-<div id="outline-container-org466f05c" class="outline-2">
-<h2 id="org466f05c"><span class="section-number-2">1.</span> Matplotlib 簡介</h2>
+<div id="outline-container-orgc13b7bd" class="outline-2">
+<h2 id="orgc13b7bd"><span class="section-number-2">1.</span> Matplotlib 簡介</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org9c57c38" class="outline-3">
-<h3 id="org9c57c38"><span class="section-number-3">1.1.</span> Matplotlib 是什麼？</h3>
+<div id="outline-container-org7a7ff23" class="outline-3">
+<h3 id="org7a7ff23"><span class="section-number-3">1.1.</span> Matplotlib 是什麼？</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Matplotlib 是 Python 中一個非常流行的繪圖套件，主要用來產生各種 2D 圖表（也支援部份3D圖表）。這個工具讓我們可以用程式碼很容易地繪製各種類型的圖形，像是折線圖、長條圖、圓餅圖等。它在學術界和資料科學領域非常受歡迎，因為它強大的功能和簡單的使用方式。<br />
 </p>
 </div>
 </div>
-<div id="outline-container-org68ec3c6" class="outline-3">
-<h3 id="org68ec3c6"><span class="section-number-3">1.2.</span> 兩個重要模組：pylab 和 pyplot</h3>
+<div id="outline-container-orgb093b33" class="outline-3">
+<h3 id="orgb093b33"><span class="section-number-3">1.2.</span> 兩個重要模組：pylab 和 pyplot</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>pylab：這個模組實作了許多 Matlab 的功能，讓學術界的人能夠輕鬆轉換到 Python 上進行繪圖。pylab 可以被視為 Python 版的 Matlab 繪圖工具。<br /></li>
@@ -355,8 +358,8 @@ Matplotlib 是 Python 中一個非常流行的繪圖套件，主要用來產生�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgc60243c" class="outline-3">
-<h3 id="orgc60243c"><span class="section-number-3">1.3.</span> 為什麼使用 Matplotlib？</h3>
+<div id="outline-container-org0f73181" class="outline-3">
+<h3 id="org0f73181"><span class="section-number-3">1.3.</span> 為什麼使用 Matplotlib？</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>簡單易用：Matplotlib 的語法非常簡單，初學者可以輕鬆上手。<br /></li>
@@ -367,40 +370,40 @@ Matplotlib 是 Python 中一個非常流行的繪圖套件，主要用來產生�
 </ul>
 </div>
 </div>
-<div id="outline-container-org8ad2a06" class="outline-3">
-<h3 id="org8ad2a06"><span class="section-number-3">1.4.</span> 官方資源：</h3>
+<div id="outline-container-org0c2f6f9" class="outline-3">
+<h3 id="org0c2f6f9"><span class="section-number-3">1.4.</span> 官方資源：</h3>
 <div class="outline-text-3" id="text-1-4">
 <ul class="org-ul">
-<li><a href="https://matplotlib.org/3.2.1/index.html">Matplotlib 官網</a><br /></li>
+<li><a href="https://matplotlib.org/stable/index.html">Matplotlib 官網</a><br /></li>
 <li><a href="https://simplelearn.tw/matplotlib-intro/">Matplotlib 入門詳細介紹及基礎圖形教學 - SimpleLearn</a><br /></li>
 <li><a href="https://steam.oxxostudio.tw/category/python/example/matplotlib.html">matplotlib 函式庫</a><br /></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org10d7e71" class="outline-2">
-<h2 id="org10d7e71"><span class="section-number-2">2.</span> Matplotlib 基本語法</h2>
+<div id="outline-container-org2be82e3" class="outline-2">
+<h2 id="org2be82e3"><span class="section-number-2">2.</span> Matplotlib 基本語法</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org2b52f8e" class="outline-3">
-<h3 id="org2b52f8e"><span class="section-number-3">2.1.</span> 基本語法:</h3>
+<div id="outline-container-orgc232713" class="outline-3">
+<h3 id="orgc232713"><span class="section-number-3">2.1.</span> 基本語法:</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 在 Matplotlib 中，我們可以使用 matplotlib.pyplot 來繪製各種圖形。最常用的函式是 plt.plot()，它可以用來繪製折線圖、函數曲線等。<br />
 </p>
 </div>
-<div id="outline-container-org699c799" class="outline-4">
-<h4 id="org699c799"><span class="section-number-4">2.1.1.</span> plt.plot()</h4>
+<div id="outline-container-orgc6b4927" class="outline-4">
+<h4 id="orgc6b4927"><span class="section-number-4">2.1.1.</span> plt.plot()</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <ul class="org-ul">
 <li>要使用 plt.plot() 繪製圖形，我們需要先匯入 matplotlib.pyplot，並使用 plot() 函式來繪製資料點的連接線條。<br /></li>
 <li>語法: plt.plot([x座標資料,] y座標資料 [, 參數1, 參數2, &#x2026;])<br /></li>
-<li><a href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.plot.html">plt.plot()官網說明</a><br /></li>
+<li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plt.plot()官網說明</a><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org40ade25" class="outline-4">
-<h4 id="org40ade25"><span class="section-number-4">2.1.2.</span> plt.show() 函式</h4>
+<div id="outline-container-orgb683dab" class="outline-4">
+<h4 id="orgb683dab"><span class="section-number-4">2.1.2.</span> plt.show() 函式</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <ul class="org-ul">
 <li>用來顯示圖形，是每次繪圖後都需要呼叫的函式。當你呼叫這個函式後，圖形會顯示在螢幕上。<br /></li>
@@ -409,12 +412,12 @@ Matplotlib 是 Python 中一個非常流行的繪圖套件，主要用來產生�
 </ul>
 </div>
 </div>
-<div id="outline-container-orga063aca" class="outline-4">
-<h4 id="orga063aca"><span class="section-number-4">2.1.3.</span> plt.savefig()</h4>
+<div id="outline-container-orgb1dcd16" class="outline-4">
+<h4 id="orgb1dcd16"><span class="section-number-4">2.1.3.</span> plt.savefig()</h4>
 <div class="outline-text-4" id="text-2-1-3">
 <ul class="org-ul">
 <li>plt.savefig()，()裡可以指定檔案名稱和格式，用來將繪製的圖形儲存為圖片檔案，還能指定解析度。<br /></li>
-<li><a href="https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.savefig.html">plt.savefig()官網說明</a><br /></li>
+<li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">plt.savefig()官網說明</a><br /></li>
 </ul>
 <p>
 如果你想將繪製的圖表儲存到檔案，可以使用 plt.savefig() 函式，它允許你指定檔案路徑和解析度來儲存圖片。<br />
@@ -422,37 +425,37 @@ Matplotlib 是 Python 中一個非常流行的繪圖套件，主要用來產生�
 </div>
 </div>
 </div>
-<div id="outline-container-orgcd91799" class="outline-3">
-<h3 id="orgcd91799"><span class="section-number-3">2.2.</span> 範例:簡單的 sin 圖形</h3>
+<div id="outline-container-org06b688c" class="outline-3">
+<h3 id="org06b688c"><span class="section-number-3">2.2.</span> 範例:簡單的 sin 圖形</h3>
 <div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>np.sin()函式為 Numpy 模組求正弦值<br /></li>
 <li>請到<a href="https://numpy.org/doc/stable/reference/routines.math.html">官網</a>看看除了 sin()還有哪些 function 可以玩，畫出幾個函式曲線<br /></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.1</span>)
+<span class="linenr"> 4: </span>x = np.arange(-3, 3, 0.1)
 <span class="linenr"> 5: </span>plt.clf()
 <span class="linenr"> 6: </span>plt.plot(x, np.sin(x))
 <span class="linenr"> 7: </span>plt.show()
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#33509;&#35201;&#23384;&#22294;&#65292;&#35201;&#20808;&#23384;&#27284;&#20877;&#39023;&#31034; # for pycharm</span>
-<span class="linenr">10: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">plt.savefig('SimpleSin.png', dpi=300)</span>
-<span class="linenr">11: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">plt.show()   # for PyCharm</span>
+<span class="linenr"> 9: </span># 若要存圖，要先存檔再顯示 # for pycharm
+<span class="linenr">10: </span># plt.savefig('SimpleSin.png', dpi=300)
+<span class="linenr">11: </span># plt.show()   # for PyCharm
 </pre>
 </div>
 
-<div id="org20b8a36" class="figure">
+<div id="org91bbbf8" class="figure">
 <p><img src="images/simpleSin.png" alt="simpleSin.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 1: </span>簡單的 sin 圖形</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org70c6224" class="outline-3">
-<h3 id="org70c6224"><span class="section-number-3">2.3.</span> plot 官方語法</h3>
+<div id="outline-container-org12078f2" class="outline-3">
+<h3 id="org12078f2"><span class="section-number-3">2.3.</span> plot 官方語法</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 plot()函式控制輸出主要有以下兩類參數：<br />
@@ -471,25 +474,25 @@ plot()函式控制輸出主要有以下兩類參數：<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org6730dfe" class="outline-2">
-<h2 id="org6730dfe"><span class="section-number-2">3.</span> 參數控制</h2>
+<div id="outline-container-orgce23b6d" class="outline-2">
+<h2 id="orgce23b6d"><span class="section-number-2">3.</span> 參數控制</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 在 Matplotlib 中，我們可以透過 fmt 字串和 kwarg（keyword argument）來控制圖形的外觀。這些參數可以幫助我們設置線條顏色、標記、線型以及其他視覺元素，使得繪製的圖形更加美觀且具有區分性。以下介紹如何使用 fmt 字串和 kwarg 參數來自定義圖表。<br />
 </p>
 </div>
-<div id="outline-container-orgd91d740" class="outline-3">
-<h3 id="orgd91d740"><span class="section-number-3">3.1.</span> fmt 控制參數</h3>
+<div id="outline-container-org239d258" class="outline-3">
+<h3 id="org239d258"><span class="section-number-3">3.1.</span> fmt 控制參數</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 fmt 是一個簡便的字串格式，用來設定線條的顏色、標記和線型。通過簡單的字元組合，我們可以快速控制圖形的基本格式。<br />
 </p>
 </div>
-<div id="outline-container-orgb361916" class="outline-4">
-<h4 id="orgb361916"><span class="section-number-4">3.1.1.</span> 基本語法</h4>
+<div id="outline-container-org165897b" class="outline-4">
+<h4 id="org165897b"><span class="section-number-4">3.1.1.</span> 基本語法</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <div class="org-src-container">
-<pre class="src src-python">plt.plot(x&#24231;&#27161;, y&#24231;&#27161;, <span style="color: #98be65;">'fmt'</span>)
+<pre class="src src-python">plt.plot(x座標, y座標, 'fmt')
 </pre>
 </div>
 
@@ -546,9 +549,9 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 以下為各元素的參考表：<br />
 </p>
 <ul class="org-ul">
-<li>顏色（Color）：使用單個字母表示顏色，例如 &rsquo;r&rsquo; 表示紅色，&rsquo;b&rsquo; 表示藍色。<br /></li>
-<li>標記（Marker）：表示每個數據點的標記形狀，例如 &rsquo;^&rsquo; 表示上三角形，&rsquo;o&rsquo; 表示圓圈。<br /></li>
-<li>線型（Line Style）：表示連接數據點的線型，例如 &rsquo;-&rsquo; 表示實線，&rsquo;&#x2013;&rsquo; 表示虛線。<br /></li>
+<li>顏色（Color）：使用單個字母表示顏色，例如 'r' 表示紅色，'b' 表示藍色。<br /></li>
+<li>標記（Marker）：表示每個數據點的標記形狀，例如 '^' 表示上三角形，'o' 表示圓圈。<br /></li>
+<li>線型（Line Style）：表示連接數據點的線型，例如 '-' 表示實線，'&#x2013;' 表示虛線。<br /></li>
 </ul>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -578,72 +581,72 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 </thead>
 <tbody>
 <tr>
-<td class="org-center">&rsquo;b&rsquo;</td>
+<td class="org-center">'b'</td>
 <td class="org-center">藍</td>
-<td class="org-center">&rsquo;.&rsquo;</td>
+<td class="org-center">'.'</td>
 <td class="org-center">點</td>
-<td class="org-center">&rsquo;&#x2013;&rsquo;(兩個-)</td>
+<td class="org-center">'&#x2013;'(兩個-)</td>
 <td class="org-center">虛線</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;g&rsquo;</td>
+<td class="org-center">'g'</td>
 <td class="org-center">綠</td>
-<td class="org-center">&rsquo;o&rsquo;</td>
+<td class="org-center">'o'</td>
 <td class="org-center">圓圈</td>
-<td class="org-center">&rsquo;-&rsquo;</td>
+<td class="org-center">'-'</td>
 <td class="org-center">實線</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;r&rsquo;</td>
+<td class="org-center">'r'</td>
 <td class="org-center">紅</td>
-<td class="org-center">&rsquo;v&rsquo;</td>
+<td class="org-center">'v'</td>
 <td class="org-center">三角形(下)</td>
-<td class="org-center">&rsquo;-.&rsquo;</td>
+<td class="org-center">'-.'</td>
 <td class="org-center">-.-.-.-.</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;c&rsquo;</td>
+<td class="org-center">'c'</td>
 <td class="org-center">青</td>
-<td class="org-center">&rsquo;^&rsquo;</td>
+<td class="org-center">'^'</td>
 <td class="org-center">三角形(上)</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;m&rsquo;</td>
+<td class="org-center">'m'</td>
 <td class="org-center">洋紅</td>
-<td class="org-center">&rsquo;&lt;&rsquo;</td>
+<td class="org-center">'&lt;'</td>
 <td class="org-center">三角形(左)</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;y&rsquo;</td>
+<td class="org-center">'y'</td>
 <td class="org-center">黃</td>
-<td class="org-center">&rsquo;&gt;&rsquo;</td>
+<td class="org-center">'&gt;'</td>
 <td class="org-center">三角形(右)</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;k&rsquo;</td>
+<td class="org-center">'k'</td>
 <td class="org-center">黑</td>
-<td class="org-center">&rsquo;s&rsquo;</td>
+<td class="org-center">'s'</td>
 <td class="org-center">正方形</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;w&rsquo;</td>
+<td class="org-center">'w'</td>
 <td class="org-center">白</td>
-<td class="org-center">&rsquo;p&rsquo;</td>
+<td class="org-center">'p'</td>
 <td class="org-center">五邊形</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
@@ -652,7 +655,7 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 <tr>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
-<td class="org-center">&rsquo;*&rsquo;</td>
+<td class="org-center">'*'</td>
 <td class="org-center">*</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
@@ -661,7 +664,7 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 <tr>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
-<td class="org-center">&rsquo;+&rsquo;</td>
+<td class="org-center">'+'</td>
 <td class="org-center">+</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
@@ -670,7 +673,7 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 <tr>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
-<td class="org-center">&rsquo;x&rsquo;</td>
+<td class="org-center">'x'</td>
 <td class="org-center">x</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
@@ -679,7 +682,7 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 <tr>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
-<td class="org-center">&rsquo;d&rsquo;</td>
+<td class="org-center">'d'</td>
 <td class="org-center">鑽石</td>
 <td class="org-center">&#xa0;</td>
 <td class="org-center">&#xa0;</td>
@@ -688,73 +691,73 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 </table>
 </div>
 </div>
-<div id="outline-container-org898a7bc" class="outline-4">
-<h4 id="org898a7bc"><span class="section-number-4">3.1.2.</span> 範例 #1</h4>
+<div id="outline-container-orge28b55a" class="outline-4">
+<h4 id="orge28b55a"><span class="section-number-4">3.1.2.</span> 範例 #1</h4>
 <div class="outline-text-4" id="text-3-1-2">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.1</span>)
+<span class="linenr"> 4: </span>x = np.arange(-3, 3, 0.1)
 <span class="linenr"> 5: </span>plt.clf()
-<span class="linenr"> 6: </span>plt.plot(x, np.sin(x), <span style="color: #98be65;">'r+'</span>)
+<span class="linenr"> 6: </span>plt.plot(x, np.sin(x), 'r+')
 <span class="linenr"> 7: </span>plt.show()
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">saving figure</span>
-<span class="linenr">10: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">plt.savefig('images/SimpleSin2.png', dpi=300)</span>
+<span class="linenr"> 9: </span># saving figure
+<span class="linenr">10: </span># plt.savefig('images/SimpleSin2.png', dpi=300)
 <span class="linenr">11: </span>
 </pre>
 </div>
 
-<div id="org42edbc7" class="figure">
+<div id="org5589a6a" class="figure">
 <p><img src="images/SimpleSin2.png" alt="SimpleSin2.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 2: </span>簡單的 sin 圖形</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org7f2f556" class="outline-4">
-<h4 id="org7f2f556"><span class="section-number-4">3.1.3.</span> 範例 #2</h4>
+<div id="outline-container-org5a93713" class="outline-4">
+<h4 id="org5a93713"><span class="section-number-4">3.1.3.</span> 範例 #2</h4>
 <div class="outline-text-4" id="text-3-1-3">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.1</span>)
+<span class="linenr"> 4: </span>x = np.arange(-3, 3, 0.1)
 <span class="linenr"> 5: </span>plt.clf()
-<span class="linenr"> 6: </span>plt.plot(x, np.cos(x), <span style="color: #98be65;">'c-.'</span>)
+<span class="linenr"> 6: </span>plt.plot(x, np.cos(x), 'c-.')
 <span class="linenr"> 7: </span>plt.show()
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">saving figure</span>
-<span class="linenr">10: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">plt.savefig('images/SimpleCos.png', dpi=300)</span>
+<span class="linenr"> 9: </span># saving figure
+<span class="linenr">10: </span># plt.savefig('images/SimpleCos.png', dpi=300)
 </pre>
 </div>
 
-<div id="org1f8b944" class="figure">
+<div id="orgb81530e" class="figure">
 <p><img src="images/SimpleCos.png" alt="SimpleCos.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 3: </span>簡單的 cos 圖形</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org7060749" class="outline-4">
-<h4 id="org7060749"><span class="section-number-4">3.1.4.</span> 範例: 多組資料</h4>
+<div id="outline-container-org5ffb092" class="outline-4">
+<h4 id="org5ffb092"><span class="section-number-4">3.1.4.</span> 範例: 多組資料</h4>
 <div class="outline-text-4" id="text-3-1-4">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x1</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, +<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.1</span>)
-<span class="linenr"> 5: </span><span style="color: #dcaeea;">y1</span> = np.sin(x1)
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">y2</span> = np.cos(x1)
+<span class="linenr"> 4: </span>x1 = np.arange(-3, +3, 0.1)
+<span class="linenr"> 5: </span>y1 = np.sin(x1)
+<span class="linenr"> 6: </span>y2 = np.cos(x1)
 <span class="linenr"> 7: </span>
-<span class="linenr"> 8: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">plt.plot(x1, y1, 'r^--', x1, y2, 'go-')</span>
-<span class="linenr"> 9: </span>plt.plot(x1, y1, <span style="color: #98be65;">'r^--'</span>, x1, y2, <span style="color: #98be65;">'go-'</span>)
-<span class="linenr">10: </span>plt.savefig(<span style="color: #98be65;">'mline.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr"> 8: </span>#plt.plot(x1, y1, 'r^--', x1, y2, 'go-')
+<span class="linenr"> 9: </span>plt.plot(x1, y1, 'r^--', x1, y2, 'go-')
+<span class="linenr">10: </span>plt.savefig('images/mline.png', dpi=300)
 </pre>
 </div>
 
-<div id="org5210e04" class="figure">
+<div id="orge8c933e" class="figure">
 <p><img src="images/mline.png" alt="mline.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 4: </span>多組圖形</p>
@@ -762,35 +765,35 @@ fmt 字串由三個部分組成，依序為 <code>[顏色][標記][線型]</code
 </div>
 </div>
 </div>
-<div id="outline-container-orge1097ae" class="outline-3">
-<h3 id="orge1097ae"><span class="section-number-3">3.2.</span> kwarg 參數</h3>
+<div id="outline-container-org76c4b13" class="outline-3">
+<h3 id="org76c4b13"><span class="section-number-3">3.2.</span> kwarg 參數</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 kwarg 是 Matplotlib 中用來設定繪圖細節的參數，例如顏色、線型、標記、標籤等。<br />
 </p>
 </div>
-<div id="outline-container-org6dc1fec" class="outline-4">
-<h4 id="org6dc1fec"><span class="section-number-4">3.2.1.</span> 常見的kwarg參數</h4>
+<div id="outline-container-orgbf52dbf" class="outline-4">
+<h4 id="orgbf52dbf"><span class="section-number-4">3.2.1.</span> 常見的kwarg參數</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <ul class="org-ul">
 <li>color：設定線條的顏色，可以使用顏色名稱、字母代碼、色碼或 RGB 值。<br /></li>
-<li>linestyle：設定線型，如 &rsquo;&#x2013;&rsquo; 表示虛線，&rsquo;-&rsquo; 表示實線。<br /></li>
-<li>marker：設定數據點的標記樣式，如 &rsquo;o&rsquo; 表示圓圈，&rsquo;^&rsquo; 表示上三角形。<br /></li>
+<li>linestyle：設定線型，如 '&#x2013;' 表示虛線，'-' 表示實線。<br /></li>
+<li>marker：設定數據點的標記樣式，如 'o' 表示圓圈，'^' 表示上三角形。<br /></li>
 <li>linewidth（縮寫 lw）：設定線條寬度，數值越大線條越粗，例如 <code>linewidth=3</code> 。<br /></li>
 <li>markersize（縮寫 ms）：設定標記大小，例如 <code>markersize=10</code> 。<br /></li>
 <li>alpha：設定透明度，範圍 0（完全透明）~ 1（完全不透明），例如 <code>alpha=0.5</code> 。<br /></li>
 <li>label：設定線條標籤，用於圖例顯示。<br /></li>
-<li>若 fmt 和 kwarg 設定衝突時，以 kwarg 為主。例如 <code>plt.plot(x, y, 'r--', color</code>&rsquo;blue&rsquo;)= 最終會顯示藍色（kwarg 覆蓋 fmt 的紅色）。<br /></li>
+<li>若 fmt 和 kwarg 設定衝突時，以 kwarg 為主。例如 <code>plt.plot(x, y, 'r--', color</code>'blue')= 最終會顯示藍色（kwarg 覆蓋 fmt 的紅色）。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org78e4853" class="outline-4">
-<h4 id="org78e4853"><span class="section-number-4">3.2.2.</span> color</h4>
+<div id="outline-container-org7b7d82d" class="outline-4">
+<h4 id="org7b7d82d"><span class="section-number-4">3.2.2.</span> color</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <ul class="org-ul">
-<li>單字，如 g：color = &rsquo;lime&rsquo;<br /></li>
-<li>字母，如 g：color = &rsquo;k&rsquo;<br /></li>
-<li>色碼，如 g：color = &rsquo;#FF0000&rsquo;<br /></li>
+<li>單字，如 g：color = 'lime'<br /></li>
+<li>字母，如 g：color = 'k'<br /></li>
+<li>色碼，如 g：color = '#FF0000'<br /></li>
 <li>RGB 值(0~1 之間)，如：color = (1, 0, 0)<br /></li>
 </ul>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -809,50 +812,50 @@ kwarg 是 Matplotlib 中用來設定繪圖細節的參數，例如顏色、線�
 </thead>
 <tbody>
 <tr>
-<td class="org-center">&rsquo;b&rsquo;</td>
+<td class="org-center">'b'</td>
 <td class="org-center">藍色</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;g&rsquo;</td>
+<td class="org-center">'g'</td>
 <td class="org-center">綠色</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;r&rsquo;</td>
+<td class="org-center">'r'</td>
 <td class="org-center">紅</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;c&rsquo;</td>
+<td class="org-center">'c'</td>
 <td class="org-center">青色</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;m&rsquo;</td>
+<td class="org-center">'m'</td>
 <td class="org-center">品紅</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;y&rsquo;</td>
+<td class="org-center">'y'</td>
 <td class="org-center">黃色</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;k&rsquo;</td>
+<td class="org-center">'k'</td>
 <td class="org-center">黑</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;w&rsquo;</td>
+<td class="org-center">'w'</td>
 <td class="org-center">白色</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-org4ffd136" class="outline-4">
-<h4 id="org4ffd136"><span class="section-number-4">3.2.3.</span> marker</h4>
+<div id="outline-container-org54a8f76" class="outline-4">
+<h4 id="org54a8f76"><span class="section-number-4">3.2.3.</span> marker</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -870,120 +873,120 @@ kwarg 是 Matplotlib 中用來設定繪圖細節的參數，例如顏色、線�
 </thead>
 <tbody>
 <tr>
-<td class="org-center">&rsquo;.&rsquo;</td>
+<td class="org-center">'.'</td>
 <td class="org-center">點標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;,&rsquo;</td>
+<td class="org-center">','</td>
 <td class="org-center">畫素標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;o&rsquo;</td>
+<td class="org-center">'o'</td>
 <td class="org-center">圓圈標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;v&rsquo;</td>
+<td class="org-center">'v'</td>
 <td class="org-center">triangle_down 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;^&rsquo;</td>
+<td class="org-center">'^'</td>
 <td class="org-center">triangle_up 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;&lt;&rsquo;</td>
+<td class="org-center">'&lt;'</td>
 <td class="org-center">triangle_left 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;&gt;&rsquo;</td>
+<td class="org-center">'&gt;'</td>
 <td class="org-center">triangle_right 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;1&rsquo;</td>
+<td class="org-center">'1'</td>
 <td class="org-center">tri_down 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;2&rsquo;</td>
+<td class="org-center">'2'</td>
 <td class="org-center">tri_up 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;3&rsquo;</td>
+<td class="org-center">'3'</td>
 <td class="org-center">tri_left 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;4&rsquo;</td>
+<td class="org-center">'4'</td>
 <td class="org-center">tri_right 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;s&rsquo;</td>
+<td class="org-center">'s'</td>
 <td class="org-center">方形標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;p&rsquo;</td>
-<td class="org-center">五角大樓標記</td>
+<td class="org-center">'p'</td>
+<td class="org-center">五邊形標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;*&rsquo;</td>
+<td class="org-center">'*'</td>
 <td class="org-center">星形標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;h&rsquo;</td>
+<td class="org-center">'h'</td>
 <td class="org-center">hexagon1 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;H&rsquo;</td>
+<td class="org-center">'H'</td>
 <td class="org-center">hexagon2 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;+&rsquo;</td>
+<td class="org-center">'+'</td>
 <td class="org-center">加號標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;x&rsquo;</td>
+<td class="org-center">'x'</td>
 <td class="org-center">x 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;D&rsquo;</td>
+<td class="org-center">'D'</td>
 <td class="org-center">鑽石標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;d&rsquo;</td>
+<td class="org-center">'d'</td>
 <td class="org-center">thin_diamond 標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;&vert;&rsquo;</td>
+<td class="org-center">'&vert;'</td>
 <td class="org-center">豎線標記</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;_&rsquo;</td>
+<td class="org-center">'_'</td>
 <td class="org-center">橫線標記</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-orga82453d" class="outline-4">
-<h4 id="orga82453d"><span class="section-number-4">3.2.4.</span> linestyle</h4>
+<div id="outline-container-org2a4e1ff" class="outline-4">
+<h4 id="org2a4e1ff"><span class="section-number-4">3.2.4.</span> linestyle</h4>
 <div class="outline-text-4" id="text-3-2-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -1001,39 +1004,39 @@ kwarg 是 Matplotlib 中用來設定繪圖細節的參數，例如顏色、線�
 </thead>
 <tbody>
 <tr>
-<td class="org-center">&rsquo;-&rsquo;</td>
+<td class="org-center">'-'</td>
 <td class="org-center">實線樣式</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;&#x2013;&rsquo;</td>
+<td class="org-center">'&#x2013;'</td>
 <td class="org-center">虛線樣式</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;-.&rsquo;</td>
+<td class="org-center">'-.'</td>
 <td class="org-center">破折號-點線樣式</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;:&rsquo;</td>
-<td class="org-center">虛線樣式</td>
+<td class="org-center">':'</td>
+<td class="org-center">點線樣式</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-org9ac58a7" class="outline-4">
-<h4 id="org9ac58a7"><span class="section-number-4">3.2.5.</span> label</h4>
+<div id="outline-container-org0c2f9a2" class="outline-4">
+<h4 id="org0c2f9a2"><span class="section-number-4">3.2.5.</span> label</h4>
 <div class="outline-text-4" id="text-3-2-5">
 <ul class="org-ul">
-<li>用以呈現線條標籤，如 label = &rsquo;y = x^2&rsquo;<br /></li>
+<li>用以呈現線條標籤，如 label = 'y = x^2'<br /></li>
 <li>需搭配 plt.legend() 函式方能呈現 label<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org49f4583" class="outline-4">
-<h4 id="org49f4583"><span class="section-number-4">3.2.6.</span> 其他常用函式</h4>
+<div id="outline-container-orgb6c5799" class="outline-4">
+<h4 id="orgb6c5799"><span class="section-number-4">3.2.6.</span> 其他常用函式</h4>
 <div class="outline-text-4" id="text-3-2-6">
 <ul class="org-ul">
 <li><code>plt.figure(figsize=(寬, 高), dpi=解析度)</code> ：建立新的圖表畫布。 <code>figsize</code> 的單位是英吋，例如 <code>figsize=(10, 6)</code> 表示寬 10 吋、高 6 吋。 <code>dpi</code> 為每英吋點數，預設 100。<br /></li>
@@ -1046,26 +1049,26 @@ kwarg 是 Matplotlib 中用來設定繪圖細節的參數，例如顏色、線�
 </ul>
 </div>
 </div>
-<div id="outline-container-org8a56f70" class="outline-4">
-<h4 id="org8a56f70"><span class="section-number-4">3.2.7.</span> 範例</h4>
+<div id="outline-container-org0e7bae9" class="outline-4">
+<h4 id="org0e7bae9"><span class="section-number-4">3.2.7.</span> 範例</h4>
 <div class="outline-text-4" id="text-3-2-7">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.5</span>)
+<span class="linenr"> 4: </span>x = np.arange(-3, 3, 0.5)
 <span class="linenr"> 5: </span>plt.clf()
-<span class="linenr"> 6: </span>plt.plot(x, np.cos(x), color=<span style="color: #98be65;">'c'</span>, linestyle=<span style="color: #98be65;">'--'</span>, marker=<span style="color: #98be65;">'p'</span>)
-<span class="linenr"> 7: </span>plt.xlim(-<span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
-<span class="linenr"> 8: </span>plt.xlabel(<span style="color: #98be65;">'This is x label'</span>)
-<span class="linenr"> 9: </span>plt.title(<span style="color: #98be65;">"This is Title"</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
+<span class="linenr"> 6: </span>plt.plot(x, np.cos(x), color='c', linestyle='--', marker='p')
+<span class="linenr"> 7: </span>plt.xlim(-4, 4)
+<span class="linenr"> 8: </span>plt.xlabel('This is x label')
+<span class="linenr"> 9: </span>plt.title("This is Title", fontsize=16)
 <span class="linenr">10: </span>
-<span class="linenr">11: </span>plt.savefig(<span style="color: #98be65;">'images/kwarg.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">11: </span>plt.savefig('images/kwarg.png', dpi=300)
 <span class="linenr">12: </span>
 </pre>
 </div>
 
-<div id="org6ec5612" class="figure">
+<div id="org8e1e7c3" class="figure">
 <p><img src="images/kwarg.png" alt="kwarg.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 5: </span>kwarg 參數控制</p>
@@ -1074,8 +1077,8 @@ kwarg 是 Matplotlib 中用來設定繪圖細節的參數，例如顏色、線�
 </div>
 </div>
 </div>
-<div id="outline-container-orgc72f524" class="outline-2">
-<h2 id="orgc72f524"><span class="section-number-2">4.</span> 中文問題</h2>
+<div id="outline-container-orgfa05f49" class="outline-2">
+<h2 id="orgfa05f49"><span class="section-number-2">4.</span> 中文問題</h2>
 <div class="outline-text-2" id="text-4">
 <ul class="org-ul">
 <li>在使用 Python 進行資料視覺化時，如果想要顯示中文（如標題、標籤或圖例中的文字），有時會遇到字型問題，導致中文無法正常顯示。<br /></li>
@@ -1083,8 +1086,8 @@ kwarg 是 Matplotlib 中用來設定繪圖細節的參數，例如顏色、線�
 <li>這類指令無需特意記憶理解，只需在每次需要時上網查詢並複製貼上即可。<br /></li>
 </ul>
 </div>
-<div id="outline-container-org621c72f" class="outline-3">
-<h3 id="org621c72f"><span class="section-number-3">4.1.</span> 在 PyCharm 中使用中文</h3>
+<div id="outline-container-orgedea951" class="outline-3">
+<h3 id="orgedea951"><span class="section-number-3">4.1.</span> 在 PyCharm 中使用中文</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 PyCharm 中顯示中文的方法主要分為兩步：<br />
@@ -1094,13 +1097,13 @@ PyCharm 中顯示中文的方法主要分為兩步：<br />
 <li>解決負號在座標軸上顯示的問題，這是 Matplotlib 中常見的一個問題，當顯示負數時，負號會被當作特殊符號處理。<br /></li>
 </ol>
 </div>
-<div id="outline-container-org0180a99" class="outline-4">
-<h4 id="org0180a99"><span class="section-number-4">4.1.1.</span> 範例</h4>
+<div id="outline-container-org4eea392" class="outline-4">
+<h4 id="org4eea392"><span class="section-number-4">4.1.1.</span> 範例</h4>
 <div class="outline-text-4" id="text-4-1-1">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#35299;&#27770;&#20013;&#25991;&#21839;&#38988;</span>
-<span class="linenr">2: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] = [<span style="color: #98be65;">'Arial Unicode MS'</span>] <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#19968;&#65288;&#26367;&#25563;&#31995;&#32113;&#20013;&#30340;&#23383;&#22411;&#65292;&#36889;&#35041;&#29992;&#30340;&#26159;Mac OSX&#31995;&#32113;&#65289;</span>
-<span class="linenr">3: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
+<pre class="src src-python"><span class="linenr">1: </span># 解決中文問題
+<span class="linenr">2: </span>plt.rcParams['font.sans-serif'] = ['Arial Unicode MS'] # 步驟一（替換系統中的字型，這裡用的是Mac OSX系統）
+<span class="linenr">3: </span>plt.rcParams['axes.unicode_minus'] = False  # 步驟二（解決座標軸負數的負號顯示問題）
 </pre>
 </div>
 
@@ -1113,7 +1116,7 @@ PyCharm 中顯示中文的方法主要分為兩步：<br />
 <li>實際示例<br /></li>
 </ul>
 
-<div id="orgd726c52" class="figure">
+<div id="orgdf4ed1e" class="figure">
 <p><img src="images/marriage.png" alt="marriage.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 6: </span>簡單的折線圖及圖例</p>
@@ -1121,8 +1124,8 @@ PyCharm 中顯示中文的方法主要分為兩步：<br />
 </div>
 </div>
 </div>
-<div id="outline-container-org6e297f3" class="outline-3">
-<h3 id="org6e297f3"><span class="section-number-3">4.2.</span> 在 colab 中使用中文</h3>
+<div id="outline-container-org572cd53" class="outline-3">
+<h3 id="org572cd53"><span class="section-number-3">4.2.</span> 在 colab 中使用中文</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 在 Google Colab 中使用中文的過程比較特別，因為 Colab 預設的環境沒有支援繁體中文的字型。我們可以下載一個支援繁體中文的字型，並將其加入到 Matplotlib 的字型列表中來解決這個問題。<br />
@@ -1132,87 +1135,87 @@ PyCharm 中顯示中文的方法主要分為兩步：<br />
 <li>使用 fontManager.addfont() 函式將該字型加入到 Matplotlib 的字型列表中，然後設定為默認字型。<br /></li>
 </ol>
 </div>
-<div id="outline-container-org9bb462d" class="outline-4">
-<h4 id="org9bb462d"><span class="section-number-4">4.2.1.</span> 範例</h4>
+<div id="outline-container-orge3941cb" class="outline-4">
+<h4 id="orge3941cb"><span class="section-number-4">4.2.1.</span> 範例</h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 colab在plot()前先加入下列 cell並執行<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Colab &#36914;&#34892;matplotlib&#32362;&#22294;&#26178;&#39023;&#31034;&#32321;&#39636;&#20013;&#25991;</span>
-<span class="linenr"> 2: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#19979;&#36617;&#21488;&#21271;&#24605;&#28304;&#40657;&#39636;&#20006;&#21629;&#21517;taipei_sans_tc_beta.ttf&#65292;&#31227;&#33267;&#25351;&#23450;&#36335;&#24465;</span>
-<span class="linenr"> 3: </span>!wget -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?<span style="color: #c678dd;">id</span>=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_&amp;<span style="color: #dcaeea;">export</span>=download
+<pre class="src src-python"><span class="linenr"> 1: </span># Colab 進行matplotlib繪圖時顯示繁體中文
+<span class="linenr"> 2: </span># 下載台北思源黑體並命名taipei_sans_tc_beta.ttf，移至指定路徑
+<span class="linenr"> 3: </span>!wget -O TaipeiSansTCBeta-Regular.ttf https://drive.google.com/uc?id=1eGAsTN1HBpJAkeVM57_C7ccp7hbgSz3_&amp;export=download
 <span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span><span style="color: #51afef;">import</span> matplotlib <span style="color: #51afef;">as</span> mpl
-<span class="linenr"> 6: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 7: </span><span style="color: #51afef;">from</span> matplotlib.font_manager <span style="color: #51afef;">import</span> fontManager
+<span class="linenr"> 5: </span>import matplotlib as mpl
+<span class="linenr"> 6: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 7: </span>from matplotlib.font_manager import fontManager
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span>fontManager.addfont(<span style="color: #98be65;">'TaipeiSansTCBeta-Regular.ttf'</span>)
-<span class="linenr">10: </span>mpl.rc(<span style="color: #98be65;">'font'</span>, family=<span style="color: #98be65;">'Taipei Sans TC Beta'</span>)
+<span class="linenr"> 9: </span>fontManager.addfont('TaipeiSansTCBeta-Regular.ttf')
+<span class="linenr">10: </span>mpl.rc('font', family='Taipei Sans TC Beta')
 </pre>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orge9759c6" class="outline-2">
-<h2 id="orge9759c6"><span class="section-number-2">5.</span> Legend</h2>
+<div id="outline-container-orgafc2026" class="outline-2">
+<h2 id="orgafc2026"><span class="section-number-2">5.</span> Legend</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 在資料視覺化過程中，圖例（Legend）是一個非常重要的元素，特別當你繪製多條線或多組資料時。圖例可以幫助讀者理解每條線或每組資料所代表的意義。在 Matplotlib 中，我們可以使用 plt.legend() 函式來添加圖例，並自定義圖例的位置。<br />
 </p>
 </div>
-<div id="outline-container-orgc912698" class="outline-3">
-<h3 id="orgc912698"><span class="section-number-3">5.1.</span> plt.legend() 基本語法</h3>
+<div id="outline-container-orgba27a0f" class="outline-3">
+<h3 id="orgba27a0f"><span class="section-number-3">5.1.</span> plt.legend() 基本語法</h3>
 <div class="outline-text-3" id="text-5-1">
 <ul class="org-ul">
 <li>plt.legend([label1, label2, &#x2026;])：這個函式用來為每條線添加標籤。標籤的數量應與圖中繪製的線條數一致。<br /></li>
 <li>loc 參數：用來指定圖例的位置。常用的位置選項有：<br />
 <ul class="org-ul">
-<li>&ldquo;upper left&rdquo;：左上角<br /></li>
-<li>&ldquo;upper right&rdquo;：右上角<br /></li>
-<li>&ldquo;lower left&rdquo;：左下角<br /></li>
-<li>&ldquo;lower right&rdquo;：右下角<br /></li>
-<li>&ldquo;best&rdquo;：Matplotlib 會自動選擇最佳位置，避免與圖形重疊。<br /></li>
+<li>"upper left"：左上角<br /></li>
+<li>"upper right"：右上角<br /></li>
+<li>"lower left"：左下角<br /></li>
+<li>"lower right"：右下角<br /></li>
+<li>"best"：Matplotlib 會自動選擇最佳位置，避免與圖形重疊。<br /></li>
 </ul></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgad54448" class="outline-3">
-<h3 id="orgad54448"><span class="section-number-3">5.2.</span> 範例</h3>
+<div id="outline-container-orge6aacb2" class="outline-3">
+<h3 id="orge6aacb2"><span class="section-number-3">5.2.</span> 範例</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x</span> = np.arange(-<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.1</span>)
+<span class="linenr"> 4: </span>x = np.arange(-3, 3, 0.1)
 <span class="linenr"> 5: </span>plt.clf()
 <span class="linenr"> 6: </span>plt.plot(x, np.sin(x))
 <span class="linenr"> 7: </span>plt.plot(x, np.cos(x))
-<span class="linenr"> 8: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#21152;&#20837;&#22294;&#20363;</span>
-<span class="linenr"> 9: </span>plt.legend([<span style="color: #98be65;">"sin"</span>, <span style="color: #98be65;">"cos"</span>], loc=<span style="color: #98be65;">"upper left"</span>)
+<span class="linenr"> 8: </span>#加入圖例
+<span class="linenr"> 9: </span>plt.legend(["sin", "cos"], loc="upper left")
 <span class="linenr">10: </span>
 <span class="linenr">11: </span>
-<span class="linenr">12: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#33509;&#35201;&#23384;&#22294;&#65292;&#35201;&#20808;&#23384;&#27284;&#20877;&#39023;&#31034; # for PyCharm</span>
-<span class="linenr">13: </span>plt.savefig(<span style="color: #98be65;">'images/sincoslegend.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">12: </span># 若要存圖，要先存檔再顯示 # for PyCharm
+<span class="linenr">13: </span>plt.savefig('images/sincoslegend.png', dpi=300)
 </pre>
 </div>
 
 
-<div id="org9a85f80" class="figure">
+<div id="orge395b39" class="figure">
 <p><img src="images/sincoslegend.png" alt="sincoslegend.png" width="500" /><br />
 </p>
-<p><span class="figure-number">Figure 7: </span>Caption</p>
+<p><span class="figure-number">Figure 7: </span>sin 與 cos 曲線及圖例</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orga40677c" class="outline-2">
-<h2 id="orga40677c"><span class="section-number-2">6.</span> Line Chart</h2>
+<div id="outline-container-org15df185" class="outline-2">
+<h2 id="org15df185"><span class="section-number-2">6.</span> Line Chart</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-org3d54f09" class="outline-3">
-<h3 id="org3d54f09"><span class="section-number-3">6.1.</span> 範例 #1</h3>
+<div id="outline-container-orgbce98b8" class="outline-3">
+<h3 id="orgbce98b8"><span class="section-number-3">6.1.</span> 範例 #1</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 如何繪製多組資料的折線圖，包括使用列表和 NumPy 生成資料，並為每條線設置不同的樣式和顏色。<br />
@@ -1222,18 +1225,18 @@ colab在plot()前先加入下列 cell並執行<br />
 當一次繪製多組資料時，使用 <code>plt.plot(x1, y1, fmt1, x2, y2, fmt2, ...)</code> 的語法，依序傳入各組的 x、y 資料和 fmt：<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x1</span> = [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>]
-<span class="linenr"> 5: </span><span style="color: #dcaeea;">y1</span> = [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>]
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">x2</span> = np.arange(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">0.3</span>)
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">x3</span> = np.arange(<span style="color: #da8548; font-weight: bold;">8</span>).reshape(<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">4</span>)
-<span class="linenr"> 8: </span><span style="color: #c678dd;">print</span>(x3)
-<span class="linenr"> 9: </span><span style="color: #c678dd;">print</span>(x3+<span style="color: #da8548; font-weight: bold;">3</span>)
-<span class="linenr">10: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">'c-p': &#38738;&#33394;+&#23526;&#32218;+&#20116;&#37002;&#24418;, 'ms:': &#27915;&#32005;+&#26041;&#24418;+&#40670;&#32218;, '-*': &#23526;&#32218;+&#26143;&#24418;</span>
-<span class="linenr">11: </span>plt.plot(y1, <span style="color: #98be65;">'c-p'</span>, x2, x2**<span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #98be65;">'ms:'</span>, x3, x3+<span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #98be65;">'-*'</span>)
-<span class="linenr">12: </span>plt.savefig(<span style="color: #98be65;">'line2.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr"> 4: </span>x1 = [1, 2, 3, 4, 5, 6]
+<span class="linenr"> 5: </span>y1 = [1, 2, 3, 4, 5, 6]
+<span class="linenr"> 6: </span>x2 = np.arange(0, 3, 0.3)
+<span class="linenr"> 7: </span>x3 = np.arange(8).reshape(2, 4)
+<span class="linenr"> 8: </span>print(x3)
+<span class="linenr"> 9: </span>print(x3+3)
+<span class="linenr">10: </span># 'c-p': 青色+實線+五邊形, 'ms:': 洋紅+方形+點線, '-*': 實線+星形
+<span class="linenr">11: </span>plt.plot(y1, 'c-p', x2, x2**2, 'ms:', x3, x3+3, '-*')
+<span class="linenr">12: </span>plt.savefig('images/line2.png', dpi=300)
 </pre>
 </div>
 <pre class="example">
@@ -1244,194 +1247,194 @@ colab在plot()前先加入下列 cell並執行<br />
 </pre>
 
 
-<div id="orge7c76c6" class="figure">
+<div id="orgb1ab002" class="figure">
 <p><img src="images/line2.png" alt="line2.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 8: </span>簡單的折線圖形 2</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org06caaa4" class="outline-3">
-<h3 id="org06caaa4"><span class="section-number-3">6.2.</span> 範例 #2</h3>
+<div id="outline-container-orgf285747" class="outline-3">
+<h3 id="orgf285747"><span class="section-number-3">6.2.</span> 範例 #2</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 如何使用一個簡單的數學函數（線性函數）繪製折線圖，並為圖表設置標籤與範圍。<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">angdeg</span>(x):
-<span class="linenr"> 5: </span>    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">1.2</span>*x+<span style="color: #da8548; font-weight: bold;">3</span>
+<span class="linenr"> 4: </span>def angdeg(x):
+<span class="linenr"> 5: </span>    return 1.2*x+3
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">x</span> = np.arange(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">21</span>, <span style="color: #da8548; font-weight: bold;">1</span>)
-<span class="linenr"> 8: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] = [<span style="color: #98be65;">'Arial Unicode MS'</span>] <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#19968;&#65288;&#26367;&#25563;&#31995;&#32113;&#20013;&#30340;&#23383;&#22411;&#65292;&#36889;&#35041;&#29992;&#30340;&#26159;Mac OSX&#31995;&#32113;&#65289;</span>
-<span class="linenr"> 9: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
-<span class="linenr">10: </span><span style="color: #dcaeea;">ax</span> = plt.figure().gca()
-<span class="linenr">11: </span>plt.plot(x, angdeg(x), color=<span style="color: #98be65;">'r'</span>, linestyle=<span style="color: #98be65;">'--'</span>, linewidth=<span style="color: #da8548; font-weight: bold;">3</span>)
-<span class="linenr">12: </span>plt.xlabel(<span style="color: #98be65;">'&#26412;&#26376;&#38358;&#31117;&#27425;&#25976;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
-<span class="linenr">13: </span>plt.ylabel(<span style="color: #98be65;">'&#23229;&#23229;&#29983;&#27683;&#31243;&#24230;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
-<span class="linenr">14: </span>plt.xlim(<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">21</span>)
+<span class="linenr"> 7: </span>x = np.arange(0, 21, 1)
+<span class="linenr"> 8: </span>plt.rcParams['font.sans-serif'] = ['Arial Unicode MS'] # 步驟一（替換系統中的字型，這裡用的是Mac OSX系統）
+<span class="linenr"> 9: </span>plt.rcParams['axes.unicode_minus'] = False  # 步驟二（解決座標軸負數的負號顯示問題）
+<span class="linenr">10: </span>ax = plt.figure().gca()
+<span class="linenr">11: </span>plt.plot(x, angdeg(x), color='r', linestyle='--', linewidth=3)
+<span class="linenr">12: </span>plt.xlabel('本月闖禍次數', fontsize=16)
+<span class="linenr">13: </span>plt.ylabel('媽媽生氣程度', fontsize=16)
+<span class="linenr">14: </span>plt.xlim(0,21)
 <span class="linenr">15: </span>ax.set_xticks(x)
-<span class="linenr">16: </span>plt.savefig(<span style="color: #98be65;">'images/angrymam-1.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">16: </span>plt.savefig('images/angrymam-1.png', dpi=300)
 </pre>
 </div>
 
 
-<div id="orgfe83716" class="figure">
+<div id="org0d75812" class="figure">
 <p><img src="images/angrymam-1.png" alt="angrymam-1.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 9: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb83eb7" class="outline-3">
-<h3 id="orgbb83eb7"><span class="section-number-3">6.3.</span> 範例 #3</h3>
+<div id="outline-container-org1c76dbf" class="outline-3">
+<h3 id="org1c76dbf"><span class="section-number-3">6.3.</span> 範例 #3</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 如何使用非線性函數繪製折線圖，並設置 Y 軸範圍以顯示更大區間的資料。<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">angdeg</span>(x):
-<span class="linenr"> 5: </span>    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">500</span>+(x**<span style="color: #da8548; font-weight: bold;">4</span>)/<span style="color: #da8548; font-weight: bold;">100</span>
+<span class="linenr"> 4: </span>def angdeg(x):
+<span class="linenr"> 5: </span>    return 500+(x**4)/100
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">x</span> = np.arange(<span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">21</span>, <span style="color: #da8548; font-weight: bold;">1</span>)
-<span class="linenr"> 8: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">plt.cla()</span>
-<span class="linenr"> 9: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] = [<span style="color: #98be65;">'Arial Unicode MS'</span>] <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#19968;&#65288;&#26367;&#25563;&#31995;&#32113;&#20013;&#30340;&#23383;&#22411;&#65292;&#36889;&#35041;&#29992;&#30340;&#26159;Mac OSX&#31995;&#32113;&#65289;</span>
-<span class="linenr">10: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
+<span class="linenr"> 7: </span>x = np.arange(0, 21, 1)
+<span class="linenr"> 8: </span>#plt.cla()
+<span class="linenr"> 9: </span>plt.rcParams['font.sans-serif'] = ['Arial Unicode MS'] # 步驟一（替換系統中的字型，這裡用的是Mac OSX系統）
+<span class="linenr">10: </span>plt.rcParams['axes.unicode_minus'] = False  # 步驟二（解決座標軸負數的負號顯示問題）
 <span class="linenr">11: </span>
-<span class="linenr">12: </span><span style="color: #dcaeea;">ax</span> = plt.figure().gca()
-<span class="linenr">13: </span>plt.plot(x, angdeg(x), color=<span style="color: #98be65;">'r'</span>, linestyle=<span style="color: #98be65;">'--'</span>, linewidth=<span style="color: #da8548; font-weight: bold;">3</span>)
+<span class="linenr">12: </span>ax = plt.figure().gca()
+<span class="linenr">13: </span>plt.plot(x, angdeg(x), color='r', linestyle='--', linewidth=3)
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>plt.xlabel(<span style="color: #98be65;">'&#26412;&#26376;&#38358;&#31117;&#27425;&#25976;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
-<span class="linenr">16: </span>plt.ylabel(<span style="color: #98be65;">'&#23229;&#23229;&#29983;&#27683;&#31243;&#24230;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
-<span class="linenr">17: </span>plt.xlim(<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">21</span>)
-<span class="linenr">18: </span>plt.ylim(<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">2201</span>)
+<span class="linenr">15: </span>plt.xlabel('本月闖禍次數', fontsize=16)
+<span class="linenr">16: </span>plt.ylabel('媽媽生氣程度', fontsize=16)
+<span class="linenr">17: </span>plt.xlim(0,21)
+<span class="linenr">18: </span>plt.ylim(0,2201)
 <span class="linenr">19: </span>ax.set_xticks(x)
-<span class="linenr">20: </span>plt.savefig(<span style="color: #98be65;">'images/angrymam-2.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">20: </span>plt.savefig('images/angrymam-2.png', dpi=300)
 </pre>
 </div>
 
 
-<div id="org4f721c7" class="figure">
+<div id="orgf580af4" class="figure">
 <p><img src="images/angrymam-2.png" alt="angrymam-2.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 10: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org9f4b5f7" class="outline-3">
-<h3 id="org9f4b5f7"><span class="section-number-3">6.4.</span> 範例 #4</h3>
+<div id="outline-container-org1bf51dd" class="outline-3">
+<h3 id="org1bf51dd"><span class="section-number-3">6.4.</span> 範例 #4</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 根據條件設定點的顏色、並依資料類型加上legend<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
+<span class="linenr"> 3: </span>import pandas as pd
 <span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">angdeg</span>(x):
-<span class="linenr"> 6: </span>    <span style="color: #51afef;">return</span> x**<span style="color: #da8548; font-weight: bold;">4</span>
-<span class="linenr"> 7: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">l2c</span>(x):
-<span class="linenr"> 8: </span>    <span style="color: #51afef;">if</span> x == <span style="color: #a9a1e1;">True</span>:
-<span class="linenr"> 9: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">'r'</span>
-<span class="linenr">10: </span>    <span style="color: #51afef;">else</span>:
-<span class="linenr">11: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">'g'</span>
+<span class="linenr"> 5: </span>def angdeg(x):
+<span class="linenr"> 6: </span>    return x**4
+<span class="linenr"> 7: </span>def l2c(x):
+<span class="linenr"> 8: </span>    if x == True:
+<span class="linenr"> 9: </span>        return 'r'
+<span class="linenr">10: </span>    else:
+<span class="linenr">11: </span>        return 'g'
 <span class="linenr">12: </span>
-<span class="linenr">13: </span>np.random.seed(<span style="color: #da8548; font-weight: bold;">9527</span>)
-<span class="linenr">14: </span><span style="color: #dcaeea;">x</span> = np.random.randint(<span style="color: #da8548; font-weight: bold;">21</span>, size=<span style="color: #da8548; font-weight: bold;">20</span>)
-<span class="linenr">15: </span><span style="color: #dcaeea;">y</span> = np.random.randint(<span style="color: #da8548; font-weight: bold;">21</span>, size=<span style="color: #da8548; font-weight: bold;">20</span>)
-<span class="linenr">16: </span><span style="color: #dcaeea;">z</span> = x + y &lt; <span style="color: #da8548; font-weight: bold;">20</span>
-<span class="linenr">17: </span><span style="color: #dcaeea;">colors</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">map</span>(<span style="color: #51afef;">lambda</span> x: <span style="color: #98be65;">'g'</span> <span style="color: #51afef;">if</span> x == <span style="color: #a9a1e1;">True</span> <span style="color: #51afef;">else</span> <span style="color: #98be65;">'r'</span>, z))
-<span class="linenr">18: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">colors = list(map(l2c, z))</span>
-<span class="linenr">19: </span><span style="color: #dcaeea;">labels</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">map</span>(<span style="color: #51afef;">lambda</span> x: <span style="color: #98be65;">'&#25384;&#25549;'</span> <span style="color: #51afef;">if</span> x == <span style="color: #a9a1e1;">True</span> <span style="color: #51afef;">else</span> <span style="color: #98be65;">'&#24179;&#23433;'</span>, z))
-<span class="linenr">20: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] = [<span style="color: #98be65;">'Arial Unicode MS'</span>] <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#19968;&#65288;&#26367;&#25563;&#31995;&#32113;&#20013;&#30340;&#23383;&#22411;&#65292;&#36889;&#35041;&#29992;&#30340;&#26159;Mac OSX&#31995;&#32113;&#65289;</span>
-<span class="linenr">21: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
+<span class="linenr">13: </span>np.random.seed(9527)
+<span class="linenr">14: </span>x = np.random.randint(21, size=20)
+<span class="linenr">15: </span>y = np.random.randint(21, size=20)
+<span class="linenr">16: </span>z = x + y &lt; 20
+<span class="linenr">17: </span>colors = list(map(lambda x: 'g' if x == True else 'r', z))
+<span class="linenr">18: </span>#colors = list(map(l2c, z))
+<span class="linenr">19: </span>labels = list(map(lambda x: '挨揍' if x == True else '平安', z))
+<span class="linenr">20: </span>plt.rcParams['font.sans-serif'] = ['Arial Unicode MS'] # 步驟一（替換系統中的字型，這裡用的是Mac OSX系統）
+<span class="linenr">21: </span>plt.rcParams['axes.unicode_minus'] = False  # 步驟二（解決座標軸負數的負號顯示問題）
 <span class="linenr">22: </span>
-<span class="linenr">23: </span><span style="color: #dcaeea;">ax</span> = plt.figure().gca()
+<span class="linenr">23: </span>ax = plt.figure().gca()
 <span class="linenr">24: </span>
-<span class="linenr">25: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">plt.scatter(x, y, c = colors)</span>
-<span class="linenr">26: </span><span style="color: #dcaeea;">rc</span> = [i <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(colors)) <span style="color: #51afef;">if</span> colors[i] == <span style="color: #98be65;">'r'</span>]
-<span class="linenr">27: </span><span style="color: #dcaeea;">gc</span> = [i <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(colors)) <span style="color: #51afef;">if</span> colors[i] == <span style="color: #98be65;">'g'</span>]
+<span class="linenr">25: </span>#plt.scatter(x, y, c = colors)
+<span class="linenr">26: </span>rc = [i for i in range(len(colors)) if colors[i] == 'r']
+<span class="linenr">27: </span>gc = [i for i in range(len(colors)) if colors[i] == 'g']
 <span class="linenr">28: </span>
-<span class="linenr">29: </span>plt.scatter(x[rc], y[rc], c = <span style="color: #98be65;">'r'</span>)
-<span class="linenr">30: </span>plt.scatter(x[gc], y[gc], c = <span style="color: #98be65;">'g'</span>)
-<span class="linenr">31: </span>plt.xlabel(<span style="color: #98be65;">'&#22240;&#38358;&#31117;&#21463;&#20663;&#31243;&#24230;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
-<span class="linenr">32: </span>plt.ylabel(<span style="color: #98be65;">'&#22240;&#38358;&#31117;&#23566;&#33268;&#25613;&#22833;&#37329;&#38989;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
-<span class="linenr">33: </span>ax.set_xticks(<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">21</span>))
-<span class="linenr">34: </span>ax.set_yticks(<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">21</span>))
-<span class="linenr">35: </span>plt.legend([<span style="color: #98be65;">'&#34389;&#32624;'</span>,<span style="color: #98be65;">'&#24179;&#23433;'</span>])
-<span class="linenr">36: </span>plt.plot(x, <span style="color: #da8548; font-weight: bold;">20</span>-x, linewidth=<span style="color: #da8548; font-weight: bold;">3</span>)
-<span class="linenr">37: </span>plt.savefig(<span style="color: #98be65;">'images/angrymam-3.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">29: </span>plt.scatter(x[rc], y[rc], c = 'r')
+<span class="linenr">30: </span>plt.scatter(x[gc], y[gc], c = 'g')
+<span class="linenr">31: </span>plt.xlabel('因闖禍受傷程度', fontsize=16)
+<span class="linenr">32: </span>plt.ylabel('因闖禍導致損失金額', fontsize=16)
+<span class="linenr">33: </span>ax.set_xticks(range(21))
+<span class="linenr">34: </span>ax.set_yticks(range(21))
+<span class="linenr">35: </span>plt.legend(['處罰','平安'])
+<span class="linenr">36: </span>plt.plot(x, 20-x, linewidth=3)
+<span class="linenr">37: </span>plt.savefig('images/angrymam-3.png', dpi=300)
 </pre>
 </div>
 
 
-<div id="org6ab864a" class="figure">
+<div id="orge6f3323" class="figure">
 <p><img src="images/angrymam-3.png" alt="angrymam-3.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 11: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org1eafb7c" class="outline-3">
-<h3 id="org1eafb7c"><span class="section-number-3">6.5.</span> 範例 #5</h3>
+<div id="outline-container-org7cd3513" class="outline-3">
+<h3 id="org7cd3513"><span class="section-number-3">6.5.</span> 範例 #5</h3>
 <div class="outline-text-3" id="text-6-5">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr"> 3: </span><span style="color: #51afef;">import</span> pandas <span style="color: #51afef;">as</span> pd
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
+<span class="linenr"> 3: </span>import pandas as pd
 <span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">angdeg</span>(x):
-<span class="linenr"> 6: </span>    <span style="color: #51afef;">return</span> x**<span style="color: #da8548; font-weight: bold;">4</span>
-<span class="linenr"> 7: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">l2c</span>(x):
-<span class="linenr"> 8: </span>    <span style="color: #51afef;">if</span> x == <span style="color: #a9a1e1;">True</span>:
-<span class="linenr"> 9: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">'r'</span>
-<span class="linenr">10: </span>    <span style="color: #51afef;">else</span>:
-<span class="linenr">11: </span>        <span style="color: #51afef;">return</span> <span style="color: #98be65;">'g'</span>
-<span class="linenr">12: </span><span style="color: #51afef;">def</span> <span style="color: #c678dd;">mycurv</span>(x):
-<span class="linenr">13: </span>    <span style="color: #51afef;">return</span> <span style="color: #da8548; font-weight: bold;">5</span> + (<span style="color: #da8548; font-weight: bold;">2</span> ** (<span style="color: #da8548; font-weight: bold;">19</span>-<span style="color: #c678dd;">float</span>(x)))/<span style="color: #da8548; font-weight: bold;">6000</span>
+<span class="linenr"> 5: </span>def angdeg(x):
+<span class="linenr"> 6: </span>    return x**4
+<span class="linenr"> 7: </span>def l2c(x):
+<span class="linenr"> 8: </span>    if x == True:
+<span class="linenr"> 9: </span>        return 'r'
+<span class="linenr">10: </span>    else:
+<span class="linenr">11: </span>        return 'g'
+<span class="linenr">12: </span>def mycurv(x):
+<span class="linenr">13: </span>    return 5 + (2 ** (19-float(x)))/6000
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>np.random.seed(<span style="color: #da8548; font-weight: bold;">9527</span>)
-<span class="linenr">16: </span><span style="color: #dcaeea;">x</span> = np.random.randint(<span style="color: #da8548; font-weight: bold;">21</span>, size=<span style="color: #da8548; font-weight: bold;">20</span>)
-<span class="linenr">17: </span><span style="color: #dcaeea;">y</span> = np.random.randint(<span style="color: #da8548; font-weight: bold;">21</span>, size=<span style="color: #da8548; font-weight: bold;">20</span>)
-<span class="linenr">18: </span><span style="color: #dcaeea;">y1</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">map</span>(mycurv, x))
-<span class="linenr">19: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'y:'</span>,y)
-<span class="linenr">20: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'y1:'</span>,y1)
-<span class="linenr">21: </span><span style="color: #dcaeea;">z</span> = y &gt; y1
-<span class="linenr">22: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">'z:'</span>, z)
-<span class="linenr">23: </span><span style="color: #dcaeea;">colors</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">map</span>(<span style="color: #51afef;">lambda</span> x: <span style="color: #98be65;">'g'</span> <span style="color: #51afef;">if</span> x == <span style="color: #a9a1e1;">True</span> <span style="color: #51afef;">else</span> <span style="color: #98be65;">'r'</span>, z))
-<span class="linenr">24: </span><span style="color: #dcaeea;">colors</span> = <span style="color: #c678dd;">list</span>(<span style="color: #c678dd;">map</span>(l2c, z))
-<span class="linenr">25: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">labels = list(map(lambda x: '&#25384;&#25549;' if x == True else '&#24179;&#23433;', z))</span>
-<span class="linenr">26: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'font.sans-serif'</span>] = [<span style="color: #98be65;">'Arial Unicode MS'</span>] <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#19968;&#65288;&#26367;&#25563;&#31995;&#32113;&#20013;&#30340;&#23383;&#22411;&#65292;&#36889;&#35041;&#29992;&#30340;&#26159;Mac OSX&#31995;&#32113;&#65289;</span>
-<span class="linenr">27: </span>plt.<span style="color: #dcaeea;">rcParams</span>[<span style="color: #98be65;">'axes.unicode_minus'</span>] = <span style="color: #a9a1e1;">False</span>
-<span class="linenr">28: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#27493;&#39519;&#20108;&#65288;&#35299;&#27770;&#24231;&#27161;&#36600;&#36000;&#25976;&#30340;&#36000;&#34399;&#39023;&#31034;&#21839;&#38988;&#65289;</span>
-<span class="linenr">29: </span><span style="color: #dcaeea;">ax</span> = plt.figure().gca()
-<span class="linenr">30: </span><span style="color: #5B6268;">#</span>
-<span class="linenr">31: </span><span style="color: #5B6268;">##</span><span style="color: #5B6268;">plt.scatter(x, y, c = colors)</span>
-<span class="linenr">32: </span><span style="color: #dcaeea;">rc</span> = [i <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(colors)) <span style="color: #51afef;">if</span> colors[i] == <span style="color: #98be65;">'r'</span>]
-<span class="linenr">33: </span><span style="color: #dcaeea;">gc</span> = [i <span style="color: #51afef;">for</span> i <span style="color: #51afef;">in</span> <span style="color: #c678dd;">range</span>(<span style="color: #c678dd;">len</span>(colors)) <span style="color: #51afef;">if</span> colors[i] == <span style="color: #98be65;">'g'</span>]
+<span class="linenr">15: </span>np.random.seed(9527)
+<span class="linenr">16: </span>x = np.random.randint(21, size=20)
+<span class="linenr">17: </span>y = np.random.randint(21, size=20)
+<span class="linenr">18: </span>y1 = list(map(mycurv, x))
+<span class="linenr">19: </span>print('y:',y)
+<span class="linenr">20: </span>print('y1:',y1)
+<span class="linenr">21: </span>z = y &gt; y1
+<span class="linenr">22: </span>print('z:', z)
+<span class="linenr">23: </span>colors = list(map(lambda x: 'g' if x == True else 'r', z))
+<span class="linenr">24: </span>colors = list(map(l2c, z))
+<span class="linenr">25: </span>#labels = list(map(lambda x: '挨揍' if x == True else '平安', z))
+<span class="linenr">26: </span>plt.rcParams['font.sans-serif'] = ['Arial Unicode MS'] # 步驟一（替換系統中的字型，這裡用的是Mac OSX系統）
+<span class="linenr">27: </span>plt.rcParams['axes.unicode_minus'] = False
+<span class="linenr">28: </span># 步驟二（解決座標軸負數的負號顯示問題）
+<span class="linenr">29: </span>ax = plt.figure().gca()
+<span class="linenr">30: </span>#
+<span class="linenr">31: </span>##plt.scatter(x, y, c = colors)
+<span class="linenr">32: </span>rc = [i for i in range(len(colors)) if colors[i] == 'r']
+<span class="linenr">33: </span>gc = [i for i in range(len(colors)) if colors[i] == 'g']
 <span class="linenr">34: </span>
-<span class="linenr">35: </span>plt.scatter(x[rc], y[rc], c = <span style="color: #98be65;">'r'</span>)
-<span class="linenr">36: </span>plt.scatter(x[gc], y[gc], c = <span style="color: #98be65;">'g'</span>)
-<span class="linenr">37: </span>plt.xlabel(<span style="color: #98be65;">'&#22240;&#38358;&#31117;&#21463;&#20663;&#31243;&#24230;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
-<span class="linenr">38: </span>plt.ylabel(<span style="color: #98be65;">'&#22240;&#38358;&#31117;&#23566;&#33268;&#37329;&#37666;&#25613;&#22833;'</span>, fontsize=<span style="color: #da8548; font-weight: bold;">16</span>)
+<span class="linenr">35: </span>plt.scatter(x[rc], y[rc], c = 'r')
+<span class="linenr">36: </span>plt.scatter(x[gc], y[gc], c = 'g')
+<span class="linenr">37: </span>plt.xlabel('因闖禍受傷程度', fontsize=16)
+<span class="linenr">38: </span>plt.ylabel('因闖禍導致金錢損失', fontsize=16)
 <span class="linenr">39: </span>ax.set_xticks(x)
-<span class="linenr">40: </span>plt.legend([<span style="color: #98be65;">'&#34389;&#32624;</span>
-<span class="linenr">41: </span><span style="color: #98be65;">'</span>,<span style="color: #98be65;">'&#24179;&#23433;'</span>])
-<span class="linenr">42: </span><span style="color: #dcaeea;">x1</span>=np.arange(<span style="color: #da8548; font-weight: bold;">21</span>,<span style="color: #da8548; font-weight: bold;">0</span>,-<span style="color: #da8548; font-weight: bold;">1</span>, dtype=<span style="color: #c678dd;">float</span>)
-<span class="linenr">43: </span><span style="color: #c678dd;">print</span>(x1)
+<span class="linenr">40: </span>plt.legend(['處罰
+<span class="linenr">41: </span>','平安'])
+<span class="linenr">42: </span>x1=np.arange(21,0,-1, dtype=float)
+<span class="linenr">43: </span>print(x1)
 <span class="linenr">44: </span>
-<span class="linenr">45: </span>plt.plot(x1, <span style="color: #da8548; font-weight: bold;">5</span> + (<span style="color: #da8548; font-weight: bold;">2</span> ** (<span style="color: #da8548; font-weight: bold;">19</span>-x1))/<span style="color: #da8548; font-weight: bold;">6000</span>, linewidth=<span style="color: #da8548; font-weight: bold;">3</span>)
-<span class="linenr">46: </span>plt.xlim(<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">21</span>)
-<span class="linenr">47: </span>plt.ylim(<span style="color: #da8548; font-weight: bold;">0</span>,<span style="color: #da8548; font-weight: bold;">21</span>)
-<span class="linenr">48: </span>ax.set_xticks(<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">21</span>))
-<span class="linenr">49: </span>ax.set_yticks(<span style="color: #c678dd;">range</span>(<span style="color: #da8548; font-weight: bold;">21</span>))
-<span class="linenr">50: </span>plt.savefig(<span style="color: #98be65;">'images/angrymam-4.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">45: </span>plt.plot(x1, 5 + (2 ** (19-x1))/6000, linewidth=3)
+<span class="linenr">46: </span>plt.xlim(0,21)
+<span class="linenr">47: </span>plt.ylim(0,21)
+<span class="linenr">48: </span>ax.set_xticks(range(21))
+<span class="linenr">49: </span>ax.set_yticks(range(21))
+<span class="linenr">50: </span>plt.savefig('images/angrymam-4.png', dpi=300)
 </pre>
 </div>
 
@@ -1446,15 +1449,15 @@ z: [False False False False  True  True  True False  True  True  True False
 
 
 
-<div id="org264b6d9" class="figure">
+<div id="org162b9b6" class="figure">
 <p><img src="images/angrymam-4.png" alt="angrymam-4.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 12: </span>Angry Mam</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge00cadf" class="outline-3">
-<h3 id="orge00cadf"><span class="section-number-3">6.6.</span> [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-org4730291" class="outline-3">
+<h3 id="org4730291"><span class="section-number-3">6.6.</span> [課堂練習]繪製折線圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-6-6">
 <ol class="org-ol">
 <li>利用 list 繪製 <br />
@@ -1472,8 +1475,8 @@ z: [False False False False  True  True  True False  True  True  True False
 </ol>
 </div>
 </div>
-<div id="outline-container-org9979f98" class="outline-3">
-<h3 id="org9979f98"><span class="section-number-3">6.7.</span> [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-orgcf991b9" class="outline-3">
+<h3 id="orgcf991b9"><span class="section-number-3">6.7.</span> [課堂作業]圖表美化&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-6-7">
 <p>
 請將下列資料繪成折線圖(男女折線不同顏色、樣式，加標記)<br />
@@ -1531,15 +1534,15 @@ z: [False False False False  True  True  True False  True  True  True False
 <li>結果示例<br /></li>
 </ul>
 
-<div id="orgdf36d17" class="figure">
+<div id="org19226af" class="figure">
 <p><img src="images/marriage.png" alt="marriage.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 13: </span>簡單的折線圖及圖例</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org8c65a97" class="outline-3">
-<h3 id="org8c65a97"><span class="section-number-3">6.8.</span> [課堂練習]全班成績統計圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
+<div id="outline-container-org1086f22" class="outline-3">
+<h3 id="org1086f22"><span class="section-number-3">6.8.</span> [課堂練習]全班成績統計圖&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h3>
 <div class="outline-text-3" id="text-6-8">
 <p>
 使用 numpy 隨機生成 30 位同學、5 科（國文、英文、數學、自然、社會）的成績，繪製以下圖表：<br />
@@ -1554,18 +1557,18 @@ z: [False False False False  True  True  True False  True  True  True False
 指定 seed：<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr">2: </span>np.random.seed(<span style="color: #da8548; font-weight: bold;">4321</span>)
+<pre class="src src-python"><span class="linenr">1: </span>import numpy as np
+<span class="linenr">2: </span>np.random.seed(4321)
 <span class="linenr">3: </span>
-<span class="linenr">4: </span><span style="color: #dcaeea;">subs</span> = [<span style="color: #98be65;">'&#22283;&#25991;'</span>, <span style="color: #98be65;">'&#33521;&#25991;'</span>, <span style="color: #98be65;">'&#25976;&#23416;'</span>, <span style="color: #98be65;">'&#33258;&#28982;'</span>, <span style="color: #98be65;">'&#31038;&#26371;'</span>]
-<span class="linenr">5: </span><span style="color: #dcaeea;">scores</span> = np.random.randint(<span style="color: #da8548; font-weight: bold;">40</span>, <span style="color: #da8548; font-weight: bold;">100</span>, size=(<span style="color: #da8548; font-weight: bold;">30</span>, <span style="color: #da8548; font-weight: bold;">5</span>))
+<span class="linenr">4: </span>subs = ['國文', '英文', '數學', '自然', '社會']
+<span class="linenr">5: </span>scores = np.random.randint(40, 100, size=(30, 5))
 </pre>
 </div>
 
 <p>
 結果範例（文字部分）<br />
 </p>
-<pre class="example" id="org44518c3">
+<pre class="example" id="org15e142a">
 === 全班成績統計 ===
 國文: 平均=66.6, 最高=97, 最低=40
 英文: 平均=68.3, 最高=99, 最低=42
@@ -1583,19 +1586,19 @@ z: [False False False False  True  True  True False  True  True  True False
 </div>
 </div>
 </div>
-<div id="outline-container-org16c1ba2" class="outline-2">
-<h2 id="org16c1ba2"><span class="section-number-2">7.</span> 長條圖 (Bar Chart)</h2>
+<div id="outline-container-org0e97c49" class="outline-2">
+<h2 id="org0e97c49"><span class="section-number-2">7.</span> 長條圖 (Bar Chart)</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 在 Matplotlib 中，長條圖有兩種常見形式：垂直長條圖和水平長條圖，分別使用 plt.bar() 和 plt.barh() 函式來繪製。<br />
 </p>
 </div>
-<div id="outline-container-org5f5f953" class="outline-3">
-<h3 id="org5f5f953"><span class="section-number-3">7.1.</span> 語法</h3>
+<div id="outline-container-orge92033b" class="outline-3">
+<h3 id="orge92033b"><span class="section-number-3">7.1.</span> 語法</h3>
 <div class="outline-text-3" id="text-7-1">
 <div class="org-src-container">
-<pre class="src src-python">plt.bar( x&#24231;&#27161;&#36039;&#26009;, y&#24231;&#27161;&#36039;&#26009; [, &#21443;&#25976;1, &#21443;&#25976;2, ...] )
-plt.barh( x&#24231;&#27161;&#36039;&#26009;, y&#24231;&#27161;&#36039;&#26009; [, &#21443;&#25976;1, &#21443;&#25976;2, ...] )
+<pre class="src src-python">plt.bar( x座標資料, y座標資料 [, 參數1, 參數2, ...] )
+plt.barh( x座標資料, y座標資料 [, 參數1, 參數2, ...] )
 </pre>
 </div>
 <p>
@@ -1606,64 +1609,64 @@ plt.barh( x&#24231;&#27161;&#36039;&#26009;, y&#24231;&#27161;&#36039;&#26009; [
 <li>color：長條的填充色，可用單一顏色或顏色 list（為每根長條分別指定）。<br /></li>
 <li>edgecolor：長條的邊框顏色。<br /></li>
 <li>alpha：透明度，0~1 之間。<br /></li>
-<li>align：對齊方式，=&rsquo;center&rsquo;= （預設，長條置中於 x 座標）或 <code>'edge'</code> （左邊緣對齊 x 座標）。<br /></li>
+<li>align：對齊方式，='center'= （預設，長條置中於 x 座標）或 <code>'edge'</code> （左邊緣對齊 x 座標）。<br /></li>
 <li>label：圖例標籤，搭配 <code>plt.legend()</code> 使用。<br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org53efd83" class="outline-3">
-<h3 id="org53efd83"><span class="section-number-3">7.2.</span> 範例</h3>
+<div id="outline-container-org5080f0e" class="outline-3">
+<h3 id="org5080f0e"><span class="section-number-3">7.2.</span> 範例</h3>
 <div class="outline-text-3" id="text-7-2">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">objects</span> = (<span style="color: #98be65;">'Python'</span>, <span style="color: #98be65;">'C++'</span>, <span style="color: #98be65;">'Java'</span>, <span style="color: #98be65;">'Perl'</span>, <span style="color: #98be65;">'Scala'</span>, <span style="color: #98be65;">'Lisp'</span>)
-<span class="linenr"> 5: </span><span style="color: #dcaeea;">performance</span> = [<span style="color: #da8548; font-weight: bold;">10</span>,<span style="color: #da8548; font-weight: bold;">8</span>,<span style="color: #da8548; font-weight: bold;">6</span>,<span style="color: #da8548; font-weight: bold;">4</span>,<span style="color: #da8548; font-weight: bold;">2</span>,<span style="color: #da8548; font-weight: bold;">1</span>]
+<span class="linenr"> 4: </span>objects = ('Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp')
+<span class="linenr"> 5: </span>performance = [10,8,6,4,2,1]
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span>plt.barh(objects, performance, align=<span style="color: #98be65;">'center'</span>, color = [<span style="color: #98be65;">'b'</span>,<span style="color: #98be65;">'g'</span>,<span style="color: #98be65;">'r'</span>,<span style="color: #98be65;">'c'</span>,<span style="color: #98be65;">'m'</span>,<span style="color: #98be65;">'y'</span>], alpha=<span style="color: #da8548; font-weight: bold;">0.5</span>)
-<span class="linenr"> 8: </span>plt.xlabel(<span style="color: #98be65;">'Usage'</span>)
-<span class="linenr"> 9: </span>plt.title(<span style="color: #98be65;">'Programming language usage'</span>)
-<span class="linenr">10: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">plt.show()</span>
-<span class="linenr">11: </span>plt.savefig(<span style="color: #98be65;">'barChart.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr"> 7: </span>plt.barh(objects, performance, align='center', color = ['b','g','r','c','m','y'], alpha=0.5)
+<span class="linenr"> 8: </span>plt.xlabel('Usage')
+<span class="linenr"> 9: </span>plt.title('Programming language usage')
+<span class="linenr">10: </span>#plt.show()
+<span class="linenr">11: </span>plt.savefig('images/barChart.png', dpi=300)
 </pre>
 </div>
 
-<div id="org6f7f6f7" class="figure">
-<p><img src="barChart.png" alt="barChart.png" width="500" /><br />
+<div id="org9f4ebaf" class="figure">
+<p><img src="images/barChart.png" alt="barChart.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 14: </span>barChart Demo</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgf5fc8fb" class="outline-2">
-<h2 id="orgf5fc8fb"><span class="section-number-2">8.</span> 圓餅圖 (Pie Chart)</h2>
+<div id="outline-container-org33a65b7" class="outline-2">
+<h2 id="org33a65b7"><span class="section-number-2">8.</span> 圓餅圖 (Pie Chart)</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 圓餅圖（Pie Chart）是一種常用的視覺化工具，用來展示各部分在整體中所佔的比例。Matplotlib 提供了強大的 plt.pie() 函式，能夠輕鬆製作出美觀的圓餅圖。<br />
 </p>
 </div>
-<div id="outline-container-org470e365" class="outline-3">
-<h3 id="org470e365"><span class="section-number-3">8.1.</span> 語法： </h3>
+<div id="outline-container-orge2a9932" class="outline-3">
+<h3 id="orge2a9932"><span class="section-number-3">8.1.</span> 語法： </h3>
 <div class="outline-text-3" id="text-8-1">
 <div class="org-src-container">
-<pre class="src src-python">plt.pie( &#27604;&#20363;&#21015;&#34920; [, &#21443;&#25976; <span style="color: #da8548; font-weight: bold;">1</span>, &#21443;&#25976; <span style="color: #da8548; font-weight: bold;">2</span>, ...] )
+<pre class="src src-python">plt.pie( 比例列表 [, 參數 1, 參數 2, ...] )
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-orgeb739f5" class="outline-3">
-<h3 id="orgeb739f5"><span class="section-number-3">8.2.</span> 參數：</h3>
+<div id="outline-container-org4644098" class="outline-3">
+<h3 id="org4644098"><span class="section-number-3">8.2.</span> 參數：</h3>
 <div class="outline-text-3" id="text-8-2">
 <ul class="org-ul">
-<li>colors：設置每個部分的顏色，使用 list 形式，例如 [&rsquo;red&rsquo;, &rsquo;blue&rsquo;, &rsquo;green&rsquo;]。<br /></li>
+<li>colors：設置每個部分的顏色，使用 list 形式，例如 ['red', 'blue', 'green']。<br /></li>
 <li>labels：設置每個部分的標籤名稱，使用 list 形式。<br /></li>
 <li>explode：設置部分的突出效果，數值越大，部分突出越明顯，使用 list 形式。<br /></li>
-<li>autopct：自動顯示每個部分的百分比，格式可以為 &rsquo;%3.2f%%&rsquo; 表示顯示到小數點後兩位。<br /></li>
+<li>autopct：自動顯示每個部分的百分比，格式可以為 '%3.2f%%' 表示顯示到小數點後兩位。<br /></li>
 <li>startangle：設置繪製的起始角度，預設為 0 度。<br /></li>
-<li>plt.axis(&rsquo;equal&rsquo;)：確保圖形為正圓形。<br /></li>
-<li>plt.legend(loc=&rsquo;位置代碼&rsquo;)：為圖表添加圖例，並設定圖例的位置。<br /></li>
+<li>plt.axis('equal')：確保圖形為正圓形。<br /></li>
+<li>plt.legend(loc='位置代碼')：為圖表添加圖例，並設定圖例的位置。<br /></li>
 <li>legend location<br /></li>
 </ul>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -1682,84 +1685,84 @@ plt.barh( x&#24231;&#27161;&#36039;&#26009;, y&#24231;&#27161;&#36039;&#26009; [
 </thead>
 <tbody>
 <tr>
-<td class="org-center">&rsquo;best&rsquo;</td>
+<td class="org-center">'best'</td>
 <td class="org-center">0</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;upper right&rsquo;</td>
+<td class="org-center">'upper right'</td>
 <td class="org-center">1</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;upper left&rsquo;</td>
+<td class="org-center">'upper left'</td>
 <td class="org-center">2</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;lower left&rsquo;</td>
+<td class="org-center">'lower left'</td>
 <td class="org-center">3</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;lower right&rsquo;</td>
+<td class="org-center">'lower right'</td>
 <td class="org-center">4</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;right&rsquo;</td>
+<td class="org-center">'right'</td>
 <td class="org-center">5</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;center left&rsquo;</td>
+<td class="org-center">'center left'</td>
 <td class="org-center">6</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;center right&rsquo;</td>
+<td class="org-center">'center right'</td>
 <td class="org-center">7</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;lower center&rsquo;</td>
+<td class="org-center">'lower center'</td>
 <td class="org-center">8</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;upper center&rsquo;</td>
+<td class="org-center">'upper center'</td>
 <td class="org-center">9</td>
 </tr>
 
 <tr>
-<td class="org-center">&rsquo;center&rsquo;</td>
+<td class="org-center">'center'</td>
 <td class="org-center">10</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div id="outline-container-org6b2c4f9" class="outline-3">
-<h3 id="org6b2c4f9"><span class="section-number-3">8.3.</span> 範例</h3>
+<div id="outline-container-orgf15f642" class="outline-3">
+<h3 id="orgf15f642"><span class="section-number-3">8.3.</span> 範例</h3>
 <div class="outline-text-3" id="text-8-3">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
+<pre class="src src-python"><span class="linenr"> 1: </span>import matplotlib.pyplot as plt
+<span class="linenr"> 2: </span>import numpy as np
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">parts</span> = [<span style="color: #da8548; font-weight: bold;">35.35</span>, <span style="color: #da8548; font-weight: bold;">23</span>, <span style="color: #da8548; font-weight: bold;">26.65</span>, <span style="color: #da8548; font-weight: bold;">15</span>]
-<span class="linenr"> 5: </span><span style="color: #dcaeea;">labels</span> = [<span style="color: #98be65;">'Harrison'</span>, <span style="color: #98be65;">'Vanessa'</span>, <span style="color: #98be65;">'James'</span>, <span style="color: #98be65;">'Ruby'</span>]
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">colors</span> = [<span style="color: #98be65;">'red'</span>, <span style="color: #98be65;">'lightblue'</span>, <span style="color: #98be65;">'purple'</span>, <span style="color: #98be65;">'yellow'</span>]
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">explodes</span> = [<span style="color: #da8548; font-weight: bold;">0.1</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">0</span>, <span style="color: #da8548; font-weight: bold;">0.1</span>]
-<span class="linenr"> 8: </span>plt.pie(parts, colors = colors, labels = labels, explode = explodes, autopct = <span style="color: #98be65;">'%3.2f%%'</span>)
-<span class="linenr"> 9: </span>plt.axis(<span style="color: #98be65;">'equal'</span>)
-<span class="linenr">10: </span>plt.legend(loc=<span style="color: #98be65;">'upper left'</span>)
+<span class="linenr"> 4: </span>parts = [35.35, 23, 26.65, 15]
+<span class="linenr"> 5: </span>labels = ['Harrison', 'Vanessa', 'James', 'Ruby']
+<span class="linenr"> 6: </span>colors = ['red', 'lightblue', 'purple', 'yellow']
+<span class="linenr"> 7: </span>explodes = [0.1, 0, 0, 0.1]
+<span class="linenr"> 8: </span>plt.pie(parts, colors = colors, labels = labels, explode = explodes, autopct = '%3.2f%%')
+<span class="linenr"> 9: </span>plt.axis('equal')
+<span class="linenr">10: </span>plt.legend(loc='upper left')
 <span class="linenr">11: </span>
-<span class="linenr">12: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">plt.show()</span>
-<span class="linenr">13: </span>plt.savefig(<span style="color: #98be65;">'simplePie.png'</span>, dpi=<span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">12: </span>#plt.show()
+<span class="linenr">13: </span>plt.savefig('images/simplePie.png', dpi=300)
 </pre>
 </div>
 
-<div id="orgab1e1e9" class="figure">
+<div id="org9eec18b" class="figure">
 <p><img src="images/simplePie.png" alt="simplePie.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 15: </span>簡單的 pie chart</p>
@@ -1767,74 +1770,74 @@ plt.barh( x&#24231;&#27161;&#36039;&#26009;, y&#24231;&#27161;&#36039;&#26009; [
 </div>
 </div>
 </div>
-<div id="outline-container-orgbb78f69" class="outline-2">
-<h2 id="orgbb78f69"><span class="section-number-2">9.</span> 其它圖表</h2>
+<div id="outline-container-org09c7bbb" class="outline-2">
+<h2 id="org09c7bbb"><span class="section-number-2">9.</span> 其它圖表</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org6d3740f" class="outline-3">
-<h3 id="org6d3740f"><span class="section-number-3">9.1.</span> 散佈圖 (Scatter)</h3>
+<div id="outline-container-org8a88b1a" class="outline-3">
+<h3 id="org8a88b1a"><span class="section-number-3">9.1.</span> 散佈圖 (Scatter)</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 散佈圖用來呈現兩組數據之間的群聚關係，每個點代表一筆資料。<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python">plt.scatter(x&#24231;&#27161;, y&#24231;&#27161; [, s=&#40670;&#22823;&#23567;, c=&#38991;&#33394;, alpha=&#36879;&#26126;&#24230;, marker=&#27161;&#35352;])
+<pre class="src src-python">plt.scatter(x座標, y座標 [, s=點大小, c=顏色, alpha=透明度, marker=標記])
 </pre>
 </div>
 <ul class="org-ul">
 <li>s：點的大小（面積），可以是單一數值或與資料等長的 list/array。<br /></li>
 <li>c：點的顏色，可以是單一顏色字串或數值 array（搭配 colormap 做漸層色）。<br /></li>
-<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.scatter.html">plt.scatter() 官方文件</a><br /></li>
+<li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html">plt.scatter() 官方文件</a><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org444c880" class="outline-3">
-<h3 id="org444c880"><span class="section-number-3">9.2.</span> 直方圖 (Histogram)</h3>
+<div id="outline-container-orge4ffb66" class="outline-3">
+<h3 id="orge4ffb66"><span class="section-number-3">9.2.</span> 直方圖 (Histogram)</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 直方圖用來呈現資料的分佈情況，將數據分成若干區間（bin），統計落入各區間的次數。<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python">plt.hist(&#36039;&#26009;, bins=&#21312;&#38291;&#25976; [, color=&#38991;&#33394;, edgecolor=&#37002;&#26694;&#33394;, alpha=&#36879;&#26126;&#24230;])
+<pre class="src src-python">plt.hist(資料, bins=區間數 [, color=顏色, edgecolor=邊框色, alpha=透明度])
 </pre>
 </div>
 <ul class="org-ul">
 <li>bins：區間數量，預設為 10。數值越大，區間劃分越細。<br /></li>
-<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html">plt.hist() 官方文件</a><br /></li>
+<li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">plt.hist() 官方文件</a><br /></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-org2e7c423" class="outline-3">
-<h3 id="org2e7c423"><span class="section-number-3">9.3.</span> 進階資源</h3>
+<div id="outline-container-org04a9a4d" class="outline-3">
+<h3 id="org04a9a4d"><span class="section-number-3">9.3.</span> 進階資源</h3>
 <div class="outline-text-3" id="text-9-3">
 <ul class="org-ul">
-<li><a href="https://matplotlib.org/gallery/index.html">Matplotlib Gallery</a> — 更多圖表類型範例<br /></li>
+<li><a href="https://matplotlib.org/stable/gallery/index.html">Matplotlib Gallery</a> — 更多圖表類型範例<br /></li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-org2e5a09e" class="outline-2">
-<h2 id="org2e5a09e"><span class="section-number-2">10.</span> 文字註解: plt.text()</h2>
+<div id="outline-container-org49b5c99" class="outline-2">
+<h2 id="org49b5c99"><span class="section-number-2">10.</span> 文字註解: plt.text()</h2>
 <div class="outline-text-2" id="text-10">
 <p>
 在資料視覺化過程中，添加文字註解可以幫助讀者更直觀地了解數據的具體數值或特殊位置。在 Matplotlib 中，我們可以使用 plt.text() 函式來將文字註解放置在圖表上的指定位置。這是一個非常實用的工具，尤其是在展示具體數據點或強調特定資訊時。<br />
 </p>
 </div>
-<div id="outline-container-org6c47223" class="outline-3">
-<h3 id="org6c47223"><span class="section-number-3">10.1.</span> 語法</h3>
+<div id="outline-container-orgc9a11a6" class="outline-3">
+<h3 id="orgc9a11a6"><span class="section-number-3">10.1.</span> 語法</h3>
 <div class="outline-text-3" id="text-10-1">
 <div class="org-src-container">
-<pre class="src src-python">plt.text(x&#30456;&#23565;&#24231;&#27161;, y&#30456;&#23565;&#24231;&#27161;, <span style="color: #98be65;">'&#25991;&#23383;&#23383;&#20018;'</span>, [&#20854;&#23427;&#21443;&#25976;])
+<pre class="src src-python">plt.text(x相對座標, y相對座標, '文字字串', [其它參數])
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org4cfc658" class="outline-3">
-<h3 id="org4cfc658"><span class="section-number-3">10.2.</span> 常用參數</h3>
+<div id="outline-container-org822a3bd" class="outline-3">
+<h3 id="org822a3bd"><span class="section-number-3">10.2.</span> 常用參數</h3>
 <div class="outline-text-3" id="text-10-2">
 <ul class="org-ul">
 <li>fontsize：設定字體大小，例如 <code>fontsize=12</code> 。<br /></li>
-<li>color：設定文字顏色，例如 <code>color</code>&rsquo;blue&rsquo;= 。<br /></li>
+<li>color：設定文字顏色，例如 <code>color</code>'blue'= 。<br /></li>
 <li>fontweight：設定字體粗細，如 <code>'bold'</code> 、 <code>'normal'</code> 。<br /></li>
 <li>ha（horizontalalignment）：水平對齊方式。<br />
 <ul class="org-ul">
@@ -1856,24 +1859,24 @@ x、y 座標使用的是「資料座標」，也就是跟你的圖表數據同�
 </p>
 </div>
 </div>
-<div id="outline-container-orgb504c98" class="outline-3">
-<h3 id="orgb504c98"><span class="section-number-3">10.3.</span> 範例</h3>
+<div id="outline-container-org62297cd" class="outline-3">
+<h3 id="org62297cd"><span class="section-number-3">10.3.</span> 範例</h3>
 <div class="outline-text-3" id="text-10-3">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<pre class="src src-python"><span class="linenr">1: </span>import matplotlib.pyplot as plt
 <span class="linenr">2: </span>
-<span class="linenr">3: </span><span style="color: #dcaeea;">x</span> = [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">2</span>, <span style="color: #da8548; font-weight: bold;">3</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">5</span>, <span style="color: #da8548; font-weight: bold;">6</span>, <span style="color: #da8548; font-weight: bold;">7</span>, <span style="color: #da8548; font-weight: bold;">8</span>]
-<span class="linenr">4: </span><span style="color: #dcaeea;">y</span> = [<span style="color: #da8548; font-weight: bold;">1</span>, <span style="color: #da8548; font-weight: bold;">4</span>, <span style="color: #da8548; font-weight: bold;">9</span>, <span style="color: #da8548; font-weight: bold;">16</span>, <span style="color: #da8548; font-weight: bold;">25</span>, <span style="color: #da8548; font-weight: bold;">36</span>, <span style="color: #da8548; font-weight: bold;">49</span>, <span style="color: #da8548; font-weight: bold;">64</span>]
-<span class="linenr">5: </span>plt.plot(x, y, <span style="color: #98be65;">'r--'</span>)
-<span class="linenr">6: </span><span style="color: #51afef;">for</span> x, y <span style="color: #51afef;">in</span> <span style="color: #c678dd;">zip</span>(x, y):
-<span class="linenr">7: </span>    plt.text(x-<span style="color: #da8548; font-weight: bold;">0.2</span>, y+<span style="color: #da8548; font-weight: bold;">0.6</span>, <span style="color: #98be65;">'(%d, %d)'</span> %(x, y))
-<span class="linenr">8: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">plt.show()</span>
-<span class="linenr">9: </span>plt.savefig(<span style="color: #98be65;">'simpleText.png'</span>, dpi = <span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">3: </span>x = [1, 2, 3, 4, 5, 6, 7, 8]
+<span class="linenr">4: </span>y = [1, 4, 9, 16, 25, 36, 49, 64]
+<span class="linenr">5: </span>plt.plot(x, y, 'r--')
+<span class="linenr">6: </span>for x, y in zip(x, y):
+<span class="linenr">7: </span>    plt.text(x-0.2, y+0.6, '(%d, %d)' %(x, y))
+<span class="linenr">8: </span>#plt.show()
+<span class="linenr">9: </span>plt.savefig('images/simpleText.png', dpi = 300)
 </pre>
 </div>
 
 
-<div id="org8b85800" class="figure">
+<div id="orgbaaeaac" class="figure">
 <p><img src="images/simpleText.png" alt="simpleText.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 16: </span>簡單的文字註解</p>
@@ -1881,15 +1884,15 @@ x、y 座標使用的是「資料座標」，也就是跟你的圖表數據同�
 </div>
 </div>
 </div>
-<div id="outline-container-org2adddf4" class="outline-2">
-<h2 id="org2adddf4"><span class="section-number-2">11.</span> 子圖表: plt.subplot()</h2>
+<div id="outline-container-org23affd8" class="outline-2">
+<h2 id="org23affd8"><span class="section-number-2">11.</span> 子圖表: plt.subplot()</h2>
 <div class="outline-text-2" id="text-11">
 <p>
 Matplotlib 提供的 plt.subplot() 函式能夠方便地在一個視窗中繪製多個子圖，將整個繪圖區域劃分為多個區域進行展示。這使得我們可以有效利用圖表空間，同時展示多組不同的數據或圖表。<br />
 </p>
 </div>
-<div id="outline-container-orgcbda70b" class="outline-3">
-<h3 id="orgcbda70b"><span class="section-number-3">11.1.</span> subplot 語法</h3>
+<div id="outline-container-org13ea69d" class="outline-3">
+<h3 id="org13ea69d"><span class="section-number-3">11.1.</span> subplot 語法</h3>
 <div class="outline-text-3" id="text-11-1">
 <div class="org-src-container">
 <pre class="src src-python">plt.subplot(numRows, numCols, plotNum)
@@ -1903,11 +1906,11 @@ Matplotlib 提供的 plt.subplot() 函式能夠方便地在一個視窗中繪製
 </ul>
 </div>
 </div>
-<div id="outline-container-org6b893b9" class="outline-3">
-<h3 id="org6b893b9"><span class="section-number-3">11.2.</span> subplots_adjust 語法</h3>
+<div id="outline-container-orgeff9307" class="outline-3">
+<h3 id="orgeff9307"><span class="section-number-3">11.2.</span> subplots_adjust 語法</h3>
 <div class="outline-text-3" id="text-11-2">
 <div class="org-src-container">
-<pre class="src src-python">plt.subplots_adjust(left=<span style="color: #a9a1e1;">None</span>, bottom=<span style="color: #a9a1e1;">None</span>, right=<span style="color: #a9a1e1;">None</span>, top=<span style="color: #a9a1e1;">None</span>, wspace=<span style="color: #a9a1e1;">None</span>, hspace=<span style="color: #a9a1e1;">None</span>)
+<pre class="src src-python">plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
 </pre>
 </div>
 <ul class="org-ul">
@@ -1920,8 +1923,8 @@ Matplotlib 提供的 plt.subplot() 函式能夠方便地在一個視窗中繪製
 </ul>
 </div>
 </div>
-<div id="outline-container-org2a6ecba" class="outline-3">
-<h3 id="org2a6ecba"><span class="section-number-3">11.3.</span> 範例<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
+<div id="outline-container-org984a55c" class="outline-3">
+<h3 id="org984a55c"><span class="section-number-3">11.3.</span> 範例<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup></h3>
 <div class="outline-text-3" id="text-11-3">
 <p>
 以下範例展示 4 種不同 Y 軸刻度（linear、log、symlog、logit）的子圖。範例中用到的幾個函式說明：<br />
@@ -1934,77 +1937,77 @@ Matplotlib 提供的 plt.subplot() 函式能夠方便地在一個視窗中繪製
 <li><code>plt.gca()</code> ：取得目前的 Axes 物件（Get Current Axes），可對其進行更細緻的設定。<br /></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
+<pre class="src src-python"><span class="linenr"> 1: </span>import numpy as np
+<span class="linenr"> 2: </span>import matplotlib.pyplot as plt
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #51afef;">from</span> matplotlib.ticker <span style="color: #51afef;">import</span> NullFormatter  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">useful for `logit` scale</span>
+<span class="linenr"> 4: </span>from matplotlib.ticker import NullFormatter  # useful for `logit` scale
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Fixing random state for reproducibility</span>
-<span class="linenr"> 7: </span>np.random.seed(<span style="color: #da8548; font-weight: bold;">19680801</span>)
+<span class="linenr"> 6: </span># Fixing random state for reproducibility
+<span class="linenr"> 7: </span>np.random.seed(19680801)
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">make up some data in the interval ]0, 1[</span>
-<span class="linenr">10: </span><span style="color: #dcaeea;">y</span> = np.random.normal(loc=<span style="color: #da8548; font-weight: bold;">0.5</span>, scale=<span style="color: #da8548; font-weight: bold;">0.4</span>, size=<span style="color: #da8548; font-weight: bold;">1000</span>)
-<span class="linenr">11: </span><span style="color: #dcaeea;">y</span> = y[(y &gt; <span style="color: #da8548; font-weight: bold;">0</span>) &amp; (y &lt; <span style="color: #da8548; font-weight: bold;">1</span>)]
+<span class="linenr"> 9: </span># make up some data in the interval ]0, 1[
+<span class="linenr">10: </span>y = np.random.normal(loc=0.5, scale=0.4, size=1000)
+<span class="linenr">11: </span>y = y[(y &gt; 0) &amp; (y &lt; 1)]
 <span class="linenr">12: </span>y.sort()
-<span class="linenr">13: </span><span style="color: #dcaeea;">x</span> = np.arange(<span style="color: #c678dd;">len</span>(y))
+<span class="linenr">13: </span>x = np.arange(len(y))
 <span class="linenr">14: </span>
-<span class="linenr">15: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">plot with various axes scales</span>
+<span class="linenr">15: </span># plot with various axes scales
 <span class="linenr">16: </span>plt.figure()
 <span class="linenr">17: </span>
-<span class="linenr">18: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">linear</span>
-<span class="linenr">19: </span>plt.subplot(<span style="color: #da8548; font-weight: bold;">221</span>)
+<span class="linenr">18: </span># linear
+<span class="linenr">19: </span>plt.subplot(221)
 <span class="linenr">20: </span>plt.plot(x, y)
-<span class="linenr">21: </span>plt.yscale(<span style="color: #98be65;">'linear'</span>)
-<span class="linenr">22: </span>plt.title(<span style="color: #98be65;">'linear'</span>)
-<span class="linenr">23: </span>plt.grid(<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">21: </span>plt.yscale('linear')
+<span class="linenr">22: </span>plt.title('linear')
+<span class="linenr">23: </span>plt.grid(True)
 <span class="linenr">24: </span>
 <span class="linenr">25: </span>
-<span class="linenr">26: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">log</span>
-<span class="linenr">27: </span>plt.subplot(<span style="color: #da8548; font-weight: bold;">222</span>)
+<span class="linenr">26: </span># log
+<span class="linenr">27: </span>plt.subplot(222)
 <span class="linenr">28: </span>plt.plot(x, y)
-<span class="linenr">29: </span>plt.yscale(<span style="color: #98be65;">'log'</span>)
-<span class="linenr">30: </span>plt.title(<span style="color: #98be65;">'log'</span>)
-<span class="linenr">31: </span>plt.grid(<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">29: </span>plt.yscale('log')
+<span class="linenr">30: </span>plt.title('log')
+<span class="linenr">31: </span>plt.grid(True)
 <span class="linenr">32: </span>
 <span class="linenr">33: </span>
-<span class="linenr">34: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">symmetric log</span>
-<span class="linenr">35: </span>plt.subplot(<span style="color: #da8548; font-weight: bold;">223</span>)
+<span class="linenr">34: </span># symmetric log
+<span class="linenr">35: </span>plt.subplot(223)
 <span class="linenr">36: </span>plt.plot(x, y - y.mean())
-<span class="linenr">37: </span>plt.yscale(<span style="color: #98be65;">'symlog'</span>, linthreshy=<span style="color: #da8548; font-weight: bold;">0.01</span>)
-<span class="linenr">38: </span>plt.title(<span style="color: #98be65;">'symlog'</span>)
-<span class="linenr">39: </span>plt.grid(<span style="color: #a9a1e1;">True</span>)
+<span class="linenr">37: </span>plt.yscale('symlog', linthresh=0.01)  # 註：Matplotlib 3.5 起舊參數名 linthreshy 已移除，改用 linthresh
+<span class="linenr">38: </span>plt.title('symlog')
+<span class="linenr">39: </span>plt.grid(True)
 <span class="linenr">40: </span>
-<span class="linenr">41: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">logit</span>
-<span class="linenr">42: </span>plt.subplot(<span style="color: #da8548; font-weight: bold;">224</span>)
+<span class="linenr">41: </span># logit
+<span class="linenr">42: </span>plt.subplot(224)
 <span class="linenr">43: </span>plt.plot(x, y)
-<span class="linenr">44: </span>plt.yscale(<span style="color: #98be65;">'logit'</span>)
-<span class="linenr">45: </span>plt.title(<span style="color: #98be65;">'logit'</span>)
-<span class="linenr">46: </span>plt.grid(<span style="color: #a9a1e1;">True</span>)
-<span class="linenr">47: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Format the minor tick labels of the y-axis into empty strings with</span>
-<span class="linenr">48: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">`NullFormatter`, to avoid cumbering the axis with too many labels.</span>
+<span class="linenr">44: </span>plt.yscale('logit')
+<span class="linenr">45: </span>plt.title('logit')
+<span class="linenr">46: </span>plt.grid(True)
+<span class="linenr">47: </span># Format the minor tick labels of the y-axis into empty strings with
+<span class="linenr">48: </span># `NullFormatter`, to avoid cumbering the axis with too many labels.
 <span class="linenr">49: </span>plt.gca().yaxis.set_minor_formatter(NullFormatter())
 <span class="linenr">50: </span>
-<span class="linenr">51: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Adjust the subplot layout, because the logit one may take more space</span>
-<span class="linenr">52: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">than usual, due to y-tick labels like "1 - 10^{-3}"</span>
-<span class="linenr">53: </span>plt.subplots_adjust(top=<span style="color: #da8548; font-weight: bold;">0.92</span>, bottom=<span style="color: #da8548; font-weight: bold;">0.08</span>, left=<span style="color: #da8548; font-weight: bold;">0.10</span>, right=<span style="color: #da8548; font-weight: bold;">0.95</span>, hspace=<span style="color: #da8548; font-weight: bold;">0.25</span>, wspace=<span style="color: #da8548; font-weight: bold;">0.35</span>)
+<span class="linenr">51: </span># Adjust the subplot layout, because the logit one may take more space
+<span class="linenr">52: </span># than usual, due to y-tick labels like "1 - 10^{-3}"
+<span class="linenr">53: </span>plt.subplots_adjust(top=0.92, bottom=0.08, left=0.10, right=0.95, hspace=0.25, wspace=0.35)
 <span class="linenr">54: </span>
-<span class="linenr">55: </span>plt.savefig(<span style="color: #98be65;">'simpleSubplot.png'</span>, dpi = <span style="color: #da8548; font-weight: bold;">300</span>)
+<span class="linenr">55: </span>plt.savefig('images/simpleSubplot.png', dpi = 300)
 </pre>
 </div>
 
 
-<div id="org6e3a01b" class="figure">
+<div id="orgb0ff1a6" class="figure">
 <p><img src="images/simpleSubplot.png" alt="simpleSubplot.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 17: </span>簡單的子圖表</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org9d56f08" class="outline-3">
-<h3 id="org9d56f08"><span class="section-number-3">11.4.</span> 進階設定</h3>
+<div id="outline-container-org437c32a" class="outline-3">
+<h3 id="org437c32a"><span class="section-number-3">11.4.</span> 進階設定</h3>
 <div class="outline-text-3" id="text-11-4">
 <ul class="org-ul">
-<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplot.html">官網</a><br /></li>
+<li><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html">官網</a><br /></li>
 <li><a href="https://ithelp.ithome.com.tw/articles/10201670">視覺化資料 - Matplotlib - legend、subplot、GridSpec、annotate</a><br /></li>
 <li><a href="https://www.delftstack.com/zh-tw/howto/matplotlib/how-to-make-different-subplot-sizes-in-matplotlib/">Matplotlib 中如何建立不同大小的子圖 subplot</a><br /></li>
 <li><a href="https://kernel.blog.csdn.net/article/details/61416645?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromMachineLearnPai2-1.control">python使用matplotlib:subplot繪製多個子圖</a><br /></li>
@@ -2012,37 +2015,37 @@ Matplotlib 提供的 plt.subplot() 函式能夠方便地在一個視窗中繪製
 </div>
 </div>
 </div>
-<div id="outline-container-org3990f8c" class="outline-2">
-<h2 id="org3990f8c"><span class="section-number-2">12.</span> [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h2>
+<div id="outline-container-org325bf89" class="outline-2">
+<h2 id="org325bf89"><span class="section-number-2">12.</span> [課堂練習]實作&#xa0;&#xa0;&#xa0;<span class="tag"><span class="TNFSH">TNFSH</span></span></h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-org62a6f42" class="outline-3">
-<h3 id="org62a6f42"><span class="section-number-3">12.1.</span> 方程式圖形</h3>
+<div id="outline-container-org6480502" class="outline-3">
+<h3 id="org6480502"><span class="section-number-3">12.1.</span> 方程式圖形</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 輸入 a, b, c，畫出曲線圖：y=\(ax^2+bx+c\)，參考結果如下:<br />
 </p>
 
-<div id="orgd3554ab" class="figure">
+<div id="orge611fad" class="figure">
 <p><img src="images/eqcurve.png" alt="eqcurve.png" width="800" /><br />
 </p>
 <p><span class="figure-number">Figure 18: </span>方程式曲線圖</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgd0f9f72" class="outline-3">
-<h3 id="orgd0f9f72"><span class="section-number-3">12.2.</span> 成績處理</h3>
+<div id="outline-container-orgba27f59" class="outline-3">
+<h3 id="orgba27f59"><span class="section-number-3">12.2.</span> 成績處理</h3>
 <div class="outline-text-3" id="text-12-2">
 <p>
 請複製底下的程式碼:<br />
 </p>
 <div class="org-src-container">
-<pre class="src src-python"><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span style="color: #dcaeea;">scores</span> = [[ <span style="color: #da8548; font-weight: bold;">26</span>,  <span style="color: #da8548; font-weight: bold;">53</span>,  <span style="color: #da8548; font-weight: bold;">49</span>,  <span style="color: #da8548; font-weight: bold;">72</span>,  <span style="color: #da8548; font-weight: bold;">38</span>,  <span style="color: #da8548; font-weight: bold;">14</span>,  <span style="color: #da8548; font-weight: bold;">95</span>,  <span style="color: #da8548; font-weight: bold;">49</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">77</span>,  <span style="color: #da8548; font-weight: bold;">30</span>,  <span style="color: #da8548; font-weight: bold;">23</span>,  <span style="color: #da8548; font-weight: bold;">50</span>,  <span style="color: #da8548; font-weight: bold;">47</span>,  <span style="color: #da8548; font-weight: bold;">45</span>,  <span style="color: #da8548; font-weight: bold;">44</span>,  <span style="color: #da8548; font-weight: bold;">52</span>,  <span style="color: #da8548; font-weight: bold;">10</span>,  <span style="color: #da8548; font-weight: bold;">72</span>,  <span style="color: #da8548; font-weight: bold;">11</span>,  <span style="color: #da8548; font-weight: bold;">61</span>,  <span style="color: #da8548; font-weight: bold;">91</span>,   <span style="color: #da8548; font-weight: bold;">8</span>,  <span style="color: #da8548; font-weight: bold;">39</span>,  <span style="color: #da8548; font-weight: bold;">70</span>,  <span style="color: #da8548; font-weight: bold;">74</span>,  <span style="color: #da8548; font-weight: bold;">40</span>,  <span style="color: #da8548; font-weight: bold;">45</span>,  <span style="color: #da8548; font-weight: bold;">86</span>,   <span style="color: #da8548; font-weight: bold;">9</span>,],
-          [ <span style="color: #da8548; font-weight: bold;">68</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">97</span>,  <span style="color: #da8548; font-weight: bold;">80</span>,  <span style="color: #da8548; font-weight: bold;">63</span>,  <span style="color: #da8548; font-weight: bold;">31</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">45</span>,  <span style="color: #da8548; font-weight: bold;">92</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">54</span>,  <span style="color: #da8548; font-weight: bold;">20</span>,  <span style="color: #da8548; font-weight: bold;">78</span>,  <span style="color: #da8548; font-weight: bold;">52</span>,  <span style="color: #da8548; font-weight: bold;">62</span>,  <span style="color: #da8548; font-weight: bold;">65</span>,  <span style="color: #da8548; font-weight: bold;">85</span>,  <span style="color: #da8548; font-weight: bold;">48</span>,  <span style="color: #da8548; font-weight: bold;">90</span>,  <span style="color: #da8548; font-weight: bold;">60</span>, <span style="color: #da8548; font-weight: bold;">100</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">56</span>,  <span style="color: #da8548; font-weight: bold;">56</span>,  <span style="color: #da8548; font-weight: bold;">62</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">37</span>,  <span style="color: #da8548; font-weight: bold;">55</span>,  <span style="color: #da8548; font-weight: bold;">91</span>,  <span style="color: #da8548; font-weight: bold;">46</span>,],
-          [ <span style="color: #da8548; font-weight: bold;">95</span>,  <span style="color: #da8548; font-weight: bold;">24</span>,  <span style="color: #da8548; font-weight: bold;">49</span>,  <span style="color: #da8548; font-weight: bold;">78</span>,  <span style="color: #da8548; font-weight: bold;">68</span>,  <span style="color: #da8548; font-weight: bold;">28</span>,  <span style="color: #da8548; font-weight: bold;">80</span>,  <span style="color: #da8548; font-weight: bold;">85</span>,  <span style="color: #da8548; font-weight: bold;">93</span>,  <span style="color: #da8548; font-weight: bold;">84</span>,  <span style="color: #da8548; font-weight: bold;">70</span>,  <span style="color: #da8548; font-weight: bold;">95</span>,  <span style="color: #da8548; font-weight: bold;">46</span>,  <span style="color: #da8548; font-weight: bold;">12</span>,  <span style="color: #da8548; font-weight: bold;">10</span>,  <span style="color: #da8548; font-weight: bold;">38</span>,   <span style="color: #da8548; font-weight: bold;">9</span>,  <span style="color: #da8548; font-weight: bold;">97</span>,  <span style="color: #da8548; font-weight: bold;">59</span>,  <span style="color: #da8548; font-weight: bold;">85</span>,  <span style="color: #da8548; font-weight: bold;">38</span>,  <span style="color: #da8548; font-weight: bold;">87</span>,  <span style="color: #da8548; font-weight: bold;">15</span>,  <span style="color: #da8548; font-weight: bold;">76</span>,  <span style="color: #da8548; font-weight: bold;">71</span>,  <span style="color: #da8548; font-weight: bold;">59</span>,  <span style="color: #da8548; font-weight: bold;">22</span>,  <span style="color: #da8548; font-weight: bold;">11</span>,  <span style="color: #da8548; font-weight: bold;">47</span>,  <span style="color: #da8548; font-weight: bold;">63</span>,],
-          [<span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">26</span>,  <span style="color: #da8548; font-weight: bold;">50</span>,  <span style="color: #da8548; font-weight: bold;">86</span>,  <span style="color: #da8548; font-weight: bold;">84</span>,  <span style="color: #da8548; font-weight: bold;">26</span>,  <span style="color: #da8548; font-weight: bold;">93</span>,  <span style="color: #da8548; font-weight: bold;">92</span>,  <span style="color: #da8548; font-weight: bold;">92</span>,  <span style="color: #da8548; font-weight: bold;">92</span>,  <span style="color: #da8548; font-weight: bold;">96</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">68</span>,  <span style="color: #da8548; font-weight: bold;">14</span>,  <span style="color: #da8548; font-weight: bold;">50</span>,  <span style="color: #da8548; font-weight: bold;">51</span>,  <span style="color: #da8548; font-weight: bold;">44</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">69</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">35</span>,  <span style="color: #da8548; font-weight: bold;">93</span>,  <span style="color: #da8548; font-weight: bold;">40</span>,  <span style="color: #da8548; font-weight: bold;">71</span>,  <span style="color: #da8548; font-weight: bold;">91</span>,  <span style="color: #da8548; font-weight: bold;">78</span>,  <span style="color: #da8548; font-weight: bold;">54</span>,  <span style="color: #da8548; font-weight: bold;">19</span>,  <span style="color: #da8548; font-weight: bold;">43</span>,  <span style="color: #da8548; font-weight: bold;">91</span>,],
-          [<span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">48</span>,  <span style="color: #da8548; font-weight: bold;">69</span>,  <span style="color: #da8548; font-weight: bold;">97</span>,  <span style="color: #da8548; font-weight: bold;">96</span>,  <span style="color: #da8548; font-weight: bold;">58</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">92</span>,  <span style="color: #da8548; font-weight: bold;">92</span>,  <span style="color: #da8548; font-weight: bold;">84</span>,  <span style="color: #da8548; font-weight: bold;">86</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">54</span>,  <span style="color: #da8548; font-weight: bold;">33</span>,  <span style="color: #da8548; font-weight: bold;">62</span>,  <span style="color: #da8548; font-weight: bold;">67</span>,  <span style="color: #da8548; font-weight: bold;">25</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">82</span>, <span style="color: #da8548; font-weight: bold;">100</span>,  <span style="color: #da8548; font-weight: bold;">73</span>,  <span style="color: #da8548; font-weight: bold;">91</span>,  <span style="color: #da8548; font-weight: bold;">35</span>,  <span style="color: #da8548; font-weight: bold;">82</span>,  <span style="color: #da8548; font-weight: bold;">83</span>,  <span style="color: #da8548; font-weight: bold;">75</span>,  <span style="color: #da8548; font-weight: bold;">45</span>,  <span style="color: #da8548; font-weight: bold;">41</span>,  <span style="color: #da8548; font-weight: bold;">48</span>,  <span style="color: #da8548; font-weight: bold;">76</span>,]]
+<pre class="src src-python">import numpy as np
+scores = [[ 26,  53,  49,  72,  38,  14,  95,  49, 100,  77,  30,  23,  50,  47,  45,  44,  52,  10,  72,  11,  61,  91,   8,  39,  70,  74,  40,  45,  86,   9,],
+          [ 68, 100,  97,  80,  63,  31, 100,  45,  92, 100,  54,  20,  78,  52,  62,  65,  85,  48,  90,  60, 100, 100,  56,  56,  62, 100,  37,  55,  91,  46,],
+          [ 95,  24,  49,  78,  68,  28,  80,  85,  93,  84,  70,  95,  46,  12,  10,  38,   9,  97,  59,  85,  38,  87,  15,  76,  71,  59,  22,  11,  47,  63,],
+          [100,  26,  50,  86,  84,  26,  93,  92,  92,  92,  96, 100,  68,  14,  50,  51,  44, 100,  69, 100,  35,  93,  40,  71,  91,  78,  54,  19,  43,  91,],
+          [100,  48,  69,  97,  96,  58, 100,  92,  92,  84,  86, 100,  54,  33,  62,  67,  25, 100,  82, 100,  73,  91,  35,  82,  83,  75,  45,  41,  48,  76,]]
 </pre>
 </div>
 <p>
@@ -2067,49 +2070,49 @@ Matplotlib 提供的 plt.subplot() 函式能夠方便地在一個視窗中繪製
 參考結果如下:<br />
 </p>
 
-<div id="org82b1d69" class="figure">
+<div id="org3499df3" class="figure">
 <p><img src="images/matplotlibscores.png" alt="matplotlibscores.png" width="500" /><br />
 </p>
 <p><span class="figure-number">Figure 19: </span>解答範例</p>
 </div>
 </div>
 </div>
-<div id="outline-container-orgaea9174" class="outline-3">
-<h3 id="orgaea9174"><span class="section-number-3">12.3.</span> 盒鬚圖 (Boxplot)</h3>
+<div id="outline-container-org7aba504" class="outline-3">
+<h3 id="org7aba504"><span class="section-number-3">12.3.</span> 盒鬚圖 (Boxplot)</h3>
 <div class="outline-text-3" id="text-12-3">
 <p>
 <b>請自行上網搜尋學習資源</b> ，<a href="images/scores.csv">下載這個檔案</a>，畫出以下圖形(提示: Google 關鍵字 matplotlib, boxplot)<br />
 </p>
 
-<div id="org7a3eb6a" class="figure">
+<div id="org1fb6e8a" class="figure">
 <p><img src="images/npbox.png" alt="npbox.png" width="500" /><br />
 </p>
-<p><span class="figure-number">Figure 20: </span>Caption</p>
+<p><span class="figure-number">Figure 20: </span>各科成績盒鬚圖</p>
 </div>
 </div>
 </div>
 </div>
-<div id="outline-container-orgc3feda9" class="outline-2">
-<h2 id="orgc3feda9"><span class="section-number-2">13.</span> 其他視覺化模組</h2>
+<div id="outline-container-org7d6b4d3" class="outline-2">
+<h2 id="org7d6b4d3"><span class="section-number-2">13.</span> 其他視覺化模組</h2>
 <div class="outline-text-2" id="text-13">
 </div>
-<div id="outline-container-org5834f96" class="outline-3">
-<h3 id="org5834f96"><span class="section-number-3">13.1.</span> pylab</h3>
+<div id="outline-container-orgef1588b" class="outline-3">
+<h3 id="orgef1588b"><span class="section-number-3">13.1.</span> pylab</h3>
 <div class="outline-text-3" id="text-13-1">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr"> 2: </span><span style="color: #51afef;">import</span> pylab <span style="color: #51afef;">as</span> pl
+<pre class="src src-python"><span class="linenr"> 1: </span>import numpy as np
+<span class="linenr"> 2: </span>import pylab as pl
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">x</span> = np.arange(<span style="color: #da8548; font-weight: bold;">0.0</span>, <span style="color: #da8548; font-weight: bold;">2.0</span>*np.pi, <span style="color: #da8548; font-weight: bold;">0.01</span>)
-<span class="linenr"> 5: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"x:"</span>, x[:<span style="color: #da8548; font-weight: bold;">5</span>])
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">y</span> = np.sin(x)
-<span class="linenr"> 7: </span><span style="color: #c678dd;">print</span>(<span style="color: #98be65;">"y:"</span>, y[:<span style="color: #da8548; font-weight: bold;">5</span>])
+<span class="linenr"> 4: </span>x = np.arange(0.0, 2.0*np.pi, 0.01)
+<span class="linenr"> 5: </span>print("x:", x[:5])
+<span class="linenr"> 6: </span>y = np.sin(x)
+<span class="linenr"> 7: </span>print("y:", y[:5])
 <span class="linenr"> 8: </span>
 <span class="linenr"> 9: </span>pl.plot(x,y)
-<span class="linenr">10: </span>pl.xlabel(<span style="color: #98be65;">'x'</span>)
-<span class="linenr">11: </span>pl.ylabel(<span style="color: #98be65;">'y'</span>)
-<span class="linenr">12: </span>pl.title(<span style="color: #98be65;">'sin'</span>)
-<span class="linenr">13: </span>pl.savefig(<span style="color: #98be65;">"sinPlot.png"</span>)
+<span class="linenr">10: </span>pl.xlabel('x')
+<span class="linenr">11: </span>pl.ylabel('y')
+<span class="linenr">12: </span>pl.title('sin')
+<span class="linenr">13: </span>pl.savefig("images/sinPlot.png")
 </pre>
 </div>
 
@@ -2119,54 +2122,54 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 </pre>
 
 
-<div id="orgd76d557" class="figure">
+<div id="org6a265f5" class="figure">
 <p><img src="images/sinPlot.png" alt="sinPlot.png" /><br />
 </p>
 <p><span class="figure-number">Figure 21: </span>sinPlot</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org04192d7" class="outline-3">
-<h3 id="org04192d7"><span class="section-number-3">13.2.</span> Bokeh</h3>
+<div id="outline-container-org7d7d8f7" class="outline-3">
+<h3 id="org7d7d8f7"><span class="section-number-3">13.2.</span> Bokeh</h3>
 <div class="outline-text-3" id="text-13-2">
 <ul class="org-ul">
 <li>這是一個互動式視覺化模組，可以產生 HTML 檔案來顯示圖形。<br /></li>
 <li>這裡只示範最簡單的範例，更多功能請參考官網<a href="https://docs.bokeh.org/en/latest/">Bokeh Documentation</a><br /></li>
 </ul>
 </div>
-<div id="outline-container-orgbe217f3" class="outline-4">
-<h4 id="orgbe217f3"><span class="section-number-4">13.2.1.</span> 簡單範例</h4>
+<div id="outline-container-org4e3ff2a" class="outline-4">
+<h4 id="org4e3ff2a"><span class="section-number-4">13.2.1.</span> 簡單範例</h4>
 <div class="outline-text-4" id="text-13-2-1">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> numpy <span style="color: #51afef;">as</span> np
-<span class="linenr"> 2: </span><span style="color: #51afef;">from</span> bokeh.plotting <span style="color: #51afef;">import</span> figure, show
-<span class="linenr"> 3: </span><span style="color: #51afef;">from</span> bokeh.io <span style="color: #51afef;">import</span> output_file, save
+<pre class="src src-python"><span class="linenr"> 1: </span>import numpy as np
+<span class="linenr"> 2: </span>from bokeh.plotting import figure, show
+<span class="linenr"> 3: </span>from bokeh.io import output_file, save
 <span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span><span style="color: #dcaeea;">N</span> = <span style="color: #da8548; font-weight: bold;">4000</span>
+<span class="linenr"> 5: </span>N = 4000
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span><span style="color: #dcaeea;">x</span> = np.random.random(size=N) * <span style="color: #da8548; font-weight: bold;">100</span>
-<span class="linenr"> 8: </span><span style="color: #dcaeea;">y</span> = np.random.random(size=N) * <span style="color: #da8548; font-weight: bold;">100</span>
-<span class="linenr"> 9: </span><span style="color: #dcaeea;">radii</span> = np.random.random(size=N) * <span style="color: #da8548; font-weight: bold;">1.5</span>
-<span class="linenr">10: </span><span style="color: #dcaeea;">colors</span> = [
-<span class="linenr">11: </span>    <span style="color: #98be65;">"#%02x%02x%02x"</span> % (r, g, <span style="color: #da8548; font-weight: bold;">150</span>)
-<span class="linenr">12: </span>    <span style="color: #51afef;">for</span> r, g <span style="color: #51afef;">in</span> <span style="color: #c678dd;">zip</span>(
-<span class="linenr">13: </span>        np.floor(<span style="color: #da8548; font-weight: bold;">50</span> + <span style="color: #da8548; font-weight: bold;">2</span> * x).astype(<span style="color: #c678dd;">int</span>),
-<span class="linenr">14: </span>        np.floor(<span style="color: #da8548; font-weight: bold;">30</span> + <span style="color: #da8548; font-weight: bold;">2</span> * y).astype(<span style="color: #c678dd;">int</span>)
+<span class="linenr"> 7: </span>x = np.random.random(size=N) * 100
+<span class="linenr"> 8: </span>y = np.random.random(size=N) * 100
+<span class="linenr"> 9: </span>radii = np.random.random(size=N) * 1.5
+<span class="linenr">10: </span>colors = [
+<span class="linenr">11: </span>    "#%02x%02x%02x" % (r, g, 150)
+<span class="linenr">12: </span>    for r, g in zip(
+<span class="linenr">13: </span>        np.floor(50 + 2 * x).astype(int),
+<span class="linenr">14: </span>        np.floor(30 + 2 * y).astype(int)
 <span class="linenr">15: </span>    )
 <span class="linenr">16: </span>]
 <span class="linenr">17: </span>
-<span class="linenr">18: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#36664;&#20986;&#21040; HTML &#27284;&#26696;</span>
-<span class="linenr">19: </span>output_file(<span style="color: #98be65;">'bokehPlot.html'</span>, mode=<span style="color: #98be65;">'inline'</span>)
-<span class="linenr">20: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#22312;PyCharm&#29872;&#22659;&#20013;&#26368;&#22909;&#26126;&#30906;&#25351;&#23450;&#23384;&#27284;&#36335;&#24465;</span>
-<span class="linenr">21: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Windows&#31684;&#20363;:</span>
-<span class="linenr">22: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">output_file('c:\path\to\your\directory\bokehPlot.html', mode='inline')</span>
-<span class="linenr">23: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">MacOS&#31684;&#20363;:</span>
-<span class="linenr">24: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">output_file('/Users/yourname/path/to/your/directory/bokehPlot.html', mode='inline')</span>
-<span class="linenr">25: </span><span style="color: #dcaeea;">p</span> = figure(title=<span style="color: #98be65;">"Basic Title"</span>, width=<span style="color: #da8548; font-weight: bold;">500</span>, height=<span style="color: #da8548; font-weight: bold;">500</span>)  <span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#26032;&#29256;&#21487;&#29992; width/height</span>
+<span class="linenr">18: </span># 輸出到 HTML 檔案
+<span class="linenr">19: </span>output_file('bokehPlot.html', mode='inline')
+<span class="linenr">20: </span># 在PyCharm環境中最好明確指定存檔路徑
+<span class="linenr">21: </span># Windows範例:
+<span class="linenr">22: </span>#output_file('c:\path\to\your\directory\bokehPlot.html', mode='inline')
+<span class="linenr">23: </span># MacOS範例:
+<span class="linenr">24: </span>#output_file('/Users/yourname/path/to/your/directory/bokehPlot.html', mode='inline')
+<span class="linenr">25: </span>p = figure(title="Basic Title", width=500, height=500)  # 新版可用 width/height
 <span class="linenr">26: </span>p.circle(x, y, radius=radii, fill_color=colors,
-<span class="linenr">27: </span>         fill_alpha=<span style="color: #da8548; font-weight: bold;">0.6</span>, line_color=<span style="color: #a9a1e1;">None</span>)
-<span class="linenr">28: </span>show(p) <span style="color: #5B6268;"># </span><span style="color: #5B6268;">for PyCharm IDE</span>
-<span class="linenr">29: </span>save(p) <span style="color: #5B6268;">#</span><span style="color: #5B6268;">&#23384;&#27284;</span>
+<span class="linenr">27: </span>         fill_alpha=0.6, line_color=None)
+<span class="linenr">28: </span>show(p) # for PyCharm IDE
+<span class="linenr">29: </span>save(p) #存檔
 </pre>
 </div>
 
@@ -2176,65 +2179,72 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 </div>
 </div>
 </div>
-<div id="outline-container-org3e806be" class="outline-3">
-<h3 id="org3e806be"><span class="section-number-3">13.3.</span> seaborn</h3>
+<div id="outline-container-orgbe6aa19" class="outline-3">
+<h3 id="orgbe6aa19"><span class="section-number-3">13.3.</span> seaborn</h3>
 <div class="outline-text-3" id="text-13-3">
 <ul class="org-ul">
 <li>這是一個基於 Matplotlib 的高階視覺化模組，提供更簡單的 API 來創建美觀的統計圖表。<br /></li>
 <li>更多功能請參考官網<a href="https://seaborn.pydata.org/">https://seaborn.pydata.org/</a><br /></li>
 </ul>
 </div>
-<div id="outline-container-org513e36a" class="outline-4">
-<h4 id="org513e36a"><span class="section-number-4">13.3.1.</span> 簡單範例</h4>
+<div id="outline-container-orgf5f3c8d" class="outline-4">
+<h4 id="orgf5f3c8d"><span class="section-number-4">13.3.1.</span> 簡單範例</h4>
 <div class="outline-text-4" id="text-13-3-1">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> seaborn <span style="color: #51afef;">as</span> sns
-<span class="linenr"> 2: </span>sns.<span style="color: #c678dd;">set</span>(style=<span style="color: #98be65;">"ticks"</span>)
+<pre class="src src-python"><span class="linenr"> 1: </span>import seaborn as sns
+<span class="linenr"> 2: </span>sns.set_theme(style="ticks")  # 註：seaborn 0.13 起 sns.set() 僅為 set_theme() 的別名，建議改用 set_theme()
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">Load the example dataset for Anscombe's quartet</span>
-<span class="linenr"> 5: </span><span style="color: #dcaeea;">df</span> = sns.load_dataset(<span style="color: #98be65;">"anscombe"</span>)
+<span class="linenr"> 4: </span>#Load the example dataset for Anscombe's quartet
+<span class="linenr"> 5: </span>df = sns.load_dataset("anscombe")
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">Show the results of a linear regression within each dataset</span>
-<span class="linenr"> 8: </span>sns.lmplot(x=<span style="color: #98be65;">"x"</span>, y=<span style="color: #98be65;">"y"</span>, col=<span style="color: #98be65;">"dataset"</span>, hue=<span style="color: #98be65;">"dataset"</span>, data=df, col_wrap=<span style="color: #da8548; font-weight: bold;">2</span>, ci=<span style="color: #a9a1e1;">None</span>, palette=<span style="color: #98be65;">"muted"</span>, height=<span style="color: #da8548; font-weight: bold;">4</span>, scatter_kws={<span style="color: #98be65;">'s'</span> :<span style="color: #da8548; font-weight: bold;">50</span>,<span style="color: #98be65;">'alpha'</span>:<span style="color: #da8548; font-weight: bold;">1</span>})
+<span class="linenr"> 7: </span># Show the results of a linear regression within each dataset
+<span class="linenr"> 8: </span>sns.lmplot(x="x", y="y", col="dataset", hue="dataset", data=df, col_wrap=2, ci=None, palette="muted", height=4, scatter_kws={'s' :50,'alpha':1})
 <span class="linenr"> 9: </span>
-<span class="linenr">10: </span><span style="color: #51afef;">import</span> matplotlib.pyplot <span style="color: #51afef;">as</span> plt
-<span class="linenr">11: </span><span style="color: #5B6268;">#</span><span style="color: #5B6268;">sns.sns_plot.savefig("seabornPlot.png")</span>
-<span class="linenr">12: </span>plt.savefig(<span style="color: #98be65;">"seabornPlot.png"</span>)
+<span class="linenr">10: </span>import matplotlib.pyplot as plt
+<span class="linenr">11: </span>#sns.sns_plot.savefig("images/seabornPlot.png")
+<span class="linenr">12: </span>plt.savefig("images/seabornPlot.png")
 </pre>
 </div>
+
+
+<div id="org2568ae1" class="figure">
+<p><img src="images/seabornPlot.png" alt="seabornPlot.png" width="500" /><br />
+</p>
+<p><span class="figure-number">Figure 22: </span>seabornPlot</p>
 </div>
 </div>
 </div>
-<div id="outline-container-org963edc3" class="outline-3">
-<h3 id="org963edc3"><span class="section-number-3">13.4.</span> Altair</h3>
+</div>
+<div id="outline-container-orga8addfb" class="outline-3">
+<h3 id="orga8addfb"><span class="section-number-3">13.4.</span> Altair</h3>
 <div class="outline-text-3" id="text-13-4">
 <ul class="org-ul">
 <li>Altair 是一個基於宣告式語法的 Python 視覺化庫，使用 Vega 和 Vega-Lite 作為後端，適合用於創建交互式圖表。<br /></li>
 <li>更多功能請參考官網<a href="https://altair-viz.github.io/">https://altair-viz.github.io/</a><br /></li>
 </ul>
 </div>
-<div id="outline-container-org6197816" class="outline-4">
-<h4 id="org6197816"><span class="section-number-4">13.4.1.</span> 簡單範例</h4>
+<div id="outline-container-org65e1dd9" class="outline-4">
+<h4 id="org65e1dd9"><span class="section-number-4">13.4.1.</span> 簡單範例</h4>
 <div class="outline-text-4" id="text-13-4-1">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span><span style="color: #51afef;">import</span> altair <span style="color: #51afef;">as</span> alt
-<span class="linenr"> 2: </span><span style="color: #51afef;">from</span> vega_datasets <span style="color: #51afef;">import</span> data
+<pre class="src src-python"><span class="linenr"> 1: </span>import altair as alt
+<span class="linenr"> 2: </span>from vega_datasets import data
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span><span style="color: #dcaeea;">cars</span> = data.cars()
+<span class="linenr"> 4: </span>cars = data.cars()
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span><span style="color: #dcaeea;">chart</span> = (
+<span class="linenr"> 6: </span>chart = (
 <span class="linenr"> 7: </span>    alt.Chart(cars)
 <span class="linenr"> 8: </span>    .mark_point()
 <span class="linenr"> 9: </span>    .encode(
-<span class="linenr">10: </span>        x=<span style="color: #98be65;">'Horsepower'</span>,
-<span class="linenr">11: </span>        y=<span style="color: #98be65;">'Miles_per_Gallon'</span>,
-<span class="linenr">12: </span>        color=<span style="color: #98be65;">'Origin'</span>
+<span class="linenr">10: </span>        x='Horsepower',
+<span class="linenr">11: </span>        y='Miles_per_Gallon',
+<span class="linenr">12: </span>        color='Origin'
 <span class="linenr">13: </span>    )
 <span class="linenr">14: </span>    .interactive()
 <span class="linenr">15: </span>)
 <span class="linenr">16: </span>
-<span class="linenr">17: </span><span style="color: #5B6268;"># </span><span style="color: #5B6268;">&#23384;&#25104; HTML</span>
-<span class="linenr">18: </span>chart.save(<span style="color: #98be65;">'altairPlot.html'</span>)
+<span class="linenr">17: </span># 存成 HTML
+<span class="linenr">18: </span>chart.save('altairPlot.html')
 </pre>
 </div>
 
@@ -2250,15 +2260,16 @@ y: [0.         0.00999983 0.01999867 0.0299955  0.03998933]
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
-<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.subplot.html">matplotlib.pyplot.subplot</a><br />
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html">matplotlib.pyplot.subplot</a><br />
 </p></div></div>
 
 
 </div>
 </div></div>
 <div id="postamble" class="status">
-<p class="author">Author: Yung-Chin Yen</p>
-<p class="date">Created: 2026-02-13 Fri 15:33</p>
+<p class="author">Author: Yung Chin</p>
+<p class="date">Created: 2026-08-31 一 10:48</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <!-- 2026-08-31 一 10:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Python: From Zero to Error</title>
+<title>研習彩蛋</title>
 <meta name="author" content="Yung Chin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -193,50 +193,103 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../css/muse.css" />
-<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Python: From Zero to Error
+<h1 class="title">研習彩蛋
 <br />
 <span class="subtitle">TNFSH Python教材</span>
 </h1>
-<a href="https://hits.sh/letranger.github.io/PythonCourse/index.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/index.html.svg"/></a>
-<div id="outline-container-org3f7e7f9" class="outline-2">
-<h2 id="org3f7e7f9"><span class="section-number-2">1.</span> 核心教材</h2>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orged4a1e5">1. 作答記錄讀取</a></li>
+<li><a href="#orgc3c9db5">2. 統計錄影時間</a></li>
+</ul>
+</div>
+</div>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/eggs.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/eggs.html.svg"/></a>
+<div id="outline-container-orged4a1e5" class="outline-2">
+<h2 id="orged4a1e5"><span class="section-number-2">1.</span> 作答記錄讀取</h2>
 <div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="PythonBasic.html">Python基本教材</a><br /></li>
-<li><a href="PythonAdvanced.html">Python進階教材</a><br /></li>
-<li><a href="exams.html">試題與練習</a><br /></li>
-</ul>
+<p>
+<code>this is a test</code>
+<i>another test</i>
+<del>how about this</del>
+<del>中文可以嗎</del>
+<i>中文</i>
+<b>中文</b>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>import pandas as pd
+<span class="linenr"> 2: </span>#process history
+<span class="linenr"> 3: </span>history = pd.read_csv("~/Downloads/104.csv")
+<span class="linenr"> 4: </span>h1 = history.loc[history.uid &gt;= 4336].sort_values(by='uid')
+<span class="linenr"> 5: </span>h2 = h1.loc[h1.uid &lt;= 4372]
+<span class="linenr"> 6: </span>#print(h2)
+<span class="linenr"> 7: </span># process name
+<span class="linenr"> 8: </span>name = pd.read_csv("~/Downloads/account.csv")
+<span class="linenr"> 9: </span>n1 = name[['uid','nickname']].sort_values(by = 'uid')
+<span class="linenr">10: </span>#print(n1)
+<span class="linenr">11: </span>#merge two df
+<span class="linenr">12: </span>mg_left=pd.merge(left=h2, right=n1, how='left', left_on='uid', right_on='uid')
+<span class="linenr">13: </span>#print(mg_left.sort_values(by='uid'))
+<span class="linenr">14: </span># item
+<span class="linenr">15: </span>itemsAry = [["QA",288],["A",58],["A",59],["A",153],["B",60],["B",63],["B",154],["B",155],["C",61],["C",62],["C",156],["C",247],["D",101],["D",102],["D",103],["D",274],["E",107],["E",108],["E",109],["B1",282],["B1",286],["B2",287],["B2",118],["B3",281],["B3",283],["B4",284],["B4",285]]
+<span class="linenr">16: </span>itemsdf = pd.DataFrame(itemsAry, columns = ["item", "pid"])
+<span class="linenr">17: </span>#print(itemsdf)
+<span class="linenr">18: </span>scores = pd.merge(left=mg_left, right=itemsdf, how = 'left', left_on = 'pid', right_on = 'pid')
+<span class="linenr">19: </span># 註：pandas 3.0 起預設啟用 Copy-on-Write，切片後直接賦值會失效（或引發警告），
+<span class="linenr">20: </span># 需先以 .copy() 建立獨立副本再新增欄位
+<span class="linenr">21: </span>done = scores[['nickname','item','score','timestamp']].copy()
+<span class="linenr">22: </span>
+<span class="linenr">23: </span>done['ni']=done['nickname'].astype(str) + done['item'].astype(str)
+<span class="linenr">24: </span>print(done)
+<span class="linenr">25: </span>done1 = done.drop_duplicates(subset='ni', keep='last')
+<span class="linenr">26: </span>done2 = done1[['nickname', 'item', 'score']]
+<span class="linenr">27: </span>done3 = done2.pivot(index='nickname', columns='item', values='score')
+<span class="linenr">28: </span>done4 = done3.fillna(0)
+<span class="linenr">29: </span>done4 = done4[[ 'A', 'B', 'C', 'D', 'E', 'B1', 'B2', 'B3', 'B4']]
+<span class="linenr">30: </span>print(done4.columns.values)
+<span class="linenr">31: </span>done4['ALL'] = done4.sum(axis=1)
+<span class="linenr">32: </span>print(done4)
+<span class="linenr">33: </span>done4.to_csv("~/Downloads/TNFSH_109上學期期中考_104.csv")
+<span class="linenr">34: </span>
+</pre>
 </div>
 </div>
-<div id="outline-container-org87b96db" class="outline-2">
-<h2 id="org87b96db"><span class="section-number-2">2.</span> 函式庫</h2>
+</div>
+<div id="outline-container-orgc3c9db5" class="outline-2">
+<h2 id="orgc3c9db5"><span class="section-number-2">2.</span> 統計錄影時間</h2>
 <div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="Numpy.html">Numpy</a><br /></li>
-<li><a href="Matplotlib.html">Matplotlib</a><br /></li>
-<li><a href="Pandas.html">Pandas</a><br /></li>
-<li><a href="Streamlit.html">Streamlit</a><br /></li>
-<li><a href="Sympy.html">Sympy: 數學相關的模組</a><br /></li>
-<li><a href="Crawler.html">Crawler: 網路資料解析與爬蟲</a><br /></li>
-<li><a href="gui.html">GUI:Python的人機界面</a><br /></li>
-</ul>
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>from os import listdir
+<span class="linenr"> 2: </span>from os.path import join
+<span class="linenr"> 3: </span># 註：MoviePy 2.x 已移除 moviepy.editor 模組，改為直接從 moviepy 匯入
+<span class="linenr"> 4: </span>from moviepy import VideoFileClip
+<span class="linenr"> 5: </span>
+<span class="linenr"> 6: </span>def caltime(path):
+<span class="linenr"> 7: </span>    files = listdir(path)
+<span class="linenr"> 8: </span>
+<span class="linenr"> 9: </span>    tot = 0
+<span class="linenr">10: </span>    for f in files:
+<span class="linenr">11: </span>        if f.endswith("mp4"):
+<span class="linenr">12: </span>           fullpath = join(path, f)
+<span class="linenr">13: </span>           clip = VideoFileClip(fullpath)
+<span class="linenr">14: </span>           tot += clip.duration
+<span class="linenr">15: </span>           print(clip.duration/60,": ", fullpath)  # 秒數換算為分鐘
+<span class="linenr">16: </span>    return tot/3600
+<span class="linenr">17: </span>
+<span class="linenr">18: </span>path = "/Users/letranger/Desktop/研習/入門"
+<span class="linenr">19: </span>print("入門: %.2f小時" %(caltime(path)))
+<span class="linenr">20: </span>path = "/Users/letranger/Desktop/研習/進階"
+<span class="linenr">21: </span>print("進階: %.2f小時" %(caltime(path)))
+<span class="linenr">22: </span>
+<span class="linenr">23: </span>
+</pre>
 </div>
-</div>
-<div id="outline-container-orgc021d31" class="outline-2">
-<h2 id="orgc021d31"><span class="section-number-2">3.</span> 專題與應用</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="Python偵探社.html">Python偵探社（學期任務）</a><br /></li>
-<li><a href="WordCloud.html">文字雲 WordCloud</a><br /></li>
-<li><a href="VideoDownloader.html">影片下載器</a><br /></li>
-<li><a href="ipLocation.html">IP 位置查詢</a><br /></li>
-<li><a href="findImage.html">網頁圖片擷取</a><br /></li>
-</ul>
 </div>
 </div>
 </div>

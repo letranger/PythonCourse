@@ -6,7 +6,7 @@
 <!-- 2026-08-31 一 10:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Python: From Zero to Error</title>
+<title>Find Image</title>
 <meta name="author" content="Yung Chin" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
@@ -193,52 +193,48 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
-<link rel="stylesheet" type="text/css" href="../css/muse.css" />
-<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Python: From Zero to Error
+<h1 class="title">Find Image
 <br />
 <span class="subtitle">TNFSH Python教材</span>
 </h1>
-<a href="https://hits.sh/letranger.github.io/PythonCourse/index.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/index.html.svg"/></a>
-<div id="outline-container-org3f7e7f9" class="outline-2">
-<h2 id="org3f7e7f9"><span class="section-number-2">1.</span> 核心教材</h2>
-<div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li><a href="PythonBasic.html">Python基本教材</a><br /></li>
-<li><a href="PythonAdvanced.html">Python進階教材</a><br /></li>
-<li><a href="exams.html">試題與練習</a><br /></li>
-</ul>
+<a href="https://hits.sh/letranger.github.io/PythonCourse/findImage.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/findImage.html.svg"/></a>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="linenr"> 1: </span>import requests
+<span class="linenr"> 2: </span>from bs4 import BeautifulSoup
+<span class="linenr"> 3: </span>
+<span class="linenr"> 4: </span>url = 'https://moodle.tnfsh.tn.edu.tw/index.php'
+<span class="linenr"> 5: </span>response = requests.get(url)
+<span class="linenr"> 6: </span>#soup = BeautifulSoup(response.text, 'html')
+<span class="linenr"> 7: </span>
+<span class="linenr"> 8: </span>soup = BeautifulSoup(response.text, 'html.parser')
+<span class="linenr"> 9: </span>imagesElements = soup.find_all('img')
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>for x in imagesElements:
+<span class="linenr">12: </span>    print(x)
+<span class="linenr">13: </span>
+</pre>
 </div>
-</div>
-<div id="outline-container-org87b96db" class="outline-2">
-<h2 id="org87b96db"><span class="section-number-2">2.</span> 函式庫</h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="Numpy.html">Numpy</a><br /></li>
-<li><a href="Matplotlib.html">Matplotlib</a><br /></li>
-<li><a href="Pandas.html">Pandas</a><br /></li>
-<li><a href="Streamlit.html">Streamlit</a><br /></li>
-<li><a href="Sympy.html">Sympy: 數學相關的模組</a><br /></li>
-<li><a href="Crawler.html">Crawler: 網路資料解析與爬蟲</a><br /></li>
-<li><a href="gui.html">GUI:Python的人機界面</a><br /></li>
-</ul>
-</div>
-</div>
-<div id="outline-container-orgc021d31" class="outline-2">
-<h2 id="orgc021d31"><span class="section-number-2">3.</span> 專題與應用</h2>
-<div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="Python偵探社.html">Python偵探社（學期任務）</a><br /></li>
-<li><a href="WordCloud.html">文字雲 WordCloud</a><br /></li>
-<li><a href="VideoDownloader.html">影片下載器</a><br /></li>
-<li><a href="ipLocation.html">IP 位置查詢</a><br /></li>
-<li><a href="findImage.html">網頁圖片擷取</a><br /></li>
-</ul>
-</div>
-</div>
+
+<pre class="example" id="org1ce4976">
+&lt;img alt="" id="logo" src="//moodle.tnfsh.tn.edu.tw/pluginfile.php/1/theme_adaptable/logo/1624531833/%E7%B7%9A%E4%B8%8A%E5%85%8D%E8%B2%BB%E8%A3%BD%E4%BD%9CLogo%EF%BC%8C%E5%AE%9A%E5%88%B6%E5%B0%88%E5%B1%AC%E6%96%BC%E4%BD%A0%E7%9A%84Logo%E8%A8%AD%E8%A8%88_%E2%80%93_DesignEvo.jpg"/&gt;
+&lt;img alt=" " class="iconlarge activityicon" role="presentation" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon"/&gt;
+&lt;img alt=" " class="iconlarge activityicon" role="presentation" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon"/&gt;
+&lt;img alt="admin Yen的相片" aria-hidden="true" class="rounded-circle w-100" src="https://moodle.tnfsh.tn.edu.tw/pluginfile.php/5/user/icon/adaptable/f1?rev=21" title="admin Yen的相片"/&gt;
+&lt;img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"&gt;&lt;a href="https://moodle.tnfsh.tn.edu.tw/blocks/links/follow.php?id=8" target="_blank"&gt;CPP教材:考試用&lt;/a&gt;&lt;/img&gt;
+&lt;img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/&gt;
+&lt;img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/&gt;
+&lt;img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/&gt;
+&lt;img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/&gt;
+&lt;img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/&gt;
+&lt;img alt="" aria-hidden="true" class="icon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/block_links/1624531833/web"/&gt;
+&lt;img alt="討論區" class="icon navicon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/forum/1624531833/icon" title="討論區"/&gt;
+&lt;img alt="網址" class="icon navicon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon" title="網址"/&gt;
+&lt;img alt="網址" class="icon navicon" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon" title="網址"/&gt;
+</pre>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>
