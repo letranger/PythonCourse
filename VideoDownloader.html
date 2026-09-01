@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-08-31 一 10:48 -->
+<!-- 2026-09-01 二 10:11 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Video Downloader</title>
@@ -193,6 +193,8 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<link rel="stylesheet" type="text/css" href="../css/muse.css" />
+<script src="../css/copy_code.js"></script>
 </head>
 <body>
 <div id="content" class="content">
@@ -204,23 +206,23 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org6fa9374">1. 安裝套件</a></li>
-<li><a href="#org91489c3">2. 下載單支影片（mp4）</a></li>
-<li><a href="#org65ccc8b">3. 下載單支影片並轉成 mp3</a></li>
-<li><a href="#org818945d">4. 下載整個播放清單</a></li>
+<li><a href="#org57a7fce">1. 安裝套件</a></li>
+<li><a href="#org7fe06c0">2. 下載單支影片（mp4）</a></li>
+<li><a href="#org2a0c997">3. 下載單支影片並轉成 mp3</a></li>
+<li><a href="#org39615e6">4. 下載整個播放清單</a></li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/VideoDownloader.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/VideoDownloader.html.svg"/></a>
 
 <p>
-註：pytube 已停止維護、目前無法正常下載 YouTube 影片，現行方案為 yt-dlp。本篇範例已全面改用 yt-dlp 改寫。
+註：pytube 已停止維護、目前無法正常下載 YouTube 影片，現行方案為 yt-dlp。本篇範例已全面改用 yt-dlp 改寫。<br />
 </p>
-<div id="outline-container-org6fa9374" class="outline-2">
-<h2 id="org6fa9374"><span class="section-number-2">1.</span> 安裝套件</h2>
+<div id="outline-container-org57a7fce" class="outline-2">
+<h2 id="org57a7fce"><span class="section-number-2">1.</span> 安裝套件</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-安裝 yt-dlp（若要轉出 mp3，系統另需安裝 ffmpeg）：
+安裝 yt-dlp（若要轉出 mp3，系統另需安裝 ffmpeg）：<br />
 </p>
 <div class="org-src-container">
 <pre class="src src-shell"><span class="linenr">1: </span>pip install yt-dlp
@@ -228,11 +230,11 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org91489c3" class="outline-2">
-<h2 id="org91489c3"><span class="section-number-2">2.</span> 下載單支影片（mp4）</h2>
+<div id="outline-container-org7fe06c0" class="outline-2">
+<h2 id="org7fe06c0"><span class="section-number-2">2.</span> 下載單支影片（mp4）</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-以 <code>yt_dlp.YoutubeDL(opts)</code> 建立下載器，呼叫 <code>download()</code> 才會真正開始下載。
+以 <code>yt_dlp.YoutubeDL(opts)</code> 建立下載器，呼叫 <code>download()</code> 才會真正開始下載。<br />
 </p>
 
 <div class="org-src-container">
@@ -255,11 +257,11 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org65ccc8b" class="outline-2">
-<h2 id="org65ccc8b"><span class="section-number-2">3.</span> 下載單支影片並轉成 mp3</h2>
+<div id="outline-container-org2a0c997" class="outline-2">
+<h2 id="org2a0c997"><span class="section-number-2">3.</span> 下載單支影片並轉成 mp3</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-註：舊版教材以 moviepy 將 mp4 轉為 mp3；且 <code>from moviepy.editor import ...</code> 這種寫法在 MoviePy 2.x 已移除（新寫法為 =from moviepy import VideoFileClip=）。不過 yt-dlp 內建 postprocessor 可直接透過 ffmpeg 抽出音訊，因此這裡採用更簡潔的做法，不再依賴 moviepy。
+註：舊版教材以 moviepy 將 mp4 轉為 mp3；且 <code>from moviepy.editor import ...</code> 這種寫法在 MoviePy 2.x 已移除（新寫法為 =from moviepy import VideoFileClip=）。不過 yt-dlp 內建 postprocessor 可直接透過 ffmpeg 抽出音訊，因此這裡採用更簡潔的做法，不再依賴 moviepy。<br />
 </p>
 
 <div class="org-src-container">
@@ -287,11 +289,11 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org818945d" class="outline-2">
-<h2 id="org818945d"><span class="section-number-2">4.</span> 下載整個播放清單</h2>
+<div id="outline-container-org39615e6" class="outline-2">
+<h2 id="org39615e6"><span class="section-number-2">4.</span> 下載整個播放清單</h2>
 <div class="outline-text-2" id="text-4">
 <p>
-yt-dlp 直接支援播放清單網址，不需再透過 YouTube API 逐一取得影片 ID。
+yt-dlp 直接支援播放清單網址，不需再透過 YouTube API 逐一取得影片 ID。<br />
 </p>
 
 <div class="org-src-container">
@@ -323,7 +325,7 @@ yt-dlp 直接支援播放清單網址，不需再透過 YouTube API 逐一取得
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>
-<p class="date">Created: 2026-08-31 一 10:48</p>
+<p class="date">Created: 2026-09-01 二 10:11</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
