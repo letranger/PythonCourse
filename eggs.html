@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-01 二 10:12 -->
+<!-- 2026-09-01 二 20:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>研習彩蛋</title>
@@ -206,14 +206,14 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org89e3f7f">1. 作答記錄讀取</a></li>
-<li><a href="#org10d7e19">2. 統計錄影時間</a></li>
+<li><a href="#org521c57f">1. 作答記錄讀取</a></li>
+<li><a href="#org7fe17b0">2. 統計錄影時間</a></li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/eggs.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/eggs.html.svg"/></a>
-<div id="outline-container-org89e3f7f" class="outline-2">
-<h2 id="org89e3f7f"><span class="section-number-2">1.</span> 作答記錄讀取</h2>
+<div id="outline-container-org521c57f" class="outline-2">
+<h2 id="org521c57f"><span class="section-number-2">1.</span> 作答記錄讀取</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 <code>this is a test</code><br />
@@ -225,69 +225,69 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>import pandas as pd
-<span class="linenr"> 2: </span>#process history
-<span class="linenr"> 3: </span>history = pd.read_csv("~/Downloads/104.csv")
-<span class="linenr"> 4: </span>h1 = history.loc[history.uid &gt;= 4336].sort_values(by='uid')
-<span class="linenr"> 5: </span>h2 = h1.loc[h1.uid &lt;= 4372]
-<span class="linenr"> 6: </span>#print(h2)
-<span class="linenr"> 7: </span># process name
-<span class="linenr"> 8: </span>name = pd.read_csv("~/Downloads/account.csv")
-<span class="linenr"> 9: </span>n1 = name[['uid','nickname']].sort_values(by = 'uid')
-<span class="linenr">10: </span>#print(n1)
-<span class="linenr">11: </span>#merge two df
-<span class="linenr">12: </span>mg_left=pd.merge(left=h2, right=n1, how='left', left_on='uid', right_on='uid')
-<span class="linenr">13: </span>#print(mg_left.sort_values(by='uid'))
-<span class="linenr">14: </span># item
-<span class="linenr">15: </span>itemsAry = [["QA",288],["A",58],["A",59],["A",153],["B",60],["B",63],["B",154],["B",155],["C",61],["C",62],["C",156],["C",247],["D",101],["D",102],["D",103],["D",274],["E",107],["E",108],["E",109],["B1",282],["B1",286],["B2",287],["B2",118],["B3",281],["B3",283],["B4",284],["B4",285]]
-<span class="linenr">16: </span>itemsdf = pd.DataFrame(itemsAry, columns = ["item", "pid"])
-<span class="linenr">17: </span>#print(itemsdf)
-<span class="linenr">18: </span>scores = pd.merge(left=mg_left, right=itemsdf, how = 'left', left_on = 'pid', right_on = 'pid')
-<span class="linenr">19: </span># 註：pandas 3.0 起預設啟用 Copy-on-Write，切片後直接賦值會失效（或引發警告），
-<span class="linenr">20: </span># 需先以 .copy() 建立獨立副本再新增欄位
-<span class="linenr">21: </span>done = scores[['nickname','item','score','timestamp']].copy()
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">import</span> pandas <span class="org-keyword">as</span> pd
+<span class="linenr"> 2: </span><span class="org-comment-delimiter">#</span><span class="org-comment">process history
+<span class="linenr"> 3: </span></span><span class="org-variable-name">history</span> <span class="org-operator">=</span> pd.read_csv(<span class="org-string">"~/Downloads/104.csv"</span>)
+<span class="linenr"> 4: </span><span class="org-variable-name">h1</span> <span class="org-operator">=</span> history.loc[history.uid <span class="org-operator">&gt;=</span> 4336].sort_values(by<span class="org-operator">=</span><span class="org-string">'uid'</span>)
+<span class="linenr"> 5: </span><span class="org-variable-name">h2</span> <span class="org-operator">=</span> h1.loc[h1.uid <span class="org-operator">&lt;=</span> 4372]
+<span class="linenr"> 6: </span><span class="org-comment-delimiter">#</span><span class="org-comment">print(h2)
+<span class="linenr"> 7: </span></span><span class="org-comment-delimiter"># </span><span class="org-comment">process name
+<span class="linenr"> 8: </span></span><span class="org-variable-name">name</span> <span class="org-operator">=</span> pd.read_csv(<span class="org-string">"~/Downloads/account.csv"</span>)
+<span class="linenr"> 9: </span><span class="org-variable-name">n1</span> <span class="org-operator">=</span> name[[<span class="org-string">'uid'</span>,<span class="org-string">'nickname'</span>]].sort_values(by <span class="org-operator">=</span> <span class="org-string">'uid'</span>)
+<span class="linenr">10: </span><span class="org-comment-delimiter">#</span><span class="org-comment">print(n1)
+<span class="linenr">11: </span></span><span class="org-comment-delimiter">#</span><span class="org-comment">merge two df
+<span class="linenr">12: </span></span><span class="org-variable-name">mg_left</span><span class="org-operator">=</span>pd.merge(left<span class="org-operator">=</span>h2, right<span class="org-operator">=</span>n1, how<span class="org-operator">=</span><span class="org-string">'left'</span>, left_on<span class="org-operator">=</span><span class="org-string">'uid'</span>, right_on<span class="org-operator">=</span><span class="org-string">'uid'</span>)
+<span class="linenr">13: </span><span class="org-comment-delimiter">#</span><span class="org-comment">print(mg_left.sort_values(by='uid'))
+<span class="linenr">14: </span></span><span class="org-comment-delimiter"># </span><span class="org-comment">item
+<span class="linenr">15: </span></span><span class="org-variable-name">itemsAry</span> <span class="org-operator">=</span> [[<span class="org-string">"QA"</span>,288],[<span class="org-string">"A"</span>,58],[<span class="org-string">"A"</span>,59],[<span class="org-string">"A"</span>,153],[<span class="org-string">"B"</span>,60],[<span class="org-string">"B"</span>,63],[<span class="org-string">"B"</span>,154],[<span class="org-string">"B"</span>,155],[<span class="org-string">"C"</span>,61],[<span class="org-string">"C"</span>,62],[<span class="org-string">"C"</span>,156],[<span class="org-string">"C"</span>,247],[<span class="org-string">"D"</span>,101],[<span class="org-string">"D"</span>,102],[<span class="org-string">"D"</span>,103],[<span class="org-string">"D"</span>,274],[<span class="org-string">"E"</span>,107],[<span class="org-string">"E"</span>,108],[<span class="org-string">"E"</span>,109],[<span class="org-string">"B1"</span>,282],[<span class="org-string">"B1"</span>,286],[<span class="org-string">"B2"</span>,287],[<span class="org-string">"B2"</span>,118],[<span class="org-string">"B3"</span>,281],[<span class="org-string">"B3"</span>,283],[<span class="org-string">"B4"</span>,284],[<span class="org-string">"B4"</span>,285]]
+<span class="linenr">16: </span><span class="org-variable-name">itemsdf</span> <span class="org-operator">=</span> pd.DataFrame(itemsAry, columns <span class="org-operator">=</span> [<span class="org-string">"item"</span>, <span class="org-string">"pid"</span>])
+<span class="linenr">17: </span><span class="org-comment-delimiter">#</span><span class="org-comment">print(itemsdf)
+<span class="linenr">18: </span></span><span class="org-variable-name">scores</span> <span class="org-operator">=</span> pd.merge(left<span class="org-operator">=</span>mg_left, right<span class="org-operator">=</span>itemsdf, how <span class="org-operator">=</span> <span class="org-string">'left'</span>, left_on <span class="org-operator">=</span> <span class="org-string">'pid'</span>, right_on <span class="org-operator">=</span> <span class="org-string">'pid'</span>)
+<span class="linenr">19: </span><span class="org-comment-delimiter"># </span><span class="org-comment">&#35387;&#65306;pandas 3.0 &#36215;&#38928;&#35373;&#21855;&#29992; Copy-on-Write&#65292;&#20999;&#29255;&#24460;&#30452;&#25509;&#36070;&#20540;&#26371;&#22833;&#25928;&#65288;&#25110;&#24341;&#30332;&#35686;&#21578;&#65289;&#65292;
+<span class="linenr">20: </span></span><span class="org-comment-delimiter"># </span><span class="org-comment">&#38656;&#20808;&#20197; .copy() &#24314;&#31435;&#29544;&#31435;&#21103;&#26412;&#20877;&#26032;&#22686;&#27396;&#20301;
+<span class="linenr">21: </span></span><span class="org-variable-name">done</span> <span class="org-operator">=</span> scores[[<span class="org-string">'nickname'</span>,<span class="org-string">'item'</span>,<span class="org-string">'score'</span>,<span class="org-string">'timestamp'</span>]].copy()
 <span class="linenr">22: </span>
-<span class="linenr">23: </span>done['ni']=done['nickname'].astype(str) + done['item'].astype(str)
-<span class="linenr">24: </span>print(done)
-<span class="linenr">25: </span>done1 = done.drop_duplicates(subset='ni', keep='last')
-<span class="linenr">26: </span>done2 = done1[['nickname', 'item', 'score']]
-<span class="linenr">27: </span>done3 = done2.pivot(index='nickname', columns='item', values='score')
-<span class="linenr">28: </span>done4 = done3.fillna(0)
-<span class="linenr">29: </span>done4 = done4[[ 'A', 'B', 'C', 'D', 'E', 'B1', 'B2', 'B3', 'B4']]
-<span class="linenr">30: </span>print(done4.columns.values)
-<span class="linenr">31: </span>done4['ALL'] = done4.sum(axis=1)
-<span class="linenr">32: </span>print(done4)
-<span class="linenr">33: </span>done4.to_csv("~/Downloads/TNFSH_109上學期期中考_104.csv")
+<span class="linenr">23: </span><span class="org-variable-name">done</span>[<span class="org-string">'ni'</span>]<span class="org-operator">=</span>done[<span class="org-string">'nickname'</span>].astype(<span class="org-builtin">str</span>) <span class="org-operator">+</span> done[<span class="org-string">'item'</span>].astype(<span class="org-builtin">str</span>)
+<span class="linenr">24: </span><span class="org-builtin">print</span>(done)
+<span class="linenr">25: </span><span class="org-variable-name">done1</span> <span class="org-operator">=</span> done.drop_duplicates(subset<span class="org-operator">=</span><span class="org-string">'ni'</span>, keep<span class="org-operator">=</span><span class="org-string">'last'</span>)
+<span class="linenr">26: </span><span class="org-variable-name">done2</span> <span class="org-operator">=</span> done1[[<span class="org-string">'nickname'</span>, <span class="org-string">'item'</span>, <span class="org-string">'score'</span>]]
+<span class="linenr">27: </span><span class="org-variable-name">done3</span> <span class="org-operator">=</span> done2.pivot(index<span class="org-operator">=</span><span class="org-string">'nickname'</span>, columns<span class="org-operator">=</span><span class="org-string">'item'</span>, values<span class="org-operator">=</span><span class="org-string">'score'</span>)
+<span class="linenr">28: </span><span class="org-variable-name">done4</span> <span class="org-operator">=</span> done3.fillna(0)
+<span class="linenr">29: </span><span class="org-variable-name">done4</span> <span class="org-operator">=</span> done4[[ <span class="org-string">'A'</span>, <span class="org-string">'B'</span>, <span class="org-string">'C'</span>, <span class="org-string">'D'</span>, <span class="org-string">'E'</span>, <span class="org-string">'B1'</span>, <span class="org-string">'B2'</span>, <span class="org-string">'B3'</span>, <span class="org-string">'B4'</span>]]
+<span class="linenr">30: </span><span class="org-builtin">print</span>(done4.columns.values)
+<span class="linenr">31: </span><span class="org-variable-name">done4</span>[<span class="org-string">'ALL'</span>] <span class="org-operator">=</span> done4.<span class="org-builtin">sum</span>(axis<span class="org-operator">=</span>1)
+<span class="linenr">32: </span><span class="org-builtin">print</span>(done4)
+<span class="linenr">33: </span>done4.to_csv(<span class="org-string">"~/Downloads/TNFSH_109&#19978;&#23416;&#26399;&#26399;&#20013;&#32771;_104.csv"</span>)
 <span class="linenr">34: </span>
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org10d7e19" class="outline-2">
-<h2 id="org10d7e19"><span class="section-number-2">2.</span> 統計錄影時間</h2>
+<div id="outline-container-org7fe17b0" class="outline-2">
+<h2 id="org7fe17b0"><span class="section-number-2">2.</span> 統計錄影時間</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>from os import listdir
-<span class="linenr"> 2: </span>from os.path import join
-<span class="linenr"> 3: </span># 註：MoviePy 2.x 已移除 moviepy.editor 模組，改為直接從 moviepy 匯入
-<span class="linenr"> 4: </span>from moviepy import VideoFileClip
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">from</span> os <span class="org-keyword">import</span> listdir
+<span class="linenr"> 2: </span><span class="org-keyword">from</span> os.path <span class="org-keyword">import</span> join
+<span class="linenr"> 3: </span><span class="org-comment-delimiter"># </span><span class="org-comment">&#35387;&#65306;MoviePy 2.x &#24050;&#31227;&#38500; moviepy.editor &#27169;&#32068;&#65292;&#25913;&#28858;&#30452;&#25509;&#24478; moviepy &#21295;&#20837;
+<span class="linenr"> 4: </span></span><span class="org-keyword">from</span> moviepy <span class="org-keyword">import</span> VideoFileClip
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span>def caltime(path):
-<span class="linenr"> 7: </span>    files = listdir(path)
+<span class="linenr"> 6: </span><span class="org-keyword">def</span> <span class="org-function-name">caltime</span>(path):
+<span class="linenr"> 7: </span>    <span class="org-variable-name">files</span> <span class="org-operator">=</span> listdir(path)
 <span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span>    tot = 0
-<span class="linenr">10: </span>    for f in files:
-<span class="linenr">11: </span>        if f.endswith("mp4"):
-<span class="linenr">12: </span>           fullpath = join(path, f)
-<span class="linenr">13: </span>           clip = VideoFileClip(fullpath)
-<span class="linenr">14: </span>           tot += clip.duration
-<span class="linenr">15: </span>           print(clip.duration/60,": ", fullpath)  # 秒數換算為分鐘
-<span class="linenr">16: </span>    return tot/3600
+<span class="linenr"> 9: </span>    <span class="org-variable-name">tot</span> <span class="org-operator">=</span> 0
+<span class="linenr">10: </span>    <span class="org-keyword">for</span> f <span class="org-keyword">in</span> files:
+<span class="linenr">11: </span>        <span class="org-keyword">if</span> f.endswith(<span class="org-string">"mp4"</span>):
+<span class="linenr">12: </span>           <span class="org-variable-name">fullpath</span> <span class="org-operator">=</span> join(path, f)
+<span class="linenr">13: </span>           <span class="org-variable-name">clip</span> <span class="org-operator">=</span> VideoFileClip(fullpath)
+<span class="linenr">14: </span>           <span class="org-variable-name">tot</span> <span class="org-operator">+=</span> clip.duration
+<span class="linenr">15: </span>           <span class="org-builtin">print</span>(clip.duration<span class="org-operator">/</span>60,<span class="org-string">": "</span>, fullpath)  <span class="org-comment-delimiter"># </span><span class="org-comment">&#31186;&#25976;&#25563;&#31639;&#28858;&#20998;&#37912;
+<span class="linenr">16: </span></span>    <span class="org-keyword">return</span> tot<span class="org-operator">/</span>3600
 <span class="linenr">17: </span>
-<span class="linenr">18: </span>path = "/Users/letranger/Desktop/研習/入門"
-<span class="linenr">19: </span>print("入門: %.2f小時" %(caltime(path)))
-<span class="linenr">20: </span>path = "/Users/letranger/Desktop/研習/進階"
-<span class="linenr">21: </span>print("進階: %.2f小時" %(caltime(path)))
+<span class="linenr">18: </span><span class="org-variable-name">path</span> <span class="org-operator">=</span> <span class="org-string">"/Users/letranger/Desktop/&#30740;&#32722;/&#20837;&#38272;"</span>
+<span class="linenr">19: </span><span class="org-builtin">print</span>(<span class="org-string">"&#20837;&#38272;: %.2f&#23567;&#26178;"</span> <span class="org-operator">%</span>(caltime(path)))
+<span class="linenr">20: </span><span class="org-variable-name">path</span> <span class="org-operator">=</span> <span class="org-string">"/Users/letranger/Desktop/&#30740;&#32722;/&#36914;&#38542;"</span>
+<span class="linenr">21: </span><span class="org-builtin">print</span>(<span class="org-string">"&#36914;&#38542;: %.2f&#23567;&#26178;"</span> <span class="org-operator">%</span>(caltime(path)))
 <span class="linenr">22: </span>
 <span class="linenr">23: </span>
 </pre>
@@ -297,7 +297,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>
-<p class="date">Created: 2026-09-01 二 10:12</p>
+<p class="date">Created: 2026-09-01 二 20:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

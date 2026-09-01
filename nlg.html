@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-01 二 10:12 -->
+<!-- 2026-09-01 二 20:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>NLG</title>
@@ -206,13 +206,13 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org22f0b8b">1. webs</a></li>
+<li><a href="#org3b60b0c">1. webs</a></li>
 </ul>
 </div>
 </div>
 <a href="https://hits.sh/letranger.github.io/PythonCourse/nlg.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/nlg.html.svg"/></a>
-<div id="outline-container-org22f0b8b" class="outline-2">
-<h2 id="org22f0b8b"><span class="section-number-2">1.</span> webs</h2>
+<div id="outline-container-org3b60b0c" class="outline-2">
+<h2 id="org3b60b0c"><span class="section-number-2">1.</span> webs</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
 <li><a href="https://www.analyticsvidhya.com/blog/2019/07/openai-gpt2-text-generator-python/">OpenAI’s GPT-2: A Simple Guide to Build the World’s Most Advanced Text Generator in Python</a><br /></li>
@@ -223,14 +223,14 @@
 <li>Build a model to predicting the next words: <a href="https://towardsdatascience.com/how-our-device-thinks-e1f5ab15071e">Natural Language Generation using Sequence Models</a><br /></li>
 </ul>
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr">1: </span>from nltk.parse.generate import generate, demo_grammar
-<span class="linenr">2: </span>from nltk import CFG
-<span class="linenr">3: </span>grammar = CFG.fromstring(demo_grammar)
-<span class="linenr">4: </span>print(grammar)
+<pre class="src src-python"><span class="linenr">1: </span><span class="org-keyword">from</span> nltk.parse.generate <span class="org-keyword">import</span> generate, demo_grammar
+<span class="linenr">2: </span><span class="org-keyword">from</span> nltk <span class="org-keyword">import</span> CFG
+<span class="linenr">3: </span><span class="org-variable-name">grammar</span> <span class="org-operator">=</span> CFG.fromstring(demo_grammar)
+<span class="linenr">4: </span><span class="org-builtin">print</span>(grammar)
 </pre>
 </div>
 
-<pre class="example" id="orgbc3d760">
+<pre class="example" id="org0e79972">
 Grammar with 13 productions (start state = S)
     S -&gt; NP VP
     NP -&gt; Det N
@@ -253,35 +253,35 @@ Grammar with 13 productions (start state = S)
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>import keras
-<span class="linenr"> 2: </span>from keras.layers import TextVectorization
-<span class="linenr"> 3: </span>from keras.utils import pad_sequences, to_categorical
-<span class="linenr"> 4: </span>import numpy as np
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">import</span> keras
+<span class="linenr"> 2: </span><span class="org-keyword">from</span> keras.layers <span class="org-keyword">import</span> TextVectorization
+<span class="linenr"> 3: </span><span class="org-keyword">from</span> keras.utils <span class="org-keyword">import</span> pad_sequences, to_categorical
+<span class="linenr"> 4: </span><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
 <span class="linenr"> 5: </span>
-<span class="linenr"> 6: </span>sentence = "AI is the new electrcity \n AI is my power"
-<span class="linenr"> 7: </span>corpus = sentence.lower().split("\n") #converting the sentence to lowercase
-<span class="linenr"> 8: </span>
-<span class="linenr"> 9: </span># 用 TextVectorization 建立詞彙表（取代 Keras 3 移除的 Tokenizer）
-<span class="linenr">10: </span>vectorizer = TextVectorization()
-<span class="linenr">11: </span>vectorizer.adapt(corpus) #creates tokens for each words
-<span class="linenr">12: </span>total_words = vectorizer.vocabulary_size() #calculating total number of words in the initial sentence
-<span class="linenr">13: </span>
-<span class="linenr">14: </span>input_sequences = [] #training features (x) will be a list
-<span class="linenr">15: </span>
-<span class="linenr">16: </span>for line in corpus:
-<span class="linenr">17: </span>        token_list = [int(t) for t in vectorizer([line]).numpy()[0] if t != 0] #converts each sentence as its tokenized equivalent
-<span class="linenr">18: </span>        for i in range(1, len(token_list)):
-<span class="linenr">19: </span>                n_gram_sequence = token_list[:i+1] #generating n gram sequences
-<span class="linenr">20: </span>                input_sequences.append(n_gram_sequence) #appending each n gram sequence to the list of our features (xs)
-<span class="linenr">21: </span>
-<span class="linenr">22: </span>max_sequence_len = max([len(x) for x in input_sequences]) #calculating the length of the longest sequence
-<span class="linenr">23: </span>input_sequences = np.array(pad_sequences(input_sequences, maxlen=max_sequence_len, padding='pre')) #pre-pading each value of the input_sequence
-<span class="linenr">24: </span>xs, labels = input_sequences[:,:-1],input_sequences[:,-1] #creating xs and their labels using numpy slicing
-<span class="linenr">25: </span>ys = to_categorical(labels, num_classes=total_words) #creating one hot encoding values
-<span class="linenr">26: </span>
-<span class="linenr">27: </span>print("詞彙量:", total_words)
-<span class="linenr">28: </span>print("訓練特徵 xs 形狀:", xs.shape)
-<span class="linenr">29: </span>print("one-hot 標籤 ys 形狀:", ys.shape)
+<span class="linenr"> 6: </span><span class="org-variable-name">sentence</span> <span class="org-operator">=</span> <span class="org-string">"AI is the new electrcity </span><span class="org-constant">\n</span><span class="org-string"> AI is my power"</span>
+<span class="linenr"> 7: </span><span class="org-variable-name">corpus</span> <span class="org-operator">=</span> sentence.lower().split(<span class="org-string">"</span><span class="org-constant">\n</span><span class="org-string">"</span>) <span class="org-comment-delimiter">#</span><span class="org-comment">converting the sentence to lowercase
+<span class="linenr"> 8: </span></span>
+<span class="linenr"> 9: </span><span class="org-comment-delimiter"># </span><span class="org-comment">&#29992; TextVectorization &#24314;&#31435;&#35422;&#24409;&#34920;&#65288;&#21462;&#20195; Keras 3 &#31227;&#38500;&#30340; Tokenizer&#65289;
+<span class="linenr">10: </span></span><span class="org-variable-name">vectorizer</span> <span class="org-operator">=</span> TextVectorization()
+<span class="linenr">11: </span>vectorizer.adapt(corpus) <span class="org-comment-delimiter">#</span><span class="org-comment">creates tokens for each words
+<span class="linenr">12: </span></span><span class="org-variable-name">total_words</span> <span class="org-operator">=</span> vectorizer.vocabulary_size() <span class="org-comment-delimiter">#</span><span class="org-comment">calculating total number of words in the initial sentence
+<span class="linenr">13: </span></span>
+<span class="linenr">14: </span><span class="org-variable-name">input_sequences</span> <span class="org-operator">=</span> [] <span class="org-comment-delimiter">#</span><span class="org-comment">training features (x) will be a list
+<span class="linenr">15: </span></span>
+<span class="linenr">16: </span><span class="org-keyword">for</span> line <span class="org-keyword">in</span> corpus:
+<span class="linenr">17: </span>        <span class="org-variable-name">token_list</span> <span class="org-operator">=</span> [<span class="org-builtin">int</span>(t) <span class="org-keyword">for</span> t <span class="org-keyword">in</span> vectorizer([line]).numpy()[0] <span class="org-keyword">if</span> t <span class="org-operator">!=</span> 0] <span class="org-comment-delimiter">#</span><span class="org-comment">converts each sentence as its tokenized equivalent
+<span class="linenr">18: </span></span>        <span class="org-keyword">for</span> i <span class="org-keyword">in</span> <span class="org-builtin">range</span>(1, <span class="org-builtin">len</span>(token_list)):
+<span class="linenr">19: </span>                <span class="org-variable-name">n_gram_sequence</span> <span class="org-operator">=</span> token_list[:i<span class="org-operator">+</span>1] <span class="org-comment-delimiter">#</span><span class="org-comment">generating n gram sequences
+<span class="linenr">20: </span></span>                input_sequences.append(n_gram_sequence) <span class="org-comment-delimiter">#</span><span class="org-comment">appending each n gram sequence to the list of our features (xs)
+<span class="linenr">21: </span></span>
+<span class="linenr">22: </span><span class="org-variable-name">max_sequence_len</span> <span class="org-operator">=</span> <span class="org-builtin">max</span>([<span class="org-builtin">len</span>(x) <span class="org-keyword">for</span> x <span class="org-keyword">in</span> input_sequences]) <span class="org-comment-delimiter">#</span><span class="org-comment">calculating the length of the longest sequence
+<span class="linenr">23: </span></span><span class="org-variable-name">input_sequences</span> <span class="org-operator">=</span> np.array(pad_sequences(input_sequences, maxlen<span class="org-operator">=</span>max_sequence_len, padding<span class="org-operator">=</span><span class="org-string">'pre'</span>)) <span class="org-comment-delimiter">#</span><span class="org-comment">pre-pading each value of the input_sequence
+<span class="linenr">24: </span></span><span class="org-variable-name">xs</span>, <span class="org-variable-name">labels</span> <span class="org-operator">=</span> input_sequences[:,:<span class="org-operator">-</span>1],input_sequences[:,<span class="org-operator">-</span>1] <span class="org-comment-delimiter">#</span><span class="org-comment">creating xs and their labels using numpy slicing
+<span class="linenr">25: </span></span><span class="org-variable-name">ys</span> <span class="org-operator">=</span> to_categorical(labels, num_classes<span class="org-operator">=</span>total_words) <span class="org-comment-delimiter">#</span><span class="org-comment">creating one hot encoding values
+<span class="linenr">26: </span></span>
+<span class="linenr">27: </span><span class="org-builtin">print</span>(<span class="org-string">"&#35422;&#24409;&#37327;:"</span>, total_words)
+<span class="linenr">28: </span><span class="org-builtin">print</span>(<span class="org-string">"&#35347;&#32244;&#29305;&#24501; xs &#24418;&#29376;:"</span>, xs.shape)
+<span class="linenr">29: </span><span class="org-builtin">print</span>(<span class="org-string">"one-hot &#27161;&#31844; ys &#24418;&#29376;:"</span>, ys.shape)
 </pre>
 </div>
 </div>
@@ -289,7 +289,7 @@ Grammar with 13 productions (start state = S)
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>
-<p class="date">Created: 2026-09-01 二 10:12</p>
+<p class="date">Created: 2026-09-01 二 20:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

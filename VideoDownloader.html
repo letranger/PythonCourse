@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-01 二 10:11 -->
+<!-- 2026-09-01 二 20:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Video Downloader</title>
@@ -206,10 +206,10 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org57a7fce">1. 安裝套件</a></li>
-<li><a href="#org7fe06c0">2. 下載單支影片（mp4）</a></li>
-<li><a href="#org2a0c997">3. 下載單支影片並轉成 mp3</a></li>
-<li><a href="#org39615e6">4. 下載整個播放清單</a></li>
+<li><a href="#orgb8b2e4d">1. 安裝套件</a></li>
+<li><a href="#org740aea5">2. 下載單支影片（mp4）</a></li>
+<li><a href="#org8294355">3. 下載單支影片並轉成 mp3</a></li>
+<li><a href="#org1ff3b1f">4. 下載整個播放清單</a></li>
 </ul>
 </div>
 </div>
@@ -218,8 +218,8 @@
 <p>
 註：pytube 已停止維護、目前無法正常下載 YouTube 影片，現行方案為 yt-dlp。本篇範例已全面改用 yt-dlp 改寫。<br />
 </p>
-<div id="outline-container-org57a7fce" class="outline-2">
-<h2 id="org57a7fce"><span class="section-number-2">1.</span> 安裝套件</h2>
+<div id="outline-container-orgb8b2e4d" class="outline-2">
+<h2 id="orgb8b2e4d"><span class="section-number-2">1.</span> 安裝套件</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 安裝 yt-dlp（若要轉出 mp3，系統另需安裝 ffmpeg）：<br />
@@ -230,94 +230,94 @@
 </div>
 </div>
 </div>
-<div id="outline-container-org7fe06c0" class="outline-2">
-<h2 id="org7fe06c0"><span class="section-number-2">2.</span> 下載單支影片（mp4）</h2>
+<div id="outline-container-org740aea5" class="outline-2">
+<h2 id="org740aea5"><span class="section-number-2">2.</span> 下載單支影片（mp4）</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 以 <code>yt_dlp.YoutubeDL(opts)</code> 建立下載器，呼叫 <code>download()</code> 才會真正開始下載。<br />
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>import yt_dlp
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">import</span> yt_dlp
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span>url = 'https://www.youtube.com/watch?v=影片ID'  # 換成想下載的影片網址
-<span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span>opts = {
-<span class="linenr"> 6: </span>    'format': 'mp4',                # 下載 mp4 格式
-<span class="linenr"> 7: </span>    'outtmpl': '%(title)s.%(ext)s', # 以影片標題命名輸出檔
-<span class="linenr"> 8: </span>}
+<span class="linenr"> 3: </span><span class="org-variable-name">url</span> <span class="org-operator">=</span> <span class="org-string">'https://www.youtube.com/watch?v=&#24433;&#29255;ID'</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">&#25563;&#25104;&#24819;&#19979;&#36617;&#30340;&#24433;&#29255;&#32178;&#22336;
+<span class="linenr"> 4: </span></span>
+<span class="linenr"> 5: </span><span class="org-variable-name">opts</span> <span class="org-operator">=</span> {
+<span class="linenr"> 6: </span>    <span class="org-string">'format'</span>: <span class="org-string">'mp4'</span>,                <span class="org-comment-delimiter"># </span><span class="org-comment">&#19979;&#36617; mp4 &#26684;&#24335;
+<span class="linenr"> 7: </span></span>    <span class="org-string">'outtmpl'</span>: <span class="org-string">'%(title)s.%(ext)s'</span>, <span class="org-comment-delimiter"># </span><span class="org-comment">&#20197;&#24433;&#29255;&#27161;&#38988;&#21629;&#21517;&#36664;&#20986;&#27284;
+<span class="linenr"> 8: </span></span>}
 <span class="linenr"> 9: </span>
-<span class="linenr">10: </span>try:
-<span class="linenr">11: </span>    with yt_dlp.YoutubeDL(opts) as ydl:
-<span class="linenr">12: </span>        ydl.download([url])         # 一定要呼叫 download() 才會下載
-<span class="linenr">13: </span>    print('下載完成')
-<span class="linenr">14: </span>except Exception as e:              # 印出例外內容，方便除錯
-<span class="linenr">15: </span>    print('下載失敗:', e)
+<span class="linenr">10: </span><span class="org-keyword">try</span>:
+<span class="linenr">11: </span>    <span class="org-keyword">with</span> yt_dlp.YoutubeDL(opts) <span class="org-keyword">as</span> ydl:
+<span class="linenr">12: </span>        ydl.download([url])         <span class="org-comment-delimiter"># </span><span class="org-comment">&#19968;&#23450;&#35201;&#21628;&#21483; download() &#25165;&#26371;&#19979;&#36617;
+<span class="linenr">13: </span></span>    <span class="org-builtin">print</span>(<span class="org-string">'&#19979;&#36617;&#23436;&#25104;'</span>)
+<span class="linenr">14: </span><span class="org-keyword">except</span> <span class="org-type">Exception</span> <span class="org-keyword">as</span> e:              <span class="org-comment-delimiter"># </span><span class="org-comment">&#21360;&#20986;&#20363;&#22806;&#20839;&#23481;&#65292;&#26041;&#20415;&#38500;&#37679;
+<span class="linenr">15: </span></span>    <span class="org-builtin">print</span>(<span class="org-string">'&#19979;&#36617;&#22833;&#25943;:'</span>, e)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org2a0c997" class="outline-2">
-<h2 id="org2a0c997"><span class="section-number-2">3.</span> 下載單支影片並轉成 mp3</h2>
+<div id="outline-container-org8294355" class="outline-2">
+<h2 id="org8294355"><span class="section-number-2">3.</span> 下載單支影片並轉成 mp3</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 註：舊版教材以 moviepy 將 mp4 轉為 mp3；且 <code>from moviepy.editor import ...</code> 這種寫法在 MoviePy 2.x 已移除（新寫法為 =from moviepy import VideoFileClip=）。不過 yt-dlp 內建 postprocessor 可直接透過 ffmpeg 抽出音訊，因此這裡採用更簡潔的做法，不再依賴 moviepy。<br />
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>import yt_dlp
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">import</span> yt_dlp
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span>url = 'https://www.youtube.com/watch?v=影片ID'  # 換成想下載的影片網址
-<span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span>opts = {
-<span class="linenr"> 6: </span>    'format': 'bestaudio/best',       # 只抓最佳音訊
-<span class="linenr"> 7: </span>    'outtmpl': '%(title)s.%(ext)s',
-<span class="linenr"> 8: </span>    'postprocessors': [{              # 下載完自動用 ffmpeg 轉 mp3
-<span class="linenr"> 9: </span>        'key': 'FFmpegExtractAudio',
-<span class="linenr">10: </span>        'preferredcodec': 'mp3',
-<span class="linenr">11: </span>        'preferredquality': '192',
+<span class="linenr"> 3: </span><span class="org-variable-name">url</span> <span class="org-operator">=</span> <span class="org-string">'https://www.youtube.com/watch?v=&#24433;&#29255;ID'</span>  <span class="org-comment-delimiter"># </span><span class="org-comment">&#25563;&#25104;&#24819;&#19979;&#36617;&#30340;&#24433;&#29255;&#32178;&#22336;
+<span class="linenr"> 4: </span></span>
+<span class="linenr"> 5: </span><span class="org-variable-name">opts</span> <span class="org-operator">=</span> {
+<span class="linenr"> 6: </span>    <span class="org-string">'format'</span>: <span class="org-string">'bestaudio/best'</span>,       <span class="org-comment-delimiter"># </span><span class="org-comment">&#21482;&#25235;&#26368;&#20339;&#38899;&#35338;
+<span class="linenr"> 7: </span></span>    <span class="org-string">'outtmpl'</span>: <span class="org-string">'%(title)s.%(ext)s'</span>,
+<span class="linenr"> 8: </span>    <span class="org-string">'postprocessors'</span>: [{              <span class="org-comment-delimiter"># </span><span class="org-comment">&#19979;&#36617;&#23436;&#33258;&#21205;&#29992; ffmpeg &#36681; mp3
+<span class="linenr"> 9: </span></span>        <span class="org-string">'key'</span>: <span class="org-string">'FFmpegExtractAudio'</span>,
+<span class="linenr">10: </span>        <span class="org-string">'preferredcodec'</span>: <span class="org-string">'mp3'</span>,
+<span class="linenr">11: </span>        <span class="org-string">'preferredquality'</span>: <span class="org-string">'192'</span>,
 <span class="linenr">12: </span>    }],
 <span class="linenr">13: </span>}
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>try:
-<span class="linenr">16: </span>    with yt_dlp.YoutubeDL(opts) as ydl:
+<span class="linenr">15: </span><span class="org-keyword">try</span>:
+<span class="linenr">16: </span>    <span class="org-keyword">with</span> yt_dlp.YoutubeDL(opts) <span class="org-keyword">as</span> ydl:
 <span class="linenr">17: </span>        ydl.download([url])
-<span class="linenr">18: </span>    print('下載並轉檔完成')
-<span class="linenr">19: </span>except Exception as e:
-<span class="linenr">20: </span>    print('下載失敗:', e)
+<span class="linenr">18: </span>    <span class="org-builtin">print</span>(<span class="org-string">'&#19979;&#36617;&#20006;&#36681;&#27284;&#23436;&#25104;'</span>)
+<span class="linenr">19: </span><span class="org-keyword">except</span> <span class="org-type">Exception</span> <span class="org-keyword">as</span> e:
+<span class="linenr">20: </span>    <span class="org-builtin">print</span>(<span class="org-string">'&#19979;&#36617;&#22833;&#25943;:'</span>, e)
 </pre>
 </div>
 </div>
 </div>
-<div id="outline-container-org39615e6" class="outline-2">
-<h2 id="org39615e6"><span class="section-number-2">4.</span> 下載整個播放清單</h2>
+<div id="outline-container-org1ff3b1f" class="outline-2">
+<h2 id="org1ff3b1f"><span class="section-number-2">4.</span> 下載整個播放清單</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 yt-dlp 直接支援播放清單網址，不需再透過 YouTube API 逐一取得影片 ID。<br />
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>import yt_dlp
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">import</span> yt_dlp
 <span class="linenr"> 2: </span>
-<span class="linenr"> 3: </span>playlist_url = 'https://www.youtube.com/playlist?list=播放清單ID'
+<span class="linenr"> 3: </span><span class="org-variable-name">playlist_url</span> <span class="org-operator">=</span> <span class="org-string">'https://www.youtube.com/playlist?list=&#25773;&#25918;&#28165;&#21934;ID'</span>
 <span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span>opts = {
-<span class="linenr"> 6: </span>    'format': 'bestaudio/best',
-<span class="linenr"> 7: </span>    'outtmpl': '%(playlist_index)s-%(title)s.%(ext)s',
-<span class="linenr"> 8: </span>    'ignoreerrors': True,             # 清單中個別影片失敗時繼續下載其他影片
-<span class="linenr"> 9: </span>    'postprocessors': [{
-<span class="linenr">10: </span>        'key': 'FFmpegExtractAudio',
-<span class="linenr">11: </span>        'preferredcodec': 'mp3',
-<span class="linenr">12: </span>        'preferredquality': '192',
+<span class="linenr"> 5: </span><span class="org-variable-name">opts</span> <span class="org-operator">=</span> {
+<span class="linenr"> 6: </span>    <span class="org-string">'format'</span>: <span class="org-string">'bestaudio/best'</span>,
+<span class="linenr"> 7: </span>    <span class="org-string">'outtmpl'</span>: <span class="org-string">'%(playlist_index)s-%(title)s.%(ext)s'</span>,
+<span class="linenr"> 8: </span>    <span class="org-string">'ignoreerrors'</span>: <span class="org-constant">True</span>,             <span class="org-comment-delimiter"># </span><span class="org-comment">&#28165;&#21934;&#20013;&#20491;&#21029;&#24433;&#29255;&#22833;&#25943;&#26178;&#32380;&#32396;&#19979;&#36617;&#20854;&#20182;&#24433;&#29255;
+<span class="linenr"> 9: </span></span>    <span class="org-string">'postprocessors'</span>: [{
+<span class="linenr">10: </span>        <span class="org-string">'key'</span>: <span class="org-string">'FFmpegExtractAudio'</span>,
+<span class="linenr">11: </span>        <span class="org-string">'preferredcodec'</span>: <span class="org-string">'mp3'</span>,
+<span class="linenr">12: </span>        <span class="org-string">'preferredquality'</span>: <span class="org-string">'192'</span>,
 <span class="linenr">13: </span>    }],
 <span class="linenr">14: </span>}
 <span class="linenr">15: </span>
-<span class="linenr">16: </span>try:
-<span class="linenr">17: </span>    with yt_dlp.YoutubeDL(opts) as ydl:
+<span class="linenr">16: </span><span class="org-keyword">try</span>:
+<span class="linenr">17: </span>    <span class="org-keyword">with</span> yt_dlp.YoutubeDL(opts) <span class="org-keyword">as</span> ydl:
 <span class="linenr">18: </span>        ydl.download([playlist_url])
-<span class="linenr">19: </span>    print('播放清單下載完成')
-<span class="linenr">20: </span>except Exception as e:
-<span class="linenr">21: </span>    print('下載失敗:', e)
+<span class="linenr">19: </span>    <span class="org-builtin">print</span>(<span class="org-string">'&#25773;&#25918;&#28165;&#21934;&#19979;&#36617;&#23436;&#25104;'</span>)
+<span class="linenr">20: </span><span class="org-keyword">except</span> <span class="org-type">Exception</span> <span class="org-keyword">as</span> e:
+<span class="linenr">21: </span>    <span class="org-builtin">print</span>(<span class="org-string">'&#19979;&#36617;&#22833;&#25943;:'</span>, e)
 </pre>
 </div>
 </div>
@@ -325,7 +325,7 @@ yt-dlp 直接支援播放清單網址，不需再透過 YouTube API 逐一取得
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>
-<p class="date">Created: 2026-09-01 二 10:11</p>
+<p class="date">Created: 2026-09-01 二 20:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

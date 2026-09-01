@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-01 二 10:12 -->
+<!-- 2026-09-01 二 20:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Get Paged Info</title>
@@ -209,30 +209,30 @@
 </p>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>import sys
-<span class="linenr"> 2: </span>import urllib3
-<span class="linenr"> 3: </span>import time
-<span class="linenr"> 4: </span>from bs4 import BeautifulSoup
-<span class="linenr"> 5: </span>from selenium import webdriver
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">import</span> sys
+<span class="linenr"> 2: </span><span class="org-keyword">import</span> urllib3
+<span class="linenr"> 3: </span><span class="org-keyword">import</span> time
+<span class="linenr"> 4: </span><span class="org-keyword">from</span> bs4 <span class="org-keyword">import</span> BeautifulSoup
+<span class="linenr"> 5: </span><span class="org-keyword">from</span> selenium <span class="org-keyword">import</span> webdriver
 <span class="linenr"> 6: </span>
-<span class="linenr"> 7: </span>def substring(whole, sub1, sub2):
-<span class="linenr"> 8: </span>    return whole[whole.index(sub1)+len(sub1) : whole.index(sub2)]
+<span class="linenr"> 7: </span><span class="org-keyword">def</span> <span class="org-function-name">substring</span>(whole, sub1, sub2):
+<span class="linenr"> 8: </span>    <span class="org-keyword">return</span> whole[whole.index(sub1)<span class="org-operator">+</span><span class="org-builtin">len</span>(sub1) : whole.index(sub2)]
 <span class="linenr"> 9: </span>
-<span class="linenr">10: </span>url = 'https://university.1111.com.tw/univ_depsearchsub.aspx?mgno=1&amp;fno=2&amp;agent=out_careerdata_university'
+<span class="linenr">10: </span><span class="org-variable-name">url</span> <span class="org-operator">=</span> <span class="org-string">'https://university.1111.com.tw/univ_depsearchsub.aspx?mgno=1&amp;fno=2&amp;agent=out_careerdata_university'</span>
 <span class="linenr">11: </span>
-<span class="linenr">12: </span>driver = webdriver.Chrome()  # Selenium Manager 會自動管理 chromedriver
-<span class="linenr">13: </span>driver.get(url)
+<span class="linenr">12: </span><span class="org-variable-name">driver</span> <span class="org-operator">=</span> webdriver.Chrome()  <span class="org-comment-delimiter"># </span><span class="org-comment">Selenium Manager &#26371;&#33258;&#21205;&#31649;&#29702; chromedriver
+<span class="linenr">13: </span></span>driver.get(url)
 <span class="linenr">14: </span>
-<span class="linenr">15: </span>soup = BeautifulSoup(driver.page_source, "lxml")
+<span class="linenr">15: </span><span class="org-variable-name">soup</span> <span class="org-operator">=</span> BeautifulSoup(driver.page_source, <span class="org-string">"lxml"</span>)
 <span class="linenr">16: </span>
-<span class="linenr">17: </span>schools = list(soup.find_all("span", id=lambda value: value and value.startswith("main_lvCollegeMajor")))
+<span class="linenr">17: </span><span class="org-variable-name">schools</span> <span class="org-operator">=</span> <span class="org-builtin">list</span>(soup.find_all(<span class="org-string">"span"</span>, <span class="org-builtin">id</span><span class="org-operator">=</span><span class="org-keyword">lambda</span> value: value <span class="org-keyword">and</span> value.startswith(<span class="org-string">"main_lvCollegeMajor"</span>)))
 <span class="linenr">18: </span>
-<span class="linenr">19: </span>print(schools)
-<span class="linenr">20: </span>i = 0
-<span class="linenr">21: </span>for school in schools:
-<span class="linenr">22: </span>    i += 1
-<span class="linenr">23: </span>    print(i, end=": ")
-<span class="linenr">24: </span>    print(substring(str(school), "&lt;/i&gt;", "&lt;/a&gt;"))
+<span class="linenr">19: </span><span class="org-builtin">print</span>(schools)
+<span class="linenr">20: </span><span class="org-variable-name">i</span> <span class="org-operator">=</span> 0
+<span class="linenr">21: </span><span class="org-keyword">for</span> school <span class="org-keyword">in</span> schools:
+<span class="linenr">22: </span>    <span class="org-variable-name">i</span> <span class="org-operator">+=</span> 1
+<span class="linenr">23: </span>    <span class="org-builtin">print</span>(i, end<span class="org-operator">=</span><span class="org-string">": "</span>)
+<span class="linenr">24: </span>    <span class="org-builtin">print</span>(substring(<span class="org-builtin">str</span>(school), <span class="org-string">"&lt;/i&gt;"</span>, <span class="org-string">"&lt;/a&gt;"</span>))
 </pre>
 </div>
 
@@ -247,7 +247,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>
-<p class="date">Created: 2026-09-01 二 10:12</p>
+<p class="date">Created: 2026-09-01 二 20:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

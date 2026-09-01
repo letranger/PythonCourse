@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2026-09-01 二 10:12 -->
+<!-- 2026-09-01 二 20:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Find Image</title>
@@ -205,23 +205,23 @@
 <a href="https://hits.sh/letranger.github.io/PythonCourse/findImage.html/"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/findImage.html.svg"/></a>
 
 <div class="org-src-container">
-<pre class="src src-python"><span class="linenr"> 1: </span>import requests
-<span class="linenr"> 2: </span>from bs4 import BeautifulSoup
+<pre class="src src-python"><span class="linenr"> 1: </span><span class="org-keyword">import</span> requests
+<span class="linenr"> 2: </span><span class="org-keyword">from</span> bs4 <span class="org-keyword">import</span> BeautifulSoup
 <span class="linenr"> 3: </span>
-<span class="linenr"> 4: </span>url = 'https://moodle.tnfsh.tn.edu.tw/index.php'
-<span class="linenr"> 5: </span>response = requests.get(url)
-<span class="linenr"> 6: </span>#soup = BeautifulSoup(response.text, 'html')
-<span class="linenr"> 7: </span>
-<span class="linenr"> 8: </span>soup = BeautifulSoup(response.text, 'html.parser')
-<span class="linenr"> 9: </span>imagesElements = soup.find_all('img')
+<span class="linenr"> 4: </span><span class="org-variable-name">url</span> <span class="org-operator">=</span> <span class="org-string">'https://moodle.tnfsh.tn.edu.tw/index.php'</span>
+<span class="linenr"> 5: </span><span class="org-variable-name">response</span> <span class="org-operator">=</span> requests.get(url)
+<span class="linenr"> 6: </span><span class="org-comment-delimiter">#</span><span class="org-comment">soup = BeautifulSoup(response.text, 'html')
+<span class="linenr"> 7: </span></span>
+<span class="linenr"> 8: </span><span class="org-variable-name">soup</span> <span class="org-operator">=</span> BeautifulSoup(response.text, <span class="org-string">'html.parser'</span>)
+<span class="linenr"> 9: </span><span class="org-variable-name">imagesElements</span> <span class="org-operator">=</span> soup.find_all(<span class="org-string">'img'</span>)
 <span class="linenr">10: </span>
-<span class="linenr">11: </span>for x in imagesElements:
-<span class="linenr">12: </span>    print(x)
+<span class="linenr">11: </span><span class="org-keyword">for</span> x <span class="org-keyword">in</span> imagesElements:
+<span class="linenr">12: </span>    <span class="org-builtin">print</span>(x)
 <span class="linenr">13: </span>
 </pre>
 </div>
 
-<pre class="example" id="org2226362">
+<pre class="example" id="orgc91e589">
 &lt;img alt="" id="logo" src="//moodle.tnfsh.tn.edu.tw/pluginfile.php/1/theme_adaptable/logo/1624531833/%E7%B7%9A%E4%B8%8A%E5%85%8D%E8%B2%BB%E8%A3%BD%E4%BD%9CLogo%EF%BC%8C%E5%AE%9A%E5%88%B6%E5%B0%88%E5%B1%AC%E6%96%BC%E4%BD%A0%E7%9A%84Logo%E8%A8%AD%E8%A8%88_%E2%80%93_DesignEvo.jpg"/&gt;
 &lt;img alt=" " class="iconlarge activityicon" role="presentation" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon"/&gt;
 &lt;img alt=" " class="iconlarge activityicon" role="presentation" src="https://moodle.tnfsh.tn.edu.tw/theme/image.php/adaptable/url/1624531833/icon"/&gt;
@@ -240,7 +240,7 @@
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Yung Chin</p>
-<p class="date">Created: 2026-09-01 二 10:12</p>
+<p class="date">Created: 2026-09-01 二 20:01</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
