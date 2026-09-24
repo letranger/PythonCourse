@@ -1,5 +1,6 @@
 #+Title: Basic Materials of Python
-#+SUBTITLE: TNFSH Python教材
+#+AUTHOR: 顏永進
+#+SUBTITLE: TNFSH Python教材 / 顏永進
 # -*- org-confirm-babel-evaluate: nil -*-
 
 #+INCLUDE: ../pdf.org
@@ -1471,7 +1472,26 @@ print(sch[:])
 : na First Senior High School
 : Tainan First Senior High School
 
-也可再加入另一個 increment，每隔數個字元取一個，語法為:
+*** 關於 字串[:]
+既然start和end都可以省略，那麼，如果兩個一起省略呢？像 =[:] =
+
+我們可以做個實驗：
+#+begin_src python -r -n :results output :exports both
+sch = 'Tainan First Senior High School'
+print(sch[:])
+#+end_src
+
+#+RESULTS:
+: Tainan First Senior High School
+
+欸....這個結果和 sch 本身一樣耶，這是因為 =[:] = 會取得整個字串的切片，等於複製了一份新的字串。
+
+那麼....這和直接print(sch)不是一樣嗎？其實不一樣，因為 sch[:] 會產生一個新的字串物件，而 sch 本身是原本的字串物件。
+
+有關這個差異，我們在後面討論到list時會更清楚地看到。現在，我們先來看看切片的另一個應用。
+
+*** 進階切片
+除了start、end，可再加入另一個 increment，每隔數個字元取一個，語法為:
 #+begin_src python -r -n :results output :exports both :eval no
 字串變數[start:end:increment]: 截取部份字串
 #+end_src
@@ -1484,7 +1504,6 @@ print(sch[1:10:2])
 #+RESULTS:
 : annFr
 
-*** 切片完整語法與負數索引
 切片的完整語法是 =seq[start:stop:step]= ，三個參數都可以省略：
 - start 預設為 0（step 為負時預設為 -1，即最後一個元素）
 - stop 預設為序列長度（step 為負時預設為序列開頭之前）
