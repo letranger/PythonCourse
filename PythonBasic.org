@@ -2412,55 +2412,67 @@ elif text == "I am a coder.":
 :PROPERTIES:
 :CUSTOM_ID: py-while
 :END:
-*** 語法
-基本用法與 C/C++相同
+*** 語法與使用時機
+基本用法與 C/C++相同：
 #+BEGIN_SRC python :exports both
-while (condition):
+while condition:
     statement 1
     ...
 #+END_SRC
-*** 範例
-- 例1：反向輸出一個數字
+只要 condition 成立，就一直重複執行縮排的區塊；condition 不成立時結束迴圈。
+
+那什麼時候用 for、什麼時候用 while？一個簡單的判斷方式：
+- *知道要跑幾次* （例如走訪一個 List、從 1 數到 100）：用 for
+- *不知道要跑幾次，只知道什麼時候該停* （例如使用者輸入正確密碼為止、讀到沒資料為止）：用 while
+
+*** 計數型 while
+先從最簡單的開始：印出 1 到 5。用 for 一行 range 就解決了，用 while 的話，計數這件事要自己來：
 #+BEGIN_SRC python -r -n :results output :exports both
-n = 12345
-while (n > 0):
-    print(n%10)
-    n //= 10
+i = 1            # 1. 設定起始值
+while i <= 5:    # 2. 設定結束條件
+    print(i)
+    i += 1       # 3. 每一圈更新計數變數
 #+END_SRC
 
 #+RESULTS:
-: 5
-: 4
-: 3
-: 2
 : 1
-
-- 例2：找最大公因數
-#+NAME:最大公因數
-#+BEGIN_SRC python -r -n :results output :exports both
-  m, n = 42, 75
-  while (n > 0):
-      m, n = n, m % n
-  print(m)
-#+END_SRC
-
-#+RESULTS:
+: 2
 : 3
-*** 更常見的應用情境：密碼檢查
-登入系統通常會讓使用者反覆輸入密碼，猜對就用 break 跳出迴圈；而如果連續猜錯三次、迴圈是「自然結束」而不是被 break 中斷的，就由 else 來處理鎖定帳號的工作：
+: 4
+: 5
+
+這三件事缺一不可。特別是第 3 步，如果忘了寫 =i += 1= ，i 永遠是 1、條件永遠成立，程式就會 *無限迴圈* 停不下來（這時可以按 Ctrl-C 強制中斷）。這是初學 while 最常犯的錯，之後每寫一個 while 都先問自己：「迴圈裡有沒有讓條件最終會變成 False 的那一行？」
+
+*** 條件型 while：讀到符合條件為止
+while 真正的強項是「不知道要跑幾次」的狀況，最典型的就是讀取使用者輸入。例如登入系統：使用者輸對密碼之前，就一直要他重新輸入：
 #+begin_src python -r -n :results output :exports both
 password = 'tnfsh2026'
-triepass = input('請輸入密碼：')
-while password != triepass:
-    print(f'密碼錯誤')
+guess = input('請輸入密碼：')
+while guess != password:
+    print('密碼錯誤')
     guess = input('請輸入密碼：')
-print('OK....')
+print('登入成功')
+#+end_src
+注意這個結構：進迴圈 *之前* 先讀一次，迴圈裡面讀錯了就 *再讀一次* ，這樣 while 的條件才有東西可以判斷。
+
+同樣的結構也可以用來連續讀入資料，直到讀到某個約定好的結束值（例如 999）為止：
+#+begin_src python -r -n :results output :exports both
+ins = input()
+while ins != '999':
+    print(ins)
+    ins = input()
 #+end_src
 
-*** break / else
-while 迴圈也支援 break 和 else，規則和前面 for 迴圈學到的一樣：break 會立刻跳出迴圈，而 else 只在迴圈「沒有被 break 中斷」時才會執行。
-
-while 迴圈中 break 最常見的用法是搭配 ~while True~ 來做「先做再判斷」的迴圈，這在需要持續讀取使用者輸入時特別好用：
+*** while True + break：先做再判斷
+上面兩個例子都要在迴圈前後各寫一次 input()，有點囉嗦。另一種寫法是讓條件永遠成立（=while True=），然後在迴圈 *裡面* 用 break 決定什麼時候跳出：
+#+begin_src python -r -n :results output :exports both
+while True:
+    ins = input()
+    if ins == '999':
+        break
+    print(ins)
+#+end_src
+break 會立刻跳出迴圈，規則和前面 for 迴圈學到的一樣。這種寫法是「先做再判斷」，和前一節「先判斷再做」剛好相反，input() 只要寫一次。在需要持續讀取使用者輸入的程式裡很常見：
 #+begin_src python -r -n :results output :exports both
 while True:
     print('How is your day?')
@@ -2470,7 +2482,10 @@ while True:
 print('good bye')
 #+end_src
 
-密碼檢查: 登入系統通常會讓使用者反覆輸入密碼，猜對就用 break 跳出迴圈；而如果連續猜錯三次、迴圈是「自然結束」而不是被 break 中斷的，就由 else 來處理鎖定帳號的工作：
+*** while ... else
+while 迴圈也支援 else，規則和 for 一樣：else 只在迴圈「沒有被 break 中斷」、自然結束時才會執行。
+
+把前面的密碼檢查升級一下：最多只能猜三次。猜對就 break 跳出；如果三次都猜錯，迴圈是因為 =tries < 3= 不成立而自然結束的，這時就由 else 來處理鎖定帳號的工作：
 #+begin_src python -r -n :results output :exports both
 password = 'tnfsh2026'
 tries = 0
@@ -2495,21 +2510,6 @@ else:
 錯誤次數過多，帳號已鎖定
 #+end_example
 
-同樣以質數判斷為例，用 while 來寫的話，和前面 for 的寫法有點不同——我們需要自己控制迴圈變數 ~i~ 的遞增：
-#+begin_src python -r -n :results output :exports both
-n = 37
-i = 2
-while i <= n//2:
-    if n % i == 0: #找到因數
-        print('n不是質數')
-        break
-    i += 1 #i的值從2測到n的一半
-else: #如果都沒被break，表示都沒找到因數
-    print('n是質數')
-#+end_src
-
-#+RESULTS:
-: n是質數
 *** 練習: 用 else 取代 flag
 在還沒有 else 可用之前，想知道「迴圈是不是從頭到尾都沒找到」，通常要自己準備一個旗標變數（flag），找到就把它翻成 True，迴圈結束後再檢查它。用 while 迴圈時，除了要維護 flag，還要自己控制索引 ~i~ 的遞增，程式就更囉嗦了：
 **** code 1: 用 flag
@@ -2541,23 +2541,55 @@ else:
     print("Not found!")
 #+end_src
 請試著把 nums 裡的 110 改成 10，分別執行兩段程式，確認兩者的輸出相同。
-*** 連續輸入類型問題
-某些狀況下，我們需要連續讀入資料，直到 *讀到999* 為止......
-**** 方法 1
+
+*** 進階範例
+以下三個範例的 while 結構都和前面一樣，只是多了一點數學，請先想清楚「什麼時候該停」再看程式。
+**** 例1：反向輸出一個數字
+每次取最後一位數（=n % 10=）印出來，然後把它砍掉（=n //= 10=），直到 n 被砍到 0 為止：
+#+BEGIN_SRC python -r -n :results output :exports both
+n = 12345
+while n > 0:
+    print(n % 10)
+    n //= 10
+#+END_SRC
+
+#+RESULTS:
+: 5
+: 4
+: 3
+: 2
+: 1
+
+**** 例2：最大公因數（輾轉相除法）
+把 (m, n) 換成 (n, m 除以 n 的餘數)，直到餘數為 0，此時 m 就是最大公因數：
+#+NAME:最大公因數
+#+BEGIN_SRC python -r -n :results output :exports both
+m, n = 42, 75
+while n > 0:
+    m, n = n, m % n
+print(m)
+#+END_SRC
+
+#+RESULTS:
+: 3
+
+**** 例3：質數判斷（while + break + else）
+前面 for 的版本用 range 幫我們數，用 while 來寫的話，要自己控制 ~i~ 的遞增：
 #+begin_src python -r -n :results output :exports both
-ins = input()
-while ins !='999':
-    print(ins)
-    ins = input()
-#+end_src
-**** 方法 2
-#+begin_src python -r -n :results output :exports both
-while True:
-    ins = input()
-    if ins == '999':
+n = 37
+i = 2
+while i <= n//2:
+    if n % i == 0: #找到因數
+        print('n不是質數')
         break
-    print(ins)
+    i += 1 #i的值從2測到n的一半
+else: #如果都沒被break，表示都沒找到因數
+    print('n是質數')
 #+end_src
+
+#+RESULTS:
+: n是質數
+
 *** 作業
 **** 6C. 分數統計
 **** 因數列舉: 使用 else
