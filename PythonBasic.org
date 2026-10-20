@@ -2165,7 +2165,6 @@ print(list(range(10, 0, -2)))   # 從 10 開始，每次減 2
 ***** 請問下列程式會輸出幾個*
 #+begin_src python -r -n :async :results output :exports both
 for i in range(10):
-    i = 5
     print('*')
 #+end_src
 答案是 *10 個* 。因為 =range(10)= 已經預先產生了 [0,1,2,...,9] 這個序列，每次迴圈開始時 Python 會從序列中取出下一個值指派給 i，所以即使你在迴圈裡把 i 改成 5，下一輪 i 還是會被序列中的下一個值覆蓋。
@@ -2421,6 +2420,7 @@ while (condition):
     ...
 #+END_SRC
 *** 範例
+- 例1：反向輸出一個數字
 #+BEGIN_SRC python -r -n :results output :exports both
 n = 12345
 while (n > 0):
@@ -2435,6 +2435,7 @@ while (n > 0):
 : 2
 : 1
 
+- 例2：找最大公因數
 #+NAME:最大公因數
 #+BEGIN_SRC python -r -n :results output :exports both
   m, n = 42, 75
@@ -2473,37 +2474,43 @@ else: #如果都沒被break，表示都沒找到因數
 
 #+RESULTS:
 : n 是質數
-*** 練習
-取代 flag
-**** code 1
+*** 練習: 用 else 取代 flag
+在還沒有 else 可用之前，想知道「迴圈是不是從頭到尾都沒找到」，通常要自己準備一個旗標變數（flag），找到就把它翻成 True，迴圈結束後再檢查它。用 while 迴圈時，除了要維護 flag，還要自己控制索引 ~i~ 的遞增，程式就更囉嗦了：
+**** code 1: 用 flag
 #+begin_src python -r -n :results output :exports both
 nums = [60, 70, 30, 110, 90]
 found = False
-for n in nums:
-    if n > 100:
+i = 0
+while i < len(nums):
+    if nums[i] > 100:
         found = True
         print("There is a number bigger than 100")
         break
+    i += 1
 
 if not found:
     print("Not found!")
 #+end_src
-**** code 2
+有了 while...else 之後，flag 就可以拿掉了：「沒有被 break 中斷」這件事由 else 來判斷，程式少了一個變數，也少了一次判斷：
+**** code 2: 用 else
 #+begin_src python -r -n :results output :exports both
 nums = [60, 70, 30, 110, 90]
-for n in nums:
-    if n > 100:
+i = 0
+while i < len(nums):
+    if nums[i] > 100:
         print("There is a number bigger than 100")
         break
+    i += 1
 else:
     print("Not found!")
 #+end_src
+請試著把 nums 裡的 110 改成 10，分別執行兩段程式，確認兩者的輸出相同。
 *** 連續輸入類型問題
-某些狀況下，我們需要連續讀入資料，直到 *讀完* 所有資料為止......
+某些狀況下，我們需要連續讀入資料，直到 *讀到999* 為止......
 **** 方法 1
 #+begin_src python -r -n :results output :exports both
 ins = input()
-while ins !='':
+while ins !='999':
     print(ins)
     ins = input()
 #+end_src
@@ -2511,7 +2518,7 @@ while ins !='':
 #+begin_src python -r -n :results output :exports both
 while True:
     ins = input()
-    if ins == '':
+    if ins == '999':
         break
     print(ins)
 #+end_src
@@ -2568,31 +2575,35 @@ for i in range(3):
 #+end_src
 其實網上評分系統是把要「餵」給我們程式的資料以「檔案」的型式準備好，所以，我們的作業每次在做 input()都像是在讀檔，只是以前都會先告訴你一共有幾筆資料，所以我們不用處理 EOF 檔案結尾的問題。現在如果題目有點機車，不告訴你一共有多少變數，要你讀到沒東西讀，那我們就要來學怎麼判斷 EOF 了。
 
-*** 做法 1: '' checking
-判斷是否讀到空的資料，下例中，如果是對空資料進行 int()型態轉換，就會得到 ValueError，也可以藉此判斷是否已無資料可讀取
-#+begin_src python -r -n :async :results output :exports both
-while True:
-    try:
-        test = int(input())
-    except ValueError:
-        break
-#+end_src
-*** EOF checking
-有時，某些程式的要求是要你不斷的輸入、計算、輸出結果，直到沒有輸入為止，這種多測資的問題常常會在考試或比賽時遇到。其實，有些評分系統在"餵"輸入給你的程式時，是從 *一個存了許多測資的文字檔* 裡一列一列把資料讀出來，然後餵給你程式中的 input()，當文字資料讀到檔案結尾，就會出現一個 EOF(End of File)的符號，而如果我們想把這個符號用 int()轉成整數，就會出現錯誤，所以，我們可以用 try...except 來抓這個錯誤。如下:
+*** 做法 1: 攔截 EOFError
+當 input() 讀到檔案結尾時，它 *根本不會傳回任何東西* ，而是直接丟出一個 =EOFError= 例外（注意：錯誤是 input() 發出的，還沒輪到 int() 出手）。所以我們可以用 try...except 把這個例外抓下來，當成「資料讀完了」的訊號來結束迴圈：
 #+begin_src python -r -n :results output :exports both
 t = []
 while True:
     try:
         n = int(input())  # 讀取輸入並轉換為整數
         t.append(n)
-    except: 
-        break              # 結束迴圈
+    except EOFError:      # input() 讀到檔案結尾
+        break             # 結束迴圈
 
 print(t) #檢查一下讀到的資料
 #+end_src
-- EOF 是從檔案讀取資料時結果讀到檔案結尾符號，但是一般我們在寫程式都是從鍵盤輸入資料來進行測試，那怎麼送出一個 EOF 符號給程式呢？答案是按 cmd-D(for MacOS)、Ctrl-D(for Linux)或是 Ctrl-Z(for windows 系統)
-- 注意: 用上述方式讀資料，在教學網中似乎有時會導致多讀一個''的元素進來，原因還不清楚，建議在送出到教學網後，可以在將資料讀入 list 後先 print 出來檢測一下，如果發現最後多了一筆資料，就將它 pop 掉。
-- 如果你用了 =except EOFError:= 卻 *無法正常執行* ，請試著把 EOFError 拿掉，只寫 =except:= 來攔截所有例外（即上面範例的寫法）。
+- EOF 是從檔案讀取資料時讀到檔案結尾的訊號，但是一般我們在寫程式都是從鍵盤輸入資料來進行測試，那怎麼送出一個 EOF 給程式呢？答案是在新的一列按 Ctrl-D(MacOS、Linux) 或 Ctrl-Z 再按 Enter(Windows)。
+*** 做法 2: 同時攔截 EOFError 與 ValueError
+有些評分系統（教學網就是其中之一）準備的測資檔最後會多一個空列，這時 input() 不會丟出 EOFError，而是傳回空字串 =''= ，接著 =int('')= 就會丟出 =ValueError= 。如果只寫 =except EOFError:= ，程式就會在這裡當掉。比較保險的寫法是兩種例外一起攔：
+#+begin_src python -r -n :results output :exports both
+t = []
+while True:
+    try:
+        n = int(input())
+        t.append(n)
+    except (EOFError, ValueError):  # 讀到檔案結尾，或讀到空列
+        break
+
+print(t)
+#+end_src
+- 如果你讀進來的是字串、沒有經過 int() 轉換，那麼多出來的那個空列就會以 =''= 的型式混進 list 裡，記得在讀入後先 print 出來檢查，必要時用 =if s == '': break= 把它擋掉。
+- 你可能看過有人直接寫 =except:= 不指定例外種類，這樣確實什麼錯都攔得住，但也包括你自己打錯變數名稱產生的 NameError 等真正的 bug，程式會默默結束而不報錯，debug 時會很痛苦，所以不建議這樣寫。
 
 ** 巢狀迴圈
 *** 範例
