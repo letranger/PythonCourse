@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Binary Search 猜數字</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a number-line stage on top (the "slide"), controls under it, Python code beside on wide screens. */
+:root{
+  --bg:#f3f4f1; --panel:#ffffff; --fg:#1f2329; --muted:#6b7280; --line:#d6d9d3;
+  --bound:#2f7fc1; --bound-fg:#ffffff;
+  --guess:#4f8a3a; --guess-fg:#ffffff;
+  --ans:#b4452f; --ans-fg:#ffffff;
+  --dim:#c9cdc6; --hl:#fff3c4; --code-bg:#f7f8f5;
+  --font-ui:"Noto Sans TC",system-ui,-apple-system,"PingFang TC",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17191c; --panel:#212429; --fg:#e8eaed; --muted:#9aa0a8; --line:#363a41;
+  --bound:#4a95d6; --guess:#6aa64f; --ans:#d2644b; --dim:#3a3e45; --hl:#4a4320; --code-bg:#1b1d21; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17191c; --panel:#212429; --fg:#e8eaed; --muted:#9aa0a8; --line:#363a41;
+  --bound:#4a95d6; --guess:#6aa64f; --ans:#d2644b; --dim:#3a3e45; --hl:#4a4320; --code-bg:#1b1d21; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-ui);font-size:16px;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding-block:20px 40px;padding-inline:16px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:14px}
+h1{font-size:1.5rem;margin:0;font-weight:700;text-wrap:balance}
+header p{margin:0;color:var(--muted)}
+.stage,.ctl{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-width:0}
+.stage{padding:14px 16px 10px}
+.step{display:flex;gap:10px;align-items:baseline;min-height:3.2em}
+.step b{font-family:var(--font-mono);color:var(--muted);font-weight:600;flex:none}
+.step span{text-wrap:pretty}
+svg{display:block;width:100%;height:auto;max-width:100%}
+.lbl{font-family:var(--font-mono);font-size:13px;font-weight:600}
+.num{font-family:var(--font-mono);font-size:20px;font-weight:600}
+.ctl{padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:12px}
+button{font:inherit;font-weight:500;padding:7px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);cursor:pointer}
+button.primary{background:var(--bound);color:var(--bound-fg);border-color:var(--bound)}
+button:disabled{opacity:.45;cursor:default}
+button:focus-visible,input:focus-visible{outline:2px solid var(--bound);outline-offset:2px}
+.counter{font-family:var(--font-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.setup{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-left:auto}
+.setup label{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:.9rem}
+input[type=number]{font:inherit;font-family:var(--font-mono);width:5.5em;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--code-bg);color:var(--fg)}
+.vars{margin-top:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:520px}
+.v{border:1px solid var(--line);border-radius:6px;padding:4px 8px;text-align:center}
+.v small{display:block;color:var(--muted);font-family:var(--font-mono);font-size:11px}
+.v strong{font-family:var(--font-mono);font-size:18px;font-variant-numeric:tabular-nums}
+.v.bound{border-color:var(--bound)} .v.guess{border-color:var(--guess)} .v.ans{border-color:var(--ans)}
+.note{margin-top:14px;color:var(--muted);font-size:.9rem;max-width:65ch}
+@media (prefers-reduced-motion:no-preference){
+  .box,.arrow,.cross{transition:transform .45s cubic-bezier(.4,0,.2,1),opacity .35s}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <h1>Binary Search 猜數字</h1>
+  <p>每猜一次，就把範圍砍掉一半</p>
+</header>
+
+<div>
+    <div class="stage">
+      <div class="step"><b id="stepNo">0.</b><span id="stepText"></span></div>
+      <svg id="svg" viewBox="0 0 900 300" aria-label="二分搜尋示意圖"></svg>
+    </div>
+    <div class="ctl">
+      <button id="prev">上一步</button>
+      <button id="next" class="primary">下一步</button>
+      <button id="play">自動播放</button>
+      <span class="counter" id="counter"></span>
+      <form class="setup" id="setup">
+        <label>範圍 <input type="number" id="lo" value="3"> ～ <input type="number" id="hi" value="12"></label>
+        <label>答案 <input type="number" id="target" value="5"></label>
+        <button type="submit">重新開始</button>
+      </form>
+    </div>
+    <div class="vars">
+      <div class="v bound"><small>left</small><strong id="vL">–</strong></div>
+      <div class="v bound"><small>right</small><strong id="vR">–</strong></div>
+      <div class="v guess"><small>guess</small><strong id="vG">–</strong></div>
+      <div class="v ans"><small>ans</small><strong id="vA">–</strong></div>
+    </div>
+    <p class="note">guess 取 left 和 right 的中間值，有小數就捨去，所以 3 和 12 的中間是 7。猜太大就把 right 移到 guess 的左邊一格，猜太小就把 left 移到 guess 的右邊一格，答案永遠夾在 left 和 right 之間。想一想：這段流程要怎麼用 while 寫成程式？</p>
+</div>
+</div>
+
+<script>
+// ---- build the step list for a given range/answer ----
+function buildSteps(lo, hi, ans) {
+  const steps = [];
+  let left = lo, right = hi, guess = null;
+  const snap = (text, lines, extra = {}) => steps.push({ text, lines, left, right, guess, ans, ...extra });
+  snap(`宣告 left、right 兩個邊界變數，以及要猜的答案 ans（${ans}，電腦看不到）。`, [0, 1], { showAns: false, showGuess: false });
+  let round = 0;
+  while (true) {
+    round++;
+    if (left > right) { snap('left 超過 right，範圍空了，答案不在裡面。', [2]); break; }
+    guess = Math.floor((left + right) / 2);
+    snap(`第 ${round} 次猜：取 ${left} 和 ${right} 的中間值，guess = ${guess}（有小數就捨去）。`, [3], { showAns: false, showGuess: true });
+    if (guess === ans) {
+      snap(`guess 等於 ans，猜對了！一共猜了 ${round} 次。`, [4, 5, 6], { showAns: true, showGuess: true, result: 'hit' });
+      break;
+    } else if (guess > ans) {
+      snap(`guess ${guess} > ans ${ans}，猜太大。答案一定在 guess 的左邊。`, [7], { showAns: true, showGuess: true, result: 'big' });
+      const old = right; right = guess - 1;
+      snap(`把 right 從 ${old} 移到 guess 左邊一格的 ${right}，右半邊整段不用再看。`, [8], { showAns: true, showGuess: true, result: 'big', cross: [right + 1, old] });
+    } else {
+      snap(`guess ${guess} < ans ${ans}，猜太小。答案一定在 guess 的右邊。`, [7, 9], { showAns: true, showGuess: true, result: 'small' });
+      const old = left; left = guess + 1;
+      snap(`把 left 從 ${old} 移到 guess 右邊一格的 ${left}，左半邊整段不用再看。`, [10], { showAns: true, showGuess: true, result: 'small', cross: [old, left - 1] });
+    }
+  }
+  return steps;
+}
+
+// ---- rendering ----
+const svg = document.getElementById('svg');
+const NS = 'http://www.w3.org/2000/svg';
+let lo = 3, hi = 12, target = 5, steps = buildSteps(lo, hi, target), idx = 0, timer = null;
+
+function el(name, attrs, text) {
+  const e = document.createElementNS(NS, name);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  return e;
+}
+function xOf(v) {
+  const n = hi - lo;
+  const pad = 70, W = 900 - pad * 2;
+  return n === 0 ? 450 : pad + (v - lo) / n * W;
+}
+function box(v, cls, fill, fg, y, label, labelFill) {
+  const g = el('g', { class: 'box ' + cls, transform: `translate(${xOf(v)},${y})` });
+  g.appendChild(el('rect', { x: -22, y: -22, width: 44, height: 44, rx: 6, fill }));
+  g.appendChild(el('text', { x: 0, y: 7, 'text-anchor': 'middle', fill: fg, class: 'num' }, v));
+  if (label) g.appendChild(el('text', { x: 0, y: -31, 'text-anchor': 'middle', fill: labelFill, class: 'lbl' }, label));
+  return g;
+}
+
+function render() {
+  const s = steps[idx];
+  svg.replaceChildren();
+  const cs = getComputedStyle(document.documentElement);
+  const C = k => cs.getPropertyValue(k).trim();
+  const baseY = 150;
+
+  // number line and ticks
+  svg.appendChild(el('line', { x1: xOf(lo) - 40, x2: xOf(hi) + 40, y1: baseY + 40, y2: baseY + 40, stroke: C('--line'), 'stroke-width': 2 }));
+  for (let v = lo; v <= hi; v++) {
+    const inRange = v >= s.left && v <= s.right;
+    svg.appendChild(el('text', { x: xOf(v), y: baseY + 62, 'text-anchor': 'middle', fill: inRange ? C('--fg') : C('--dim'), class: 'lbl' }, v));
+    svg.appendChild(el('line', { x1: xOf(v), x2: xOf(v), y1: baseY + 34, y2: baseY + 46, stroke: inRange ? C('--fg') : C('--dim'), 'stroke-width': 1.5 }));
+  }
+  // discarded region
+  if (s.cross) {
+    const [a, b] = s.cross;
+    const x1 = xOf(a) - 24, x2 = xOf(b) + 24;
+    svg.appendChild(el('rect', { class: 'cross', x: x1, y: baseY - 34, width: Math.max(0, x2 - x1), height: 60, fill: C('--dim'), opacity: .35, rx: 6 }));
+    svg.appendChild(el('text', { x: (x1 + x2) / 2, y: baseY + 90, 'text-anchor': 'middle', fill: C('--muted'), class: 'lbl' }, '這一段不用再看'));
+  }
+  // active range bracket
+  if (s.left <= s.right) {
+    const x1 = xOf(s.left), x2 = xOf(s.right);
+    svg.appendChild(el('path', { d: `M${x1} ${baseY + 100} V${baseY + 112} H${x2} V${baseY + 100}`, fill: 'none', stroke: C('--bound'), 'stroke-width': 2 }));
+    svg.appendChild(el('text', { x: (x1 + x2) / 2, y: baseY + 132, 'text-anchor': 'middle', fill: C('--bound'), class: 'lbl' }, `目前範圍 ${s.left} ～ ${s.right}，共 ${s.right - s.left + 1} 個數`));
+  }
+  // boxes
+  svg.appendChild(box(s.left, 'l', C('--bound'), C('--bound-fg'), baseY, 'left', C('--bound')));
+  if (s.right !== s.left) svg.appendChild(box(s.right, 'r', C('--bound'), C('--bound-fg'), baseY, 'right', C('--bound')));
+  else svg.lastChild.querySelector('.lbl').textContent = 'left = right';
+  if (s.showGuess && s.guess != null) {
+    const g = box(s.guess, 'g', C('--guess'), C('--guess-fg'), baseY - 70, 'guess', C('--guess'));
+    svg.appendChild(g);
+    svg.appendChild(el('line', { class: 'arrow', x1: xOf(s.guess), x2: xOf(s.guess), y1: baseY - 46, y2: baseY - 26, stroke: C('--guess'), 'stroke-width': 2 }));
+  }
+  if (s.showAns) {
+    const a = box(s.ans, 'a', C('--ans'), C('--ans-fg'), 40, 'ans', C('--ans'));
+    a.setAttribute('transform', 'translate(850,40)'); // ans sits in the corner, hidden from the "computer"
+    svg.appendChild(a);
+    const msg = s.result === 'hit' ? '猜對了 😀' : s.result === 'big' ? '猜太大 😕' : '猜太小 😕';
+    svg.appendChild(el('text', { x: 760, y: 95, 'text-anchor': 'end', fill: C('--ans'), class: 'lbl', 'font-size': 16 }, msg));
+    svg.appendChild(el('line', { x1: xOf(s.guess) + 24, y1: baseY - 70, x2: 822, y2: 45, stroke: C('--ans'), 'stroke-width': 1.5, 'stroke-dasharray': '4 4', opacity: .7 }));
+  }
+
+  document.getElementById('stepNo').textContent = idx + '.';
+  document.getElementById('stepText').textContent = s.text;
+  document.getElementById('counter').textContent = `${idx + 1} / ${steps.length}`;
+  document.getElementById('vL').textContent = s.left;
+  document.getElementById('vR').textContent = s.right;
+  document.getElementById('vG').textContent = s.showGuess && s.guess != null ? s.guess : '–';
+  document.getElementById('vA').textContent = s.ans;
+  document.getElementById('prev').disabled = idx === 0;
+  document.getElementById('next').disabled = idx === steps.length - 1;
+  if (idx === steps.length - 1) stopPlay();
+}
+
+function stopPlay() { if (timer) { clearInterval(timer); timer = null; document.getElementById('play').textContent = '自動播放'; } }
+document.getElementById('prev').onclick = () => { stopPlay(); if (idx > 0) { idx--; render(); } };
+document.getElementById('next').onclick = () => { stopPlay(); if (idx < steps.length - 1) { idx++; render(); } };
+document.getElementById('play').onclick = () => {
+  if (timer) return stopPlay();
+  if (idx === steps.length - 1) idx = 0;
+  render();
+  document.getElementById('play').textContent = '暫停';
+  timer = setInterval(() => { if (idx < steps.length - 1) { idx++; render(); } else stopPlay(); }, 1600);
+};
+document.getElementById('setup').addEventListener('submit', e => {
+  e.preventDefault(); stopPlay();
+  let a = parseInt(document.getElementById('lo').value, 10), b = parseInt(document.getElementById('hi').value, 10), t = parseInt(document.getElementById('target').value, 10);
+  if ([a, b, t].some(Number.isNaN)) return;
+  if (a > b) [a, b] = [b, a];
+  if (b - a > 40) b = a + 40;
+  document.getElementById('lo').value = a; document.getElementById('hi').value = b;
+  lo = a; hi = b; target = t;
+  steps = buildSteps(lo, hi, target); idx = 0; render();
+});
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); document.getElementById('next').click(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); document.getElementById('prev').click(); }
+});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+render();
+</script>
+</body>
+</html>
