@@ -2590,11 +2590,7 @@ else: #如果都沒被break，表示都沒找到因數
 #+RESULTS:
 : n是質數
 
-*** 作業
-**** 6C. 分數統計
-**** 因數列舉: 使用 else
-
-** 多測資輸入
+** while與多測資輸入
 :PROPERTIES:
 :CUSTOM_ID: EOFError
 :END:
@@ -2671,7 +2667,12 @@ while True:
 print(t)
 #+end_src
 - 如果你讀進來的是字串、沒有經過 int() 轉換，那麼多出來的那個空列就會以 =''= 的型式混進 list 裡，記得在讀入後先 print 出來檢查，必要時用 =if s == '': break= 把它擋掉。
-- 你可能看過有人直接寫 =except:= 不指定例外種類，這樣確實什麼錯都攔得住，但也包括你自己打錯變數名稱產生的 NameError 等真正的 bug，程式會默默結束而不報錯，debug 時會很痛苦，所以不建議這樣寫。
+*** except EOFError: 和 except: 都可以嗎？
+都能讓迴圈停下來，但不是等價的，差別在「攔到什麼」：
+- =except EOFError:= 只攔「資料真的讀完」這一種情況。遇到測資檔尾端多一個空列的評分系統，input() 會先傳回 =''= ，=int('')= 丟出的是 ValueError 而不是 EOFError，程式就會在那裡當掉。
+- =except:= 什麼例外都攔，EOFError 和 ValueError 都會被當成「讀完了」，所以看起來「能跑」。但它也會攔到你自己的 bug：變數名打錯的 NameError、型別用錯的 TypeError，甚至按 Ctrl-C 的 KeyboardInterrupt。程式會安靜地跳出迴圈、印出不完整的結果，你完全不知道中間出了錯，debug 時會很痛苦。
+- 所以正確的寫法是做法 2：把要攔的例外 *點名* 寫出來，=except (EOFError, ValueError):= 。既能應付真正的 EOF，也能應付尾端空列，而其他錯誤仍會正常報出來。
+- 一句話記住： =except:= 能跑，但它等於把所有警報器都拆掉；點名要攔的例外才是正確習慣。
 
 ** 巢狀迴圈
 *** 範例
