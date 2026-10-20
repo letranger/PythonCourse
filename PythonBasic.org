@@ -109,7 +109,7 @@ I chose Python as a working title for the project, being in a slightly irreveren
 :PROPERTIES:
 :CUSTOM_ID: py-IDE
 :END:
-目前 Python 已經成為一種非常流行的程式語言，幾乎所有的作業系統都已經內建了 Python 直譯器(interpreter)，所以你可以直接在終端機或命令列中執行 Python 程式碼。但為了方便撰寫與測試 Python 程式碼，通常我們會使用一些整合開發環境(IDE)來撰寫程式碼，這些 IDE 通常會提供語法高亮、程式碼補全、除錯工具等功能，讓我們更容易撰寫與測試程式碼。
+目前 Python 已經成為一種非常流行的程式語言，Linux 多半已內建 Python 直譯器(interpreter)，Windows 與較新的 macOS 則需要自行安裝；裝好之後，你就可以直接在終端機或命令列中執行 Python 程式碼。但為了方便撰寫與測試 Python 程式碼，通常我們會使用一些整合開發環境(IDE)來撰寫程式碼，這些 IDE 通常會提供語法高亮、程式碼補全、除錯工具等功能，讓我們更容易撰寫與測試程式碼。
 
 除了在單機上執行 Python 程式外，還有許多線上 IDE 也支援 Python 程式的撰寫與執行，這些線上 IDE 通常不需要安裝任何軟體，只要有網路連線就可以使用。最有名的線上 IDE 包括 Google Colab、Jupyter Notebook 等。
 
@@ -123,7 +123,7 @@ print('我要開始來學習Python')
 
 這段就是 Python 的程式碼，但很可惜的，電腦其實看不懂這段程式碼，此時就需要一個「翻譯」來把這段程式「翻」成電腦看的懂的語言（機器碼），這就是 Python 直譯器在做的事。
 
-目前多數的作業系統(如 Windows, MacOS, Linux)都已內建 Python 直譯器，如果你要手動安裝，可以到[[https://www.python.org/downloads/][官網]]去下載安裝程式。
+Linux 多半已內建 Python 直譯器；Windows 從來沒有內建，macOS 從 12.3 起也不再內建，這兩種系統請到[[https://www.python.org/downloads/][官網]]去下載安裝程式。
 
 有了 Python 直譯器之後，你就可以開始撰寫如上面的 Python 程式了，但是要用什麼軟體來撰寫程式碼呢？這就是我們所說的整合開發環境(Development Environment)。
 
@@ -150,7 +150,7 @@ python3 hello.py
 然後你就會看到終端機或命令列中顯示出程式的輸出結果:
 #+RESULTS:
 : Hello world!
-: 我要開始來學習 Python
+: 我要開始來學習Python
 
 這樣的操作雖然可以完成程式的執行，但對於初學者來說，操作起來會有點麻煩，尤其是當你需要不斷修改程式碼並重新執行時。所以就有了更方便的方式來撰寫與執行 Python 程式碼，那就是使用整合開發環境(IDE)。
 *** IDE
@@ -368,11 +368,11 @@ print(c, end=' ')
 : 5 10 20
 : 完全不呈現預設的空白: 51020
 : 以逗號來當分隔符號: ,5,10,20
-: ==測試 end 的用法 1==
+: ==測試end的用法1==
 : 5
 : 10
 : 20
-: ==測試 end 的用法 2==
+: ==測試end的用法2==
 : 不進行跳行:  5 10 20
 
 留意上面第二行的輸出：當 sep='' 時，print() 會把 *所有* 參數之間的分隔都拿掉，所以字串 '完全不呈現預設的空白: ' 和後面的 5、10、20 全部黏在一起變成了 =完全不呈現預設的空白: 51020= 。而第三行 sep=',' 時，逗號也會插在字串參數和數字參數之間，所以才會出現 =以逗號來當分隔符號: ,5,10,20= （注意冒號後面緊接著一個逗號）。
@@ -410,7 +410,7 @@ Your left brain has nothing "right", and your right brain has nothing "left".
 ** f-string
 f-string 是 Python 3.6 以後新增的字串格式化方法，它可以讓我們在字串中直接嵌入變數，並且可以控制輸出的格式。f-string 的語法是以字母 f 開頭，然後在字串中使用大括號({})來包裹變數或表達式。
 
-由於 f-string 轉換時會做最佳化，其速度會比前面的文字格式化稍稍快一點。
+由於 f-string 轉換時會做最佳化，其速度會比下一節介紹的 format() 與 % 寫法稍稍快一點。
 *** 輸出一個數字，不控制格式
 #+begin_src python -r -n :results output :exports both
 score = 83
@@ -460,7 +460,7 @@ print(f'{name}的身高是{height}公分、體重是{weight:.2f}公斤')
 #+end_src
 
 #+RESULTS:
-: Vanessa 的身高是 165 公分、體重是 52.30 公斤
+: Vanessa的身高是165公分、體重是52.30公斤
 *** 如何控制輸出字串的靠齊方向
 和數字輸出一樣，我們可以預留一些空間給文字輸出，並控制文字的靠齊方向，例如
 - {:>}: 向右靠
@@ -480,8 +480,8 @@ print(f'{name2:>8}的身高是{height2:>6}公分、體重是{weight2:10.2f}公�
 #+end_src
 
 #+RESULTS:
-:    James 的身高是   165 公分、體重是     52.30 公斤
-:  Vanessa 的身高是   175 公分、體重是     72.30 公斤
+:    James的身高是   165公分、體重是     52.30公斤
+:  Vanessa的身高是   175公分、體重是     72.30公斤
 
 *** f-string 常用格式速查
 以下整理幾個最常用的格式規格，方便查閱：
@@ -499,7 +499,7 @@ print(f'{name2:>8}的身高是{height2:>6}公分、體重是{weight2:10.2f}公�
 ** 其他格式化輸出方法
 前面介紹的 f-string 是目前最推薦的格式化方式，但 Python 的歷史上還有其他幾種格式化方法。雖然現在寫新程式建議優先用 f-string，但你在網路上搜尋範例、閱讀別人的程式碼（尤其是比較早期的專案或教學）時，一定會看到以下這些寫法，所以還是有必要認識一下。
 *** 格式化輸出: format() (新版)
-format() 是 Python 2.7 以後新增的字串格式化方法，它可以讓我們在字串中使用大括號({})來包裹變數，並且可以控制輸出的格式。format() 的語法是字串.format(變數 1, 變數 2, ...)，其中變數可以是任何類型的資料，包括數字、字串、列表、字典等。
+format() 是 Python 2.6/3.0 以後新增的字串格式化方法，它可以讓我們在字串中使用大括號({})來包裹變數，並且可以控制輸出的格式。format() 的語法是字串.format(變數 1, 變數 2, ...)，其中變數可以是任何類型的資料，包括數字、字串、列表、字典等。
 - 語法
   + format 格式化輸出語法：print(字串.format(變數)) 
   + 字串裡以{0}、{1}、... 來對應參數列裡的變數
@@ -558,7 +558,7 @@ print('{0}的身高是{1}公分、體重是{2:.2f}公斤'.format(name, height, w
 #+end_src
 
 #+RESULTS:
-: Vanessa 的身高是 165 公分、體重是 52.30 公斤
+: Vanessa的身高是165公分、體重是52.30公斤
 **** 如何控制輸出字串的靠齊方向
 和數字輸出一樣，我們可以預留一些空間給文字輸出，並控制文字的靠齊方向，例如
 - {:>}: 向右靠
@@ -970,8 +970,8 @@ print(math.sqrt(score))
 想一下為什麼程式還是 crash 掉....
 
 以上述程式為例，我們基本上有以下幾種解決方案：
-1. 在 except 區塊中加入一個 return 或 exit()
-   即，在 except 區塊中處理完錯誤（如輸出提示錯誤訊息）後，明確地終止程式執行，以防止程式碼繼續執行到依賴於 try 區塊成功結果的部分，也就是 print(math.sqrt(score))。
+1. 在 except 區塊中加入 exit()
+   即，在 except 區塊中處理完錯誤（如輸出提示錯誤訊息）後，用 exit() 明確地終止程式執行（注意：return 只能用在函式裡面，這裡的程式沒有函式，寫 return 會得到 SyntaxError），以防止程式碼繼續執行到依賴於 try 區塊成功結果的部分，也就是 print(math.sqrt(score))。
 2. 把 print(math.sqrt(score)) 放在 try 區塊中
    將所有依賴於 try 區塊中可能成功操作的程式碼（包括後續的計算和輸出），都放在 try 區塊內部。這樣，一旦 try 區塊中的任何一行程式碼引發例外，程式就會立即跳轉到 except 區塊，而不會執行 try 區塊中剩餘的、依賴於錯誤結果的程式碼。
 3. 把原本的 print(math.sqrt(score)) 放在一個檢查 score 是否為數字的條件判斷中
@@ -1469,7 +1469,7 @@ print(sch[:])
 
 #+RESULTS:
 : Tai
-: na First Senior High School
+: nan First Senior High School
 : Tainan First Senior High School
 
 *** 關於 字串[:]
@@ -1484,11 +1484,11 @@ print(sch[:])
 #+RESULTS:
 : Tainan First Senior High School
 
-欸....這個結果和 sch 本身一樣耶，這是因為 =[:] = 會取得整個字串的切片，等於複製了一份新的字串。
+欸....這個結果和 sch 本身一樣耶，這是因為 =[:]= 會取得「從頭到尾」的整個切片，結果當然就是整個字串。
 
-那麼....這和直接print(sch)不是一樣嗎？其實不一樣，因為 sch[:] 會產生一個新的字串物件，而 sch 本身是原本的字串物件。
+那麼....這和直接 print(sch) 不是一樣嗎？對字串來說，的確完全一樣：字串是不可變的資料（下一節會介紹），Python 沒有必要再複製一份，所以 sch[:] 拿回來的就是 *同一個* 字串物件，你可以用 =print(sch[:] is sch)= 驗證，結果會是 True。
 
-有關這個差異，我們在後面討論到list時會更清楚地看到。現在，我們先來看看切片的另一個應用。
+那 =[:]= 有什麼用？它真正派上用場的地方是後面會介紹的 List：List 是可變的資料，=a[:]= 會複製出一份 *全新的* List，改新的不會動到舊的。這個差異我們在討論到 List 時會更清楚地看到。現在，我們先來看看切片的另一個應用。
 
 *** 進階切片
 除了start、end，可再加入另一個 increment，每隔數個字元取一個，語法為:
@@ -1765,7 +1765,7 @@ else:
     ...
 #+END_SRC
 *** 範例
-#+BEGIN_SRC python -r -n :results output :exports
+#+BEGIN_SRC python -r -n :results output :exports both
 num = 32
 if num % 2 == 0:
     print(f'{num} is even')
@@ -1792,7 +1792,7 @@ else:
     statement N
 #+END_SRC
 *** 範例
-#+BEGIN_SRC python -r -n :results output :exports
+#+BEGIN_SRC python -r -n :results output :exports both
 score = 87
 if score >= 90:
     print('A')
@@ -1967,12 +1967,12 @@ e3 = max(a, b, c)
 e2 = a+b+c-e1-e3
 #+end_src
 *** Binary code
-- 任何文字與數字在電腦中儲存時都是使用二元編碼，而所謂二元編碼也就是一段由 0 與 1 構成的序列。在本題中，A~F 這六個字元由一種特殊方 nnnnnnnn 式來編碼，在這種編碼方 式中，這六個字元的編碼都是一個長度為 4 的二元序列，對照表如下:
-  |------+------+------+------+------+------|
-  | 字元 |    A |    B |    C |    D |    E |
-  |------+------+------+------+------+------|
-  | 1101 | 0111 | 0010 | 0101 | 1000 | 1100 |
-  |------+------+------+------+------+------|
+- 任何文字與數字在電腦中儲存時都是使用二元編碼，而所謂二元編碼也就是一段由 0 與 1 構成的序列。在本題中，A~F 這六個字元由一種特殊方式來編碼，在這種編碼方式中，這六個字元的編碼都是一個長度為 4 的二元序列，對照表如下:
+  |------+------+------+------+------+------+------|
+  | 字元 |    A |    B |    C |    D |    E |    F |
+  |------+------+------+------+------+------+------|
+  | 編碼 | 0101 | 0111 | 0010 | 1101 | 1000 | 1100 |
+  |------+------+------+------+------+------+------|
 - 輸出：輸出編碼所代表的 N 個字元，字元之間不需要空白或換行間格。
 **** solution :noexport:
 #+begin_src python -r -n :results output :exports both
@@ -2073,7 +2073,7 @@ for x in school:
 : =========
 : U O G T I
 
-- ord( ) -> 將字元轉為 [[https://zh.wikipedia.org/wiki/ASCII][ASCII]] 編碼(整數)
+- ord( ) -> 將字元轉為 Unicode 編碼(整數)；英文字母與數字的部分和 [[https://zh.wikipedia.org/wiki/ASCII][ASCII]] 相同，中文字也可以
 - chr( ) -> 將 ASCII 編碼(整數)轉為字元
 
 #+begin_src python -r -n :results output :exports both
@@ -2334,7 +2334,7 @@ print(f'迴圈一共跑了{count}次')
 : Processing Letter: t
 : Processing Letter: o
 : Processing Letter: n
-: 迴圈一共跑了 6 次
+: 迴圈一共跑了6次
 **** 練習
 給定一個字串，印出該字串中除了 'N' 和 'S' 以外的所有字母。
 - 範例：
@@ -2371,7 +2371,7 @@ print(f'迴圈一共跑了{count}次')
 : Processing Letter: h
 : Processing Letter: o
 : Processing Letter: n
-: 迴圈一共跑了 6 次
+: 迴圈一共跑了6次
 **** 啊有差嗎?
 在迴圈中使用 pass 語句，執行程式後，你會發現什麼事也沒做，完全不起任何作用，只是一個空運算而已，那問題就來了：
 #+begin_verse
@@ -2509,7 +2509,7 @@ else: #如果都沒被break，表示都沒找到因數
 #+end_src
 
 #+RESULTS:
-: n 是質數
+: n是質數
 *** 練習: 用 else 取代 flag
 在還沒有 else 可用之前，想知道「迴圈是不是從頭到尾都沒找到」，通常要自己準備一個旗標變數（flag），找到就把它翻成 True，迴圈結束後再檢查它。用 while 迴圈時，除了要維護 flag，還要自己控制索引 ~i~ 的遞增，程式就更囉嗦了：
 **** code 1: 用 flag
@@ -2698,7 +2698,7 @@ print(sos)
 
 #+RESULTS:
 : 55
-*** 從 1 加到多少才會大於 m?
+*** 從 1 加到多少才不會超過 m?
 - 求 1+2+3+...+n<=m，已知 m 時之最大的 n 值。
 - 輸入 m，輸出 n。
 **** solution :noexport:
@@ -2738,8 +2738,8 @@ for i in range(1, 10):
 
 ** 作業
 *** 因數和
-- 輸入 n，輸出 n 的所有因數和
-- 若該數為質數，則輸出 XD
+- 輸入 n，輸出 n 除了 1 和自己以外的所有因數和
+- 若該數為質數（沒有這樣的因數），則輸出 XD
 **** solution :noexport:
 #+begin_src python -r -n :results output :exports both
 import sys
@@ -2853,7 +2853,12 @@ else:
 #+RESULTS:
 *** Binary code[APCS]
 - 任何文字與數字在電腦中儲存時都是使用二元編碼，而所謂二元編碼也就是一段由 0 與 1 構成的序列。在本題中，A~F 這六個字元由一種特殊方式來編碼，在這種編碼方式中，這六個字元的編碼都是一個長度為 4 的二元序列，對照表如下:
-- 輸入：第一行是一個正整數 N，1  N  4，以下有 N 行，每行有 4 個 0 或 1 的數字，數字間彼此以空白隔開，每一行必定是上述六個字元其中之一的編碼。
+  |------+------+------+------+------+------+------|
+  | 字元 |    A |    B |    C |    D |    E |    F |
+  |------+------+------+------+------+------+------|
+  | 編碼 | 0101 | 0111 | 0010 | 1101 | 1000 | 1100 |
+  |------+------+------+------+------+------+------|
+- 輸入：第一行是一個正整數 N，1 ≤ N ≤ 4，以下有 N 行，每行有 4 個 0 或 1 的數字，數字間彼此以空白隔開，每一行必定是上述六個字元其中之一的編碼。
 - 輸出：輸出編碼所代表的 N 個字元，字元之間不需要空白或換行間格。
 **** solution :noexport:
 #+begin_src python -r -n :results output :exports both
@@ -2879,7 +2884,7 @@ print(out)
   例如:263541 的奇數位數的和 A = 6+5+1 = 12,偶數位數的和 B = 2+3+4 = 9,所以 263541 的奇偶差是|12-9|= 3。
   給定一個十進位正整數 X,請找出 X 的奇偶差。
 - 輸入：輸入為一行含有一個十進位表示法的正整數 X,之後是一個換行字元。
-- 輸出：請輸出 X 的秘密差 Y(以十進位表示法輸出),以換行字元結尾。
+- 輸出：請輸出 X 的奇偶差 Y(以十進位表示法輸出),以換行字元結尾。
 
 **** solution :noexport:
 APCS: 106-03-A 秘密差
@@ -2915,19 +2920,16 @@ print(abs(os-es))
 - 輸入：測資有兩列，第一列為一個正整數 N（N < 50），表示牆壁的數目。下一行依序為 N 個牆壁的高度(由左至右)。每一個高度是不超過 10 的非負整數。
 - 輸出：兩列，每列一個數字，第一列數字代表 high jumps 總數；第二列數字代表 low jumps 的總數。
 **** solution :noexport:
-UVa: 11764 - Jumping Mario
+改編自 UVa 11764 - Jumping Mario（原題為多筆測資，輸出格式為 Case i: h l；此處為單筆簡化版）
 #+begin_src python -r -n :results output :exports both
 n = int(input())
-for i in range(0, n):
-    highers = lowers = 0
-    m = int(input())
-    actions = input().split()
-    for j in range(0, m-1):
-        a1 = int(actions[j])
-        a2 = int(actions[j+1])
-        if a2>a1: highers += 1
-        if a2<a1: lowers += 1
-    print(f'Case {i+1}: {highers} {lowers}')
+h = list(map(int, input().split()))
+highers = lowers = 0
+for j in range(n-1):
+    if h[j+1] > h[j]: highers += 1
+    if h[j+1] < h[j]: lowers += 1
+print(highers)
+print(lowers)
 #+end_src
 
 #+RESULTS:
@@ -2977,7 +2979,7 @@ for i in range(len(ma[0])-1, -1, -1):
 - 已知學生排隊的狀況如下，其中數字代表學號，0為暈針的學生
   98122 98114 98001 98008 0 98013 0 98028
 - 請在不影響其他學生排隊順序的前提下，把暈針的學生全部排到隊伍的最後面，上例的結果如下
-  98122 98114 98001 98008 98013 98028
+  98122 98114 98001 98008 98013 98028 0 0
 **** 輸入
 以空白間隔的學號，已知學生人數不超過 10 萬人
 **** 輸出
@@ -3297,7 +3299,7 @@ print("加入F後的表列:", x)
 #+end_src
 
 #+RESULTS:
-: 加入 F 後的表列: ['A', 'B', 'C', 'D', 'E', 'F']
+: 加入F後的表列: ['A', 'B', 'C', 'D', 'E', 'F']
 **** <List>.extend(<List1>)
 將<List1>合併至<List>尾端
 #+begin_src python -r -n :results output :exports both
@@ -3318,7 +3320,7 @@ print("移除C後的表列:", x)
 #+end_src
 
 #+RESULTS:
-: 移除 C 後的表列: ['A', 'B', 'D', 'E']
+: 移除C後的表列: ['A', 'B', 'D', 'E']
 **** <List>.insert(<i>, *某元素* )
 將 *某元素* 加到<List>的索引值<i>位置
 #+begin_src python -r -n :results output :exports both
@@ -3328,7 +3330,7 @@ print("在索引2插入C後的列表:", x)
 #+end_src
 
 #+RESULTS:
-: 在索引 2 插入 C 後的列表: ['A', 'B', 'C', 'D', 'E']
+: 在索引2插入C後的列表: ['A', 'B', 'C', 'D', 'E']
 **** <List>.reverse():
 反轉表列元素
 #+begin_src python -r -n :results output :exports both
@@ -3576,13 +3578,13 @@ if 'Q' not in x:
 #+end_src
 
 #+RESULTS:
-: list 裡有 B
-: list 裡沒有 Q
+: list裡有B
+: list裡沒有Q
 
 *** List 的另一個坑: 走訪 List 時修改元素
 有時候我們會需要在走訪 List 時，同時修改 List 中的元素（尤其是刪除元素），這時候就要特別小心，否則很容易出錯。 例如，下面的程式碼試圖把不及格的分數從 List 中刪除:
 #+begin_src python -r -n :results output :exports both
-a = [75, 82, 49, 90, 33, 67]
+a = [75, 49, 33, 82, 90]
 for x in a:
     if x < 60:
         a.remove(x)
@@ -3590,14 +3592,11 @@ print(a)
 #+end_src
 
 #+RESULTS:
+: [75, 33, 82, 90]
 
-執行上述程式 *可能* 會出現下列錯誤
-#+begin_src shell -r -n :results output :exports both
-File "<stdin>", line 5, in <module>
-ValueError: list.remove(x): x not in list
-#+end_src
+咦？33 明明不及格，卻沒有被刪掉！
 
-這是因為在走訪 List 時，同時修改 List 中的元素，會導致迴圈的行為變得不可預期。在之前介紹 for 迴圈走訪 List 時，我們提到過，for 迴圈會根據 List 的長度來決定要執行多少次迴圈，而每次迴圈會依序取出 List 中的元素。當我們刪除 List 中的元素時，List 的長度會改變，而迴圈的索引值卻沒有跟著改變，這樣就會導致某些元素被跳過，或者是出現索引值超出範圍的錯誤。
+這是因為在走訪 List 時，同時修改 List 中的元素，會導致迴圈的行為變得不可預期。for 迴圈其實是靠一個「目前走到第幾個」的索引在依序取出元素：第 0 圈取 index 0、第 1 圈取 index 1……。當我們在第 1 圈刪掉 49 之後，後面的元素全部往前補位，33 跑到了 index 1，但迴圈接著要取的是 index 2（已經變成 82），於是 33 就被跳過了。只要有 *相鄰* 的兩個元素都該刪，就一定會漏掉一個。
 
 以 for 來走訪 list 時，list 中的元素是 for 迴圈重複的重要依據，一邊依賴 list 來執行迴圈，一邊又在執行時去刪除 list 中的元素，就像一邊過橋一邊拆橋，行為的結果自然難以預期。
 #+ATTR_LATEX: :width 300
@@ -3886,7 +3885,7 @@ cur = nums[0]
 for i in range(1, len(nums), 1):
     cur = max(cur + nums[i], nums[i])
     if cur > ans:
-        ans = sum
+        ans = cur
 print(ans)
 #+end_src
 **** SD
@@ -4040,7 +4039,7 @@ print('a:', a)
 : b: [-4, 3, 20, 100, 999]
 : a: [-4, 3, 20, 100, 999]
 *** SORT using lambda
-如果要對二維 List 排序，Python 預設會用每個子 List 的第一個元素來排。但如果你想指定用第幾個元素來排序呢？這時可以用 =key= 參數搭配 =lambda= 。
+如果要對二維 List 排序，Python 預設會先用每個子 List 的第一個元素來比，第一個元素相同時再比第二個，依此類推。但如果你想指定用第幾個元素來排序呢？這時可以用 =key= 參數搭配 =lambda= 。
 
 =lambda= 是一種「匿名函式」的寫法，語法是 =lambda 參數: 運算式= ，它會回傳運算式的結果。例如 =lambda x: x[0]= 的意思是「給我一個東西 x，我回傳 x[0]」。所以 =key = lambda x: x[0]= 就是告訴 sort()：「排序時，請用每個元素的第 0 個值來比大小」。
 
@@ -4316,11 +4315,11 @@ my_tuple = ('p','e','r','m','i','t')
 print(my_tuple[0])   # 'p'
 print(my_tuple[5])   # 't'
 
-# IndexError: List index out of range
+# IndexError: tuple index out of range
 # print(my_tuple[6])
 
 # Index must be an integer
-# TypeError: List indices must be integers, not float
+# TypeError: tuple indices must be integers or slices, not float
 # my_tuple[2.0]
 
 # nested tuple
@@ -4987,17 +4986,18 @@ print(coteries)
   3. 表示蟑螂接下來會往下走一格
   4. 表示蟑螂接下來會往左走一格
 - 如果蟑螂走到撞牆，就會回到前一格，次數仍然+1
+- 蟑螂一開始被丟下去的那塊地板，也算被踩過一次
 **** 輸入範例
 - 3 3
 - 1 2
 - 3 2 3 1 1 1 4 4 3 3 2 1 2 3 3 4 1 2 2
-- 最後地板統計會變成如下統計表
-  | 1 | 2 | 2 |
+- 最後地板統計會變成如下統計表（含起始那塊）
   | 1 | 1 | 2 |
-  | 1 | 1 | 1 |
-- 一共走了 12 步
+  | 1 | 1 | 2 |
+  | 1 | 1 | 3 |
+- 蟑螂走到第 12 步時，所有地板都至少被踩過一次，之後的數字就不用再看了
 **** 輸出範例
-- 12
+- 13
 **** solution :noexport:
 #+begin_src python -r -n :results output :exports both
 import random
@@ -5111,9 +5111,9 @@ print(data)
 - <dict>.values()
   #+begin_src python -r -n :results output :exports both
 data = { 'Vanessa': 95,  'May': 100, 'John': 105 }
-print(data.values()) #其值以List儲存
-print(data.keys()) #其值以List儲存
-print(data.items()) #其值以List(裡面的元素為tuple)儲存
+print(data.values()) #傳回 dict_values 檢視物件(不是 List，不能用 index 存取；需要時可用 list() 轉成 List)
+print(data.keys())   #傳回 dict_keys 檢視物件
+print(data.items())  #傳回 dict_items 檢視物件(裡面的元素為 (key, value) 的 tuple)
   #+end_src
 
   #+RESULTS:
