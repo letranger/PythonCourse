@@ -86,24 +86,32 @@ input[type=text]{font:inherit;font-family:var(--font-mono);width:16em;max-width:
 </div>
 
 <script>
+const MAX_ONLY = new URLSearchParams(location.search).get('mode') === 'max';
 function buildSteps(a) {
   const steps = [];
   let ts = null, tn = null;
   const snap = (text, extra = {}) => steps.push({ text, ts, tn, i: null, ...extra });
-  snap(`這是 ${a.length} 位同學的分數，a[0] 是 1 號、a[1] 是 2 號……要找出最高分是幾分、是幾號同學。`);
-  snap('準備兩個變數：ts 記「目前看過的最高分」，tn 記「那個分數的位置」。現在還是空的。', { declared: true });
-  ts = a[0]; tn = 0;
-  snap(`還沒比較之前，先假設第一個 a[0] = ${a[0]} 就是最高分，所以 ts = ${a[0]}、tn = 0。`, { i: 0 });
+  if (MAX_ONLY) {
+    snap(`這是 ${a.length} 位同學的分數，要找出最高分是幾分。`);
+    snap('準備一個變數 ts，記「目前看過的最高分」。現在還是空的。', { declared: true });
+    ts = a[0]; tn = 0;
+    snap(`還沒比較之前，先假設第一個 a[0] = ${a[0]} 就是最高分，所以 ts = ${a[0]}。`, { i: 0 });
+  } else {
+    snap(`這是 ${a.length} 位同學的分數，a[0] 是 1 號、a[1] 是 2 號……要找出最高分是幾分、是幾號同學。`);
+    snap('準備兩個變數：ts 記「目前看過的最高分」，tn 記「那個分數的位置」。現在還是空的。', { declared: true });
+    ts = a[0]; tn = 0;
+    snap(`還沒比較之前，先假設第一個 a[0] = ${a[0]} 就是最高分，所以 ts = ${a[0]}、tn = 0。`, { i: 0 });
+  }
   for (let i = 1; i < a.length; i++) {
     snap(`看 a[${i}] = ${a[i]}，和目前的最高分 ts = ${ts} 比一比。`, { i, compare: true });
     if (a[i] > ts) {
       ts = a[i]; tn = i;
-      snap(`a[${i}] = ${a[i]} 比 ${steps[steps.length - 1].ts} 大，換人！ts 改成 ${ts}，tn 改成 ${i}。`, { i, win: true });
+      snap(MAX_ONLY ? `a[${i}] = ${a[i]} 比 ${steps[steps.length - 1].ts} 大，換人！ts 改成 ${ts}。` : `a[${i}] = ${a[i]} 比 ${steps[steps.length - 1].ts} 大，換人！ts 改成 ${ts}，tn 改成 ${i}。`, { i, win: true });
     } else {
-      snap(`a[${i}] = ${a[i]} 沒有比 ${ts} 大，ts 和 tn 都不動。`, { i, lose: true });
+      snap(MAX_ONLY ? `a[${i}] = ${a[i]} 沒有比 ${ts} 大，ts 不動。` : `a[${i}] = ${a[i]} 沒有比 ${ts} 大，ts 和 tn 都不動。`, { i, lose: true });
     }
   }
-  snap(`全部看完了。最高分是 ts = ${ts}，在位置 tn = ${tn}，也就是 ${tn + 1} 號同學。`, { done: true });
+  snap(MAX_ONLY ? `全部看完了。最高分是 ts = ${ts}。` : `全部看完了。最高分是 ts = ${ts}，在位置 tn = ${tn}，也就是 ${tn + 1} 號同學。`, { done: true });
   return steps;
 }
 
@@ -130,7 +138,7 @@ function render() {
     const isCur = s.i === i, isTn = s.tn === i && (s.declared === undefined);
     const g = el('g', { transform: `translate(${cx(i)},${y})` });
     g.appendChild(el('text', { x: 0, y: -38, 'text-anchor': 'middle', fill: isCur ? C('--cur') : C('--muted'), class: 'lbl' }, `a[${i}]`));
-    g.appendChild(el('text', { x: 0, y: -54, 'text-anchor': 'middle', fill: C('--muted'), class: 'lbl', 'font-size': 11 }, `${i + 1}號`));
+    if (!MAX_ONLY) g.appendChild(el('text', { x: 0, y: -54, 'text-anchor': 'middle', fill: C('--muted'), class: 'lbl', 'font-size': 11 }, `${i + 1}號`));
     g.appendChild(el('rect', { x: -cw / 2 + 2, y: -24, width: cw - 4, height: 48, rx: 4, fill: C('--cell'), stroke: isCur ? C('--cur') : (isTn ? C('--ts') : 'none'), 'stroke-width': 4 }));
     g.appendChild(el('text', { x: 0, y: 8, 'text-anchor': 'middle', fill: C('--cell-fg'), class: 'num' }, a[i]));
     svg.appendChild(g);
@@ -144,7 +152,7 @@ function render() {
     g.appendChild(el('text', { x: 0, y: 8, 'text-anchor': 'middle', fill: val == null ? color : fg, class: 'num' }, val == null ? '?' : val));
     svg.appendChild(g);
   };
-  if (idx >= 1) { boxAt(bx, 'ts', s.ts, C('--ts'), C('--ts-fg')); boxAt(bx + 90, 'tn', s.tn, C('--tn'), C('--tn-fg')); }
+  if (idx >= 1) { boxAt(bx, 'ts', s.ts, C('--ts'), C('--ts-fg')); if (!MAX_ONLY) boxAt(bx + 90, 'tn', s.tn, C('--tn'), C('--tn-fg')); }
   // compare line / arrows
   if (s.compare && s.i != null) {
     svg.appendChild(el('line', { x1: cx(s.i), y1: y + 28, x2: bx + 20, y2: by - 44, stroke: C('--cur'), 'stroke-width': 2, 'stroke-dasharray': '5 4' }));
@@ -152,14 +160,14 @@ function render() {
   }
   if (s.win && s.i != null) {
     svg.appendChild(el('line', { x1: cx(s.i), y1: y + 28, x2: bx, y2: by - 30, stroke: C('--ts'), 'stroke-width': 2.5 }));
-    svg.appendChild(el('line', { x1: cx(s.i), y1: y - 28, x2: bx + 90, y2: by - 30, stroke: C('--tn'), 'stroke-width': 2.5, 'stroke-dasharray': '6 4' }));
+    if (!MAX_ONLY) svg.appendChild(el('line', { x1: cx(s.i), y1: y - 28, x2: bx + 90, y2: by - 30, stroke: C('--tn'), 'stroke-width': 2.5, 'stroke-dasharray': '6 4' }));
     svg.appendChild(el('text', { x: bx + 180, y: by + 8, fill: C('--ts'), class: 'lbl', 'font-size': 18 }, `${a[s.i]} 比較大，換人 👑`));
   }
   if (s.lose && s.i != null) {
     svg.appendChild(el('text', { x: bx + 180, y: by + 8, fill: C('--muted'), class: 'lbl', 'font-size': 18 }, `${a[s.i]} 沒有比較大，不動`));
   }
   if (s.done) {
-    svg.appendChild(el('text', { x: bx + 180, y: by + 8, fill: C('--ts'), class: 'lbl', 'font-size': 18 }, `最高分 ${s.ts} 分，${s.tn + 1} 號同學 🎉`));
+    svg.appendChild(el('text', { x: bx + 180, y: by + 8, fill: C('--ts'), class: 'lbl', 'font-size': 18 }, MAX_ONLY ? `最高分 ${s.ts} 分 🎉` : `最高分 ${s.ts} 分，${s.tn + 1} 號同學 🎉`));
   }
   if (idx === 0) {
     svg.appendChild(el('text', { x: 450, y: by + 8, 'text-anchor': 'middle', fill: C('--muted'), class: 'lbl', 'font-size': 16 }, '按「下一步」開始'));
@@ -198,6 +206,13 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); document.getElementById('next').click(); }
   if (e.key === 'ArrowLeft') { e.preventDefault(); document.getElementById('prev').click(); }
 });
+if (MAX_ONLY) {
+  document.title = '找最大值';
+  document.querySelector('h1').textContent = '找最大值';
+  document.querySelector('header p').textContent = '一個一個看過去，記住目前最高的分數';
+  document.querySelector('.v.tn').hidden = true;
+  document.querySelector('.note').textContent = '想一想：這段流程要怎麼用 for 迴圈寫成程式？';
+}
 matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
 render();
 </script>
