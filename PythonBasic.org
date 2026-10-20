@@ -2446,6 +2446,17 @@ while (n > 0):
 
 #+RESULTS:
 : 3
+*** 更常見的應用情境：密碼檢查
+登入系統通常會讓使用者反覆輸入密碼，猜對就用 break 跳出迴圈；而如果連續猜錯三次、迴圈是「自然結束」而不是被 break 中斷的，就由 else 來處理鎖定帳號的工作：
+#+begin_src python -r -n :results output :exports both
+password = 'tnfsh2026'
+triepass = input('請輸入密碼：')
+while password != triepass:
+    print(f'密碼錯誤')
+    guess = input('請輸入密碼：')
+print('OK....')
+#+end_src
+
 *** break / else
 while 迴圈也支援 break 和 else，規則和前面 for 迴圈學到的一樣：break 會立刻跳出迴圈，而 else 只在迴圈「沒有被 break 中斷」時才會執行。
 
@@ -2458,6 +2469,31 @@ while True:
         break
 print('good bye')
 #+end_src
+
+密碼檢查: 登入系統通常會讓使用者反覆輸入密碼，猜對就用 break 跳出迴圈；而如果連續猜錯三次、迴圈是「自然結束」而不是被 break 中斷的，就由 else 來處理鎖定帳號的工作：
+#+begin_src python -r -n :results output :exports both
+password = 'tnfsh2026'
+tries = 0
+while tries < 3:
+    guess = input('請輸入密碼：')
+    if guess == password:
+        print('登入成功')
+        break
+    tries += 1
+    print(f'密碼錯誤，還有 {3 - tries} 次機會')
+else:
+    print('錯誤次數過多，帳號已鎖定')
+#+end_src
+執行結果（連續輸錯三次）：
+#+begin_example
+請輸入密碼：1234
+密碼錯誤，還有 2 次機會
+請輸入密碼：abcd
+密碼錯誤，還有 1 次機會
+請輸入密碼：0000
+密碼錯誤，還有 0 次機會
+錯誤次數過多，帳號已鎖定
+#+end_example
 
 同樣以質數判斷為例，用 while 來寫的話，和前面 for 的寫法有點不同——我們需要自己控制迴圈變數 ~i~ 的遞增：
 #+begin_src python -r -n :results output :exports both
