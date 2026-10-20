@@ -1009,6 +1009,43 @@ except Exception as e: # 捕捉所有其他未預期的錯誤，並打印錯誤�
     print(f"發生了未預期的錯誤: {e}")
 #+end_src
 這樣可以根據錯誤類型給出更精確的提示。
+** 如何知道發生的是哪一種例外
+要「點名」攔例外，前提是你得先知道發生的是哪一種例外。方法是用 =except Exception as e= 把例外物件接下來，再從它身上取資訊：
+#+begin_src python -r -n :results output :exports both :eval no
+try:
+    n = int(input())
+except Exception as e:
+    print(type(e).__name__)   # 只印類型名稱，例如 ValueError
+    print(e)                  # 只印錯誤訊息，例如 invalid literal for int() with base 10: 'abc'
+    print(repr(e))            # 類型加訊息，例如 ValueError("invalid literal for int() with base 10: 'abc'")
+#+end_src
+輸入 abc 時的輸出：
+#+begin_example
+ValueError
+invalid literal for int() with base 10: 'abc'
+ValueError("invalid literal for int() with base 10: 'abc'")
+#+end_example
+三種寫法的差別：
+- =type(e).__name__= 得到字串 ='ValueError'= ，適合拿來做判斷或顯示。
+- =print(e)= 只有訊息文字，沒有類型。
+- =repr(e)= 兩者都有，最接近直譯器自己印出來的樣子。
+
+如果想要完整的 traceback（含出錯的行號），用 =traceback= 模組：
+#+begin_src python -r -n :results output :exports both :eval no
+import traceback
+try:
+    n = int(input())
+except Exception:
+    traceback.print_exc()
+#+end_src
+
+建議的工作流程：還不確定會出什麼錯時，先用 =except Exception as e= 把類型印出來看看是誰；知道了之後，再改成點名攔那個類型（例如 =except ValueError:= ），不要一直停留在 =except Exception= 或 =except:= 。
+
+順帶一提，=int()= 會丟出哪一種例外，要看你餵給它什麼：
+- 傳入字串但內容不是整數，例如 =int('abc')= 、 =int('')= 、 =int('3.5')= ：ValueError（型別對，值不合法）
+- 傳入根本不是字串也不是數字的東西，例如 =int(None)= 、 =int([1])= ：TypeError（型別本身就不被接受）
+- 不會出錯的： =int(3.7)= 得到 3， =int(True)= 得到 1
+因為 =input()= 永遠傳回字串，所以 =int(input())= 只可能遇到 ValueError，不會碰到 TypeError。
 
 ** try-except-else
 在 Python 中，try-except 還可以搭配 else 使用。else 區塊會在 try 區塊中的程式碼沒有引發任何例外時執行。這樣可以讓我們在沒有錯誤的情況下執行一些額外的程式碼。
