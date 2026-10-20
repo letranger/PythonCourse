@@ -2451,7 +2451,7 @@ elif text == "I am a coder.":
 :END:
 *** 語法與使用時機
 基本用法與 C/C++相同：
-#+BEGIN_SRC python :exports both
+#+BEGIN_SRC python -r -n :exports both
 while condition:
     statement 1
     ...
@@ -2478,12 +2478,12 @@ while i <= 5:    # 2. 設定結束條件
 : 4
 : 5
 
-這三件事缺一不可。特別是第 3 步，如果忘了寫 =i += 1= ，i 永遠是 1、條件永遠成立，程式就會 *無限迴圈* 停不下來（這時可以按 Ctrl-C 強制中斷）。這是初學 while 最常犯的錯，之後每寫一個 while 都先問自己：「迴圈裡有沒有讓條件最終會變成 False 的那一行？」
+這三件事缺一不可。特別是第 3 步，如果忘了寫 ~i += 1~ ，i 永遠是 1、條件永遠成立，程式就會 ~無限迴圈~ 停不下來（這時可以按 Ctrl-C 強制中斷）。這是初學 while 最常犯的錯，之後每寫一個 while 都先問自己：「迴圈裡有沒有讓條件最終會變成 False 的那一行？」
 
 *** 條件型 while：讀到符合條件為止
 while 真正的強項是「不知道要跑幾次」的狀況，最典型的就是讀取使用者輸入。例如登入系統：使用者輸對密碼之前，就一直要他重新輸入：
 #+begin_src python -r -n :results output :exports both
-password = 'tnfsh2026'
+password = 'tnfsh403'
 guess = input('請輸入密碼：')
 while guess != password:
     print('密碼錯誤')
@@ -2492,22 +2492,34 @@ print('登入成功')
 #+end_src
 注意這個結構：進迴圈 *之前* 先讀一次，迴圈裡面讀錯了就 *再讀一次* ，這樣 while 的條件才有東西可以判斷。
 
-同樣的結構也可以用來連續讀入資料，直到讀到某個約定好的結束值（例如 999）為止：
+同樣的結構也可以用來連續讀入資料：老師要輸入全班成績算總分，但不知道有幾個人。約定輸入 -1 代表「沒有了」（成績不可能是負的，所以 -1 不會和真實資料混淆）：
 #+begin_src python -r -n :results output :exports both
-ins = input()
-while ins != '999':
-    print(ins)
-    ins = input()
+total = 0
+score = int(input('請輸入成績（-1 結束）：'))
+while score != -1:
+    total += score
+    score = int(input('請輸入成績（-1 結束）：'))
+print(f'總分：{total}')
 #+end_src
+執行結果：
+#+begin_example
+請輸入成績（-1 結束）：80
+請輸入成績（-1 結束）：95
+請輸入成績（-1 結束）：70
+請輸入成績（-1 結束）：-1
+總分：245
+#+end_example
 
 *** while True + break：先做再判斷
 上面兩個例子都要在迴圈前後各寫一次 input()，有點囉嗦。另一種寫法是讓條件永遠成立（=while True=），然後在迴圈 *裡面* 用 break 決定什麼時候跳出：
 #+begin_src python -r -n :results output :exports both
+total = 0
 while True:
-    ins = input()
-    if ins == '999':
+    score = int(input('請輸入成績（-1 結束）：'))
+    if score == -1:
         break
-    print(ins)
+    total += score
+print(f'總分：{total}')
 #+end_src
 break 會立刻跳出迴圈，規則和前面 for 迴圈學到的一樣。這種寫法是「先做再判斷」，和前一節「先判斷再做」剛好相反，input() 只要寫一次。在需要持續讀取使用者輸入的程式裡很常見：
 #+begin_src python -r -n :results output :exports both
