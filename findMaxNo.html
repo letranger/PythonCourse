@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>找最高分的座號</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one stage (the list of scores with ts / tn boxes below), controls under it, editable scores. */
+:root{
+  --bg:#f3f4f1; --panel:#ffffff; --fg:#1f2329; --muted:#6b7280; --line:#d6d9d3;
+  --cell:#2f7fc1; --cell-fg:#ffffff;
+  --ts:#b4452f; --ts-fg:#ffffff;
+  --tn:#c98a1e; --tn-fg:#ffffff;
+  --cur:#4f8a3a; --dim:#c9cdc6; --code-bg:#f7f8f5;
+  --font-ui:"Noto Sans TC",system-ui,-apple-system,"PingFang TC",sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#17191c; --panel:#212429; --fg:#e8eaed; --muted:#9aa0a8; --line:#363a41;
+  --cell:#4a95d6; --ts:#d2644b; --tn:#d9a13a; --cur:#6aa64f; --dim:#3a3e45; --code-bg:#1b1d21; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#17191c; --panel:#212429; --fg:#e8eaed; --muted:#9aa0a8; --line:#363a41;
+  --cell:#4a95d6; --ts:#d2644b; --tn:#d9a13a; --cur:#6aa64f; --dim:#3a3e45; --code-bg:#1b1d21; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font-ui);font-size:16px;line-height:1.5}
+.wrap{max-width:960px;margin:0 auto;padding-block:20px 40px;padding-inline:16px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin-bottom:14px}
+h1{font-size:1.5rem;margin:0;font-weight:700;text-wrap:balance}
+header p{margin:0;color:var(--muted)}
+.stage,.ctl{background:var(--panel);border:1px solid var(--line);border-radius:10px;min-width:0}
+.stage{padding:14px 16px 10px}
+.step{display:flex;gap:10px;align-items:baseline;min-height:3.2em}
+.step b{font-family:var(--font-mono);color:var(--muted);font-weight:600;flex:none}
+svg{display:block;width:100%;height:auto;max-width:100%}
+.lbl{font-family:var(--font-mono);font-size:13px;font-weight:600}
+.num{font-family:var(--font-mono);font-size:22px;font-weight:600}
+.ctl{padding:12px 16px;display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:12px}
+button{font:inherit;font-weight:500;padding:7px 14px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--fg);cursor:pointer}
+button.primary{background:var(--cell);color:var(--cell-fg);border-color:var(--cell)}
+button:disabled{opacity:.45;cursor:default}
+button:focus-visible,input:focus-visible{outline:2px solid var(--cell);outline-offset:2px}
+.counter{font-family:var(--font-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.setup{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-left:auto}
+.setup label{display:flex;gap:6px;align-items:center;color:var(--muted);font-size:.9rem}
+input[type=text]{font:inherit;font-family:var(--font-mono);width:16em;max-width:100%;padding:5px 8px;border:1px solid var(--line);border-radius:6px;background:var(--code-bg);color:var(--fg)}
+.vars{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:420px}
+.v{border:1px solid var(--line);border-radius:6px;padding:4px 8px;text-align:center}
+.v small{display:block;color:var(--muted);font-family:var(--font-mono);font-size:11px}
+.v strong{font-family:var(--font-mono);font-size:18px;font-variant-numeric:tabular-nums}
+.v.ts{border-color:var(--ts)} .v.tn{border-color:var(--tn)} .v.i{border-color:var(--cur)}
+.note{margin-top:14px;color:var(--muted);font-size:.9rem;max-width:65ch}
+@media (prefers-reduced-motion:no-preference){.mv{transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .3s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>找最高分的座號</h1>
+  <p>一個一個看過去，記住目前最高的分數和它的位置</p>
+</header>
+
+<div>
+  <div class="stage">
+    <div class="step"><b id="stepNo">0.</b><span id="stepText"></span></div>
+    <svg id="svg" viewBox="0 0 900 330" aria-label="找最大值示意圖"></svg>
+  </div>
+  <div class="ctl">
+    <button id="prev">上一步</button>
+    <button id="next" class="primary">下一步</button>
+    <button id="play">自動播放</button>
+    <span class="counter" id="counter"></span>
+    <form class="setup" id="setup">
+      <label>分數 <input type="text" id="scores" value="21 30 10 43 20 48 9 12" aria-label="以空白分隔的分數"></label>
+      <button type="submit">重新開始</button>
+    </form>
+  </div>
+  <div class="vars">
+    <div class="v i"><small>i（正在看的位置）</small><strong id="vI">–</strong></div>
+    <div class="v ts"><small>ts（目前最高分）</small><strong id="vTs">–</strong></div>
+    <div class="v tn"><small>tn（它的位置）</small><strong id="vTn">–</strong></div>
+  </div>
+  <p class="note">a[0] 是 1 號同學的分數，a[1] 是 2 號，所以 tn 找到之後，座號 = tn + 1。想一想：這段流程要怎麼用 for 迴圈寫成程式？</p>
+</div>
+</div>
+
+<script>
+function buildSteps(a) {
+  const steps = [];
+  let ts = null, tn = null;
+  const snap = (text, extra = {}) => steps.push({ text, ts, tn, i: null, ...extra });
+  snap(`這是 ${a.length} 位同學的分數，a[0] 是 1 號、a[1] 是 2 號……要找出最高分是幾分、是幾號同學。`);
+  snap('準備兩個變數：ts 記「目前看過的最高分」，tn 記「那個分數的位置」。現在還是空的。', { declared: true });
+  ts = a[0]; tn = 0;
+  snap(`還沒比較之前，先假設第一個 a[0] = ${a[0]} 就是最高分，所以 ts = ${a[0]}、tn = 0。`, { i: 0 });
+  for (let i = 1; i < a.length; i++) {
+    snap(`看 a[${i}] = ${a[i]}，和目前的最高分 ts = ${ts} 比一比。`, { i, compare: true });
+    if (a[i] > ts) {
+      ts = a[i]; tn = i;
+      snap(`a[${i}] = ${a[i]} 比 ${steps[steps.length - 1].ts} 大，換人！ts 改成 ${ts}，tn 改成 ${i}。`, { i, win: true });
+    } else {
+      snap(`a[${i}] = ${a[i]} 沒有比 ${ts} 大，ts 和 tn 都不動。`, { i, lose: true });
+    }
+  }
+  snap(`全部看完了。最高分是 ts = ${ts}，在位置 tn = ${tn}，也就是 ${tn + 1} 號同學。`, { done: true });
+  return steps;
+}
+
+const svg = document.getElementById('svg');
+const NS = 'http://www.w3.org/2000/svg';
+let a = [21, 30, 10, 43, 20, 48, 9, 12], steps = buildSteps(a), idx = 0, timer = null;
+
+function el(name, attrs, text) {
+  const e = document.createElementNS(NS, name);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (text != null) e.textContent = text;
+  return e;
+}
+function render() {
+  const s = steps[idx];
+  svg.replaceChildren();
+  const cs = getComputedStyle(document.documentElement);
+  const C = k => cs.getPropertyValue(k).trim();
+  const n = a.length, cw = Math.min(72, 760 / n), x0 = (900 - cw * n) / 2, y = 110;
+  const cx = i => x0 + cw * i + cw / 2;
+
+  // list cells
+  for (let i = 0; i < n; i++) {
+    const isCur = s.i === i, isTn = s.tn === i && (s.declared === undefined);
+    const g = el('g', { transform: `translate(${cx(i)},${y})` });
+    g.appendChild(el('text', { x: 0, y: -38, 'text-anchor': 'middle', fill: isCur ? C('--cur') : C('--muted'), class: 'lbl' }, `a[${i}]`));
+    g.appendChild(el('text', { x: 0, y: -54, 'text-anchor': 'middle', fill: C('--muted'), class: 'lbl', 'font-size': 11 }, `${i + 1}號`));
+    g.appendChild(el('rect', { x: -cw / 2 + 2, y: -24, width: cw - 4, height: 48, rx: 4, fill: C('--cell'), stroke: isCur ? C('--cur') : (isTn ? C('--ts') : 'none'), 'stroke-width': 4 }));
+    g.appendChild(el('text', { x: 0, y: 8, 'text-anchor': 'middle', fill: C('--cell-fg'), class: 'num' }, a[i]));
+    svg.appendChild(g);
+  }
+  // ts / tn boxes
+  const bx = x0 + 40, by = 250;
+  const boxAt = (x, label, val, color, fg) => {
+    const g = el('g', { class: 'mv', transform: `translate(${x},${by})` });
+    g.appendChild(el('text', { x: 0, y: -34, 'text-anchor': 'middle', fill: color, class: 'lbl' }, label));
+    g.appendChild(el('rect', { x: -28, y: -24, width: 56, height: 48, rx: 6, fill: val == null ? 'none' : color, stroke: color, 'stroke-width': 2, 'stroke-dasharray': val == null ? '5 4' : 'none' }));
+    g.appendChild(el('text', { x: 0, y: 8, 'text-anchor': 'middle', fill: val == null ? color : fg, class: 'num' }, val == null ? '?' : val));
+    svg.appendChild(g);
+  };
+  if (idx >= 1) { boxAt(bx, 'ts', s.ts, C('--ts'), C('--ts-fg')); boxAt(bx + 90, 'tn', s.tn, C('--tn'), C('--tn-fg')); }
+  // compare line / arrows
+  if (s.compare && s.i != null) {
+    svg.appendChild(el('line', { x1: cx(s.i), y1: y + 28, x2: bx + 20, y2: by - 44, stroke: C('--cur'), 'stroke-width': 2, 'stroke-dasharray': '5 4' }));
+    svg.appendChild(el('text', { x: (cx(s.i) + bx) / 2 + 30, y: (y + by) / 2 + 8, fill: C('--cur'), class: 'lbl', 'font-size': 18 }, `${a[s.i]} > ${s.ts} ?`));
+  }
+  if (s.win && s.i != null) {
+    svg.appendChild(el('line', { x1: cx(s.i), y1: y + 28, x2: bx, y2: by - 30, stroke: C('--ts'), 'stroke-width': 2.5 }));
+    svg.appendChild(el('line', { x1: cx(s.i), y1: y - 28, x2: bx + 90, y2: by - 30, stroke: C('--tn'), 'stroke-width': 2.5, 'stroke-dasharray': '6 4' }));
+    svg.appendChild(el('text', { x: bx + 180, y: by + 8, fill: C('--ts'), class: 'lbl', 'font-size': 18 }, `${a[s.i]} 比較大，換人 👑`));
+  }
+  if (s.lose && s.i != null) {
+    svg.appendChild(el('text', { x: bx + 180, y: by + 8, fill: C('--muted'), class: 'lbl', 'font-size': 18 }, `${a[s.i]} 沒有比較大，不動`));
+  }
+  if (s.done) {
+    svg.appendChild(el('text', { x: bx + 180, y: by + 8, fill: C('--ts'), class: 'lbl', 'font-size': 18 }, `最高分 ${s.ts} 分，${s.tn + 1} 號同學 🎉`));
+  }
+  if (idx === 0) {
+    svg.appendChild(el('text', { x: 450, y: by + 8, 'text-anchor': 'middle', fill: C('--muted'), class: 'lbl', 'font-size': 16 }, '按「下一步」開始'));
+  }
+
+  document.getElementById('stepNo').textContent = idx + '.';
+  document.getElementById('stepText').textContent = s.text;
+  document.getElementById('counter').textContent = `${idx + 1} / ${steps.length}`;
+  document.getElementById('vI').textContent = s.i == null ? '–' : s.i;
+  document.getElementById('vTs').textContent = s.ts == null ? '–' : s.ts;
+  document.getElementById('vTn').textContent = s.tn == null ? '–' : s.tn;
+  document.getElementById('prev').disabled = idx === 0;
+  document.getElementById('next').disabled = idx === steps.length - 1;
+  if (idx === steps.length - 1) stopPlay();
+}
+function stopPlay() { if (timer) { clearInterval(timer); timer = null; document.getElementById('play').textContent = '自動播放'; } }
+document.getElementById('prev').onclick = () => { stopPlay(); if (idx > 0) { idx--; render(); } };
+document.getElementById('next').onclick = () => { stopPlay(); if (idx < steps.length - 1) { idx++; render(); } };
+document.getElementById('play').onclick = () => {
+  if (timer) return stopPlay();
+  if (idx === steps.length - 1) idx = 0;
+  render();
+  document.getElementById('play').textContent = '暫停';
+  timer = setInterval(() => { if (idx < steps.length - 1) { idx++; render(); } else stopPlay(); }, 1500);
+};
+document.getElementById('setup').addEventListener('submit', e => {
+  e.preventDefault(); stopPlay();
+  const v = document.getElementById('scores').value.trim().split(/[\s,，]+/).map(Number).filter(x => !Number.isNaN(x));
+  if (v.length < 2) return;
+  a = v.slice(0, 12);
+  document.getElementById('scores').value = a.join(' ');
+  steps = buildSteps(a); idx = 0; render();
+});
+document.addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); document.getElementById('next').click(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); document.getElementById('prev').click(); }
+});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+render();
+</script>
+</body>
+</html>
