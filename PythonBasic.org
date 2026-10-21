@@ -3216,23 +3216,28 @@ data = [33, 95, 41, 45, 66, 88]
 |   33    |    95   |    41   |    45   |    66   |     88     |
 |---------+---------+---------+---------+---------+------------|
 
-*** List 與字串
-在 Python 中，很多不同的資料型別都可以互換，例如我們之前最常用的：
+然後，我們可以用這樣的方式來取得List中的各項元素：
 #+begin_src python -r -n :results output :exports both
-a = int(input())
-#+end_src
-就是將輸入的字串轉換成整數(int)型別，這樣我們就可以對變數 a 進行數學運算了。
-
-同樣地，List 也可以和字串互換，例如：
-#+begin_src python -r -n :results output :exports both
-s = '339541456688'
-data = list(s)
-print(data)
+data = [33, 95, 41, 45, 66, 88]
+print(f'data的第一個元素為 {data[0]}')
+print(f'data的最後一個元素為 {data[-1]}')
 #+end_src
 
 #+RESULTS:
-: ['3', '3', '9', '5', '4', '1', '4', '5', '6', '6', '8', '8']
-當字串被強制轉換成 List 時，List 中的每個元素就是字串中的每個字元。學會這個技巧後，你在面對需要處理字串的問題時，就可以更靈活地運用 List 來解決問題了！
+: 第一個元素為 33
+: 最後一個元素為 88
+
+*** 對 List 中元素的修正
+將資料放入 List 後，可以透過索引值來修改 List 中的元素。例如：
+
+#+begin_src python -r -n :results output :exports both
+test = [12, 13, 14]
+test[1] = 999
+print(test)
+#+end_src
+
+#+RESULTS:
+: [12, 999, 14]
 
 *** List 中元素的存取與走訪
 List 中的元素可以透過索引值來存取，索引值從 0 開始。例如，要存取 data 中的第一個元素，可以使用 data[0]、要存取第二個元素，可以使用 data[1]，以此類推。
@@ -3308,23 +3313,6 @@ print(f'最小值為 {min(data)}')
 : 總和為 368
 : 最大值為 95
 : 最小值為 33
-
-*** List 的相關函式
-除了前面已經介紹過的 sum()、max()、min() 之外，還有很多其他的函式也可以和 List 搭配使用，例如 len() 函式可以用來計算 List 中元素的個數，sorted() 函式可以用來將 List 中的元素排序，list() 函式可以用來將其他型別的資料轉換成 List。
-例如：
-#+begin_src python -r -n :results output :exports both
-data = [33, 95, 41, 45, 66, 88]
-print(f'元素個數為 {len(data)}')
-print(f'排序後的 List 為 {sorted(data)}')
-s = '339541456688'
-data2 = list(s)
-print(f'字串轉換成 List 為 {data2}')
-#+end_src
-
-#+RESULTS:
-: 元素個數為 6
-: 排序後的 List 為 [33, 41, 45, 66, 88, 95]
-: 字串轉換成 List 為 ['3', '3', '9', '5', '4', '1', '4', '5', '6', '6', '8', '8']
 
 *** List 的專用函式
 除了上述的函式之外，List 本身也有很多專用的函式，可以用來操作 List，例如 append() 函式可以用來在 List 的尾端新增一個元素，remove() 函式可以用來移除 List 中的某個元素，sort() 函式可以用來將 List 中的元素排序。
@@ -3447,17 +3435,23 @@ print("pop(1):", mid, x)
 
 和 remove() 不同的是，pop() 是 *用 index 移除* 並且 *會回傳被移除的值* ，而 remove() 是 *用值來移除* 且 *不回傳* 。
 
-*** 對 List 中元素的修正
-將資料放入 List 後，可以透過索引值來修改 List 中的元素。例如：
-
+*** List 與字串
+在 Python 中，很多不同的資料型別都可以互換，例如我們之前最常用的：
 #+begin_src python -r -n :results output :exports both
-test = [12, 13, 14]
-test[1] = 999
-print(test)
+a = int(input())
+#+end_src
+就是將輸入的字串轉換成整數(int)型別，這樣我們就可以對變數 a 進行數學運算了。
+
+同樣地，我們也可以將字串型別的資料轉為List
+#+begin_src python -r -n :results output :exports both
+s = '339541456688'
+data = list(s)
+print(data)
 #+end_src
 
 #+RESULTS:
-: [12, 999, 14]
+: ['3', '3', '9', '5', '4', '1', '4', '5', '6', '6', '8', '8']
+當字串被強制轉換成 List 時，List 中的每個元素就是字串中的每個字元。學會這個技巧後，你在面對需要處理字串的問題時，就可以更靈活地運用 List 來解決問題了！
 
 *** List 的切片(slicing)
 Python 的 List 雖然在概念上與 C++的陣列頗為相似，但在應用上則擁有更大的彈性，除了可以儲存不同類型的資料，最大的特色就是 Python 的 List 提供很強大的切片功能。
