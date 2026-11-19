@@ -1,0 +1,1753 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2026-11-19 Thu 22:03 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Streamlit 專題入門：零用錢記帳本</title>
+<meta name="author" content="顏永進" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/muse.css" />
+<script src="../css/copy_code.js"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Streamlit 專題入門：零用錢記帳本
+<br />
+<span class="subtitle">TNFSH Python教材 / 顏永進</span>
+</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#sp-goal">1. 這兩節課要做什麼</a></li>
+<li><a href="#sp-setup">2. 開始之前</a>
+<ul>
+<li><a href="#org98e42b1">2.1. 執行方式</a></li>
+<li><a href="#org1b23ec1">2.2. 改程式不用重新執行</a></li>
+<li><a href="#sp-rerun">2.3. 最重要的觀念：整支程式會一直重跑</a></li>
+</ul>
+</li>
+<li><a href="#sp-step1">3. Step 1：第一個網頁</a></li>
+<li><a href="#sp-step2">4. Step 2：輸入欄位</a></li>
+<li><a href="#sp-step3">5. Step 3：按鈕──資料怎麼不見了？</a></li>
+<li><a href="#sp-step4">6. Step 4：存進 JSON 檔</a>
+<ul>
+<li><a href="#orgb694d05">6.1. JSON 是什麼</a></li>
+<li><a href="#orgf85bdcd">6.2. 用表單一次送出</a></li>
+</ul>
+</li>
+<li><a href="#sp-step5">7. Step 5：算出收入、支出、餘額</a></li>
+<li><a href="#sp-step6">8. Step 6：用 matplotlib 畫圖</a></li>
+<li><a href="#sp-step7">9. Step 7：分頁與側邊欄（完成版）</a></li>
+<li><a href="#sp-step8">10. Step 8：延伸──刪除與下載備份</a></li>
+<li><a href="#sp-deploy">11. 第二節：註冊 GitHub，把 App 發佈到網路上</a>
+<ul>
+<li><a href="#orgc1a0725">11.1. 準備要上傳的檔案</a></li>
+<li><a href="#orgbb1662d">11.2. 部署 1：註冊 GitHub 帳號</a></li>
+<li><a href="#org01c7183">11.3. 部署 2：建立 repository，上傳程式</a></li>
+<li><a href="#orge2f5a9a">11.4. 部署 3：部署到 Streamlit Community Cloud</a></li>
+<li><a href="#org2fe1641">11.5. 部署 4：測試你的網址</a></li>
+<li><a href="#orgaf8b4eb">11.6. 程式改了怎麼更新</a></li>
+<li><a href="#orgb26a29f">11.7. 部署常見問題</a></li>
+</ul>
+</li>
+<li><a href="#sp-ai">12. 專題時間：和 AI 一起寫</a>
+<ul>
+<li><a href="#orgd6b13a2">12.1. 題目點子</a></li>
+<li><a href="#orga261ac5">12.2. 怎麼跟 AI 說</a></li>
+<li><a href="#org7b1e2b2">12.3. 好習慣</a></li>
+<li><a href="#org33bb292">12.4. 常見錯誤</a></li>
+</ul>
+</li>
+<li><a href="#sp-cheatsheet">13. 元件速查表</a></li>
+</ul>
+</div>
+</div>
+<a href="https://letranger.github.io/PythonCourse/StreamlitProject.html"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/StreamlitProject.html.svg"/></a>
+<div id="outline-container-sp-goal" class="outline-2">
+<h2 id="sp-goal"><span class="section-number-2">1.</span> 這兩節課要做什麼</h2>
+<div class="outline-text-2" id="text-sp-goal">
+<p>
+Streamlit 可以讓你 <code>只用 Python</code> 就做出一個網頁 App，不需要學 HTML、CSS 或 JavaScript。<br />
+</p>
+
+<p>
+這兩節課我們從一個空白檔案開始，一步一步做出一個「零用錢記帳本」：可以記下每一筆收入和支出、存成檔案、算出餘額，還能畫圖看看錢都花到哪裡去了。<br />
+</p>
+
+<p>
+每一步都附上 <code>完整程式碼</code>，直接整段複製、貼上、存檔就能執行。重點不是背指令，而是知道 Streamlit 能做什麼，接下來的專題課你就可以和 AI 一起做出自己的 App。<br />
+</p>
+
+<ul class="org-ul">
+<li><code>第一節</code>：大致看過 Step 1～7，知道 Streamlit 能做哪些事，沒做完的步驟可以課後自己照著做。<br /></li>
+<li><code>第二節</code>：每個人註冊 GitHub 帳號，把記帳本部署到網路上，拿到一個大家都打得開的網址。課後的小組作業也要這樣部署，所以這一節的步驟一定要自己做過一次。<br /></li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">步驟</th>
+<th scope="col" class="org-left">加入的功能</th>
+<th scope="col" class="org-left">會用到</th>
+<th scope="col" class="org-left">節次</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Step 1</td>
+<td class="org-left">第一個網頁</td>
+<td class="org-left"><code>st.title</code>, <code>st.write</code></td>
+<td class="org-left">第一節</td>
+</tr>
+
+<tr>
+<td class="org-left">Step 2</td>
+<td class="org-left">輸入欄位</td>
+<td class="org-left"><code>st.date_input</code>, <code>st.radio</code>, =st.selectbox=…</td>
+<td class="org-left">第一節</td>
+</tr>
+
+<tr>
+<td class="org-left">Step 3</td>
+<td class="org-left">按鈕（資料怎麼不見了？）</td>
+<td class="org-left"><code>st.button</code></td>
+<td class="org-left">第一節</td>
+</tr>
+
+<tr>
+<td class="org-left">Step 4</td>
+<td class="org-left">存進 JSON 檔</td>
+<td class="org-left"><code>json</code>, <code>st.form</code></td>
+<td class="org-left">第一節</td>
+</tr>
+
+<tr>
+<td class="org-left">Step 5</td>
+<td class="org-left">算出收入、支出、餘額</td>
+<td class="org-left"><code>st.metric</code>, <code>st.columns</code>, <code>st.dataframe</code></td>
+<td class="org-left">第一節</td>
+</tr>
+
+<tr>
+<td class="org-left">Step 6</td>
+<td class="org-left">畫圖</td>
+<td class="org-left"><code>matplotlib</code>, <code>numpy</code>, <code>st.pyplot</code></td>
+<td class="org-left">第一節</td>
+</tr>
+
+<tr>
+<td class="org-left">Step 7</td>
+<td class="org-left">分頁與側邊欄（完成版）</td>
+<td class="org-left"><code>st.tabs</code>, <code>st.sidebar</code></td>
+<td class="org-left">第一節</td>
+</tr>
+
+<tr>
+<td class="org-left">Step 8</td>
+<td class="org-left">延伸：刪除與下載備份</td>
+<td class="org-left"><code>st.download_button</code>, <code>st.rerun</code></td>
+<td class="org-left">選讀</td>
+</tr>
+
+<tr>
+<td class="org-left">部署</td>
+<td class="org-left">註冊 GitHub，發佈到網路上</td>
+<td class="org-left">GitHub, Streamlit Community Cloud</td>
+<td class="org-left">第二節</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-sp-setup" class="outline-2">
+<h2 id="sp-setup"><span class="section-number-2">2.</span> 開始之前</h2>
+<div class="outline-text-2" id="text-sp-setup">
+</div>
+<div id="outline-container-org98e42b1" class="outline-3">
+<h3 id="org98e42b1"><span class="section-number-3">2.1.</span> 執行方式</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>新增一個資料夾（例如 <code>ledger=），在裡面新增檔案 =app.py</code><br /></li>
+<li>把程式碼貼進 <code>app.py</code> 並存檔<br /></li>
+<li>開啟終端機，切換到這個資料夾，輸入：<br /></li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-shell"><code><span class="linenr">1: </span>python3 -m streamlit run app.py
+</code></pre>
+</div>
+<ol class="org-ol">
+<li>瀏覽器會自動打開你的 App（網址通常是 <code>http://localhost:8501</code>）<br /></li>
+<li>要結束程式，在終端機按 <code>Ctrl + C</code><br /></li>
+</ol>
+
+<blockquote>
+<p>
+為什麼不是直接打 <code>streamlit run app.py</code>？電腦教室的 <code>streamlit</code> 指令沒有加進系統路徑，直接打會出現 <code>command not found</code>，用 <code>python3 -m streamlit</code> 就一定找得到。<br />
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org1b23ec1" class="outline-3">
+<h3 id="org1b23ec1"><span class="section-number-3">2.2.</span> 改程式不用重新執行</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+App 開著的時候，修改 <code>app.py</code> 並存檔，網頁右上角會出現 <code>Rerun</code> 按鈕，按下去就會套用新程式。選 <code>Always rerun</code> 的話，之後每次存檔都會自動更新。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-sp-rerun" class="outline-3">
+<h3 id="sp-rerun"><span class="section-number-3">2.3.</span> 最重要的觀念：整支程式會一直重跑</h3>
+<div class="outline-text-3" id="text-sp-rerun">
+<p>
+Streamlit 和你之前寫的程式很不一樣： <code>每當使用者按一下按鈕、改一個輸入框，整支程式就會從第一行重新執行到最後一行</code>，然後重新畫出整個網頁。<br />
+</p>
+
+<p>
+先記住這件事，Step 3 你就會親眼看到它造成的「怪事」。<br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sp-step1" class="outline-2">
+<h2 id="sp-step1"><span class="section-number-2">3.</span> Step 1：第一個網頁</h2>
+<div class="outline-text-2" id="text-sp-step1">
+<p>
+<code>st.title</code> 顯示大標題， <code>st.write</code> 什麼都能顯示（文字、數字、list、dict……）， <code>st.markdown</code> 可以用 Markdown 語法排版。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr">1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr">2: </span>
+<span class="linenr">3: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr">4: </span>st.write(<span class="org-string">'&#36889;&#26159;&#25105;&#29992; Python &#20570;&#30340;&#31532;&#19968;&#20491;&#32178;&#38913;&#65281;'</span>)
+<span class="linenr">5: </span>st.markdown(<span class="org-string">'&#20063;&#21487;&#20197;&#29992; **Markdown** &#35486;&#27861;&#23531;&#23383;&#65292;&#20363;&#22914; *&#26012;&#39636;*&#12289;`&#31243;&#24335;&#30908;`'</span>)
+</code></pre>
+</div>
+<p>
+<code>試試看</code>：用 <code>st.write</code> 加一行自我介紹。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-sp-step2" class="outline-2">
+<h2 id="sp-step2"><span class="section-number-2">4.</span> Step 2：輸入欄位</h2>
+<div class="outline-text-2" id="text-sp-step2">
+<p>
+記一筆帳需要五個欄位，剛好用到五種不同的輸入元件。每個元件都會 <code>回傳使用者輸入的值</code>，用變數接起來就能使用：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">元件</th>
+<th scope="col" class="org-left">用途</th>
+<th scope="col" class="org-left">回傳值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>st.date_input</code></td>
+<td class="org-left">選日期</td>
+<td class="org-left">日期（ <code>datetime.date</code>）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.radio</code></td>
+<td class="org-left">單選按鈕</td>
+<td class="org-left">選到的那個字串</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.selectbox</code></td>
+<td class="org-left">下拉選單</td>
+<td class="org-left">選到的那個字串</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.text_input</code></td>
+<td class="org-left">輸入文字</td>
+<td class="org-left">字串（沒填時是 <code>''</code>）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.number_input</code></td>
+<td class="org-left">輸入數字</td>
+<td class="org-left">數字（ <code>min_value=0</code> 表示不能小於 0）</td>
+</tr>
+</tbody>
+</table>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr"> 1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span class="org-variable-name">date</span> <span class="org-operator">=</span> st.date_input(<span class="org-string">'&#26085;&#26399;'</span>)
+<span class="linenr"> 6: </span><span class="org-variable-name">kind</span> <span class="org-operator">=</span> st.radio(<span class="org-string">'&#25910;&#20837;&#36996;&#26159;&#25903;&#20986;&#65311;'</span>, [<span class="org-string">'&#25903;&#20986;'</span>, <span class="org-string">'&#25910;&#20837;'</span>], horizontal<span class="org-operator">=</span><span class="org-constant">True</span>)
+<span class="linenr"> 7: </span><span class="org-variable-name">category</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#39006;&#21029;'</span>, [<span class="org-string">'&#39154;&#39135;'</span>, <span class="org-string">'&#20132;&#36890;'</span>, <span class="org-string">'&#23067;&#27138;'</span>, <span class="org-string">'&#25991;&#20855;'</span>, <span class="org-string">'&#38646;&#29992;&#37666;'</span>, <span class="org-string">'&#20854;&#20182;'</span>])
+<span class="linenr"> 8: </span><span class="org-variable-name">item</span> <span class="org-operator">=</span> st.text_input(<span class="org-string">'&#38917;&#30446;'</span>, placeholder<span class="org-operator">=</span><span class="org-string">'&#20363;&#22914;&#65306;&#29645;&#22902;'</span>)
+<span class="linenr"> 9: </span><span class="org-variable-name">amount</span> <span class="org-operator">=</span> st.number_input(<span class="org-string">'&#37329;&#38989;'</span>, min_value<span class="org-operator">=</span>0, step<span class="org-operator">=</span>10)
+<span class="linenr">10: </span>
+<span class="linenr">11: </span>st.write(<span class="org-string">'&#20320;&#36664;&#20837;&#30340;&#26159;&#65306;'</span>, date, kind, category, item, amount)
+</code></pre>
+</div>
+<p>
+<code>試試看</code>：改改看欄位的內容，觀察最下面那一行有沒有跟著變。這就是「整支程式重跑」：你每改一次，第 11 行就重新執行一次。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-sp-step3" class="outline-2">
+<h2 id="sp-step3"><span class="section-number-2">5.</span> Step 3：按鈕──資料怎麼不見了？</h2>
+<div class="outline-text-2" id="text-sp-step3">
+<p>
+加一個「記下來」按鈕，按下去就把這筆資料用 dict 包起來，加進 <code>records</code> 這個 list：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr"> 1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr"> 2: </span>
+<span class="linenr"> 3: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span class="org-variable-name">records</span> <span class="org-operator">=</span> []   <span class="org-comment-delimiter"># </span><span class="org-comment">&#29992;&#19968;&#20491; list &#20358;&#23384;&#25152;&#26377;&#35352;&#37636;
+<span class="linenr"> 6: </span></span>
+<span class="linenr"> 7: </span><span class="org-variable-name">date</span> <span class="org-operator">=</span> st.date_input(<span class="org-string">'&#26085;&#26399;'</span>)
+<span class="linenr"> 8: </span><span class="org-variable-name">kind</span> <span class="org-operator">=</span> st.radio(<span class="org-string">'&#25910;&#20837;&#36996;&#26159;&#25903;&#20986;&#65311;'</span>, [<span class="org-string">'&#25903;&#20986;'</span>, <span class="org-string">'&#25910;&#20837;'</span>], horizontal<span class="org-operator">=</span><span class="org-constant">True</span>)
+<span class="linenr"> 9: </span><span class="org-variable-name">category</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#39006;&#21029;'</span>, [<span class="org-string">'&#39154;&#39135;'</span>, <span class="org-string">'&#20132;&#36890;'</span>, <span class="org-string">'&#23067;&#27138;'</span>, <span class="org-string">'&#25991;&#20855;'</span>, <span class="org-string">'&#38646;&#29992;&#37666;'</span>, <span class="org-string">'&#20854;&#20182;'</span>])
+<span class="linenr">10: </span><span class="org-variable-name">item</span> <span class="org-operator">=</span> st.text_input(<span class="org-string">'&#38917;&#30446;'</span>, placeholder<span class="org-operator">=</span><span class="org-string">'&#20363;&#22914;&#65306;&#29645;&#22902;'</span>)
+<span class="linenr">11: </span><span class="org-variable-name">amount</span> <span class="org-operator">=</span> st.number_input(<span class="org-string">'&#37329;&#38989;'</span>, min_value<span class="org-operator">=</span>0, step<span class="org-operator">=</span>10)
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span class="org-keyword">if</span> st.button(<span class="org-string">'&#35352;&#19979;&#20358;'</span>):
+<span class="linenr">14: </span>    records.append({<span class="org-string">'&#26085;&#26399;'</span>: <span class="org-builtin">str</span>(date), <span class="org-string">'&#25910;&#25903;'</span>: kind, <span class="org-string">'&#39006;&#21029;'</span>: category,
+<span class="linenr">15: </span>                    <span class="org-string">'&#38917;&#30446;'</span>: item, <span class="org-string">'&#37329;&#38989;'</span>: amount})
+<span class="linenr">16: </span>    st.success(<span class="org-string">'&#35352;&#22909;&#20102;&#65281;'</span>)
+<span class="linenr">17: </span>
+<span class="linenr">18: </span>st.write(<span class="org-string">'&#30446;&#21069;&#20849;&#26377;'</span>, <span class="org-builtin">len</span>(records), <span class="org-string">'&#31558;&#35352;&#37636;'</span>)
+<span class="linenr">19: </span>st.write(records)
+</code></pre>
+</div>
+<p>
+第 16 行的 <code>st.success</code> 是 Streamlit 的訊息框，會顯示一個有顏色的提示框，讓使用者一眼看出結果。總共有四種，差別只在顏色和圖示：<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">函式</th>
+<th scope="col" class="org-left">外觀</th>
+<th scope="col" class="org-left">用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>st.success</code></td>
+<td class="org-left">綠色框 ✅</td>
+<td class="org-left">動作成功完成</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.error</code></td>
+<td class="org-left">紅色框 ❌</td>
+<td class="org-left">發生錯誤、輸入不正確</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.warning</code></td>
+<td class="org-left">黃色框 ⚠️</td>
+<td class="org-left">提醒、警告</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.info</code></td>
+<td class="org-left">藍色框 ℹ️</td>
+<td class="org-left">一般說明</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+後面的步驟會搭配 <code>if</code> 判斷使用：資料沒填好就用 <code>st.error</code> 提醒，記好了就用 <code>st.success</code> 告訴使用者。<br />
+</p>
+
+<p>
+<code>試試看</code>：記一筆，再記第二筆。你會發現「目前共有」永遠只有 1 筆，第一筆不見了！<br />
+</p>
+
+<p>
+<code>原因</code>：按下按鈕時整支程式重跑，第 5 行 <code>records = []</code> 又把 list 清空了。程式結束時變數裡的資料就消失，就像你之前寫的程式，執行完變數就不見了一樣。<br />
+</p>
+
+<p>
+<code>解法</code>：把資料 <code>存到檔案裡</code>。每次重跑時先從檔案讀出來，有新資料就寫回檔案，資料就不會不見了。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-sp-step4" class="outline-2">
+<h2 id="sp-step4"><span class="section-number-2">6.</span> Step 4：存進 JSON 檔</h2>
+<div class="outline-text-2" id="text-sp-step4">
+</div>
+<div id="outline-container-orgb694d05" class="outline-3">
+<h3 id="orgb694d05"><span class="section-number-3">6.1.</span> JSON 是什麼</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+JSON 是一種很常見的資料檔格式，長得幾乎跟 Python 的 list 和 dict 一模一樣。我們的記帳資料存起來會像這樣：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-json"><code><span class="linenr">1: </span>[
+<span class="linenr">2: </span>  {"日期": "2026-11-19", "收支": "支出", "類別": "飲食", "項目": "珍奶", "金額": 55},
+<span class="linenr">3: </span>  {"日期": "2026-11-20", "收支": "收入", "類別": "零用錢", "項目": "週零用錢", "金額": 500}
+<span class="linenr">4: </span>]
+</code></pre>
+</div>
+<p>
+Python 內建的 <code>json</code> 模組只要記兩個函式：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">函式</th>
+<th scope="col" class="org-left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>json.load(f)</code></td>
+<td class="org-left">從檔案讀出來，變成 list/dict</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>json.dump(資料, f)</code></td>
+<td class="org-left">把 list/dict 寫進檔案</td>
+</tr>
+</tbody>
+</table>
+<ul class="org-ul">
+<li><code>ensure_ascii=False</code>：中文照原樣存，不會變成一串看不懂的編碼<br /></li>
+<li><code>indent=2</code>：存檔時自動換行縮排，用記事本打開也看得懂<br /></li>
+<li>日期要先用 <code>str(date)</code> 轉成字串，因為 JSON 不認得 Python 的日期型別<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf85bdcd" class="outline-3">
+<h3 id="orgf85bdcd"><span class="section-number-3">6.2.</span> 用表單一次送出</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+<code>st.form</code> 會把裡面的欄位包成一張表單，按下 <code>st.form_submit_button</code> 才一起送出。 <code>clear_on_submit=True</code> 會在送出後清空欄位，方便記下一筆。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr"> 1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr"> 2: </span><span class="org-keyword">import</span> json
+<span class="linenr"> 3: </span><span class="org-keyword">import</span> os
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span class="org-variable-name">FILE</span> <span class="org-operator">=</span> <span class="org-string">'records.json'</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span class="org-keyword">def</span> <span class="org-function-name">load_records</span>():
+<span class="linenr"> 8: </span>    <span class="org-keyword">if</span> <span class="org-keyword">not</span> os.path.exists(FILE):   <span class="org-comment-delimiter"># </span><span class="org-comment">&#31532;&#19968;&#27425;&#22519;&#34892;&#36996;&#27794;&#26377;&#27284;&#26696;
+<span class="linenr"> 9: </span></span>        <span class="org-keyword">return</span> []
+<span class="linenr">10: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'r'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr">11: </span>        <span class="org-keyword">return</span> json.load(f)
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span class="org-keyword">def</span> <span class="org-function-name">save_records</span>(records):
+<span class="linenr">14: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'w'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr">15: </span>        json.dump(records, f, ensure_ascii<span class="org-operator">=</span><span class="org-constant">False</span>, indent<span class="org-operator">=</span>2)
+<span class="linenr">16: </span>
+<span class="linenr">17: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr">18: </span>
+<span class="linenr">19: </span><span class="org-variable-name">records</span> <span class="org-operator">=</span> load_records()   <span class="org-comment-delimiter"># </span><span class="org-comment">&#27599;&#27425;&#37325;&#36305;&#37117;&#20808;&#24478;&#27284;&#26696;&#35712;&#36914;&#20358;
+<span class="linenr">20: </span></span>
+<span class="linenr">21: </span><span class="org-keyword">with</span> st.form(<span class="org-string">'add_form'</span>, clear_on_submit<span class="org-operator">=</span><span class="org-constant">True</span>):
+<span class="linenr">22: </span>    <span class="org-variable-name">date</span> <span class="org-operator">=</span> st.date_input(<span class="org-string">'&#26085;&#26399;'</span>)
+<span class="linenr">23: </span>    <span class="org-variable-name">kind</span> <span class="org-operator">=</span> st.radio(<span class="org-string">'&#25910;&#20837;&#36996;&#26159;&#25903;&#20986;&#65311;'</span>, [<span class="org-string">'&#25903;&#20986;'</span>, <span class="org-string">'&#25910;&#20837;'</span>], horizontal<span class="org-operator">=</span><span class="org-constant">True</span>)
+<span class="linenr">24: </span>    <span class="org-variable-name">category</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#39006;&#21029;'</span>, [<span class="org-string">'&#39154;&#39135;'</span>, <span class="org-string">'&#20132;&#36890;'</span>, <span class="org-string">'&#23067;&#27138;'</span>, <span class="org-string">'&#25991;&#20855;'</span>, <span class="org-string">'&#38646;&#29992;&#37666;'</span>, <span class="org-string">'&#20854;&#20182;'</span>])
+<span class="linenr">25: </span>    <span class="org-variable-name">item</span> <span class="org-operator">=</span> st.text_input(<span class="org-string">'&#38917;&#30446;'</span>, placeholder<span class="org-operator">=</span><span class="org-string">'&#20363;&#22914;&#65306;&#29645;&#22902;'</span>)
+<span class="linenr">26: </span>    <span class="org-variable-name">amount</span> <span class="org-operator">=</span> st.number_input(<span class="org-string">'&#37329;&#38989;'</span>, min_value<span class="org-operator">=</span>0, step<span class="org-operator">=</span>10)
+<span class="linenr">27: </span>    <span class="org-variable-name">submitted</span> <span class="org-operator">=</span> st.form_submit_button(<span class="org-string">'&#35352;&#19979;&#20358;'</span>)
+<span class="linenr">28: </span>
+<span class="linenr">29: </span><span class="org-keyword">if</span> submitted:
+<span class="linenr">30: </span>    <span class="org-keyword">if</span> item <span class="org-operator">==</span> <span class="org-string">''</span> <span class="org-keyword">or</span> amount <span class="org-operator">==</span> 0:
+<span class="linenr">31: </span>        st.error(<span class="org-string">'&#38917;&#30446;&#21644;&#37329;&#38989;&#37117;&#35201;&#22635;&#21908;&#65281;'</span>)
+<span class="linenr">32: </span>    <span class="org-keyword">else</span>:
+<span class="linenr">33: </span>        records.append({<span class="org-string">'&#26085;&#26399;'</span>: <span class="org-builtin">str</span>(date), <span class="org-string">'&#25910;&#25903;'</span>: kind, <span class="org-string">'&#39006;&#21029;'</span>: category,
+<span class="linenr">34: </span>                        <span class="org-string">'&#38917;&#30446;'</span>: item, <span class="org-string">'&#37329;&#38989;'</span>: amount})
+<span class="linenr">35: </span>        save_records(records)   <span class="org-comment-delimiter"># </span><span class="org-comment">&#19968;&#25913;&#23601;&#39340;&#19978;&#23384;&#27284;
+<span class="linenr">36: </span></span>        st.success(f<span class="org-string">'&#24050;&#35352;&#19979;&#65306;</span>{item}<span class="org-string"> </span>{amount}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">37: </span>
+<span class="linenr">38: </span>st.write(<span class="org-string">'&#30446;&#21069;&#20849;&#26377;'</span>, <span class="org-builtin">len</span>(records), <span class="org-string">'&#31558;&#35352;&#37636;'</span>)
+<span class="linenr">39: </span>st.write(records)
+</code></pre>
+</div>
+<p>
+<code>試試看</code>：<br />
+</p>
+<ol class="org-ol">
+<li>記幾筆帳，然後在終端機按 <code>Ctrl + C</code> 關掉程式，再重新執行。資料還在嗎？<br /></li>
+<li>打開資料夾裡的 <code>records.json</code> 看看裡面長什麼樣子。<br /></li>
+<li>不填項目直接按「記下來」會怎樣？<br /></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sp-step5" class="outline-2">
+<h2 id="sp-step5"><span class="section-number-2">7.</span> Step 5：算出收入、支出、餘額</h2>
+<div class="outline-text-2" id="text-sp-step5">
+<p>
+資料都在 <code>records</code> 這個 list 裡，用 for 迴圈就能加總。<br />
+</p>
+<ul class="org-ul">
+<li><code>st.columns(3)</code>：切出三個並排的欄位<br /></li>
+<li><code>st.metric</code>：用大字顯示一個數字<br /></li>
+<li><code>st.dataframe</code>：把 list of dict 顯示成表格，點欄位名稱還可以排序<br /></li>
+</ul>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr"> 1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr"> 2: </span><span class="org-keyword">import</span> json
+<span class="linenr"> 3: </span><span class="org-keyword">import</span> os
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span class="org-variable-name">FILE</span> <span class="org-operator">=</span> <span class="org-string">'records.json'</span>
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span class="org-keyword">def</span> <span class="org-function-name">load_records</span>():
+<span class="linenr"> 8: </span>    <span class="org-keyword">if</span> <span class="org-keyword">not</span> os.path.exists(FILE):
+<span class="linenr"> 9: </span>        <span class="org-keyword">return</span> []
+<span class="linenr">10: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'r'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr">11: </span>        <span class="org-keyword">return</span> json.load(f)
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span class="org-keyword">def</span> <span class="org-function-name">save_records</span>(records):
+<span class="linenr">14: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'w'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr">15: </span>        json.dump(records, f, ensure_ascii<span class="org-operator">=</span><span class="org-constant">False</span>, indent<span class="org-operator">=</span>2)
+<span class="linenr">16: </span>
+<span class="linenr">17: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr">18: </span>
+<span class="linenr">19: </span><span class="org-variable-name">records</span> <span class="org-operator">=</span> load_records()
+<span class="linenr">20: </span>
+<span class="linenr">21: </span><span class="org-keyword">with</span> st.form(<span class="org-string">'add_form'</span>, clear_on_submit<span class="org-operator">=</span><span class="org-constant">True</span>):
+<span class="linenr">22: </span>    <span class="org-variable-name">date</span> <span class="org-operator">=</span> st.date_input(<span class="org-string">'&#26085;&#26399;'</span>)
+<span class="linenr">23: </span>    <span class="org-variable-name">kind</span> <span class="org-operator">=</span> st.radio(<span class="org-string">'&#25910;&#20837;&#36996;&#26159;&#25903;&#20986;&#65311;'</span>, [<span class="org-string">'&#25903;&#20986;'</span>, <span class="org-string">'&#25910;&#20837;'</span>], horizontal<span class="org-operator">=</span><span class="org-constant">True</span>)
+<span class="linenr">24: </span>    <span class="org-variable-name">category</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#39006;&#21029;'</span>, [<span class="org-string">'&#39154;&#39135;'</span>, <span class="org-string">'&#20132;&#36890;'</span>, <span class="org-string">'&#23067;&#27138;'</span>, <span class="org-string">'&#25991;&#20855;'</span>, <span class="org-string">'&#38646;&#29992;&#37666;'</span>, <span class="org-string">'&#20854;&#20182;'</span>])
+<span class="linenr">25: </span>    <span class="org-variable-name">item</span> <span class="org-operator">=</span> st.text_input(<span class="org-string">'&#38917;&#30446;'</span>, placeholder<span class="org-operator">=</span><span class="org-string">'&#20363;&#22914;&#65306;&#29645;&#22902;'</span>)
+<span class="linenr">26: </span>    <span class="org-variable-name">amount</span> <span class="org-operator">=</span> st.number_input(<span class="org-string">'&#37329;&#38989;'</span>, min_value<span class="org-operator">=</span>0, step<span class="org-operator">=</span>10)
+<span class="linenr">27: </span>    <span class="org-variable-name">submitted</span> <span class="org-operator">=</span> st.form_submit_button(<span class="org-string">'&#35352;&#19979;&#20358;'</span>)
+<span class="linenr">28: </span>
+<span class="linenr">29: </span><span class="org-keyword">if</span> submitted:
+<span class="linenr">30: </span>    <span class="org-keyword">if</span> item <span class="org-operator">==</span> <span class="org-string">''</span> <span class="org-keyword">or</span> amount <span class="org-operator">==</span> 0:
+<span class="linenr">31: </span>        st.error(<span class="org-string">'&#38917;&#30446;&#21644;&#37329;&#38989;&#37117;&#35201;&#22635;&#21908;&#65281;'</span>)
+<span class="linenr">32: </span>    <span class="org-keyword">else</span>:
+<span class="linenr">33: </span>        records.append({<span class="org-string">'&#26085;&#26399;'</span>: <span class="org-builtin">str</span>(date), <span class="org-string">'&#25910;&#25903;'</span>: kind, <span class="org-string">'&#39006;&#21029;'</span>: category,
+<span class="linenr">34: </span>                        <span class="org-string">'&#38917;&#30446;'</span>: item, <span class="org-string">'&#37329;&#38989;'</span>: amount})
+<span class="linenr">35: </span>        save_records(records)
+<span class="linenr">36: </span>        st.success(f<span class="org-string">'&#24050;&#35352;&#19979;&#65306;</span>{item}<span class="org-string"> </span>{amount}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">37: </span>
+<span class="linenr">38: </span><span class="org-comment-delimiter"># </span><span class="org-comment">&#35336;&#31639;&#32317;&#25910;&#20837;&#12289;&#32317;&#25903;&#20986;
+<span class="linenr">39: </span></span><span class="org-variable-name">income</span> <span class="org-operator">=</span> 0
+<span class="linenr">40: </span><span class="org-variable-name">expense</span> <span class="org-operator">=</span> 0
+<span class="linenr">41: </span><span class="org-keyword">for</span> r <span class="org-keyword">in</span> records:
+<span class="linenr">42: </span>    <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25910;&#20837;'</span>:
+<span class="linenr">43: </span>        <span class="org-variable-name">income</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr">44: </span>    <span class="org-keyword">else</span>:
+<span class="linenr">45: </span>        <span class="org-variable-name">expense</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr">46: </span>
+<span class="linenr">47: </span><span class="org-comment-delimiter"># </span><span class="org-comment">&#19977;&#20491;&#25976;&#23383;&#24038;&#21491;&#20006;&#25490;
+<span class="linenr">48: </span></span><span class="org-variable-name">col1</span>, <span class="org-variable-name">col2</span>, <span class="org-variable-name">col3</span> <span class="org-operator">=</span> st.columns(3)
+<span class="linenr">49: </span>col1.metric(<span class="org-string">'&#32317;&#25910;&#20837;'</span>, f<span class="org-string">'</span>{income}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">50: </span>col2.metric(<span class="org-string">'&#32317;&#25903;&#20986;'</span>, f<span class="org-string">'</span>{expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">51: </span>col3.metric(<span class="org-string">'&#39192;&#38989;'</span>, f<span class="org-string">'</span>{income <span class="org-operator">-</span> expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">52: </span>
+<span class="linenr">53: </span>st.subheader(<span class="org-string">'&#26126;&#32048;'</span>)
+<span class="linenr">54: </span>st.dataframe(records)
+</code></pre>
+</div>
+<p>
+<code>試試看</code>：再加一個 <code>metric</code>，顯示「共記了幾筆」。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-sp-step6" class="outline-2">
+<h2 id="sp-step6"><span class="section-number-2">8.</span> Step 6：用 matplotlib 畫圖</h2>
+<div class="outline-text-2" id="text-sp-step6">
+<p>
+你學過的 matplotlib 圖表，只要把最後的 <code>plt.show()</code> 換成 <code>st.pyplot(fig)</code>，就能放進網頁裡。<br />
+</p>
+<ul class="org-ul">
+<li><code>圓餅圖</code>：用 dict 統計每個類別花了多少錢<br /></li>
+<li><code>餘額折線圖</code>：收入記成正數、支出記成負數，再用 <code>np.cumsum</code> 一路累加，就得到每一筆之後的餘額<br /></li>
+</ul>
+
+<p>
+第 7～8 行設定中文字型，沒設定的話圖上的中文會變成方塊。清單裡的字型會依序嘗試，最後的 <code>'Noto Sans CJK JP'</code> 是給部署到雲端時用的（見<a href="#sp-deploy">第二節</a>）。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr"> 1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr"> 2: </span><span class="org-keyword">import</span> json
+<span class="linenr"> 3: </span><span class="org-keyword">import</span> os
+<span class="linenr"> 4: </span><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
+<span class="linenr"> 5: </span><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<span class="linenr"> 6: </span>
+<span class="linenr"> 7: </span><span class="org-comment-delimiter"># </span><span class="org-comment">&#35731; matplotlib &#33021;&#39023;&#31034;&#20013;&#25991;&#65288;Mac / Windows / &#38642;&#31471;&#37117;&#35430;&#35430;&#30475;&#65289;
+<span class="linenr"> 8: </span></span>plt.<span class="org-variable-name">rcParams</span>[<span class="org-string">'font.sans-serif'</span>] <span class="org-operator">=</span> [<span class="org-string">'Arial Unicode MS'</span>, <span class="org-string">'PingFang TC'</span>, <span class="org-string">'Microsoft JhengHei'</span>, <span class="org-string">'Noto Sans CJK JP'</span>]
+<span class="linenr"> 9: </span>plt.<span class="org-variable-name">rcParams</span>[<span class="org-string">'axes.unicode_minus'</span>] <span class="org-operator">=</span> <span class="org-constant">False</span>
+<span class="linenr">10: </span>
+<span class="linenr">11: </span><span class="org-variable-name">FILE</span> <span class="org-operator">=</span> <span class="org-string">'records.json'</span>
+<span class="linenr">12: </span>
+<span class="linenr">13: </span><span class="org-keyword">def</span> <span class="org-function-name">load_records</span>():
+<span class="linenr">14: </span>    <span class="org-keyword">if</span> <span class="org-keyword">not</span> os.path.exists(FILE):
+<span class="linenr">15: </span>        <span class="org-keyword">return</span> []
+<span class="linenr">16: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'r'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr">17: </span>        <span class="org-keyword">return</span> json.load(f)
+<span class="linenr">18: </span>
+<span class="linenr">19: </span><span class="org-keyword">def</span> <span class="org-function-name">save_records</span>(records):
+<span class="linenr">20: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'w'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr">21: </span>        json.dump(records, f, ensure_ascii<span class="org-operator">=</span><span class="org-constant">False</span>, indent<span class="org-operator">=</span>2)
+<span class="linenr">22: </span>
+<span class="linenr">23: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr">24: </span>
+<span class="linenr">25: </span><span class="org-variable-name">records</span> <span class="org-operator">=</span> load_records()
+<span class="linenr">26: </span>
+<span class="linenr">27: </span><span class="org-keyword">with</span> st.form(<span class="org-string">'add_form'</span>, clear_on_submit<span class="org-operator">=</span><span class="org-constant">True</span>):
+<span class="linenr">28: </span>    <span class="org-variable-name">date</span> <span class="org-operator">=</span> st.date_input(<span class="org-string">'&#26085;&#26399;'</span>)
+<span class="linenr">29: </span>    <span class="org-variable-name">kind</span> <span class="org-operator">=</span> st.radio(<span class="org-string">'&#25910;&#20837;&#36996;&#26159;&#25903;&#20986;&#65311;'</span>, [<span class="org-string">'&#25903;&#20986;'</span>, <span class="org-string">'&#25910;&#20837;'</span>], horizontal<span class="org-operator">=</span><span class="org-constant">True</span>)
+<span class="linenr">30: </span>    <span class="org-variable-name">category</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#39006;&#21029;'</span>, [<span class="org-string">'&#39154;&#39135;'</span>, <span class="org-string">'&#20132;&#36890;'</span>, <span class="org-string">'&#23067;&#27138;'</span>, <span class="org-string">'&#25991;&#20855;'</span>, <span class="org-string">'&#38646;&#29992;&#37666;'</span>, <span class="org-string">'&#20854;&#20182;'</span>])
+<span class="linenr">31: </span>    <span class="org-variable-name">item</span> <span class="org-operator">=</span> st.text_input(<span class="org-string">'&#38917;&#30446;'</span>, placeholder<span class="org-operator">=</span><span class="org-string">'&#20363;&#22914;&#65306;&#29645;&#22902;'</span>)
+<span class="linenr">32: </span>    <span class="org-variable-name">amount</span> <span class="org-operator">=</span> st.number_input(<span class="org-string">'&#37329;&#38989;'</span>, min_value<span class="org-operator">=</span>0, step<span class="org-operator">=</span>10)
+<span class="linenr">33: </span>    <span class="org-variable-name">submitted</span> <span class="org-operator">=</span> st.form_submit_button(<span class="org-string">'&#35352;&#19979;&#20358;'</span>)
+<span class="linenr">34: </span>
+<span class="linenr">35: </span><span class="org-keyword">if</span> submitted:
+<span class="linenr">36: </span>    <span class="org-keyword">if</span> item <span class="org-operator">==</span> <span class="org-string">''</span> <span class="org-keyword">or</span> amount <span class="org-operator">==</span> 0:
+<span class="linenr">37: </span>        st.error(<span class="org-string">'&#38917;&#30446;&#21644;&#37329;&#38989;&#37117;&#35201;&#22635;&#21908;&#65281;'</span>)
+<span class="linenr">38: </span>    <span class="org-keyword">else</span>:
+<span class="linenr">39: </span>        records.append({<span class="org-string">'&#26085;&#26399;'</span>: <span class="org-builtin">str</span>(date), <span class="org-string">'&#25910;&#25903;'</span>: kind, <span class="org-string">'&#39006;&#21029;'</span>: category,
+<span class="linenr">40: </span>                        <span class="org-string">'&#38917;&#30446;'</span>: item, <span class="org-string">'&#37329;&#38989;'</span>: amount})
+<span class="linenr">41: </span>        save_records(records)
+<span class="linenr">42: </span>        st.success(f<span class="org-string">'&#24050;&#35352;&#19979;&#65306;</span>{item}<span class="org-string"> </span>{amount}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">43: </span>
+<span class="linenr">44: </span><span class="org-variable-name">income</span> <span class="org-operator">=</span> 0
+<span class="linenr">45: </span><span class="org-variable-name">expense</span> <span class="org-operator">=</span> 0
+<span class="linenr">46: </span><span class="org-keyword">for</span> r <span class="org-keyword">in</span> records:
+<span class="linenr">47: </span>    <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25910;&#20837;'</span>:
+<span class="linenr">48: </span>        <span class="org-variable-name">income</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr">49: </span>    <span class="org-keyword">else</span>:
+<span class="linenr">50: </span>        <span class="org-variable-name">expense</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr">51: </span>
+<span class="linenr">52: </span><span class="org-variable-name">col1</span>, <span class="org-variable-name">col2</span>, <span class="org-variable-name">col3</span> <span class="org-operator">=</span> st.columns(3)
+<span class="linenr">53: </span>col1.metric(<span class="org-string">'&#32317;&#25910;&#20837;'</span>, f<span class="org-string">'</span>{income}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">54: </span>col2.metric(<span class="org-string">'&#32317;&#25903;&#20986;'</span>, f<span class="org-string">'</span>{expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">55: </span>col3.metric(<span class="org-string">'&#39192;&#38989;'</span>, f<span class="org-string">'</span>{income <span class="org-operator">-</span> expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr">56: </span>
+<span class="linenr">57: </span>st.subheader(<span class="org-string">'&#26126;&#32048;'</span>)
+<span class="linenr">58: </span>st.dataframe(records)
+<span class="linenr">59: </span>
+<span class="linenr">60: </span><span class="org-comment-delimiter"># </span><span class="org-comment">---- &#22294;&#19968;&#65306;&#21508;&#39006;&#21029;&#25903;&#20986;&#22291;&#39173;&#22294; ----
+<span class="linenr">61: </span></span>st.subheader(<span class="org-string">'&#37666;&#37117;&#33457;&#21040;&#21738;&#35041;&#21435;&#20102;&#65311;'</span>)
+<span class="linenr">62: </span><span class="org-variable-name">totals</span> <span class="org-operator">=</span> {}   <span class="org-comment-delimiter"># </span><span class="org-comment">&#20363;&#22914; {'&#39154;&#39135;': 300, '&#20132;&#36890;': 120}
+<span class="linenr">63: </span></span><span class="org-keyword">for</span> r <span class="org-keyword">in</span> records:
+<span class="linenr">64: </span>    <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25903;&#20986;'</span>:
+<span class="linenr">65: </span>        totals[r[<span class="org-string">'&#39006;&#21029;'</span>]] <span class="org-operator">=</span> totals.get(r[<span class="org-string">'&#39006;&#21029;'</span>], 0) <span class="org-operator">+</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr">66: </span>
+<span class="linenr">67: </span><span class="org-keyword">if</span> totals:
+<span class="linenr">68: </span>    <span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> <span class="org-operator">=</span> plt.subplots()
+<span class="linenr">69: </span>    ax.pie(<span class="org-builtin">list</span>(totals.values()), labels<span class="org-operator">=</span><span class="org-builtin">list</span>(totals.keys()), autopct<span class="org-operator">=</span><span class="org-string">'%1.0f%%'</span>)
+<span class="linenr">70: </span>    st.pyplot(fig)
+<span class="linenr">71: </span><span class="org-keyword">else</span>:
+<span class="linenr">72: </span>    st.info(<span class="org-string">'&#36996;&#27794;&#26377;&#25903;&#20986;&#35352;&#37636;'</span>)
+<span class="linenr">73: </span>
+<span class="linenr">74: </span><span class="org-comment-delimiter"># </span><span class="org-comment">---- &#22294;&#20108;&#65306;&#39192;&#38989;&#35722;&#21270;&#25240;&#32218;&#22294;&#65288;&#29992; numpy &#32047;&#21152;&#65289;----
+<span class="linenr">75: </span></span>st.subheader(<span class="org-string">'&#39192;&#38989;&#35722;&#21270;'</span>)
+<span class="linenr">76: </span><span class="org-keyword">if</span> records:
+<span class="linenr">77: </span>    <span class="org-variable-name">records_sorted</span> <span class="org-operator">=</span> <span class="org-builtin">sorted</span>(records, key<span class="org-operator">=</span><span class="org-keyword">lambda</span> r: r[<span class="org-string">'&#26085;&#26399;'</span>])   <span class="org-comment-delimiter"># </span><span class="org-comment">&#20381;&#26085;&#26399;&#25490;&#24207;
+<span class="linenr">78: </span></span>    <span class="org-variable-name">changes</span> <span class="org-operator">=</span> []
+<span class="linenr">79: </span>    <span class="org-keyword">for</span> r <span class="org-keyword">in</span> records_sorted:
+<span class="linenr">80: </span>        <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25910;&#20837;'</span>:
+<span class="linenr">81: </span>            changes.append(r[<span class="org-string">'&#37329;&#38989;'</span>])
+<span class="linenr">82: </span>        <span class="org-keyword">else</span>:
+<span class="linenr">83: </span>            changes.append(<span class="org-operator">-</span>r[<span class="org-string">'&#37329;&#38989;'</span>])
+<span class="linenr">84: </span>    <span class="org-variable-name">balance</span> <span class="org-operator">=</span> np.cumsum(changes)   <span class="org-comment-delimiter"># </span><span class="org-comment">&#19968;&#36335;&#32047;&#21152;&#65306;[100, 45, 25, ...]
+<span class="linenr">85: </span></span>
+<span class="linenr">86: </span>    <span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> <span class="org-operator">=</span> plt.subplots()
+<span class="linenr">87: </span>    ax.plot(<span class="org-builtin">range</span>(1, <span class="org-builtin">len</span>(balance) <span class="org-operator">+</span> 1), balance, marker<span class="org-operator">=</span><span class="org-string">'o'</span>)
+<span class="linenr">88: </span>    ax.axhline(0, color<span class="org-operator">=</span><span class="org-string">'red'</span>, linewidth<span class="org-operator">=</span>1)   <span class="org-comment-delimiter"># </span><span class="org-comment">0 &#20803;&#30340;&#32005;&#32218;&#65292;&#20302;&#26044;&#23427;&#23601;&#26159;&#36879;&#25903;
+<span class="linenr">89: </span></span>    ax.set_xlabel(<span class="org-string">'&#31532;&#24190;&#31558;'</span>)
+<span class="linenr">90: </span>    ax.set_ylabel(<span class="org-string">'&#39192;&#38989;&#65288;&#20803;&#65289;'</span>)
+<span class="linenr">91: </span>    st.pyplot(fig)
+</code></pre>
+</div>
+<p>
+<code>試試看</code>：把圓餅圖改成長條圖（ <code>ax.bar</code>）。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-sp-step7" class="outline-2">
+<h2 id="sp-step7"><span class="section-number-2">9.</span> Step 7：分頁與側邊欄（完成版）</h2>
+<div class="outline-text-2" id="text-sp-step7">
+<p>
+東西越來越多，一整頁往下拉很難找，我們把畫面整理一下：<br />
+</p>
+<ul class="org-ul">
+<li><code>st.tabs</code>：分成「記一筆」「明細」「統計」三個分頁，程式寫在 <code>with tab1:</code> 底下就會出現在第一個分頁<br /></li>
+<li><code>st.sidebar</code>：在左邊的側邊欄放一個月份選單，只看某個月的帳<br /></li>
+</ul>
+
+<p>
+月份怎麼來？日期是 <code>'2026-11-19'</code> 這樣的字串，取前 7 個字 <code>r['日期'][:7]</code> 就是 <code>'2026-11'</code>。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr">  1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr">  2: </span><span class="org-keyword">import</span> json
+<span class="linenr">  3: </span><span class="org-keyword">import</span> os
+<span class="linenr">  4: </span><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
+<span class="linenr">  5: </span><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<span class="linenr">  6: </span>
+<span class="linenr">  7: </span>plt.<span class="org-variable-name">rcParams</span>[<span class="org-string">'font.sans-serif'</span>] <span class="org-operator">=</span> [<span class="org-string">'Arial Unicode MS'</span>, <span class="org-string">'PingFang TC'</span>, <span class="org-string">'Microsoft JhengHei'</span>, <span class="org-string">'Noto Sans CJK JP'</span>]
+<span class="linenr">  8: </span>plt.<span class="org-variable-name">rcParams</span>[<span class="org-string">'axes.unicode_minus'</span>] <span class="org-operator">=</span> <span class="org-constant">False</span>
+<span class="linenr">  9: </span>
+<span class="linenr"> 10: </span><span class="org-variable-name">FILE</span> <span class="org-operator">=</span> <span class="org-string">'records.json'</span>
+<span class="linenr"> 11: </span>
+<span class="linenr"> 12: </span><span class="org-keyword">def</span> <span class="org-function-name">load_records</span>():
+<span class="linenr"> 13: </span>    <span class="org-keyword">if</span> <span class="org-keyword">not</span> os.path.exists(FILE):
+<span class="linenr"> 14: </span>        <span class="org-keyword">return</span> []
+<span class="linenr"> 15: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'r'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr"> 16: </span>        <span class="org-keyword">return</span> json.load(f)
+<span class="linenr"> 17: </span>
+<span class="linenr"> 18: </span><span class="org-keyword">def</span> <span class="org-function-name">save_records</span>(records):
+<span class="linenr"> 19: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'w'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr"> 20: </span>        json.dump(records, f, ensure_ascii<span class="org-operator">=</span><span class="org-constant">False</span>, indent<span class="org-operator">=</span>2)
+<span class="linenr"> 21: </span>
+<span class="linenr"> 22: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr"> 23: </span>
+<span class="linenr"> 24: </span><span class="org-variable-name">records</span> <span class="org-operator">=</span> load_records()
+<span class="linenr"> 25: </span>
+<span class="linenr"> 26: </span><span class="org-comment-delimiter"># </span><span class="org-comment">---- &#19977;&#20491;&#20998;&#38913; ----
+<span class="linenr"> 27: </span></span><span class="org-variable-name">tab1</span>, <span class="org-variable-name">tab2</span>, <span class="org-variable-name">tab3</span> <span class="org-operator">=</span> st.tabs([<span class="org-string">'&#9999;&#65039; &#35352;&#19968;&#31558;'</span>, <span class="org-string">'&#128203; &#26126;&#32048;'</span>, <span class="org-string">'&#128202; &#32113;&#35336;'</span>])
+<span class="linenr"> 28: </span>
+<span class="linenr"> 29: </span><span class="org-keyword">with</span> tab1:
+<span class="linenr"> 30: </span>    <span class="org-keyword">with</span> st.form(<span class="org-string">'add_form'</span>, clear_on_submit<span class="org-operator">=</span><span class="org-constant">True</span>):
+<span class="linenr"> 31: </span>        <span class="org-variable-name">date</span> <span class="org-operator">=</span> st.date_input(<span class="org-string">'&#26085;&#26399;'</span>)
+<span class="linenr"> 32: </span>        <span class="org-variable-name">kind</span> <span class="org-operator">=</span> st.radio(<span class="org-string">'&#25910;&#20837;&#36996;&#26159;&#25903;&#20986;&#65311;'</span>, [<span class="org-string">'&#25903;&#20986;'</span>, <span class="org-string">'&#25910;&#20837;'</span>], horizontal<span class="org-operator">=</span><span class="org-constant">True</span>)
+<span class="linenr"> 33: </span>        <span class="org-variable-name">category</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#39006;&#21029;'</span>, [<span class="org-string">'&#39154;&#39135;'</span>, <span class="org-string">'&#20132;&#36890;'</span>, <span class="org-string">'&#23067;&#27138;'</span>, <span class="org-string">'&#25991;&#20855;'</span>, <span class="org-string">'&#38646;&#29992;&#37666;'</span>, <span class="org-string">'&#20854;&#20182;'</span>])
+<span class="linenr"> 34: </span>        <span class="org-variable-name">item</span> <span class="org-operator">=</span> st.text_input(<span class="org-string">'&#38917;&#30446;'</span>, placeholder<span class="org-operator">=</span><span class="org-string">'&#20363;&#22914;&#65306;&#29645;&#22902;'</span>)
+<span class="linenr"> 35: </span>        <span class="org-variable-name">amount</span> <span class="org-operator">=</span> st.number_input(<span class="org-string">'&#37329;&#38989;'</span>, min_value<span class="org-operator">=</span>0, step<span class="org-operator">=</span>10)
+<span class="linenr"> 36: </span>        <span class="org-variable-name">submitted</span> <span class="org-operator">=</span> st.form_submit_button(<span class="org-string">'&#35352;&#19979;&#20358;'</span>)
+<span class="linenr"> 37: </span>
+<span class="linenr"> 38: </span>    <span class="org-keyword">if</span> submitted:
+<span class="linenr"> 39: </span>        <span class="org-keyword">if</span> item <span class="org-operator">==</span> <span class="org-string">''</span> <span class="org-keyword">or</span> amount <span class="org-operator">==</span> 0:
+<span class="linenr"> 40: </span>            st.error(<span class="org-string">'&#38917;&#30446;&#21644;&#37329;&#38989;&#37117;&#35201;&#22635;&#21908;&#65281;'</span>)
+<span class="linenr"> 41: </span>        <span class="org-keyword">else</span>:
+<span class="linenr"> 42: </span>            records.append({<span class="org-string">'&#26085;&#26399;'</span>: <span class="org-builtin">str</span>(date), <span class="org-string">'&#25910;&#25903;'</span>: kind, <span class="org-string">'&#39006;&#21029;'</span>: category,
+<span class="linenr"> 43: </span>                            <span class="org-string">'&#38917;&#30446;'</span>: item, <span class="org-string">'&#37329;&#38989;'</span>: amount})
+<span class="linenr"> 44: </span>            save_records(records)
+<span class="linenr"> 45: </span>            st.success(f<span class="org-string">'&#24050;&#35352;&#19979;&#65306;</span>{item}<span class="org-string"> </span>{amount}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 46: </span>
+<span class="linenr"> 47: </span><span class="org-comment-delimiter"># </span><span class="org-comment">---- &#20596;&#37002;&#27396;&#65306;&#36984;&#26376;&#20221;&#65288;&#25918;&#22312;&#23384;&#27284;&#20043;&#24460;&#65292;&#21083;&#35352;&#30340;&#37027;&#31558;&#25165;&#26371;&#31639;&#36914;&#21435;&#65289;----
+<span class="linenr"> 48: </span></span><span class="org-variable-name">months</span> <span class="org-operator">=</span> []
+<span class="linenr"> 49: </span><span class="org-keyword">for</span> r <span class="org-keyword">in</span> records:
+<span class="linenr"> 50: </span>    <span class="org-variable-name">m</span> <span class="org-operator">=</span> r[<span class="org-string">'&#26085;&#26399;'</span>][:7]   <span class="org-comment-delimiter"># </span><span class="org-comment">'2026-11-19' &#21462;&#21069; 7 &#20491;&#23383; &#8594; '2026-11'
+<span class="linenr"> 51: </span></span>    <span class="org-keyword">if</span> m <span class="org-keyword">not</span> <span class="org-keyword">in</span> months:
+<span class="linenr"> 52: </span>        months.append(m)
+<span class="linenr"> 53: </span>months.sort()
+<span class="linenr"> 54: </span>
+<span class="linenr"> 55: </span><span class="org-variable-name">month</span> <span class="org-operator">=</span> st.sidebar.selectbox(<span class="org-string">'&#35201;&#30475;&#21738;&#20491;&#26376;&#65311;'</span>, [<span class="org-string">'&#20840;&#37096;'</span>] <span class="org-operator">+</span> months)
+<span class="linenr"> 56: </span><span class="org-keyword">if</span> month <span class="org-operator">==</span> <span class="org-string">'&#20840;&#37096;'</span>:
+<span class="linenr"> 57: </span>    <span class="org-variable-name">shown</span> <span class="org-operator">=</span> records
+<span class="linenr"> 58: </span><span class="org-keyword">else</span>:
+<span class="linenr"> 59: </span>    <span class="org-variable-name">shown</span> <span class="org-operator">=</span> [r <span class="org-keyword">for</span> r <span class="org-keyword">in</span> records <span class="org-keyword">if</span> r[<span class="org-string">'&#26085;&#26399;'</span>][:7] <span class="org-operator">==</span> month]
+<span class="linenr"> 60: </span>
+<span class="linenr"> 61: </span><span class="org-keyword">with</span> tab2:
+<span class="linenr"> 62: </span>    <span class="org-variable-name">income</span> <span class="org-operator">=</span> 0
+<span class="linenr"> 63: </span>    <span class="org-variable-name">expense</span> <span class="org-operator">=</span> 0
+<span class="linenr"> 64: </span>    <span class="org-keyword">for</span> r <span class="org-keyword">in</span> shown:
+<span class="linenr"> 65: </span>        <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25910;&#20837;'</span>:
+<span class="linenr"> 66: </span>            <span class="org-variable-name">income</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr"> 67: </span>        <span class="org-keyword">else</span>:
+<span class="linenr"> 68: </span>            <span class="org-variable-name">expense</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr"> 69: </span>
+<span class="linenr"> 70: </span>    <span class="org-variable-name">col1</span>, <span class="org-variable-name">col2</span>, <span class="org-variable-name">col3</span> <span class="org-operator">=</span> st.columns(3)
+<span class="linenr"> 71: </span>    col1.metric(<span class="org-string">'&#32317;&#25910;&#20837;'</span>, f<span class="org-string">'</span>{income}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 72: </span>    col2.metric(<span class="org-string">'&#32317;&#25903;&#20986;'</span>, f<span class="org-string">'</span>{expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 73: </span>    col3.metric(<span class="org-string">'&#39192;&#38989;'</span>, f<span class="org-string">'</span>{income <span class="org-operator">-</span> expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 74: </span>
+<span class="linenr"> 75: </span>    st.dataframe(shown)
+<span class="linenr"> 76: </span>
+<span class="linenr"> 77: </span><span class="org-keyword">with</span> tab3:
+<span class="linenr"> 78: </span>    st.subheader(<span class="org-string">'&#37666;&#37117;&#33457;&#21040;&#21738;&#35041;&#21435;&#20102;&#65311;'</span>)
+<span class="linenr"> 79: </span>    <span class="org-variable-name">totals</span> <span class="org-operator">=</span> {}
+<span class="linenr"> 80: </span>    <span class="org-keyword">for</span> r <span class="org-keyword">in</span> shown:
+<span class="linenr"> 81: </span>        <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25903;&#20986;'</span>:
+<span class="linenr"> 82: </span>            totals[r[<span class="org-string">'&#39006;&#21029;'</span>]] <span class="org-operator">=</span> totals.get(r[<span class="org-string">'&#39006;&#21029;'</span>], 0) <span class="org-operator">+</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr"> 83: </span>
+<span class="linenr"> 84: </span>    <span class="org-keyword">if</span> totals:
+<span class="linenr"> 85: </span>        <span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> <span class="org-operator">=</span> plt.subplots()
+<span class="linenr"> 86: </span>        ax.pie(<span class="org-builtin">list</span>(totals.values()), labels<span class="org-operator">=</span><span class="org-builtin">list</span>(totals.keys()), autopct<span class="org-operator">=</span><span class="org-string">'%1.0f%%'</span>)
+<span class="linenr"> 87: </span>        st.pyplot(fig)
+<span class="linenr"> 88: </span>    <span class="org-keyword">else</span>:
+<span class="linenr"> 89: </span>        st.info(<span class="org-string">'&#36996;&#27794;&#26377;&#25903;&#20986;&#35352;&#37636;'</span>)
+<span class="linenr"> 90: </span>
+<span class="linenr"> 91: </span>    st.subheader(<span class="org-string">'&#39192;&#38989;&#35722;&#21270;'</span>)
+<span class="linenr"> 92: </span>    <span class="org-keyword">if</span> shown:
+<span class="linenr"> 93: </span>        <span class="org-variable-name">shown_sorted</span> <span class="org-operator">=</span> <span class="org-builtin">sorted</span>(shown, key<span class="org-operator">=</span><span class="org-keyword">lambda</span> r: r[<span class="org-string">'&#26085;&#26399;'</span>])
+<span class="linenr"> 94: </span>        <span class="org-variable-name">changes</span> <span class="org-operator">=</span> []
+<span class="linenr"> 95: </span>        <span class="org-keyword">for</span> r <span class="org-keyword">in</span> shown_sorted:
+<span class="linenr"> 96: </span>            <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25910;&#20837;'</span>:
+<span class="linenr"> 97: </span>                changes.append(r[<span class="org-string">'&#37329;&#38989;'</span>])
+<span class="linenr"> 98: </span>            <span class="org-keyword">else</span>:
+<span class="linenr"> 99: </span>                changes.append(<span class="org-operator">-</span>r[<span class="org-string">'&#37329;&#38989;'</span>])
+<span class="linenr">100: </span>        <span class="org-variable-name">balance</span> <span class="org-operator">=</span> np.cumsum(changes)
+<span class="linenr">101: </span>
+<span class="linenr">102: </span>        <span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> <span class="org-operator">=</span> plt.subplots()
+<span class="linenr">103: </span>        ax.plot(<span class="org-builtin">range</span>(1, <span class="org-builtin">len</span>(balance) <span class="org-operator">+</span> 1), balance, marker<span class="org-operator">=</span><span class="org-string">'o'</span>)
+<span class="linenr">104: </span>        ax.axhline(0, color<span class="org-operator">=</span><span class="org-string">'red'</span>, linewidth<span class="org-operator">=</span>1)
+<span class="linenr">105: </span>        ax.set_xlabel(<span class="org-string">'&#31532;&#24190;&#31558;'</span>)
+<span class="linenr">106: </span>        ax.set_ylabel(<span class="org-string">'&#39192;&#38989;&#65288;&#20803;&#65289;'</span>)
+<span class="linenr">107: </span>        st.pyplot(fig)
+</code></pre>
+</div>
+<p>
+<code>試試看</code>：在側邊欄再加一個類別選單，只看某一類的花費。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-sp-step8" class="outline-2">
+<h2 id="sp-step8"><span class="section-number-2">10.</span> Step 8：延伸──刪除與下載備份</h2>
+<div class="outline-text-2" id="text-sp-step8">
+<p>
+記錯了想刪掉怎麼辦？用下拉選單選出要刪的那一筆， <code>records.pop(i)</code> 刪掉後存檔，再呼叫 <code>st.rerun()</code> 立刻重跑一次，畫面就會更新。<br />
+</p>
+
+<p>
+<code>st.download_button</code> 則可以讓使用者把 <code>records.json</code> 下載回自己的電腦備份。<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><code><span class="linenr">  1: </span><span class="org-keyword">import</span> streamlit <span class="org-keyword">as</span> st
+<span class="linenr">  2: </span><span class="org-keyword">import</span> json
+<span class="linenr">  3: </span><span class="org-keyword">import</span> os
+<span class="linenr">  4: </span><span class="org-keyword">import</span> numpy <span class="org-keyword">as</span> np
+<span class="linenr">  5: </span><span class="org-keyword">import</span> matplotlib.pyplot <span class="org-keyword">as</span> plt
+<span class="linenr">  6: </span>
+<span class="linenr">  7: </span>plt.<span class="org-variable-name">rcParams</span>[<span class="org-string">'font.sans-serif'</span>] <span class="org-operator">=</span> [<span class="org-string">'Arial Unicode MS'</span>, <span class="org-string">'PingFang TC'</span>, <span class="org-string">'Microsoft JhengHei'</span>, <span class="org-string">'Noto Sans CJK JP'</span>]
+<span class="linenr">  8: </span>plt.<span class="org-variable-name">rcParams</span>[<span class="org-string">'axes.unicode_minus'</span>] <span class="org-operator">=</span> <span class="org-constant">False</span>
+<span class="linenr">  9: </span>
+<span class="linenr"> 10: </span><span class="org-variable-name">FILE</span> <span class="org-operator">=</span> <span class="org-string">'records.json'</span>
+<span class="linenr"> 11: </span>
+<span class="linenr"> 12: </span><span class="org-keyword">def</span> <span class="org-function-name">load_records</span>():
+<span class="linenr"> 13: </span>    <span class="org-keyword">if</span> <span class="org-keyword">not</span> os.path.exists(FILE):
+<span class="linenr"> 14: </span>        <span class="org-keyword">return</span> []
+<span class="linenr"> 15: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'r'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr"> 16: </span>        <span class="org-keyword">return</span> json.load(f)
+<span class="linenr"> 17: </span>
+<span class="linenr"> 18: </span><span class="org-keyword">def</span> <span class="org-function-name">save_records</span>(records):
+<span class="linenr"> 19: </span>    <span class="org-keyword">with</span> <span class="org-builtin">open</span>(FILE, <span class="org-string">'w'</span>, encoding<span class="org-operator">=</span><span class="org-string">'utf-8'</span>) <span class="org-keyword">as</span> f:
+<span class="linenr"> 20: </span>        json.dump(records, f, ensure_ascii<span class="org-operator">=</span><span class="org-constant">False</span>, indent<span class="org-operator">=</span>2)
+<span class="linenr"> 21: </span>
+<span class="linenr"> 22: </span>st.title(<span class="org-string">'&#128176; &#25105;&#30340;&#38646;&#29992;&#37666;&#35352;&#24115;&#26412;'</span>)
+<span class="linenr"> 23: </span>
+<span class="linenr"> 24: </span><span class="org-variable-name">records</span> <span class="org-operator">=</span> load_records()
+<span class="linenr"> 25: </span>
+<span class="linenr"> 26: </span><span class="org-comment-delimiter"># </span><span class="org-comment">---- &#19977;&#20491;&#20998;&#38913; ----
+<span class="linenr"> 27: </span></span><span class="org-variable-name">tab1</span>, <span class="org-variable-name">tab2</span>, <span class="org-variable-name">tab3</span> <span class="org-operator">=</span> st.tabs([<span class="org-string">'&#9999;&#65039; &#35352;&#19968;&#31558;'</span>, <span class="org-string">'&#128203; &#26126;&#32048;'</span>, <span class="org-string">'&#128202; &#32113;&#35336;'</span>])
+<span class="linenr"> 28: </span>
+<span class="linenr"> 29: </span><span class="org-keyword">with</span> tab1:
+<span class="linenr"> 30: </span>    <span class="org-keyword">with</span> st.form(<span class="org-string">'add_form'</span>, clear_on_submit<span class="org-operator">=</span><span class="org-constant">True</span>):
+<span class="linenr"> 31: </span>        <span class="org-variable-name">date</span> <span class="org-operator">=</span> st.date_input(<span class="org-string">'&#26085;&#26399;'</span>)
+<span class="linenr"> 32: </span>        <span class="org-variable-name">kind</span> <span class="org-operator">=</span> st.radio(<span class="org-string">'&#25910;&#20837;&#36996;&#26159;&#25903;&#20986;&#65311;'</span>, [<span class="org-string">'&#25903;&#20986;'</span>, <span class="org-string">'&#25910;&#20837;'</span>], horizontal<span class="org-operator">=</span><span class="org-constant">True</span>)
+<span class="linenr"> 33: </span>        <span class="org-variable-name">category</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#39006;&#21029;'</span>, [<span class="org-string">'&#39154;&#39135;'</span>, <span class="org-string">'&#20132;&#36890;'</span>, <span class="org-string">'&#23067;&#27138;'</span>, <span class="org-string">'&#25991;&#20855;'</span>, <span class="org-string">'&#38646;&#29992;&#37666;'</span>, <span class="org-string">'&#20854;&#20182;'</span>])
+<span class="linenr"> 34: </span>        <span class="org-variable-name">item</span> <span class="org-operator">=</span> st.text_input(<span class="org-string">'&#38917;&#30446;'</span>, placeholder<span class="org-operator">=</span><span class="org-string">'&#20363;&#22914;&#65306;&#29645;&#22902;'</span>)
+<span class="linenr"> 35: </span>        <span class="org-variable-name">amount</span> <span class="org-operator">=</span> st.number_input(<span class="org-string">'&#37329;&#38989;'</span>, min_value<span class="org-operator">=</span>0, step<span class="org-operator">=</span>10)
+<span class="linenr"> 36: </span>        <span class="org-variable-name">submitted</span> <span class="org-operator">=</span> st.form_submit_button(<span class="org-string">'&#35352;&#19979;&#20358;'</span>)
+<span class="linenr"> 37: </span>
+<span class="linenr"> 38: </span>    <span class="org-keyword">if</span> submitted:
+<span class="linenr"> 39: </span>        <span class="org-keyword">if</span> item <span class="org-operator">==</span> <span class="org-string">''</span> <span class="org-keyword">or</span> amount <span class="org-operator">==</span> 0:
+<span class="linenr"> 40: </span>            st.error(<span class="org-string">'&#38917;&#30446;&#21644;&#37329;&#38989;&#37117;&#35201;&#22635;&#21908;&#65281;'</span>)
+<span class="linenr"> 41: </span>        <span class="org-keyword">else</span>:
+<span class="linenr"> 42: </span>            records.append({<span class="org-string">'&#26085;&#26399;'</span>: <span class="org-builtin">str</span>(date), <span class="org-string">'&#25910;&#25903;'</span>: kind, <span class="org-string">'&#39006;&#21029;'</span>: category,
+<span class="linenr"> 43: </span>                            <span class="org-string">'&#38917;&#30446;'</span>: item, <span class="org-string">'&#37329;&#38989;'</span>: amount})
+<span class="linenr"> 44: </span>            save_records(records)
+<span class="linenr"> 45: </span>            st.success(f<span class="org-string">'&#24050;&#35352;&#19979;&#65306;</span>{item}<span class="org-string"> </span>{amount}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 46: </span>
+<span class="linenr"> 47: </span><span class="org-comment-delimiter"># </span><span class="org-comment">---- &#20596;&#37002;&#27396;&#65306;&#36984;&#26376;&#20221;&#65288;&#25918;&#22312;&#23384;&#27284;&#20043;&#24460;&#65292;&#21083;&#35352;&#30340;&#37027;&#31558;&#25165;&#26371;&#31639;&#36914;&#21435;&#65289;----
+<span class="linenr"> 48: </span></span><span class="org-variable-name">months</span> <span class="org-operator">=</span> []
+<span class="linenr"> 49: </span><span class="org-keyword">for</span> r <span class="org-keyword">in</span> records:
+<span class="linenr"> 50: </span>    <span class="org-variable-name">m</span> <span class="org-operator">=</span> r[<span class="org-string">'&#26085;&#26399;'</span>][:7]   <span class="org-comment-delimiter"># </span><span class="org-comment">'2026-11-19' &#21462;&#21069; 7 &#20491;&#23383; &#8594; '2026-11'
+<span class="linenr"> 51: </span></span>    <span class="org-keyword">if</span> m <span class="org-keyword">not</span> <span class="org-keyword">in</span> months:
+<span class="linenr"> 52: </span>        months.append(m)
+<span class="linenr"> 53: </span>months.sort()
+<span class="linenr"> 54: </span>
+<span class="linenr"> 55: </span><span class="org-variable-name">month</span> <span class="org-operator">=</span> st.sidebar.selectbox(<span class="org-string">'&#35201;&#30475;&#21738;&#20491;&#26376;&#65311;'</span>, [<span class="org-string">'&#20840;&#37096;'</span>] <span class="org-operator">+</span> months)
+<span class="linenr"> 56: </span><span class="org-keyword">if</span> month <span class="org-operator">==</span> <span class="org-string">'&#20840;&#37096;'</span>:
+<span class="linenr"> 57: </span>    <span class="org-variable-name">shown</span> <span class="org-operator">=</span> records
+<span class="linenr"> 58: </span><span class="org-keyword">else</span>:
+<span class="linenr"> 59: </span>    <span class="org-variable-name">shown</span> <span class="org-operator">=</span> [r <span class="org-keyword">for</span> r <span class="org-keyword">in</span> records <span class="org-keyword">if</span> r[<span class="org-string">'&#26085;&#26399;'</span>][:7] <span class="org-operator">==</span> month]
+<span class="linenr"> 60: </span>
+<span class="linenr"> 61: </span><span class="org-keyword">with</span> tab2:
+<span class="linenr"> 62: </span>    <span class="org-variable-name">income</span> <span class="org-operator">=</span> 0
+<span class="linenr"> 63: </span>    <span class="org-variable-name">expense</span> <span class="org-operator">=</span> 0
+<span class="linenr"> 64: </span>    <span class="org-keyword">for</span> r <span class="org-keyword">in</span> shown:
+<span class="linenr"> 65: </span>        <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25910;&#20837;'</span>:
+<span class="linenr"> 66: </span>            <span class="org-variable-name">income</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr"> 67: </span>        <span class="org-keyword">else</span>:
+<span class="linenr"> 68: </span>            <span class="org-variable-name">expense</span> <span class="org-operator">+=</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr"> 69: </span>
+<span class="linenr"> 70: </span>    <span class="org-variable-name">col1</span>, <span class="org-variable-name">col2</span>, <span class="org-variable-name">col3</span> <span class="org-operator">=</span> st.columns(3)
+<span class="linenr"> 71: </span>    col1.metric(<span class="org-string">'&#32317;&#25910;&#20837;'</span>, f<span class="org-string">'</span>{income}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 72: </span>    col2.metric(<span class="org-string">'&#32317;&#25903;&#20986;'</span>, f<span class="org-string">'</span>{expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 73: </span>    col3.metric(<span class="org-string">'&#39192;&#38989;'</span>, f<span class="org-string">'</span>{income <span class="org-operator">-</span> expense}<span class="org-string"> &#20803;'</span>)
+<span class="linenr"> 74: </span>
+<span class="linenr"> 75: </span>    st.dataframe(shown)
+<span class="linenr"> 76: </span>
+<span class="linenr"> 77: </span>    <span class="org-comment-delimiter"># </span><span class="org-comment">---- &#21034;&#38500;&#35352;&#37679;&#30340;&#37027;&#19968;&#31558; ----
+<span class="linenr"> 78: </span></span>    <span class="org-keyword">if</span> records:
+<span class="linenr"> 79: </span>        st.subheader(<span class="org-string">'&#21034;&#38500;&#19968;&#31558;'</span>)
+<span class="linenr"> 80: </span>        <span class="org-variable-name">labels</span> <span class="org-operator">=</span> []
+<span class="linenr"> 81: </span>        <span class="org-keyword">for</span> r <span class="org-keyword">in</span> records:
+<span class="linenr"> 82: </span>            labels.append(f<span class="org-string">"</span>{r['&#26085;&#26399;']}<span class="org-string"> </span>{r['&#38917;&#30446;']}<span class="org-string"> </span>{r['&#37329;&#38989;']}<span class="org-string"> &#20803;"</span>)
+<span class="linenr"> 83: </span>        <span class="org-variable-name">i</span> <span class="org-operator">=</span> st.selectbox(<span class="org-string">'&#36984;&#25799;&#35201;&#21034;&#38500;&#30340;&#35352;&#37636;'</span>, <span class="org-builtin">range</span>(<span class="org-builtin">len</span>(records)),
+<span class="linenr"> 84: </span>                         format_func<span class="org-operator">=</span><span class="org-keyword">lambda</span> i: labels[i])
+<span class="linenr"> 85: </span>        <span class="org-keyword">if</span> st.button(<span class="org-string">'&#21034;&#38500;'</span>):
+<span class="linenr"> 86: </span>            records.pop(i)
+<span class="linenr"> 87: </span>            save_records(records)
+<span class="linenr"> 88: </span>            st.rerun()   <span class="org-comment-delimiter"># </span><span class="org-comment">&#31435;&#21051;&#37325;&#36305;&#65292;&#35731;&#30059;&#38754;&#36319;&#33879;&#26356;&#26032;
+<span class="linenr"> 89: </span></span>
+<span class="linenr"> 90: </span>    <span class="org-comment-delimiter"># </span><span class="org-comment">---- &#19979;&#36617;&#20633;&#20221; ----
+<span class="linenr"> 91: </span></span>    st.download_button(<span class="org-string">'&#19979;&#36617;&#20633;&#20221; (records.json)'</span>,
+<span class="linenr"> 92: </span>                       json.dumps(records, ensure_ascii<span class="org-operator">=</span><span class="org-constant">False</span>, indent<span class="org-operator">=</span>2),
+<span class="linenr"> 93: </span>                       file_name<span class="org-operator">=</span><span class="org-string">'records.json'</span>)
+<span class="linenr"> 94: </span>
+<span class="linenr"> 95: </span><span class="org-keyword">with</span> tab3:
+<span class="linenr"> 96: </span>    st.subheader(<span class="org-string">'&#37666;&#37117;&#33457;&#21040;&#21738;&#35041;&#21435;&#20102;&#65311;'</span>)
+<span class="linenr"> 97: </span>    <span class="org-variable-name">totals</span> <span class="org-operator">=</span> {}
+<span class="linenr"> 98: </span>    <span class="org-keyword">for</span> r <span class="org-keyword">in</span> shown:
+<span class="linenr"> 99: </span>        <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25903;&#20986;'</span>:
+<span class="linenr">100: </span>            totals[r[<span class="org-string">'&#39006;&#21029;'</span>]] <span class="org-operator">=</span> totals.get(r[<span class="org-string">'&#39006;&#21029;'</span>], 0) <span class="org-operator">+</span> r[<span class="org-string">'&#37329;&#38989;'</span>]
+<span class="linenr">101: </span>
+<span class="linenr">102: </span>    <span class="org-keyword">if</span> totals:
+<span class="linenr">103: </span>        <span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> <span class="org-operator">=</span> plt.subplots()
+<span class="linenr">104: </span>        ax.pie(<span class="org-builtin">list</span>(totals.values()), labels<span class="org-operator">=</span><span class="org-builtin">list</span>(totals.keys()), autopct<span class="org-operator">=</span><span class="org-string">'%1.0f%%'</span>)
+<span class="linenr">105: </span>        st.pyplot(fig)
+<span class="linenr">106: </span>    <span class="org-keyword">else</span>:
+<span class="linenr">107: </span>        st.info(<span class="org-string">'&#36996;&#27794;&#26377;&#25903;&#20986;&#35352;&#37636;'</span>)
+<span class="linenr">108: </span>
+<span class="linenr">109: </span>    st.subheader(<span class="org-string">'&#39192;&#38989;&#35722;&#21270;'</span>)
+<span class="linenr">110: </span>    <span class="org-keyword">if</span> shown:
+<span class="linenr">111: </span>        <span class="org-variable-name">shown_sorted</span> <span class="org-operator">=</span> <span class="org-builtin">sorted</span>(shown, key<span class="org-operator">=</span><span class="org-keyword">lambda</span> r: r[<span class="org-string">'&#26085;&#26399;'</span>])
+<span class="linenr">112: </span>        <span class="org-variable-name">changes</span> <span class="org-operator">=</span> []
+<span class="linenr">113: </span>        <span class="org-keyword">for</span> r <span class="org-keyword">in</span> shown_sorted:
+<span class="linenr">114: </span>            <span class="org-keyword">if</span> r[<span class="org-string">'&#25910;&#25903;'</span>] <span class="org-operator">==</span> <span class="org-string">'&#25910;&#20837;'</span>:
+<span class="linenr">115: </span>                changes.append(r[<span class="org-string">'&#37329;&#38989;'</span>])
+<span class="linenr">116: </span>            <span class="org-keyword">else</span>:
+<span class="linenr">117: </span>                changes.append(<span class="org-operator">-</span>r[<span class="org-string">'&#37329;&#38989;'</span>])
+<span class="linenr">118: </span>        <span class="org-variable-name">balance</span> <span class="org-operator">=</span> np.cumsum(changes)
+<span class="linenr">119: </span>
+<span class="linenr">120: </span>        <span class="org-variable-name">fig</span>, <span class="org-variable-name">ax</span> <span class="org-operator">=</span> plt.subplots()
+<span class="linenr">121: </span>        ax.plot(<span class="org-builtin">range</span>(1, <span class="org-builtin">len</span>(balance) <span class="org-operator">+</span> 1), balance, marker<span class="org-operator">=</span><span class="org-string">'o'</span>)
+<span class="linenr">122: </span>        ax.axhline(0, color<span class="org-operator">=</span><span class="org-string">'red'</span>, linewidth<span class="org-operator">=</span>1)
+<span class="linenr">123: </span>        ax.set_xlabel(<span class="org-string">'&#31532;&#24190;&#31558;'</span>)
+<span class="linenr">124: </span>        ax.set_ylabel(<span class="org-string">'&#39192;&#38989;&#65288;&#20803;&#65289;'</span>)
+<span class="linenr">125: </span>        st.pyplot(fig)
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sp-deploy" class="outline-2">
+<h2 id="sp-deploy"><span class="section-number-2">11.</span> 第二節：註冊 GitHub，把 App 發佈到網路上</h2>
+<div class="outline-text-2" id="text-sp-deploy">
+<p>
+到目前為止，App 都跑在自己的電腦上（ <code>http://localhost:8501</code>），別人打不開。這一節我們把記帳本免費部署到 <a href="https://share.streamlit.io/">Streamlit Community Cloud</a>，部署完會得到一個 <code>https://xxx.streamlit.app</code> 的網址，任何人用電腦或手機都能打開。<br />
+</p>
+
+<p>
+課後的小組作業也要用同樣的方法部署，所以 <code>這一節每個步驟都要自己做過一次</code>。<br />
+</p>
+
+<p>
+整個流程是：<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">步驟</th>
+<th scope="col" class="org-left">做什麼</th>
+<th scope="col" class="org-left">在哪裡</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">註冊 GitHub 帳號</td>
+<td class="org-left">github.com</td>
+</tr>
+
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">建立 repository，上傳程式</td>
+<td class="org-left">github.com</td>
+</tr>
+
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">用 GitHub 帳號登入 Streamlit，按 Deploy</td>
+<td class="org-left">share.streamlit.io</td>
+</tr>
+
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">用手機打開網址測試</td>
+<td class="org-left">你的 <code>xxx.streamlit.app</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+GitHub 是放程式碼的網站，Streamlit Community Cloud 會到你的 GitHub 抓程式下來執行，所以一定要先有 GitHub 帳號。<br />
+</p>
+</div>
+<div id="outline-container-orgc1a0725" class="outline-3">
+<h3 id="orgc1a0725"><span class="section-number-3">11.1.</span> 準備要上傳的檔案</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+在電腦上的 <code>ledger</code> 資料夾準備好這三個檔案：<br />
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">檔案</th>
+<th scope="col" class="org-left">內容</th>
+<th scope="col" class="org-left">一定要嗎</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>app.py</code></td>
+<td class="org-left">Step 7（或 Step 8）的完成版程式</td>
+<td class="org-left">要</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>requirements.txt</code></td>
+<td class="org-left">告訴雲端要安裝哪些 Python 套件</td>
+<td class="org-left">要</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>packages.txt</code></td>
+<td class="org-left">告訴雲端要安裝中文字型，圖上的中文才不會變方塊</td>
+<td class="org-left">有畫圖就要</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<code>requirements.txt</code> 的內容，一行一個套件：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-text"><code><span class="linenr">1: </span>streamlit
+<span class="linenr">2: </span>numpy
+<span class="linenr">3: </span>matplotlib
+</code></pre>
+</div>
+
+<p>
+<code>packages.txt</code> 的內容只有一行：<br />
+</p>
+<div class="org-src-container">
+<pre class="src src-text"><code><span class="linenr">1: </span>fonts-noto-cjk
+</code></pre>
+</div>
+
+<p>
+注意：<br />
+</p>
+<ul class="org-ul">
+<li>檔名要 <code>一字不差</code>： <code>requirements.txt</code> 是複數（有 s），全部小寫。<br /></li>
+<li>用 AI 寫的程式如果 <code>import</code> 了其他套件，也要加進 <code>requirements.txt</code>。<br /></li>
+<li><code>records.json</code> 不用上傳，程式第一次執行時會自己建立。<br /></li>
+</ul>
+
+<blockquote>
+<p>
+為什麼要 <code>packages.txt</code>？Streamlit 的雲端主機是 Linux，裡面沒有 Mac / Windows 的中文字型。 <code>fonts-noto-cjk</code> 會幫主機裝上 Noto 中文字型，而 Step 6 程式第 8 行字型清單最後的 <code>'Noto Sans CJK JP'</code> 就是它的名字（JP 這個版本一樣能顯示繁體中文）。<br />
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orgbb1662d" class="outline-3">
+<h3 id="orgbb1662d"><span class="section-number-3">11.2.</span> 部署 1：註冊 GitHub 帳號</h3>
+<div class="outline-text-3" id="text-11-2">
+<ol class="org-ol">
+<li>打開 <a href="https://github.com/signup">https://github.com/signup</a><br /></li>
+<li>依序填入：<br />
+<ul class="org-ul">
+<li><code>Email</code>：學校或自己的信箱都可以，要是你收得到信的信箱<br /></li>
+<li><code>Password</code>：至少 15 個字元；或至少 8 個字元並包含數字和小寫字母<br /></li>
+<li><code>Username</code>：只能用英文、數字和 <code>-</code>，會出現在網址裡，例如 <code>tnfsh-ming</code>。被用過的名字不能用，換一個就好<br /></li>
+</ul></li>
+<li>按 <code>Continue</code>，完成畫面上的驗證（例如選出正確的圖片）<br /></li>
+<li>到信箱收 GitHub 寄來的 <code>驗證碼</code>，輸入後就註冊完成<br /></li>
+<li>之後如果問你要不要選方案、填興趣，選 <code>Free</code> 或直接跳過<br /></li>
+</ol>
+
+<blockquote>
+<ul class="org-ul">
+<li>收不到驗證碼：看看垃圾郵件匣；學校信箱收不到的話，改用自己的信箱註冊。<br /></li>
+<li><code>帳號、密碼要記下來</code>：作業和之後的專題都會用到。<br /></li>
+<li>GitHub 之後可能會要求設定兩步驟驗證（2FA），照畫面指示用手機 App 設定即可。<br /></li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-org01c7183" class="outline-3">
+<h3 id="org01c7183"><span class="section-number-3">11.3.</span> 部署 2：建立 repository，上傳程式</h3>
+<div class="outline-text-3" id="text-11-3">
+<p>
+repository（簡稱 repo）就是 GitHub 上放一個專案的資料夾。<br />
+</p>
+<ol class="org-ol">
+<li>登入 GitHub，按右上角的 <code>+</code>，選 <code>New repository</code><br /></li>
+<li><code>Repository name</code>：取一個英文名字，例如 <code>ledger</code><br /></li>
+<li>選 <code>Public</code>（公開）<br /></li>
+<li>勾選（或打開） <code>Add README</code>，這樣 repo 一建好就能直接上傳檔案<br /></li>
+<li>按最下面的 <code>Create repository</code><br /></li>
+<li>在 repo 頁面按 <code>Add file</code> → <code>Upload files</code><br /></li>
+<li>把 <code>app.py</code>、 <code>requirements.txt</code>、 <code>packages.txt</code> 三個檔案拖進去<br /></li>
+<li>按 <code>Commit changes</code><br /></li>
+</ol>
+
+<p>
+上傳完，repo 首頁應該看得到這三個檔案和 <code>README.md</code>。<br />
+</p>
+
+<blockquote>
+<p>
+檔案要直接放在 repo 的最外層。不要把整個 <code>ledger</code> 資料夾拖進去，否則檔案會跑到 <code>ledger/</code> 底下，下一步會找不到 <code>app.py</code>。<br />
+</p>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-orge2f5a9a" class="outline-3">
+<h3 id="orge2f5a9a"><span class="section-number-3">11.4.</span> 部署 3：部署到 Streamlit Community Cloud</h3>
+<div class="outline-text-3" id="text-11-4">
+<ol class="org-ol">
+<li>打開 <a href="https://share.streamlit.io/">https://share.streamlit.io/</a><br /></li>
+<li>按 <code>Continue with GitHub</code>，用剛剛的 GitHub 帳號登入，出現授權畫面時按 <code>Authorize</code><br /></li>
+<li>第一次登入會請你填基本資料，填完繼續<br /></li>
+<li>按右上角的 <code>Create app</code>，選 <code>Deploy a public app from GitHub</code><br /></li>
+<li>填入：<br />
+<ul class="org-ul">
+<li><code>Repository</code>：選你的 repo，例如 <code>tnfsh-ming/ledger</code><br /></li>
+<li><code>Branch</code>：維持 <code>main</code><br /></li>
+<li><code>Main file path</code>：維持 <code>app.py</code><br /></li>
+<li><code>App URL</code>：可以自己取網址，例如 <code>ming-ledger</code>，網址就會是 <code>https://ming-ledger.streamlit.app</code><br /></li>
+</ul></li>
+<li>按 <code>Deploy</code><br /></li>
+</ol>
+
+<p>
+第一次部署要等幾分鐘，畫面會顯示安裝套件的過程，跑完 App 就會出現。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-org2fe1641" class="outline-3">
+<h3 id="org2fe1641"><span class="section-number-3">11.5.</span> 部署 4：測試你的網址</h3>
+<div class="outline-text-3" id="text-11-5">
+<ul class="org-ul">
+<li>把網址傳到手機打開，確認 App 能正常使用、圖上的中文正常顯示。<br /></li>
+<li>用瀏覽器的 <code>無痕視窗</code> 打開也試一次，沒有登入也能用，才代表別人真的打得開。<br /></li>
+<li><code>交作業時要貼這個網址</code>：是 <code>https://xxx.streamlit.app</code>，不是 <code>localhost</code>。<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgaf8b4eb" class="outline-3">
+<h3 id="orgaf8b4eb"><span class="section-number-3">11.6.</span> 程式改了怎麼更新</h3>
+<div class="outline-text-3" id="text-11-6">
+<p>
+在 GitHub 的 repo 頁面重新 <code>Add file</code> → <code>Upload files</code>，上傳同名的新 <code>app.py</code> 並 <code>Commit changes</code>，覆蓋舊檔。Streamlit 會自動抓到新程式，等一下重新整理網頁就是新版。<br />
+</p>
+</div>
+</div>
+<div id="outline-container-orgb26a29f" class="outline-3">
+<h3 id="orgb26a29f"><span class="section-number-3">11.7.</span> 部署常見問題</h3>
+<div class="outline-text-3" id="text-11-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">狀況</th>
+<th scope="col" class="org-left">原因與解法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>ModuleNotFoundError: No module named 'xxx'</code></td>
+<td class="org-left"><code>requirements.txt</code> 少了這個套件，或檔名打錯，補上後重新上傳</td>
+</tr>
+
+<tr>
+<td class="org-left">圖上的中文變成方塊</td>
+<td class="org-left">沒有上傳 <code>packages.txt</code>，或程式的字型清單裡沒有 <code>'Noto Sans CJK JP'</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Deploy 時找不到 <code>app.py</code></td>
+<td class="org-left">檔案被放進子資料夾了，或檔名不是 <code>app.py</code>；改 <code>Main file path</code> 或重新上傳</td>
+</tr>
+
+<tr>
+<td class="org-left">選 Repository 時看不到我的 repo</td>
+<td class="org-left">剛建立的話重新整理；repo 要是 <code>Public</code></td>
+</tr>
+
+<tr>
+<td class="org-left">打開網址看到「This app has gone to sleep」</td>
+<td class="org-left">一段時間沒人用 App 會休眠，按 <code>Yes, get this app back up!</code> 等它醒來就好</td>
+</tr>
+
+<tr>
+<td class="org-left">本機可以跑，雲端出現紅色錯誤</td>
+<td class="org-left">按右下角 <code>Manage app</code> 看完整的錯誤訊息，整段貼給 AI 問</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+另外要注意兩件事：<br />
+</p>
+<ul class="org-ul">
+<li><code>雲端上的 JSON 檔不會永久保存</code>：App 重新啟動後， <code>records.json</code> 會回到你上傳時的樣子，記過的帳都會不見。正式的 App 會改用資料庫，做專題展示的話，用 Step 8 的下載備份就夠了。<br /></li>
+<li><code>別人也看得到</code>：部署後任何拿到網址的人都能使用，repo 是 Public 的話程式碼也看得到，不要在 App 或程式裡放個人資料。<br /></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sp-ai" class="outline-2">
+<h2 id="sp-ai"><span class="section-number-2">12.</span> 專題時間：和 AI 一起寫</h2>
+<div class="outline-text-2" id="text-sp-ai">
+<p>
+接下來的課程，你要做出一個 <code>自己的 Streamlit App</code>。不會寫的地方可以請 AI 幫忙，但程式是你的，你要能說出每一段在做什麼。<br />
+</p>
+</div>
+<div id="outline-container-orgd6b13a2" class="outline-3">
+<h3 id="orgd6b13a2"><span class="section-number-3">12.1.</span> 題目點子</h3>
+<div class="outline-text-3" id="text-12-1">
+<p>
+記帳本的骨架（輸入 → 存 JSON → 統計 → 畫圖）幾乎可以套到任何主題：<br />
+</p>
+<ul class="org-ul">
+<li>讀書時間記錄：每天讀了哪科、讀多久，畫出每週讀書時間<br /></li>
+<li>運動打卡：記錄跑步距離，看看這個月進步多少<br /></li>
+<li>單字卡測驗：存單字和意思，隨機出題、記錄答對率<br /></li>
+<li>班級點餐統計：每個人選便當，自動算出每種各要幾個<br /></li>
+<li>社團器材借用：誰借了什麼、什麼時候還<br /></li>
+<li>心情日記：每天打分數加一句話，畫出心情變化<br /></li>
+<li>自己想一個！<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga261ac5" class="outline-3">
+<h3 id="orga261ac5"><span class="section-number-3">12.2.</span> 怎麼跟 AI 說</h3>
+<div class="outline-text-3" id="text-12-2">
+<p>
+AI 不知道你學過什麼、程式長什麼樣子，所以 <code>說得越清楚，它給的程式越好用</code>。可以參考這個範本：<br />
+</p>
+<pre class="example" id="orge741810">
+我是高中生，正在用 Python 的 Streamlit 做一個「______」App，
+資料存在 records.json（格式是 list of dict）。
+我學過 numpy 和 matplotlib，請不要用 pandas。
+
+這是我目前的程式：
+（整段貼上 app.py）
+
+我想加一個功能：______。
+請給我修改後的完整程式，並告訴我改了哪幾行、為什麼這樣改。
+</pre>
+</div>
+</div>
+<div id="outline-container-org7b1e2b2" class="outline-3">
+<h3 id="org7b1e2b2"><span class="section-number-3">12.3.</span> 好習慣</h3>
+<div class="outline-text-3" id="text-12-3">
+<ul class="org-ul">
+<li><code>一次只加一個功能</code>：一次要求太多，出錯時你會不知道是哪裡壞掉<br /></li>
+<li><code>每次改完馬上執行</code>：確定能跑再加下一個功能<br /></li>
+<li><code>留一份能跑的版本</code>：改之前先把 <code>app.py</code> 複製成 <code>app_ok.py</code>，改壞了還能回去<br /></li>
+<li><code>看不懂就問</code>：「請解釋第 25 到 30 行在做什麼」，AI 很樂意解釋<br /></li>
+<li><code>錯誤訊息整段貼給 AI</code>：不要只說「它壞了」，紅色的錯誤訊息裡有最重要的線索<br /></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org33bb292" class="outline-3">
+<h3 id="org33bb292"><span class="section-number-3">12.4.</span> 常見錯誤</h3>
+<div class="outline-text-3" id="text-12-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">錯誤訊息或狀況</th>
+<th scope="col" class="org-left">原因與解法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>command not found: streamlit</code></td>
+<td class="org-left">改用 <code>python3 -m streamlit run app.py</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>ModuleNotFoundError: No module named 'pandas'</code></td>
+<td class="org-left">AI 用了沒安裝的套件，請它改成不用該套件的寫法</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>Object of type date is not JSON serializable</code></td>
+<td class="org-left">日期存檔前要先 <code>str(date)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>JSONDecodeError</code></td>
+<td class="org-left"><code>records.json</code> 內容被改壞了，修好它或刪掉讓程式重新建立</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>KeyError: '金額'</code></td>
+<td class="org-left">資料的欄位名稱改過了，舊的 <code>records.json</code> 對不上，刪掉重來</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>DuplicateElementId</code> / <code>DuplicateWidgetID</code></td>
+<td class="org-left">兩個元件長得一模一樣，請在其中一個加上不同的 <code>key</code> 參數</td>
+</tr>
+
+<tr>
+<td class="org-left">圖上的中文變成方塊</td>
+<td class="org-left">忘了加 Step 6 的中文字型設定；部署到雲端的話見<a href="#sp-deploy">第二節</a></td>
+</tr>
+
+<tr>
+<td class="org-left">按了按鈕，資料卻不見了</td>
+<td class="org-left">資料只存在變數裡，要存進檔案（回去看 Step 3）</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-sp-cheatsheet" class="outline-2">
+<h2 id="sp-cheatsheet"><span class="section-number-2">13.</span> 元件速查表</h2>
+<div class="outline-text-2" id="text-sp-cheatsheet">
+<p>
+做專題時想找元件，可以先查這張表，更多元件見<a href="https://docs.streamlit.io/develop/api-reference">Streamlit 官方文件</a>，或<a href="Streamlit.html">Streamlit 元件介紹</a>。<br />
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">元件</th>
+<th scope="col" class="org-left">用途</th>
+<th scope="col" class="org-left">範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>st.title</code></td>
+<td class="org-left">大標題</td>
+<td class="org-left"><code>st.title('我的 App')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.subheader</code></td>
+<td class="org-left">小標題</td>
+<td class="org-left"><code>st.subheader('明細')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.write</code></td>
+<td class="org-left">萬用輸出</td>
+<td class="org-left"><code>st.write('文字', 123, records)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.text_input</code></td>
+<td class="org-left">輸入文字</td>
+<td class="org-left"><code>name = st.text_input('姓名')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.number_input</code></td>
+<td class="org-left">輸入數字</td>
+<td class="org-left"><code>n = st.number_input('數量', min_value=0)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.date_input</code></td>
+<td class="org-left">選日期</td>
+<td class="org-left"><code>d = st.date_input('日期')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.selectbox</code></td>
+<td class="org-left">下拉選單</td>
+<td class="org-left"><code>c = st.selectbox('類別', ['A', 'B'])</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.radio</code></td>
+<td class="org-left">單選按鈕</td>
+<td class="org-left"><code>k = st.radio('種類', ['甲', '乙'])</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.checkbox</code></td>
+<td class="org-left">核取方塊</td>
+<td class="org-left"><code>if st.checkbox('顯示全部'):</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.slider</code></td>
+<td class="org-left">滑桿</td>
+<td class="org-left"><code>v = st.slider('分數', 0, 100, 60)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.button</code></td>
+<td class="org-left">按鈕</td>
+<td class="org-left"><code>if st.button('送出'):</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.form</code></td>
+<td class="org-left">表單</td>
+<td class="org-left"><code>with st.form('f'):</code> ⋯ <code>st.form_submit_button('送出')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.success</code> 等</td>
+<td class="org-left">提示訊息</td>
+<td class="org-left"><code>st.success()</code>, <code>st.error()</code>, <code>st.warning()</code>, <code>st.info()</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.metric</code></td>
+<td class="org-left">大字顯示數字</td>
+<td class="org-left"><code>st.metric('餘額', '180 元')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.dataframe</code></td>
+<td class="org-left">表格</td>
+<td class="org-left"><code>st.dataframe(records)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.pyplot</code></td>
+<td class="org-left">顯示 matplotlib</td>
+<td class="org-left"><code>st.pyplot(fig)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.image</code></td>
+<td class="org-left">顯示圖片</td>
+<td class="org-left"><code>st.image('photo.png')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.columns</code></td>
+<td class="org-left">左右並排</td>
+<td class="org-left"><code>c1, c2 = st.columns(2)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.tabs</code></td>
+<td class="org-left">分頁</td>
+<td class="org-left"><code>t1, t2 = st.tabs(['頁1', '頁2'])</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.sidebar</code></td>
+<td class="org-left">側邊欄</td>
+<td class="org-left"><code>st.sidebar.selectbox(⋯)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.file_uploader</code></td>
+<td class="org-left">上傳檔案</td>
+<td class="org-left"><code>f = st.file_uploader('上傳')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.download_button</code></td>
+<td class="org-left">下載檔案</td>
+<td class="org-left"><code>st.download_button('下載', 內容)</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.camera_input</code></td>
+<td class="org-left">拍照</td>
+<td class="org-left"><code>img = st.camera_input('拍照')</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>st.rerun</code></td>
+<td class="org-left">立刻重跑</td>
+<td class="org-left"><code>st.rerun()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: 顏永進</p>
+<p class="date">Created: 2026-11-19 Thu 22:03</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,845 @@
+#+TITLE: Streamlit 專題入門：零用錢記帳本
+#+AUTHOR: 顏永進
+#+SUBTITLE: TNFSH Python教材 / 顏永進
+# -*- org-export-babel-evaluate: nil -*-
+#+INCLUDE: ../pdf.org
+#+PROPERTY: header-args :eval never-export
+#+TAGS: Python
+#+EXCLUDE_TAGS: noexport
+#+OPTIONS: toc:2 ^:nil num:3
+#+OPTIONS: H:4
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="../css/muse.css" />
+#+HTML_HEAD_EXTRA: <script src="../css/copy_code.js"></script>
+#+begin_export html
+<a href="https://letranger.github.io/PythonCourse/StreamlitProject.html"><img align="right" alt="Hits" src="https://hits.sh/letranger.github.io/PythonCourse/StreamlitProject.html.svg"/></a>
+#+end_export
+
+* 這兩節課要做什麼
+:PROPERTIES:
+:CUSTOM_ID: sp-goal
+:END:
+Streamlit 可以讓你 ~只用 Python~ 就做出一個網頁 App，不需要學 HTML、CSS 或 JavaScript。
+
+這兩節課我們從一個空白檔案開始，一步一步做出一個「零用錢記帳本」：可以記下每一筆收入和支出、存成檔案、算出餘額，還能畫圖看看錢都花到哪裡去了。
+
+每一步都附上 ~完整程式碼~ ，直接整段複製、貼上、存檔就能執行。重點不是背指令，而是知道 Streamlit 能做什麼，接下來的專題課你就可以和 AI 一起做出自己的 App。
+
+- ~第一節~ ：大致看過 Step 1～7，知道 Streamlit 能做哪些事，沒做完的步驟可以課後自己照著做。
+- ~第二節~ ：每個人註冊 GitHub 帳號，把記帳本部署到網路上，拿到一個大家都打得開的網址。課後的小組作業也要這樣部署，所以這一節的步驟一定要自己做過一次。
+
+| 步驟   | 加入的功能                   | 會用到                                        | 節次   |
+|--------+------------------------------+-----------------------------------------------+--------|
+| Step 1 | 第一個網頁                   | =st.title=, =st.write=                        | 第一節 |
+| Step 2 | 輸入欄位                     | =st.date_input=, =st.radio=, =st.selectbox=…  | 第一節 |
+| Step 3 | 按鈕（資料怎麼不見了？）     | =st.button=                                   | 第一節 |
+| Step 4 | 存進 JSON 檔                 | =json=, =st.form=                             | 第一節 |
+| Step 5 | 算出收入、支出、餘額         | =st.metric=, =st.columns=, =st.dataframe=     | 第一節 |
+| Step 6 | 畫圖                         | =matplotlib=, =numpy=, =st.pyplot=            | 第一節 |
+| Step 7 | 分頁與側邊欄（完成版）       | =st.tabs=, =st.sidebar=                       | 第一節 |
+| Step 8 | 延伸：刪除與下載備份         | =st.download_button=, =st.rerun=              | 選讀   |
+| 部署   | 註冊 GitHub，發佈到網路上    | GitHub, Streamlit Community Cloud             | 第二節 |
+
+* 開始之前
+:PROPERTIES:
+:CUSTOM_ID: sp-setup
+:END:
+** 執行方式
+1. 新增一個資料夾（例如 =ledger=），在裡面新增檔案 =app.py=
+2. 把程式碼貼進 =app.py= 並存檔
+3. 開啟終端機，切換到這個資料夾，輸入：
+#+begin_src shell -r -n :results output :exports both
+python3 -m streamlit run app.py
+#+end_src
+4. 瀏覽器會自動打開你的 App（網址通常是 =http://localhost:8501= ）
+5. 要結束程式，在終端機按 =Ctrl + C=
+
+#+begin_quote
+為什麼不是直接打 =streamlit run app.py= ？電腦教室的 =streamlit= 指令沒有加進系統路徑，直接打會出現 =command not found= ，用 =python3 -m streamlit= 就一定找得到。
+#+end_quote
+
+** 改程式不用重新執行
+App 開著的時候，修改 =app.py= 並存檔，網頁右上角會出現 ~Rerun~ 按鈕，按下去就會套用新程式。選 ~Always rerun~ 的話，之後每次存檔都會自動更新。
+
+** 最重要的觀念：整支程式會一直重跑
+:PROPERTIES:
+:CUSTOM_ID: sp-rerun
+:END:
+Streamlit 和你之前寫的程式很不一樣： ~每當使用者按一下按鈕、改一個輸入框，整支程式就會從第一行重新執行到最後一行~ ，然後重新畫出整個網頁。
+
+先記住這件事，Step 3 你就會親眼看到它造成的「怪事」。
+
+* Step 1：第一個網頁
+:PROPERTIES:
+:CUSTOM_ID: sp-step1
+:END:
+=st.title= 顯示大標題， =st.write= 什麼都能顯示（文字、數字、list、dict……）， =st.markdown= 可以用 Markdown 語法排版。
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+
+st.title('💰 我的零用錢記帳本')
+st.write('這是我用 Python 做的第一個網頁！')
+st.markdown('也可以用 **Markdown** 語法寫字，例如 *斜體*、`程式碼`')
+#+end_src
+~試試看~ ：用 =st.write= 加一行自我介紹。
+
+* Step 2：輸入欄位
+:PROPERTIES:
+:CUSTOM_ID: sp-step2
+:END:
+記一筆帳需要五個欄位，剛好用到五種不同的輸入元件。每個元件都會 ~回傳使用者輸入的值~ ，用變數接起來就能使用：
+| 元件              | 用途         | 回傳值                         |
+|-------------------+--------------+--------------------------------|
+| =st.date_input=   | 選日期       | 日期（ =datetime.date= ）       |
+| =st.radio=        | 單選按鈕     | 選到的那個字串                 |
+| =st.selectbox=    | 下拉選單     | 選到的那個字串                 |
+| =st.text_input=   | 輸入文字     | 字串（沒填時是 =''= ）          |
+| =st.number_input= | 輸入數字     | 數字（ =min_value=0= 表示不能小於 0） |
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+
+st.title('💰 我的零用錢記帳本')
+
+date = st.date_input('日期')
+kind = st.radio('收入還是支出？', ['支出', '收入'], horizontal=True)
+category = st.selectbox('類別', ['飲食', '交通', '娛樂', '文具', '零用錢', '其他'])
+item = st.text_input('項目', placeholder='例如：珍奶')
+amount = st.number_input('金額', min_value=0, step=10)
+
+st.write('你輸入的是：', date, kind, category, item, amount)
+#+end_src
+~試試看~ ：改改看欄位的內容，觀察最下面那一行有沒有跟著變。這就是「整支程式重跑」：你每改一次，第 11 行就重新執行一次。
+
+* Step 3：按鈕──資料怎麼不見了？
+:PROPERTIES:
+:CUSTOM_ID: sp-step3
+:END:
+加一個「記下來」按鈕，按下去就把這筆資料用 dict 包起來，加進 =records= 這個 list：
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+
+st.title('💰 我的零用錢記帳本')
+
+records = []   # 用一個 list 來存所有記錄
+
+date = st.date_input('日期')
+kind = st.radio('收入還是支出？', ['支出', '收入'], horizontal=True)
+category = st.selectbox('類別', ['飲食', '交通', '娛樂', '文具', '零用錢', '其他'])
+item = st.text_input('項目', placeholder='例如：珍奶')
+amount = st.number_input('金額', min_value=0, step=10)
+
+if st.button('記下來'):
+    records.append({'日期': str(date), '收支': kind, '類別': category,
+                    '項目': item, '金額': amount})
+    st.success('記好了！')
+
+st.write('目前共有', len(records), '筆記錄')
+st.write(records)
+#+end_src
+第 16 行的 =st.success= 是 Streamlit 的訊息框，會顯示一個有顏色的提示框，讓使用者一眼看出結果。總共有四種，差別只在顏色和圖示：
+
+| 函式         | 外觀     | 用途                 |
+|--------------+----------+----------------------|
+| =st.success= | 綠色框 ✅ | 動作成功完成         |
+| =st.error=   | 紅色框 ❌ | 發生錯誤、輸入不正確 |
+| =st.warning= | 黃色框 ⚠️ | 提醒、警告           |
+| =st.info=    | 藍色框 ℹ️ | 一般說明             |
+
+後面的步驟會搭配 =if= 判斷使用：資料沒填好就用 =st.error= 提醒，記好了就用 =st.success= 告訴使用者。
+
+~試試看~ ：記一筆，再記第二筆。你會發現「目前共有」永遠只有 1 筆，第一筆不見了！
+
+~原因~ ：按下按鈕時整支程式重跑，第 5 行 =records = []= 又把 list 清空了。程式結束時變數裡的資料就消失，就像你之前寫的程式，執行完變數就不見了一樣。
+
+~解法~ ：把資料 ~存到檔案裡~ 。每次重跑時先從檔案讀出來，有新資料就寫回檔案，資料就不會不見了。
+
+* Step 4：存進 JSON 檔
+:PROPERTIES:
+:CUSTOM_ID: sp-step4
+:END:
+** JSON 是什麼
+JSON 是一種很常見的資料檔格式，長得幾乎跟 Python 的 list 和 dict 一模一樣。我們的記帳資料存起來會像這樣：
+#+begin_src json -r -n :eval no
+[
+  {"日期": "2026-11-19", "收支": "支出", "類別": "飲食", "項目": "珍奶", "金額": 55},
+  {"日期": "2026-11-20", "收支": "收入", "類別": "零用錢", "項目": "週零用錢", "金額": 500}
+]
+#+end_src
+Python 內建的 =json= 模組只要記兩個函式：
+| 函式                  | 作用                         |
+|-----------------------+------------------------------|
+| =json.load(f)=        | 從檔案讀出來，變成 list/dict |
+| =json.dump(資料, f)=  | 把 list/dict 寫進檔案        |
+- =ensure_ascii=False= ：中文照原樣存，不會變成一串看不懂的編碼
+- =indent=2= ：存檔時自動換行縮排，用記事本打開也看得懂
+- 日期要先用 =str(date)= 轉成字串，因為 JSON 不認得 Python 的日期型別
+
+** 用表單一次送出
+=st.form= 會把裡面的欄位包成一張表單，按下 =st.form_submit_button= 才一起送出。 =clear_on_submit=True= 會在送出後清空欄位，方便記下一筆。
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+import json
+import os
+
+FILE = 'records.json'
+
+def load_records():
+    if not os.path.exists(FILE):   # 第一次執行還沒有檔案
+        return []
+    with open(FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def save_records(records):
+    with open(FILE, 'w', encoding='utf-8') as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
+
+st.title('💰 我的零用錢記帳本')
+
+records = load_records()   # 每次重跑都先從檔案讀進來
+
+with st.form('add_form', clear_on_submit=True):
+    date = st.date_input('日期')
+    kind = st.radio('收入還是支出？', ['支出', '收入'], horizontal=True)
+    category = st.selectbox('類別', ['飲食', '交通', '娛樂', '文具', '零用錢', '其他'])
+    item = st.text_input('項目', placeholder='例如：珍奶')
+    amount = st.number_input('金額', min_value=0, step=10)
+    submitted = st.form_submit_button('記下來')
+
+if submitted:
+    if item == '' or amount == 0:
+        st.error('項目和金額都要填喔！')
+    else:
+        records.append({'日期': str(date), '收支': kind, '類別': category,
+                        '項目': item, '金額': amount})
+        save_records(records)   # 一改就馬上存檔
+        st.success(f'已記下：{item} {amount} 元')
+
+st.write('目前共有', len(records), '筆記錄')
+st.write(records)
+#+end_src
+~試試看~ ：
+1. 記幾筆帳，然後在終端機按 =Ctrl + C= 關掉程式，再重新執行。資料還在嗎？
+2. 打開資料夾裡的 =records.json= 看看裡面長什麼樣子。
+3. 不填項目直接按「記下來」會怎樣？
+
+* Step 5：算出收入、支出、餘額
+:PROPERTIES:
+:CUSTOM_ID: sp-step5
+:END:
+資料都在 =records= 這個 list 裡，用 for 迴圈就能加總。
+- =st.columns(3)= ：切出三個並排的欄位
+- =st.metric= ：用大字顯示一個數字
+- =st.dataframe= ：把 list of dict 顯示成表格，點欄位名稱還可以排序
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+import json
+import os
+
+FILE = 'records.json'
+
+def load_records():
+    if not os.path.exists(FILE):
+        return []
+    with open(FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def save_records(records):
+    with open(FILE, 'w', encoding='utf-8') as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
+
+st.title('💰 我的零用錢記帳本')
+
+records = load_records()
+
+with st.form('add_form', clear_on_submit=True):
+    date = st.date_input('日期')
+    kind = st.radio('收入還是支出？', ['支出', '收入'], horizontal=True)
+    category = st.selectbox('類別', ['飲食', '交通', '娛樂', '文具', '零用錢', '其他'])
+    item = st.text_input('項目', placeholder='例如：珍奶')
+    amount = st.number_input('金額', min_value=0, step=10)
+    submitted = st.form_submit_button('記下來')
+
+if submitted:
+    if item == '' or amount == 0:
+        st.error('項目和金額都要填喔！')
+    else:
+        records.append({'日期': str(date), '收支': kind, '類別': category,
+                        '項目': item, '金額': amount})
+        save_records(records)
+        st.success(f'已記下：{item} {amount} 元')
+
+# 計算總收入、總支出
+income = 0
+expense = 0
+for r in records:
+    if r['收支'] == '收入':
+        income += r['金額']
+    else:
+        expense += r['金額']
+
+# 三個數字左右並排
+col1, col2, col3 = st.columns(3)
+col1.metric('總收入', f'{income} 元')
+col2.metric('總支出', f'{expense} 元')
+col3.metric('餘額', f'{income - expense} 元')
+
+st.subheader('明細')
+st.dataframe(records)
+#+end_src
+~試試看~ ：再加一個 =metric= ，顯示「共記了幾筆」。
+
+* Step 6：用 matplotlib 畫圖
+:PROPERTIES:
+:CUSTOM_ID: sp-step6
+:END:
+你學過的 matplotlib 圖表，只要把最後的 =plt.show()= 換成 =st.pyplot(fig)= ，就能放進網頁裡。
+- ~圓餅圖~ ：用 dict 統計每個類別花了多少錢
+- ~餘額折線圖~ ：收入記成正數、支出記成負數，再用 =np.cumsum= 一路累加，就得到每一筆之後的餘額
+
+第 7～8 行設定中文字型，沒設定的話圖上的中文會變成方塊。清單裡的字型會依序嘗試，最後的 ='Noto Sans CJK JP'= 是給部署到雲端時用的（見[[#sp-deploy][第二節]]）。
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+import json
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+
+# 讓 matplotlib 能顯示中文（Mac / Windows / 雲端都試試看）
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans CJK JP']
+plt.rcParams['axes.unicode_minus'] = False
+
+FILE = 'records.json'
+
+def load_records():
+    if not os.path.exists(FILE):
+        return []
+    with open(FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def save_records(records):
+    with open(FILE, 'w', encoding='utf-8') as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
+
+st.title('💰 我的零用錢記帳本')
+
+records = load_records()
+
+with st.form('add_form', clear_on_submit=True):
+    date = st.date_input('日期')
+    kind = st.radio('收入還是支出？', ['支出', '收入'], horizontal=True)
+    category = st.selectbox('類別', ['飲食', '交通', '娛樂', '文具', '零用錢', '其他'])
+    item = st.text_input('項目', placeholder='例如：珍奶')
+    amount = st.number_input('金額', min_value=0, step=10)
+    submitted = st.form_submit_button('記下來')
+
+if submitted:
+    if item == '' or amount == 0:
+        st.error('項目和金額都要填喔！')
+    else:
+        records.append({'日期': str(date), '收支': kind, '類別': category,
+                        '項目': item, '金額': amount})
+        save_records(records)
+        st.success(f'已記下：{item} {amount} 元')
+
+income = 0
+expense = 0
+for r in records:
+    if r['收支'] == '收入':
+        income += r['金額']
+    else:
+        expense += r['金額']
+
+col1, col2, col3 = st.columns(3)
+col1.metric('總收入', f'{income} 元')
+col2.metric('總支出', f'{expense} 元')
+col3.metric('餘額', f'{income - expense} 元')
+
+st.subheader('明細')
+st.dataframe(records)
+
+# ---- 圖一：各類別支出圓餅圖 ----
+st.subheader('錢都花到哪裡去了？')
+totals = {}   # 例如 {'飲食': 300, '交通': 120}
+for r in records:
+    if r['收支'] == '支出':
+        totals[r['類別']] = totals.get(r['類別'], 0) + r['金額']
+
+if totals:
+    fig, ax = plt.subplots()
+    ax.pie(list(totals.values()), labels=list(totals.keys()), autopct='%1.0f%%')
+    st.pyplot(fig)
+else:
+    st.info('還沒有支出記錄')
+
+# ---- 圖二：餘額變化折線圖（用 numpy 累加）----
+st.subheader('餘額變化')
+if records:
+    records_sorted = sorted(records, key=lambda r: r['日期'])   # 依日期排序
+    changes = []
+    for r in records_sorted:
+        if r['收支'] == '收入':
+            changes.append(r['金額'])
+        else:
+            changes.append(-r['金額'])
+    balance = np.cumsum(changes)   # 一路累加：[100, 45, 25, ...]
+
+    fig, ax = plt.subplots()
+    ax.plot(range(1, len(balance) + 1), balance, marker='o')
+    ax.axhline(0, color='red', linewidth=1)   # 0 元的紅線，低於它就是透支
+    ax.set_xlabel('第幾筆')
+    ax.set_ylabel('餘額（元）')
+    st.pyplot(fig)
+#+end_src
+~試試看~ ：把圓餅圖改成長條圖（ =ax.bar= ）。
+
+* Step 7：分頁與側邊欄（完成版）
+:PROPERTIES:
+:CUSTOM_ID: sp-step7
+:END:
+東西越來越多，一整頁往下拉很難找，我們把畫面整理一下：
+- =st.tabs= ：分成「記一筆」「明細」「統計」三個分頁，程式寫在 =with tab1:= 底下就會出現在第一個分頁
+- =st.sidebar= ：在左邊的側邊欄放一個月份選單，只看某個月的帳
+
+月份怎麼來？日期是 ='2026-11-19'= 這樣的字串，取前 7 個字 =r['日期'][:7]= 就是 ='2026-11'= 。
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+import json
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans CJK JP']
+plt.rcParams['axes.unicode_minus'] = False
+
+FILE = 'records.json'
+
+def load_records():
+    if not os.path.exists(FILE):
+        return []
+    with open(FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def save_records(records):
+    with open(FILE, 'w', encoding='utf-8') as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
+
+st.title('💰 我的零用錢記帳本')
+
+records = load_records()
+
+# ---- 三個分頁 ----
+tab1, tab2, tab3 = st.tabs(['✏️ 記一筆', '📋 明細', '📊 統計'])
+
+with tab1:
+    with st.form('add_form', clear_on_submit=True):
+        date = st.date_input('日期')
+        kind = st.radio('收入還是支出？', ['支出', '收入'], horizontal=True)
+        category = st.selectbox('類別', ['飲食', '交通', '娛樂', '文具', '零用錢', '其他'])
+        item = st.text_input('項目', placeholder='例如：珍奶')
+        amount = st.number_input('金額', min_value=0, step=10)
+        submitted = st.form_submit_button('記下來')
+
+    if submitted:
+        if item == '' or amount == 0:
+            st.error('項目和金額都要填喔！')
+        else:
+            records.append({'日期': str(date), '收支': kind, '類別': category,
+                            '項目': item, '金額': amount})
+            save_records(records)
+            st.success(f'已記下：{item} {amount} 元')
+
+# ---- 側邊欄：選月份（放在存檔之後，剛記的那筆才會算進去）----
+months = []
+for r in records:
+    m = r['日期'][:7]   # '2026-11-19' 取前 7 個字 → '2026-11'
+    if m not in months:
+        months.append(m)
+months.sort()
+
+month = st.sidebar.selectbox('要看哪個月？', ['全部'] + months)
+if month == '全部':
+    shown = records
+else:
+    shown = [r for r in records if r['日期'][:7] == month]
+
+with tab2:
+    income = 0
+    expense = 0
+    for r in shown:
+        if r['收支'] == '收入':
+            income += r['金額']
+        else:
+            expense += r['金額']
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric('總收入', f'{income} 元')
+    col2.metric('總支出', f'{expense} 元')
+    col3.metric('餘額', f'{income - expense} 元')
+
+    st.dataframe(shown)
+
+with tab3:
+    st.subheader('錢都花到哪裡去了？')
+    totals = {}
+    for r in shown:
+        if r['收支'] == '支出':
+            totals[r['類別']] = totals.get(r['類別'], 0) + r['金額']
+
+    if totals:
+        fig, ax = plt.subplots()
+        ax.pie(list(totals.values()), labels=list(totals.keys()), autopct='%1.0f%%')
+        st.pyplot(fig)
+    else:
+        st.info('還沒有支出記錄')
+
+    st.subheader('餘額變化')
+    if shown:
+        shown_sorted = sorted(shown, key=lambda r: r['日期'])
+        changes = []
+        for r in shown_sorted:
+            if r['收支'] == '收入':
+                changes.append(r['金額'])
+            else:
+                changes.append(-r['金額'])
+        balance = np.cumsum(changes)
+
+        fig, ax = plt.subplots()
+        ax.plot(range(1, len(balance) + 1), balance, marker='o')
+        ax.axhline(0, color='red', linewidth=1)
+        ax.set_xlabel('第幾筆')
+        ax.set_ylabel('餘額（元）')
+        st.pyplot(fig)
+#+end_src
+~試試看~ ：在側邊欄再加一個類別選單，只看某一類的花費。
+
+* Step 8：延伸──刪除與下載備份
+:PROPERTIES:
+:CUSTOM_ID: sp-step8
+:END:
+記錯了想刪掉怎麼辦？用下拉選單選出要刪的那一筆， =records.pop(i)= 刪掉後存檔，再呼叫 =st.rerun()= 立刻重跑一次，畫面就會更新。
+
+=st.download_button= 則可以讓使用者把 =records.json= 下載回自己的電腦備份。
+#+begin_src python -r -n :results output :exports both
+import streamlit as st
+import json
+import os
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.rcParams['font.sans-serif'] = ['Arial Unicode MS', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans CJK JP']
+plt.rcParams['axes.unicode_minus'] = False
+
+FILE = 'records.json'
+
+def load_records():
+    if not os.path.exists(FILE):
+        return []
+    with open(FILE, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def save_records(records):
+    with open(FILE, 'w', encoding='utf-8') as f:
+        json.dump(records, f, ensure_ascii=False, indent=2)
+
+st.title('💰 我的零用錢記帳本')
+
+records = load_records()
+
+# ---- 三個分頁 ----
+tab1, tab2, tab3 = st.tabs(['✏️ 記一筆', '📋 明細', '📊 統計'])
+
+with tab1:
+    with st.form('add_form', clear_on_submit=True):
+        date = st.date_input('日期')
+        kind = st.radio('收入還是支出？', ['支出', '收入'], horizontal=True)
+        category = st.selectbox('類別', ['飲食', '交通', '娛樂', '文具', '零用錢', '其他'])
+        item = st.text_input('項目', placeholder='例如：珍奶')
+        amount = st.number_input('金額', min_value=0, step=10)
+        submitted = st.form_submit_button('記下來')
+
+    if submitted:
+        if item == '' or amount == 0:
+            st.error('項目和金額都要填喔！')
+        else:
+            records.append({'日期': str(date), '收支': kind, '類別': category,
+                            '項目': item, '金額': amount})
+            save_records(records)
+            st.success(f'已記下：{item} {amount} 元')
+
+# ---- 側邊欄：選月份（放在存檔之後，剛記的那筆才會算進去）----
+months = []
+for r in records:
+    m = r['日期'][:7]   # '2026-11-19' 取前 7 個字 → '2026-11'
+    if m not in months:
+        months.append(m)
+months.sort()
+
+month = st.sidebar.selectbox('要看哪個月？', ['全部'] + months)
+if month == '全部':
+    shown = records
+else:
+    shown = [r for r in records if r['日期'][:7] == month]
+
+with tab2:
+    income = 0
+    expense = 0
+    for r in shown:
+        if r['收支'] == '收入':
+            income += r['金額']
+        else:
+            expense += r['金額']
+
+    col1, col2, col3 = st.columns(3)
+    col1.metric('總收入', f'{income} 元')
+    col2.metric('總支出', f'{expense} 元')
+    col3.metric('餘額', f'{income - expense} 元')
+
+    st.dataframe(shown)
+
+    # ---- 刪除記錯的那一筆 ----
+    if records:
+        st.subheader('刪除一筆')
+        labels = []
+        for r in records:
+            labels.append(f"{r['日期']} {r['項目']} {r['金額']} 元")
+        i = st.selectbox('選擇要刪除的記錄', range(len(records)),
+                         format_func=lambda i: labels[i])
+        if st.button('刪除'):
+            records.pop(i)
+            save_records(records)
+            st.rerun()   # 立刻重跑，讓畫面跟著更新
+
+    # ---- 下載備份 ----
+    st.download_button('下載備份 (records.json)',
+                       json.dumps(records, ensure_ascii=False, indent=2),
+                       file_name='records.json')
+
+with tab3:
+    st.subheader('錢都花到哪裡去了？')
+    totals = {}
+    for r in shown:
+        if r['收支'] == '支出':
+            totals[r['類別']] = totals.get(r['類別'], 0) + r['金額']
+
+    if totals:
+        fig, ax = plt.subplots()
+        ax.pie(list(totals.values()), labels=list(totals.keys()), autopct='%1.0f%%')
+        st.pyplot(fig)
+    else:
+        st.info('還沒有支出記錄')
+
+    st.subheader('餘額變化')
+    if shown:
+        shown_sorted = sorted(shown, key=lambda r: r['日期'])
+        changes = []
+        for r in shown_sorted:
+            if r['收支'] == '收入':
+                changes.append(r['金額'])
+            else:
+                changes.append(-r['金額'])
+        balance = np.cumsum(changes)
+
+        fig, ax = plt.subplots()
+        ax.plot(range(1, len(balance) + 1), balance, marker='o')
+        ax.axhline(0, color='red', linewidth=1)
+        ax.set_xlabel('第幾筆')
+        ax.set_ylabel('餘額（元）')
+        st.pyplot(fig)
+#+end_src
+
+* 第二節：註冊 GitHub，把 App 發佈到網路上
+:PROPERTIES:
+:CUSTOM_ID: sp-deploy
+:END:
+到目前為止，App 都跑在自己的電腦上（ =http://localhost:8501= ），別人打不開。這一節我們把記帳本免費部署到 [[https://share.streamlit.io/][Streamlit Community Cloud]]，部署完會得到一個 =https://xxx.streamlit.app= 的網址，任何人用電腦或手機都能打開。
+
+課後的小組作業也要用同樣的方法部署，所以 ~這一節每個步驟都要自己做過一次~ 。
+
+整個流程是：
+| 步驟 | 做什麼                                     | 在哪裡                    |
+|------+--------------------------------------------+---------------------------|
+|    1 | 註冊 GitHub 帳號                           | github.com                |
+|    2 | 建立 repository，上傳程式                  | github.com                |
+|    3 | 用 GitHub 帳號登入 Streamlit，按 Deploy    | share.streamlit.io        |
+|    4 | 用手機打開網址測試                         | 你的 =xxx.streamlit.app=  |
+
+GitHub 是放程式碼的網站，Streamlit Community Cloud 會到你的 GitHub 抓程式下來執行，所以一定要先有 GitHub 帳號。
+
+** 準備要上傳的檔案
+在電腦上的 =ledger= 資料夾準備好這三個檔案：
+
+| 檔案               | 內容                                         | 一定要嗎 |
+|--------------------+----------------------------------------------+----------|
+| =app.py=           | Step 7（或 Step 8）的完成版程式              | 要       |
+| =requirements.txt= | 告訴雲端要安裝哪些 Python 套件               | 要       |
+| =packages.txt=     | 告訴雲端要安裝中文字型，圖上的中文才不會變方塊 | 有畫圖就要 |
+
+=requirements.txt= 的內容，一行一個套件：
+#+begin_src text -r -n :eval no
+streamlit
+numpy
+matplotlib
+#+end_src
+
+=packages.txt= 的內容只有一行：
+#+begin_src text -r -n :eval no
+fonts-noto-cjk
+#+end_src
+
+注意：
+- 檔名要 ~一字不差~ ： =requirements.txt= 是複數（有 s），全部小寫。
+- 用 AI 寫的程式如果 =import= 了其他套件，也要加進 =requirements.txt= 。
+- =records.json= 不用上傳，程式第一次執行時會自己建立。
+
+#+begin_quote
+為什麼要 =packages.txt= ？Streamlit 的雲端主機是 Linux，裡面沒有 Mac / Windows 的中文字型。 =fonts-noto-cjk= 會幫主機裝上 Noto 中文字型，而 Step 6 程式第 8 行字型清單最後的 ='Noto Sans CJK JP'= 就是它的名字（JP 這個版本一樣能顯示繁體中文）。
+#+end_quote
+
+** 部署 1：註冊 GitHub 帳號
+1. 打開 [[https://github.com/signup][https://github.com/signup]]
+2. 依序填入：
+   - ~Email~ ：學校或自己的信箱都可以，要是你收得到信的信箱
+   - ~Password~ ：至少 15 個字元；或至少 8 個字元並包含數字和小寫字母
+   - ~Username~ ：只能用英文、數字和 =-= ，會出現在網址裡，例如 =tnfsh-ming= 。被用過的名字不能用，換一個就好
+3. 按 ~Continue~ ，完成畫面上的驗證（例如選出正確的圖片）
+4. 到信箱收 GitHub 寄來的 ~驗證碼~ ，輸入後就註冊完成
+5. 之後如果問你要不要選方案、填興趣，選 ~Free~ 或直接跳過
+
+#+begin_quote
+- 收不到驗證碼：看看垃圾郵件匣；學校信箱收不到的話，改用自己的信箱註冊。
+- ~帳號、密碼要記下來~ ：作業和之後的專題都會用到。
+- GitHub 之後可能會要求設定兩步驟驗證（2FA），照畫面指示用手機 App 設定即可。
+#+end_quote
+
+** 部署 2：建立 repository，上傳程式
+repository（簡稱 repo）就是 GitHub 上放一個專案的資料夾。
+1. 登入 GitHub，按右上角的 ~+~ ，選 ~New repository~
+2. ~Repository name~ ：取一個英文名字，例如 =ledger=
+3. 選 ~Public~ （公開）
+4. 勾選（或打開） ~Add README~ ，這樣 repo 一建好就能直接上傳檔案
+5. 按最下面的 ~Create repository~
+6. 在 repo 頁面按 ~Add file~ → ~Upload files~
+7. 把 =app.py= 、 =requirements.txt= 、 =packages.txt= 三個檔案拖進去
+8. 按 ~Commit changes~
+
+上傳完，repo 首頁應該看得到這三個檔案和 =README.md= 。
+
+#+begin_quote
+檔案要直接放在 repo 的最外層。不要把整個 =ledger= 資料夾拖進去，否則檔案會跑到 =ledger/= 底下，下一步會找不到 =app.py= 。
+#+end_quote
+
+** 部署 3：部署到 Streamlit Community Cloud
+1. 打開 [[https://share.streamlit.io/][https://share.streamlit.io/]]
+2. 按 ~Continue with GitHub~ ，用剛剛的 GitHub 帳號登入，出現授權畫面時按 ~Authorize~
+3. 第一次登入會請你填基本資料，填完繼續
+4. 按右上角的 ~Create app~ ，選 ~Deploy a public app from GitHub~
+5. 填入：
+   - ~Repository~ ：選你的 repo，例如 =tnfsh-ming/ledger=
+   - ~Branch~ ：維持 =main=
+   - ~Main file path~ ：維持 =app.py=
+   - ~App URL~ ：可以自己取網址，例如 =ming-ledger= ，網址就會是 =https://ming-ledger.streamlit.app=
+6. 按 ~Deploy~
+
+第一次部署要等幾分鐘，畫面會顯示安裝套件的過程，跑完 App 就會出現。
+
+** 部署 4：測試你的網址
+- 把網址傳到手機打開，確認 App 能正常使用、圖上的中文正常顯示。
+- 用瀏覽器的 ~無痕視窗~ 打開也試一次，沒有登入也能用，才代表別人真的打得開。
+- ~交作業時要貼這個網址~ ：是 =https://xxx.streamlit.app= ，不是 =localhost= 。
+
+** 程式改了怎麼更新
+在 GitHub 的 repo 頁面重新 ~Add file~ → ~Upload files~ ，上傳同名的新 =app.py= 並 ~Commit changes~ ，覆蓋舊檔。Streamlit 會自動抓到新程式，等一下重新整理網頁就是新版。
+
+** 部署常見問題
+| 狀況                                               | 原因與解法                                                                     |
+|----------------------------------------------------+--------------------------------------------------------------------------------|
+| =ModuleNotFoundError: No module named 'xxx'=       | =requirements.txt= 少了這個套件，或檔名打錯，補上後重新上傳                     |
+| 圖上的中文變成方塊                                 | 沒有上傳 =packages.txt= ，或程式的字型清單裡沒有 ='Noto Sans CJK JP'=          |
+| Deploy 時找不到 =app.py=                           | 檔案被放進子資料夾了，或檔名不是 =app.py= ；改 ~Main file path~ 或重新上傳       |
+| 選 Repository 時看不到我的 repo                    | 剛建立的話重新整理；repo 要是 ~Public~                                          |
+| 打開網址看到「This app has gone to sleep」         | 一段時間沒人用 App 會休眠，按 ~Yes, get this app back up!~ 等它醒來就好          |
+| 本機可以跑，雲端出現紅色錯誤                       | 按右下角 ~Manage app~ 看完整的錯誤訊息，整段貼給 AI 問                          |
+
+另外要注意兩件事：
+- ~雲端上的 JSON 檔不會永久保存~ ：App 重新啟動後， =records.json= 會回到你上傳時的樣子，記過的帳都會不見。正式的 App 會改用資料庫，做專題展示的話，用 Step 8 的下載備份就夠了。
+- ~別人也看得到~ ：部署後任何拿到網址的人都能使用，repo 是 Public 的話程式碼也看得到，不要在 App 或程式裡放個人資料。
+
+* 專題時間：和 AI 一起寫
+:PROPERTIES:
+:CUSTOM_ID: sp-ai
+:END:
+接下來的課程，你要做出一個 ~自己的 Streamlit App~ 。不會寫的地方可以請 AI 幫忙，但程式是你的，你要能說出每一段在做什麼。
+
+** 題目點子
+記帳本的骨架（輸入 → 存 JSON → 統計 → 畫圖）幾乎可以套到任何主題：
+- 讀書時間記錄：每天讀了哪科、讀多久，畫出每週讀書時間
+- 運動打卡：記錄跑步距離，看看這個月進步多少
+- 單字卡測驗：存單字和意思，隨機出題、記錄答對率
+- 班級點餐統計：每個人選便當，自動算出每種各要幾個
+- 社團器材借用：誰借了什麼、什麼時候還
+- 心情日記：每天打分數加一句話，畫出心情變化
+- 自己想一個！
+
+** 怎麼跟 AI 說
+AI 不知道你學過什麼、程式長什麼樣子，所以 ~說得越清楚，它給的程式越好用~ 。可以參考這個範本：
+#+begin_example
+我是高中生，正在用 Python 的 Streamlit 做一個「______」App，
+資料存在 records.json（格式是 list of dict）。
+我學過 numpy 和 matplotlib，請不要用 pandas。
+
+這是我目前的程式：
+（整段貼上 app.py）
+
+我想加一個功能：______。
+請給我修改後的完整程式，並告訴我改了哪幾行、為什麼這樣改。
+#+end_example
+
+** 好習慣
+- ~一次只加一個功能~ ：一次要求太多，出錯時你會不知道是哪裡壞掉
+- ~每次改完馬上執行~ ：確定能跑再加下一個功能
+- ~留一份能跑的版本~ ：改之前先把 =app.py= 複製成 =app_ok.py= ，改壞了還能回去
+- ~看不懂就問~ ：「請解釋第 25 到 30 行在做什麼」，AI 很樂意解釋
+- ~錯誤訊息整段貼給 AI~ ：不要只說「它壞了」，紅色的錯誤訊息裡有最重要的線索
+
+** 常見錯誤
+| 錯誤訊息或狀況                                     | 原因與解法                                                   |
+|----------------------------------------------------+--------------------------------------------------------------|
+| =command not found: streamlit=                     | 改用 =python3 -m streamlit run app.py=                       |
+| =ModuleNotFoundError: No module named 'pandas'=    | AI 用了沒安裝的套件，請它改成不用該套件的寫法                |
+| =Object of type date is not JSON serializable=     | 日期存檔前要先 =str(date)=                                   |
+| =JSONDecodeError=                                  | =records.json= 內容被改壞了，修好它或刪掉讓程式重新建立      |
+| =KeyError: '金額'=                                 | 資料的欄位名稱改過了，舊的 =records.json= 對不上，刪掉重來   |
+| =DuplicateElementId= / =DuplicateWidgetID=         | 兩個元件長得一模一樣，請在其中一個加上不同的 =key= 參數          |
+| 圖上的中文變成方塊                                 | 忘了加 Step 6 的中文字型設定；部署到雲端的話見[[#sp-deploy][第二節]]       |
+| 按了按鈕，資料卻不見了                             | 資料只存在變數裡，要存進檔案（回去看 Step 3）                |
+
+* 元件速查表
+:PROPERTIES:
+:CUSTOM_ID: sp-cheatsheet
+:END:
+做專題時想找元件，可以先查這張表，更多元件見[[https://docs.streamlit.io/develop/api-reference][Streamlit 官方文件]]，或[[file:Streamlit.org][Streamlit 元件介紹]]。
+| 元件                 | 用途            | 範例                                          |
+|----------------------+-----------------+-----------------------------------------------|
+| =st.title=           | 大標題          | =st.title('我的 App')=                        |
+| =st.subheader=       | 小標題          | =st.subheader('明細')=                        |
+| =st.write=           | 萬用輸出        | =st.write('文字', 123, records)=              |
+| =st.text_input=      | 輸入文字        | =name = st.text_input('姓名')=                |
+| =st.number_input=    | 輸入數字        | =n = st.number_input('數量', min_value=0)=    |
+| =st.date_input=      | 選日期          | =d = st.date_input('日期')=                   |
+| =st.selectbox=       | 下拉選單        | =c = st.selectbox('類別', ['A', 'B'])=        |
+| =st.radio=           | 單選按鈕        | =k = st.radio('種類', ['甲', '乙'])=          |
+| =st.checkbox=        | 核取方塊        | =if st.checkbox('顯示全部'):=                 |
+| =st.slider=          | 滑桿            | =v = st.slider('分數', 0, 100, 60)=           |
+| =st.button=          | 按鈕            | =if st.button('送出'):=                       |
+| =st.form=            | 表單            | =with st.form('f'):= ⋯ =st.form_submit_button('送出')= |
+| =st.success= 等      | 提示訊息        | =st.success()=, =st.error()=, =st.warning()=, =st.info()= |
+| =st.metric=          | 大字顯示數字    | =st.metric('餘額', '180 元')=                 |
+| =st.dataframe=       | 表格            | =st.dataframe(records)=                       |
+| =st.pyplot=          | 顯示 matplotlib | =st.pyplot(fig)=                              |
+| =st.image=           | 顯示圖片        | =st.image('photo.png')=                       |
+| =st.columns=         | 左右並排        | =c1, c2 = st.columns(2)=                      |
+| =st.tabs=            | 分頁            | =t1, t2 = st.tabs(['頁1', '頁2'])=            |
+| =st.sidebar=         | 側邊欄          | =st.sidebar.selectbox(⋯)=                     |
+| =st.file_uploader=   | 上傳檔案        | =f = st.file_uploader('上傳')=                |
+| =st.download_button= | 下載檔案        | =st.download_button('下載', 內容)=            |
+| =st.camera_input=    | 拍照            | =img = st.camera_input('拍照')=               |
+| =st.rerun=           | 立刻重跑        | =st.rerun()=                                  |
