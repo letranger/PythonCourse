@@ -1,0 +1,2001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-TW" xml:lang="zh-TW">
+<head>
+<!-- 2026-11-26 Thu 22:05 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vibe Coding 第 1 週：從踩坑到軟體開發</title>
+<meta name="author" content="顏永進" />
+<meta name="generator" content="Org Mode" />
+<style type="text/css">
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-c:before { content: 'C'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'JavaScript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="../css/muse.css" />
+<script src="../css/copy_code.js"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Vibe Coding 第 1 週：從踩坑到軟體開發
+<br />
+<span class="subtitle">試錯 → 什麼是 vibe coding → 什麼是軟體開發 → SDLC</span>
+</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>&#30446;&#37636;</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2025f77">1. 一、互打 App：當一次真的客戶</a>
+<ul>
+<li><a href="#org09b15e3">1.1. 今天的第一個任務</a></li>
+<li><a href="#orge70ca2f">1.2. 團購版 QA 題庫</a></li>
+<li><a href="#orgc3b5534">1.3. 紀錄：分三欄貼 Padlet</a></li>
+</ul>
+</li>
+<li><a href="#orgd7e5ba2">2. 二、分享：我們踩到的坑</a>
+<ul>
+<li><a href="#org9c5a283">2.1. 每組 2 分鐘，回答兩題</a></li>
+<li><a href="#org2baa827">2.2. Padlet：把心得裡的問題貼上牆</a></li>
+</ul>
+</li>
+<li><a href="#orgfe427a1">3. 三、什麼是 vibe coding</a>
+<ul>
+<li><a href="#org6923d35">3.1. 一句話定義</a></li>
+<li><a href="#org7e8029e">3.2. 三個常見誤解</a></li>
+<li><a href="#org2b9b490">3.3. 你還是要會的三件事</a></li>
+<li><a href="#org004eb78">3.4. 什麼時候適合、什麼時候不適合</a></li>
+<li><a href="#orgf5ad2b3">3.5. 工具：Web-based vs Terminal-based</a></li>
+</ul>
+</li>
+<li><a href="#orgb34a265">4. 四、什麼是軟體開發</a>
+<ul>
+<li><a href="#org6ef83b6">4.1. 寫程式 ≠ 軟體開發</a></li>
+<li><a href="#org5cac11a">4.2. 一個軟體團隊裡有誰</a></li>
+<li><a href="#orgd43507c">4.3. 規格：客戶和工程師之間的合約</a></li>
+<li><a href="#orgf28d244">4.4. 驗收條件：怎樣算「做完」</a></li>
+<li><a href="#org5a225cf">4.5. 範圍蔓延與不做清單</a></li>
+</ul>
+</li>
+<li><a href="#org4004b9b">5. 五、SDLC：軟體開發的生命週期</a>
+<ul>
+<li><a href="#orgd2d9417">5.1. 傳統 SDLC 六個階段</a></li>
+<li><a href="#org66f5984">5.2. AI 時代：人做什麼、AI 做什麼</a></li>
+<li><a href="#org55fb5c9">5.3. 本課的四步循環</a></li>
+<li><a href="#orgdb5b87e">5.4. 我們踩到的坑，都有解法</a></li>
+<li><a href="#orgf39ecf1">5.5. 回頭看你的心得：「重來一次會怎麼做」</a></li>
+<li><a href="#org6aedf0f">5.6. 兩個要記住的觀念</a></li>
+</ul>
+</li>
+<li><a href="#org1d5d4c1">6. 六、實作暖身：第一次接力</a>
+<ul>
+<li><a href="#org946a7ab">6.1. 今天的目標</a></li>
+<li><a href="#org6a12201">6.2. 先分工（3 分鐘）</a></li>
+<li><a href="#org41328d2">6.3. 只要記三個字</a></li>
+<li><a href="#org156c503">6.4. 一次性設定（約 10 分鐘）</a></li>
+<li><a href="#org2f92f23">6.5. 接力一輪（約 10 分鐘）</a></li>
+<li><a href="#org60c41f9">6.6. 下課前：登出</a></li>
+</ul>
+</li>
+<li><a href="#org4f23230">7. 七、回家作業</a>
+<ul>
+<li><a href="#org74774df">7.1. 作業：小組寫 SPEC.md 初稿</a></li>
+<li><a href="#orge1987b2">7.2. 繳交</a></li>
+</ul>
+</li>
+<li><a href="#orgaea57b3">8. 八、選做：在自己的電腦裝 Codex&nbsp;&nbsp;&nbsp<span class="tag"><span class="noslide">noslide</span></span></a>
+<ul>
+<li><a href="#orgd243e80">8.1. Windows 版</a></li>
+<li><a href="#org12c5943">8.2. Mac 版</a></li>
+<li><a href="#org2e0316d">8.3. 第一次登入（兩版相同）</a></li>
+<li><a href="#orgff33bde">8.4. 之後要更新</a></li>
+<li><a href="#org916c7c4">8.5. 在家使用的三個提醒</a></li>
+<li><a href="#orga96aba7">8.6. 安裝急救</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2025f77" class="outline-2">
+<h2 id="org2025f77"><span class="section-number-2">1.</span> 一、互打 App：當一次真的客戶</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org09b15e3" class="outline-3">
+<h3 id="org09b15e3"><span class="section-number-3">1.1.</span> 今天的第一個任務</h3>
+<div class="outline-text-3" id="text-1-1">
+<ol class="org-ol">
+<li><a href="https://padlet.com/">按這裡用學校帳號登入Padlet</a></li>
+<li><a href="https://padlet.com/letranger1/115a-python-s025s5ny1mt9l0xjbbh2">按這裡打開 Padlet</a>，在「各組App網址」欄 <b>每組貼一張</b>：標題寫「第X組」，內文貼你們的 Streamlit 網址。</li>
+<li>看投影的輪流表，找到你們要測的那一組，點它的網址開始測。</li>
+</ol>
+
+<p>
+上週各組都用 ChatGPT 做出了「班級飲料團購統計 App」，也上線了。
+現在換你當 <b>客戶</b>：拿到別組的網址，打開來用，看它 <b>有沒有做到題目要求</b>，也看看它 <b>多做了什麼</b>。
+</p>
+
+<p>
+規則：
+</p>
+<ol class="org-ol">
+<li><b>不看程式碼</b>，只看畫面、只用滑鼠和鍵盤。</li>
+<li>照下一頁的 QA 題庫一條一條試，再自己發明幾種。</li>
+<li>試出結果，記錄員就到 Padlet 記下來（分三欄，見 1.3）。</li>
+<li>不批評人，只記錄現象。 <b>題目沒要求的，沒做到不算錯。</b></li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge70ca2f" class="outline-3">
+<h3 id="orge70ca2f"><span class="section-number-3">1.2.</span> 團購版 QA 題庫</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+上週的題目要求： <b>網址打得開</b>、 <b>能登記訂單（姓名、飲料、甜度冰塊、金額）</b>、
+<b>統計總杯數與總金額</b>。統計要能信，亂填的金額就不能收、同一種飲料也不能有兩種價錢。所以題庫分兩段：
+</p>
+
+<p>
+<b>A. 題目有要求的（必測）</b> ——對不上就是 bug
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">#</th>
+<th scope="col" class="org-left">怎麼試</th>
+<th scope="col" class="org-left">正確的 App 應該</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">A1</td>
+<td class="org-left">用 <b>無痕視窗</b> 打開網址</td>
+<td class="org-left">打得開，不用登入就能用</td>
+</tr>
+
+<tr>
+<td class="org-left">A2</td>
+<td class="org-left">新增一筆，姓名、飲料、甜度、冰塊、金額都填</td>
+<td class="org-left">每一欄都填得進去，送出後看得到這一筆</td>
+</tr>
+
+<tr>
+<td class="org-left">A3</td>
+<td class="org-left">新增 3 筆 50 元的訂單</td>
+<td class="org-left">總杯數 3、總金額 150</td>
+</tr>
+
+<tr>
+<td class="org-left">A4</td>
+<td class="org-left">再新增一筆 65 元</td>
+<td class="org-left">總杯數 4、總金額 215</td>
+</tr>
+
+<tr>
+<td class="org-left">A5</td>
+<td class="org-left">金額填 <code>-50</code>、 <code>0</code>、 <code>99999</code>；姓名或飲料留空就送出</td>
+<td class="org-left">擋下來並提示；不會多一筆、統計不變</td>
+</tr>
+
+<tr>
+<td class="org-left">A6</td>
+<td class="org-left">兩個人點同一種飲料，一個填 50 元、一個填 55 元</td>
+<td class="org-left">同一種飲料只有一個價錢（由 App 依品項帶出）</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<b>B. 題目沒要求的（試試看）</b> ——做到了是亮點，沒做到 <b>不算錯</b>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">#</th>
+<th scope="col" class="org-left">怎麼試</th>
+<th scope="col" class="org-left">做到的話是這樣</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">B1</td>
+<td class="org-left">刪除或修改其中一筆</td>
+<td class="org-left">做得到，統計跟著更新</td>
+</tr>
+
+<tr>
+<td class="org-left">B2</td>
+<td class="org-left">同一筆連按兩次「送出」</td>
+<td class="org-left">只新增一筆</td>
+</tr>
+
+<tr>
+<td class="org-left">B3</td>
+<td class="org-left"><b>你和隔壁同學同時打開同一個網址</b>，各點一杯</td>
+<td class="org-left">兩邊都看得到 2 筆</td>
+</tr>
+
+<tr>
+<td class="org-left">B4</td>
+<td class="org-left">老師喊 Reboot 後（受測組自己按），重新整理再看</td>
+<td class="org-left">訂單都還在</td>
+</tr>
+
+<tr>
+<td class="org-left">B5</td>
+<td class="org-left"><b>你是班長，要打電話給店家訂飲料</b></td>
+<td class="org-left">看得到「珍奶微糖少冰 3 杯」這種分品項明細</td>
+</tr>
+
+<tr>
+<td class="org-left">B6</td>
+<td class="org-left">飲料到了，要跟大家收錢</td>
+<td class="org-left">看得出誰付了、誰還沒付</td>
+</tr>
+
+<tr>
+<td class="org-left">B7</td>
+<td class="org-left">店家已經下單了，又有人想加一杯</td>
+<td class="org-left">可以「關閉收單」，之後不能再加</td>
+</tr>
+</tbody>
+</table>
+<p>
+B1～B4 是「好不好用」，B5～B7 是「 <b>真的拿來辦團購</b> 會不會卡住」。
+題目沒寫這些，所以沒做到不是那一組的錯——
+但如果真的要給全班用，這些都得有人先想到、先講清楚。 <b>這件事就叫「規格」</b>，第 2 節會談。
+</p>
+</div>
+</div>
+<div id="outline-container-orgc3b5534" class="outline-3">
+<h3 id="orgc3b5534"><span class="section-number-3">1.3.</span> 紀錄：分三欄貼 Padlet</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+試出結果， <b>組裡的記錄員</b> 就貼一張到 Padlet，依結果選欄：
+</p>
+
+<p>
+Padlet 連結：<a href="https://padlet.com/letranger1/115a-python-s025s5ny1mt9l0xjbbh2">https://padlet.com/letranger1/115a-python-s025s5ny1mt9l0xjbbh2</a>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">結果</th>
+<th scope="col" class="org-left">貼到哪一欄</th>
+<th scope="col" class="org-left">標題範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">A 題對不上（題目有要求、沒做到）</td>
+<td class="org-left">🧋 大家來找茶</td>
+<td class="org-left">[受測：第4組]3 筆 50 元，總金額顯示 100</td>
+</tr>
+
+<tr>
+<td class="org-left">B 題做到了（題目沒要求、有做）</td>
+<td class="org-left">🌟 多做的亮點</td>
+<td class="org-left">[受測：第4組]可以按品項分開統計</td>
+</tr>
+
+<tr>
+<td class="org-left">B 題沒做到，而且真的團購會卡住</td>
+<td class="org-left">❓ 題目沒說的</td>
+<td class="org-left">打電話給店家時，看不到每種飲料各幾杯</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li><p>
+🧋 的 <b>內文</b> 照下面三行寫：
+</p>
+<pre class="example" id="org42959bd">
+我做了什麼：新增 3 筆 50 元的訂單
+我預期：總杯數 3、總金額 150
+實際發生：總金額顯示 100
+</pre></li>
+<li>🌟、❓ 內文一句話就好。</li>
+<li>❓ <b>不寫受測組</b> ——那不是誰的錯。別組已經貼過一樣的，按 👍 就好，不用重貼。</li>
+<li><b>自己的組別</b> 一律選 <b>你們自己組</b>（必填）。</li>
+</ul>
+
+<p>
+一張貼文只寫一件事；同組的人先口頭告訴記錄員，不要各貼各的。
+A 題都過了、B 題沒做也不會卡住的，不用貼。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd7e5ba2" class="outline-2">
+<h2 id="orgd7e5ba2"><span class="section-number-2">2.</span> 二、分享：我們踩到的坑</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org9c5a283" class="outline-3">
+<h3 id="org9c5a283"><span class="section-number-3">2.1.</span> 每組 2 分鐘，回答兩題</h3>
+<div class="outline-text-3" id="text-2-1">
+<ol class="org-ol">
+<li>別組在你們的 App 上發現什麼？（🧋、🌟 都算）哪一個最意外？</li>
+<li>從組員交的心得裡挑一個 <b>「遇到的問題」</b> 唸出來，再說當時怎麼處理。</li>
+</ol>
+
+<p>
+第 2 題不用另外想——打開自己上週交的心得，答案就在裡面。
+</p>
+</div>
+</div>
+<div id="outline-container-org2baa827" class="outline-3">
+<h3 id="org2baa827"><span class="section-number-3">2.2.</span> Padlet：把心得裡的問題貼上牆</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+互打抓到的 bug 已經在「🧋 大家來找茶」欄了。現在每個人再貼 <b>一張</b>，這次貼在 <b>另一欄</b>「📝 我們自己踩的坑（心得）」：
+</p>
+
+<p>
+Padlet 連結： <a href="https://padlet.com/letranger1/115a-python-s025s5ny1mt9l0xjbbh2">https://padlet.com/letranger1/115a-python-s025s5ny1mt9l0xjbbh2</a>
+</p>
+
+
+<ul class="org-ul">
+<li>打開自己的心得，從「遇到的問題」裡 <b>複製一句</b> 當標題，不用重寫。</li>
+<li><b>自己的組別</b> 選自己組。</li>
+</ul>
+
+<p>
+例如：
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">標題（從心得複製）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">叫 ChatGPT 加一個功能，結果原本的統計壞了</td>
+</tr>
+
+<tr>
+<td class="org-left">同組三個人想做的東西不一樣，吵了半天</td>
+</tr>
+
+<tr>
+<td class="org-left">ChatGPT 給的程式碼，組裡沒人說得出某一段在做什麼</td>
+</tr>
+
+<tr>
+<td class="org-left">不知道做到哪裡算「做完」，就一直加功能</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+只貼 <b>發生了什麼</b>， <b>先不要解釋為什麼</b>。
+這面牆我們留到最後一段再回來整理。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfe427a1" class="outline-2">
+<h2 id="orgfe427a1"><span class="section-number-2">3.</span> 三、什麼是 vibe coding</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org6923d35" class="outline-3">
+<h3 id="org6923d35"><span class="section-number-3">3.1.</span> 一句話定義</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+你用 <b>中文描述</b> 想要的東西，AI 負責寫程式；你負責 <b>出主意、驗收、給回饋</b>。
+這個詞是 OpenAI 共同創辦人 Andrej Karpathy 在 2025 年初提出的：
+</p>
+<blockquote>
+<p>
+"Fully give in to the vibes&hellip; forget that the code even exists."
+（完全順著感覺走……甚至忘記程式碼的存在。）
+</p>
+</blockquote>
+<p>
+你們上週做的，就是標準的 vibe coding。
+但看看剛剛的 Padlet：🌟 那些亮點，多半是 <b>有人先想到、跟 ChatGPT 說了</b>；
+❓ 那些缺口，沒人說，它就不會自己補。
+真的「忘記程式碼存在」，你連它做了什麼、沒做什麼都不知道。
+</p>
+</div>
+</div>
+<div id="outline-container-org7e8029e" class="outline-3">
+<h3 id="org7e8029e"><span class="section-number-3">3.2.</span> 三個常見誤解</h3>
+<div class="outline-text-3" id="text-3-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">誤解</th>
+<th scope="col" class="org-left">真相</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">「就是讓 AI 幫我寫程式」</td>
+<td class="org-left">是 <b>你</b> 描述需求、驗收、微調——AI 是你 <b>意志的延伸</b>，不是替代</td>
+</tr>
+
+<tr>
+<td class="org-left">「就是不用學程式了」</td>
+<td class="org-left">打字、查語法交給 AI；但 <b>想清楚、看得懂、會驗收</b> 更重要了</td>
+</tr>
+
+<tr>
+<td class="org-left">「那是不會寫程式的人在用的」</td>
+<td class="org-left">資深工程師用得更兇——它是每個人都該會的基本功，像會用 Google 一樣</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org2b9b490" class="outline-3">
+<h3 id="org2b9b490"><span class="section-number-3">3.3.</span> 你還是要會的三件事</h3>
+<div class="outline-text-3" id="text-3-3">
+<ol class="org-ol">
+<li><b>說清楚需求</b>：給誰用、要做什麼、長什麼樣子、資料存在哪。</li>
+<li><b>驗收</b>：打開來用用看，判斷「這是不是我要的」。</li>
+<li><b>看懂大意</b>：不必會寫每一行，但要能看懂 AI 說它做了什麼。</li>
+</ol>
+
+<p>
+回頭看 Padlet：哪些症狀是第 1 件沒做好？哪些是第 2、第 3 件？
+</p>
+</div>
+</div>
+<div id="outline-container-org004eb78" class="outline-3">
+<h3 id="org004eb78"><span class="section-number-3">3.4.</span> 什麼時候適合、什麼時候不適合</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>適合：小工具與自動化腳本、做原型、幫既有程式補文件、探索別人的程式碼
+——班級飲料團購就是典型場景。</li>
+<li>不適合： <b>你完全無法驗收結果</b> 的領域（例如醫療、金融的核心邏輯）。
+看不懂又沒能力測，那不是在 coding， <b>是在賭</b>。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf5ad2b3" class="outline-3">
+<h3 id="orgf5ad2b3"><span class="section-number-3">3.5.</span> 工具：Web-based vs Terminal-based</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+上週你們用 ChatGPT 網頁版：貼需求 → 複製程式碼 → 貼到檔案
+→ 存檔 → 執行 → 出錯 → 把錯誤貼回去……一直在當「人肉傳令兵」。
+</p>
+
+<p>
+Terminal 版的差別：AI 就住在你的專案資料夾裡， <b>自己動手</b>。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">比較</th>
+<th scope="col" class="org-left">Web-based（ChatGPT 網頁）</th>
+<th scope="col" class="org-left">Terminal-based（Codex CLI）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">寫檔案</td>
+<td class="org-left">你複製貼上</td>
+<td class="org-left">AI 直接建立、修改檔案</td>
+</tr>
+
+<tr>
+<td class="org-left">執行程式</td>
+<td class="org-left">你自己跑</td>
+<td class="org-left">AI 自己跑、自己看結果</td>
+</tr>
+
+<tr>
+<td class="org-left">看錯誤</td>
+<td class="org-left">你貼給它</td>
+<td class="org-left">AI 自己讀錯誤訊息、自己修</td>
+</tr>
+
+<tr>
+<td class="org-left">改多檔</td>
+<td class="org-left">很痛苦</td>
+<td class="org-left">AI 一次改好幾個檔案</td>
+</tr>
+
+<tr>
+<td class="org-left">你的角色</td>
+<td class="org-left">傳令兵＋驗收</td>
+<td class="org-left"><b>指揮官＋驗收</b></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+下週我們改用 <b>Codex CLI</b>（OpenAI 出的 terminal 版）。
+但要先說清楚： <b>換工具不會讓 Padlet 上的症狀消失</b> ——工具變強，
+亂做的人只會亂得更快。真正的解法在接下來兩段。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb34a265" class="outline-2">
+<h2 id="orgb34a265"><span class="section-number-2">4.</span> 四、什麼是軟體開發</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org6ef83b6" class="outline-3">
+<h3 id="org6ef83b6"><span class="section-number-3">4.1.</span> 寫程式 ≠ 軟體開發</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+「寫程式」是把想法變成程式碼；「軟體開發」是 <b>做出一個別人真的能用的東西</b>。
+中間差了很多事：
+</p>
+<ul class="org-ul">
+<li>要做什麼？給誰用？（不然三個人做出三種東西）</li>
+<li>做到怎樣算完成？（不然永遠在加功能）</li>
+<li>怎麼確定它是對的？（不然客戶一用就壞）</li>
+<li>改了東西，怎麼確保舊的沒壞？（不然越改越爛）</li>
+</ul>
+
+<p>
+真正的軟體團隊 <b>不是坐下來就開始寫程式</b>。
+在 AI 時代，「寫程式」這一段變得很快、很便宜，
+剩下這些事反而變成決勝點。
+</p>
+</div>
+</div>
+<div id="outline-container-org5cac11a" class="outline-3">
+<h3 id="org5cac11a"><span class="section-number-3">4.2.</span> 一個軟體團隊裡有誰</h3>
+<div class="outline-text-3" id="text-4-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">角色</th>
+<th scope="col" class="org-left">全名</th>
+<th scope="col" class="org-left">做什麼</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">PM</td>
+<td class="org-left">Product Manager，產品經理</td>
+<td class="org-left">決定「要做什麼、怎樣算做完」，寫成規格</td>
+</tr>
+
+<tr>
+<td class="org-left">開發者</td>
+<td class="org-left">Developer</td>
+<td class="org-left">照規格把程式做出來</td>
+</tr>
+
+<tr>
+<td class="org-left">QA</td>
+<td class="org-left">Quality Assurance，品管／驗收</td>
+<td class="org-left">站在使用者立場亂試、找 bug，不改程式碼</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+剛剛互打 App 的時候，你當的就是 <b>QA</b>。
+想一想：上週你們組裡，誰在當 PM？有人當 QA 嗎？
+還是三個人都擠在同一台電腦前跟 ChatGPT 聊天？
+</p>
+</div>
+</div>
+<div id="outline-container-orgd43507c" class="outline-3">
+<h3 id="orgd43507c"><span class="section-number-3">4.3.</span> 規格：客戶和工程師之間的合約</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+「規格」（specification，簡稱 spec）是一份白紙黑字的文件：
+<b>要做什麼、不做什麼、怎樣算做完</b>。
+</p>
+
+<p>
+沒有規格的專案，最後一定變成「我以為你要的是這個」大戰——
+你們組裡有沒有發生過？
+</p>
+
+<p>
+有了規格：
+</p>
+<ul class="org-ul">
+<li>三個人吵架時，翻規格就對了</li>
+<li>AI 每次動手前，都對著同一份規格做，不會越聊越歪</li>
+<li>QA 驗收時，照規格一條一條試，不靠感覺</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf28d244" class="outline-3">
+<h3 id="orgf28d244"><span class="section-number-3">4.4.</span> 驗收條件：怎樣算「做完」</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+規格裡最重要的一欄，業界叫 <b>驗收條件</b>（acceptance criteria）。
+好的驗收條件要 <b>可操作、可判斷</b>：照著做一遍，就能說「過」或「不過」。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">壞的驗收條件</th>
+<th scope="col" class="org-left">好的驗收條件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">打開能用</td>
+<td class="org-left">填入姓名、飲料、甜度、冰塊、金額後按送出，表格多一筆</td>
+</tr>
+
+<tr>
+<td class="org-left">統計要正確</td>
+<td class="org-left">新增 3 杯 50 元，總杯數顯示 3、總金額顯示 150</td>
+</tr>
+
+<tr>
+<td class="org-left">要防呆</td>
+<td class="org-left">金額填 -50、0、abc 都會被擋下並出現提示</td>
+</tr>
+
+<tr>
+<td class="org-left">資料要保存</td>
+<td class="org-left">重新整理頁面後，剛剛的訂單還在</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+回頭看上週的題目：「統計總杯數與總金額」已經接近一條驗收條件；
+但它沒寫「重開後訂單要還在」「要看得到每種飲料各幾杯」——
+所以 B4、B5 沒做到 <b>不能算錯</b>。 <b>規格沒寫的，誰都不能說對方錯</b>。
+</p>
+
+<p>
+寫得出驗收條件，代表你真的想清楚了；寫不出來，代表你自己
+也不知道要什麼，AI 更不可能猜對。
+</p>
+</div>
+</div>
+<div id="outline-container-org5a225cf" class="outline-3">
+<h3 id="org5a225cf"><span class="section-number-3">4.5.</span> 範圍蔓延與不做清單</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+業界最有名的專案殺手叫 <b>範圍蔓延</b>（scope creep）：
+做著做著「順便加個登入好了」「順便做個排行榜好了」，
+順便到最後，原本三天的東西三個月都做不完，而且原本的功能還壞了。
+</p>
+
+<p>
+解法很簡單：在規格裡寫一條 <b>不做清單</b>，例如
+「不做登入、不做線上付款、不做多人即時同步」。
+不做清單上的東西，AI 提議也不准做。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4004b9b" class="outline-2">
+<h2 id="org4004b9b"><span class="section-number-2">5.</span> 五、SDLC：軟體開發的生命週期</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgd2d9417" class="outline-3">
+<h3 id="orgd2d9417"><span class="section-number-3">5.1.</span> 傳統 SDLC 六個階段</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+SDLC（Software Development Life Cycle，軟體開發生命週期）是業界做軟體的標準流程：
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">階段</th>
+<th scope="col" class="org-left">要回答的問題</th>
+<th scope="col" class="org-left">以飲料團購為例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">需求</td>
+<td class="org-left">要解決什麼問題？</td>
+<td class="org-left">每次訂飲料都要有人拿紙筆算到崩潰</td>
+</tr>
+
+<tr>
+<td class="org-left">設計</td>
+<td class="org-left">長什麼樣子？資料放哪？</td>
+<td class="org-left">一頁表單＋一張統計表；資料存在大家都看得到的地方</td>
+</tr>
+
+<tr>
+<td class="org-left">實作</td>
+<td class="org-left">寫程式</td>
+<td class="org-left">Streamlit 的 <code>app.py</code></td>
+</tr>
+
+<tr>
+<td class="org-left">測試</td>
+<td class="org-left">有沒有寫對？</td>
+<td class="org-left">負數、空白、重複點會不會壞？</td>
+</tr>
+
+<tr>
+<td class="org-left">部署</td>
+<td class="org-left">讓別人能用</td>
+<td class="org-left">上 Streamlit Community Cloud</td>
+</tr>
+
+<tr>
+<td class="org-left">維護</td>
+<td class="org-left">之後要改要修</td>
+<td class="org-left">下次想加「外送費分攤」怎麼加才不會弄壞？</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+上週你們跳過了哪幾個階段？
+</p>
+</div>
+</div>
+<div id="outline-container-org66f5984" class="outline-3">
+<h3 id="org66f5984"><span class="section-number-3">5.2.</span> AI 時代：人做什麼、AI 做什麼</h3>
+<div class="outline-text-3" id="text-5-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">階段</th>
+<th scope="col" class="org-left">人</th>
+<th scope="col" class="org-left">AI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">需求</td>
+<td class="org-left">說清楚要解決誰的什麼問題</td>
+<td class="org-left">幫你挑漏洞、問你沒想到的事</td>
+</tr>
+
+<tr>
+<td class="org-left">設計</td>
+<td class="org-left">決定要什麼、不要什麼，寫成規格</td>
+<td class="org-left">提出做法讓你選</td>
+</tr>
+
+<tr>
+<td class="org-left">實作</td>
+<td class="org-left">拆成小任務、一次下一條、讀回報</td>
+<td class="org-left"><b>寫程式（最快的一段）</b></td>
+</tr>
+
+<tr>
+<td class="org-left">測試</td>
+<td class="org-left">定驗收條件、親手驗收</td>
+<td class="org-left">寫測試、自己跑</td>
+</tr>
+
+<tr>
+<td class="org-left">部署</td>
+<td class="org-left">決定什麼時候能上線</td>
+<td class="org-left">幫你跑指令、處理設定</td>
+</tr>
+
+<tr>
+<td class="org-left">維護</td>
+<td class="org-left">先改規格，再改程式</td>
+<td class="org-left">照新規格修改</td>
+</tr>
+</tbody>
+</table>
+<p>
+「寫程式」交給 AI 之後，人的工作沒有變少，而是 <b>移到了前面和後面</b>。
+</p>
+</div>
+</div>
+<div id="outline-container-org55fb5c9" class="outline-3">
+<h3 id="org55fb5c9"><span class="section-number-3">5.3.</span> 本課的四步循環</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+六個階段對高中生的小專案太重了，我們壓縮成四步，一直轉：
+</p>
+
+<div id="org46a6a92" class="figure">
+<p><img src="images/sdlc-loop.png" alt="sdlc-loop.png" width="800" />
+</p>
+</div>
+<ul class="org-ul">
+<li><b>規格</b>：給誰用、做什麼、不做什麼、怎樣算做完</li>
+<li><b>任務拆解</b>：把功能拆成「10 分鐘做得完、QA 驗得了」的小任務</li>
+<li><b>小步實作</b>：一次只給 AI 一條任務，做完就存檔</li>
+<li><b>測試與驗收</b>：照驗收條件試，沒過就退回，過了才做下一條</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgdb5b87e" class="outline-3">
+<h3 id="orgdb5b87e"><span class="section-number-3">5.4.</span> 我們踩到的坑，都有解法</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+回想 Padlet 上 🧋、❓、📝 那些貼文，大多可以歸到這幾種：
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">症狀</th>
+<th scope="col" class="org-left">病因</th>
+<th scope="col" class="org-left">解法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">每個人想做的東西都不一樣</td>
+<td class="org-left">沒有人說清楚要做什麼</td>
+<td class="org-left">規格（SPEC.md）</td>
+</tr>
+
+<tr>
+<td class="org-left">別人看不到訂單／資料會消失</td>
+<td class="org-left">沒想過資料要存哪、給誰看</td>
+<td class="org-left">規格的「畫面與資料」</td>
+</tr>
+
+<tr>
+<td class="org-left">改到後面壞掉前面的</td>
+<td class="org-left">一次改太多、沒有存檔點</td>
+<td class="org-left">任務拆小＋存檔點（git）</td>
+</tr>
+
+<tr>
+<td class="org-left">不知道算不算做完</td>
+<td class="org-left">沒有驗收條件</td>
+<td class="org-left">驗收條件＋QA</td>
+</tr>
+
+<tr>
+<td class="org-left">一直加功能停不下來</td>
+<td class="org-left">沒有不做清單</td>
+<td class="org-left">不做清單</td>
+</tr>
+
+<tr>
+<td class="org-left">看不懂 AI 寫的東西</td>
+<td class="org-left">沒要求 AI 說明、沒讀</td>
+<td class="org-left">審查：要 AI 解釋給你聽</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+「🌟 多做的亮點」則是反過來的例子：那些都是 <b>有人想到、說出來</b>，AI 就做得到。
+</p>
+</div>
+</div>
+<div id="outline-container-orgf39ecf1" class="outline-3">
+<h3 id="orgf39ecf1"><span class="section-number-3">5.5.</span> 回頭看你的心得：「重來一次會怎麼做」</h3>
+<div class="outline-text-3" id="text-5-5">
+<p>
+打開心得最後一題，對照上面那張表：
+</p>
+<ul class="org-ul">
+<li>你寫的重來方法，對到哪一列的解法？（例如「先講好要做什麼」→ 規格）</li>
+<li>哪一列你 <b>沒想到</b>，但 Padlet 上卻很多？</li>
+</ul>
+
+<p>
+這就是下週重做時，你們組要特別注意的地方。
+</p>
+</div>
+</div>
+<div id="outline-container-org6aedf0f" class="outline-3">
+<h3 id="org6aedf0f"><span class="section-number-3">5.6.</span> 兩個要記住的觀念</h3>
+<div class="outline-text-3" id="text-5-6">
+<ol class="org-ol">
+<li><b>80% 問題</b>：AI 很快就能做到八成，看起來能動；
+剩下兩成——邊界情況、錯誤處理、資料保存——要靠人想到、靠人驗收。
+你們上週的 App，大多就停在那八成。</li>
+<li><b>AI 放大的是你原本的習慣</b>：想清楚再做的人，用 AI 做得又快又好；
+亂做的人，用 AI 只會亂得更快。</li>
+</ol>
+
+<p>
+下週：同一個題目， <b>用這套流程、換 Codex 重做一次</b>，最後比較兩個版本差在哪。
+在那之前，先把下週要用的接力練一次。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1d5d4c1" class="outline-2">
+<h2 id="org1d5d4c1"><span class="section-number-2">6.</span> 六、實作暖身：第一次接力</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org946a7ab" class="outline-3">
+<h3 id="org946a7ab"><span class="section-number-3">6.1.</span> 今天的目標</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+下週要三個人在 <b>各自的電腦</b> 上合作：PM 寫規格、開發者叫 Codex 寫程式、QA 驗收，
+大家透過 GitHub 交接。今天先跑一次接力，做的是 <b>團購 App 第 2 版的第一步</b>：
+只做「點單畫面」，而且 <b>價格由菜單帶出、不用自己填</b> ——剛好修掉互打時 A6 的問題。
+統計、存檔留到下週，照你們的 SPEC.md 繼續做。
+</p>
+
+<blockquote>
+<p>
+<b>定位：班級自己用的團購工具，不是店家的系統。</b>
+</p>
+<ul class="org-ul">
+<li>使用者只有兩種： <b>團主</b>（開團、收單、統計、打電話給店家、收錢的那位，例如班長）和 <b>點單的同學</b>。</li>
+<li>店家不會打開這個 App；菜單和價格由團主事先寫好。</li>
+<li>一次只開一團、只訂一家店。</li>
+</ul>
+</blockquote>
+
+<p>
+PM 寫規格 → <b>推</b> → 開發者 <b>拉</b> → 叫 Codex <b>生成</b> → <b>推</b> → QA <b>拉</b> → 驗收 → <b>推</b>
+</p>
+
+<p>
+成功的標準：GitHub 上看得到 <b>三個不同帳號</b> 的存檔點。
+</p>
+</div>
+</div>
+<div id="outline-container-org6a12201" class="outline-3">
+<h3 id="org6a12201"><span class="section-number-3">6.2.</span> 先分工（3 分鐘）</h3>
+<div class="outline-text-3" id="text-6-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">角色</th>
+<th scope="col" class="org-left">做什麼</th>
+<th scope="col" class="org-left">負責的檔案</th>
+<th scope="col" class="org-left">怎麼推</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">PM</td>
+<td class="org-left">寫規格：要做什麼、怎樣算做完</td>
+<td class="org-left"><code>SPEC.md</code></td>
+<td class="org-left">自己打指令</td>
+</tr>
+
+<tr>
+<td class="org-left">開發者</td>
+<td class="org-left"><b>唯一指揮 Codex 的人</b>，照規格叫它寫程式</td>
+<td class="org-left"><code>app.py</code></td>
+<td class="org-left">今天自己打，下週叫 Codex 推</td>
+</tr>
+
+<tr>
+<td class="org-left">QA</td>
+<td class="org-left">不看程式碼，照規格一條一條試，記錄結果</td>
+<td class="org-left"><code>BUGS.md</code></td>
+<td class="org-left">自己打指令</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li><b>2 人組</b>：一人兼 PM＋QA，另一人當開發者。</li>
+<li><b>1 人組</b>：自己兼 PM＋開發者， <b>QA 由夥伴組的人擔任</b>（老師公布配對）。
+組長邀請組員時，把夥伴也邀請進來；夥伴等自己組跑完 QA，再來幫你驗。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org41328d2" class="outline-3">
+<h3 id="org41328d2"><span class="section-number-3">6.3.</span> 只要記三個字</h3>
+<div class="outline-text-3" id="text-6-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">動作</th>
+<th scope="col" class="org-left">英文</th>
+<th scope="col" class="org-left">意思</th>
+<th scope="col" class="org-left">比喻</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">拿下來</td>
+<td class="org-left">clone</td>
+<td class="org-left">第一次把整個專案複製到你的電腦</td>
+<td class="org-left">第一次把共用資料夾下載</td>
+</tr>
+
+<tr>
+<td class="org-left">拉最新</td>
+<td class="org-left">pull</td>
+<td class="org-left">把別人推上去的新版拿下來</td>
+<td class="org-left">「重新整理」共用資料夾</td>
+</tr>
+
+<tr>
+<td class="org-left">推上去</td>
+<td class="org-left">push</td>
+<td class="org-left">把你的存檔點送上 GitHub</td>
+<td class="org-left">「上傳」你改好的版本</td>
+</tr>
+</tbody>
+</table>
+<p>
+另外， <b>存檔點</b> 在 git 裡叫 commit：在你自己電腦上存一個「可以退回來」的版本。
+存檔點只在你的電腦裡， <b>推上去之後</b> 組員才拿得到。
+</p>
+</div>
+</div>
+<div id="outline-container-org156c503" class="outline-3">
+<h3 id="org156c503"><span class="section-number-3">6.4.</span> 一次性設定（約 10 分鐘）</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+<b>步驟 1：組長建 repo</b>（組長＝上週部署 Streamlit 的那位）
+</p>
+<ol class="org-ol">
+<li>登入 <a href="https://github.com">github.com</a> → 右上角 <code>+</code> → <b>New repository</b>。</li>
+<li>Repository name： <code>drink-app-v2</code>；選 <b>Public</b>；勾 <b>Add a README file</b>。</li>
+<li>按 <b>Create repository</b>。</li>
+</ol>
+
+<p>
+<b>步驟 2：組長邀請組員</b>（1 人組：邀請你的 QA 夥伴）
+</p>
+<ol class="org-ol">
+<li>在 repo 頁面點 <b>Settings</b> → 左邊 <b>Collaborators</b> → <b>Add people</b>。</li>
+<li>輸入組員的 GitHub 帳號 → 送出邀請。</li>
+</ol>
+
+<p>
+<b>步驟 3：組員接受邀請</b>
+</p>
+<ul class="org-ul">
+<li>打開 GitHub 右上角的通知（或 email），點 <b>Accept invitation</b>。</li>
+</ul>
+<p>
+<b>步驟 4：每個人在自己的電腦登入 GitHub</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>gh auth login
+</code></pre>
+</div>
+<p>
+依序選：
+<code>GitHub.com</code> → <code>HTTPS</code> → <code>Yes</code>（用 GitHub 帳號登入 git）→ <code>Login with a web browser</code>。
+終端機會顯示一組 8 碼的代碼，按 Enter 後瀏覽器打開，把代碼貼上、按授權就完成了。
+</p>
+<ul class="org-ul">
+<li><b>這個指令要單獨執行</b>，不要和後面的指令一起貼上；等它說登入成功再做下一步。</li>
+<li><b>看最後一行 <code>Logged in as ...</code> 是不是你自己的帳號</b>。
+不是的話，代表瀏覽器裡還留著上一位同學的 GitHub：
+到瀏覽器把 GitHub 登出 → <code>gh auth logout</code> → 重新 <code>gh auth login</code>。</li>
+</ul>
+
+<p>
+<b>步驟 5：每個人把專案拿下來（clone）</b>
+</p>
+
+<p>
+學校電腦是 <b>大家共用同一個 student 帳號</b>，別班可能也建過同名資料夾，
+所以拿下來時，資料夾名字要加上 <b>班級和組別</b>（例： <code>c1-g3-drink</code>＝1 班第 3 組）：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">cd</span> ~/Desktop
+<span class="org-type">git</span> clone https://github.com/&#32068;&#38263;&#30340;&#24115;&#34399;/drink-app-v2.git c1-g3-drink
+<span class="org-type">cd</span> c1-g3-drink
+</code></pre>
+</div>
+<p>
+（ <code>組長的帳號</code> 換成真的帳號；網址可以在 repo 頁面綠色的 <b>Code</b> 按鈕複製。）
+</p>
+
+<p>
+<b>步驟 6：告訴 git 你是誰</b>
+</p>
+
+<p>
+不設定的話，每個人的存檔點都會顯示成「student」，看不出是誰做的。
+在剛剛的資料夾裡執行（只影響這個專案，不會影響下一位同學）：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">git</span> config user.name <span class="org-string">"&#20320;&#30340; GitHub &#24115;&#34399;"</span>
+<span class="org-type">git</span> config user.email <span class="org-string">"&#20320;&#35387;&#20874; GitHub &#30340; email"</span>
+</code></pre>
+</div>
+
+<p>
+<b>步驟 7：每個人用 PyCharm 打開專案</b>
+</p>
+<ol class="org-ol">
+<li>PyCharm → <b>Open</b> → 選 <code>~/Desktop/c1-g3-drink</code>（你們的資料夾）。</li>
+<li>跳出「Trust and Open Project?」：按 <b>Trust Project</b>。</li>
+<li>左邊是檔案清單，點檔名就能看、能改；下方的 <b>Terminal</b> 分頁用來打指令（已經在專案資料夾裡，不用再 <code>cd</code>）。</li>
+</ol>
+
+<p>
+之後 <b>看檔案、改檔案都在 PyCharm</b>， <b>git 指令在 PyCharm 的 Terminal 打</b>。
+</p>
+</div>
+</div>
+<div id="outline-container-org2f92f23" class="outline-3">
+<h3 id="org2f92f23"><span class="section-number-3">6.5.</span> 接力一輪（約 10 分鐘）</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+接力棒規則： <b>同一時間只有一個人在推</b>，推好了要 <b>喊出來</b>，下一位 <b>先拉再動手</b>。
+</p>
+
+<p>
+<b>① PM：寫暖身規格，推上去</b>
+</p>
+
+<p>
+<b>步驟 1：拉最新版</b>（PyCharm 的 Terminal）
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">git</span> pull
+</code></pre>
+</div>
+
+<p>
+<b>步驟 2：在 PyCharm 新增 SPEC.md</b>
+</p>
+<ol class="org-ol">
+<li>左邊檔案清單，在 <b>專案資料夾名稱</b> 上按右鍵 → <b>New</b> → <b>File</b>。</li>
+<li>檔名輸入 <code>SPEC.md</code>，按 Enter。</li>
+<li>如果問「Add File to Git?」，按 <b>Cancel</b>（等一下自己用指令加）。</li>
+<li>貼上這份規格（ <code>X</code> 換成你們的組別）。PyCharm 會自動存檔，不用按儲存。</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-markdown"><code><span class="org-markdown-header-face-1"># &#26262;&#36523;&#35215;&#26684;&#65306;&#40670;&#21934;&#30059;&#38754;
+</span>&#23450;&#20301;&#65306;&#29677;&#32026;&#33258;&#24049;&#29992;&#30340;&#22296;&#36092;&#24037;&#20855;&#65288;&#19981;&#26159;&#24215;&#23478;&#30340;&#31995;&#32113;&#65289;&#65292;&#19968;&#27425;&#19968;&#22296;&#12289;&#19968;&#23478;&#24215;&#12290;
+
+<span class="org-markdown-list">-</span> &#30059;&#38754;&#26368;&#19978;&#38754;&#39023;&#31034;&#27161;&#38988;&#12300;&#31532;X&#32068; &#39154;&#26009;&#22296;&#36092;&#12301;
+<span class="org-markdown-list">-</span> &#33756;&#21934;&#21482;&#26377;&#19977;&#31278;&#65306;&#32005;&#33590; 30 &#20803;&#12289;&#32160;&#33590; 30 &#20803;&#12289;&#29645;&#29664;&#22902;&#33590; 50 &#20803;
+<span class="org-markdown-list">-</span> &#36664;&#20837;&#12300;&#22995;&#21517;&#12301;&#65292;&#19979;&#25289;&#36984;&#12300;&#39154;&#26009;&#12301;&#65292;&#36984;&#22909;&#24460;&#30059;&#38754;&#30452;&#25509;&#39023;&#31034;&#20729;&#26684;&#65288;&#19981;&#29992;&#33258;&#24049;&#22635;&#65289;
+<span class="org-markdown-list">-</span> &#25353;&#12300;&#36865;&#20986;&#12301;&#65292;&#39023;&#31034;&#12300;&#24050;&#25910;&#21040;&#65306;&#23567;&#26126; &#29645;&#29664;&#22902;&#33590; 50 &#20803;&#12301;
+<span class="org-markdown-list">-</span> &#22995;&#21517;&#27794;&#22635;&#23601;&#25353;&#36865;&#20986;&#65292;&#39023;&#31034;&#12300;&#35531;&#20808;&#36664;&#20837;&#22995;&#21517;&#12301;
+</code></pre>
+</div>
+
+<p>
+<b>步驟 3：推上去</b>（PyCharm 的 Terminal）
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">git</span> add SPEC.md
+<span class="org-type">git</span> commit -m <span class="org-string">"PM&#65306;&#26262;&#36523;&#35215;&#26684;"</span>
+<span class="org-type">git</span> push
+</code></pre>
+</div>
+<p>
+到 GitHub 的 repo 頁面重新整理，看得到 <code>SPEC.md</code> 就成功了，喊「PM 推好了」。
+</p>
+<p>
+<b>② 開發者：拉下來，叫 Codex 生成，推上去</b>
+</p>
+
+<p>
+<b>步驟 1：自己動手拉最新版</b>（等 PM 喊「推好了」再做；PyCharm 的 Terminal）
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">git</span> pull                     <span class="org-comment-delimiter"># </span><span class="org-comment">&#25226; PM &#25512;&#30340; SPEC.md &#25343;&#19979;&#20358;</span>
+</code></pre>
+</div>
+<p>
+PyCharm 左邊應該多出 <code>SPEC.md</code>。沒看到？PM 還沒推成功，先不要往下做。
+</p>
+
+<p>
+在 PyCharm 左邊點 <code>SPEC.md</code> 就能看規格；等一下 Codex 建了 <code>app.py</code>，也會自動出現在這裡。
+</p>
+<ul class="org-ul">
+<li>執行打 <code>python3 -m streamlit run app.py</code>，不要按 PyCharm 的綠色 ▶。</li>
+<li><code>import streamlit</code> 底下有紅色波浪線不用管，不影響執行。</li>
+<li>萬一 Terminal 那一行開頭出現 <code>(.venv)</code>、又說找不到 streamlit：輸入 <code>deactivate</code> 再跑一次。</li>
+</ul>
+
+<p>
+<b>步驟 2：啟動 Codex</b>（PyCharm 的 Terminal）
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>codex
+</code></pre>
+</div>
+<p>
+<b>步驟 3：對 Codex 說這段話</b>（整段貼上）
+</p>
+<pre class="example" id="org8ab13fb">
+讀 SPEC.md，照它寫 app.py（用 Streamlit）。
+只建立 app.py 這一個檔案，不要修改 SPEC.md。
+不要建立虛擬環境、不要安裝套件、先不要 commit。
+寫完告訴我你做了什麼。
+</pre>
+<p>
+Codex 會做的事：
+</p>
+<ol class="org-ol">
+<li>讀 SPEC.md。</li>
+<li>問你「可以建立 app.py 嗎？」—— <b>看一眼內容，選同意</b>。</li>
+<li>回報它寫了什麼。這時資料夾裡多了一個 <code>app.py</code>。</li>
+</ol>
+
+<p>
+<b>步驟 4：自己試跑</b>（Codex 留著不要關）
+</p>
+
+<p>
+在 PyCharm 的 Terminal 上方按 <code>+</code> 開一個 <b>新分頁</b>，輸入：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>python3 -m streamlit run app.py
+</code></pre>
+</div>
+<p>
+瀏覽器會自動打開。畫面出得來、選飲料會顯示價格，就可以了（仔細驗收是 QA 的事）。
+看完回到這個分頁按 <code>Ctrl + C</code> 結束，再切回 Codex 的分頁。
+</p>
+<ul class="org-ul">
+<li>畫面出不來、整頁紅字？把紅字貼給 Codex：「跑起來出現這個錯誤，幫我修」，修好再試一次。</li>
+</ul>
+<p>
+<b>步驟 5：推上去</b>（第一次先自己打指令）
+</p>
+
+<p>
+在剛剛試跑的那個 Terminal 分頁（已經按過 <code>Ctrl + C</code>），自己打這三行：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">git</span> add app.py                    <span class="org-comment-delimiter"># </span><span class="org-comment">&#25226; app.py &#25918;&#36914;&#23384;&#27284;&#40670;
+</span><span class="org-type">git</span> commit -m <span class="org-string">"&#40670;&#21934;&#30059;&#38754;&#23436;&#25104;"</span>      <span class="org-comment-delimiter"># </span><span class="org-comment">&#24314;&#31435;&#23384;&#27284;&#40670;
+</span><span class="org-type">git</span> push                          <span class="org-comment-delimiter"># </span><span class="org-comment">&#25512;&#19978; GitHub</span>
+</code></pre>
+</div>
+
+<blockquote>
+<p>
+<b>之後可以交給 Codex 做</b>：切回 Codex 的分頁，對它說
+「git add app.py，commit 訊息寫『點單畫面完成』，然後 push」。
+它會依序要求執行上面這三個指令，每個都 <b>看一眼再同意</b>。
+第一次自己打過，之後才看得懂 Codex 在幫你做什麼。下週開發者就都這樣推。
+</p>
+</blockquote>
+
+<p>
+<b>步驟 6：確認、交棒</b>
+</p>
+<ul class="org-ul">
+<li>到 GitHub 的 repo 頁面重新整理，看得到 <code>app.py</code> 就是推成功了。</li>
+<li>喊「開發者推好了」。</li>
+</ul>
+
+<p>
+<b>③ QA：拉下來，驗收，推上去</b>
+</p>
+
+<p>
+<b>步驟 1：拉最新版</b>（等開發者喊「推好了」再做；PyCharm 的 Terminal）
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">git</span> pull
+</code></pre>
+</div>
+<p>
+PyCharm 左邊應該多了 <code>app.py</code>。
+</p>
+
+<p>
+<b>步驟 2：跑起來，照規格驗收</b>
+在 PyCharm 點開 <code>SPEC.md</code> 放著對照（ <b>不要點開 app.py</b>），Terminal 輸入：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>python3 -m streamlit run app.py
+</code></pre>
+</div>
+<p>
+<b>不看程式碼</b>，照 SPEC.md 五條一條一條試，每條記「過」或「沒過」。
+試完回終端機按 <code>Ctrl + C</code> 結束。
+</p>
+
+<p>
+<b>步驟 3：寫驗收紀錄</b>
+</p>
+
+<p>
+在 PyCharm 左邊的專案資料夾名稱上按右鍵 → <b>New</b> → <b>File</b> → 檔名 <code>BUGS.md</code>（問要不要 Add to Git 就按 Cancel）。
+照你試的結果寫（下面是範例）：
+</p>
+<div class="org-src-container">
+<pre class="src src-markdown"><code><span class="org-markdown-header-face-1"># &#39511;&#25910;&#32000;&#37636;
+</span><span class="org-markdown-list">-</span> &#27161;&#38988;&#65306;&#36942;
+<span class="org-markdown-list">-</span> &#33756;&#21934;&#19977;&#31278;&#65306;&#36942;
+<span class="org-markdown-list">-</span> &#36984;&#39154;&#26009;&#33258;&#21205;&#39023;&#31034;&#20729;&#26684;&#65306;&#36942;
+<span class="org-markdown-list">-</span> &#36865;&#20986;&#35338;&#24687;&#65306;&#36942;
+<span class="org-markdown-list">-</span> &#27794;&#22635;&#22995;&#21517;&#65306;&#27794;&#36942;&#65292;&#25353;&#20102;&#36996;&#26159;&#39023;&#31034;&#12300;&#24050;&#25910;&#21040;&#12301;
+</code></pre>
+</div>
+
+<p>
+<b>步驟 4：推上去</b>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">git</span> add BUGS.md
+<span class="org-type">git</span> commit -m <span class="org-string">"QA&#65306;&#26262;&#36523;&#39511;&#25910;"</span>
+<span class="org-type">git</span> push
+</code></pre>
+</div>
+<p>
+到 GitHub 看得到 <code>BUGS.md</code> 就成功了，喊「QA 推好了」。
+</p>
+<p>
+<b>④ 全組：確認接力成功</b>
+</p>
+<ul class="org-ul">
+<li>每個人 <code>git pull</code>，資料夾裡應該有 <code>README.md</code>、 <code>SPEC.md</code>、 <code>app.py</code>、 <code>BUGS.md</code>。</li>
+<li>到 GitHub 的 repo 頁面點 <b>Commits</b>： <b>三個存檔點的作者是三個不同帳號</b>，就成功了。</li>
+<li>有沒過的、時間也還夠？再跑一輪：開發者對 Codex 說
+「先 git pull，照 BUGS.md 修沒過的那一條；修好後 commit，訊息寫『修正：沒填姓名的提示』，然後 push」，
+QA 再 <code>git pull</code> 下來驗一次。</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">卡住了</th>
+<th scope="col" class="org-left">怎麼辦</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>git push</code> 出現 <code>rejected</code></td>
+<td class="org-left">別人先推了：先 <code>git pull</code> 再 <code>git push</code></td>
+</tr>
+
+<tr>
+<td class="org-left"><code>git push</code> 出現 <code>403</code> 或 <code>Permission denied</code></td>
+<td class="org-left">還沒接受邀請，或 <code>gh auth login</code> 登的是別人的帳號</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>git clone</code> 說 <code>Repository not found</code></td>
+<td class="org-left">網址打錯；或 repo 是 Private，而你登入的帳號不是被邀請的那個（看 <code>gh auth status</code>）</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>git clone</code> 說資料夾已存在</td>
+<td class="org-left">換一個資料夾名字（加班級組別）</td>
+</tr>
+
+<tr>
+<td class="org-left">終端機要你輸入 Username／Password</td>
+<td class="org-left">沒做 <code>gh auth login</code>，回步驟 4</td>
+</tr>
+
+<tr>
+<td class="org-left">Commits 裡作者是 <code>student</code></td>
+<td class="org-left">忘了步驟 6，下次 commit 前補上</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>No module named streamlit</code></td>
+<td class="org-left">開頭有 <code>(.venv)</code>？PyCharm 建了空的虛擬環境：輸入 <code>deactivate</code> 再跑一次</td>
+</tr>
+
+<tr>
+<td class="org-left">資料夾裡多了 <code>.venv</code>、 <code>.idea</code></td>
+<td class="org-left">不要 <code>git add</code> 它們；推的時候只 add 自己的那個檔案</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-org60c41f9" class="outline-3">
+<h3 id="org60c41f9"><span class="section-number-3">6.6.</span> 下課前：登出</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+學校電腦是共用帳號，不登出的話，下一位同學會用你的 GitHub 推東西：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>gh auth logout
+</code></pre>
+</div>
+<p>
+再做兩件事：
+</p>
+<ul class="org-ul">
+<li><b>瀏覽器裡的 GitHub 也要登出</b>（右上角頭像 → Sign out），不然下一位 <code>gh auth login</code> 會直接登入成你。</li>
+<li>用自己的 ChatGPT 帳號登入 Codex 的，執行 <code>codex logout</code>；瀏覽器裡的 ChatGPT 也登出。</li>
+</ul>
+<p>
+桌面的專案資料夾下週 <b>不一定還在</b>（學校電腦會清桌面）。沒關係——東西都在 GitHub 上，
+下週重新 clone 一次就全部回來了。所以 <b>下課前一定要確認都推上去了</b>。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org4f23230" class="outline-2">
+<h2 id="org4f23230"><span class="section-number-2">7.</span> 七、回家作業</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org74774df" class="outline-3">
+<h3 id="org74774df"><span class="section-number-3">7.1.</span> 作業：小組寫 SPEC.md 初稿</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+用 ChatGPT 或 Gemini 網頁版 <b>討論</b> 都可以，可以請它「挑我規格的漏洞」，
+但 <b>不准請它寫程式</b>。照這五欄寫：
+</p>
+<div class="org-src-container">
+<pre class="src src-markdown"><code><span class="org-markdown-header-face-1"># &#29677;&#32026;&#39154;&#26009;&#22296;&#36092;&#32113;&#35336; App&#8212;&#8212;&#35215;&#26684;
+</span>
+<span class="org-markdown-header-face-2">## 1. &#32102;&#35504;&#29992;
+</span>&#23450;&#20301;&#65306;&#29677;&#32026;&#33258;&#24049;&#29992;&#30340;&#22296;&#36092;&#24037;&#20855;&#65288;&#19981;&#26159;&#24215;&#23478;&#30340;&#31995;&#32113;&#65289;&#65292;&#19968;&#27425;&#19968;&#22296;&#12289;&#19968;&#23478;&#24215;&#12290;
+&#65288;&#22296;&#20027;&#26159;&#35504;&#65311;&#22296;&#20027;&#35201;&#20570;&#21738;&#20123;&#20107;&#65311;&#40670;&#21934;&#30340;&#21516;&#23416;&#35201;&#20570;&#21738;&#20123;&#20107;&#65311;&#29992;&#25163;&#27231;&#36996;&#26159;&#38651;&#33126;&#65311;&#65289;
+
+<span class="org-markdown-header-face-2">## 2. &#21151;&#33021;&#28165;&#21934;
+</span>&#24517;&#35201;&#65288;&#26368;&#22810; 4 &#38917;&#65289;&#65306;
+&#21152;&#20998;&#65306;
+
+<span class="org-markdown-header-face-2">## 3. &#30059;&#38754;&#33287;&#36039;&#26009;
+</span>&#65288;&#26377;&#24190;&#20491;&#30059;&#38754;&#65311;&#27599;&#31558;&#35330;&#21934;&#26377;&#21738;&#20123;&#27396;&#20301;&#65311;&#29980;&#24230;&#20912;&#22602;&#26377;&#21738;&#20123;&#36984;&#38917;&#65311;
+ &#33756;&#21934;&#21644;&#20729;&#26684;&#25918;&#22312;&#21738;&#65311;&#22296;&#20027;&#24590;&#40636;&#25913;&#65311;
+ &#35330;&#21934;&#23384;&#22312;&#21738;&#35041;&#65311;&#20854;&#20182;&#20154;&#30475;&#24471;&#21040;&#21966;&#65311;&#37325;&#26032;&#25972;&#29702;&#24460;&#36996;&#22312;&#21966;&#65311;
+ &#21738;&#20123;&#36039;&#26009;&#37325;&#38283; App &#24460;&#36996;&#26371;&#22312;&#12289;&#21738;&#20123;&#26371;&#19981;&#35211;&#65311;&#65289;
+
+<span class="org-markdown-header-face-2">## 4. &#24590;&#27171;&#31639;&#20570;&#23436;&#65288;&#39511;&#25910;&#26781;&#20214;&#65292;&#33267;&#23569; 6 &#26781;&#65292;&#35201;&#21487;&#25805;&#20316;&#12289;&#21487;&#21028;&#26039;&#65289;</span>
+<span class="org-markdown-header-rule">-</span>
+-
+
+<span class="org-markdown-header-face-2">## 5. &#19981;&#20570;&#28165;&#21934;</span>
+<span class="org-markdown-header-rule">-</span>
+</code></pre>
+</div>
+<p>
+寫的時候自我檢查：
+</p>
+<ul class="org-ul">
+<li>有沒有寫出「店家看訂單」「多家店」「多個班一起訂」這類功能？那是店家系統，不是我們的定位，放進不做清單。</li>
+<li>必要功能超過 4 項？砍。</li>
+<li>驗收條件裡有「能用」「正確」「好看」這種詞？改成可以照著操作的句子。</li>
+<li>第 3 欄「菜單放在哪、團主怎麼改」寫了嗎？最簡單的做法：菜單寫在 repo 的檔案裡（例如 <code>menu.json</code>），
+團主開團前在 GitHub 網頁改。 <b>不用做帳號登入</b> ——那太大了，放進不做清單。</li>
+<li>第 3 欄「資料存在哪」想清楚了嗎？今天 B4（Reboot 後訂單還在嗎）的結果，答案就在這裡。</li>
+<li>回去看 Padlet「❓ 題目沒說的」：挑出你們要做的寫進必要功能，其他寫進不做清單。</li>
+<li>不做清單是空的？那你們一定會範圍蔓延。</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge1987b2" class="outline-3">
+<h3 id="orge1987b2"><span class="section-number-3">7.2.</span> 繳交</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+PM 把 SPEC.md 初稿 <b>放進你們的 repo</b>（不用打指令，網頁就能做）：
+</p>
+<ol class="org-ol">
+<li>打開 GitHub 上的 <code>drink-app-v2</code> → 點 <code>SPEC.md</code> → 右上角鉛筆 ✏️。</li>
+<li>把暖身規格整份換成你們的初稿（點單畫面那幾條可以直接沿用）→ <b>Commit changes</b>。</li>
+<li>把 repo 網址交到 Google Classroom。</li>
+</ol>
+
+<p>
+下週上課第一件事：老師拿一份 SPEC.md 當範例點評，各組修訂後就開工。
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaea57b3" class="outline-2">
+<h2 id="orgaea57b3"><span class="section-number-2">8.</span> 八、選做：在自己的電腦裝 Codex&nbsp;&nbsp;&nbsp<span class="tag"><span class="noslide">noslide</span></span></h2>
+<div class="outline-text-2" id="text-8">
+<p>
+學校電腦教室已經裝好 Codex，上課不用自己裝。
+想在家裡繼續做的同學，照下面的步驟裝。
+</p>
+
+<p>
+你需要：
+</p>
+<ul class="org-ul">
+<li>一個 ChatGPT 帳號（登入 Codex 用）。免費帳號能用多少額度依 OpenAI 當時的方案而定，
+以登入後實際能不能用為準。</li>
+<li>約 10 分鐘、可以連網的電腦。</li>
+</ul>
+</div>
+<div id="outline-container-orgd243e80" class="outline-3">
+<h3 id="orgd243e80"><span class="section-number-3">8.1.</span> Windows 版</h3>
+<div class="outline-text-3" id="text-8-1">
+<ol class="org-ol">
+<li><b>裝 Node.js</b>：到 <a href="https://nodejs.org">nodejs.org</a> 下載 <b>LTS</b> 版的 Windows 安裝檔（ <code>.msi</code>），
+一路按「下一步」裝完。</li>
+<li><b>打開 PowerShell</b>：按開始鍵，搜尋「PowerShell」，點開（不用系統管理員身分）。</li>
+<li><p>
+<b>確認 Node.js 裝好了</b>：
+</p>
+<div class="org-src-container">
+<pre class="src src-powershell"><code>node -v        # 出現 v22.x 之類的版本號就 OK
+npm -v
+</code></pre>
+</div>
+<p>
+如果出現「 <b>因為這個系統上已停用指令碼執行</b>」，先執行下面這行，
+問你要不要變更時輸入 <code>Y</code>，再重跑一次 <code>npm -v</code>：
+</p>
+<div class="org-src-container">
+<pre class="src src-powershell"><code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+</code></pre>
+</div></li>
+<li><p>
+<b>安裝 Codex</b>：
+</p>
+<div class="org-src-container">
+<pre class="src src-powershell"><code>npm install -g @openai/codex
+</code></pre>
+</div></li>
+<li><p>
+<b>關掉 PowerShell、重開一個</b>，確認裝好了：
+</p>
+<div class="org-src-container">
+<pre class="src src-powershell"><code>codex --version
+</code></pre>
+</div></li>
+<li>接著做下面的「第一次登入」。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org12c5943" class="outline-3">
+<h3 id="org12c5943"><span class="section-number-3">8.2.</span> Mac 版</h3>
+<div class="outline-text-3" id="text-8-2">
+<ol class="org-ol">
+<li><b>裝 Node.js</b>：到 <a href="https://nodejs.org">nodejs.org</a> 下載 <b>LTS</b> 版的 macOS 安裝檔（ <code>.pkg</code>），
+一路按「繼續」裝完。</li>
+<li><b>打開終端機</b>：按 <code>⌘ + 空白鍵</code> 叫出 Spotlight，搜尋「終端機」（Terminal）。</li>
+<li><p>
+<b>確認 Node.js 裝好了</b>：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>node -v        <span class="org-comment-delimiter"># </span><span class="org-comment">&#20986;&#29694; v22.x &#20043;&#39006;&#30340;&#29256;&#26412;&#34399;&#23601; OK
+</span>npm -v
+</code></pre>
+</div></li>
+<li><p>
+<b>安裝 Codex</b>：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>npm install -g @openai/codex
+</code></pre>
+</div>
+<p>
+如果出現一大段紅字、裡面有 <code>EACCES</code>（權限不足），改用：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">sudo</span> npm install -g @openai/codex
+</code></pre>
+</div>
+<p>
+它會要你輸入 <b>這台 Mac 的開機密碼</b> ——打字時畫面不會顯示任何東西，
+這是正常的，打完按 Enter 就好。
+</p></li>
+<li><p>
+<b>關掉終端機、重開一個</b>，確認裝好了：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>codex --version
+</code></pre>
+</div></li>
+<li>接著做下面的「第一次登入」。</li>
+</ol>
+
+<p>
+已經有 Homebrew 的同學可以跳過 Node.js，直接一行裝好：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code>brew install --cask codex
+</code></pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org2e0316d" class="outline-3">
+<h3 id="org2e0316d"><span class="section-number-3">8.3.</span> 第一次登入（兩版相同）</h3>
+<div class="outline-text-3" id="text-8-3">
+<ol class="org-ol">
+<li><p>
+先建一個練習用的資料夾、進去，再啟動 Codex：
+</p>
+<div class="org-src-container">
+<pre class="src src-sh"><code><span class="org-type">mkdir</span> drink-app
+<span class="org-type">cd</span> drink-app
+codex
+</code></pre>
+</div>
+<p>
+<b>一定要先 <code>cd</code> 進專案資料夾再啟動</b> ——Codex 會在「目前資料夾」裡動手，
+在桌面或家目錄直接開，它可能會改到你其他的檔案。
+</p></li>
+<li>選「 <b>Sign in with ChatGPT</b>」，瀏覽器會跳出登入頁，登入你的 ChatGPT 帳號。</li>
+<li>回到終端機，看到可以打字的輸入框，就完成了。打一句「你好，用繁體中文自我介紹」試試看。</li>
+<li>要離開時輸入 <code>/quit</code>，或按 <code>Ctrl-C</code>。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orgff33bde" class="outline-3">
+<h3 id="orgff33bde"><span class="section-number-3">8.4.</span> 之後要更新</h3>
+<div class="outline-text-3" id="text-8-4">
+<div class="org-src-container">
+<pre class="src src-sh"><code>npm install -g @openai/codex@latest
+</code></pre>
+</div>
+<p>
+（用 Homebrew 裝的改成 <code>brew upgrade --cask codex</code>。）
+</p>
+</div>
+</div>
+<div id="outline-container-org916c7c4" class="outline-3">
+<h3 id="org916c7c4"><span class="section-number-3">8.5.</span> 在家使用的三個提醒</h3>
+<div class="outline-text-3" id="text-8-5">
+<ol class="org-ol">
+<li><b>不要開「全自動同意」模式</b>：讓 Codex 每次動手前都問你，看一眼再同意。</li>
+<li><b>個資、密碼、API key 不要貼給它</b>。</li>
+<li>在家做的東西，下次上課要帶得走：整個資料夾壓成 zip 上傳雲端，
+或請 Codex 幫你推到 GitHub。</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orga96aba7" class="outline-3">
+<h3 id="orga96aba7"><span class="section-number-3">8.6.</span> 安裝急救</h3>
+<div class="outline-text-3" id="text-8-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">狀況</th>
+<th scope="col" class="org-left">解法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><code>npm : 無法辨識</code> / <code>command not found</code></td>
+<td class="org-left">Node.js 沒裝好或沒重開終端機——重開一次終端機再試</td>
+</tr>
+
+<tr>
+<td class="org-left">Windows「已停用指令碼執行」</td>
+<td class="org-left">執行 <code>Set-ExecutionPolicy -Scope CurrentUser RemoteSigned</code></td>
+</tr>
+
+<tr>
+<td class="org-left">Mac 出現 <code>EACCES</code></td>
+<td class="org-left">前面加 <code>sudo</code> 重裝，輸入開機密碼</td>
+</tr>
+
+<tr>
+<td class="org-left"><code>codex</code> 找不到</td>
+<td class="org-left">先重開終端機；還不行就重跑 <code>npm install -g @openai/codex</code></td>
+</tr>
+
+<tr>
+<td class="org-left">安裝時一堆 WARN</td>
+<td class="org-left">黃色 WARN 可以無視，紅色 ERR 才需要處理</td>
+</tr>
+
+<tr>
+<td class="org-left">登入畫面沒跳出來</td>
+<td class="org-left">把終端機顯示的網址複製到瀏覽器手動打開</td>
+</tr>
+
+<tr>
+<td class="org-left">登入後說額度不足／不能用</td>
+<td class="org-left">帳號方案的限制，不是你裝錯——上課用學校的電腦就好</td>
+</tr>
+
+<tr>
+<td class="org-left">其他看不懂的紅字</td>
+<td class="org-left">整段截圖，下次上課帶來問</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">&#20316;&#32773;: 顏永進</p>
+<p class="date">Created: 2026-11-26 Thu 22:05</p>
+</div>
+</body>
+</html>
