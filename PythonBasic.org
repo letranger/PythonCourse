@@ -4289,17 +4289,29 @@ Tuple（元組）和 List 很像，都可以用來儲存多個資料，也都可
 I pronounce tuple too-pull on Mon/Wed/Fri and tub-pull on Tue/Thu/Sat. On Sunday I don't talk about them. :)
 #+end_quote
 *** 為什麼需要不能改的資料型別
-甲、乙、丙三位同學合寫一個密碼小工具：甲負責建立一份字母表給大家共用，乙負責「反轉密碼」（a↔z、b↔y⋯），丙負責「凱薩密碼」（每個字母往後移 3 個，a→d、b→e⋯）。三個人寫好的程式合在一起是這樣：
-#+begin_src python -r -n :results output :exports both
-# ===== 甲同學：建立字母表，給大家共用 =====
-ALPHABET = list('abcdefghijklmnopqrstuvwxyz')
+甲、乙、丙三位同學合寫一個密碼小工具，每個人各寫一個檔案，放在同一個資料夾裡：甲負責建立一份字母表給大家共用，乙負責「反轉密碼」（a↔z、b↔y⋯），丙負責「凱薩密碼」（每個字母往後移 3 個，a→d、b→e⋯）。
 
-# ===== 乙同學：做「反轉密碼」 =====
+甲的檔案 =alphabet.py= ：
+#+begin_src python -r -n :results output :exports code :eval no
+# 甲同學：建立字母表，給大家共用
+ALPHABET = list('abcdefghijklmnopqrstuvwxyz')
+#+end_src
+
+乙的檔案 =reverse_cipher.py= ：
+#+begin_src python -r -n :results output :exports code :eval no
+# 乙同學：做「反轉密碼」
+from alphabet import ALPHABET
+
 reverse_table = ALPHABET          # 以為這樣是複製一份
 reverse_table.reverse()
 print('反轉密碼：a →', reverse_table[0])
+#+end_src
 
-# ===== 丙同學：做「凱薩密碼」 =====
+丙的檔案 =caesar.py= ：
+#+begin_src python -r -n :results output :exports code :eval no
+# 丙同學：做「凱薩密碼」
+from alphabet import ALPHABET
+
 word = 'abc'
 result = ''
 for ch in word:
@@ -4308,36 +4320,61 @@ for ch in word:
 print('凱薩密碼：', result)
 #+end_src
 
-#+RESULTS:
-: 反轉密碼：a → z
-: 凱薩密碼： xyz
+乙和丙的第 2 行 =from alphabet import ALPHABET= ，意思是「從 =alphabet.py= 這個檔案把 =ALPHABET= 拿來用」。之前寫的 =import math= 是使用 Python 內建的模組，自己寫的 =.py= 檔也可以用同樣的方式給別的檔案使用。
+
+乙和丙各自執行自己的檔案來測試，結果都正確：
+#+begin_example
+$ python3 reverse_cipher.py
+反轉密碼：a → z
+$ python3 caesar.py
+凱薩密碼： def
+#+end_example
+
+最後用一個 =main.py= 把兩個人的程式合在一起：
+#+begin_src python -r -n :results output :exports code :eval no
+import reverse_cipher
+import caesar
+#+end_src
+
+#+begin_example
+$ python3 main.py
+反轉密碼：a → z
+凱薩密碼： xyz
+#+end_example
 
 乙的反轉密碼正確，但丙的凱薩密碼應該印出 =def= ，卻印出了 =xyz= 。仔細看會發現：
-- ~丙的程式完全沒寫錯~ ，但結果是錯的，丙一定會先花很多時間檢查自己的程式。
-- ~錯的是乙~ ：第 5 行 =reverse_table = ALPHABET= 並不是複製一份，而是讓兩個名字指向 ~同一份~ List。第 6 行的 =reverse()= 把大家共用的字母表也反轉了，丙拿到的字母表變成 z、y、x⋯，算出來當然不對。
-- ~每個人單獨測試都正常~ ：乙只測自己那段，反轉沒問題；丙單獨執行時，字母表還是正常的 a～z。三段合在一起才出錯，這是多人合作時最難找的 bug。
+- ~丙的程式完全沒寫錯~ ，但結果是錯的，丙一定會先花很多時間檢查自己的 =caesar.py= 。
+- ~錯的是乙~ ： =reverse_cipher.py= 第 4 行 =reverse_table = ALPHABET= 並不是複製一份，而是讓兩個名字指向 ~同一份~ List。第 5 行的 =reverse()= 把大家共用的字母表也反轉了，丙拿到的字母表變成 z、y、x⋯，算出來當然不對。
+- ~分成不同檔案也一樣~ ：不管有幾個檔案 =import= ， =alphabet.py= 裡的字母表從頭到尾只有一份，大家拿到的都是同一份，不是各自複製一份。
+- ~每個人單獨測試都正常~ ：乙只測自己的檔案，反轉沒問題；丙單獨執行時，字母表還是正常的 a～z。合在一起才出錯，這是多人合作時最難找的 bug。
 - ~沒有任何錯誤訊息~ ：程式照常跑完，只是答案錯了。
 
-如果甲在第 2 行改用 Tuple：
-#+begin_src python -r -n :results output :exports both
+如果甲在 =alphabet.py= 的第 2 行改用 Tuple：
+#+begin_src python -r -n :results output :exports code :eval no
+# 甲同學：建立字母表，給大家共用
 ALPHABET = tuple('abcdefghijklmnopqrstuvwxyz')
 #+end_src
-程式執行到乙的第 6 行就會直接停下來：
+執行 =main.py= 時，程式就會直接停下來：
 #+begin_example
+  File "reverse_cipher.py", line 5, in <module>
+    reverse_table.reverse()
 AttributeError: 'tuple' object has no attribute 'reverse'
 #+end_example
-Tuple 不能修改，所以沒有 =reverse()= 這個方法，錯誤訊息也直接指出是哪一行改了共用的資料。乙這時就知道要另外做一份新的，用切片就可以：
-#+begin_src python -r -n :results output :exports both
-ALPHABET = tuple('abcdefghijklmnopqrstuvwxyz')
+Tuple 不能修改，所以沒有 =reverse()= 這個方法，錯誤訊息也直接指出是哪個檔案的哪一行改了共用的資料。乙這時就知道要另外做一份新的，用切片就可以。乙把 =reverse_cipher.py= 改成：
+#+begin_src python -r -n :results output :exports code :eval no
+# 乙同學：做「反轉密碼」
+from alphabet import ALPHABET
 
 reverse_table = ALPHABET[::-1]    # 切片會產生一份新的，ALPHABET 不受影響
 print('反轉密碼：a →', reverse_table[0])
-print('原本的字母表：', ALPHABET[0])
 #+end_src
 
-#+RESULTS:
-: 反轉密碼：a → z
-: 原本的字母表： a
+再執行一次 =main.py= ，兩個人的結果都對了：
+#+begin_example
+$ python3 main.py
+反轉密碼：a → z
+凱薩密碼： def
+#+end_example
 
 從這個例子可以看出：
 - ~用 Tuple 是一種保證~ ：甲用 Tuple 等於告訴組員「這份字母表大家共用，誰都不能改」。變數名稱寫成全大寫的 =ALPHABET= 只是一種約定，組員不一定會遵守；用 Tuple 的話，Python 會強制擋下來。
@@ -4737,7 +4774,6 @@ print("'5' in b:", '5' in b)
 : a ^ b: {'a', '2', '5', '4', '7'}
 : '5' in a: False
 : '5' in b: True
-
 ** 練習
 :PROPERTIES:
 :ID:       ef8092cb-d252-4826-8d3e-cba3d090bb57
@@ -4760,7 +4796,6 @@ print(set2 & set1)
 
 #+RESULTS:
 : {40, 50, 30}
-
 ** 作業[set]
 *** 測資讀取的方式
 - [[https://charlottehong.blogspot.com/2021/05/cc_23.html][寫C/C++測試題目時如何讀取測資]]
